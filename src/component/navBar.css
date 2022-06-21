@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    border-bottom: 1px solid black;
+}
+
+.navUl {
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+}
+
+.navUl > li {
+    padding: 0px 10px;
+}
+
+.navUl > li > a {
+    white-space: nowrap;
+}
+
+.memberLi span{
+    cursor: pointer;
+}
+
+.memberLi a {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    padding: 6px 10px;
+}
+
+.memberUl li {
+    border: 1px solid black;
+}
