@@ -19,16 +19,23 @@
     color: black;
 }
 
-.navUl > li {
-    padding: 0px 10px;
-}
+/* .navUl > li {
+} */
 
 .navUl > li > a {
+    padding: 0px 10px;
+    display: block;
+    width: 100%;
     white-space: nowrap;
 }
 
-.memberLi span{
+.memberLi button{
+    padding: 0px 10px;
     cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
 }
 
 .memberLi a {

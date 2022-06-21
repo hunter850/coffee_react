@@ -59,7 +59,7 @@ const NavBar = () => {
                     <li><Link to="/sharing">分享牆</Link></li>
                     <li><Link to="/game">遊戲</Link></li>
                     <li className="memberLi" style={memberListyle} ref={memberLi} onClick={displayHandler}>
-                        <span>會員</span>
+                        <button>會員</button>
                         <ul className="memberUl" style={memberDisplay} onClick={clickHandler}>
                             <li><Link to="/member">會員中心</Link></li>
                             <li><Link to="/points">會員積分</Link></li>
