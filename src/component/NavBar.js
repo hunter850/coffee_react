@@ -30,6 +30,10 @@ const NavBar = () => {
         // console.log(memLiHeight);
         setMemberDisplay(pre => ({...pre, top: memLiHeight + "px"}))
         window.addEventListener("click", closeMember);
+
+        return () => {
+            window.removeEventListener("click", closeMember);
+        }
     }, []);
 
     const clickHandler  = (event) => {
@@ -38,6 +42,7 @@ const NavBar = () => {
 
     const displayHandler = (event) => {
         event.stopPropagation();
+        setGameDisplay(pre => ({...pre, display: "none"}))
         setMemberDisplay(pre => {
             if(pre.display === "none") {
                 return {...pre, display: "block"};
@@ -73,6 +78,10 @@ const NavBar = () => {
         // console.log(memLiHeight);
         setGameDisplay(pre => ({...pre, top: gameLiHeight + "px"}))
         window.addEventListener("click", closeGame);
+
+        return () => {
+            window.removeEventListener("click", closeGame);
+        }
     }, []);
 
     const clickHandler2  = (event) => {
@@ -81,6 +90,7 @@ const NavBar = () => {
 
     const displayHandler2 = (event) => {
         event.stopPropagation();
+        setMemberDisplay(pre => ({...pre, display: "none"}))
         setGameDisplay(pre => {
             if(pre.display === "none") {
                 return {...pre, display: "block"};
@@ -109,7 +119,6 @@ const NavBar = () => {
                             <li><Link to="/getcoupon">獲得優惠券</Link></li>
                         </ul>
                     </li>
-
                     <li className="memberLi" style={memberListyle} ref={memberLi}>
                         <button onClick={displayHandler}>會員</button>
                         <ul className="memberUl" style={memberDisplay} onClick={clickHandler}>
@@ -117,7 +126,6 @@ const NavBar = () => {
                             <li><Link to="/points">我的積分</Link></li>
                             <li><Link to="/coupon">我的優惠卷</Link></li>
                         </ul>
-                        
                     </li>
                     <li><Link to="/cart">購物車</Link></li>
                 </ul> 
