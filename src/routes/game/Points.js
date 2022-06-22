@@ -5,7 +5,7 @@ const Points = () => {
     const el = (
         <Fragment>
             <NavBar />
-            <h2>積分</h2>
+            <h2>查看積分</h2>
         </Fragment>
     )
 

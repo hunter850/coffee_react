@@ -5,7 +5,7 @@ const Coupon = () => {
     const el = (
         <Fragment>
             <NavBar />
-            <h2>優惠卷</h2>
+            <h2>查看優惠卷</h2>
         </Fragment>
     )
 

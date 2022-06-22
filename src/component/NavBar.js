@@ -114,8 +114,8 @@ const NavBar = () => {
                         <button onClick={displayHandler}>會員</button>
                         <ul className="memberUl" style={memberDisplay} onClick={clickHandler}>
                             <li><Link to="/member">會員中心</Link></li>
-                            <li><Link to="/points">會員積分</Link></li>
-                            <li><Link to="/coupon">優惠卷</Link></li>
+                            <li><Link to="/points">我的積分</Link></li>
+                            <li><Link to="/coupon">我的優惠卷</Link></li>
                         </ul>
                         
                     </li>
