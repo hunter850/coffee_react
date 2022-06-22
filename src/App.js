@@ -9,6 +9,7 @@ import Member from "./routes/member/Member";
 import Game from "./routes/game/Game";
 import Points from "./routes/game/Points";
 import Coupon from "./routes/game/Coupon";
+import Store from "./routes/store/Store";
 
 const App = () => {
     const el = (
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/points" element={<Points />} />
                 <Route path="/coupon" element={<Coupon />} />
                 <Route path="/game" element={<Game />} />
+                <Route path="/store" element={<Store />} />
             </Routes>
         </BrowserRouter>
     );

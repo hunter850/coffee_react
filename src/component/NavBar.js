@@ -53,6 +53,7 @@ const NavBar = () => {
             <nav className="navbar">    
                 <ul className="navUl">
                     <li><Link to="/">首頁</Link></li>
+                    <li><Link to="/store">店家資訊</Link></li>
                     <li><Link to="/goods">商品</Link></li>
                     <li><Link to="/food">點餐</Link></li>
                     <li><Link to="/lesson">課程</Link></li>
