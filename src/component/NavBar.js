@@ -30,8 +30,12 @@ const NavBar = () => {
         // console.log(memLiHeight);
         setMemberDisplay(pre => ({...pre, top: memLiHeight + "px"}))
         window.addEventListener("click", closeMember);
-
+        window.addEventListener("resize", adjustMemberTop);
+        function adjustMemberTop() {
+            setMemberDisplay(pre => ({...pre, top: memberLi.current.getBoundingClientRect().height + "px"}));
+        }
         return () => {
+            window.removeEventListener("resize", adjustMemberTop);
             window.removeEventListener("click", closeMember);
         }
     }, []);
@@ -78,8 +82,13 @@ const NavBar = () => {
         // console.log(memLiHeight);
         setGameDisplay(pre => ({...pre, top: gameLiHeight + "px"}))
         window.addEventListener("click", closeGame);
+        window.addEventListener("resize", adjustGameTop);
+        function adjustGameTop() {
+            setGameDisplay(pre => ({...pre, top: gameLi.current.getBoundingClientRect().height + "px"}));
+        }
 
         return () => {
+            window.removeEventListener("resize", adjustGameTop);
             window.removeEventListener("click", closeGame);
         }
     }, []);
