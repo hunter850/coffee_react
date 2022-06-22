@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./navBar.css"
 
 const NavBar = () => {
-
+// =============================================
     const memberListyle = {
         position: "relative"
     }
@@ -46,7 +46,50 @@ const NavBar = () => {
             }
         })
     }
+    // =================================
+    const gameListyle = {
+        position: "relative"
+    }
 
+    const gameUlStyle = {
+        listStyleType: "none",
+        padding: "0px",
+        position: "absolute",
+        top: "20px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        textAlign: "center",
+        display: "none"
+    }
+    const [gameDisplay, setGameDisplay] = useState(gameUlStyle);
+    const gameLi = useRef(null);
+
+    const closeGame = () => {
+        setGameDisplay(pre => ({...pre, display: "none"}));
+    }
+
+    useEffect(() => {
+        const gameLiHeight = gameLi.current.getBoundingClientRect().height;
+        // console.log(memLiHeight);
+        setGameDisplay(pre => ({...pre, top: gameLiHeight + "px"}))
+        window.addEventListener("click", closeGame);
+    }, []);
+
+    const clickHandler2  = (event) => {
+        event.stopPropagation();
+    }
+
+    const displayHandler2 = (event) => {
+        event.stopPropagation();
+        setGameDisplay(pre => {
+            if(pre.display === "none") {
+                return {...pre, display: "block"};
+            } else {
+                return {...pre, display: "none"};
+            }
+        })
+    }
+// =====================
     const el = (
         <header>
             <h1>0 + B !</h1>
@@ -58,7 +101,15 @@ const NavBar = () => {
                     <li><Link to="/food">點餐</Link></li>
                     <li><Link to="/lesson">課程</Link></li>
                     <li><Link to="/sharing">分享牆</Link></li>
-                    <li><Link to="/game">遊戲</Link></li>
+                    {/* <li><Link to="/game">遊戲</Link></li> */}
+                    <li className="gameLi" style={gameListyle} ref={gameLi}>
+                        <button onClick={displayHandler2}>遊戲</button>
+                        <ul className="gameUl" style={gameDisplay} onClick={clickHandler2}>
+                            <li><Link to="/getpoint">獲得積分</Link></li>
+                            <li><Link to="/getcoupon">獲得優惠券</Link></li>
+                        </ul>
+                    </li>
+
                     <li className="memberLi" style={memberListyle} ref={memberLi}>
                         <button onClick={displayHandler}>會員</button>
                         <ul className="memberUl" style={memberDisplay} onClick={clickHandler}>

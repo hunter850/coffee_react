@@ -9,6 +9,8 @@ import Member from "./routes/member/Member";
 import Game from "./routes/game/Game";
 import Points from "./routes/game/Points";
 import Coupon from "./routes/game/Coupon";
+import Getcoupon from "./routes/game/Getcoupon";
+import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
                 <Route path="/coupon" element={<Coupon />} />
                 <Route path="/game" element={<Game />} />
                 <Route path="/store" element={<Store />} />
+                <Route path="/getcoupon" element={<Getcoupon />} />
+                <Route path="/getpoint" element={<Getpoint />} />
             </Routes>
         </BrowserRouter>
     );
