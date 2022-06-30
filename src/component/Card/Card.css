@@ -1,12 +1,15 @@
 .course_card{
     margin-right: 40px;
     width: 290px;
-    height: 420px;
+    height: 430px;
     border-radius: 10px;
     color: #3E3E3E;
     text-align: start;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
+
+
 
 .course_card_top{
     width: 100%;
@@ -17,8 +20,10 @@
 
 
 
+
 .course_card_txt{
-    height: 150px;
+    padding-top: 20px;
+    height: 100%;
     margin: auto;
     width: calc((231 / 290)  * 100%);
 }
@@ -26,6 +31,7 @@
 .course_card_price{
     align-items: center;
     justify-content: end;
+    
 }
 
 .course_card_level{
@@ -39,6 +45,9 @@
     color: #fff;
     font-size: 17px;
 }
+
+
+
 
 
 
