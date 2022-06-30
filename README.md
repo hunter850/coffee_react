@@ -11,3 +11,15 @@
 
 
 ---
+
+### card 相關
+```
+.card-shadow -  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+.br-10 - border-radius: 10px;
+.card-mr - margin-right: 40px;
+.card-mb - margin-bottom: 30px;
+
+
+
+```
+---
