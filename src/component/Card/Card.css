@@ -1,17 +1,3 @@
-*{
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Noto Sans TC', sans-serif;
-}
-
-.Kosugi-Maru-title{
-    font-family: 'Kosugi Maru', sans-serif;
-}
-
-.d-flex{
-    display: flex;
-    
-}
-
 .course_card{
     margin-right: 40px;
     width: 290px;
