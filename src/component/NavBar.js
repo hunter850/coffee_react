@@ -118,7 +118,7 @@ const NavBar = () => {
                     <li><Link to="/store">店家資訊</Link></li>
                     <li><Link to="/goods">商品</Link></li>
                     <li><Link to="/food">點餐</Link></li>
-                    <li><Link to="/lesson">課程</Link></li>
+                    <li><Link to="/course">課程</Link></li>
                     <li><Link to="/sharing">分享牆</Link></li>
                     {/* <li><Link to="/game">遊戲</Link></li> */}
                     <li className="gameLi" style={gameListyle} ref={gameLi}>

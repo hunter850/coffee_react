@@ -29,7 +29,10 @@
     border-radius: 10px 10px 0 0 ;
 }
 
+
+
 .course_card_txt{
+    height: 150px;
     margin: auto;
     width: calc((231 / 290)  * 100%);
 }

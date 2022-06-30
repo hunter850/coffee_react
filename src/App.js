@@ -3,7 +3,7 @@ import FrontPage from './routes/frontPage/FrontPage';
 import Cart from './routes/cart/Cart';
 import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
-import Lesson from "./routes/lesson/Lesson";
+import Course from "./routes/course/Course";
 import Sharing from "./routes/sharing/Sharing";
 import Member from "./routes/member/Member";
 import Game from "./routes/game/Game";
@@ -21,7 +21,7 @@ const App = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/goods" element={<Goods />} />
                 <Route path="/food" element={<Food />} />
-                <Route path="/lesson" element={<Lesson />} />
+                <Route path="/course" element={<Course />} />
                 <Route path="/sharing" element={<Sharing />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/points" element={<Points />} />
