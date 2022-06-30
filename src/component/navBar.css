@@ -23,14 +23,14 @@
 } */
 
 .navUl > li > a {
-    padding: 0px 10px;
+    padding: 0px 40px;
     display: block;
     width: 100%;
     white-space: nowrap;
 }
 
 .memberLi button{
-    padding: 0px 10px;
+    padding: 0px 40px;
     cursor: pointer;
     outline: none;
     border: none;
@@ -46,5 +46,26 @@
 }
 
 .memberUl li {
+    border: 1px solid black;
+}
+
+
+.gameLi button{
+    padding: 0px 40px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.gameLi a {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    padding: 6px 10px;
+}
+
+.gameUl li {
     border: 1px solid black;
 }
