@@ -31,7 +31,7 @@
 
 .course_card_txt{
     margin: auto;
-    width: 231px;
+    width: calc((231 / 290)  * 100%);
 }
 
 .course_card_price{
