@@ -1,13 +1,14 @@
 .course_card{
     margin-right: 40px;
     width: 290px;
-    height: 430px;
+    height: 420px;
     border-radius: 10px;
     color: #3E3E3E;
     text-align: start;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
-    position: relative;
 }
+
+
 
 
 
