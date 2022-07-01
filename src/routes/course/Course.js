@@ -3,8 +3,13 @@ import NavBar from "../../component/NavBar";
 import Card from "../../component/Card/Card";
 import '../../component/Card/Card.css';
 
+
+
+
 const Course = () => {
+        
     const el = (
+        
         <Fragment>
             <NavBar />
             <h2>課程</h2>
@@ -18,7 +23,6 @@ const Course = () => {
             
         </Fragment>
     )
-
     return el;
 }
 

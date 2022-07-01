@@ -22,9 +22,9 @@ function Card({test}){
                     </div>
                 </div>
             </div>
-        //  'fontSize':'0.625rem',
         )
-    
-}
+        }
+
+
 
 export default Card
