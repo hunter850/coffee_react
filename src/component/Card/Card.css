@@ -1,11 +1,12 @@
 .course_card{
     margin-right: 30px;
     width: 290px;
-    height: 420px;
+    height: 410px;
     border-radius: 10px;
     color: #3E3E3E;
     text-align: start;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
 /* 測試間距 */
@@ -43,7 +44,7 @@
 .course_card_price{
     align-items: center;
     justify-content: end;
-    transform: translateY(-18px);
+    transform: translateY(-15px);
 }
 
 .course_card_level{
