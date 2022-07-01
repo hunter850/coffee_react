@@ -5,7 +5,7 @@ import React from 'react';
 
 function Card({test}){
     
-    console.log({...test});
+    
         return(
             <div className='course_card'>
                 <div className='course_card_top'>
@@ -22,6 +22,7 @@ function Card({test}){
                     </div>
                 </div>
             </div>
+           
         
         )
     
