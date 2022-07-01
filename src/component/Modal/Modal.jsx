@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const Modal = ({ children, isOpen, setIsOpen }) => {
+const Modal = ({ children, isOpen, setIsOpen, bordPadding = "24px 36px", bordY = -30, time = 0.5}) => {
 
     const bgStyle = {
         position: "fixed",
@@ -13,17 +13,17 @@ const Modal = ({ children, isOpen, setIsOpen }) => {
         justifyContent: "center",
         alignItems: "center",
         opacity: 0,
-        transition: "opacity .5s ease",
+        transition: `opacity ${time}s ease`,
     }
 
     const bordStyle = {
         backgroundColor: "#fff",
-        padding: "24px 36px",
+        padding: bordPadding,
         borderRadius: "10px",
         position: "relative",
-        transform: "translateY(-30px)",
+        transform: `translateY(${bordY}px)`,
         opacity: 0,
-        transition: "transform .7s ease, opacity .7s ease"
+        transition: `transform ${time + 0.2}s ease, opacity ${time + 0.2}s ease`
     }
 
     const buttonStyle = {
@@ -54,9 +54,9 @@ const Modal = ({ children, isOpen, setIsOpen }) => {
             }, 0);
         } else {
             setModalBackground(pre => ({ ...pre, display: "none", opacity: 0 }));
-            setModalBord(pre => ({ ...pre, transform: "translateY(-30px)", opacity: 0 }));
+            setModalBord(pre => ({ ...pre, transform: `translateY(${bordY}px)`, opacity: 0 }));
         }
-    }, [isOpen]);
+    }, [isOpen, bordY]);
 
     const el = (
         <div style={modalBackground} onClick={closeHandler}>
