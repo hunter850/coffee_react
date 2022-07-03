@@ -35,6 +35,7 @@ justify-content: center;
     border: 2px solid #FFFFFF;
     outline: none;
     border-radius: 2px 2px 0 2px;
+    box-shadow: 1px 1px 10px 1px #00000026;
 }
 
 input::-webkit-input-placeholder
