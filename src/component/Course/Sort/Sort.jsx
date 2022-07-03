@@ -11,10 +11,10 @@ export default function Sort (){
                 <div>
                 <select className="sort">
                     <option >排序方式</option>
-                    <option >初級&gt;高級</option>
-                    <option >高級&gt;初級</option>
-                    <option >價錢低&gt;高</option>
-                    <option >價錢高&gt;低</option>
+                    <option >初級&nbsp;&gt;&nbsp;高級</option>
+                    <option >高級&nbsp;&gt;&nbsp;初級</option>
+                    <option >價錢低&nbsp;&gt;&nbsp;高</option>
+                    <option >價錢高&nbsp;&gt;&nbsp;低</option>
                 </select>
                 </div>
             </div>

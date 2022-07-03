@@ -14,7 +14,7 @@ const Course = () => {
     const el = (
         
         <Fragment>
-            <div style={{backgroundColor:"#FCFAF7"}}>
+            <div style={{backgroundColor:"#FCFAF7",minWidth:'1440px'}} >
                <NavBar />
                 <Path pathObj={{path:{p1:'．課程資訊'}}}/>
                 <Header />
