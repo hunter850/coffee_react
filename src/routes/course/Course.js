@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 import Card from "../../component/Card/Card";
 import Path from "../../component/Path/Path";
-import '../../component/Card/Card.css';
+
 
 
 
