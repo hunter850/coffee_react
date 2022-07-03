@@ -3,6 +3,13 @@
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+/* 固定板  */
+.container{
+  width: 1440px;
+  margin: 0 auto;
+  padding: 0 200px;
+}
+
 /* flex */
 .d-flex{
   display: flex;
@@ -17,6 +24,10 @@
   align-items: center;
 }
 
+.f-w{
+  flex-wrap: wrap;
+}
+
 /* card */
 
 .card-shadow {
@@ -27,11 +38,4 @@
   border-radius: 10px;
 }
 
-.card-mr{
-  margin-right: 30px;
-}
-
-.card-mb{
-  margin-bottom: 40px;
-}
 
