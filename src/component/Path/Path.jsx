@@ -9,7 +9,7 @@ export default function Path ({pathObj}){
             <div className='Path-font Path-wrap'>
                     <span>首頁</span>
                     <span>{path.p1}</span>
-                    <span>{}</span>
+                    <span>{path.p2}</span>
             </div>
         </div>
     )
