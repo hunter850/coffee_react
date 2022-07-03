@@ -13,8 +13,8 @@ const Course = () => {
         
         <Fragment>
             <NavBar />
-            <div className="container">
-                <Path pathObj={{path:{p1:'．課程資訊',p2:'．愛心拉花'}}}/>
+            <Path pathObj={{path:{p1:'．課程資訊',p2:'．愛心拉花'}}}/>
+            <div className="container"> 
                 <h2>課程</h2>
                 <div className="d-flex f-w wrap">
                     <Card test={{lv:'初級',title:'愛心拉花',txt:'課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.',price:'1000'}} />
