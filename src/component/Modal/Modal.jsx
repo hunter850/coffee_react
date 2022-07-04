@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
+import useSetNow from "../hooks/useSetNow"
 
 const Modal = ({ children, isOpen, setIsOpen, bordPadding = "24px 36px", bordY = -30, time = 0.5}) => {
+
+    const setNow = useSetNow();
 
     const bgStyle = {
         position: "fixed",
@@ -48,15 +51,15 @@ const Modal = ({ children, isOpen, setIsOpen, bordPadding = "24px 36px", bordY =
     useEffect(() => {
         if (isOpen) {
             setModalBackground(pre => ({ ...pre, display: "flex" }));
-            setTimeout(() => {
+            setNow(() => {
                 setModalBackground(pre => ({ ...pre, opacity: 1 }));
                 setModalBord(pre => ({ ...pre, transform: "translateY(0px)", opacity: 1 }))
-            }, 0);
+            });
         } else {
             setModalBackground(pre => ({ ...pre, display: "none", opacity: 0 }));
             setModalBord(pre => ({ ...pre, transform: `translateY(${bordY}px)`, opacity: 0 }));
         }
-    }, [isOpen, bordY]);
+    }, [isOpen]);
 
     const el = (
         <div style={modalBackground} onClick={closeHandler}>
