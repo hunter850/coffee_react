@@ -14,7 +14,6 @@ export default function Path ({pathObj}){
                         pathObj.path.map((path)=>{
                             return (
                                 <span key={v4()}>{path}</span>
-                               
                             )
                         })
                     }
