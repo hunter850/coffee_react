@@ -1,15 +1,24 @@
 import React from 'react';
 import './Path.css'
+import { v4 } from 'uuid';
 
 export default function Path ({pathObj}){
-    const {path} = pathObj
+   console.log(pathObj.path);
+   
    
     return(
         <div className='container'>
             <div className='Path-font Path-wrap'>
                     <span>首頁</span>
-                    <span>{path.p1}</span>
-                    <span>{path.p2}</span>
+                    {
+                        pathObj.path.map((path)=>{
+                            return (
+                                <span key={v4()}>{path}</span>
+                               
+                            )
+                        })
+                    }
+                  
             </div>
         </div>
     )

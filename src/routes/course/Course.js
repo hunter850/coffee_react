@@ -16,7 +16,7 @@ const Course = () => {
         <Fragment>
             <div style={{backgroundColor:"#FCFAF7",minWidth:'1440px'}} >
                <NavBar />
-                <Path pathObj={{path:{p1:'．課程資訊'}}}/>
+                <Path pathObj={{path:['．課程資訊','．愛心拉花']}}/>
                 <Header />
                 <Sort/>
                 <div className="container">

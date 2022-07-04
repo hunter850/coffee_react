@@ -1,6 +1,6 @@
 ### Path組件使用說明
 
 ```js
-<Path pathObj={{path:{p1:'．課程資訊'}}}/> 
-<Path pathObj={{path:{p1:'．{頁面名稱}' , p2:'．{頁面名稱}'}}}/>
+<Path pathObj={{path:['．課程資訊','．愛心拉花']}}/>
+<Path pathObj={{path:['．{頁面名稱}','．{頁面名稱}']}}/>
 ```
