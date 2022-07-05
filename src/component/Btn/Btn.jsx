@@ -1,7 +1,7 @@
 import React from 'react'
 import './Btn.css'
 
-export default function Btn({ style }) {
+export default function Btn({ style, children }) {
     return (
         <div>
             <button
@@ -11,7 +11,7 @@ export default function Btn({ style }) {
                     color: style.color,
                     width: style.width,
                 }}>
-                {style.txt}
+                {children}
             </button>
         </div>
     )
