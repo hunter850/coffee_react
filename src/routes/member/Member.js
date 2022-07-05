@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import NavBar from "../../component/NavBar";
+import { Fragment } from "react"
+import NavBar from "../../component/NavBar"
 
 const Member = () => {
     const el = (
@@ -9,7 +9,7 @@ const Member = () => {
         </Fragment>
     )
 
-    return el;
+    return el
 }
 
 export default Member

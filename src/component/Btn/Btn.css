@@ -1,0 +1,9 @@
+.coffeeBtn {
+    height: 56px;
+    border: none;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 56px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px 0px rgb(0, 0, 0, 0.15);
+}

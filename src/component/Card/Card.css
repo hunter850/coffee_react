@@ -1,17 +1,17 @@
-*{
+* {
     letter-spacing: 0.07rem;
 }
 
-.wrap{
+.wrap {
     margin-right: -20px;
 }
 
-.course_card{
-    margin: 0 20px 31px 0 ;
+.course_card {
+    margin: 0 20px 31px 0;
     width: 245px;
     height: 380px;
     border-radius: 10px;
-    color: #3E3E3E;
+    color: #3e3e3e;
     text-align: start;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
     /* position: relative; */
@@ -29,37 +29,29 @@
     height: 18px;
 } */
 
-
-
-
-
-.course_card_top{
+.course_card_top {
     width: 100%;
     height: 244px;
-    background-color: #D1CFCF;
-    border-radius: 10px 10px 0 0 ;
+    background-color: #d1cfcf;
+    border-radius: 10px 10px 0 0;
 }
 
-
-
-
-
-.course_card_txt{
+.course_card_txt {
     padding: 18px 25px;
     height: 100%;
     margin: auto;
     /* width: calc((231 / 290)  * 100%); */
 }
 
-.course_card_price{
+.course_card_price {
     align-items: center;
     justify-content: end;
     transform: translateY(-10px);
 }
 
-.course_card_level{
-    transform: translate(13px , 11px);
-    background-color: #8DA47F;
+.course_card_level {
+    transform: translate(13px, 11px);
+    background-color: #8da47f;
     width: 54px;
     height: 26px;
     line-height: 26px;
@@ -69,18 +61,12 @@
     font-size: 0.875rem;
 }
 
-.font-min{
+.font-min {
     padding: 18px 0;
-    width:240px;
+    width: 240px;
     font-size: 0.75rem;
-    transform : scale(0.83,0.83);
+    transform: scale(0.83, 0.83);
     *font-size: 10px;
-    transform-origin:0 0;
+    transform-origin: 0 0;
     line-height: 20px;
 }
-
-
-
-
-
-

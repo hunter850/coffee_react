@@ -1,34 +1,30 @@
-
-
-.Sort-wrap{
+.Sort-wrap {
     width: 100%;
     height: 40px;
-    color: #3E3E3E;
+    color: #3e3e3e;
     justify-content: space-between;
     margin: 21px 0 22px;
     align-items: center;
 }
 
-.sort{
+.sort {
     width: 290px;
     height: 40px;
-    color: #3E3E3E;
+    color: #3e3e3e;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
     border-radius: 2px;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    background:url(/public/course/imgs/sort-img.png) no-repeat 92% 50% transparent;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url(/public/course/imgs/sort-img.png) no-repeat 92% 50%
+        transparent;
     background-color: #fff;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     font-size: 1rem;
     padding-left: 16px;
     outline: none;
 }
 
-
-
-.num-color{
-    color: #B79973;
+.num-color {
+    color: #b79973;
 }
-
