@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import NavBar from "../../component/NavBar"
-import Card from "../../component/Card/Card"
-import Path from "../../component/Path/Path"
+import Card from "../../component/Item/Card/Card"
+import Path from "../../component/Item/Path/Path"
 import Header from "../../component/Course/Header/Header"
 import Sort from "../../component/Course/Sort/Sort"
 
