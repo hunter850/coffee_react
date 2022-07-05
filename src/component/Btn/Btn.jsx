@@ -2,7 +2,6 @@ import React from 'react'
 import './Btn.css'
 
 export default function Btn({ style }) {
-    console.log(style)
     return (
         <div>
             <button

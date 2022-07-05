@@ -4,7 +4,7 @@ import Card from "../../component/Card/Card"
 import Path from "../../component/Path/Path"
 import Header from "../../component/Course/Header/Header"
 import Sort from "../../component/Course/Sort/Sort"
-import Btn from '../../component/Btn/Btn'
+
 
 
 
@@ -32,7 +32,6 @@ const Course = () => {
                         <Card test={{ lv: '初級', title: '愛心拉花', txt: '課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.', price: '1000' }} />
                     </div>
                 </div>
-                <Btn style={{ backgroundColor: '#B79973', color: '#fff', txt: '報名課程' }} />
             </div>
         </Fragment>
     )
