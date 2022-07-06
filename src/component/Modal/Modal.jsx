@@ -59,7 +59,7 @@ const Modal = ({ children, isOpen, setIsOpen, bordPadding = "24px 36px", bordY =
             setModalBackground(pre => ({ ...pre, display: "none", opacity: 0 }));
             setModalBord(pre => ({ ...pre, transform: `translateY(${bordY}px)`, opacity: 0 }));
         }
-    }, [isOpen]);
+    }, [isOpen, bordY, setNow]);
 
     const el = (
         <div style={modalBackground} onClick={closeHandler}>
