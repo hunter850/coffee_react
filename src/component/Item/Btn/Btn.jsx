@@ -1,7 +1,13 @@
 import React from 'react'
 import './Btn.css'
 
-export default function Btn({ style, children, type = "button" }) {
+const defaultButtonStyle = {
+    backgroundColor: "#253945",
+    color: "#fff",
+    width: "120px"
+}
+
+export default function Btn({ style = defaultButtonStyle, children, type = "button" }) {
     return (
         <div>
             <button
