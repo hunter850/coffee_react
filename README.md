@@ -9,6 +9,7 @@
 
 ```js
 // 組件範例
+// 用法1: 選擇需要的單一屬性傳入,格式如下
 <Btn backgroundColor={'#B79973'} color={'#fff'} width={'100px'}>
     課程內容
 </Btn>
