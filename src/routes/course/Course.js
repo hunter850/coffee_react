@@ -12,6 +12,7 @@ import Sort from "../../component/Course/Sort/Sort"
 
 
 
+
 const Course = () => {
 
     const el = (
@@ -19,6 +20,7 @@ const Course = () => {
         <Fragment>
             <div style={{ backgroundColor: "#FCFAF7", minWidth: '1440px' }} >
                 <NavBar />
+
                 <Path pathObj={{ path: ['．課程資訊'] }} />
                 <Header />
                 <Sort />
@@ -34,6 +36,7 @@ const Course = () => {
                         <Card test={{ lv: '初級', title: '愛心拉花', txt: '課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.', price: '1000' }} />
                     </div>
                 </div>
+
             </div>
         </Fragment>
     )

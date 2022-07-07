@@ -9,7 +9,7 @@
 
 ```js
 // 組件範例
-<Btn style={{ backgroundColor: '#B79973', color: '#fff', width: 100 }}>
+<Btn backgroundColor={'#B79973'} color={'#fff'} width={'100px'}>
     課程內容
 </Btn>
 

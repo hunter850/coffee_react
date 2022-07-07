@@ -1,136 +1,49 @@
+:root {
+    --BLUE: rgb(37, 57, 69);
+    --CREAM: rgb(252, 250, 247);
+    --GOLD: rgb(183, 153, 115);
+    --GRAY: rgb(196, 196, 196);
+}
+
 * {
     box-sizing: border-box;
-    font-family: 'Indie Flower', cursive;
     font-family: 'Noto Sans TC', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    text-decoration: none;
+    outline: none;
 }
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+h1 {
+    font-size: 44px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 32px;
+}
+h4 {
+    font-size: 28px;
+}
+h5 {
+    font-size: 24px;
+}
+h6 {
+    font-size: 20px;
+}
 p,
-blockquote,
-pre,
 a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+span,
+pre {
+    font-size: 16px;
 }
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
+input {
+    padding: 0px 9px;
 }
-body {
-    line-height: 1;
-}
-ol,
-ul {
-    list-style: none;
-}
-blockquote,
-q {
-    quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 /* 標題字體-圓體 */
 .title-font {
-    font-family: 'Kosugi Maru', sans-serif;
+    font-family: 'Kosugi Maru', 'Noto Sans TC', sans-serif;
 }
 
 /* 固定板  */
