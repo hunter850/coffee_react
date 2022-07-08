@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 
-const useLog = (value) => {
+const useLog = (...value) => {
     useEffect(() => {
-        console.log(value);
-    }, [value])
+        console.log(...value);
+    }, value);
 }
 
 export default useLog
