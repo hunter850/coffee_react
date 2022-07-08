@@ -1,6 +1,6 @@
 const useScrollTo = () => {
     return function(position) {
-        window.scroll({
+        window.scrollTo({
             top: position, 
             behavior: 'smooth' 
           });

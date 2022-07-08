@@ -3,7 +3,7 @@ import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 const useGSAPScroll = () => {
     gsap.registerPlugin(ScrollToPlugin);
-    return function(position, time, easing = "power1.out") {
+    return function(position, time = 1, easing = "power1.out") {
         gsap.to(window, {duration: time, scrollTo: {y: position}, ease: easing});
     }
 }

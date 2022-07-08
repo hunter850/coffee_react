@@ -11,6 +11,9 @@ const useGSAPCompute = () => {
         if(Object.keys(toState).indexOf("transform") >= 0 && Object.keys(fromState).indexOf("transform") === -1) {
             fromState = {...fromState, transform: "none"};
         }
+        if(Object.keys(toState).indexOf("fontSize") >= 0 && Object.keys(fromState).indexOf("fontSize") === -1) {
+            fromState = {...fromState, fontSize: "16px"};
+        }
         Object.keys(toState).forEach(k => {
             if(fromState[k] === undefined) {
                 fromState[k] = 0;
@@ -28,7 +31,7 @@ const useGSAPCompute = () => {
                 window.requestAnimationFrame(step);
                 return;
             }
-            set(() => ({...toState}));
+            set(() => ({...fromState,...toState}));
         }
         window.requestAnimationFrame(step);
     }
