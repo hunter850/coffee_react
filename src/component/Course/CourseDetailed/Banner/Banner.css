@@ -1,0 +1,54 @@
+.CourseDetailed_banner-txt {
+    height: 140px;
+    width: 621px;
+}
+
+.CourseDetailed_banner-btn {
+    border: 1px solid #b7997380;
+    height: 140px;
+    width: 378px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.Btn {
+    position: absolute;
+    bottom: 27px;
+}
+
+.CourseDetailed_banner_level {
+    transform: translateX(15px);
+    background-color: #8da47f;
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.875rem;
+}
+
+.CourseDetailed_banner_text {
+    padding-top: 30px;
+    color: #898787;
+    font-size: 0.9375rem;
+    line-height: 25px;
+}
+
+.CourseDetailed_banner_area {
+    padding-top: 23px;
+    color: #898787;
+}
+
+.CourseDetailed_banner-price {
+    color: #3e3e3e;
+    font-size: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    font-weight: 500;
+}

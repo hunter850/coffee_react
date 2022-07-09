@@ -1,0 +1,36 @@
+.CourseContentItem {
+    background-color: #ffffff;
+    width: 872px;
+    margin-top: 48px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px #00000026;
+}
+.CourseContent-title {
+    padding-top: 39px;
+    padding-left: 49px;
+    font-size: 1.3125rem;
+    color: #3e3e3e;
+}
+.arrow-icon {
+    padding-top: 39px;
+    padding-right: 52px;
+    color: #3e3e3e;
+}
+
+.CourseContent-text {
+    width: 774px;
+    margin: auto;
+    color: #898787;
+    font-size: 1.125rem;
+    line-height: 35px;
+    padding-bottom: 55px;
+}
+.CourseContent-text::before {
+    display: block;
+    content: "";
+    border: 2px solid #e4d5c9;
+    margin-top: 26px;
+    margin-bottom: 31px;
+    width: 820px;
+    transform: translateX(-23px);
+}

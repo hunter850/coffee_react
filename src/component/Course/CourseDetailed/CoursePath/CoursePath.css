@@ -1,0 +1,25 @@
+.CoursePath {
+    width: 128px;
+    height: 500px;
+    padding-top: 48px;
+    padding-left: 10px;
+    font-size: 1.25rem;
+    color: #898787;
+    font-weight: 300;
+}
+
+.focus {
+    color: #b79973;
+    font-weight: 600;
+    position: relative;
+}
+
+.focus::after {
+    content: "";
+    display: block;
+    border-left: 3px solid #b79973;
+    height: 19px;
+    position: absolute;
+    top: 6px;
+    left: -10px;
+}

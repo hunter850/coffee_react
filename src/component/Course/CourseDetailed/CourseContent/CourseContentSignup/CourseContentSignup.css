@@ -1,0 +1,12 @@
+.people-number {
+    width: 147px;
+    text-align: center;
+    border-bottom: 1px solid #d1cfcf;
+    margin-right: 25px;
+    margin-left: 19px;
+    color: #3e3e3e;
+}
+
+.CourseContentSignup-price {
+    align-items: flex-end;
+}
