@@ -1,0 +1,63 @@
+.ManageHeader {
+    width: 100%;
+    height: 159px;
+    background: url(/public/course/imgs/header-img-01.png) no-repeat center
+        center;
+    background-size: cover;
+}
+.ManageHeader-wrap {
+    justify-content: space-between;
+}
+
+.ManageHeader-Header-title {
+    color: #fff;
+    font-size: 1.4375rem;
+    padding-top: 27px;
+}
+
+.Header-input {
+    display: flex;
+    justify-content: center;
+}
+
+.ManageHeader-search-wrap {
+    width: 600px;
+    position: relative;
+}
+
+.ManageHeader-search-wrap > input {
+    margin-top: 19px;
+    width: 600px;
+    height: 40px;
+    border: 2px solid #ffffff;
+    outline: none;
+    border-radius: 2px 2px 0 2px;
+    box-shadow: 1px 1px 10px 1px #00000026;
+}
+
+input::-webkit-input-placeholder {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #d9d9d9;
+    padding-left: 7px;
+}
+
+.ManageHeader-search-btn {
+    width: 60px;
+    height: 40px;
+    background: #8b959c;
+    border-radius: 0px 2px 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 19px;
+}
+
+.ManageHeader-btn {
+    padding-top: 66px;
+}

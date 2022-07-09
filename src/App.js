@@ -5,6 +5,7 @@ import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
 import Course from "./routes/course/Course";
 import CourseDetailed from "./routes/course/CourseDetailed";
+import CourseManage from "./routes/course/CourseManage";
 import Sharing from "./routes/sharing/Sharing";
 import Member from "./routes/member/Member";
 import Game from "./routes/game/Game";
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/goods" element={<Goods />} />
                 <Route path="/food" element={<Food />} />
                 <Route path="/course" element={<Course />} />
+                <Route path="/course/manage" element={<CourseManage />} />
                 <Route path="/course/detailed/:sid" element={<CourseDetailed />} />
                 <Route path="/sharing" element={<Sharing />} />
                 <Route path="/member" element={<Member />} />
