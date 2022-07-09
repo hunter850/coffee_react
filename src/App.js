@@ -4,6 +4,7 @@ import Cart from './routes/cart/Cart';
 import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
 import Course from "./routes/course/Course";
+import CourseDetailed from "./routes/course/CourseDetailed";
 import Sharing from "./routes/sharing/Sharing";
 import Member from "./routes/member/Member";
 import Game from "./routes/game/Game";
@@ -12,6 +13,7 @@ import Coupon from "./routes/game/Coupon";
 import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
+
 
 const App = () => {
     const el = (
@@ -22,6 +24,7 @@ const App = () => {
                 <Route path="/goods" element={<Goods />} />
                 <Route path="/food" element={<Food />} />
                 <Route path="/course" element={<Course />} />
+                <Route path="/course/detailed/:sid" element={<CourseDetailed />} />
                 <Route path="/sharing" element={<Sharing />} />
                 <Route path="/member" element={<Member />} />
                 <Route path="/points" element={<Points />} />
@@ -35,6 +38,6 @@ const App = () => {
     );
 
     return el;
-}
+};
 
-export default App
+export default App;
