@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useCallback } from "react";
 import NavBar from "../../component/NavBar";
 import Creditcard from "../../component/Creditcard/Creditcard";
 
@@ -8,10 +8,11 @@ function Cart() {
     const [cardMonth, setCardMonth] = useState("");
     const [cardYear, setCardYear] = useState("");
     const [cardCvv, setCardCvv] = useState("");
-    const cardSubmitHandler = (event) => {
+    const cardSubmitHandler = useCallback((event) => {
         console.log(event);
         event.preventDefault();
-    };
+    }, []);
+
     return (
         <Fragment>
             <NavBar />
