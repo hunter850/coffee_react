@@ -22,20 +22,54 @@ function Creditcard(props) {
         setCardCvv,
         cardSubmitHandler,
     } = props;
-    const creditCardWrapStyle = {
-        width: "520px",
-        height: "550.76px",
-    };
-    const cardFlipStyle = {
-        width: "433px",
-        height: "243.5625px",
-        borderRadius: "10px",
-        margin: "auto",
-        position: "relative",
-        transformStyle: "preserve-3d",
-        transformOrigin: "center",
-        transition: "all 1s ease-out",
-    };
+    const styles = useMemo(() => {
+        return {
+            creditCardWrapStyle: {
+                width: "520px",
+                height: "550.76px",
+            },
+            cardFlipStyle: {
+                width: "433px",
+                height: "243.5625px",
+                borderRadius: "10px",
+                margin: "auto",
+                position: "relative",
+                transformStyle: "preserve-3d",
+                transformOrigin: "center",
+                transition: "all 1s ease-out",
+            },
+            cardBottomStyle: {
+                display: "flex",
+                justifyContent: "space-between",
+                width: "340.47px",
+                height: "32px",
+            },
+            cvvWrapStyle: {
+                width: "100%",
+                height: "100%",
+                padding: "10px 0px",
+            },
+            cvvText: {
+                fontSize: "12px",
+                textAlign: "end",
+                marginBottom: "5px",
+                paddingRight: "10px",
+            },
+            cardFrame: {
+                borderRadius: "5px",
+                opacity: "0",
+                position: "absolute",
+                top: "0px",
+                left: "0px",
+                width: "100%",
+                height: "100%",
+                transition: "all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85)",
+                overflow: "hidden",
+                border: "2px solid rgba(255, 255, 255, 0.65)",
+                zIndex: "3",
+            },
+        };
+    }, []);
     const cardContainterStyle = useMemo(() => {
         return {
             width: "433px",
@@ -57,33 +91,12 @@ function Creditcard(props) {
             backfaceVisibility: "hidden",
         };
     }, []);
-    const cardBottomStyle = {
-        display: "flex",
-        justifyContent: "space-between",
-        width: "340.47px",
-        height: "32px",
-    };
-    const cardBackStyle = useMemo(() => {
-        return {
-            transform: "rotateY(180deg)",
-        };
-    }, []);
-    const cvvWrapStyle = {
-        width: "100%",
-        height: "100%",
-        padding: "10px 0px",
-    };
-    const cvvText = {
-        fontSize: "12px",
-        textAlign: "end",
-        marginBottom: "5px",
-        paddingRight: "10px",
-    };
 
-    const [flipStyle, setFlipStyle] = useState(cardFlipStyle);
     const cardContainerBackStyle = useMemo(() => {
-        return { ...cardContainterStyle, ...cardBackStyle };
-    }, [cardContainterStyle, cardBackStyle]);
+        return { ...cardContainterStyle, transform: "rotateY(180deg)" };
+    }, [cardContainterStyle]);
+    const [flipStyle, setFlipStyle] = useState(styles.cardFlipStyle);
+    const [frameStyle, setFrameStyle] = useState(styles.cardFrame);
 
     const focusHandler = useCallback(() => {
         setFlipStyle((pre) => ({ ...pre, transform: "rotateY(180deg)" }));
@@ -91,14 +104,45 @@ function Creditcard(props) {
     const blurHandler = useCallback(() => {
         setFlipStyle((pre) => ({ ...pre, transform: "rotateY(0deg)" }));
     }, []);
+    const cardFrameBlur = useCallback(() => {
+        setFrameStyle(styles.cardFrame);
+    }, [setFrameStyle, styles.cardFrame]);
+    const cardNumberFocus = useCallback(() => {
+        setFrameStyle((pre) => ({
+            ...pre,
+            transform: "translateX(30px) translateY(100px)",
+            width: "373px",
+            height: "60px",
+            opacity: "1",
+        }));
+    }, [setFrameStyle]);
+    const cardNameFocus = useCallback(() => {
+        setFrameStyle((pre) => ({
+            ...pre,
+            transform: "translateX(30px) translateY(163px)",
+            width: "265px",
+            height: "60px",
+            opacity: "1",
+        }));
+    }, [setFrameStyle]);
+    const cardValidFocus = useCallback(() => {
+        setFrameStyle((pre) => ({
+            ...pre,
+            transform: "translateX(300px) translateY(163px)",
+            width: "100px",
+            height: "60px",
+            opacity: "1",
+        }));
+    }, [setFrameStyle]);
 
     return (
-        <div style={creditCardWrapStyle}>
+        <div style={styles.creditCardWrapStyle}>
             <div style={flipStyle}>
+                <div style={frameStyle}></div>
                 <div className="card_container" style={cardContainterStyle}>
                     <CardUpperImage cardNumber={cardNumber} />
                     <CardNumberInput cardNumber={cardNumber} />
-                    <div className="card_bottom" style={cardBottomStyle}>
+                    <div className="card_bottom" style={styles.cardBottomStyle}>
                         <CardHolder cardName={cardName} />
                         <CardValidDate
                             cardMonth={cardMonth}
@@ -108,8 +152,8 @@ function Creditcard(props) {
                 </div>
                 <div className="card_container" style={cardContainerBackStyle}>
                     <CardBlackBar />
-                    <div style={cvvWrapStyle}>
-                        <p style={cvvText}>CVV</p>
+                    <div style={styles.cvvWrapStyle}>
+                        <p style={styles.cvvText}>CVV</p>
                         <CardWhiteBar cardCvv={cardCvv} />
                         <CardType cardNumber={cardNumber} />
                     </div>
@@ -130,6 +174,10 @@ function Creditcard(props) {
                     cardSubmitHandler={cardSubmitHandler}
                     focusHandler={focusHandler}
                     blurHandler={blurHandler}
+                    cardFrameBlur={cardFrameBlur}
+                    cardNumberFocus={cardNumberFocus}
+                    cardNameFocus={cardNameFocus}
+                    cardValidFocus={cardValidFocus}
                 />
             </div>
         </div>

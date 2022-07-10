@@ -16,6 +16,10 @@ function CardForm(props) {
         cardSubmitHandler,
         focusHandler,
         blurHandler,
+        cardFrameBlur,
+        cardNumberFocus,
+        cardNameFocus,
+        cardValidFocus,
     } = props;
 
     const handleNumberInput = useCallback(
@@ -91,6 +95,8 @@ function CardForm(props) {
                         mask={numberMask}
                         value={cardNumber}
                         onChange={handleNumberInput}
+                        onFocus={cardNumberFocus}
+                        onBlur={cardFrameBlur}
                         maskChar={""}
                         style={{
                             height: "36px",
@@ -125,6 +131,8 @@ function CardForm(props) {
                         }}
                         value={cardName}
                         onChange={handleNameInput}
+                        onFocus={cardNameFocus}
+                        onBlur={cardFrameBlur}
                         autoComplete="off"
                     />
                     <div
@@ -169,6 +177,8 @@ function CardForm(props) {
                                     <select
                                         value={cardMonth}
                                         onChange={monthHandler}
+                                        onFocus={cardValidFocus}
+                                        onBlur={cardFrameBlur}
                                         name="credit_card_month"
                                         id="credit_card_month"
                                         style={{
@@ -206,6 +216,8 @@ function CardForm(props) {
                                     <select
                                         value={cardYear}
                                         onChange={yearHandler}
+                                        onFocus={cardValidFocus}
+                                        onBlur={cardFrameBlur}
                                         name="credit_card_year"
                                         id="credit_card_year"
                                         style={{
