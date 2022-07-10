@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
 
 function CardForm(props) {
@@ -18,21 +18,37 @@ function CardForm(props) {
         blurHandler,
     } = props;
 
-    const handleNumberInput = (event) => {
-        setCardNumber(event.target.value.trim());
-    };
-    const handleNameInput = (event) => {
-        if (event.target.value.length < 100) setCardName(event.target.value);
-    };
-    const monthHandler = (event) => {
-        setCardMonth(event.target.value);
-    };
-    const yearHandler = (event) => {
-        setCardYear(event.target.value);
-    };
-    const cvvHandler = (event) => {
-        setCardCvv(event.target.value);
-    };
+    const handleNumberInput = useCallback(
+        (event) => {
+            setCardNumber(event.target.value.trim());
+        },
+        [setCardNumber]
+    );
+    const handleNameInput = useCallback(
+        (event) => {
+            if (event.target.value.length < 100)
+                setCardName(event.target.value);
+        },
+        [setCardName]
+    );
+    const monthHandler = useCallback(
+        (event) => {
+            setCardMonth(event.target.value);
+        },
+        [setCardMonth]
+    );
+    const yearHandler = useCallback(
+        (event) => {
+            setCardYear(event.target.value);
+        },
+        [setCardYear]
+    );
+    const cvvHandler = useCallback(
+        (event) => {
+            setCardCvv(event.target.value);
+        },
+        [setCardCvv]
+    );
 
     const numberMask = useMemo(() => {
         if (
