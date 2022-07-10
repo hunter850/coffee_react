@@ -1,0 +1,87 @@
+.CourseAddList {
+    width: 1040px;
+    height: 690px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-top: 29px;
+    color: #898787;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 35px;
+}
+
+.CourseAddList-wrap {
+    justify-content: center;
+    padding-top: 43px;
+}
+
+.CourseAddList-img {
+    width: 245px;
+    height: 244px;
+    background-color: #d1cfcf;
+    border-radius: 10px;
+    margin: 6px 0 13px;
+}
+
+.coursenameinp {
+    width: 361px;
+    height: 40px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    border-style: none;
+    line-height: 19px;
+    font-size: 1rem;
+    margin-bottom: 58px;
+}
+
+.coursepriceinp {
+    width: 272px;
+    height: 40px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    border-style: none;
+    line-height: 19px;
+    font-size: 1rem;
+    margin-bottom: 58px;
+}
+
+.courselevelinp {
+    width: 361px;
+    height: 40px;
+    background: #ffffff;
+    color: #d9d9d9;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    border-style: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url(/public/course/imgs/sort-img-01.png) no-repeat 92% 50%;
+    padding-left: 17px;
+    margin-bottom: 45px;
+}
+
+.courseintroduceinp {
+    width: 669px;
+    height: 120px;
+    border-style: none;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    resize: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    padding-left: 16px;
+    padding-top: 12px;
+    margin-bottom: 85px;
+}
+
+.courseintroduceinp::placeholder {
+    color: #d9d9d9;
+}

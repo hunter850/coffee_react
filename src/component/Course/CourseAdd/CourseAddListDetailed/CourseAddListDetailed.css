@@ -1,0 +1,131 @@
+.CourseAddListDetailed {
+    width: 1040px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    color: #898787;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 35px;
+    margin-top: 62px;
+}
+
+.CourseAddListDetailed-img {
+    width: 669px;
+    height: 233px;
+    background: #bbbbbb;
+}
+
+.CourseAddListDetailed-btn {
+    border: none;
+    text-align: center;
+    font-size: 1.125rem;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px 0px rgb(0, 0, 0, 0.15);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+    width: 669px;
+    border: 1px dashed #6e7b83;
+    color: #6e7b83;
+    background-color: #fff;
+    margin-top: 19px;
+    margin-bottom: 45px;
+}
+
+.CourseAddListDetailed-inp {
+    background: #ffffff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    width: 669px;
+    height: 282px;
+    border-style: none;
+    overflow: hidden;
+    resize: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    margin-bottom: 45px;
+}
+
+.CourseAddListDetailed-object-inp {
+    background: #ffffff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    width: 669px;
+    height: 120px;
+    border-style: none;
+    overflow: hidden;
+    resize: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    margin-bottom: 45px;
+}
+.CourseAddListDetailed-material-inp {
+    background: #ffffff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    width: 669px;
+    height: 318px;
+    border-style: none;
+    overflow: hidden;
+    resize: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    margin-bottom: 45px;
+}
+
+.CourseAddListDetailed-date-inp {
+    width: 283px;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    border-style: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding-left: 16px;
+    margin-left: 16px;
+}
+
+.CourseAddListDetailed-time-inp {
+    width: 145px;
+    height: 40px;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    border-style: none;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 19px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding-left: 16px;
+    margin-left: 9px;
+}
+
+.CourseAddListDetailed-select-inp {
+    background: #e3e7e7;
+    width: 671px;
+    height: 77px;
+    border-radius: 10px;
+    line-height: 77px;
+    position: relative;
+}
+
+.delet-img {
+    background: url(/public/course/imgs/delete.png) no-repeat center center;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    right: 15px;
+    top: 19px;
+}
