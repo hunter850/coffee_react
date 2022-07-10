@@ -26,11 +26,11 @@
     white-space: nowrap;
     cursor: pointer;
     width: 669px;
-    border: 1px dashed #6e7b83;
     color: #6e7b83;
     background-color: #fff;
     margin-top: 19px;
     margin-bottom: 45px;
+    background: url(/public/course/imgs/border-image.png) no-repeat;
 }
 
 .CourseAddListDetailed-inp {
