@@ -1,5 +1,6 @@
 import './ManageHeader.css';
 import Btn from '../../../Item/Btn/Btn';
+import { Link } from "react-router-dom";
 export default function ManageHeader () {
     return (
         <div className='d-flex container ManageHeader-wrap' style={{ height: '100%' }}>
@@ -33,7 +34,11 @@ export default function ManageHeader () {
 
             </div>
             <div className='ManageHeader-btn'>
-                <Btn width='290px' backgroundColor='#6E7B83'>+ 新增課程</Btn>
+
+                <Link to="/course/add/001">
+                    <Btn width='290px' backgroundColor='#6E7B83'>+ 新增課程</Btn>
+                </Link>
+
             </div>
         </div>
     );
