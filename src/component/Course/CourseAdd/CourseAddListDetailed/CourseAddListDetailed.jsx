@@ -37,6 +37,7 @@ function CourseAddListDetailed () {
                             <input type="text" className='CourseAddListDetailed-date-inp' placeholder="選擇日期" />
                             <input type="text" className='CourseAddListDetailed-time-inp' placeholder="選擇時段1" />
                             <input type="text" className='CourseAddListDetailed-time-inp' placeholder="選擇時段2" />
+                            <div className='delet-img'></div>
                         </div>
                     </div>
                     <div style={{ paddingBottom: 21 }}>
@@ -45,6 +46,7 @@ function CourseAddListDetailed () {
                             <input type="text" className='CourseAddListDetailed-date-inp' placeholder="選擇日期" />
                             <input type="text" className='CourseAddListDetailed-time-inp' placeholder="選擇時段1" />
                             <input type="text" className='CourseAddListDetailed-time-inp' placeholder="選擇時段2" />
+                            <div className='delet-img'></div>
                         </div>
                     </div>
                     <button className='CourseAddListDetailed-btn' style={{ marginBottom: 92 }}>+ 報名時間</button>

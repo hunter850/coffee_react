@@ -117,4 +117,15 @@
     height: 77px;
     border-radius: 10px;
     line-height: 77px;
+    position: relative;
+}
+
+.delet-img {
+    background: url(/public/course/imgs/delete.png) no-repeat center center;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    right: 15px;
+    top: 19px;
 }
