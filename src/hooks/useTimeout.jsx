@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react";
 
 const useTimeout = (callback, delay) => {
     const callbackRef = useRef(callback);
@@ -10,13 +10,13 @@ const useTimeout = (callback, delay) => {
     }, [callback]);
 
     function step(timestamp) {
-        if (!(start.current)) {
+        if (!start.current) {
             start.current = timestamp;
             timeoutRef.current = requestAnimationFrame(step);
             return;
         }
         const progress = timestamp - start.current;
-        if(progress < delay) {
+        if (progress < delay) {
             timeoutRef.current = requestAnimationFrame(step);
             return;
         }
@@ -43,6 +43,6 @@ const useTimeout = (callback, delay) => {
     }, [clear, set]);
 
     return [restart, clear];
-}
+};
 
-export default useTimeout
+export default useTimeout;

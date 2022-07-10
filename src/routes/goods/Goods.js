@@ -1,15 +1,13 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 
-const Goods = () => {
-    const el = (
+function Goods() {
+    return (
         <Fragment>
             <NavBar />
             <h2>商品</h2>
         </Fragment>
-    )
-
-    return el;
+    );
 }
 
-export default Goods
+export default Goods;

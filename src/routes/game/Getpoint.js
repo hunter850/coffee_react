@@ -1,15 +1,13 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 
-const Getpoint = () => {
-    const el = (
+function Getpoint() {
+    return (
         <Fragment>
             <NavBar />
             <h2>獲得積分</h2>
         </Fragment>
-    )
-
-    return el;
+    );
 }
 
-export default Getpoint
+export default Getpoint;
