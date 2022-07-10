@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react";
 
 const useInterval = (callback, delay) => {
     const callbackRef = useRef(callback);
@@ -11,13 +11,13 @@ const useInterval = (callback, delay) => {
 
     const set = useCallback(() => {
         (function step(timestamp) {
-            if (!(start.current)) {
+            if (!start.current) {
                 start.current = timestamp;
                 timeoutRef.current = requestAnimationFrame(step);
                 return;
             }
             const progress = timestamp - start.current;
-            if(progress < delay) {
+            if (progress < delay) {
                 timeoutRef.current = requestAnimationFrame(step);
                 return;
             }
@@ -43,6 +43,6 @@ const useInterval = (callback, delay) => {
     }, [clear, set]);
 
     return [reset, clear];
-}
+};
 
-export default useInterval
+export default useInterval;

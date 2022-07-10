@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import FrontPage from './routes/frontPage/FrontPage';
-import Cart from './routes/cart/Cart';
+import FrontPage from "./routes/frontPage/FrontPage";
+import Cart from "./routes/cart/Cart";
 import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
 import Course from "./routes/course/Course";
@@ -15,7 +15,6 @@ import Coupon from "./routes/game/Coupon";
 import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
-
 
 const App = () => {
     const el = (

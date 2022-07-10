@@ -1,10 +1,10 @@
 const useScrollTo = () => {
-    return function(position) {
+    return function (position) {
         window.scrollTo({
-            top: position, 
-            behavior: 'smooth' 
-          });
-    }
-}
+            top: position,
+            behavior: "smooth",
+        });
+    };
+};
 
-export default useScrollTo
+export default useScrollTo;

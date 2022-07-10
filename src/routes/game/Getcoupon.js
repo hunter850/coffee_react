@@ -1,15 +1,13 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 
-const Getcoupon = () => {
-    const el = (
+function Getcoupon() {
+    return (
         <Fragment>
             <NavBar />
             <h2>獲得優惠卷</h2>
         </Fragment>
-    )
-
-    return el;
+    );
 }
 
-export default Getcoupon
+export default Getcoupon;

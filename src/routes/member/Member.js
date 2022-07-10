@@ -1,15 +1,13 @@
-import { Fragment } from "react"
-import NavBar from "../../component/NavBar"
+import { Fragment } from "react";
+import NavBar from "../../component/NavBar";
 
-const Member = () => {
-    const el = (
+function Member() {
+    return (
         <Fragment>
             <NavBar />
             <h2>會員</h2>
         </Fragment>
-    )
-
-    return el
+    );
 }
 
-export default Member
+export default Member;

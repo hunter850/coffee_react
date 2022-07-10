@@ -6,12 +6,12 @@ const useSetNow = () => {
             if (!start) {
                 start = timestamp;
                 ani = window.requestAnimationFrame(step);
-                return
+                return;
             }
             cb();
             cancelAnimationFrame(ani);
         })();
-    }
-}
+    };
+};
 
-export default useSetNow
+export default useSetNow;
