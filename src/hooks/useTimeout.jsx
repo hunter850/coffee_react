@@ -9,23 +9,26 @@ const useTimeout = (callback, delay) => {
         callbackRef.current = callback;
     }, [callback]);
 
-    function step(timestamp) {
-        if (!start.current) {
-            start.current = timestamp;
-            timeoutRef.current = requestAnimationFrame(step);
-            return;
-        }
-        const progress = timestamp - start.current;
-        if (progress < delay) {
-            timeoutRef.current = requestAnimationFrame(step);
-            return;
-        }
-        callbackRef.current();
-        start.current = null;
-    }
+    const step = useCallback(
+        (timestamp) => {
+            if (!start.current) {
+                start.current = timestamp;
+                timeoutRef.current = requestAnimationFrame(step);
+                return;
+            }
+            const progress = timestamp - start.current;
+            if (progress < delay) {
+                timeoutRef.current = requestAnimationFrame(step);
+                return;
+            }
+            callbackRef.current();
+            start.current = null;
+        },
+        [delay]
+    );
     const set = useCallback(() => {
         timeoutRef.current = requestAnimationFrame(step);
-    }, [delay]);
+    }, [step]);
 
     const clear = useCallback(() => {
         timeoutRef.current && cancelAnimationFrame(timeoutRef.current);
