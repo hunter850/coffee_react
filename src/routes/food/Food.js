@@ -12,7 +12,7 @@ function Food() {
     return (
         <Fragment>
             <NavBar />
-            <Path pathObj={{ path: ["．課程資訊"] }} />
+            <Path pathObj={{ path: ["．點餐"] }} />
             <Slideshow/>
 
             <div className="container" style={{minWidth: "1440px"}}>
