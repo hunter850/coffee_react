@@ -37,7 +37,7 @@
 }
 
 input::-webkit-input-placeholder {
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -57,4 +57,9 @@ input::-webkit-input-placeholder {
     position: absolute;
     right: 0;
     top: 27px;
+}
+
+.search-btn:hover {
+    background: #aa8b64;
+    cursor: pointer;
 }
