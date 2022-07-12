@@ -2,13 +2,14 @@ import React from 'react';
 import './Card.css';
 import menudata from './menu.json';
 
+
 function Card(){    
         return(
-            menudata.map(({menu_name,menu_nutrition,menu_price_m})=>{
+            menudata.map(({menu_name,menu_nutrition,menu_price_m,menu_sid})=>{
                 return(
-            <div className='course_card'>
+            <div className='course_card' key={menu_sid}>
                 <div className='course_card_top'>
-                    <div className='course_card_level'>1</div>
+                    <div className='course_card_level'>Q</div>
                 </div>
                 <div className='course_card_down'>
                     <div className='course_card_txt'>
