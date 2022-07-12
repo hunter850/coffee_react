@@ -6,7 +6,7 @@
     margin-right: -20px;
 }
 
-.product_card {
+.food_card {
     margin: 0 20px 31px 0;
     width: 320px;
     height: 420px;
@@ -21,7 +21,7 @@
 }
 
 /* 測試間距 */
-/* .product_card::before{
+/* .food_card::before{
     display: block;
     content: '';
     background-color: #888;
@@ -32,25 +32,25 @@
     height: 18px;
 } */
 
-.product_card_top {
+.food_card_top {
     width: 100%;
     height: 270px;
     background-color: #bc9999;
     border-radius: 10px 10px 0 0;
 }
 
-.product_card_txt {
+.food_card_txt {
     padding: 18px 25px;
     height: 100%;
     margin: auto;
     /* width: calc((231 / 290)  * 100%); */
 }
 
-.product_card_price {
+/* .food_card_price {
     align-items: center;
     justify-content: end;
     transform: translateY(-10px);
-}
+} */
 
 .font-min {
     padding: 18px 0;

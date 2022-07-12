@@ -1,10 +1,9 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 import React,{useState} from "react";
-
-import Filterbutton from "../../component/Food/components/filterButton";
-import Slideshow from "../../component/Food/components/slideshow";
-import Card from "../../component/Food/components/Card";
+import Filterbutton from "../../component/Food/components/FilterButton";
+import Slideshow from "../../component/Food/components/SlideShow";
+import Card from "../../component/Food/components/FoodCard";
 import Path from "../../component/Item/Path/Path";
 
 
@@ -15,7 +14,7 @@ function Food() {
             <Path pathObj={{ path: ["．點餐"] }} />
             <Slideshow/>
 
-            <div className="container" style={{minWidth: "1440px"}}>
+            <div className="container" style={{maxWidth: "1440px"}}>
                 <div>
                     <div style={{display:'flex'}}>
                         <Filterbutton/>
