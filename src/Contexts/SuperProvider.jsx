@@ -5,7 +5,9 @@ export function useStyleChange() {
     return useContext(BreakContext);
 }
 function SuperProvider({ children }) {
-    const [breakPoint, setBreakPoint] = useState(0);
+    const [breakPoint, setBreakPoint] = useState(
+        window.innerWidth <= 375 ? 1 : 0
+    );
     // const checkWidth = useCallback(() => {
     //     if (window.innerWidth <= 375) {
     //         setBreakPoint(1);
