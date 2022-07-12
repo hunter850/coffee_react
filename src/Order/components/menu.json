@@ -1,0 +1,233 @@
+[
+      {
+        "menu_sid": "1",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "001.jpg",
+        "menu_name": "咖啡拿鐵",
+        "menu_kcal": "381.4",
+        "menu_price_m": "70",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-10 00:00:00"
+      },
+      {
+        "menu_sid": "2",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "55edc48f0c7d0f600811a35b18af1c92.jpg",
+        "menu_name": "焦糖瑪奇朵",
+        "menu_kcal": "275.4",
+        "menu_price_m": "80",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-11 00:00:00"
+      },
+      {
+        "menu_sid": "3",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "c67ac0f4450dfa854ad1262d418b8ee5.jpg",
+        "menu_name": "卡布奇諾",
+        "menu_kcal": "260.5",
+        "menu_price_m": "70",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-12 00:00:00"
+      },
+      {
+        "menu_sid": "4",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "0013bda9329f787150f1ec871c451ff3.jpg",
+        "menu_name": "美式黑咖啡",
+        "menu_kcal": "23.4",
+        "menu_price_m": "50",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-13 00:00:00"
+      },
+      {
+        "menu_sid": "5",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "1bc549de4d520b1e765047a986212ae5.jpg",
+        "menu_name": "黑糖風味拿鐵",
+        "menu_kcal": "375.2",
+        "menu_price_m": "80",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-14 00:00:00"
+      },
+      {
+        "menu_sid": "6",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "fbad8476a0efa16d294b7084b91f2d52.jpg",
+        "menu_name": "鴛鴦咖啡",
+        "menu_kcal": "231.3",
+        "menu_price_m": "70",
+        "menu_nutrition": "咖啡因含量:綠100mg/杯",
+        "created_at": "2022-06-15 00:00:00"
+      },
+      {
+        "menu_sid": "7",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "2eb04c346d2d656371f2ebef258723e5.jpg",
+        "menu_name": "香草風味拿鐵",
+        "menu_kcal": "240.5",
+        "menu_price_m": "90",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-16 00:00:00"
+      },
+      {
+        "menu_sid": "8",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "9d8671c15bb0b49dee3efb42a3069ed8.jpg",
+        "menu_name": "拿鐵歐蕾",
+        "menu_kcal": "197.5",
+        "menu_price_m": "75",
+        "menu_nutrition": "咖啡因含量:綠100mg以下/杯",
+        "created_at": "2022-06-17 00:00:00"
+      },
+      {
+        "menu_sid": "9",
+        "menu_categories": "經典義式系列",
+        "menu_photo": "d2d87c13394493eabdd11b103eb064f3.png",
+        "menu_name": "義式摩卡",
+        "menu_kcal": "368",
+        "menu_price_m": "80",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-18 00:00:00"
+      },
+      {
+        "menu_sid": "10",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "d9a76cfe99cf192d735c9c9cb70d4448.jpg",
+        "menu_name": "莊園級美式",
+        "menu_kcal": "15.5",
+        "menu_price_m": "60",
+        "menu_nutrition": "咖啡因含量:紅201mg/杯",
+        "created_at": "2022-06-19 00:00:00"
+      },
+      {
+        "menu_sid": "11",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "b3d11ac20f069a07f15bd5c498335555.jpg",
+        "menu_name": "莊園級拿鐵",
+        "menu_kcal": "267.7",
+        "menu_price_m": "80",
+        "menu_nutrition": "咖啡因含量:紅201mg/杯",
+        "created_at": "2022-06-20 00:00:00"
+      },
+      {
+        "menu_sid": "12",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "75e5cbe6cc51ad01657f623c0d099b1e.jpg",
+        "menu_name": "哥倫比亞",
+        "menu_kcal": "4",
+        "menu_price_m": "95",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-21 00:00:00"
+      },
+      {
+        "menu_sid": "13",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "6e21e68eb8f62bcc4246bc62dcd0d4ae.jpg",
+        "menu_name": "曼巴",
+        "menu_kcal": "4",
+        "menu_price_m": "95",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-22 00:00:00"
+      },
+      {
+        "menu_sid": "14",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "4131a52558bd761115c72d8bf080fe27.jpg",
+        "menu_name": "黃金曼特寧",
+        "menu_kcal": "4",
+        "menu_price_m": "95",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-23 00:00:00"
+      },
+      {
+        "menu_sid": "15",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "733bae90259eeca1be4e770face3928d.jpg",
+        "menu_name": "肯亞 精選小農",
+        "menu_kcal": "4",
+        "menu_price_m": "95",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-24 00:00:00"
+      },
+      {
+        "menu_sid": "16",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "d70f655a4d141c7f8d350dfdab6a149d.jpg",
+        "menu_name": "莊園老饕深焙",
+        "menu_kcal": "4",
+        "menu_price_m": "95",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-25 00:00:00"
+      },
+      {
+        "menu_sid": "17",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "5c12bdc581899e387e4b30759fef309a.jpg",
+        "menu_name": "耶加雪菲",
+        "menu_kcal": "4",
+        "menu_price_m": "100",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-26 00:00:00"
+      },
+      {
+        "menu_sid": "18",
+        "menu_categories": "其他飲品",
+        "menu_photo": "b1c356819ea30ce2ab7cce65ada72a0d.png",
+        "menu_name": "義式巧克力",
+        "menu_kcal": "378",
+        "menu_price_m": "60",
+        "menu_nutrition": "總糖量:64.1公克",
+        "created_at": "2022-06-27 00:00:00"
+      },
+      {
+        "menu_sid": "19",
+        "menu_categories": "其他飲品",
+        "menu_photo": "aed82eb7f25076a5759aba638a9ef9cd.jpg",
+        "menu_name": "愛丁堡女王紅茶",
+        "menu_kcal": "50",
+        "menu_price_m": "40",
+        "menu_nutrition": "茶葉產地:印度、斯里蘭卡、尼泊爾、台灣、越南",
+        "created_at": "2022-06-28 00:00:00"
+      },
+      {
+        "menu_sid": "20",
+        "menu_categories": "其他飲品",
+        "menu_photo": "2cd478061562819a23f4e0b50c8a1950.jpg",
+        "menu_name": "宇治奶茶",
+        "menu_kcal": "345",
+        "menu_price_m": "50",
+        "menu_nutrition": "茶葉產地:日本京都府",
+        "created_at": "2022-06-29 00:00:00"
+      },
+      {
+        "menu_sid": "33",
+        "menu_categories": "其他飲品",
+        "menu_photo": "20210217_025217.jpeg",
+        "menu_name": "英國百年茶莊紅茶冰沙",
+        "menu_kcal": "475",
+        "menu_price_m": "50",
+        "menu_nutrition": "紅茶產地：英國",
+        "created_at": "2022-06-12 00:04:21"
+      },
+      {
+        "menu_sid": "34",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "0be476a58dd4f86a22117bd31b0ce468.jpg",
+        "menu_name": "咖啡拿鐵",
+        "menu_kcal": "4324",
+        "menu_price_m": "55",
+        "menu_nutrition": "咖啡因含量:黃101-200mg/杯",
+        "created_at": "2022-06-12 12:03:34"
+      },
+      {
+        "menu_sid": "35",
+        "menu_categories": "精品咖啡",
+        "menu_photo": "2bc4ad5f136d9bddd94def6ead5051fa.jpg",
+        "menu_name": "咖啡拿鐵 (冰)",
+        "menu_kcal": "381.41",
+        "menu_price_m": "4324",
+        "menu_nutrition": "423",
+        "created_at": "2022-06-12 17:40:39"
+      }
+    ]
+

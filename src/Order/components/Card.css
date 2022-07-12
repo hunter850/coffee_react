@@ -1,0 +1,60 @@
+* {
+    letter-spacing: 0.07rem;
+}
+
+.wrap {
+    margin-right: -20px;
+}
+
+.course_card {
+    margin: 0 20px 31px 0;
+    width: 290px;
+    height: 420px;
+    border-radius: 10px;
+    color: #3e3e3e;
+    text-align: start;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
+    /* position: relative; */
+}
+
+/* 測試間距 */
+/* .course_card::before{
+    display: block;
+    content: '';
+    background-color: #888;
+    position: absolute;
+    right: 20%;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+} */
+
+.course_card_top {
+    width: 100%;
+    height: 270px;
+    background-color: #bc9999;
+    border-radius: 10px 10px 0 0;
+}
+
+.course_card_txt {
+    padding: 18px 25px;
+    height: 100%;
+    margin: auto;
+    /* width: calc((231 / 290)  * 100%); */
+}
+
+.course_card_price {
+    align-items: center;
+    justify-content: end;
+    transform: translateY(-10px);
+}
+
+.font-min {
+    padding: 18px 0;
+    width: 240px;
+    font-size: 0.75rem;
+    transform: scale(0.83, 0.83);
+    *font-size: 10px;
+    transform-origin: 0 0;
+    line-height: 20px;
+}
