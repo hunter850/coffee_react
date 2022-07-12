@@ -128,7 +128,12 @@ const useArray = (defaultValue) => {
             return this;
         },
         cto: function (array) {
-            setArray(() => array);
+            try {
+                const tempArray = JSON.parse(JSON.stringify(array));
+                setArray(tempArray);
+            } catch {
+                setArray(() => [...array]);
+            }
             return this;
         },
         cfilter: function (callback) {
