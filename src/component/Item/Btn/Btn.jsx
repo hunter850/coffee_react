@@ -13,14 +13,19 @@ export default function Btn ({
     width = "120px",
     backgroundColor = "#253945",
     color = "#fff",
+    className = "",
 }) {
     const buttonStyle = useMemo(() => {
-        return { ...style, width, backgroundColor, color };
-    }, [width, backgroundColor, color, style]);
+        return { ...style, width, backgroundColor, color, className };
+    }, [width, backgroundColor, color, style, className]);
 
     return (
         <div>
-            <button type={type} className="coffeeBtn" style={buttonStyle}>
+            <button
+                type={type}
+                className={`coffeeBtn ${className}`}
+                style={buttonStyle}
+            >
                 {children}
             </button>
         </div>
