@@ -8,13 +8,6 @@ function SuperProvider({ children }) {
     const [breakPoint, setBreakPoint] = useState(
         window.innerWidth <= 375 ? 1 : 0
     );
-    // const checkWidth = useCallback(() => {
-    //     if (window.innerWidth <= 375) {
-    //         setBreakPoint(1);
-    //     } else {
-    //         setBreakPoint(0);
-    //     }
-    // }, []);
     useEffect(() => {
         function checkWidth() {
             if (window.innerWidth <= 375) {
