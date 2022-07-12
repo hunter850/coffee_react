@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 import React,{useState} from "react";
 import Filterbutton from "../../component/Food/components/FilterButton";
-import Slideshow from "../../component/Food/components/SlideShow";
+import Slideshow from "../../component/Food/components/Slideshow";
 import Card from "../../component/Food/components/FoodCard";
 import Path from "../../component/Item/Path/Path";
 
