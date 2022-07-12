@@ -7,7 +7,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: "Noto Sans TC", sans-serif;
     padding: 0px;
     margin: 0px;
     list-style-type: none;
@@ -43,7 +43,7 @@ input {
 }
 /* 標題字體-圓體 */
 .title-font {
-    font-family: 'Kosugi Maru', 'Noto Sans TC', sans-serif;
+    font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
 }
 
 /* 固定板  */
@@ -68,14 +68,4 @@ input {
 
 .f-w {
     flex-wrap: wrap;
-}
-
-/* card */
-
-.card-shadow {
-    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
-}
-
-.br-10 {
-    border-radius: 10px;
 }
