@@ -16,10 +16,12 @@ function Food() {
             <Slideshow/>
 
             <div className="container" style={{minWidth: "1440px"}}>
-                <div >
+                <div>
                     <div style={{display:'flex'}}>
                         <Filterbutton/>
-                    </div>                
+                    </div>       
+                    
+                             
                     <div style={{display:'flex',justifyContent:'center',flexWrap:'wrap'}}>
                         <Card/>
                     </div>  
