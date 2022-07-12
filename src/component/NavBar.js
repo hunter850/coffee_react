@@ -116,31 +116,57 @@ const NavBar = () => {
     };
     // =====================
     const el = (
-        <header>
-            <h1>0 + B !</h1>
+        <header
+            style={{
+                position: "sticky",
+                width: "100%",
+                top: "0px",
+                zIndex: "999",
+            }}
+        >
             <nav className="navbar">
-                <ul className="navUl">
+                <ul
+                    className="navUl"
+                    style={{ height: "60px", backgroundColor: "#253945" }}
+                >
                     <li>
-                        <Link to="/">首頁</Link>
+                        <Link to="/" style={{ color: "white" }}>
+                            首頁
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/store">店家資訊</Link>
+                        <Link to="/store" style={{ color: "white" }}>
+                            店家資訊
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/goods">商品</Link>
+                        <Link to="/goods" style={{ color: "white" }}>
+                            商品
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/food">點餐</Link>
+                        <Link to="/food" style={{ color: "white" }}>
+                            點餐
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/course">課程</Link>
+                        <Link to="/course" style={{ color: "white" }}>
+                            課程
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/sharing">分享牆</Link>
+                        <Link to="/sharing" style={{ color: "white" }}>
+                            分享牆
+                        </Link>
                     </li>
                     {/* <li><Link to="/game">遊戲</Link></li> */}
                     <li className="gameLi" style={gameListyle} ref={gameLi}>
-                        <button onClick={displayHandler2}>遊戲</button>
+                        <button
+                            onClick={displayHandler2}
+                            style={{ color: "white" }}
+                        >
+                            遊戲
+                        </button>
                         <ul
                             className="gameUl"
                             style={gameDisplay}
@@ -159,7 +185,12 @@ const NavBar = () => {
                         style={memberListyle}
                         ref={memberLi}
                     >
-                        <button onClick={displayHandler}>會員</button>
+                        <button
+                            onClick={displayHandler}
+                            style={{ color: "white" }}
+                        >
+                            會員
+                        </button>
                         <ul
                             className="memberUl"
                             style={memberDisplay}
@@ -177,7 +208,9 @@ const NavBar = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to="/cart">購物車</Link>
+                        <Link to="/cart" style={{ color: "white" }}>
+                            購物車
+                        </Link>
                     </li>
                 </ul>
             </nav>
