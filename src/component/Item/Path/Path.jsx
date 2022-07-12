@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 
 export default function Path ({ pathObj, backgroundColor }) {
     return (
-        <div className="container">
+        <div className="container Path">
             <div
                 className="Path-font Path-wrap"
                 style={{ backgroundColor: backgroundColor }}
