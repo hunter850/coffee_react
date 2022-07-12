@@ -26,7 +26,10 @@ const App = () => {
                 <Route path="/food" element={<Food />} />
                 <Route path="/course" element={<Course />} />
                 <Route path="/course/manage" element={<CourseManage />} />
-                <Route path="/course/detailed/:sid" element={<CourseDetailed />} />
+                <Route
+                    path="/course/detailed/:sid"
+                    element={<CourseDetailed />}
+                />
                 <Route path="/course/add/:sid" element={<CourseAdd />} />
                 <Route path="/sharing" element={<Sharing />} />
                 <Route path="/member" element={<Member />} />
