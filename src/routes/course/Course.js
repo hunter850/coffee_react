@@ -15,7 +15,7 @@ const Course = () => {
                 <Header />
                 <Sort />
                 <div className="container">
-                    <div className="d-flex f-w wrap">
+                    <div className="d-flex f-w card-wrap">
                         <Link to="/course/detailed/001">
                             <Card
                                 test={{

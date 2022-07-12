@@ -12,9 +12,18 @@
     color: #3e3e3e;
 }
 .arrow-icon {
-    padding-top: 39px;
-    padding-right: 52px;
     color: #3e3e3e;
+    margin-right: 20px;
+    text-align: center;
+    line-height: 64px;
+    width: 64px;
+    height: 64px;
+    transform: translateY(13px);
+}
+
+.arrow-icon:hover {
+    background-color: #f5efeb;
+    border-radius: 50%;
 }
 
 .CourseContent-text {
@@ -29,7 +38,7 @@
     display: block;
     content: "";
     border: 2px solid #e4d5c9;
-    margin-top: 26px;
+    margin-top: 21px;
     margin-bottom: 31px;
     width: 820px;
     transform: translateX(-23px);
