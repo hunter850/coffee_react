@@ -15,32 +15,35 @@ import Coupon from "./routes/game/Coupon";
 import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
+import SuperProvider from "./Contexts/SuperProvider";
 
 const App = () => {
     const el = (
-        <BrowserRouter>
-            <Routes>
-                <Route exact={true} path="/" element={<FrontPage />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/goods" element={<Goods />} />
-                <Route path="/food" element={<Food />} />
-                <Route path="/course" element={<Course />} />
-                <Route path="/course/manage" element={<CourseManage />} />
-                <Route
-                    path="/course/detailed/:sid"
-                    element={<CourseDetailed />}
-                />
-                <Route path="/course/add/:sid" element={<CourseAdd />} />
-                <Route path="/sharing" element={<Sharing />} />
-                <Route path="/member" element={<Member />} />
-                <Route path="/points" element={<Points />} />
-                <Route path="/coupon" element={<Coupon />} />
-                <Route path="/game" element={<Game />} />
-                <Route path="/store" element={<Store />} />
-                <Route path="/getcoupon" element={<Getcoupon />} />
-                <Route path="/getpoint" element={<Getpoint />} />
-            </Routes>
-        </BrowserRouter>
+        <SuperProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route exact={true} path="/" element={<FrontPage />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/goods" element={<Goods />} />
+                    <Route path="/food" element={<Food />} />
+                    <Route path="/course" element={<Course />} />
+                    <Route path="/course/manage" element={<CourseManage />} />
+                    <Route
+                        path="/course/detailed/:sid"
+                        element={<CourseDetailed />}
+                    />
+                    <Route path="/course/add/:sid" element={<CourseAdd />} />
+                    <Route path="/sharing" element={<Sharing />} />
+                    <Route path="/member" element={<Member />} />
+                    <Route path="/points" element={<Points />} />
+                    <Route path="/coupon" element={<Coupon />} />
+                    <Route path="/game" element={<Game />} />
+                    <Route path="/store" element={<Store />} />
+                    <Route path="/getcoupon" element={<Getcoupon />} />
+                    <Route path="/getpoint" element={<Getpoint />} />
+                </Routes>
+            </BrowserRouter>
+        </SuperProvider>
     );
 
     return el;
