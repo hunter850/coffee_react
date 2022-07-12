@@ -18,6 +18,10 @@
     bottom: 27px;
 }
 
+.banner-Btn-Hover:hover {
+    background-color: #aa8b64 !important;
+}
+
 .CourseDetailed_banner_level {
     transform: translateX(15px);
     background-color: #8da47f;
