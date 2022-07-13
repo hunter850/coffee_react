@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FoodCard.css";
+import "./FoodAdd.css";
 import menudata from "./menu.json";
+import FoodCardDetail from "./FoodCardDetail";
 
 function Card() {
+    const [detailShow, setDetailShow] = useState(false);
     return menudata.map(
-        ({ menu_name, menu_nutrition, menu_price_m, menu_sid }) => {
+        ({
+            menu_name,
+            menu_nutrition,
+            menu_price_m,
+            menu_sid,
+            menu_categories,
+        }) => {
             return (
                 <div className="food_card" key={menu_sid}>
                     <div className="food_card_top">
-                        <div className="food_card_level">Q</div>
+                        <div
+                            className="food_card_level"
+                            style={{ display: "none" }}
+                        >
+                            {menu_categories}
+                        </div>
                     </div>
                     <div className="food_card_down">
                         <div className="food_card_txt">
@@ -19,20 +33,27 @@ function Card() {
                             >
                                 {menu_nutrition}
                             </p>
-                            <p>NT${menu_price_m}</p>
-                            {/* <div className="d-flex food_card_price">
-                                <p
-                                    style={{
-                                        fontSize: "0.75rem",
-                                        letterSpacing: "0.07rem",
-                                    }}
-                                >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <p style={{ flexGrow: "2" }}>
                                     NT${menu_price_m}
                                 </p>
-                                <p style={{ 'fontSize': '1.0625rem','letterSpacing': '0.07rem'}}>4</p>
-                            </div> */}
+                                <div
+                                    className="foodadd"
+                                    onClick={() => setDetailShow(true)}
+                                >
+                                    加入
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    {/* detailShow為true時 FoodCardDetail 就會執行 */}
+                    {detailShow && <FoodCardDetail />}
                 </div>
             );
         }

@@ -2,12 +2,8 @@
     letter-spacing: 0.07rem;
 }
 
-.wrap {
-    margin-right: -20px;
-}
-
 .food_card {
-    margin: 0 20px 31px 0;
+    margin: 0 10px 31px 10px;
     width: 320px;
     height: 420px;
     border-radius: 10px;
@@ -35,7 +31,7 @@
 .food_card_top {
     width: 100%;
     height: 270px;
-    background-color: #bc9999;
+    background-color: #9ec4cd;
     border-radius: 10px 10px 0 0;
 }
 
