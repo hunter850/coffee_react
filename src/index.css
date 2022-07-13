@@ -14,33 +14,48 @@
     text-decoration: none;
     outline: none;
 }
+
 h1 {
     font-size: 44px;
 }
+
 h2 {
     font-size: 36px;
 }
+
 h3 {
     font-size: 32px;
 }
+
 h4 {
     font-size: 28px;
 }
+
 h5 {
     font-size: 24px;
 }
+
 h6 {
     font-size: 20px;
 }
+
 p,
 a,
 span,
 pre {
     font-size: 16px;
 }
+
 input {
     padding: 0px 9px;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* 標題字體-圓體 */
 .title-font {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
