@@ -8,13 +8,13 @@ function CounterGroup(props) {
         (event) => {
             if (
                 Number.isNaN(parseInt(event.target.value)) ||
-                parseInt(event.target.value) <= 0
+                parseInt(event.target.value) <= 1
             ) {
-                setCount(0);
+                setCount("1");
                 cartList.cto(
                     cartList.value.map((item) => {
                         if (item.id === id) {
-                            item.quantity = 0;
+                            item.quantity = 1;
                             return item;
                         } else {
                             return item;
@@ -23,7 +23,9 @@ function CounterGroup(props) {
                 );
                 inputRef.current.select();
             } else {
-                setCount(parseInt(event.target.value));
+                setCount(
+                    ("" + parseInt(event.target.value)).replace(/^0+/, "")
+                );
                 cartList.cto(
                     cartList.value.map((item) => {
                         if (item.id === id) {
@@ -40,19 +42,19 @@ function CounterGroup(props) {
     );
     const countHandler = useCallback(
         (num) => {
-            if (count + num <= 0) {
-                setCount(0);
+            if (Number.isNaN(parseInt(count)) || parseInt(count) + num <= 1) {
+                setCount("1");
                 cartList.cto(
                     cartList.value.map((item) => {
                         if (item.id === id) {
-                            return { ...item, quantity: 0 };
+                            return { ...item, quantity: 1 };
                         } else {
                             return { ...item };
                         }
                     })
                 );
             } else {
-                setCount(count + num);
+                setCount(parseInt(count) + num);
                 cartList.cto(
                     cartList.value.map((item) => {
                         if (item.id === id) {

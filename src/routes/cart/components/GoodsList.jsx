@@ -4,7 +4,8 @@ import useDebounce from "../../../hooks/useDebounce";
 // import useLog from "../../../hooks/useLog";
 import CounterGroup from "./CounterGroup";
 
-function GoodsList({ cartList }) {
+function GoodsList(props) {
+    const { cartList } = props;
     const breakPoint = useStyleChange();
     const styles = useMemo(() => {
         if (breakPoint === 1) {
@@ -43,7 +44,7 @@ function GoodsList({ cartList }) {
 
     const deleteHandler = useCallback(
         (id) => {
-            cartList.cto(cartList.cfilter((item) => item.id !== id));
+            cartList.cto(cartList.value.filter((item) => item.id !== id));
         },
         [cartList]
     );
