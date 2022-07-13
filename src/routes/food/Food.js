@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
-import React, { useState } from "react";
+import React from "react";
 import Filterbutton from "../../component/Food/components/FilterButton";
 import Slideshow from "../../component/Food/components/SlideShow";
 import Card from "../../component/Food/components/FoodCard";
