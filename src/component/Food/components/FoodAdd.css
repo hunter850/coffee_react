@@ -1,0 +1,15 @@
+.foodadd{
+    width: 102px;
+    height: 42px;
+    background-color: #B79973;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.foodadd:hover{
+    background-color: #b3803e;
+}
