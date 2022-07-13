@@ -1,0 +1,8 @@
+.cart_delete_button > svg {
+    transition: color .3s ease;
+    color: #324A59;
+    vertical-align: -25%;
+}
+.cart_delete_button:hover svg {
+    color: red;
+}
