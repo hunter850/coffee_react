@@ -66,7 +66,9 @@ function GoodsList({ cartList }) {
                         cartList={cartList}
                     />
                     <p>{item.price * item.quantity}</p>
-                    <button onClick={() => deleteHandler(item.id)}>X</button>
+                    <button onClick={() => deleteHandler(item.id)}>
+                        &#10005;
+                    </button>
                 </li>
             ))}
         </ul>
