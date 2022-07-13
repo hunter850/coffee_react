@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./SlideShow.css";
+import "./slideshow.css";
 
 const colors = [
     "rgb(253, 231, 255)",
