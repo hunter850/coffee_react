@@ -1,5 +1,7 @@
+import { useCallback } from "react";
+
 const useSetNow = () => {
-    return function (cb) {
+    return useCallback((cb) => {
         let start;
         let ani;
         (function step(timestamp) {
@@ -11,7 +13,7 @@ const useSetNow = () => {
             cb();
             cancelAnimationFrame(ani);
         })();
-    };
+    }, []);
 };
 
 export default useSetNow;
