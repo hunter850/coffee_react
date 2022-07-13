@@ -12,7 +12,7 @@ function CounterGroup(props) {
             ) {
                 setCount(0);
                 cartList.cto(
-                    cartList.cmap((item) => {
+                    cartList.value.map((item) => {
                         if (item.id === id) {
                             item.quantity = 0;
                             return item;
@@ -25,7 +25,7 @@ function CounterGroup(props) {
             } else {
                 setCount(parseInt(event.target.value));
                 cartList.cto(
-                    cartList.cmap((item) => {
+                    cartList.value.map((item) => {
                         if (item.id === id) {
                             item.quantity = parseInt(event.target.value);
                             return item;
@@ -43,7 +43,7 @@ function CounterGroup(props) {
             if (count + num <= 0) {
                 setCount(0);
                 cartList.cto(
-                    cartList.cmap((item) => {
+                    cartList.value.map((item) => {
                         if (item.id === id) {
                             return { ...item, quantity: 0 };
                         } else {
@@ -54,7 +54,7 @@ function CounterGroup(props) {
             } else {
                 setCount(count + num);
                 cartList.cto(
-                    cartList.cmap((item) => {
+                    cartList.value.map((item) => {
                         if (item.id === id) {
                             return { ...item, quantity: count + num };
                         } else {
@@ -91,6 +91,7 @@ function CounterGroup(props) {
                 onClick={clickHandler}
             />
             <button onClick={() => countHandler(1)}>+</button>
+            <h1>{count}</h1>
         </Fragment>
     );
 }
