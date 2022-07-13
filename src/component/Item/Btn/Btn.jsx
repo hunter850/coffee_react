@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, Fragment } from "react";
 import "./Btn.css";
 
 const defaultButtonStyle = {
@@ -6,7 +6,7 @@ const defaultButtonStyle = {
     color: "#fff",
 };
 
-export default function Btn ({
+export default function Btn({
     style = defaultButtonStyle,
     children,
     type = "button",
@@ -20,7 +20,7 @@ export default function Btn ({
     }, [width, backgroundColor, color, style, className]);
 
     return (
-        <div>
+        <Fragment>
             <button
                 type={type}
                 className={`coffeeBtn ${className}`}
@@ -28,6 +28,6 @@ export default function Btn ({
             >
                 {children}
             </button>
-        </div>
+        </Fragment>
     );
 }
