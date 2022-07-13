@@ -46,7 +46,7 @@ function Card() {
                                     className="foodadd"
                                     onClick={() => setDetailShow(true)}
                                 >
-                                    加入
+                                    加入!
                                 </div>
                             </div>
                         </div>
