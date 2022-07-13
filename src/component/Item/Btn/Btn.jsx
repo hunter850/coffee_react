@@ -14,6 +14,7 @@ export default function Btn({
     backgroundColor = "#253945",
     color = "#fff",
     className = "",
+    ...allEvent
 }) {
     const buttonStyle = useMemo(() => {
         return { ...style, width, backgroundColor, color, className };
@@ -25,6 +26,7 @@ export default function Btn({
                 type={type}
                 className={`coffeeBtn ${className}`}
                 style={buttonStyle}
+                {...allEvent}
             >
                 {children}
             </button>
