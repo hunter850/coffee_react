@@ -5,9 +5,10 @@
     justify-content: space-between;
     margin: 21px 0 22px;
     align-items: center;
+    display: flex;
 }
 
-.sort {
+.Coursesort {
     width: 290px;
     height: 40px;
     color: #3e3e3e;
@@ -47,5 +48,12 @@
     color: #b79973;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 375px) {
+    .CourseSort-wrap {
+        display: block;
+        text-align: center;
+    }
+    .Coursesort-txt {
+        padding-bottom: 23px;
+    }
 }

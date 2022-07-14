@@ -76,3 +76,16 @@
         margin-right: -47px;
     }
 }
+
+@media (max-width: 375px) {
+    .course_card {
+        margin: 60px 0 -25px 0;
+    }
+    .card-wrap {
+        margin-right: 0;
+    }
+
+    .card-wrap {
+        justify-content: center;
+    }
+}

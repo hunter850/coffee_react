@@ -8,11 +8,15 @@
 .CourseHeader-title > p {
     color: #fff;
     font-size: 1.4375rem;
-}
-
-.CourseHeader-title > p {
     margin-top: 0px;
     padding-top: 99px;
+    text-align: center;
+}
+
+.CourseHeader-title > p > span {
+    color: #fff;
+    font-size: 1.4375rem;
+    margin-top: 0px;
     text-align: center;
 }
 
@@ -71,5 +75,29 @@
 
     .Coursesearch-wrap {
         width: 522px;
+    }
+}
+
+@media (max-width: 375px) {
+    .Coursesearch-wrap > input {
+        width: 320px;
+    }
+
+    .Coursesearch-wrap {
+        width: 320px;
+    }
+    .CourseHeader-title {
+        width: 256px;
+        font-size: 1.25rem;
+        margin: auto;
+    }
+    .CourseHeader-title > p {
+        font-size: 1.25rem;
+        padding-top: 79px;
+    }
+
+    .CourseHeader-title > p > span {
+        display: block;
+        font-size: 1.25rem;
     }
 }

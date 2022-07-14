@@ -1,11 +1,11 @@
 import React from "react";
 import "./Sort.css";
 
-export default function Sort ({ sortclass = "sort" }) {
+export default function Sort ({ sortclass = "Coursesort" }) {
     return (
         <div className="container ">
-            <div className="CourseSort-wrap d-flex">
-                <div className="sort-txt">
+            <div className="CourseSort-wrap ">
+                <div className="Coursesort-txt">
                     <p>
                         搜尋結果符合條件&nbsp;
                         <span className="num-color">10</span>&nbsp;項目
