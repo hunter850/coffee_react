@@ -21,7 +21,7 @@ function GoodsList(props) {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    border: "1px solid var(--GRAY)",
+                    border: "1px solid var(--DARKGRAY)",
                     padding: "9px 23px",
                     backgroundColor: "#fff",
                 },
@@ -87,7 +87,7 @@ function GoodsList(props) {
     return (
         <ul style={styles.listWrap} className="cart_list_ul">
             {cartList.cmap((item) => (
-                <li key={item.id} style={styles.listStyle}>
+                <li key={item.name} style={styles.listStyle}>
                     <div style={styles.imgWrap}>
                         <img
                             src={item.picture}
