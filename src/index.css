@@ -75,6 +75,13 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 }
 
+@media (max-width: 375px) {
+    .container {
+        width: 375px;
+        padding: 0 16px;
+    }
+}
+
 /* flex */
 .d-flex {
     display: flex;

@@ -6,7 +6,9 @@ export default function Header () {
         <div className="CourseHeader">
             <div>
                 <div className="CourseHeader-title">
-                    <p>帶你深入探索有趣又獨特的咖啡體驗課程</p>
+                    <p>
+                        帶你深入探索<span>有趣又獨特的咖啡體驗課程</span>
+                    </p>
                 </div>
                 <div className="CourseHeader-input">
                     <div className="Coursesearch-wrap">
