@@ -9,7 +9,7 @@ import CourseContent from "../../component/Course/CourseDetailed/CourseContent/C
 const CourseDetailed = () => {
     const el = (
         <Fragment>
-            <div style={{ backgroundColor: "#fff", minWidth: "1440px" }}>
+            <div className="CourseDetailed-container">
                 <NavBar />
                 <Path
                     pathObj={{ path: ["．課程資訊", "．愛心拉花"] }}

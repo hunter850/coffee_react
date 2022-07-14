@@ -7,6 +7,79 @@
     color: #3e3e3e;
 }
 
+.CourseContentBtn {
+    padding-right: 9px;
+}
+
 .CourseContentSignup-price {
     align-items: flex-end;
+    justify-content: space-between;
+    color: #3e3e3e;
+    padding-bottom: 9px;
+}
+.CourseContentDate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CourseContentBtnRwd {
+    width: 132px;
+    background-color: #c5ad8f;
+    color: #fff;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.courseSignUpBtnRwd {
+    width: 273px;
+    background-color: #b79973;
+    color: #fff;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.CourseContentBtn-focus {
+    background-color: rgba(197, 173, 143, 0.6);
+}
+
+@media (max-width: 768px) {
+    .CourseContentDate {
+        display: block;
+    }
+
+    .CourseContentBtnRwd {
+        width: 222px;
+    }
+    .PeopleNumberRwd {
+        justify-content: space-between;
+        width: 459px;
+    }
+
+    .people-number {
+        width: 246px;
+    }
+
+    .CourseContentBtn {
+        padding-right: 15px;
+    }
+
+    .CourseContentSignup-price {
+        width: 459px;
+    }
+
+    .courseSignUpBtnRwd {
+        width: 459px;
+    }
 }

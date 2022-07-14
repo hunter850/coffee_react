@@ -2,3 +2,9 @@
     background-color: #bbbbbb;
     height: 500px;
 }
+
+@media (max-width: 768px) {
+    .course-Carousel {
+        height: 267px;
+    }
+}

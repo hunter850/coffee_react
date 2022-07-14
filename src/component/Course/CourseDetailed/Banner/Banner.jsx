@@ -4,11 +4,10 @@ import Btn from "../../../Item/Btn/Btn";
 function Banner () {
     return (
         <div
-            className="container d-flex"
+            className="courseBannerContainer  container"
             style={{
-                paddingTop: "43px",
+                // paddingTop: "43px",
                 paddingBottom: "33px",
-                justifyContent: "space-between",
             }}
         >
             <div className="CourseDetailed_banner-txt">
@@ -83,13 +82,9 @@ function Banner () {
                     2000
                 </div>
                 <div className="Btn">
-                    <Btn
-                        backgroundColor={"#B79973"}
-                        width={"261px"}
-                        className={"banner-Btn-Hover"}
-                    >
+                    <button className="banner-Btn-Hover bannerBtn">
                         報名課程
-                    </Btn>
+                    </button>
                 </div>
             </div>
         </div>

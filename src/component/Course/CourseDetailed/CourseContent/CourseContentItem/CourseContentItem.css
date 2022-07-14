@@ -43,3 +43,17 @@
     width: 820px;
     transform: translateX(-23px);
 }
+
+@media (max-width: 768px) {
+    .CourseContentItem {
+        width: 537px;
+    }
+
+    .CourseContent-text {
+        width: 477px;
+    }
+    .CourseContent-text::before {
+        width: 505px;
+        transform: translateX(-16px);
+    }
+}

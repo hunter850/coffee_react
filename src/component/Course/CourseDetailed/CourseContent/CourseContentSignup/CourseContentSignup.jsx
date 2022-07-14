@@ -59,10 +59,7 @@ function CourseContentSignup () {
                     </div>
                 </div>
                 <div className="CourseContent-text ">
-                    <div
-                        className="d-flex"
-                        style={{ justifyContent: "space-between" }}
-                    >
+                    <div className=" CourseContentDate">
                         <div>選擇日期</div>
                         <div>
                             <div style={{ paddingBottom: 12 }}>選擇時段</div>
@@ -70,24 +67,18 @@ function CourseContentSignup () {
                                 className="d-flex"
                                 style={{ paddingBottom: 17 }}
                             >
-                                <div style={{ paddingRight: 9 }}>
-                                    <Btn
-                                        backgroundColor={"#C5AD8F"}
-                                        width={"132px"}
-                                    >
+                                <div className="CourseContentBtn">
+                                    <button className="CourseContentBtnRwd">
                                         AM 9:00
-                                    </Btn>
+                                    </button>
                                 </div>
-                                <Btn
-                                    backgroundColor={"rgba(197, 173, 143, 0.6)"}
-                                    width={"132px"}
-                                >
+                                <button className="CourseContentBtnRwd CourseContentBtn-focus ">
                                     PM 3:00
-                                </Btn>
+                                </button>
                             </div>
                             <div style={{ paddingBottom: 12 }}>選擇人數</div>
                             <div
-                                className="d-flex"
+                                className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
                                 <Btn
@@ -106,21 +97,14 @@ function CourseContentSignup () {
                                     -
                                 </Btn>
                             </div>
-                            <div
-                                className="d-flex CourseContentSignup-price"
-                                style={{
-                                    justifyContent: "space-between",
-                                    color: "#3E3E3E",
-                                    paddingBottom: 9,
-                                }}
-                            >
+                            <div className="d-flex CourseContentSignup-price">
                                 <div>總金額</div>
                                 <div>
                                     <div style={{ color: "#898787" }}>
                                         NT$ 2000 / 人
                                     </div>
                                     <div>
-                                        NT${" "}
+                                        NT$
                                         <span
                                             style={{
                                                 fontSize: "1.5625rem",
@@ -133,12 +117,9 @@ function CourseContentSignup () {
                                 </div>
                             </div>
                             <div>
-                                <Btn
-                                    backgroundColor={"#B79973"}
-                                    width={"273px"}
-                                >
+                                <button className="courseSignUpBtnRwd">
                                     報名課程
-                                </Btn>
+                                </button>
                             </div>
                         </div>
                     </div>

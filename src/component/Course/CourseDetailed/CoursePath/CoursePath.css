@@ -23,3 +23,9 @@
     top: 6px;
     left: -10px;
 }
+
+@media (max-width: 768px) {
+    .CoursePath {
+        display: none;
+    }
+}

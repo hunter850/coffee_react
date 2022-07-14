@@ -57,3 +57,39 @@
     top: 20px;
     font-weight: 500;
 }
+
+.courseBannerContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px !important;
+}
+
+.bannerBtn {
+    width: 261px;
+    background-color: #b79973;
+    color: #fff;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .courseBannerContainer {
+        display: block;
+    }
+
+    .CourseDetailed_banner-btn {
+        margin-top: 40px;
+        margin-bottom: 7px;
+        width: 537px;
+    }
+
+    .bannerBtn {
+        width: 421px;
+    }
+}

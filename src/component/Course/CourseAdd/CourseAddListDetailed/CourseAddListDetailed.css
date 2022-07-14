@@ -14,6 +14,7 @@
     width: 669px;
     height: 233px;
     background: #bbbbbb;
+    margin: 0 auto;
 }
 
 .CourseAddListDetailed-btn {
@@ -118,6 +119,7 @@
     border-radius: 10px;
     line-height: 77px;
     position: relative;
+    margin: 0 auto;
 }
 
 .delet-img {
@@ -128,4 +130,8 @@
     position: absolute;
     right: 15px;
     top: 19px;
+}
+
+.CourseAddListDetailedCenter {
+    text-align: center;
 }
