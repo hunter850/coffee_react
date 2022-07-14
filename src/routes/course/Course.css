@@ -1,0 +1,10 @@
+.Course-container {
+    background-color: #fcfaf7;
+    min-width: 1440px;
+}
+
+@media (max-width: 768px) {
+    .Course-container {
+        min-width: 768px;
+    }
+}

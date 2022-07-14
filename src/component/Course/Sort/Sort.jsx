@@ -1,21 +1,23 @@
 import React from "react";
-import './Sort.css';
+import "./Sort.css";
 
-
-
-export default function Sort ({ sortclass = 'sort' }) {
-
+export default function Sort ({ sortclass = "sort" }) {
     return (
         <div className="container ">
-            <div className="Sort-wrap d-flex">
-                <div className="sort-txt"><p>搜尋結果符合條件&nbsp;<span className="num-color">10</span>&nbsp;項目</p></div>
+            <div className="CourseSort-wrap d-flex">
+                <div className="sort-txt">
+                    <p>
+                        搜尋結果符合條件&nbsp;
+                        <span className="num-color">10</span>&nbsp;項目
+                    </p>
+                </div>
                 <div>
                     <select className={sortclass}>
-                        <option >排序方式</option>
-                        <option >初級&nbsp;&gt;&nbsp;高級</option>
-                        <option >高級&nbsp;&gt;&nbsp;初級</option>
-                        <option >價錢低&nbsp;&gt;&nbsp;高</option>
-                        <option >價錢高&nbsp;&gt;&nbsp;低</option>
+                        <option>排序方式</option>
+                        <option>初級&nbsp;&gt;&nbsp;高級</option>
+                        <option>高級&nbsp;&gt;&nbsp;初級</option>
+                        <option>價錢低&nbsp;&gt;&nbsp;高</option>
+                        <option>價錢高&nbsp;&gt;&nbsp;低</option>
                     </select>
                 </div>
             </div>

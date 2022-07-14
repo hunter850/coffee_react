@@ -9,7 +9,7 @@ import Sort from "../../component/Course/Sort/Sort";
 const Course = () => {
     const el = (
         <Fragment>
-            <div style={{ backgroundColor: "#FCFAF7", minWidth: "1440px" }}>
+            <div className="Course-container">
                 <NavBar />
                 <Path pathObj={{ path: ["．課程資訊"] }} />
                 <Header />

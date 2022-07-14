@@ -27,7 +27,7 @@
     white-space: nowrap;
 }
 
-.memberLi button{
+.memberLi button {
     padding: 0px 40px;
     cursor: pointer;
     outline: none;
@@ -47,8 +47,7 @@
     border: 1px solid black;
 }
 
-
-.gameLi button{
+.gameLi button {
     padding: 0px 40px;
     cursor: pointer;
     outline: none;

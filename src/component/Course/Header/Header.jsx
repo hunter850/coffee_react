@@ -3,15 +3,15 @@ import "./Header.css";
 
 export default function Header () {
     return (
-        <div className="Header">
+        <div className="CourseHeader">
             <div>
-                <div className="Header-title">
+                <div className="CourseHeader-title">
                     <p>帶你深入探索有趣又獨特的咖啡體驗課程</p>
                 </div>
-                <div className="Header-input">
-                    <div className="search-wrap">
+                <div className="CourseHeader-input">
+                    <div className="Coursesearch-wrap">
                         <input type="text" placeholder="搜尋想要的課程" />
-                        <div className="search-btn">
+                        <div className="Coursesearch-btn">
                             <svg
                                 width="32"
                                 height="33"

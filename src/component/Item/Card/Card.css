@@ -66,3 +66,13 @@
     transform-origin: 0 0;
     line-height: 20px;
 }
+
+@media (max-width: 768px) {
+    .course_card {
+        margin: 0 47px 31px 0;
+    }
+
+    .card-wrap {
+        margin-right: -47px;
+    }
+}
