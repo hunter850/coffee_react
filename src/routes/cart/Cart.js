@@ -1,8 +1,10 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useMemo } from "react";
 import { useStyleChange } from "../../Contexts/SuperProvider";
 import useArray from "../../hooks/useArray";
 import NavBar from "../../component/NavBar";
+import GoodsHeader from "./components/GoodsHeader";
 import GoodsList from "./components/GoodsList";
+import TotalBord from "./components/TotalBord";
 import Modal from "../../component/Modal/Modal";
 import ModalContent from "./components/ModalContent";
 
@@ -12,6 +14,20 @@ function Cart() {
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const cartList = useArray([]);
+    const styles = useMemo(() => {
+        if (breakPoint === 1) {
+            return {};
+        } else {
+            return {
+                listWrap: {
+                    width: "71.63%",
+                },
+                totalWrap: {
+                    width: "28.37%",
+                },
+            };
+        }
+    }, [breakPoint]);
     useEffect(() => {
         setTimeout(() => {
             cartList.cto([
@@ -56,11 +72,19 @@ function Cart() {
         <Fragment>
             <NavBar />
             <h1>{breakPoint}</h1>
-            <GoodsList
-                cartList={cartList}
-                setDeleteId={setDeleteId}
-                setModalIsOpen={setModalIsOpen}
-            />
+            <div>
+                <div>
+                    <GoodsHeader />
+                    <GoodsList
+                        cartList={cartList}
+                        setDeleteId={setDeleteId}
+                        setModalIsOpen={setModalIsOpen}
+                    />
+                </div>
+                <div>
+                    <TotalBord />
+                </div>
+            </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
                 <ModalContent
                     cartList={cartList}
