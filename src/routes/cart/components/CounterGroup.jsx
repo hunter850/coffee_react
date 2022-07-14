@@ -139,6 +139,7 @@ function CounterGroup(props) {
             "ArrowUp",
             "ArrowDown",
             "F5",
+            "F12",
             "Tab",
         ];
     }, []);

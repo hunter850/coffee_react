@@ -73,7 +73,7 @@ function Cart() {
             <NavBar />
             <h1>{breakPoint}</h1>
             <div>
-                <div>
+                <div style={styles.listWrap}>
                     <GoodsHeader />
                     <GoodsList
                         cartList={cartList}
@@ -81,7 +81,7 @@ function Cart() {
                         setModalIsOpen={setModalIsOpen}
                     />
                 </div>
-                <div>
+                <div style={styles.totalWrap}>
                     <TotalBord />
                 </div>
             </div>
