@@ -16,3 +16,22 @@
 
 // 需要的屬性照著範例輸入,不需要的空著即可
 ```
+### Modal 組件使用說明
+```js
+// 組件範例 基本必傳一組useState false關閉modal true開啟modal
+const [isOpen, setIsOpen] = useSate(false);
+<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <h4>Modal內容</h4>
+    <p>Modal內容</p>
+</Modal>
+```
+```js
+// bordPadding設定modal padding內縮
+// bordY 設定modal進場 Y 方向的滑動距離
+// time 動畫時間(s)
+// 不props 預設 bordPadding={"24px 36px"} bordY={-30} time={0.5}
+<Modal isOpen={isOpen} setIsOpen={setIsOpen} bordPadding={"30px"} bordY={-60} time={1}>
+    <h4>Modal內容</h4>
+    <p>Modal內容</p>
+</Modal>
+```
