@@ -10,7 +10,9 @@ function Cart() {
     const breakPoint = useStyleChange();
     const [showProduct, setShowProduct] = useState(true);
     const productList = useArray([]);
+    const productCoupon = useArray([]);
     const foodList = useArray([]);
+    const foodCoupon = useArray([]);
     const styles = useMemo(() => {
         if (breakPoint === 1) {
             return {};
@@ -54,6 +56,11 @@ function Cart() {
                     quantity: 1,
                 },
             ]);
+            productCoupon.cto([
+                { id: 0, name: "藍山豆9折", account: 0.9 },
+                { id: 1, name: "巴西豆5折", account: 0.5 },
+                { id: 2, name: "曼特寧豆折150元", account: 150 },
+            ]);
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -89,6 +96,11 @@ function Cart() {
                     quantity: 3,
                 },
             ]);
+            foodCoupon.cto([
+                { id: 0, name: "咖啡拿鐵9折", account: 0.9 },
+                { id: 1, name: "摩卡咖啡8折", account: 0.8 },
+                { id: 2, name: "咖啡類折100元", account: 100 },
+            ]);
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -99,9 +111,9 @@ function Cart() {
                 <button onClick={() => setShowProduct(true)}>商品</button>
                 <button onClick={() => setShowProduct(false)}>餐點</button>
                 {showProduct ? (
-                    <CartTab cartList={productList} />
+                    <CartTab cartList={productList} coupons={productCoupon} />
                 ) : (
-                    <CartTab cartList={foodList} />
+                    <CartTab cartList={foodList} coupons={foodCoupon} />
                 )}
             </div>
         </Fragment>

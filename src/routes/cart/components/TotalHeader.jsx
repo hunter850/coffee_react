@@ -1,6 +1,9 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
+import Modal from "../../../component/Modal/Modal";
 
-function TotalHeader() {
+function TotalHeader(props) {
+    const { coupons } = props;
+    const [isOpen, setIsOpen] = useState(false);
     const styles = useMemo(() => {
         return {
             buttonStyle: {
@@ -29,7 +32,7 @@ function TotalHeader() {
     }, []);
     return (
         <Fragment>
-            <button style={styles.buttonStyle}>
+            <button style={styles.buttonStyle} onClick={() => setIsOpen(true)}>
                 <svg
                     style={styles.svgStyle}
                     width="26"
@@ -64,6 +67,9 @@ function TotalHeader() {
                     </svg>
                 </span>
             </button>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                {JSON.stringify(coupons)}
+            </Modal>
         </Fragment>
     );
 }

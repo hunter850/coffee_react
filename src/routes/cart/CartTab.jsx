@@ -8,7 +8,7 @@ import Modal from "../../component/Modal/Modal";
 import ModalContent from "./components/ModalContent";
 
 function CartTab(props) {
-    const { cartList } = props;
+    const { cartList, coupons } = props;
     // useStyleChange();若window.innerWidth <= 375 回傳 1 反之回傳 0
     const breakPoint = useStyleChange();
     const [deleteId, setDeleteId] = useState(-1);
@@ -53,7 +53,7 @@ function CartTab(props) {
                     />
                 </div>
                 <div style={styles.totalWrap}>
-                    <TotalHeader />
+                    <TotalHeader coupons={coupons} />
                     <TotalBord />
                 </div>
             </div>
