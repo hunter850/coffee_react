@@ -72,12 +72,7 @@ const useArray = (defaultValue) => {
                 }
             },
             clength: function () {
-                try {
-                    const tempArray = JSON.parse(JSON.stringify(this.value));
-                    return tempArray.length;
-                } catch {
-                    return this.value.length;
-                }
+                return this.value.length;
             },
             csplice: function (start, deleteCount, ...items) {
                 try {
