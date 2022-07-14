@@ -21,7 +21,7 @@ function GoodsList(props) {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    border: "1px solid var(--GRAY)",
+                    border: "1px solid var(--DARKGRAY)",
                     padding: "9px 23px",
                     backgroundColor: "#fff",
                 },
