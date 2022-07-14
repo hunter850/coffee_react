@@ -14,18 +14,22 @@ function GoodsList(props) {
         } else {
             return {
                 listWrap: {
-                    width: "71.63%",
-                    padding: "0px 23px",
+                    width: "100%",
                 },
                 listStyle: {
                     width: "100%",
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    border: "1px solid var(--GRAY)",
+                    padding: "9px 23px",
+                    backgroundColor: "#fff",
                 },
                 imgWrap: {
                     width: "100px",
                     height: "100px",
-                    border: "1px solid #cbcbcb",
+                    border: "1px solid var(--GRAY)",
+                    flexShrink: "0",
                 },
                 imgStyle: {
                     width: "100%",
@@ -33,9 +37,24 @@ function GoodsList(props) {
                     objectFit: "cover",
                     objectPosition: "center center",
                 },
-                textStyle: {
+                nameStyle: {
                     fontSize: "16px",
-                    color: "#324A59",
+                    color: "var(--BLUE)",
+                    flexGrow: "1",
+                    textAlign: "center",
+                },
+                priceStyle: {
+                    fontSize: "16px",
+                    color: "var(--BLUE)",
+                    width: "40px",
+                    textAlign: "center",
+                },
+                multipliedStyle: {
+                    fontSize: "16px",
+                    color: "var(--BLUE)",
+                    width: "60px",
+                    textAlign: "center",
+                    flexShrink: "0",
                 },
                 deleteButtonStyle: {
                     backgroundColor: "transparent",
@@ -66,7 +85,7 @@ function GoodsList(props) {
         [setDeleteId, setModalIsOpen]
     );
     return (
-        <ul style={styles.listWrap}>
+        <ul style={styles.listWrap} className="cart_list_ul">
             {cartList.cmap((item) => (
                 <li key={item.id} style={styles.listStyle}>
                     <div style={styles.imgWrap}>
@@ -76,14 +95,16 @@ function GoodsList(props) {
                             style={styles.imgStyle}
                         />
                     </div>
-                    <p style={styles.textStyle}>{item.name}</p>
-                    <p style={styles.textStyle}>{item.price}</p>
+                    <p style={styles.nameStyle}>{item.name}</p>
+                    <p style={styles.priceStyle}>{item.price}</p>
                     <CounterGroup
                         quantity={item.quantity}
                         id={item.id}
                         cartList={cartList}
                     />
-                    <p style={styles.textStyle}>{item.price * item.quantity}</p>
+                    <p style={styles.multipliedStyle}>
+                        {item.price * item.quantity}
+                    </p>
                     <button
                         onClick={() => deleteHandler(item.id)}
                         style={styles.deleteButtonStyle}

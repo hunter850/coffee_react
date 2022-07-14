@@ -1,4 +1,4 @@
-import { Fragment, useState, useCallback, useRef, useMemo } from "react";
+import { useState, useCallback, useRef, useMemo } from "react";
 import { useStyleChange } from "../../../Contexts/SuperProvider";
 import plus from "../../../images/cart/plus.svg";
 import minus from "../../../images/cart/minus.svg";
@@ -13,13 +13,20 @@ function CounterGroup(props) {
             return {};
         } else {
             return {
+                buttonWrap: {
+                    display: "flex",
+                    alignItems: "center",
+                },
                 inputStyle: {
-                    padding: "0px 0px 0px 9px",
+                    padding: "0px",
                     height: "36px",
                     fontSize: "16px",
                     border: "none",
                     outline: "none",
-                    borderBottom: "1px solid #324A59",
+                    borderBottom: "1px solid var(--BLUE)",
+                    textAlign: "center",
+                    width: "50px",
+                    flexShrink: "0",
                 },
                 minusButtonStyle: {
                     width: "36px",
@@ -27,9 +34,10 @@ function CounterGroup(props) {
                     backgroundColor: "transparent",
                     border: "none",
                     outline: "none",
-                    color: "#324A59",
+                    color: "var(--BLUE)",
                     cursor: "pointer",
                     background: `url(${minus}) center center / 16px 16px no-repeat`,
+                    flexShrink: "0",
                 },
                 plusButtonStyle: {
                     width: "36px",
@@ -37,9 +45,10 @@ function CounterGroup(props) {
                     backgroundColor: "transparent",
                     border: "none",
                     outline: "none",
-                    color: "#324A59",
+                    color: "var(--BLUE)",
                     cursor: "pointer",
                     background: `url(${plus}) center center / 16px 16px no-repeat`,
+                    flexShrink: "0",
                 },
             };
         }
@@ -160,7 +169,7 @@ function CounterGroup(props) {
         }
     }, []);
     return (
-        <Fragment>
+        <div style={styles.buttonWrap}>
             <button
                 onClick={() => countHandler(-1)}
                 style={styles.minusButtonStyle}
@@ -179,7 +188,7 @@ function CounterGroup(props) {
                 onClick={() => countHandler(1)}
                 style={styles.plusButtonStyle}
             ></button>
-        </Fragment>
+        </div>
     );
 }
 

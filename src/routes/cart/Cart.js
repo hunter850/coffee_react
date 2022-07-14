@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useStyleChange } from "../../Contexts/SuperProvider";
 import useArray from "../../hooks/useArray";
 import NavBar from "../../component/NavBar";
@@ -19,11 +19,24 @@ function Cart() {
             return {};
         } else {
             return {
+                fakeBody: {
+                    backgroundColor: "var(--CREAM)",
+                },
+                cartContainer: {
+                    width: "100%",
+                    padding: "0px 200px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    maxWidth: "1440px",
+                    margin: "0px auto",
+                    backgroundColor: "var(--CREAM)",
+                    outline: "1px solid red",
+                },
                 listWrap: {
                     width: "71.63%",
                 },
                 totalWrap: {
-                    width: "28.37%",
+                    width: "25%",
                 },
             };
         }
@@ -69,10 +82,9 @@ function Cart() {
     }, []);
 
     return (
-        <Fragment>
+        <div style={styles.fakeBody}>
             <NavBar />
-            <h1>{breakPoint}</h1>
-            <div>
+            <div style={styles.cartContainer}>
                 <div style={styles.listWrap}>
                     <GoodsHeader />
                     <GoodsList
@@ -92,7 +104,7 @@ function Cart() {
                     setModalIsOpen={setModalIsOpen}
                 />
             </Modal>
-        </Fragment>
+        </div>
     );
 }
 
