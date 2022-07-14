@@ -87,7 +87,7 @@ function GoodsList(props) {
     return (
         <ul style={styles.listWrap} className="cart_list_ul">
             {cartList.cmap((item) => (
-                <li key={item.id} style={styles.listStyle}>
+                <li key={item.name} style={styles.listStyle}>
                     <div style={styles.imgWrap}>
                         <img
                             src={item.picture}

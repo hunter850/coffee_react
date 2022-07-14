@@ -1,21 +1,16 @@
-import { useEffect, useState, useMemo } from "react";
+import { Fragment, useEffect, useState, useMemo } from "react";
 import { useStyleChange } from "../../Contexts/SuperProvider";
 import useArray from "../../hooks/useArray";
 import NavBar from "../../component/NavBar";
-import GoodsHeader from "./components/GoodsHeader";
-import GoodsList from "./components/GoodsList";
-import TotalHeader from "./components/TotalHeader";
-import TotalBord from "./components/TotalBord";
-import Modal from "../../component/Modal/Modal";
-import ModalContent from "./components/ModalContent";
+import CartTab from "./CartTab";
 import coffee_bean from "../../images/cart/coffee_bean.svg";
+import cup_cofffee from "../../images/cart/cup_cofffee.svg";
 
 function Cart() {
-    // useStyleChange();若window.innerWidth <= 375 回傳 1 反之回傳 0
     const breakPoint = useStyleChange();
-    const [deleteId, setDeleteId] = useState(-1);
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const cartList = useArray([]);
+    const [showProduct, setShowProduct] = useState(true);
+    const productList = useArray([]);
+    const foodList = useArray([]);
     const styles = useMemo(() => {
         if (breakPoint === 1) {
             return {};
@@ -24,28 +19,12 @@ function Cart() {
                 fakeBody: {
                     backgroundColor: "var(--CREAM)",
                 },
-                cartContainer: {
-                    width: "100%",
-                    padding: "0px 200px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    maxWidth: "1440px",
-                    margin: "48px auto 0px",
-                    backgroundColor: "var(--CREAM)",
-                    outline: "1px solid red",
-                },
-                listWrap: {
-                    width: "71.63%",
-                },
-                totalWrap: {
-                    width: "25%",
-                },
             };
         }
     }, [breakPoint]);
     useEffect(() => {
         setTimeout(() => {
-            cartList.cto([
+            productList.cto([
                 {
                     id: 0,
                     picture: coffee_bean,
@@ -78,33 +57,54 @@ function Cart() {
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
+    useEffect(() => {
+        setTimeout(() => {
+            foodList.cto([
+                {
+                    id: 0,
+                    picture: cup_cofffee,
+                    name: "咖啡拿鐵",
+                    price: 120,
+                    quantity: 1,
+                },
+                {
+                    id: 1,
+                    picture: cup_cofffee,
+                    name: "美式咖啡",
+                    price: 100,
+                    quantity: 2,
+                },
+                {
+                    id: 2,
+                    picture: cup_cofffee,
+                    name: "義式咖啡",
+                    price: 100,
+                    quantity: 1,
+                },
+                {
+                    id: 3,
+                    picture: cup_cofffee,
+                    name: "摩卡咖啡",
+                    price: 130,
+                    quantity: 3,
+                },
+            ]);
+        }, 50);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
-        <div style={styles.fakeBody}>
-            <NavBar />
-            <div style={styles.cartContainer}>
-                <div style={styles.listWrap}>
-                    {cartList.clength() >= 1 && <GoodsHeader />}
-                    <GoodsList
-                        cartList={cartList}
-                        setDeleteId={setDeleteId}
-                        setModalIsOpen={setModalIsOpen}
-                    />
-                </div>
-                <div style={styles.totalWrap}>
-                    <TotalHeader />
-                    <TotalBord />
-                </div>
+        <Fragment>
+            <div style={styles.fakeBody}>
+                <NavBar />
+                <button onClick={() => setShowProduct(true)}>商品</button>
+                <button onClick={() => setShowProduct(false)}>餐點</button>
+                {showProduct ? (
+                    <CartTab cartList={productList} />
+                ) : (
+                    <CartTab cartList={foodList} />
+                )}
             </div>
-            <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
-                <ModalContent
-                    cartList={cartList}
-                    deleteId={deleteId}
-                    setModalIsOpen={setModalIsOpen}
-                />
-            </Modal>
-        </div>
+        </Fragment>
     );
 }
-
 export default Cart;
