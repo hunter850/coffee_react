@@ -13,15 +13,24 @@ function ModalContent(props) {
     return (
         <Fragment>
             <p>您確定要刪除該商品嗎 ? </p>
-            <Btn onClick={deleteHandler}>確定</Btn>
-            <Btn
-                onClick={cancelHandler}
-                style={{ border: "1px solid #253945" }}
-                color="#253945"
-                backgroundColor="white"
-            >
-                取消
-            </Btn>
+            <div style={{ marginTop: "12px", textAlign: "end" }}>
+                <Btn
+                    style={{ fontSize: "13px", marginRight: "4px" }}
+                    onClick={deleteHandler}
+                    width="75px"
+                >
+                    確定
+                </Btn>
+                <Btn
+                    onClick={cancelHandler}
+                    style={{ border: "1px solid #253945", fontSize: "13px" }}
+                    color="#253945"
+                    backgroundColor="white"
+                    width="75px"
+                >
+                    取消
+                </Btn>
+            </div>
         </Fragment>
     );
 }
