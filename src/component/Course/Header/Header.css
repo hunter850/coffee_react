@@ -5,7 +5,7 @@
     background-size: cover;
 }
 
-.Header-title {
+.Header-title > p {
     color: #fff;
     font-size: 1.4375rem;
 }
