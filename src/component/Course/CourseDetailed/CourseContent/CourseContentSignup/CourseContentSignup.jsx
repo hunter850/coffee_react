@@ -81,21 +81,14 @@ function CourseContentSignup() {
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <Btn
-                                    backgroundColor={"#C5AD8F"}
-                                    width={"41px"}
-                                    className={"banner-Btn-Hover"}
-                                >
+                                <button className="banner-Btn-Hover courseSignUpMinBtn">
                                     +
-                                </Btn>
+                                </button>
+
                                 <div className="people-number">2</div>
-                                <Btn
-                                    backgroundColor={"#C5AD8F"}
-                                    width={"41px"}
-                                    className={"banner-Btn-Hover"}
-                                >
+                                <button className="banner-Btn-Hover courseSignUpMinBtn">
                                     -
-                                </Btn>
+                                </button>
                             </div>
                             <div className="d-flex CourseContentSignup-price">
                                 <div>總金額</div>
