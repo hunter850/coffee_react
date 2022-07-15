@@ -9,6 +9,11 @@
 }
 .CoursePaths {
     padding-bottom: 23px;
+    cursor: pointer;
+}
+
+.CoursePaths:hover {
+    color: #b79973;
 }
 
 .focus {
