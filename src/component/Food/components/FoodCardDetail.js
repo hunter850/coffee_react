@@ -14,7 +14,7 @@ function FoodCardDetail({ showFoodDetail }) {
     const sugarchoice = ["無糖", "微糖", "半糖", "全糖"];
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
-    const [foodCount, setFoodCount] = useState("0");
+    const [foodCount, setFoodCount] = useState(0);
 
     return (
         <>
