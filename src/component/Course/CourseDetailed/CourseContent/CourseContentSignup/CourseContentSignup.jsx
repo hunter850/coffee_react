@@ -1,6 +1,6 @@
 import "./CourseContentSignup.css";
 import Btn from "../../../../Item/Btn/Btn";
-function CourseContentSignup () {
+function CourseContentSignup() {
     return (
         <div>
             <div className="CourseContentItem" style={{ marginTop: 30 }}>

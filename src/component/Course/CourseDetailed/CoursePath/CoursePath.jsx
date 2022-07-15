@@ -1,6 +1,6 @@
 import "./CoursePath.css";
 
-function CoursePath () {
+function CoursePath() {
     return (
         <div className="CoursePath">
             <div

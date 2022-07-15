@@ -1,7 +1,7 @@
 import "./CourseAddListDetailed.css";
 import Btn from "../../../Item/Btn/Btn";
 
-function CourseAddListDetailed () {
+function CourseAddListDetailed() {
     return (
         <div className="CourseAddListDetailed d-flex f-jcc">
             <div className="CourseAddListDetailedCenter">
