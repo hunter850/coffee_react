@@ -1,4 +1,4 @@
-function CourseContentMaterial () {
+function CourseContentMaterial() {
     return (
         <div>
             <div className="CourseContentItem" style={{ marginTop: 30 }}>

@@ -1,4 +1,4 @@
-function CourseContentNotice () {
+function CourseContentNotice() {
     return (
         <div>
             <div

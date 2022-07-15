@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FoodCard.css";
 import "./FoodAdd.css";
 import menudata from "./menu.json";
-import FoodCardDetail from "./FoodCardDetail";
 
-function Card() {
-    const [detailShow, setDetailShow] = useState(false);
+function FoodCard({ handleShowFoodDetailSelect }) {
     return menudata.map(
         ({
             menu_name,
@@ -29,7 +27,12 @@ function Card() {
                             <p style={{ fontWeight: "bolder" }}>{menu_name}</p>
                             <p
                                 className="font-min"
-                                style={{ color: "#898787" }}
+                                style={{
+                                    color: "#898787",
+                                    textOverflow: "ellipsis",
+                                    overflow: "hidden",
+                                    whiteSpace: "nowrap",
+                                }}
                             >
                                 {menu_nutrition}
                             </p>
@@ -44,20 +47,28 @@ function Card() {
                                 </p>
                                 <div
                                     className="foodadd"
-                                    onClick={() => setDetailShow(true)}
+                                    onClick={() => {
+                                        handleShowFoodDetailSelect({
+                                            menu_name,
+                                            menu_nutrition,
+                                            menu_price_m,
+                                            menu_sid,
+                                            menu_categories,
+                                        });
+                                    }}
                                 >
-                                    加入!
+                                    加入
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* detailShow為true時 FoodCardDetail 就會執行 */}
-                    {detailShow && <FoodCardDetail />}
+                    {/* {detailShow && <FoodCardDetail menu_sid={menu_sid} />} */}
                 </div>
             );
         }
     );
 }
 
-export default Card;
+export default FoodCard;

@@ -17,7 +17,7 @@ export default function Btn({
     ...allEvent
 }) {
     const buttonStyle = useMemo(() => {
-        return { ...style, width, backgroundColor, color };
+        return { width, backgroundColor, color, ...style };
     }, [width, backgroundColor, color, style]);
 
     return (

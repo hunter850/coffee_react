@@ -1,5 +1,5 @@
 import "./Carousel.css";
-function Carousel () {
+function Carousel() {
     return <div className="course-Carousel"></div>;
 }
 

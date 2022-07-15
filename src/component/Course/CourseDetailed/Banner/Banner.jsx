@@ -1,7 +1,6 @@
 import "./Banner.css";
-import Btn from "../../../Item/Btn/Btn";
 
-function Banner () {
+function Banner() {
     return (
         <div
             className="courseBannerContainer  container"

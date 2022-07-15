@@ -1,0 +1,70 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.formatOnSave": true,
+    "workbench.colorCustomizations": {
+        "editor.background": "#222",
+        "sideBar.background": "#202020",
+        "tab.activeBackground": "#ddddff1a",
+        "tab.inactiveBackground": "#009dff09",
+        "editor.selectionBackground": "#008cff60",
+        "input.background": "#30303a",
+        "inputOption.activeBackground": "#556"
+    },
+    "workbench.colorTheme": "One Dark Pro Flat",
+    "workbench.iconTheme": "vscode-icons",
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    },
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html",
+        "plaintext": "jade",
+        "ejs": "html",
+        "vue": "html"
+    },
+    "vetur.ignoreProjectWarning": true,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.scriptInitialIndent": true,
+    "vetur.format.styleInitialIndent": true,
+    "vetur.format.defaultFormatterOptions": {
+    
+        "js-beautify-html": {
+            "wrap_attributes": "force-expand-multiline"
+        },
+        "prettyhtml": {
+            "printWidth": 100,
+            "singleQuote": false,
+            "wrapAttributes": false,
+            "sortAttributes": false
+        }
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "eslint.alwaysShowStatus": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "git.autofetch": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "eslint.format.enable": true,
+    "prettier.tabWidth": 4
+}
