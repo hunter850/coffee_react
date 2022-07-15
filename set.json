@@ -8,8 +8,7 @@
         "tab.inactiveBackground": "#009dff09",
         "editor.selectionBackground": "#008cff60",
         "input.background": "#30303a",
-        "inputOption.activeBackground": "#556",
-        // "titleBar.activeBackground": "#30303a"
+        "inputOption.activeBackground": "#556"
     },
     "workbench.colorTheme": "One Dark Pro Flat",
     "workbench.iconTheme": "vscode-icons",
@@ -47,7 +46,7 @@
         "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
