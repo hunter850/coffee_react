@@ -2,7 +2,7 @@ import React from "react";
 import "./Path.css";
 import { v4 } from "uuid";
 
-export default function Path ({ pathObj, backgroundColor }) {
+export default function Path({ pathObj, backgroundColor }) {
     return (
         <div className="container Path">
             <div
