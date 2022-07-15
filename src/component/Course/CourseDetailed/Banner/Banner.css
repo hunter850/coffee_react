@@ -93,3 +93,19 @@
         width: 421px;
     }
 }
+
+@media (max-width: 375px) {
+    .CourseDetailed_banner-txt {
+        width: 320px;
+        margin: 0 auto;
+    }
+
+    .CourseDetailed_banner-btn {
+        width: 320px;
+        margin: 40px auto 7px;
+    }
+
+    .bannerBtn {
+        width: 220px;
+    }
+}

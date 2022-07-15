@@ -83,3 +83,23 @@
         width: 459px;
     }
 }
+
+@media (max-width: 375px) {
+    .CourseContentBtnRwd {
+        width: 131px;
+    }
+
+    .PeopleNumberRwd {
+        width: 272px;
+    }
+    .people-number {
+        width: 146px;
+    }
+    .CourseContentSignup-price {
+        width: 272px;
+    }
+
+    .courseSignUpBtnRwd {
+        width: 272px;
+    }
+}
