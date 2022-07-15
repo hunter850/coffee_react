@@ -72,7 +72,9 @@ function FoodCardDetail({ showFoodDetail }) {
                     <div style={{ display: "flex" }}>
                         <div
                             onClick={() => {
-                                setFoodCount(foodCount - 1);
+                                foodCount > 0
+                                    ? setFoodCount(foodCount - 1)
+                                    : setFoodCount(foodCount - 0);
                             }}
                         >
                             -
