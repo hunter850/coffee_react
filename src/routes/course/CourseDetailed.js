@@ -19,10 +19,7 @@ const CourseDetailed = () => {
                 <Banner />
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
-                <div
-                    className="container d-flex"
-                    style={{ justifyContent: "space-between" }}
-                >
+                <div className="container d-flex CourseContent-wrap">
                     <CoursePath />
                     <CourseContent />
                 </div>
