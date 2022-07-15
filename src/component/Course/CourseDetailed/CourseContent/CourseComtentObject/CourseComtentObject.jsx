@@ -1,13 +1,10 @@
 import "./CourseComtentObject.css";
 
-function CourseComtentObject () {
+function CourseComtentObject() {
     return (
         <div>
             <div className="CourseContentItem" style={{ marginTop: 30 }}>
-                <div
-                    className="d-flex f-aic"
-                    style={{ justifyContent: "space-between" }}
-                >
+                <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="22"

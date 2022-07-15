@@ -1,14 +1,14 @@
+/* eslint-disable prettier/prettier */
+import { useState } from "react";
 function CourseContentNotice() {
+    const [displayNone, setdisplayNone] = useState(false);
     return (
         <div>
             <div
                 className="CourseContentItem"
                 style={{ marginTop: 30, marginBottom: 72 }}
             >
-                <div
-                    className="d-flex f-aic"
-                    style={{ justifyContent: "space-between" }}
-                >
+                <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="24"
@@ -61,25 +61,11 @@ function CourseContentNotice() {
 
                         <div style={{ paddingLeft: 17 }}>注意事項</div>
                     </div>
-                    <div className="arrow-icon">
-                        <svg
-                            width="12"
-                            height="8"
-                            viewBox="0 0 14 10"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M1 1L6.90851 9L12.817 1"
-                                stroke="#3E3E3E"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
+                    <div className={` ${displayNone ? "arrow-icon-down" : 'arrow-icon'}`} onClick={() => setdisplayNone(!displayNone)}>
+
                     </div>
                 </div>
-                <div className="CourseContent-text">
+                <div className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}>
                     為防範新型冠狀病毒及配合政府防疫，講師與工作人員已完成疫苗三劑施打，主辦單位課程措施如下，請學員務必配合：
                     <br />
                     授課期間，請學員自備口罩，除飲食外需全程配戴。

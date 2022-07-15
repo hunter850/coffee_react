@@ -1,11 +1,14 @@
+/* eslint-disable prettier/prettier */
 import "./CourseContentItem.css";
+import { useState } from "react";
 
-function CourseContentItem ({ marginTop, children }) {
+function CourseContentItem({ marginTop, children }) {
+    const [displayNone, setdisplayNone] = useState(false);
     return (
         <div className="CourseContentItem" style={{ marginTop: marginTop }}>
             <div
-                className="d-flex f-aic"
-                style={{ justifyContent: "space-between" }}
+                className="d-flex f-aic CourseContentItem-wrap"
+
             >
                 <div className="d-flex CourseContent-title">
                     <svg
@@ -49,25 +52,13 @@ function CourseContentItem ({ marginTop, children }) {
                     </svg>
                     <div style={{ paddingLeft: 17 }}>{children}</div>
                 </div>
-                <div className="arrow-icon">
-                    <svg
-                        width="12"
-                        height="8"
-                        viewBox="0 0 14 10"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M1 1L6.90851 9L12.817 1"
-                            stroke="#3E3E3E"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                <div className={` ${displayNone ? "arrow-icon-down" : 'arrow-icon'}`} onClick={() => setdisplayNone(!displayNone)}>
+
                 </div>
             </div>
-            <div className="CourseContent-text">
+            <div
+                className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}
+            >
                 課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
                 課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
                 課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,

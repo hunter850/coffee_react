@@ -1,3 +1,7 @@
+.CourseContentItem-wrap {
+    justify-content: space-between;
+    padding-bottom: 21px;
+}
 .CourseContentItem {
     background-color: #ffffff;
     width: 872px;
@@ -19,11 +23,32 @@
     width: 64px;
     height: 64px;
     transform: translateY(13px);
+    background: url(/public/course/imgs/top-arrow-icon.png) no-repeat center
+        center;
+}
+
+.arrow-icon-down {
+    color: #3e3e3e;
+    margin-right: 20px;
+    text-align: center;
+    line-height: 64px;
+    width: 64px;
+    height: 64px;
+    transform: translateY(13px);
+    background: url(/public/course/imgs/down-arrow-icon.png) no-repeat center
+        center;
+}
+
+.arrow-icon-down:hover {
+    background-color: #f5efeb;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .arrow-icon:hover {
     background-color: #f5efeb;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .CourseContent-text {
@@ -34,11 +59,13 @@
     line-height: 35px;
     padding-bottom: 55px;
 }
+.CourseContentItem-text {
+    display: none;
+}
 .CourseContent-text::before {
     display: block;
     content: "";
     border: 2px solid #e4d5c9;
-    margin-top: 21px;
     margin-bottom: 31px;
     width: 820px;
     transform: translateX(-23px);

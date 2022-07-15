@@ -1,11 +1,11 @@
+/* eslint-disable prettier/prettier */
+import { useState } from "react";
 function CourseContentMaterial() {
+    const [displayNone, setdisplayNone] = useState(false);
     return (
         <div>
             <div className="CourseContentItem" style={{ marginTop: 30 }}>
-                <div
-                    className="d-flex f-aic"
-                    style={{ justifyContent: "space-between" }}
-                >
+                <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="24"
@@ -58,25 +58,16 @@ function CourseContentMaterial() {
 
                         <div style={{ paddingLeft: 17 }}>需求材料</div>
                     </div>
-                    <div className="arrow-icon">
-                        <svg
-                            width="12"
-                            height="8"
-                            viewBox="0 0 14 10"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M1 1L6.90851 9L12.817 1"
-                                stroke="#3E3E3E"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </div>
+
+                    <div
+                        className={` ${displayNone ? "arrow-icon-down" : "arrow-icon"}`}
+                        onClick={() => setdisplayNone(!displayNone)}
+                    ></div>
                 </div>
-                <div className="CourseContent-text">
+                <div
+                    className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""
+                        }`}
+                >
                     <ul>
                         <li>需求完料範例文字需求完料範例文字</li>
                         <li>需求完料範例文字需求完料範例文字</li>

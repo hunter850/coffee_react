@@ -5,7 +5,7 @@ import CourseContentMaterial from "./CourseContentMaterial/CourseContentMaterial
 import CourseContentSignup from "./CourseContentSignup/CourseContentSignup";
 import CourseContentNotice from "./CourseContentNotice/CourseContentNotice";
 
-function CourseContent () {
+function CourseContent() {
     return (
         <div className="CourseContent">
             <CourseContentItem>課程內容</CourseContentItem>
