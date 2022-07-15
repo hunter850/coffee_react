@@ -19,27 +19,29 @@ function Food() {
         <Fragment>
             <NavBar />
             <Path pathObj={{ path: ["．點餐"] }} />
-            <Slideshow />
+            <div style={{ position: "relative" }}>
+                <Slideshow />
 
-            <div className="container" style={{ minWidth: "1440px" }}>
-                <div>
-                    <div style={{ display: "flex", marginLeft: "45px" }}>
-                        <Filterbutton />
-                    </div>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            flexWrap: "wrap",
-                        }}
-                    >
-                        <FoodCard
-                            handleShowFoodDetailSelect={setShowFoodDetail}
-                        />
+                <div className="container" style={{ minWidth: "1440px" }}>
+                    <div>
+                        <div style={{ display: "flex", marginLeft: "45px" }}>
+                            <Filterbutton />
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                flexWrap: "wrap",
+                            }}
+                        >
+                            <FoodCard
+                                handleShowFoodDetailSelect={setShowFoodDetail}
+                            />
+                        </div>
                     </div>
                 </div>
+                <FoodCardDetail showFoodDetail={showFoodDetail} />
             </div>
-            <FoodCardDetail showFoodDetail={showFoodDetail} />
         </Fragment>
     );
 }
