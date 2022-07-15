@@ -1,5 +1,5 @@
 import "./CourseContentSignup.css";
-import Btn from "../../../../Item/Btn/Btn";
+
 function CourseContentSignup() {
     return (
         <div>
