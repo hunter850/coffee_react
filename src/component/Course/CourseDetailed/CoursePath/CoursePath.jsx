@@ -32,28 +32,30 @@ function CoursePath() {
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
     return (
-        <div className="CoursePath">
-            {clickSure.map((v, i) => {
-                return (
-                    <div
-                        key={i}
-                        className={`CoursePaths ${v.focus ? "focus" : ""} `}
-                        onClick={() => {
-                            const newCoursePaths = defaultCoursePaths.map(
-                                (v, index) => {
-                                    if (i === index) {
-                                        return { ...v, focus: true };
+        <div className="CoursePath-wrap">
+            <div className="CoursePath">
+                {clickSure.map((v, i) => {
+                    return (
+                        <div
+                            key={i}
+                            className={`CoursePaths ${v.focus ? "focus" : ""} `}
+                            onClick={() => {
+                                const newCoursePaths = defaultCoursePaths.map(
+                                    (v, index) => {
+                                        if (i === index) {
+                                            return { ...v, focus: true };
+                                        }
+                                        return v;
                                     }
-                                    return v;
-                                }
-                            );
-                            setClickSure(newCoursePaths);
-                        }}
-                    >
-                        {v.name}
-                    </div>
-                );
-            })}
+                                );
+                                setClickSure(newCoursePaths);
+                            }}
+                        >
+                            {v.name}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }

@@ -1,8 +1,10 @@
-.CoursePath {
+.CoursePath-wrap {
     width: 128px;
     height: 500px;
     padding-top: 48px;
     padding-left: 10px;
+}
+.CoursePath {
     font-size: 1.25rem;
     color: #898787;
     font-weight: 300;
