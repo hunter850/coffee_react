@@ -1,6 +1,83 @@
 .course-Carousel {
     background-color: #bbbbbb;
     height: 500px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.course-slideshow {
+    width: 700vw;
+    height: 500px;
+    background-color: #7cc;
+    /* transition: ease 1000ms; */
+}
+
+.course-slideshowSlider {
+    width: 100%;
+    height: 500px;
+}
+
+.Ellipse-wrap {
+    position: absolute;
+    bottom: 17px;
+    width: 135px;
+    left: calc(50% - 67.5px);
+}
+
+.Ellipse {
+    background-color: #d9d9d9;
+    opacity: 0.5;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 17px;
+    cursor: pointer;
+}
+
+.course-Ellipse-focus {
+    opacity: 1;
+    background-color: #fff;
+}
+.arror-left {
+    height: 100%;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+
+.arror-left > div {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 35px;
+    top: calc(50% - 30px);
+    background: url(/public/course/imgs/left-arror.png) no-repeat center center;
+    background-color: rgba(136, 136, 136, 0.492);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.arror-right {
+    height: 100%;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.arror-right > div {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 35px;
+    top: calc(50% - 30px);
+    background: url(/public/course/imgs/right-arror.png) no-repeat center center;
+    background-color: rgba(136, 136, 136, 0.492);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
