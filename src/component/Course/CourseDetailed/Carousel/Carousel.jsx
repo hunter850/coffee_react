@@ -14,7 +14,7 @@ function Carousel() {
     const [transitionDelay, setTransitionDelay] = useState(true);
     // 判斷照片往哪個方向移動
     const [direction, setDirection] = useState('');
-
+    // 連按限制器
     const [remoteControl, setRemoteControl] = useState(true);
 
     const rightPage = () => {
