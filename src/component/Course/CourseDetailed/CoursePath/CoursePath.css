@@ -5,21 +5,28 @@
     padding-left: 10px;
 }
 .CoursePath {
+    width: 128px;
+    height: 500px;
+}
+.CoursePathFixed {
+    position: fixed;
+    top: 0;
+}
+.CoursePaths > a {
+    display: block;
+    padding-bottom: 23px;
+    cursor: pointer;
     font-size: 1.25rem;
     color: #898787;
     font-weight: 300;
 }
-.CoursePaths {
-    padding-bottom: 23px;
-    cursor: pointer;
-}
 
-.CoursePaths:hover {
+.CoursePaths > a:hover {
     color: #b79973;
 }
 
 .focus {
-    color: #b79973;
+    color: #b79973 !important;
     font-weight: 600;
     position: relative;
 }
