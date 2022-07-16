@@ -4,6 +4,15 @@ import { useState } from "react";
 
 function CourseContentSignup() {
     const [displayNone, setdisplayNone] = useState(false);
+    const [count, setCount] = useState(1);
+    //選擇人數的增減控制器
+    const numberPeople = () => {
+        setCount(count + 1);
+    };
+    const numberPeopleReduce = () => {
+        count > 1 ? setCount(count - 1) : setCount(count - 0);
+    };
+
     return (
         <div>
             <div className="CourseContentItem" style={{ marginTop: 30 }}>
@@ -58,7 +67,7 @@ function CourseContentSignup() {
                                         AM 9:00
                                     </button>
                                 </div>
-                                <button className="CourseContentBtnRwd CourseContentBtn-focus ">
+                                <button className="CourseContentBtnRwd">
                                     PM 3:00
                                 </button>
                             </div>
@@ -67,12 +76,12 @@ function CourseContentSignup() {
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <button className="banner-Btn-Hover courseSignUpMinBtn">
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={numberPeople}>
                                     +
                                 </button>
 
-                                <div className="people-number">2</div>
-                                <button className="banner-Btn-Hover courseSignUpMinBtn">
+                                <div className="people-number">{count}</div>
+                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={numberPeopleReduce}>
                                     -
                                 </button>
                             </div>

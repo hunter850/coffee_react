@@ -24,7 +24,7 @@
 
 .CourseContentBtnRwd {
     width: 132px;
-    background-color: #c5ad8f;
+    background-color: rgba(197, 173, 143, 0.6);
     color: #fff;
     border: none;
     text-align: center;
@@ -34,6 +34,9 @@
     padding: 8px 0px;
     white-space: nowrap;
     cursor: pointer;
+}
+.CourseContentBtnRwd:hover {
+    background-color: #c5ad8f;
 }
 
 .courseSignUpBtnRwd {
@@ -65,7 +68,7 @@
 }
 
 .CourseContentBtn-focus {
-    background-color: rgba(197, 173, 143, 0.6);
+    background-color: #c5ad8f;
 }
 
 @media (max-width: 768px) {
