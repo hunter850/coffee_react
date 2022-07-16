@@ -18,7 +18,7 @@ function CoursePath() {
         };
     }, []);
 
-    // 初次渲染預設高亮顯示
+    // 麵包屑初次渲染預設高亮顯示
     useEffect(() => {
         setStart(0);
     }, []);
@@ -30,7 +30,7 @@ function CoursePath() {
         "報名資訊",
         "注意事項",
     ];
-
+    // 麵包屑跳轉指向的ID
     const pathId = ['#CourseContentItem', '#CourseComtentObject', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice'];
     // 初始高亮的狀態
     const [start, setStart] = useState(1);
@@ -76,7 +76,7 @@ function CoursePath() {
                     );
                 })}
             </div>
-        </div >
+        </div>
     );
 }
 
