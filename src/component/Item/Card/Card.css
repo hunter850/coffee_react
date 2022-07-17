@@ -85,6 +85,7 @@
     padding: 18px 0 0 0;
     margin-bottom: 18px;
     width: 240px;
+    height: 58px;
     font-size: 0.75rem;
     transform: scale(0.83, 0.83);
     *font-size: 10px;
