@@ -55,6 +55,27 @@ function Cart() {
                     price: 130,
                     quantity: 1,
                 },
+                {
+                    id: 4,
+                    picture: coffee_bean,
+                    name: "淺培咖啡豆",
+                    price: 130,
+                    quantity: 1,
+                },
+                {
+                    id: 5,
+                    picture: coffee_bean,
+                    name: "中培咖啡豆",
+                    price: 130,
+                    quantity: 1,
+                },
+                {
+                    id: 6,
+                    picture: coffee_bean,
+                    name: "深培咖啡豆",
+                    price: 130,
+                    quantity: 1,
+                },
             ]);
             productCoupon.cto([
                 { id: 0, name: "藍山豆9折", account: 0.9 },
