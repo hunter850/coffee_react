@@ -43,24 +43,30 @@ function Modal({
                 }s ease`,
             },
             textWrap: {
-                // overflow: "hidden auto",
                 width: "100%",
                 maxHeight: "calc(90vh - 132px)",
                 overflow: "auto",
             },
         };
     }, [bordPadding, bordY, time]);
-    const buttonStyle = useMemo(() => {
+    const staticStyles = useMemo(() => {
         return {
-            border: "none",
-            outline: "none",
-            backgroundColor: "transparent",
-            width: "36px",
-            height: "36px",
-            cursor: "pointer",
-            position: "absolute",
-            right: "0px",
-            top: "0px",
+            button: {
+                border: "none",
+                outline: "none",
+                backgroundColor: "transparent",
+                width: "36px",
+                height: "36px",
+                cursor: "pointer",
+                position: "absolute",
+                right: "0px",
+                top: "0px",
+            },
+            text: {
+                width: "100%",
+                maxHeight: "calc(90vh - 132px)",
+                overflow: "auto",
+            },
         };
     }, []);
     const [modalBackground, setModalBackground] = useState(styles.bgStyle);
@@ -97,7 +103,7 @@ function Modal({
     return (
         <div style={modalBackground} onClick={closeHandler}>
             <div style={modalBord} onClick={(e) => e.stopPropagation()}>
-                <button style={buttonStyle} onClick={closeHandler}>
+                <button style={staticStyles.button} onClick={closeHandler}>
                     <svg
                         width="12"
                         height="12"
@@ -111,7 +117,7 @@ function Modal({
                         />
                     </svg>
                 </button>
-                <div style={styles.textWrap} className="modal_text">
+                <div style={staticStyles.textWrap} className="modal_text">
                     {children}
                 </div>
             </div>
