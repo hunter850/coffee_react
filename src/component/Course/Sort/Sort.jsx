@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sort.css";
 
-export default function Sort({ sortclass = "Coursesort", courseData }) {
+export default function Sort({ sortclass = "Coursesort", courseData = [] }) {
     return (
         <div className="container ">
             <div className="CourseSort-wrap ">
