@@ -57,6 +57,30 @@
     font-size: 0.875rem;
 }
 
+.course_card_level-normal {
+    transform: translate(13px, 11px);
+    background-color: #cf8f54;
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.875rem;
+}
+
+.course_card_level-hard {
+    transform: translate(13px, 11px);
+    background-color: #a45959;
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.875rem;
+}
+
 .font-min {
     padding: 18px 0 0 0;
     margin-bottom: 18px;

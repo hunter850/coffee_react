@@ -40,6 +40,11 @@
     color: #898787;
     font-size: 0.9375rem;
     line-height: 25px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 .CourseDetailed_banner_area {
@@ -62,9 +67,11 @@
     display: flex;
     justify-content: space-between;
     padding-top: 32px !important;
+    padding-bottom: 33px !important;
 }
 
 .bannerBtn {
+    display: block;
     width: 261px;
     background-color: #b79973;
     color: #fff;

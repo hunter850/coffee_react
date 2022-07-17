@@ -1,17 +1,27 @@
-import React from "react";
+/* eslint-disable prettier/prettier */
+import { React } from "react";
 import "./Card.css";
 
-function Card({ test }) {
+function Card({ courseData }) {
     return (
         <div className="course_card">
             <div className="course_card_top">
-                <div className="course_card_level">{test.lv}</div>
+                <div
+                    className={`course_card_level ${courseData.lv === "中級"
+                        ? "course_card_level-normal"
+                        : ""
+                        } ${courseData.lv === "高級"
+                            ? "course_card_level-hard"
+                            : ""}`}
+                >
+                    {courseData.lv}
+                </div>
             </div>
             <div className="course_card_down">
                 <div className="course_card_txt">
-                    <p style={{ fontWeight: "bolder" }}>{test.title}</p>
+                    <p style={{ fontWeight: "bolder" }}>{courseData.title}</p>
                     <p className="font-min" style={{ color: "#898787" }}>
-                        {test.txt}
+                        {courseData.txt}
                     </p>
                     <div className="d-flex course_card_price">
                         <p
@@ -28,7 +38,7 @@ function Card({ test }) {
                                 letterSpacing: "0.07rem",
                             }}
                         >
-                            {test.price}
+                            {courseData.price}
                         </p>
                     </div>
                 </div>
