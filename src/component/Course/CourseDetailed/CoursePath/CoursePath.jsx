@@ -9,7 +9,10 @@ function CoursePath() {
     useEffect(() => {
         //onscroll滾動事件
         window.onscroll = () => {
+            // 如果沒抓到documentElement,就抓body
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // console.log(document.documentElement.scrollTop);
+            // console.log('body:' + document.body.scrollTop);
             // 798是這個DOM的頂部,用useRef查的
             if (scrollTop < 798) {
                 setFixedRemoteControl(false);
