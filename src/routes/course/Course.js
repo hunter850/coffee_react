@@ -8,6 +8,7 @@ import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 
 const Course = () => {
+    // 排序下拉選單的狀態 - 狀態提升放這邊
     const [sortData, setSortData] = useState("");
     // Header搜尋框的狀態 - 狀態提升放這邊
     const [searchInp, setSearchInp] = useState("");
@@ -18,6 +19,7 @@ const Course = () => {
 
     // console.log(courseData);
 
+    // 排序用的function
     const priceAsc = (a, b) => {
         return a.course_price - b.course_price;
     };
@@ -34,37 +36,16 @@ const Course = () => {
     // 排序 - 價錢低到高
     if (sortData === "priceAsc") {
         courseData.sort(priceAsc);
-        for (let i = 0; i < courseData.length; i++) {
-            if (Number(courseData[i].course_level) === 1) {
-                courseData[i].course_level = "初級";
-            }
-            if (Number(courseData[i].course_level) === 2) {
-                courseData[i].course_level = "中級";
-            }
-            if (Number(courseData[i].course_level) === 3) {
-                courseData[i].course_level = "高級";
-            }
-        }
     }
     // 排序 - 價錢高到低
     if (sortData === "priceDesc") {
         courseData.sort(priceDesc);
-        for (let i = 0; i < courseData.length; i++) {
-            if (Number(courseData[i].course_level) === 1) {
-                courseData[i].course_level = "初級";
-            }
-            if (Number(courseData[i].course_level) === 2) {
-                courseData[i].course_level = "中級";
-            }
-            if (Number(courseData[i].course_level) === 3) {
-                courseData[i].course_level = "高級";
-            }
-        }
     }
 
     // 排序 - 難度初級到高級
     if (sortData === "levelAsc") {
         courseData.sort(levelAsc);
+        // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
         for (let i = 0; i < courseData.length; i++) {
             if (Number(courseData[i].course_level) === 1) {
                 courseData[i].course_level = "初級";
@@ -80,6 +61,7 @@ const Course = () => {
     // 排序 - 難度高級到初級
     if (sortData === "levelDesc") {
         courseData.sort(levelDesc);
+        // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
         for (let i = 0; i < courseData.length; i++) {
             if (Number(courseData[i].course_level) === 1) {
                 courseData[i].course_level = "初級";
@@ -92,7 +74,7 @@ const Course = () => {
             }
         }
     }
-    // 搜尋框為空值時重新渲染
+    // 搜尋框為空值時重置原始資料
     useEffect(() => {
         if (searchInp === "") {
             setCourseData(courseDataCopy);
@@ -113,7 +95,7 @@ const Course = () => {
                 if (sortData === "levelDesc") {
                     return setCourseData(newSortData);
                 }
-
+                // 將資料庫的course_level數字轉換成中文
                 for (let i = 0; i < res.data.length; i++) {
                     if (Number(res.data[i].course_level) === 1) {
                         res.data[i].course_level = "初級";
