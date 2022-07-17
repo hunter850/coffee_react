@@ -3,7 +3,7 @@ import { useState } from "react";
 function CourseContentNotice() {
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div>
+        <div id="CourseContentNotice">
             <div
                 className="CourseContentItem"
                 style={{ marginTop: 30, marginBottom: 72 }}

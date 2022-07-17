@@ -5,7 +5,7 @@ import { useState } from "react";
 function CourseContentItem({ marginTop, children }) {
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div className="CourseContentItem" style={{ marginTop: marginTop }}>
+        <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem'>
             <div
                 className="d-flex f-aic CourseContentItem-wrap"
 

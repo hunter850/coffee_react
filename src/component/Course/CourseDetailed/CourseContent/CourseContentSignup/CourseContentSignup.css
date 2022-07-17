@@ -52,6 +52,9 @@
     white-space: nowrap;
     cursor: pointer;
 }
+.courseSignUpBtnRwd:hover {
+    background-color: #aa8b64;
+}
 
 .courseSignUpMinBtn {
     width: 41px;

@@ -1,7 +1,19 @@
-import React from "react";
+import { React } from "react";
 import "./Header.css";
 
-export default function Header() {
+export default function Header({
+    setCourseData,
+    courseData,
+    searchInp,
+    setSearchInp,
+}) {
+    // 關鍵字搜尋的function
+    const courseSearch = () => {
+        const newCourseData = courseData.filter((v, i) => {
+            return v.course_name.includes(searchInp);
+        });
+        setCourseData(newCourseData);
+    };
     return (
         <div className="CourseHeader">
             <div>
@@ -12,8 +24,18 @@ export default function Header() {
                 </div>
                 <div className="CourseHeader-input">
                     <div className="Coursesearch-wrap">
-                        <input type="text" placeholder="搜尋想要的課程" />
-                        <div className="Coursesearch-btn">
+                        <input
+                            type="text"
+                            placeholder="搜尋想要的課程"
+                            value={searchInp}
+                            onChange={(e) => {
+                                setSearchInp(e.target.value);
+                            }}
+                        />
+                        <div
+                            className="Coursesearch-btn"
+                            onClick={courseSearch}
+                        >
                             <svg
                                 width="32"
                                 height="33"

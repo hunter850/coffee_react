@@ -1,8 +1,28 @@
+/* eslint-disable prettier/prettier */
 import "./CoursePath.css";
 import { useState, useEffect } from "react";
 
 function CoursePath() {
-    // 初次渲染預設高亮顯示
+    // 麵包屑fixed開關
+    const [fixedRemoteControl, setFixedRemoteControl] = useState(false);
+    // scrollTop大於DOM頂部開啟fixed,小於則關閉
+    useEffect(() => {
+        //onscroll滾動事件
+        window.onscroll = () => {
+            // 如果沒抓到documentElement,就抓body
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // console.log(document.documentElement.scrollTop);
+            // console.log('body:' + document.body.scrollTop);
+            // 798是這個DOM的頂部,用useRef查的
+            if (scrollTop < 798) {
+                setFixedRemoteControl(false);
+            } else {
+                setFixedRemoteControl(true);
+            }
+        };
+    }, []);
+
+    // 麵包屑初次渲染預設高亮顯示
     useEffect(() => {
         setStart(0);
     }, []);
@@ -14,6 +34,8 @@ function CoursePath() {
         "報名資訊",
         "注意事項",
     ];
+    // 麵包屑跳轉指向的ID
+    const pathId = ['#CourseContentItem', '#CourseComtentObject', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice'];
     // 初始高亮的狀態
     const [start, setStart] = useState(1);
     // 生成物件型狀態的函式
@@ -32,28 +54,32 @@ function CoursePath() {
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
     return (
-        <div className="CoursePath">
-            {clickSure.map((v, i) => {
-                return (
-                    <div
-                        key={i}
-                        className={`CoursePaths ${v.focus ? "focus" : ""} `}
-                        onClick={() => {
-                            const newCoursePaths = defaultCoursePaths.map(
-                                (v, index) => {
-                                    if (i === index) {
-                                        return { ...v, focus: true };
-                                    }
-                                    return v;
-                                }
-                            );
-                            setClickSure(newCoursePaths);
-                        }}
-                    >
-                        {v.name}
-                    </div>
-                );
-            })}
+        <div className="CoursePath-wrap">
+            <div className={`CoursePath ${fixedRemoteControl === true ? 'CoursePathFixed' : ''}`}>
+                {clickSure.map((v, i) => {
+                    return (
+
+                        <div
+                            key={i}
+                            className={`CoursePaths `}
+                            onClick={() => {
+                                const newCoursePaths =
+                                    defaultCoursePaths.map((v, index) => {
+                                        if (i === index) {
+                                            return { ...v, focus: true };
+                                        }
+                                        return v;
+                                    });
+                                setClickSure(newCoursePaths);
+                            }}
+                        >
+                            <a href={pathId[i]} className={`${v.focus ? "focus" : ""
+                                }`}>{v.name}</a>
+                        </div>
+
+                    );
+                })}
+            </div>
         </div>
     );
 }

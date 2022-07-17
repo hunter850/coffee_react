@@ -15,7 +15,7 @@ function CourseContentSignup() {
 
     return (
         <div>
-            <div className="CourseContentItem" style={{ marginTop: 30 }}>
+            <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentSignup'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
@@ -99,7 +99,7 @@ function CourseContentSignup() {
                                                 paddingLeft: 26,
                                             }}
                                         >
-                                            4000
+                                            {count * 2000}
                                         </span>
                                     </div>
                                 </div>

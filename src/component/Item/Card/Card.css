@@ -57,14 +57,45 @@
     font-size: 0.875rem;
 }
 
+.course_card_level-normal {
+    transform: translate(13px, 11px);
+    background-color: #cf8f54;
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.875rem;
+}
+
+.course_card_level-hard {
+    transform: translate(13px, 11px);
+    background-color: #a45959;
+    width: 54px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 0.875rem;
+}
+
 .font-min {
-    padding: 18px 0;
+    padding: 18px 0 0 0;
+    margin-bottom: 18px;
     width: 240px;
+    height: 58px;
     font-size: 0.75rem;
     transform: scale(0.83, 0.83);
     *font-size: 10px;
     transform-origin: 0 0;
     line-height: 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
 @media (max-width: 768px) {

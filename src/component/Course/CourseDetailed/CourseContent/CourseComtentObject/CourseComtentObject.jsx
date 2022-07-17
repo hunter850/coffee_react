@@ -3,7 +3,11 @@ import "./CourseComtentObject.css";
 function CourseComtentObject() {
     return (
         <div>
-            <div className="CourseContentItem" style={{ marginTop: 30 }}>
+            <div
+                className="CourseContentItem"
+                style={{ marginTop: 30 }}
+                id="CourseComtentObject"
+            >
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
