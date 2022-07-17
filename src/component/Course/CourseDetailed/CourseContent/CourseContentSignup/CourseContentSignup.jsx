@@ -99,7 +99,7 @@ function CourseContentSignup() {
                                                 paddingLeft: 26,
                                             }}
                                         >
-                                            4000
+                                            {count * 2000}
                                         </span>
                                     </div>
                                 </div>
