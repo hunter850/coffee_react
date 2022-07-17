@@ -1,5 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import useSetNow from "../../hooks/useSetNow";
+import useScrollbar from "../../hooks/useScrollbar";
+import "./modal.css";
 
 function Modal({
     children,
@@ -10,6 +12,7 @@ function Modal({
     time = 0.5,
 }) {
     const setNow = useSetNow();
+    const [hideScrollbar, showScrollbar] = useScrollbar();
     const styles = useMemo(() => {
         return {
             bgStyle: {
@@ -24,17 +27,26 @@ function Modal({
                 alignItems: "center",
                 opacity: 0,
                 transition: `opacity ${time}s ease`,
+                zIndex: "1000",
             },
             bordStyle: {
+                maxWidth: "95%",
+                maxHeight: "calc(90vh - 60px)",
+                overflow: "hidden",
                 backgroundColor: "#fff",
                 padding: bordPadding,
                 borderRadius: "10px",
-                position: "relative",
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `transform ${time + 0.2}s ease, opacity ${
                     time + 0.2
                 }s ease`,
+            },
+            textWrap: {
+                // overflow: "hidden auto",
+                width: "100%",
+                maxHeight: "calc(90vh - 132px)",
+                overflow: "auto",
             },
         };
     }, [bordPadding, bordY, time]);
@@ -58,6 +70,7 @@ function Modal({
     }, [setIsOpen]);
     useEffect(() => {
         if (isOpen) {
+            hideScrollbar();
             setModalBackground((pre) => ({ ...pre, display: "flex" }));
             setNow(() => {
                 setModalBackground((pre) => ({ ...pre, opacity: 1 }));
@@ -68,6 +81,7 @@ function Modal({
                 }));
             });
         } else {
+            showScrollbar();
             setModalBackground((pre) => ({
                 ...pre,
                 display: "none",
@@ -79,7 +93,7 @@ function Modal({
                 opacity: 0,
             }));
         }
-    }, [isOpen, bordY, setNow]);
+    }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
     return (
         <div style={modalBackground} onClick={closeHandler}>
             <div style={modalBord} onClick={(e) => e.stopPropagation()}>
@@ -97,7 +111,9 @@ function Modal({
                         />
                     </svg>
                 </button>
-                {children}
+                <div style={styles.textWrap} className="modal_text">
+                    {children}
+                </div>
             </div>
         </div>
     );
