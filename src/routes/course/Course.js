@@ -8,7 +8,19 @@ import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 
 const Course = () => {
+    // Header搜尋框的狀態 - 狀態提升放這邊
+    const [searchInp, setSearchInp] = useState("");
+    // 渲染卡片內容用的狀態
     const [courseData, setCourseData] = useState([]);
+    // 搜尋框值清空時渲染用的狀態
+    const [courseDataCopy, setCourseDataCopy] = useState([]);
+    // 搜尋框為空值時重新渲染
+    useEffect(() => {
+        if (searchInp === "") {
+            setCourseData(courseDataCopy);
+        }
+    }, [searchInp, courseDataCopy]);
+
     useEffect(() => {
         axios
             .get("http://localhost:3600/coffee")
@@ -25,7 +37,9 @@ const Course = () => {
                         res.data[i].course_level = "高級";
                     }
                 }
-                setCourseData(res.data);
+                const newCourseData = res.data;
+                setCourseData(newCourseData);
+                setCourseDataCopy(newCourseData);
             })
             .catch((err) => {
                 console.log(err.response);
@@ -38,8 +52,13 @@ const Course = () => {
             <div className="Course-container">
                 <NavBar />
                 <Path pathObj={{ path: ["．課程資訊"] }} />
-                <Header />
-                <Sort />
+                <Header
+                    courseData={courseData}
+                    setCourseData={setCourseData}
+                    setSearchInp={setSearchInp}
+                    searchInp={searchInp}
+                />
+                <Sort courseData={courseData} />
                 <div className="container">
                     <div className="d-flex f-w card-wrap">
                         <Link to="/course/detailed/001">

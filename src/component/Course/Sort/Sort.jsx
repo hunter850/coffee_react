@@ -1,14 +1,15 @@
 import React from "react";
 import "./Sort.css";
 
-export default function Sort({ sortclass = "Coursesort" }) {
+export default function Sort({ sortclass = "Coursesort", courseData }) {
     return (
         <div className="container ">
             <div className="CourseSort-wrap ">
                 <div className="Coursesort-txt">
                     <p>
                         搜尋結果符合條件&nbsp;
-                        <span className="num-color">10</span>&nbsp;項目
+                        <span className="num-color">{courseData.length}</span>
+                        &nbsp;項目
                     </p>
                 </div>
                 <div>
