@@ -1,4 +1,4 @@
-import { Fragment, useState, react } from "react";
+import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 import "./FrontPage.css";
 
