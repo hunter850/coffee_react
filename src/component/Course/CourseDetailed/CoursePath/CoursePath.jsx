@@ -7,7 +7,8 @@ function CoursePath() {
     const [fixedRemoteControl, setFixedRemoteControl] = useState(false);
     // scrollTop大於DOM頂部開啟fixed,小於則關閉
     useEffect(() => {
-        window.onscroll = function () {
+        //onscroll滾動事件
+        window.onscroll = () => {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             // 798是這個DOM的頂部,用useRef查的
             if (scrollTop < 798) {
