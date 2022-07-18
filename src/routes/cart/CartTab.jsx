@@ -37,6 +37,9 @@ function CartTab(props) {
                 totalWrap: {
                     width: "25%",
                 },
+                modalBody: {
+                    padding: "24px 36px",
+                },
             };
         }
     }, [breakPoint]);
@@ -58,11 +61,13 @@ function CartTab(props) {
                 </div>
             </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
-                <ModalContent
-                    cartList={cartList}
-                    deleteId={deleteId}
-                    setModalIsOpen={setModalIsOpen}
-                />
+                <Modal.Body style={styles.modalBody}>
+                    <ModalContent
+                        cartList={cartList}
+                        deleteId={deleteId}
+                        setModalIsOpen={setModalIsOpen}
+                    />
+                </Modal.Body>
             </Modal>
         </Fragment>
     );
