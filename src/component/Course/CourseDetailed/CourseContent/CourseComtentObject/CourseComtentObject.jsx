@@ -46,7 +46,7 @@ function CourseComtentObject() {
                         <div style={{ paddingLeft: 17 }}>適合對象</div>
                     </div>
                 </div>
-                <div className="CourseContent-text">
+                <div className="CourseContent-text CourseContent-text-color">
                     適合年滿12歲以上對拉花有興趣的各位!
                     如未滿18歲則需家長陪同參加
                 </div>

@@ -57,7 +57,7 @@ function CourseContentItem({ marginTop, children }) {
                 </div>
             </div>
             <div
-                className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}
+                className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}
             >
                 課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
                 課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
