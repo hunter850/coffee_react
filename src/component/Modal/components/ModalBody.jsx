@@ -2,14 +2,7 @@ import ElementWrap from "../ElementWrap";
 import "../modal.css";
 
 function ModalBody(props) {
-    const {
-        bordPadding = "0px 36px",
-        children,
-        component = "div",
-        className,
-        style,
-        ...others
-    } = props;
+    const { children, component = "div", className, style, ...others } = props;
     return (
         <ElementWrap
             component={
@@ -27,7 +20,7 @@ function ModalBody(props) {
                 width: "100%",
                 maxHeight: "calc(90vh - 132px)",
                 overflow: "auto",
-                padding: `${bordPadding}`,
+                padding: "0px 36px",
                 ...style,
             }}
         >
