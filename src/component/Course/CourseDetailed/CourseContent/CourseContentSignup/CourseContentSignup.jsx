@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import "./CourseContentSignup.css";
 import { useState } from "react";
+import Calendar from './Calendar/Calendar';
 
 function CourseContentSignup() {
     const [displayNone, setdisplayNone] = useState(false);
@@ -55,8 +56,8 @@ function CourseContentSignup() {
                 </div>
                 <div className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}>
                     <div className=" CourseContentDate">
-                        <div>選擇日期</div>
-                        <div>
+                        <Calendar />
+                        <div className="CourseContentItem-text-color">
                             <div style={{ paddingBottom: 12 }}>選擇時段</div>
                             <div
                                 className="d-flex"
