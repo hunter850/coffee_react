@@ -40,7 +40,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow }) {
     ];
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
-    const [foodCount, setFoodCount] = useState(0);
+    const [foodCount, setFoodCount] = useState(1);
 
     return (
         <>
@@ -99,7 +99,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow }) {
                         <button
                             className="foodminusplus"
                             onClick={() => {
-                                foodCount > 0
+                                foodCount > 1
                                     ? setFoodCount(foodCount - 1)
                                     : setFoodCount(foodCount - 0);
                             }}
