@@ -15,6 +15,8 @@ function Food() {
         menu_sid: "",
         menu_categories: "",
     });
+    const [dataFromMenuFilter, setDataFromMenuFilter] = useState("");
+
     return (
         <Fragment>
             <NavBar />
@@ -25,7 +27,11 @@ function Food() {
                 <div className="container" style={{ minWidth: "1440px" }}>
                     <div>
                         <div style={{ display: "flex", marginLeft: "45px" }}>
-                            <Filterbutton />
+                            <Filterbutton
+                                setDataFromMenuFilter={setDataFromMenuFilter}
+                            />
+                            {/* TODO: */}
+                            <h1>{dataFromMenuFilter}</h1>
                         </div>
                         <div
                             style={{

@@ -1,7 +1,7 @@
 import "./ManageHeader.css";
 import Btn from "../../../Item/Btn/Btn";
 import { Link } from "react-router-dom";
-export default function ManageHeader() {
+function ManageHeader() {
     return (
         <div
             className="d-flex container ManageHeader-wrap"
@@ -98,3 +98,5 @@ export default function ManageHeader() {
         </div>
     );
 }
+
+export default ManageHeader;

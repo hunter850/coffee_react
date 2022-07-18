@@ -1,12 +1,7 @@
 import { React } from "react";
 import "./Header.css";
 
-export default function Header({
-    setCourseData,
-    courseData,
-    searchInp,
-    setSearchInp,
-}) {
+function Header({ setCourseData, courseData, searchInp, setSearchInp }) {
     // 關鍵字搜尋的function
     const courseSearch = () => {
         const newCourseData = courseData.filter((v, i) => {
@@ -112,3 +107,5 @@ export default function Header({
         </div>
     );
 }
+
+export default Header;

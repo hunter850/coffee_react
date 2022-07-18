@@ -83,7 +83,7 @@ const Course = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3600/coffee")
+            .get("http://localhost:3500/coffee-course-get")
             .then((res) => {
                 // 深拷貝一組沒有把數字轉換成中文的資料
                 // 難度排序時使用

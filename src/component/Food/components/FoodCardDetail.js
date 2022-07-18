@@ -10,8 +10,34 @@ function FoodCardDetail({ showFoodDetail }) {
         // menu_categories,
     } = showFoodDetail;
 
-    const icechoice = ["正常冰", "少冰", "去冰", "常溫", "熱"];
-    const sugarchoice = ["無糖", "微糖", "半糖", "全糖"];
+    const icechoice = [
+        {
+            id: 1,
+            name: "正常冰",
+        },
+        {
+            id: 2,
+            name: "少冰",
+        },
+        {
+            id: 3,
+            name: "去冰",
+        },
+        {
+            id: 4,
+            name: "常溫",
+        },
+        {
+            id: 5,
+            name: "熱",
+        },
+    ];
+    const sugarchoice = [
+        { id: 1, name: "無糖" },
+        { id: 2, name: "微糖" },
+        { id: 3, name: "半糖" },
+        { id: 4, name: "全糖" },
+    ];
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(0);
@@ -35,37 +61,37 @@ function FoodCardDetail({ showFoodDetail }) {
                         </div>
                     </div>
                     <div className="foodchoice">冰熱選擇</div>
-                    {icechoice.map((v, i) => {
+                    {icechoice.map(({ name, id }) => {
                         return (
-                            <div key={i}>
+                            <div key={`icechoice${id}`}>
                                 <input
                                     type="radio"
-                                    checked={ice === v}
-                                    value={v}
+                                    checked={ice === name}
+                                    value={name}
                                     onChange={(e) => {
                                         setIce(e.target.value);
                                     }}
-                                    id={v}
+                                    id={name}
                                 />
-                                <label htmlFor={v}>{v}</label>
+                                <label htmlFor={name}>{name}</label>
                             </div>
                         );
                     })}
 
                     <div className="foodchoice">甜度選擇</div>
-                    {sugarchoice.map((v, i) => {
+                    {sugarchoice.map(({ name, id }) => {
                         return (
-                            <div key={i}>
+                            <div key={`sugarchoice${id}`}>
                                 <input
                                     type="radio"
-                                    checked={sugar === v}
-                                    value={v}
+                                    checked={sugar === name}
+                                    value={name}
                                     onChange={(e) => {
                                         setSugar(e.target.value);
                                     }}
-                                    id={v}
+                                    id={name}
                                 />
-                                <label htmlFor={v}>{v}</label>
+                                <label htmlFor={name}>{name}</label>
                             </div>
                         );
                     })}
