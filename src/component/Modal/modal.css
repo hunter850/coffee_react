@@ -1,7 +1,7 @@
 .modal_text::-webkit-scrollbar {
     background-color: #fff0;
-    border-radius: 50%;
     width: 6px;
+    height: 6px;
 }
 
 /* .modal_text::-webkit-scrollbar-button {
