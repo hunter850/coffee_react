@@ -1,7 +1,7 @@
 import React from "react";
 import "./Sort.css";
 
-export default function Sort({
+function Sort({
     sortclass = "Coursesort",
     courseData = [],
     sortData,
@@ -46,3 +46,5 @@ export default function Sort({
         </div>
     );
 }
+
+export default Sort;
