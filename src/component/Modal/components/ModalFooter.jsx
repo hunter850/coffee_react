@@ -19,7 +19,6 @@ function ModalFooter(props) {
                 width: "100%",
                 overflow: "hidden",
                 minHeight: "24px",
-                height: "fit-content",
                 flexShrink: "0",
                 ...style,
             }}
