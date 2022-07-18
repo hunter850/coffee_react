@@ -13,9 +13,17 @@ function ModalBody(props) {
     } = props;
     return (
         <ElementWrap
-            component={component === null ? "div" : component}
+            component={
+                component === null ||
+                component === "input" ||
+                component === "img" ||
+                component === "hr" ||
+                component === "br"
+                    ? "div"
+                    : component
+            }
             {...others}
-            className={`modal_text ${className}`}
+            className={`modal_text ${className ?? ""}`}
             style={{
                 width: "100%",
                 maxHeight: "calc(90vh - 132px)",
