@@ -1,7 +1,7 @@
 import "./FoodCardDetail.css";
 import { useState } from "react";
 
-function FoodCardDetail({ showFoodDetail }) {
+function FoodCardDetail({ showFoodDetail, setIsShow }) {
     const {
         menu_name,
         menu_nutrition,
@@ -40,7 +40,7 @@ function FoodCardDetail({ showFoodDetail }) {
     ];
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
-    const [foodCount, setFoodCount] = useState(0);
+    const [foodCount, setFoodCount] = useState(1);
 
     return (
         <>
@@ -99,7 +99,7 @@ function FoodCardDetail({ showFoodDetail }) {
                         <button
                             className="foodminusplus"
                             onClick={() => {
-                                foodCount > 0
+                                foodCount > 1
                                     ? setFoodCount(foodCount - 1)
                                     : setFoodCount(foodCount - 0);
                             }}
@@ -115,7 +115,14 @@ function FoodCardDetail({ showFoodDetail }) {
                         >
                             +
                         </button>
-                        <button className="addtoorder">加入餐點</button>
+                        <button
+                            className="addtoorder"
+                            onClick={() => {
+                                setIsShow(false);
+                            }}
+                        >
+                            加入餐點
+                        </button>
                     </div>
                 </div>
             </div>

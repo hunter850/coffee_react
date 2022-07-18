@@ -1,0 +1,115 @@
+.aside {
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 60px;
+    /* background-color: #FCFAF7; */
+}
+
+.aside .aside-area {
+    width: 383px;
+    height: 1500px;
+    border-radius: 1px solid #000;
+    float: right;
+    position: relative;
+    background-color: #fcfaf7;
+}
+
+.aside .top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 3px #ccc;
+    position: fixed;
+    width: 383px;
+}
+
+.aside .txt {
+    padding: 0 0 10px 0;
+}
+
+.aside .takeout {
+    display: flex;
+}
+
+.aside .takeout :nth-child(1) {
+    flex-grow: 1;
+}
+
+.aside .bottom {
+    padding: 5px 0;
+    border-bottom: 1.5px solid #e4d5c9;
+}
+
+.aside .edit {
+    color: #bda382;
+}
+
+.aside img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: 1px solid rgb(221, 208, 208);
+    object-fit: fill;
+    margin-right: 23px;
+}
+
+.aside .detail {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.aside .center {
+    flex-grow: 1;
+}
+
+.aside .calculate {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.aside .minusplus {
+    width: 19px;
+    background-color: #c5ad8f;
+    color: #fff;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.aside .count {
+    width: 7px;
+    text-align: center;
+    border-bottom: 1px solid #d1cfcf;
+    margin: 0 10px;
+    color: #3e3e3e;
+}
+
+.aside .pay {
+    height: 30px;
+    width: 100%;
+    background-color: #253945;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.aside-area .payarea {
+    position: fixed;
+    bottom: 0;
+    width: 383px;
+    background-color: #fff;
+    box-shadow: 0 -2px 3px #ccc;
+    padding: 20px;
+}
