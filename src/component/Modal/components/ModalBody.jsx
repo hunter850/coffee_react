@@ -1,4 +1,3 @@
-// import React, { Fragment } from "react";
 import ElementWrap from "../ElementWrap";
 import "../modal.css";
 
