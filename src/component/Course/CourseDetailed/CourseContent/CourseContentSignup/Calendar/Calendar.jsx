@@ -21,6 +21,8 @@ function Calendar() {
     const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
 
     const [doNotSelect, setDoNotSelect] = useState(myDate);
+    // 沒用到防止警告
+    console.log(setMyYear, setMyMonth, setMyDate, setDoNotSelect, doNotSelect);
 
     // 呈現yearAndMonth
     const now = new Date();
