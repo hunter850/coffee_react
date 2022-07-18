@@ -54,10 +54,14 @@
 .CourseContent-text {
     width: 774px;
     margin: auto;
-    color: #898787;
+
     font-size: 1.125rem;
     line-height: 35px;
     padding-bottom: 55px;
+}
+
+.CourseContentItem-text-color {
+    color: #898787;
 }
 .CourseContentItem-text {
     display: none;

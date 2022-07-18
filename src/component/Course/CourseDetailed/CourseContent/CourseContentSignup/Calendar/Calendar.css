@@ -1,0 +1,67 @@
+.courseCalendarTitle {
+    font-size: 1.125rem;
+    color: #898787;
+    margin-bottom: 12px;
+}
+.courseCalendarWrap {
+    border: 1.5px solid #e4d5c9;
+    width: 459px;
+    height: 333px;
+    border-radius: 3px;
+}
+.courseCalendarWrap > table {
+    width: 100%;
+    height: 286px;
+}
+.courseDate > tr {
+    transform: translate(-12px, -10px);
+}
+
+.courseDate > tr > td > div {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    display: block;
+    border-radius: 2px;
+    text-decoration: none;
+    margin: 15px 21px 0 0;
+    cursor: pointer;
+}
+
+.courseDate > tr > td {
+    color: #3e3e3e;
+}
+
+.pointerEvents {
+    pointer-events: none;
+    color: #c7c7c7;
+}
+
+.courseDate {
+    display: block;
+    margin: auto;
+    width: 403px;
+    height: 100%;
+}
+
+.courseDate-table {
+    width: 459px !important;
+}
+
+.courseDate > tr > td > div:hover {
+    background-color: #c5ad8f;
+    color: #fff;
+    box-shadow: 1px 1px 10px 0px #00000040;
+    text-decoration: none;
+}
+
+.courseYearAndMonth {
+    font-size: 1.25rem;
+    color: #3e3e3e;
+    border-bottom: 1px solid #e4d5c9;
+    padding: 5px 0 5px 26px;
+    margin: 0;
+    line-height: 35px;
+    width: 459px;
+}
