@@ -10,6 +10,11 @@ const useSetNow = () => {
                 ani = window.requestAnimationFrame(step);
                 return;
             }
+            const progress = timestamp - start;
+            if (progress < 20) {
+                window.requestAnimationFrame(step);
+                return;
+            }
             cb();
             cancelAnimationFrame(ani);
         })();
