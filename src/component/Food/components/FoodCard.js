@@ -26,7 +26,7 @@ function FoodCard({ handleShowFoodDetailSelect }) {
                         <div className="food_card_txt">
                             <p style={{ fontWeight: "bolder" }}>{menu_name}</p>
                             <p
-                                className="font-min"
+                                className="font-min1"
                                 style={{
                                     color: "#898787",
                                     textOverflow: "ellipsis",
