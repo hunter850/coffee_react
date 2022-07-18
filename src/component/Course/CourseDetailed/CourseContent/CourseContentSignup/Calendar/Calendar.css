@@ -8,6 +8,27 @@
     width: 459px;
     height: 333px;
     border-radius: 3px;
+    position: relative;
+}
+
+.Calendar-arror-left {
+    background: url(/public/course/imgs/Calendar-arror-left.png) no-repeat
+        center center;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 17px;
+    right: 68px;
+}
+
+.Calendar-arror-right {
+    background: url(/public/course/imgs/Calendar-arror-right.png) no-repeat
+        center center;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 17px;
+    right: 27px;
 }
 .courseCalendarWrap > table {
     width: 100%;
@@ -64,4 +85,40 @@
     margin: 0;
     line-height: 35px;
     width: 459px;
+}
+
+@media (max-width: 768px) {
+    .courseCalendarWrap {
+        margin-bottom: 28px;
+    }
+}
+
+@media (max-width: 375px) {
+    .courseCalendarWrap {
+        width: 272px;
+    }
+    .courseYearAndMonth {
+        width: 272px;
+    }
+    .courseDate-table {
+        width: 272px !important;
+    }
+
+    .courseDate {
+        width: 272px;
+        transform: translate(10px, 12px);
+    }
+    .courseDate > tr > td {
+        font-size: 0.9375rem;
+    }
+
+    .courseDate > tr > td > div {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 -5px 17px 0;
+    }
+    .courseYearAndMonth {
+        padding-left: 12px;
+    }
 }

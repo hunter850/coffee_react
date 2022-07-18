@@ -54,7 +54,7 @@ function CourseContentSignup() {
 
                     </div>
                 </div>
-                <div className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}>
+                <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
                     <div className=" CourseContentDate">
                         <Calendar />
                         <div className="CourseContentItem-text-color">

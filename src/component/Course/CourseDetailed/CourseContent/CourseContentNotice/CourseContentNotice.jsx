@@ -65,7 +65,7 @@ function CourseContentNotice() {
 
                     </div>
                 </div>
-                <div className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""}`}>
+                <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
                     為防範新型冠狀病毒及配合政府防疫，講師與工作人員已完成疫苗三劑施打，主辦單位課程措施如下，請學員務必配合：
                     <br />
                     授課期間，請學員自備口罩，除飲食外需全程配戴。

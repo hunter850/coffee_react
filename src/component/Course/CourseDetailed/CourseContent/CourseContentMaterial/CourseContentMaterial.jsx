@@ -65,7 +65,7 @@ function CourseContentMaterial() {
                     ></div>
                 </div>
                 <div
-                    className={`CourseContent-text ${displayNone ? "CourseContentItem-text" : ""
+                    className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""
                         }`}
                 >
                     <ul>
