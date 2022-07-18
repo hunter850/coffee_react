@@ -19,6 +19,7 @@
 ### Modal 組件使用說明
 ```js
 // 組件範例 基本必傳一組useState false關閉modal true開啟modal
+import Modal from "./compnents/Modal"
 const [isOpen, setIsOpen] = useSate(false);
 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
     <h4>Modal內容</h4>
@@ -26,12 +27,46 @@ const [isOpen, setIsOpen] = useSate(false);
 </Modal>
 ```
 ```js
-// bordPadding設定modal padding內縮
 // bordY 設定modal進場 Y 方向的滑動距離
 // time 動畫時間(s)
-// 不props 預設 bordPadding={"24px 36px"} bordY={-30} time={0.5}
-<Modal isOpen={isOpen} setIsOpen={setIsOpen} bordPadding={"30px"} bordY={-60} time={1}>
+// closeButton 設定是否要有叉叉按鈕
+// 不props 預設 bordY={-30} time={0.5} closeButton={true}
+const [isOpen, setIsOpen] = useSate(false);
+<Modal isOpen={isOpen} setIsOpen={setIsOpen} bordY={-60} time={1} closeButton={false}>
     <h4>Modal內容</h4>
     <p>Modal內容</p>
+</Modal>
+```
+```js
+// 懶人包: 有不想要的屬性可以全部 inline style 自己設定改掉, body有超出modal高度會有scrollbar能用 不會爆版 建議至少要用body
+
+// component 設定最外層tag 預設 "div", null為使用Fragment
+// header預設 minHeight: "24px" , width: "100%", textAlign: "center", overflow: "hidden"
+// body預設 padding: "0px 36px", maxHeight: "calc(90vh - 132px)", overflow: "auto", width: "100%"
+// footer預設 minHeight: "24px" , width: "100%", overflow: "hidden"
+<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal.Header component={null} style={{backgroundColor: "red"}} className="hello">
+        <h4>這裡放標題</h4>
+    </Modal.Header>
+    <Modal.Body component="div">
+        <p>這裡放內文</p>
+    </Modal.Body>
+    <Modal.Footer component="span">
+        <button>這裡放footer</button>
+        <button>這裡放footer</button>
+    </Modal.Footer>
+</Modal>
+
+//全都預設
+<Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal.Header>
+        <h4>這裡放標題</h4>
+    </Modal.Header>
+    <Modal.Body>
+        <p>這裡放內文</p>
+    </Modal.Body>
+    <Modal.Footer>
+        <button>這裡放footer</button>
+    </Modal.Footer>
 </Modal>
 ```
