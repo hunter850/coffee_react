@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./Calendar.css";
 
 // const serverDate = [
@@ -15,14 +15,16 @@ const chunk = (arr, size) =>
     );
 
 function Calendar() {
-    const [myYear, setMyYear] = useState(new Date().getFullYear());
-    const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
+    // const [myYear, setMyYear] = useState(new Date().getFullYear());
+    // const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
+    // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
+    // const [doNotSelect, setDoNotSelect] = useState(myDate);
+    // 年
+    const myYear = new Date().getFullYear();
+    // 月
+    const myMonth = new Date().getMonth() + 1;
     // 一開始未選中日期
-    const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
-
-    const [doNotSelect, setDoNotSelect] = useState(myDate);
-    // 沒用到防止警告
-    console.log(setMyYear, setMyMonth, setMyDate, setDoNotSelect, doNotSelect);
+    const myDate = [18, 28];
 
     // 呈現yearAndMonth
     const now = new Date();
@@ -81,6 +83,8 @@ function Calendar() {
                         })}
                     </tbody>
                 </table>
+                <div className="Calendar-arror-left"></div>
+                <div className="Calendar-arror-right"></div>
             </div>
         </div>
     );
