@@ -138,35 +138,44 @@ const Course = () => {
                         <Link to="/course/detailed/001">
                             <Card
                                 courseData={{
-                                    lv: "初級",
-                                    title: "愛心拉花",
-                                    txt: "課程介紹範例文字與範圍課程介紹範例文字與範圍課程介紹範例文字與範圍測試範測試範測試",
-                                    price: "1000",
+                                    course_level: "初級",
+                                    course_name: "愛心拉花",
+                                    course_content:
+                                        "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍................5454",
+                                    course_price: "1000",
+                                    course_sid: 2,
                                 }}
                             />
                         </Link>
                         <Link to="/course/manage">
                             <Card
                                 courseData={{
-                                    lv: "初級",
-                                    title: "愛心拉花",
-                                    txt: "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.",
-                                    price: "1000",
+                                    course_level: "初級",
+                                    course_name: "愛心拉花",
+                                    course_content:
+                                        "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.",
+                                    course_price: "1000",
+                                    course_sid: 1,
                                 }}
                             />
                         </Link>
 
                         {courseData.map((v, i) => {
                             return (
-                                <Card
+                                <Link
+                                    to={`/course/detailed/${v.course_sid}`}
                                     key={v.course_sid}
-                                    courseData={{
-                                        lv: v.course_level,
-                                        title: v.course_name,
-                                        txt: v.course_content,
-                                        price: v.course_price,
-                                    }}
-                                />
+                                >
+                                    <Card
+                                        courseData={{
+                                            course_level: v.course_level,
+                                            course_name: v.course_name,
+                                            course_content: v.course_content,
+                                            course_price: v.course_price,
+                                            course_sid: v.course_sid,
+                                        }}
+                                    />
+                                </Link>
                             );
                         })}
                     </div>
