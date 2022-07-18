@@ -68,7 +68,13 @@ function TotalHeader(props) {
                 </span>
             </button>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                {JSON.stringify(coupons)}
+                <Modal.Header>
+                    <h1>Header</h1>
+                </Modal.Header>
+                <Modal.Body>{JSON.stringify(coupons)}</Modal.Body>
+                <Modal.Footer>
+                    <h1>Footer</h1>
+                </Modal.Footer>
             </Modal>
         </Fragment>
     );
