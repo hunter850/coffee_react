@@ -1,7 +1,7 @@
 import "./FoodCardDetail.css";
 import { useState } from "react";
 
-function FoodCardDetail({ showFoodDetail }) {
+function FoodCardDetail({ showFoodDetail, setIsShow }) {
     const {
         menu_name,
         menu_nutrition,
@@ -115,7 +115,14 @@ function FoodCardDetail({ showFoodDetail }) {
                         >
                             +
                         </button>
-                        <button className="addtoorder">加入餐點</button>
+                        <button
+                            className="addtoorder"
+                            onClick={() => {
+                                setIsShow(false);
+                            }}
+                        >
+                            加入餐點
+                        </button>
                     </div>
                 </div>
             </div>

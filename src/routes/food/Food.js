@@ -16,6 +16,7 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromMenuFilter, setDataFromMenuFilter] = useState("");
+    const [isShow, setIsShow] = useState(false);
 
     return (
         <Fragment>
@@ -42,11 +43,17 @@ function Food() {
                         >
                             <FoodCard
                                 handleShowFoodDetailSelect={setShowFoodDetail}
+                                setIsShow={setIsShow}
                             />
                         </div>
                     </div>
                 </div>
-                <FoodCardDetail showFoodDetail={showFoodDetail} />
+                {isShow && (
+                    <FoodCardDetail
+                        showFoodDetail={showFoodDetail}
+                        setIsShow={setIsShow}
+                    />
+                )}
             </div>
         </Fragment>
     );

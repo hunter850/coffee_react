@@ -3,7 +3,7 @@ import "./FoodCard.css";
 import "./FoodAdd.css";
 import menudata from "./menu.json";
 
-function FoodCard({ handleShowFoodDetailSelect }) {
+function FoodCard({ handleShowFoodDetailSelect, setIsShow }) {
     return menudata.map(
         ({
             menu_name,
@@ -55,6 +55,7 @@ function FoodCard({ handleShowFoodDetailSelect }) {
                                             menu_sid,
                                             menu_categories,
                                         });
+                                        setIsShow(true);
                                     }}
                                 >
                                     加入
