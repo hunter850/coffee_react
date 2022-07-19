@@ -2,7 +2,7 @@
 import "./CoursePath.css";
 import { useState, useEffect } from "react";
 
-
+// 此頁待修正**************************************
 function CoursePath() {
 
     const coursePaths = [
@@ -19,12 +19,6 @@ function CoursePath() {
     const [confirmClick, setConfirmClick] = useState(false);
     // 初始高亮的狀態
     const [start, setStart] = useState(0);
-    // 取消預設高亮
-    useEffect(() => {
-        // console.log(1);
-        setStart(-1);
-    }, []);
-
 
 
     // 生成物件型狀態的函式
@@ -62,9 +56,12 @@ function CoursePath() {
             } else {
                 setFixedRemoteControl(true);
             }
+            // 一滾動視窗關閉確認點擊的狀態
             if (scrollTop !== document.documentElement.scrollTop) {
                 setConfirmClick(false);
             }
+
+            // 內容不同高度不同,待修正 *********************************************************
             if (confirmClick === false) {
                 if (scrollTop >= 0) {
                     setStart(1);
@@ -123,14 +120,13 @@ function CoursePath() {
                                 setClickSure(newCoursePaths);
                             }}
                         >
-                            {/* {console.log(i)} */}
                             <a href={pathId[i]} className={`${clickSure[i].id === start ? "focus" : ""} }`}>{v.name}</a>
                         </div>
 
                     );
                 })}
             </div>
-        </div >
+        </div>
     );
 }
 
