@@ -14,6 +14,7 @@ const CourseDetailed = () => {
     const [courseDetailedData, setCourseDetailedData] = useState([]);
     // 確認有拿到資料,才渲染
     const [start, setStart] = useState(false);
+
     // 點哪一張課程卡片進來的 sid
     const { sid } = useParams();
 
@@ -22,6 +23,12 @@ const CourseDetailed = () => {
     // console.log(courseDetailedData);
 
     useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, []);
+
+
+    useEffect(() => {
+
         axios.get("http://localhost:3500/coffee-course-get")
             .then((res) => {
                 // console.log(res.data);
