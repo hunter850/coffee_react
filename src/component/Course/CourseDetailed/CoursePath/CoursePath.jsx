@@ -86,7 +86,7 @@ function CoursePath() {
                     setStart(4);
                     setClickSure(defaultCoursePaths);
                 }
-                if (scrollTop >= 2421) {
+                if (scrollTop >= 2200) {
                     // console.log('注意事項');
                     setStart(5);
                     setClickSure(defaultCoursePaths);
