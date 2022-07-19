@@ -1,8 +1,10 @@
 import { Fragment, useMemo, useState } from "react";
 import Modal from "../../../component/Modal/Modal";
+import CouponTicket from "./CouponTicket";
+import "./css/totalHeader.css";
 
 function TotalHeader(props) {
-    const { coupons } = props;
+    const { coupons, selectedCouponId, setSelectedCouponId } = props;
     const [isOpen, setIsOpen] = useState(false);
     const styles = useMemo(() => {
         return {
@@ -28,6 +30,17 @@ function TotalHeader(props) {
             arrowStyle: {
                 marginLeft: "3px",
             },
+            modalBodyStyle: {
+                padding: "24px 36px",
+            },
+            labelStyle: {
+                border: "1px solid transparent",
+                margin: "16px 0px",
+                cursor: "pointer",
+            },
+            headerTextStyle: {
+                color: "var(--BLUE)",
+            },
         };
     }, []);
     return (
@@ -48,7 +61,7 @@ function TotalHeader(props) {
                 </svg>
 
                 <span style={styles.textStyle}>
-                    選擇優惠卷
+                    {selectedCouponId === -1 ? "選擇優惠卷" : ""}
                     <svg
                         style={styles.arrowStyle}
                         width="9"
@@ -69,9 +82,31 @@ function TotalHeader(props) {
             </button>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <Modal.Header>
-                    <h1>Header</h1>
+                    <h6 style={styles.headerTextStyle}>選擇優惠卷</h6>
                 </Modal.Header>
-                <Modal.Body>{JSON.stringify(coupons)}</Modal.Body>
+                <Modal.Body style={styles.modalBodyStyle}>
+                    <form>
+                        {coupons.value.map((coupon) => (
+                            <label
+                                key={coupon.id}
+                                htmlFor={coupon.name + coupon.id}
+                                style={styles.labelStyle}
+                                className="coupon_label"
+                            >
+                                <CouponTicket coupon={coupon} />
+                                <input
+                                    id={coupon.name + coupon.id}
+                                    type="radio"
+                                    checked={coupon.id === selectedCouponId}
+                                    onChange={() =>
+                                        setSelectedCouponId(coupon.id)
+                                    }
+                                    style={{ display: "none" }}
+                                />
+                            </label>
+                        ))}
+                    </form>
+                </Modal.Body>
                 <Modal.Footer>
                     <h1>Footer</h1>
                 </Modal.Footer>
