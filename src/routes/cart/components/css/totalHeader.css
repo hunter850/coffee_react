@@ -1,7 +1,7 @@
-.coupon_label {
-    transform: translateY(0px);
+.coupon_wrap {
+    transition: transform .3s ease;
 }
 
-.coupon_label:hover {
-    transform: translateY(-200px);
+.coupon_label:hover .coupon_wrap {
+    transform: translate(-3px, -3px) scale(102%);
 }
