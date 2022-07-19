@@ -1,9 +1,17 @@
 /* eslint-disable prettier/prettier */
 import "./CourseContentSignup.css";
 import { useState } from "react";
+// import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
 function CourseContentSignup() {
+
+    // const test = useRef();
+    // useEffect(() => {
+    //     console.log(test.current.getBoundingClientRect().bottom);
+    // }, []);
+
+
     const [displayNone, setdisplayNone] = useState(false);
     const [count, setCount] = useState(1);
     //選擇人數的增減控制器
@@ -15,7 +23,7 @@ function CourseContentSignup() {
     };
 
     return (
-        <div>
+        <div >
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentSignup'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">

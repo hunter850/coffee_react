@@ -1,9 +1,15 @@
 /* eslint-disable prettier/prettier */
+// import { useRef, useEffect } from "react";
 import { useState } from "react";
 function CourseContentMaterial() {
+
+    // const test = useRef();
+    // useEffect(() => {
+    //     console.log(test.current.getBoundingClientRect().top);
+    // }, []);
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div>
+        <div >
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentMaterial'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">

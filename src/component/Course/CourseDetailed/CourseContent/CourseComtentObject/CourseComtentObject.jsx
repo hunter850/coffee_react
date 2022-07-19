@@ -1,6 +1,14 @@
 import "./CourseComtentObject.css";
 
 function CourseComtentObject() {
+    // import { useRef, useEffect } from "react";
+    // const test = useRef();
+    // useEffect(() => {
+    //     console.log(test.current.getBoundingClientRect().top);
+    // }, []);
+
+    // 1371
+
     return (
         <div>
             <div

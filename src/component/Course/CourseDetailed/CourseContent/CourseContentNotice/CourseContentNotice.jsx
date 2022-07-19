@@ -1,9 +1,18 @@
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
+// import { useRef, useEffect } from "react";
 function CourseContentNotice() {
+
+    // const test = useRef();
+    // useEffect(() => {
+    //     console.log(test.current.getBoundingClientRect().top);
+    // }, []);
+
+
+
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div id="CourseContentNotice">
+        <div id="CourseContentNotice" >
             <div
                 className="CourseContentItem"
                 style={{ marginTop: 30, marginBottom: 72 }}
@@ -79,7 +88,7 @@ function CourseContentNotice() {
                     杯測教學時，主辦單位為每位學員備有獨立杯測桌、杯測勺、陶瓷濃縮杯等相關器材，不會與其他學員交叉杯測。
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
