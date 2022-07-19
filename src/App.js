@@ -3,6 +3,7 @@ import FrontPage from "./routes/frontPage/FrontPage";
 import Cart from "./routes/cart/Cart";
 import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
+import Reserve from "./routes/food/Reserve";
 import Course from "./routes/course/Course";
 import CourseDetailed from "./routes/course/CourseDetailed";
 import CourseManage from "./routes/course/CourseManage";
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/goods" element={<Goods />} />
                     <Route path="/food" element={<Food />} />
+                    <Route path="/reserve" element={<Reserve />} />
                     <Route path="/course" element={<Course />} />
                     <Route path="/course/manage" element={<CourseManage />} />
                     <Route
