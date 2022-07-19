@@ -13,6 +13,7 @@ function Cart() {
     const productCoupon = useArray([]);
     const foodList = useArray([]);
     const foodCoupon = useArray([]);
+    const [selectedCouponId, setSelectedCouponId] = useState(-1);
     const styles = useMemo(() => {
         if (breakPoint === 1) {
             return {};
@@ -78,9 +79,24 @@ function Cart() {
                 },
             ]);
             productCoupon.cto([
-                { id: 0, name: "藍山豆9折", account: 0.9 },
-                { id: 1, name: "巴西豆5折", account: 0.5 },
-                { id: 2, name: "曼特寧豆折150元", account: 150 },
+                {
+                    id: 0,
+                    name: "藍山豆9折",
+                    account: 0.9,
+                    expire: "2022-09-24 00:00:00",
+                },
+                {
+                    id: 1,
+                    name: "巴西豆5折",
+                    account: 0.5,
+                    expire: "2023-03-31 00:00:00",
+                },
+                {
+                    id: 2,
+                    name: "曼特寧豆折150元",
+                    account: 150,
+                    expire: "2023-11-07 00:00:00",
+                },
             ]);
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,9 +134,24 @@ function Cart() {
                 },
             ]);
             foodCoupon.cto([
-                { id: 0, name: "咖啡拿鐵9折", account: 0.9 },
-                { id: 1, name: "摩卡咖啡8折", account: 0.8 },
-                { id: 2, name: "咖啡類折100元", account: 100 },
+                {
+                    id: 0,
+                    name: "咖啡拿鐵9折",
+                    account: 0.9,
+                    expire: "2023-11-07 00:00:00",
+                },
+                {
+                    id: 1,
+                    name: "摩卡咖啡8折",
+                    account: 0.8,
+                    expire: "2022-11-09 00:00:00",
+                },
+                {
+                    id: 2,
+                    name: "咖啡類折100元",
+                    account: 100,
+                    expire: "2022-11-30 00:00:00",
+                },
             ]);
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,12 +167,16 @@ function Cart() {
                         cartList={productList}
                         coupons={productCoupon}
                         showProduct={showProduct}
+                        selectedCouponId={selectedCouponId}
+                        setSelectedCouponId={setSelectedCouponId}
                     />
                 ) : (
                     <CartTab
                         cartList={foodList}
                         coupons={foodCoupon}
                         showProduct={showProduct}
+                        selectedCouponId={selectedCouponId}
+                        setSelectedCouponId={setSelectedCouponId}
                     />
                 )}
             </div>
