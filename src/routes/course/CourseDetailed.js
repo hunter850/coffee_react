@@ -22,16 +22,17 @@ const CourseDetailed = () => {
     // console.log(courseDetailedData);
 
     useEffect(() => {
-        axios.get("http://localhost:3500/coffee-course-get").then((res) => {
-            // console.log(res.data);
-            const newCourseGetData = res.data.filter((v, i) => {
-                return v.course_sid === Number(sid);
+        axios.get("http://localhost:3500/coffee-course-get")
+            .then((res) => {
+                // console.log(res.data);
+                const newCourseGetData = res.data.filter((v, i) => {
+                    return Number(v.course_sid) === Number(sid);
+                });
+                // 從get來的資料中只篩選出指定sid當筆資料
+                setCourseDetailedData(newCourseGetData);
+                // 確認得到資料了才給渲染,否則會出錯
+                setStart(true);
             });
-            // 從get來的資料中只篩選出指定sid當筆資料
-            setCourseDetailedData(newCourseGetData);
-            // 確認得到資料了才給渲染,否則會出錯
-            setStart(true);
-        });
     }, [sid]);
 
     const el = (
