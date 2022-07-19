@@ -135,18 +135,6 @@ const Course = () => {
                 />
                 <div className="container">
                     <div className="d-flex f-w card-wrap">
-                        <Link to="/course/detailed/001">
-                            <Card
-                                courseData={{
-                                    course_level: "初級",
-                                    course_name: "愛心拉花",
-                                    course_content:
-                                        "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍................5454",
-                                    course_price: "1000",
-                                    course_sid: 2,
-                                }}
-                            />
-                        </Link>
                         <Link to="/course/manage">
                             <Card
                                 courseData={{
