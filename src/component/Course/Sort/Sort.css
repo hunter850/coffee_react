@@ -17,7 +17,7 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    background: url(/public/course/imgs/sort-img.png) no-repeat 92% 50%
+    background: url(/src/images/course/sort-img.png) no-repeat 92% 50%
         transparent;
     background-color: #fff;
     border: 1px solid #ffffff;
@@ -35,7 +35,7 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    background: url(/public/course/imgs/sort-img-01.png) no-repeat 92% 50%
+    background: url(/src/images/course/sort-img-01.png) no-repeat 92% 50%
         transparent;
     background-color: #fff;
     border: 1px solid #ffffff;

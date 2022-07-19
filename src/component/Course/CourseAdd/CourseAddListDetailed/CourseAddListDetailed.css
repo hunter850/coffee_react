@@ -31,7 +31,7 @@
     background-color: #fff;
     margin-top: 19px;
     margin-bottom: 45px;
-    background: url(/public/course/imgs/border-image.png) no-repeat;
+    background: url(/src/images/course/border-image.png) no-repeat;
 }
 
 .CourseAddListDetailed-inp {
@@ -123,7 +123,7 @@
 }
 
 .delet-img {
-    background: url(/public/course/imgs/delete.png) no-repeat center center;
+    background: url(/src/images/course/delete.png) no-repeat center center;
     width: 40px;
     height: 40px;
     border-radius: 2px;

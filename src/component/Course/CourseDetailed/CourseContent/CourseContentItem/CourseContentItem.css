@@ -23,7 +23,7 @@
     width: 64px;
     height: 64px;
     transform: translateY(13px);
-    background: url(/public/course/imgs/top-arrow-icon.png) no-repeat center
+    background: url(/src/images/course/top-arrow-icon.png) no-repeat center
         center;
 }
 
@@ -35,7 +35,7 @@
     width: 64px;
     height: 64px;
     transform: translateY(13px);
-    background: url(/public/course/imgs/down-arrow-icon.png) no-repeat center
+    background: url(/src/images/course/down-arrow-icon.png) no-repeat center
         center;
 }
 

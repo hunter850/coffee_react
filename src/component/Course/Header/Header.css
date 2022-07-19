@@ -1,7 +1,7 @@
 .CourseHeader {
     width: 100%;
     height: 300px;
-    background: url(/public/course/imgs/header-img.png) no-repeat center center;
+    background: url(/src/images/course/header-img.png) no-repeat center center;
     background-size: cover;
 }
 

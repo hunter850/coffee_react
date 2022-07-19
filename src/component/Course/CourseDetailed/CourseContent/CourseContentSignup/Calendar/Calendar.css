@@ -12,8 +12,8 @@
 }
 
 .Calendar-arror-left {
-    background: url(/public/course/imgs/Calendar-arror-left.png) no-repeat
-        center center;
+    background: url(/src/images/course/Calendar-arror-left.png) no-repeat center
+        center;
     position: absolute;
     width: 12px;
     height: 12px;
@@ -22,7 +22,7 @@
 }
 
 .Calendar-arror-right {
-    background: url(/public/course/imgs/Calendar-arror-right.png) no-repeat
+    background: url(/src/images/course/Calendar-arror-right.png) no-repeat
         center center;
     position: absolute;
     width: 12px;

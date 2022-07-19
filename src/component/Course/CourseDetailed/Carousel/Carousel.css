@@ -51,7 +51,7 @@
     position: absolute;
     left: 35px;
     top: calc(50% - 30px);
-    background: url(/public/course/imgs/left-arror.png) no-repeat center center;
+    background: url(/src/images/course/left-arror.png) no-repeat center center;
     background-color: rgba(136, 136, 136, 0.492);
     border-radius: 50%;
     cursor: pointer;
@@ -72,7 +72,7 @@
     position: absolute;
     left: 35px;
     top: calc(50% - 30px);
-    background: url(/public/course/imgs/right-arror.png) no-repeat center center;
+    background: url(/src/images/course/right-arror.png) no-repeat center center;
     background-color: rgba(136, 136, 136, 0.492);
     border-radius: 50%;
     cursor: pointer;
