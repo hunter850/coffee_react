@@ -8,7 +8,7 @@ import Modal from "../../component/Modal/Modal";
 import ModalContent from "./components/ModalContent";
 
 function CartTab(props) {
-    const { cartList, coupons } = props;
+    const { cartList, coupons, showProduct } = props;
     // useStyleChange();若window.innerWidth <= 375 回傳 1 反之回傳 0
     const breakPoint = useStyleChange();
     const [deleteId, setDeleteId] = useState(-1);
@@ -48,7 +48,9 @@ function CartTab(props) {
         <Fragment>
             <div style={styles.cartContainer}>
                 <div style={styles.listWrap}>
-                    {cartList.clength() >= 1 && <GoodsHeader />}
+                    {cartList.clength() >= 1 && (
+                        <GoodsHeader showProduct={showProduct} />
+                    )}
                     <GoodsList
                         cartList={cartList}
                         setDeleteId={setDeleteId}

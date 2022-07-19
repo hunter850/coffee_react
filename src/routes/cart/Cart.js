@@ -132,9 +132,17 @@ function Cart() {
                 <button onClick={() => setShowProduct(true)}>商品</button>
                 <button onClick={() => setShowProduct(false)}>餐點</button>
                 {showProduct ? (
-                    <CartTab cartList={productList} coupons={productCoupon} />
+                    <CartTab
+                        cartList={productList}
+                        coupons={productCoupon}
+                        showProduct={showProduct}
+                    />
                 ) : (
-                    <CartTab cartList={foodList} coupons={foodCoupon} />
+                    <CartTab
+                        cartList={foodList}
+                        coupons={foodCoupon}
+                        showProduct={showProduct}
+                    />
                 )}
             </div>
         </Fragment>

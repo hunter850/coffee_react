@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from "react";
 
-function GoodsHeader() {
+function GoodsHeader(props) {
+    const { showProduct } = props;
     const styles = useMemo(() => {
         return {
             listWrap: {
@@ -20,7 +21,9 @@ function GoodsHeader() {
         <Fragment>
             <ul style={styles.listWrap}>
                 <li>
-                    <p style={styles.textStyle}>商品</p>
+                    <p style={styles.textStyle}>
+                        {showProduct ? "商品" : "餐點"}
+                    </p>
                 </li>
                 <li>
                     <p style={styles.textStyle}>價格</p>
