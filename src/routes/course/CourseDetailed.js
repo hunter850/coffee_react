@@ -8,6 +8,7 @@ import Banner from "../../component/Course/CourseDetailed/Banner/Banner";
 import CoursePath from "../../component/Course/CourseDetailed/CoursePath/CoursePath";
 import CourseContent from "../../component/Course/CourseDetailed/CourseContent/CourseContent";
 import axios from "axios";
+import { courseDataGet } from "../../component/Course/config/api-path";
 
 const CourseDetailed = () => {
     // 得到的sid與資料庫sid相同的資料
@@ -29,7 +30,7 @@ const CourseDetailed = () => {
 
     useEffect(() => {
 
-        axios.get("http://localhost:3500/coffee-course-get")
+        axios.get(courseDataGet)
             .then((res) => {
                 // console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {

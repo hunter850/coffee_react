@@ -6,6 +6,7 @@ import Path from "../../component/Item/Path/Path";
 import Header from "../../component/Course/Header/Header";
 import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
+import { courseDataGet } from "../../component/Course/config/api-path";
 
 // 排序用的function
 const priceAsc = (a, b) => {
@@ -77,7 +78,7 @@ const Course = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3500/coffee-course-get")
+            .get(courseDataGet)
             .then((res) => {
                 // 深拷貝一組沒有把數字轉換成中文的資料
                 // 難度排序時使用
