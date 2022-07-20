@@ -31,6 +31,7 @@ function CoursePath() {
         "報名資訊",
         "注意事項",
     ];
+
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
 
@@ -38,7 +39,6 @@ function CoursePath() {
     const [fixedRemoteControl, setFixedRemoteControl] = useState(false);
     // 限制不要一進頁面就Fixed
     const [confirmFixed, setConfirmFixed] = useState(document.documentElement.scrollTop === 0 ? true : false);
-
 
     // scrollTop大於DOM頂部開啟fixed,小於則關閉
     useEffect(() => {
@@ -67,37 +67,23 @@ function CoursePath() {
             if (scrollTop !== document.documentElement.scrollTop) {
                 setConfirmClick(false);
             }
+
+            const pathFocus = (scrollHeight, number) => {
+                if (scrollTop >= scrollHeight) {
+                    setStart(number);
+                    setClickSure(defaultCoursePaths);
+                }
+            };
             // 內容不同高度不同,待修正 *********************************************************
             if (confirmClick === false) {
-                if (scrollTop >= 0) {
-                    setStart(1);
-                    setClickSure(defaultCoursePaths);
-                }
-                if (scrollTop >= 1371) {
-                    // console.log('適合對象');
-                    setStart(2);
-                    setClickSure(defaultCoursePaths);
-                }
-                if (scrollTop >= 1407) {
-                    // console.log('需求材料');
-                    setStart(3);
-                    setClickSure(defaultCoursePaths);
-                }
-                if (scrollTop >= 1861) {
-                    // console.log('報名資訊');
-                    setStart(4);
-                    setClickSure(defaultCoursePaths);
-                }
-                if (scrollTop >= 2200) {
-                    // console.log('注意事項');
-                    setStart(5);
-                    setClickSure(defaultCoursePaths);
-                }
+                pathFocus(0, 1);
+                pathFocus(1371, 2);
+                pathFocus(1407, 3);
+                pathFocus(1861, 4);
+                pathFocus(2200, 5);
             }
-
         };
     }, [defaultCoursePaths, confirmClick, confirmFixed]);
-
 
     return (
         <div className="CoursePath-wrap">
@@ -106,10 +92,11 @@ function CoursePath() {
                     return (
                         <div
                             key={i}
-                            className={`CoursePaths `}
+                            className={`CoursePaths`}
                             onClick={() => {
                                 setStart(i + 1);
                                 setConfirmClick(true);
+                                setConfirmFixed(true);
                                 setClickSure(defaultCoursePaths);
                             }}
                         >

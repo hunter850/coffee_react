@@ -16,7 +16,7 @@ const CourseDetailed = () => {
     // 確認有拿到資料,才渲染
     const [start, setStart] = useState(false);
 
-    // 點哪一張課程卡片進來的 sid
+    // 取得當前click卡片的sid
     const { sid } = useParams();
 
     // console.log(sid);
@@ -24,12 +24,12 @@ const CourseDetailed = () => {
     // console.log(courseDetailedData);
     // console.log(window.location.href);
     useEffect(() => {
+        //一進頁面到top 0
         window.scrollTo(0, 0);
     }, []);
 
 
     useEffect(() => {
-
         axios.get(courseDataGet)
             .then((res) => {
                 // console.log(res.data);
