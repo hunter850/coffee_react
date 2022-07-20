@@ -67,7 +67,7 @@ function CoursePath() {
             if (scrollTop !== document.documentElement.scrollTop) {
                 setConfirmClick(false);
             }
-
+            // 視窗滾動path高亮的function 參數 - scrollHeight : DOM離top的距離 , number第幾個path顯示高亮
             const pathFocus = (scrollHeight, number) => {
                 if (scrollTop >= scrollHeight) {
                     setStart(number);
