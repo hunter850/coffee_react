@@ -4,7 +4,7 @@ import { useState } from "react";
 // import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
-function CourseContentSignup() {
+function CourseContentSignup({ courseDataPrice }) {
 
     // const test = useRef();
     // useEffect(() => {
@@ -98,7 +98,7 @@ function CourseContentSignup() {
                                 <div>總金額</div>
                                 <div>
                                     <div style={{ color: "#898787" }}>
-                                        NT$ 2000 / 人
+                                        NT$ {courseDataPrice} / 人
                                     </div>
                                     <div>
                                         NT$
@@ -108,7 +108,7 @@ function CourseContentSignup() {
                                                 paddingLeft: 26,
                                             }}
                                         >
-                                            {count * 2000}
+                                            {count * courseDataPrice}
                                         </span>
                                     </div>
                                 </div>
