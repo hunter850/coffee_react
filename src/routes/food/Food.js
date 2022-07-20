@@ -18,6 +18,7 @@ function Food() {
     const [dataFromMenuFilter, setDataFromMenuFilter] = useState("");
     const [isShow, setIsShow] = useState(false);
     const [isShowAside, setIsShowAside] = useState(false);
+    const [getDataFromFoodDetail, setGetDataFromFoodDetail] = useState("");
 
     return (
         <Fragment>
@@ -60,12 +61,16 @@ function Food() {
                     <FoodCardDetail
                         showFoodDetail={showFoodDetail}
                         setIsShow={setIsShow}
+                        setGetDataFromFoodDetail={setGetDataFromFoodDetail}
                     />
                 )}
             </div>
 
             {isShowAside && (
-                <FoodAsideSummary setIsShowAside={setIsShowAside} />
+                <FoodAsideSummary
+                    setIsShowAside={setIsShowAside}
+                    getDataFromFoodDetail={getDataFromFoodDetail}
+                />
             )}
         </Fragment>
     );

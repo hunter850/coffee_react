@@ -1,7 +1,11 @@
 import "./FoodCardDetail.css";
 import { useState } from "react";
 
-function FoodCardDetail({ showFoodDetail, setIsShow }) {
+function FoodCardDetail({
+    showFoodDetail,
+    setIsShow,
+    setGetDataFromFoodDetail,
+}) {
     const {
         menu_name,
         menu_nutrition,
@@ -152,6 +156,10 @@ function FoodCardDetail({ showFoodDetail, setIsShow }) {
                             className="addtoorder"
                             onClick={() => {
                                 setIsShow(false);
+                                setGetDataFromFoodDetail({
+                                    menu_name,
+                                    foodCount,
+                                });
                             }}
                         >
                             加入餐點
