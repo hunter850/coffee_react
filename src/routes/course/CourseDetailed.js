@@ -21,9 +21,9 @@ const CourseDetailed = () => {
     // console.log(sid);
 
     // console.log(courseDetailedData);
-
+    // console.log(window.location.href);
     useEffect(() => {
-        document.documentElement.scrollTop = 0;
+        window.scrollTo(0, 0);
     }, []);
 
 
