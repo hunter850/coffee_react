@@ -7,8 +7,7 @@ function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
     const [sendFoodDataToAsideCount, setSendFoodDataToAsideCount] = useState(
         getDataFromFoodDetail
     );
-    // 目前還沒用到
-    console.log(setSendFoodDataToAsideCount);
+
     return (
         <>
             <div className="aside">
@@ -113,6 +112,9 @@ function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
                         </div>
                         <FoodAsideCount
                             sendFoodDataToAsideCount={sendFoodDataToAsideCount}
+                            setSendFoodDataToAsideCount={
+                                setSendFoodDataToAsideCount
+                            }
                         />
                     </div>
                     <div className="payarea">
