@@ -17,8 +17,15 @@ function Food() {
     });
     const [dataFromMenuFilter, setDataFromMenuFilter] = useState("");
     const [isShow, setIsShow] = useState(false);
-    const [isShowAside, setIsShowAside] = useState(false);
-    const [getDataFromFoodDetail, setGetDataFromFoodDetail] = useState("");
+    // const [isShowAside, setIsShowAside] = useState(false);
+    const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
+
+    const handleDetailAppend = (item) => {
+        setDataFromFoodDetail([...dataFromFoodDetail, item]);
+        // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
+    };
+
+    console.log("QQQ ", dataFromFoodDetail);
 
     return (
         <Fragment>
@@ -35,13 +42,13 @@ function Food() {
                             />
                             {/* TODO: */}
                             <h1>{dataFromMenuFilter}</h1>
-                            <button
+                            {/* <button
                                 onClick={() => {
                                     setIsShowAside(true);
                                 }}
                             >
                                 按按看
-                            </button>
+                            </button> */}
                         </div>
                         <div
                             style={{
@@ -61,17 +68,15 @@ function Food() {
                     <FoodCardDetail
                         showFoodDetail={showFoodDetail}
                         setIsShow={setIsShow}
-                        setGetDataFromFoodDetail={setGetDataFromFoodDetail}
+                        setDataFromFoodDetail={handleDetailAppend}
                     />
                 )}
             </div>
-
-            {isShowAside && (
-                <FoodAsideSummary
-                    setIsShowAside={setIsShowAside}
-                    getDataFromFoodDetail={getDataFromFoodDetail}
-                />
-            )}
+            <FoodAsideSummary
+                show={dataFromFoodDetail.length > 0}
+                // setIsShowAside={setIsShowAside}
+                dataFromFoodDetail={dataFromFoodDetail}
+            />
         </Fragment>
     );
 }

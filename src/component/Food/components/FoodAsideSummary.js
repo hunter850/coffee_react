@@ -1,20 +1,17 @@
 import "./FoodAsideSummary.css";
 import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
-import { useState } from "react";
 
-function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
-    const [sendFoodDataToAsideCount, setSendFoodDataToAsideCount] = useState(
-        getDataFromFoodDetail
-    );
-
+// function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
+function FoodAsideSummary({ dataFromFoodDetail, show }) {
+    const asideClass = show ? "aside" : "aside hide";
     return (
         <>
-            <div className="aside">
+            <div className={asideClass}>
                 <div className="aside-area">
                     <div className="top">
                         <h6 style={{ flexGrow: 1 }}>你的餐點詳細</h6>
-                        <div
+                        {/* <div
                             onClick={() => {
                                 setIsShowAside(false);
                             }}
@@ -46,7 +43,7 @@ function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </div>
+                        </div> */}
                     </div>
                     <div style={{ padding: "20px", marginTop: "60px" }}>
                         <div className="txt">
@@ -80,7 +77,6 @@ function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
                                 </p>
                             </div>
                         </div>
-
                         <div className="txt">
                             <div className="takeout">
                                 <h6>自取時間</h6>
@@ -110,12 +106,9 @@ function FoodAsideSummary({ setIsShowAside, getDataFromFoodDetail }) {
                                 <p className="bottom">04:15 PM</p>
                             </div>
                         </div>
-                        <FoodAsideCount
-                            sendFoodDataToAsideCount={sendFoodDataToAsideCount}
-                            setSendFoodDataToAsideCount={
-                                setSendFoodDataToAsideCount
-                            }
-                        />
+                        {dataFromFoodDetail.map((item) => (
+                            <FoodAsideCount item={item} />
+                        ))}
                     </div>
                     <div className="payarea">
                         <div style={{ display: "flex" }}>

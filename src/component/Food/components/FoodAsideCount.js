@@ -1,9 +1,11 @@
-function FoodAsideCount({ sendFoodDataToAsideCount }) {
-    const { foodCount, menu_name } = sendFoodDataToAsideCount;
+import React, { useState } from "react";
+function FoodAsideCount({ item }) {
+    const { foodCount, menu_name, sugar, ice, menu_price_m, menu_sid } = item;
+    const [count, setCount] = useState(foodCount);
 
     return (
         <>
-            <div className="detail">
+            <div key={menu_sid} className="detail">
                 <img
                     src="https://www.niusnews.com/upload/imgs/default/202109_____Choco/0915/dog-4988985_1280.jpg"
                     alt=""
@@ -30,13 +32,29 @@ function FoodAsideCount({ sendFoodDataToAsideCount }) {
                             />
                         </svg>
                     </div>
-
+                    <p>
+                        {sugar} / {ice}
+                    </p>
                     <div className="calculate">
-                        <div className="minusplus">-</div>
+                        <div
+                            className="minusplus"
+                            onClick={() => {
+                                setCount(count - 1);
+                            }}
+                        >
+                            -
+                        </div>
                         <h6 className="count">{foodCount}</h6>
-                        <div className="minusplus">+</div>
+                        <div
+                            className="minusplus"
+                            onClick={() => {
+                                setCount(count + 1);
+                            }}
+                        >
+                            +
+                        </div>
                         <div style={{ flexGrow: 2 }}></div>
-                        <div>$500</div>
+                        <div>$ {menu_price_m * foodCount}</div>
                     </div>
                 </div>
             </div>

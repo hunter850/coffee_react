@@ -4,6 +4,8 @@ import "./FoodAdd.css";
 import menudata from "./menu.json";
 
 function FoodCard({ handleShowFoodDetailSelect, setIsShow }) {
+    console.log("!!!!!", menudata);
+
     return menudata.map(
         ({
             menu_name,

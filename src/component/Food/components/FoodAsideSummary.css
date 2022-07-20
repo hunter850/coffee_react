@@ -1,11 +1,16 @@
 .aside {
-    height: auto;
     overflow: hidden;
     position: absolute;
     top: 0;
     right: 0;
     padding-top: 60px;
+    transition: 0.3s right;
     /* background-color: #FCFAF7; */
+}
+
+.aside.hide {
+    transition: 0.3s right;
+    right: -383px;
 }
 
 .aside .aside-area {
@@ -70,7 +75,7 @@
 .aside .calculate {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+
     padding-bottom: 10px;
 }
 

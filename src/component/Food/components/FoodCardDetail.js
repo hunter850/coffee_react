@@ -1,16 +1,12 @@
 import "./FoodCardDetail.css";
 import { useState } from "react";
 
-function FoodCardDetail({
-    showFoodDetail,
-    setIsShow,
-    setGetDataFromFoodDetail,
-}) {
+function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const {
+        menu_sid,
         menu_name,
         menu_nutrition,
         menu_price_m,
-        // menu_sid,
         // menu_categories,
     } = showFoodDetail;
 
@@ -156,9 +152,13 @@ function FoodCardDetail({
                             className="addtoorder"
                             onClick={() => {
                                 setIsShow(false);
-                                setGetDataFromFoodDetail({
+                                setDataFromFoodDetail({
                                     menu_name,
                                     foodCount,
+                                    sugar,
+                                    ice,
+                                    menu_price_m,
+                                    menu_sid,
                                 });
                             }}
                         >
