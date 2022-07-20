@@ -128,7 +128,7 @@ const Course = () => {
                                     course_content:
                                         "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.456464545",
                                     course_price: "1000",
-                                    course_sid: 1,
+                                    course_sid: 3,
                                 }}
                             />
                         </Link>

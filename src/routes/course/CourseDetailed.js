@@ -40,7 +40,7 @@ const CourseDetailed = () => {
     useEffect(() => {
         axios.get(courseDataGet)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {
                     return Number(v.course_sid) === Number(sid);
                 });
