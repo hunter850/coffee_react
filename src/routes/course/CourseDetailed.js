@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -15,9 +16,15 @@ const CourseDetailed = () => {
     const [courseDetailedData, setCourseDetailedData] = useState([]);
     // 確認有拿到資料,才渲染
     const [start, setStart] = useState(false);
+    const [courseDataPrice, setCourseDataPrice] = useState(0);
+
+
+
 
     // 取得當前click卡片的sid
     const { sid } = useParams();
+
+
 
     // console.log(sid);
 
@@ -32,7 +39,7 @@ const CourseDetailed = () => {
     useEffect(() => {
         axios.get(courseDataGet)
             .then((res) => {
-                // console.log(res.data);
+                console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {
                     return Number(v.course_sid) === Number(sid);
                 });
@@ -40,8 +47,9 @@ const CourseDetailed = () => {
                 setCourseDetailedData(newCourseGetData);
                 // 確認得到資料了才給渲染,否則會出錯
                 setStart(true);
+                setCourseDataPrice(start ? courseDetailedData[0].course_price : '');
             });
-    }, [sid]);
+    }, [sid, start]);
 
     const el = (
         <Fragment>
@@ -63,7 +71,7 @@ const CourseDetailed = () => {
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
                     <CoursePath />
-                    <CourseContent />
+                    <CourseContent courseDataPrice={courseDataPrice} />
                 </div>
             </div>
         </Fragment>
