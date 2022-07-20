@@ -42,10 +42,10 @@ function CoursePath() {
 
     // scrollTop大於DOM頂部開啟fixed,小於則關閉
     useEffect(() => {
+        // 如果沒抓到documentElement,就抓body
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         //onscroll滾動事件
         window.onscroll = () => {
-            // 如果沒抓到documentElement,就抓body
             // console.log(document.documentElement.scrollTop);
             // console.log('scrollTop: ' + scrollTop);
             // 798是這個DOM的頂部,用useRef查的
@@ -78,7 +78,6 @@ function CoursePath() {
                     setStart(2);
                     setClickSure(defaultCoursePaths);
                 }
-
                 if (scrollTop >= 1407) {
                     // console.log('需求材料');
                     setStart(3);
