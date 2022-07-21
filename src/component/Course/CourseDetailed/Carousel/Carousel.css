@@ -1,5 +1,4 @@
 .course-Carousel {
-    background-color: #bbbbbb;
     height: 500px;
     width: 100%;
     overflow: hidden;
@@ -7,7 +6,6 @@
 }
 
 .course-slideshow {
-    width: 700vw;
     height: 500px;
 }
 
@@ -19,7 +17,6 @@
 .Ellipse-wrap {
     position: absolute;
     bottom: 17px;
-    width: 135px;
     left: calc(50% - 67.5px);
 }
 

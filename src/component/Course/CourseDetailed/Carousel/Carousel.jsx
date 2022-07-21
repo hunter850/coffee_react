@@ -28,7 +28,7 @@ function Carousel() {
     const leftPage = () => {
         if (remoteControl === true) {
             setDirection('left');
-            setPage(page > 0 ? page - 1 : 5);
+            setPage(page > 0 ? page - 1 : imgsLength);
         }
         setRemoteControl(false);
     };
@@ -40,7 +40,7 @@ function Carousel() {
 
         // 往右的無限輪播
         if (direction === 'right') {
-            if (page === 6) {
+            if (page === imgsLength + 1) {
                 setTransitionDelay(false);
                 setPage(0);
             }
@@ -55,23 +55,23 @@ function Carousel() {
         if (direction === 'left') {
             if (page === 0) {
                 setTransitionDelay(false);
-                setPage(6);
+                setPage(imgsLength + 1);
             }
             setTimeout(() => {
-                if (page === 6) {
+                if (page === imgsLength + 1) {
                     setTransitionDelay(true);
-                    setPage(5);
+                    setPage(imgsLength);
                 }
             }, 0);
         }
-    }, [page, direction]);
+    }, [page, direction, imgsLength]);
 
 
     return (
         <div className="course-Carousel">
             <div
                 className="course-slideshow d-flex"
-                style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}` }}
+                style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
             >
 
                 <div className="course-slideshowSlider" style={{ background: `url(${imgs[imgsLength - 1]}) no-repeat center center`, backgroundSize: 'cover' }} >
