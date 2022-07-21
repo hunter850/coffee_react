@@ -45,7 +45,10 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                             </svg>
                         </div> */}
                     </div>
-                    <div style={{ padding: "20px", marginTop: "60px" }}>
+                    <div
+                        className="middle"
+                        style={{ padding: "20px", marginTop: "60px" }}
+                    >
                         <div className="txt">
                             <div className="takeout">
                                 <h6>自取門市</h6>
