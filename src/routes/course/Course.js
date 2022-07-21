@@ -7,6 +7,7 @@ import Header from "../../component/Course/Header/Header";
 import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
+import "./Course.css";
 
 // 排序用的function
 const priceAsc = (a, b) => {

@@ -13,7 +13,7 @@
     border-radius: 3px;
 }
 
-.Btn {
+.courseBannerBtn-wrap {
     position: absolute;
     bottom: 27px;
 }
@@ -92,7 +92,7 @@
     padding-bottom: 33px !important;
 }
 
-.bannerBtn {
+.courseBannerBtn {
     display: block;
     width: 261px;
     background-color: #b79973;
@@ -118,7 +118,7 @@
         width: 537px;
     }
 
-    .bannerBtn {
+    .courseBannerBtn {
         width: 421px;
     }
 }
@@ -134,7 +134,7 @@
         margin: 40px auto 7px;
     }
 
-    .bannerBtn {
+    .courseBannerBtn {
         width: 220px;
     }
 }
