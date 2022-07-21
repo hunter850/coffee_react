@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function StarProducts() {
-  return (
-    <>
-      <h2>推薦商品</h2>
-    </>
-  )
+    return (
+        <>
+            <h2>推薦商品</h2>
+        </>
+    );
 }
 
-export default StarProducts
+export default StarProducts;

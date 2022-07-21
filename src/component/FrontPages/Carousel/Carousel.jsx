@@ -5,7 +5,7 @@ function Carousel() {
     return (
         <>
             <div>
-                <img className="banner-w" src={ Banner } alt="" />
+                <img className="banner-w" src={Banner} alt="" />
             </div>
             <h1>輪播牆</h1>
             <p>你好</p>

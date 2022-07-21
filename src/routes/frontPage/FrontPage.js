@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 import Carousel from "../../component/FrontPages/Carousel/Carousel";
 import HotFoods from "../../component/FrontPages/HotFoods/HotFoods";
@@ -8,7 +8,6 @@ import GoodCourse from "../../component/FrontPages/GoodCourse/GoodCourse";
 import "./FrontPage.css";
 
 function FrontPage() {
-    
     return (
         <Fragment>
             <NavBar />
