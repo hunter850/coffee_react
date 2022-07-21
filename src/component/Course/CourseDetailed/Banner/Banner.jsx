@@ -103,8 +103,8 @@ function Banner({ courseDetailedData, start }) {
                         </span>
                         {courseDetailedData[0].course_price}
                     </div>
-                    <div className="Btn">
-                        <button className="banner-Btn-Hover bannerBtn">
+                    <div className="courseBannerBtn-wrap">
+                        <button className="banner-Btn-Hover courseBannerBtn">
                             報名課程
                         </button>
                     </div>
