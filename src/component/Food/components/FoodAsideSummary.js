@@ -106,8 +106,8 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                                 <p className="bottom">04:15 PM</p>
                             </div>
                         </div>
-                        {dataFromFoodDetail.map((item) => (
-                            <FoodAsideCount item={item} />
+                        {dataFromFoodDetail.map((item, i) => (
+                            <FoodAsideCount item={item} key={i} />
                         ))}
                     </div>
                     <div className="payarea">
