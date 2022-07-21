@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "../../../images/frontpage/banner/banner-product.png";
-import './Carousel.css'
+import "./Carousel.css";
 
 function Carousel() {
     return (
