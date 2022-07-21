@@ -8,7 +8,6 @@ function Carousel() {
             <div>
                 <img className="banner-w" src={Banner} alt="" />
             </div>
-            {/* <h2 className="titletext">我是測試</h2> */}
         </>
     );
 }
