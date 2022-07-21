@@ -34,6 +34,13 @@
     width: 383px;
 }
 
+.aside .mydetail {
+    flex-grow: 1;
+}
+.aside .middle {
+    padding: "20px";
+    margin-top: "60px";
+}
 .aside .txt {
     padding: 0 0 10px 0;
 }
@@ -97,7 +104,7 @@
     text-align: center;
     border-bottom: 1px solid #d1cfcf;
     padding: 0 10px;
- 
+
     color: #3e3e3e;
 }
 
@@ -119,4 +126,14 @@
     background-color: #fff;
     box-shadow: 0 -2px 3px #ccc;
     padding: 20px;
+}
+.aside-area .payarea .payarea1 {
+    display: flex;
+}
+
+.finaltotal {
+    flex-grow: 1;
+}
+.grow {
+    flex-grow: 2;
 }

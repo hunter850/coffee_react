@@ -7,6 +7,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
         menu_name,
         menu_nutrition,
         menu_price_m,
+        menu_photo,
         // menu_categories,
     } = showFoodDetail;
 
@@ -49,7 +50,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     <div className="food-detail-photoarea">
                         <figure>
                             <img
-                                src="https://www.niusnews.com/upload/imgs/default/202109_____Choco/0915/dog-4988985_1280.jpg"
+                                src={`http://localhost:3500/images/food/${menu_photo}`}
                                 alt=""
                                 className="food-detail-photo"
                             />
@@ -128,7 +129,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             </div>
                         );
                     })}
-                    <div style={{ display: "flex", marginTop: "20px" }}>
+                    <div className="cal">
                         <button
                             className="foodminusplus"
                             onClick={() => {
@@ -159,6 +160,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                     ice,
                                     menu_price_m,
                                     menu_sid,
+                                    menu_photo,
                                 });
                             }}
                         >
