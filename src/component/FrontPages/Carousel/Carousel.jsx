@@ -1,5 +1,6 @@
 import React from "react";
 import Banner from "../../../images/frontpage/banner/banner-product.png";
+import './Carousel.css'
 
 function Carousel() {
     return (
@@ -7,8 +8,7 @@ function Carousel() {
             <div>
                 <img className="banner-w" src={Banner} alt="" />
             </div>
-            <h1>輪播牆</h1>
-            <p>你好</p>
+            {/* <h2 className="titletext">我是測試</h2> */}
         </>
     );
 }
