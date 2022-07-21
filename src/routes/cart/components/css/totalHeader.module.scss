@@ -1,0 +1,8 @@
+.coupon_label {
+    > div {
+        transition: transform 0.3s ease;
+    }
+    &:hover > div {
+        transform: translate(-3px, -3px) scale(102%);
+    }
+}

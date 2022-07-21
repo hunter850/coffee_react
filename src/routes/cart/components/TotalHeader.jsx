@@ -1,7 +1,7 @@
 import { Fragment, useMemo, useState } from "react";
 import Modal from "../../../component/Modal/Modal";
 import CouponTicket from "./CouponTicket";
-import "./css/totalHeader.css";
+import cssStyle from "./css/totalHeader.module.scss";
 
 function TotalHeader(props) {
     const { coupons, selectedCouponId, setSelectedCouponId } = props;
@@ -91,7 +91,7 @@ function TotalHeader(props) {
                                 key={coupon.id}
                                 htmlFor={coupon.name + coupon.id}
                                 style={styles.labelStyle}
-                                className="coupon_label"
+                                className={cssStyle.coupon_label}
                             >
                                 <CouponTicket coupon={coupon} />
                                 <input
