@@ -10,6 +10,7 @@
 
 .aside.hide {
     transition: 0.3s right;
+    display: none;
     right: -383px;
 }
 
@@ -92,10 +93,11 @@
 }
 
 .aside .count {
-    width: 7px;
+    width: 46px;
     text-align: center;
     border-bottom: 1px solid #d1cfcf;
-    margin: 0 10px;
+    padding: 0 10px;
+ 
     color: #3e3e3e;
 }
 

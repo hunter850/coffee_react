@@ -39,12 +39,14 @@ function FoodAsideCount({ item }) {
                         <div
                             className="minusplus"
                             onClick={() => {
-                                setCount(count - 1);
+                                count > 0
+                                    ? setCount(count - 1)
+                                    : setCount(count - 0);
                             }}
                         >
                             -
                         </div>
-                        <h6 className="count">{foodCount}</h6>
+                        <h6 className="count">{count}</h6>
                         <div
                             className="minusplus"
                             onClick={() => {
