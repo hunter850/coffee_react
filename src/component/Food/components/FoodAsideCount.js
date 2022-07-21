@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 function FoodAsideCount({ item }) {
-    const { foodCount, menu_name, sugar, ice, menu_price_m, menu_sid } = item;
+    const {
+        foodCount,
+        menu_name,
+        sugar,
+        ice,
+        menu_price_m,
+        menu_sid,
+        menu_photo,
+    } = item;
     const [count, setCount] = useState(foodCount);
 
     return (
         <>
             <div key={menu_sid} className="detail">
                 <img
-                    src="https://www.niusnews.com/upload/imgs/default/202109_____Choco/0915/dog-4988985_1280.jpg"
+                    src={`http://localhost:3500/images/food/${menu_photo}`}
                     alt=""
                 />
                 <div className="center">
@@ -55,7 +63,7 @@ function FoodAsideCount({ item }) {
                         >
                             +
                         </div>
-                        <div style={{ flexGrow: 2 }}></div>
+                        <div className="grow"></div>
                         <div>$ {menu_price_m * foodCount}</div>
                     </div>
                 </div>
