@@ -25,8 +25,6 @@ function Food() {
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
 
-    console.log("QQQ ", dataFromFoodDetail);
-
     return (
         <Fragment>
             <NavBar />

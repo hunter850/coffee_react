@@ -45,7 +45,10 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                             </svg>
                         </div> */}
                     </div>
-                    <div style={{ padding: "20px", marginTop: "60px" }}>
+                    <div
+                        className="middle"
+                        style={{ padding: "20px", marginTop: "60px" }}
+                    >
                         <div className="txt">
                             <div className="takeout">
                                 <h6>自取門市</h6>
@@ -106,8 +109,8 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                                 <p className="bottom">04:15 PM</p>
                             </div>
                         </div>
-                        {dataFromFoodDetail.map((item) => (
-                            <FoodAsideCount item={item} />
+                        {dataFromFoodDetail.map((item, i) => (
+                            <FoodAsideCount item={item} key={i} />
                         ))}
                     </div>
                     <div className="payarea">
