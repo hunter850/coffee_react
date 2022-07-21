@@ -13,6 +13,8 @@ import { courseDataGet } from "../../config/api-path";
 // import { courseDataFkGet } from "../../config/api-path";
 
 const CourseDetailed = () => {
+    const [contentScrollHeight, setContentScrollHeight] = useState({ CourseComtentObject: 0 });
+    // console.log(contentScrollHeight);
     // 得到的sid與資料庫sid相同的資料
     const [courseDetailedData, setCourseDetailedData] = useState([]);
     // 外鍵資料
@@ -83,7 +85,7 @@ const CourseDetailed = () => {
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
                     <CoursePath />
-                    <CourseContent courseDataPrice={courseDataPrice} />
+                    <CourseContent courseDataPrice={courseDataPrice} setContentScrollHeight={setContentScrollHeight} contentScrollHeight={contentScrollHeight} />
                 </div>
             </div>
         </Fragment>

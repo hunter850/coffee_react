@@ -1,16 +1,20 @@
 import "./CourseComtentObject.css";
-
-function CourseComtentObject() {
-    // import { useRef, useEffect } from "react";
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().top);
-    // }, []);
+import { useRef, useEffect } from "react";
+function CourseComtentObject({ contentScrollHeight, setContentScrollHeight }) {
+    const scrollTop = useRef();
+    // console.log(contentScrollHeight);
+    // console.log(scrollTop.current.getBoundingClientRect().top);
+    useEffect(() => {
+        window.onscroll = () => {
+            console.log(document.documentElement.scrollTop);
+        };
+        // console.log(contentScrollHeight);
+    }, []);
 
     // 1371
 
     return (
-        <div>
+        <div ref={scrollTop}>
             <div
                 className="CourseContentItem"
                 style={{ marginTop: 30 }}

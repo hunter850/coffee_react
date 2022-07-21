@@ -5,11 +5,19 @@ import CourseContentMaterial from "./CourseContentMaterial/CourseContentMaterial
 import CourseContentSignup from "./CourseContentSignup/CourseContentSignup";
 import CourseContentNotice from "./CourseContentNotice/CourseContentNotice";
 
-function CourseContent({ courseDataPrice }) {
+function CourseContent({
+    courseDataPrice,
+    setContentScrollHeight,
+    contentScrollHeight,
+}) {
+    // console.log(contentScrollHeight);
     return (
         <div className="CourseContent">
             <CourseContentItem>課程內容</CourseContentItem>
-            <CourseComtentObject />
+            <CourseComtentObject
+                setContentScrollHeight={setContentScrollHeight}
+                contentScrollHeight={contentScrollHeight}
+            />
             <CourseContentMaterial />
             <CourseContentSignup courseDataPrice={courseDataPrice} />
             <CourseContentNotice />
