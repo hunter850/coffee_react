@@ -1,21 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
-// import { useRef, useEffect } from "react";
-function CourseContentNotice() {
+import { useRef, useEffect } from "react";
+function CourseContentNotice({ notice, setNotice, topZeroSure }) {
 
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().top);
-    // }, []);
+    const noticeScrollTop = useRef();
+    useEffect(() => {
+        if (topZeroSure === true) {
+            setNotice(
+                noticeScrollTop.current.getBoundingClientRect().top
+            );
+        }
+    }, [topZeroSure]);
 
 
 
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div id="CourseContentNotice" >
+        <div id="CourseContentNotice" ref={noticeScrollTop}>
             <div
                 className="CourseContentItem"
-                style={{ marginTop: 30, marginBottom: 72 }}
+                style={{ marginTop: 30 }}
             >
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">

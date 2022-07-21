@@ -1,15 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-// import { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useState } from "react";
-function CourseContentMaterial() {
+function CourseContentMaterial({ materia, setMaterial, topZeroSure }) {
 
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().top);
-    // }, []);
+    const materialScrollTop = useRef();
+    useEffect(() => {
+        if (topZeroSure === true) {
+            setMaterial(materialScrollTop.current.getBoundingClientRect().top,);
+        }
+
+    }, [topZeroSure]);
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div >
+        <div ref={materialScrollTop}>
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentMaterial'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">

@@ -1,11 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import "./CourseContentItem.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-function CourseContentItem({ marginTop, children }) {
+function CourseContentItem({ marginTop, children, item, setItem, topZeroSure }) {
     const [displayNone, setdisplayNone] = useState(false);
+
+
+    const itemScrollTop = useRef();
+    useEffect(() => {
+
+        if (topZeroSure === true) {
+            setItem(itemScrollTop.current.getBoundingClientRect().top);
+        }
+
+    }, [topZeroSure]);
     return (
-        <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem'>
+        <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem' ref={itemScrollTop}>
             <div
                 className="d-flex f-aic CourseContentItem-wrap"
 
