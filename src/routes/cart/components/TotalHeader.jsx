@@ -5,31 +5,10 @@ import cssStyle from "./css/totalHeader.module.scss";
 
 function TotalHeader(props) {
     const { coupons, selectedCouponId, setSelectedCouponId } = props;
+    const { header_button, ticket_svg, coupon_label } = cssStyle;
     const [isOpen, setIsOpen] = useState(false);
     const styles = useMemo(() => {
         return {
-            buttonStyle: {
-                outline: "none",
-                backgroundColor: "var(--GRAY)",
-                border: "1px solid var(--DARKGRAY)",
-                width: "100%",
-                borderRadius: "3px 3px 0px 0px",
-                padding: "10px 27px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                cursor: "pointer",
-            },
-            svgStyle: {
-                color: "var(--BLUE)",
-            },
-            textStyle: {
-                fontSize: "16px",
-                color: "var(--BLUE)",
-            },
-            arrowStyle: {
-                marginLeft: "3px",
-            },
             modalBodyStyle: {
                 padding: "24px 36px",
             },
@@ -45,9 +24,9 @@ function TotalHeader(props) {
     }, []);
     return (
         <Fragment>
-            <button style={styles.buttonStyle} onClick={() => setIsOpen(true)}>
+            <button className={header_button} onClick={() => setIsOpen(true)}>
                 <svg
-                    style={styles.svgStyle}
+                    className={ticket_svg}
                     width="26"
                     height="19"
                     viewBox="0 0 26 19"
@@ -59,11 +38,9 @@ function TotalHeader(props) {
                         fill="currentColor"
                     />
                 </svg>
-
-                <span style={styles.textStyle}>
+                <span>
                     {selectedCouponId === -1 ? "選擇優惠卷" : ""}
                     <svg
-                        style={styles.arrowStyle}
                         width="9"
                         height="11"
                         viewBox="0 0 9 11"
@@ -91,7 +68,7 @@ function TotalHeader(props) {
                                 key={coupon.id}
                                 htmlFor={coupon.name + coupon.id}
                                 style={styles.labelStyle}
-                                className={cssStyle.coupon_label}
+                                className={coupon_label}
                             >
                                 <CouponTicket coupon={coupon} />
                                 <input

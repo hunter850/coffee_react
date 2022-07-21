@@ -1,3 +1,27 @@
+.header_button {
+    outline: none;
+    background-color: var(--GRAY);
+    border: 1px solid var(--DARKGRAY);
+    width: 100%;
+    border-radius: 3px 3px 0px 0px;
+    padding: 10px 27px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    > span {
+        font-size: 16px;
+        color: var(--BLUE);
+        svg {
+            margin-left: 3px;
+        }
+    }
+}
+
+.ticket_svg {
+    color: var(--BLUE);
+}
+
 .coupon_label {
     > div {
         transition: transform 0.3s ease;
