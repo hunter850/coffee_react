@@ -41,7 +41,7 @@ function Food() {
                                 setDataFromMenuFilter={setDataFromMenuFilter}
                             />
                             {/* TODO: */}
-                            {/* <h1>{dataFromMenuFilter}</h1> */}
+                            <h1>{dataFromMenuFilter}</h1>
                             {/* <button
                                 onClick={() => {
                                     setIsShowAside(true);

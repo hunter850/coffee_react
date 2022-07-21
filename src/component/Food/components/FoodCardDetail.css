@@ -23,7 +23,7 @@
 
 .food-detail-photo {
     object-fit:cover;
-    object-position: 20% 100%;
+    object-position: 20% 60%;
 
     width: 400px;
     height: 300px;
