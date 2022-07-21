@@ -10,22 +10,32 @@ import CoursePath from "../../component/Course/CourseDetailed/CoursePath/CourseP
 import CourseContent from "../../component/Course/CourseDetailed/CourseContent/CourseContent";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
+// import { courseDataFkGet } from "../../config/api-path";
 
 const CourseDetailed = () => {
     // 得到的sid與資料庫sid相同的資料
     const [courseDetailedData, setCourseDetailedData] = useState([]);
+    // 外鍵資料
+    // const [courseDataFk, setCourseDataFk] = useState([]);
     // 確認有拿到資料,才渲染
     const [start, setStart] = useState(false);
     // 對照sid當筆資料的價格 - 狀態提升
     const [courseDataPrice, setCourseDataPrice] = useState(0);
 
-
-
-
     // 取得當前click卡片的sid
     const { sid } = useParams();
-
-
+    // 外鍵 - 取得當前sid外鍵資料
+    // useEffect(() => {
+    //     axios.get(courseDataFkGet)
+    //         .then((res) => {
+    //             const newCourseDataFk = res.data.filter((v, i) => {
+    //                 return Number(v.course_sid) === Number(sid);
+    //             });
+    //             setCourseDataFk(newCourseDataFk);
+    //             // console.log(newCourseDataFk);
+    //         });
+    // }, []);
+    // console.log(courseDataFk);
 
     // console.log(sid);
 
@@ -36,7 +46,7 @@ const CourseDetailed = () => {
         window.scrollTo(0, 0);
     }, []);
 
-
+    // 取得當前sid資料
     useEffect(() => {
         axios.get(courseDataGet)
             .then((res) => {
