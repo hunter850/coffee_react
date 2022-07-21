@@ -1,15 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import "./CourseContentSignup.css";
 import { useState } from "react";
-// import { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
-function CourseContentSignup({ courseDataPrice }) {
+function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure }) {
 
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().bottom);
-    // }, []);
+    const signupScrollTop = useRef();
+    useEffect(() => {
+        if (topZeroSure === true) {
+            setSignup(
+                signupScrollTop.current.getBoundingClientRect().top
+            );
+        }
+    }, [topZeroSure]);
 
 
     const [displayNone, setdisplayNone] = useState(false);
@@ -23,7 +28,7 @@ function CourseContentSignup({ courseDataPrice }) {
     };
 
     return (
-        <div >
+        <div ref={signupScrollTop}>
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentSignup'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">

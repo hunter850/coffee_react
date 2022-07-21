@@ -13,19 +13,32 @@ import { courseDataGet } from "../../config/api-path";
 // import { courseDataFkGet } from "../../config/api-path";
 
 const CourseDetailed = () => {
-    const [contentScrollHeight, setContentScrollHeight] = useState({ CourseComtentObject: 0 });
-    // console.log(contentScrollHeight);
+
+    // 每一個區塊離top多遠的狀態
+    const [object, setObject] = useState(0);
+    const [material, setMaterial] = useState(0);
+    const [signup, setSignup] = useState(0);
+    const [notice, setNotice] = useState(0);
+    const [item, setItem] = useState(0);
+
+    //確認每次進頁面跳到0,0的位子
+    const [topZeroSure, setTopZeroSure] = useState(false);
+
     // 得到的sid與資料庫sid相同的資料
     const [courseDetailedData, setCourseDetailedData] = useState([]);
+
     // 外鍵資料
     // const [courseDataFk, setCourseDataFk] = useState([]);
+
     // 確認有拿到資料,才渲染
     const [start, setStart] = useState(false);
+
     // 對照sid當筆資料的價格 - 狀態提升
     const [courseDataPrice, setCourseDataPrice] = useState(0);
 
     // 取得當前click卡片的sid
     const { sid } = useParams();
+
     // 外鍵 - 取得當前sid外鍵資料
     // useEffect(() => {
     //     axios.get(courseDataFkGet)
@@ -37,15 +50,11 @@ const CourseDetailed = () => {
     //             // console.log(newCourseDataFk);
     //         });
     // }, []);
-    // console.log(courseDataFk);
 
-    // console.log(sid);
-
-    // console.log(courseDetailedData);
-    // console.log(window.location.href);
     useEffect(() => {
         //一進頁面到top 0
         window.scrollTo(0, 0);
+        setTopZeroSure(true);
     }, []);
 
     // 取得當前sid資料
@@ -84,8 +93,8 @@ const CourseDetailed = () => {
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
-                    <CoursePath />
-                    <CourseContent courseDataPrice={courseDataPrice} setContentScrollHeight={setContentScrollHeight} contentScrollHeight={contentScrollHeight} />
+                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} />
+                    <CourseContent courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} />
                 </div>
             </div>
         </Fragment>

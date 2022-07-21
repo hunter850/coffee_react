@@ -7,20 +7,44 @@ import CourseContentNotice from "./CourseContentNotice/CourseContentNotice";
 
 function CourseContent({
     courseDataPrice,
-    setContentScrollHeight,
-    contentScrollHeight,
+    object,
+    materia,
+    signup,
+    notice,
+    setObject,
+    setMaterial,
+    setSignup,
+    setNotice,
+    setItem,
+    item,
+    topZeroSure,
 }) {
-    // console.log(contentScrollHeight);
     return (
         <div className="CourseContent">
-            <CourseContentItem>課程內容</CourseContentItem>
-            <CourseComtentObject
-                setContentScrollHeight={setContentScrollHeight}
-                contentScrollHeight={contentScrollHeight}
+            <CourseContentItem setItem={setItem} item={item}>
+                課程內容
+            </CourseContentItem>
+            <CourseContentMaterial
+                materia={materia}
+                setMaterial={setMaterial}
+                topZeroSure={topZeroSure}
             />
-            <CourseContentMaterial />
-            <CourseContentSignup courseDataPrice={courseDataPrice} />
-            <CourseContentNotice />
+            <CourseContentSignup
+                courseDataPrice={courseDataPrice}
+                signup={signup}
+                setSignup={setSignup}
+                topZeroSure={topZeroSure}
+            />
+            <CourseContentNotice
+                notice={notice}
+                setNotice={setNotice}
+                topZeroSure={topZeroSure}
+            />
+            <CourseComtentObject
+                object={object}
+                setObject={setObject}
+                topZeroSure={topZeroSure}
+            />
         </div>
     );
 }
