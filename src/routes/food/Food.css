@@ -1,0 +1,14 @@
+.foodpage {
+    position: relative;
+}
+
+.filterbtn-area {
+    display: flex;
+    margin-left: 45px;
+}
+
+.foodcard-session {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

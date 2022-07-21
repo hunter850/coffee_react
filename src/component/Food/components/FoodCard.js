@@ -1,48 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FoodCard.css";
 import "./FoodAdd.css";
-import menudata from "./menu.json";
+// import menudata from "./menu.json";
+import axios from "axios";
+import { foodDataGet } from "../../../config/api-path";
 
 function FoodCard({ handleShowFoodDetailSelect, setIsShow }) {
-    return menudata.map(
+    const [food, setFood] = useState([]);
+
+    const foodData = async () => {
+        const response = await axios.get(foodDataGet);
+        setFood(response.data);
+        console.log("QQ", response);
+    };
+
+    useEffect(() => {
+        foodData();
+    }, []);
+
+    return food.map(
         ({
             menu_name,
             menu_nutrition,
             menu_price_m,
             menu_sid,
             menu_categories,
+            menu_photo,
         }) => {
             return (
                 <div className="food_card" key={menu_sid}>
                     <div className="food_card_top">
-                        <div
-                            className="food_card_level"
-                            style={{ display: "none" }}
-                        >
-                            {menu_categories}
-                        </div>
+                        <img
+                            className="photo"
+                            src={`http://localhost:3500/images/food/${menu_photo}`}
+                            alt="logo"
+                        />
+                        <div className="food_card_level">{menu_categories}</div>
                     </div>
                     <div className="food_card_down">
                         <div className="food_card_txt">
-                            <p style={{ fontWeight: "bolder" }}>{menu_name}</p>
-                            <p
-                                className="font-min1"
-                                style={{
-                                    color: "#898787",
-                                    textOverflow: "ellipsis",
-                                    overflow: "hidden",
-                                    whiteSpace: "nowrap",
-                                }}
-                            >
-                                {menu_nutrition}
-                            </p>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <p style={{ flexGrow: "2" }}>
+                            <p className="menu_name">{menu_name}</p>
+                            <p className="font-min1">{menu_nutrition}</p>
+                            <div className="font-min2">
+                                <p className="menu_price_m">
                                     NT${menu_price_m}
                                 </p>
                                 <div
@@ -54,6 +54,7 @@ function FoodCard({ handleShowFoodDetailSelect, setIsShow }) {
                                             menu_price_m,
                                             menu_sid,
                                             menu_categories,
+                                            menu_photo,
                                         });
                                         setIsShow(true);
                                     }}

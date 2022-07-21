@@ -10,7 +10,7 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
             <div className={asideClass}>
                 <div className="aside-area">
                     <div className="top">
-                        <h6 style={{ flexGrow: 1 }}>你的餐點詳細</h6>
+                        <h6 className="mydetail">你的餐點詳細</h6>
                         {/* <div
                             onClick={() => {
                                 setIsShowAside(false);
@@ -45,10 +45,7 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                             </svg>
                         </div> */}
                     </div>
-                    <div
-                        className="middle"
-                        style={{ padding: "20px", marginTop: "60px" }}
-                    >
+                    <div className="middle">
                         <div className="txt">
                             <div className="takeout">
                                 <h6>自取門市</h6>
@@ -114,13 +111,11 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                         ))}
                     </div>
                     <div className="payarea">
-                        <div style={{ display: "flex" }}>
-                            <p style={{ flexGrow: 1 }}>合計</p>
+                        <div className="payarea1">
+                            <p className="finaltotal">合計</p>
                             <p>$1000</p>
                         </div>
-                        <div className="pay" style={{ color: "#fff" }}>
-                            去結帳
-                        </div>
+                        <div className="pay">去結帳</div>
                     </div>
                 </div>
             </div>
