@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../component/NavBar";
@@ -49,7 +48,6 @@ const Course = () => {
     const [courseDataCopy, setCourseDataCopy] = useState([]);
 
     // console.log(courseData);
-    // console.log(courseDataCopy);
 
     // 排序 - 價錢低到高
     if (sortData === "priceAsc") {
@@ -79,8 +77,8 @@ const Course = () => {
         }
     }, [searchInp, courseDataCopy]);
 
-    const getCourseData = async () =>
-        await axios
+    useEffect(() => {
+        axios
             .get(courseDataGet)
             .then((res) => {
                 // 深拷貝一組沒有把數字轉換成中文的資料
@@ -95,17 +93,14 @@ const Course = () => {
                     return setCourseData(newSortData);
                 }
                 // 將資料庫的course_level數字轉換成中文
-                // numberConvertString(res.data);
+                numberConvertString(res.data);
                 const newCourseData = res.data;
-                numberConvertString(newCourseData);
                 setCourseData(newCourseData);
                 setCourseDataCopy(newCourseData);
             })
             .catch((err) => {
                 console.log(err.response);
             });
-    useEffect(() => {
-        getCourseData();
     }, [sortData]);
 
     const el = (
