@@ -5,7 +5,7 @@ import styles from "../modal.module.scss";
 function ModalBody(props) {
     const { children, component = "div", className, style, ...others } = props;
     const { modal_text } = styles;
-    const modalText = useMemo(() => {
+    const bodyClass = useMemo(() => {
         if (className) return modal_text + " " + className;
         return modal_text;
     }, [modal_text, className]);
@@ -21,7 +21,7 @@ function ModalBody(props) {
                     : component
             }
             {...others}
-            className={modalText}
+            className={bodyClass}
             style={{
                 width: "100%",
                 maxHeight: "calc(90vh - 132px)",

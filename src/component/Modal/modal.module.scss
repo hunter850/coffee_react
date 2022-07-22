@@ -21,19 +21,26 @@
     }
 }
 
-.modal_header {
-    width: 100%;
-    overflow: hidden;
-    text-align: center;
-    min-height: 24px;
-    flex-shrink: 0;
+.modal_bg {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0009;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.modal_footer {
-    width: 100%;
-    max-height: calc(90vh - 132px);
-    overflow: auto;
-    padding: 0px 36px;
+.modal_bord {
+    max-width: 95%;
+    max-height: calc(90vh - 60px);
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .close_button {
@@ -46,4 +53,20 @@
     position: absolute;
     right: 0px;
     top: 0px;
+}
+
+.modal_header {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    min-height: 24px;
+    flex-shrink: 0;
+}
+
+.modal_footer {
+    width: 100%;
+    max-height: calc(90vh - 132px);
+    overflow: hidden;
+    padding: 0px 36px;
+    flex-shrink: 0;
 }
