@@ -25,8 +25,8 @@
     object-fit:cover;
     object-position: 20% 60%;
 
-    width: 400px;
-    height: 300px;
+    width: 480px;
+    height: 380px;
     border-radius: 10px;
     margin-right: 45px;
 }
@@ -45,6 +45,21 @@
     font-size: 20px;
     margin: 20px 0;
 }
+
+.inputarea{
+        display: flex;
+}
+.inputdetail{
+        width: 40px;
+        height: 20.15px;
+        margin: 6px 0;
+}
+.inputla{
+font-size: 20px; 
+}
+
+
+
 .food-detail .cal {
     display: flex;
     margin-top: 20px;
@@ -87,3 +102,4 @@
     cursor: pointer;
     margin-left: 20px;
 }
+

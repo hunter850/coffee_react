@@ -97,7 +97,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     <div className="foodchoice">冰熱選擇</div>
                     {icechoice.map(({ name, id }) => {
                         return (
-                            <div key={`icechoice${id}`}>
+                            <div key={`icechoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
                                     checked={ice === name}
@@ -106,8 +106,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                         setIce(e.target.value);
                                     }}
                                     id={name}
+                                    className="inputdetail"
                                 />
-                                <label htmlFor={name}>{name}</label>
+                                <label htmlFor={name} className="inputla">
+                                    {name}
+                                </label>
                             </div>
                         );
                     })}
@@ -115,7 +118,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     <div className="foodchoice">甜度選擇</div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
-                            <div key={`sugarchoice${id}`}>
+                            <div key={`sugarchoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
                                     checked={sugar === name}
@@ -124,8 +127,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                         setSugar(e.target.value);
                                     }}
                                     id={name}
+                                    className="inputdetail"
                                 />
-                                <label htmlFor={name}>{name}</label>
+                                <label htmlFor={name} className="inputla">
+                                    {name}
+                                </label>
                             </div>
                         );
                     })}
