@@ -1,12 +1,12 @@
 import { useMemo, useCallback } from "react";
 import { useStyleChange } from "../../../Contexts/SuperProvider";
 import useDebounce from "../../../hooks/useDebounce";
-// import useLog from "../../../hooks/useLog";
 import CounterGroup from "./CounterGroup";
-import "../css/cart.css";
+import cssStyles from "./css/goodsList.module.scss";
 
 function GoodsList(props) {
     const { cartList, setDeleteId, setModalIsOpen } = props;
+    const { cart_delete, cart_list_ul } = cssStyles;
     const breakPoint = useStyleChange();
     const styles = useMemo(() => {
         if (breakPoint === 1) {
@@ -56,15 +56,6 @@ function GoodsList(props) {
                     textAlign: "center",
                     flexShrink: "0",
                 },
-                deleteButtonStyle: {
-                    backgroundColor: "transparent",
-                    width: "36px",
-                    height: "36px",
-                    objectPosition: "center center",
-                    cursor: "pointer",
-                    border: "none",
-                    outline: "none",
-                },
             };
         }
     }, [breakPoint]);
@@ -85,7 +76,7 @@ function GoodsList(props) {
         [setDeleteId, setModalIsOpen]
     );
     return (
-        <ul style={styles.listWrap} className="cart_list_ul">
+        <ul style={styles.listWrap} className={cart_list_ul}>
             {cartList.cmap((item) => (
                 <li key={item.name} style={styles.listStyle}>
                     <div style={styles.imgWrap}>
@@ -107,8 +98,7 @@ function GoodsList(props) {
                     </p>
                     <button
                         onClick={() => deleteHandler(item.id)}
-                        style={styles.deleteButtonStyle}
-                        className="cart_delete_button"
+                        className={cart_delete}
                     >
                         <svg
                             width="16"

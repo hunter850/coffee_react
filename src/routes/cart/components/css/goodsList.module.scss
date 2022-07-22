@@ -1,0 +1,24 @@
+.cart_delete {
+    background-color: transparent;
+    width: 36px;
+    height: 36px;
+    object-position: center center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    > svg {
+        transition: color 0.3s ease;
+        color: #324a59;
+        vertical-align: -25%;
+    }
+    &:hover svg {
+        color: red;
+    }
+}
+
+.cart_list_ul {
+    li:last-child {
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+}
