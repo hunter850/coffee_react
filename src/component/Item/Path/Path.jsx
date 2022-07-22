@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Path({ pathObj, backgroundColor, url }) {
     const urls = [];
     const newurls = urls.push(url);
-    console.log(urls);
+    // console.log(urls);
     return (
         <div className="container Path">
             <div
