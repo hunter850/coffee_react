@@ -3,11 +3,11 @@ import { React } from "react";
 import "./Card.css";
 
 function Card({ courseData }) {
-    const { course_level, course_name, course_content, course_price } = courseData;
+    const { course_level, course_name, course_content, course_price, course_img_s } = courseData;
 
     return (
         <div className="course_card">
-            <div className="course_card_top">
+            <div className="course_card_top" style={{ background: `url(http://localhost:3500/images/course/${course_img_s}) no-repeat center center`, backgroundSize: 'cover' }}>
                 <div
                     className={`course_card_level ${course_level === "中級"
                         ? "course_card_level-normal"
@@ -19,7 +19,7 @@ function Card({ courseData }) {
                     {course_level}
                 </div>
             </div>
-            <div className="course_card_down">
+            <div className="course_card_down" >
                 <div className="course_card_txt">
                     <p style={{ fontWeight: "bolder" }}>{course_name}</p>
                     <p className="font-min" style={{ color: "#898787" }}>

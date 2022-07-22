@@ -6,7 +6,8 @@ import { v4 } from "uuid";
 
 function Carousel() {
     const delay = 'ease 1000ms';
-    const imgs = ["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500"];
+    const imgs = ["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500",];
+
     const imgsLength = imgs.length;
     // 控制輪播圖片顯示哪一張
     const [page, setPage] = useState(1);
