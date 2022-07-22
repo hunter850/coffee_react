@@ -1,38 +1,25 @@
-import { Fragment, useMemo } from "react";
+import { Fragment } from "react";
+import styles from "./css/goodsHeader.module.scss";
 
 function GoodsHeader(props) {
     const { showProduct } = props;
-    const styles = useMemo(() => {
-        return {
-            listWrap: {
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%",
-                padding: "0px 23px",
-            },
-            textStyle: {
-                fontSize: "16px",
-                color: "var(--BLUE)",
-            },
-        };
-    }, []);
+    const { list_wrap, header_text } = styles;
     return (
         <Fragment>
-            <ul style={styles.listWrap}>
+            <ul className={list_wrap}>
                 <li>
-                    <p style={styles.textStyle}>
+                    <p className={header_text}>
                         {showProduct ? "商品" : "餐點"}
                     </p>
                 </li>
                 <li>
-                    <p style={styles.textStyle}>價格</p>
+                    <p className={header_text}>價格</p>
                 </li>
                 <li>
-                    <p style={styles.textStyle}>數量</p>
+                    <p className={header_text}>數量</p>
                 </li>
                 <li>
-                    <p style={styles.textStyle}>小記</p>
+                    <p className={header_text}>小記</p>
                 </li>
                 <li>
                     <svg
