@@ -39,16 +39,36 @@ const CourseDetailed = () => {
     // 取得當前click卡片的sid
     const { sid } = useParams();
 
-    // 外鍵 - 取得當前sid外鍵資料
-    // useEffect(() => {
-    //     axios.get(courseDataFkGet)
+
+    // const getCourseDataFk = async () => {
+    //     await axios.get(courseDataFkGet)
     //         .then((res) => {
     //             const newCourseDataFk = res.data.filter((v, i) => {
     //                 return Number(v.course_sid) === Number(sid);
     //             });
     //             setCourseDataFk(newCourseDataFk);
-    //             // console.log(newCourseDataFk);
+    //             console.log(newCourseDataFk);
     //         });
+    // };
+
+    const getCourseDetailedData = async () => {
+        await axios.get(courseDataGet)
+            .then((res) => {
+                // console.log(res.data);
+                const newCourseGetData = res.data.filter((v, i) => {
+                    return Number(v.course_sid) === Number(sid);
+                });
+                // 從get來的資料中只篩選出指定sid當筆資料
+                setCourseDetailedData(newCourseGetData);
+                // 確認得到資料了才給渲染,否則會出錯
+                setStart(true);
+                setCourseDataPrice(start ? courseDetailedData[0].course_price : '');
+            });
+    };
+
+    // 外鍵 - 取得當前sid外鍵資料
+    // useEffect(() => {
+    //     getCourseDataFk();
     // }, []);
 
     useEffect(() => {
@@ -59,19 +79,7 @@ const CourseDetailed = () => {
 
     // 取得當前sid資料
     useEffect(() => {
-        axios.get(courseDataGet)
-            .then((res) => {
-                // console.log(res.data);
-                const newCourseGetData = res.data.filter((v, i) => {
-                    return Number(v.course_sid) === Number(sid);
-                });
-                // 從get來的資料中只篩選出指定sid當筆資料
-                setCourseDetailedData(newCourseGetData);
-                // 確認得到資料了才給渲染,否則會出錯
-                setStart(true);
-
-                setCourseDataPrice(start ? courseDetailedData[0].course_price : '');
-            });
+        getCourseDetailedData();
     }, [sid, start]);
 
     const el = (
