@@ -1,8 +1,14 @@
+import { useMemo } from "react";
 import ElementWrap from "../ElementWrap";
-import "../modal.css";
+import styles from "../modal.module.scss";
 
 function ModalBody(props) {
     const { children, component = "div", className, style, ...others } = props;
+    const { modal_text } = styles;
+    const modalText = useMemo(() => {
+        if (className) return modal_text + " " + className;
+        return modal_text;
+    }, [modal_text, className]);
     return (
         <ElementWrap
             component={
@@ -15,7 +21,7 @@ function ModalBody(props) {
                     : component
             }
             {...others}
-            className={`modal_text ${className ?? ""}`}
+            className={modalText}
             style={{
                 width: "100%",
                 maxHeight: "calc(90vh - 132px)",

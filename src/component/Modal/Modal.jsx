@@ -4,7 +4,7 @@ import useScrollbar from "../../hooks/useScrollbar";
 import ModalBody from "./components/ModalBody";
 import ModalHeader from "./components/ModalHeader";
 import ModalFooter from "./components/ModalFooter";
-import "./modal.css";
+import cssStyles from "./modal.module.scss";
 
 function Modal({
     children,
@@ -16,6 +16,7 @@ function Modal({
 }) {
     const setNow = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
+    const { close_button } = cssStyles;
     const styles = useMemo(() => {
         return {
             bgStyle: {
@@ -48,21 +49,21 @@ function Modal({
             },
         };
     }, [bordY, time]);
-    const staticStyles = useMemo(() => {
-        return {
-            button: {
-                border: "none",
-                outline: "none",
-                backgroundColor: "transparent",
-                width: "36px",
-                height: "36px",
-                cursor: "pointer",
-                position: "absolute",
-                right: "0px",
-                top: "0px",
-            },
-        };
-    }, []);
+    // const staticStyles = useMemo(() => {
+    //     return {
+    //         button: {
+    //             border: "none",
+    //             outline: "none",
+    //             backgroundColor: "transparent",
+    //             width: "36px",
+    //             height: "36px",
+    //             cursor: "pointer",
+    //             position: "absolute",
+    //             right: "0px",
+    //             top: "0px",
+    //         },
+    //     };
+    // }, []);
     const [modalBackground, setModalBackground] = useState(styles.bgStyle);
     const [modalBord, setModalBord] = useState(styles.bordStyle);
     const closeHandler = useCallback(() => {
@@ -98,7 +99,7 @@ function Modal({
         <div style={modalBackground} onClick={closeHandler}>
             <div style={modalBord} onClick={(e) => e.stopPropagation()}>
                 {closeButton && (
-                    <button style={staticStyles.button} onClick={closeHandler}>
+                    <button className={close_button} onClick={closeHandler}>
                         <svg
                             width="12"
                             height="12"
