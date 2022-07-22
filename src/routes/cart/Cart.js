@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState, useMemo } from "react";
 import { useStyleChange } from "../../Contexts/SuperProvider";
 import useArray from "../../hooks/useArray";
-import NavBar from "../../component/NavBar";
+// import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import CartTab from "./CartTab";
 import coffee_bean from "../../images/cart/coffee_bean.svg";
 import cup_cofffee from "../../images/cart/cup_cofffee.svg";
@@ -159,7 +160,8 @@ function Cart() {
     return (
         <Fragment>
             <div style={styles.fakeBody}>
-                <NavBar />
+                {/* <NavBar /> */}
+                <FakeNav />
                 <button onClick={() => setShowProduct(true)}>商品</button>
                 <button onClick={() => setShowProduct(false)}>餐點</button>
                 {showProduct ? (
