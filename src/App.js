@@ -16,12 +16,12 @@ import Coupon from "./routes/game/Coupon";
 import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
-import SuperProvider from "./Contexts/SuperProvider";
+import AllProvider from "./Contexts/AllProvider";
 
 const App = () => {
     const el = (
-        <SuperProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <AllProvider>
                 <Routes>
                     <Route exact={true} path="/" element={<FrontPage />} />
                     <Route path="/cart" element={<Cart />} />
@@ -44,8 +44,8 @@ const App = () => {
                     <Route path="/getcoupon" element={<Getcoupon />} />
                     <Route path="/getpoint" element={<Getpoint />} />
                 </Routes>
-            </BrowserRouter>
-        </SuperProvider>
+            </AllProvider>
+        </BrowserRouter>
     );
 
     return el;

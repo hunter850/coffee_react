@@ -32,45 +32,51 @@ function Food() {
             <NavBar />
             <Path pathObj={{ path: ["．點餐"] }} />
             <div className="foodpage">
-                <Slideshow />
+                <div>
+                    <Slideshow />
 
-                <div className="container">
-                    <div>
-                        <div className="filterbtn-area">
-                            <Filterbutton
-                                setDataFromMenuFilter={setDataFromMenuFilter}
-                            />
-                            {/* TODO: */}
-                            <h1>{dataFromMenuFilter}</h1>
-                            {/* <button
+                    <div className="container">
+                        <div>
+                            <div className="filterbtn-area">
+                                <Filterbutton
+                                    setDataFromMenuFilter={
+                                        setDataFromMenuFilter
+                                    }
+                                />
+                                {/* TODO: */}
+                                <h1>{dataFromMenuFilter}</h1>
+                                {/* <button
                                 onClick={() => {
                                     setIsShowAside(true);
                                 }}
                             >
                                 按按看
                             </button> */}
-                        </div>
-                        <div className="foodcard-session">
-                            <FoodCard
-                                handleShowFoodDetailSelect={setShowFoodDetail}
-                                setIsShow={setIsShow}
-                            />
+                            </div>
+                            <div className="foodcard-session">
+                                <FoodCard
+                                    handleShowFoodDetailSelect={
+                                        setShowFoodDetail
+                                    }
+                                    setIsShow={setIsShow}
+                                />
+                            </div>
                         </div>
                     </div>
+                    {isShow && (
+                        <FoodCardDetail
+                            showFoodDetail={showFoodDetail}
+                            setIsShow={setIsShow}
+                            setDataFromFoodDetail={handleDetailAppend}
+                        />
+                    )}
                 </div>
-                {isShow && (
-                    <FoodCardDetail
-                        showFoodDetail={showFoodDetail}
-                        setIsShow={setIsShow}
-                        setDataFromFoodDetail={handleDetailAppend}
-                    />
-                )}
+                <FoodAsideSummary
+                    show={dataFromFoodDetail.length > 0}
+                    // setIsShowAside={setIsShowAside}
+                    dataFromFoodDetail={dataFromFoodDetail}
+                />
             </div>
-            <FoodAsideSummary
-                show={dataFromFoodDetail.length > 0}
-                // setIsShowAside={setIsShowAside}
-                dataFromFoodDetail={dataFromFoodDetail}
-            />
         </Fragment>
     );
 }
