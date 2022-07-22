@@ -1,4 +1,8 @@
 .modal_text {
+    width: 100%;
+    max-height: calc(90vh - 132px);
+    overflow: auto;
+    padding: 0px 36px;
     &::-webkit-scrollbar {
         background-color: #fff0;
         width: 6px;
