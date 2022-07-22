@@ -5,8 +5,15 @@ import styles from "./fakeNav.module.scss";
 
 const FakeNav = () => {
     const { container, px_200 } = bs_flex;
-    const { nav_wrap, nav_link, nav_text, game_list, game_ul, member_list } =
-        styles;
+    const {
+        nav_wrap,
+        nav_link,
+        nav_text,
+        game_list,
+        game_ul,
+        member_list,
+        header_style,
+    } = styles;
     // =============================================
     const c = useCallback((...ar) => {
         return ar.join(" ");
@@ -117,16 +124,8 @@ const FakeNav = () => {
     };
     // =====================
     const el = (
-        <header
-            className={container}
-            style={{
-                position: "sticky",
-                width: "100%",
-                top: "0px",
-                zIndex: "999",
-            }}
-        >
-            <nav>
+        <header className={header_style}>
+            <nav className={container}>
                 <ul className={c(nav_wrap, px_200)}>
                     <li className={nav_link}>
                         <Link to="/" className={nav_text}>

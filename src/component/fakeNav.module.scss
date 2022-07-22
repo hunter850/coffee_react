@@ -1,3 +1,12 @@
+.header_style {
+    width: 100%;
+    background-color: var(--BLUE);
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    z-index: 999;
+}
+
 .nav_wrap {
     height: 60px;
     background-color: var(--BLUE);
