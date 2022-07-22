@@ -147,6 +147,7 @@ const Course = () => {
                                             course_content: v.course_content,
                                             course_price: v.course_price,
                                             course_sid: v.course_sid,
+                                            course_img_s: v.course_img_s,
                                         }}
                                     />
                                 </Link>

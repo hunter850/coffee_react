@@ -20,7 +20,7 @@
 
 @media (max-width: 375px) {
     .Course-container {
-        min-width: 375;
+        min-width: 375px;
     }
     .CourseDetailed-container {
         width: 375px;
