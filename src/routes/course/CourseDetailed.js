@@ -95,6 +95,7 @@ const CourseDetailed = () => {
                         ],
                     }}
                     backgroundColor={"#fff"}
+                    url="/course"
                 />
                 <Carousel />
                 <Banner courseDetailedData={courseDetailedData} start={start} />

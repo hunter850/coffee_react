@@ -3,6 +3,16 @@
 ```js
 <Path pathObj={{path:['．課程資訊','．愛心拉花']}}/>
 <Path pathObj={{path:['．{頁面名稱}','．{頁面名稱}']}}/>
+
+ <Path pathObj={{path:['．{頁面名稱}','．{頁面名稱}']}}
+       backgroundColor={"#fff"}
+       url="/course" />
+    // 使用url參數需"注意",用這個範例來說明
+    // 首頁．課程資訊．皮卡丘拉花
+    // 上面所給的/course是給．課程資訊使用的連結,故是要在使用三級路由地方給這個參數,首頁的部分我已經給預設所以不用下參數,第三層設計上也是不不需要連結的,因為當前就在這個頁面
+    //backgroundColor這個屬性可以配合自己的背景色微調,預設為#fcfaf7
+    //由於經費不足,目前只設計到三級路由,請靜待更新
+    //使用上不懂的地方可以詢問
 ```
 
 ### Btn 組件使用說明
@@ -10,33 +20,43 @@
 ```js
 // 組件範例
 // 用法1: 選擇需要的單一屬性傳入,格式如下
-<Btn backgroundColor={'#B79973'} color={'#fff'} width={'100px'}>
+<Btn backgroundColor={"#B79973"} color={"#fff"} width={"100px"}>
     課程內容
 </Btn>
 
 // 需要的屬性照著範例輸入,不需要的空著即可
 ```
+
 ### Modal 組件使用說明
+
 ```js
 // 組件範例 基本必傳一組useState false關閉modal true開啟modal
-import Modal from "./compnents/Modal"
+import Modal from "./compnents/Modal";
 const [isOpen, setIsOpen] = useSate(false);
 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
     <h4>Modal內容</h4>
     <p>Modal內容</p>
-</Modal>
+</Modal>;
 ```
+
 ```js
 // bordY 設定modal進場 Y 方向的滑動距離
 // time 動畫時間(s)
 // closeButton 設定是否要有叉叉按鈕
 // 不props 預設 bordY={-30} time={0.5} closeButton={true}
 const [isOpen, setIsOpen] = useSate(false);
-<Modal isOpen={isOpen} setIsOpen={setIsOpen} bordY={-60} time={1} closeButton={false}>
+<Modal
+    isOpen={isOpen}
+    setIsOpen={setIsOpen}
+    bordY={-60}
+    time={1}
+    closeButton={false}
+>
     <h4>Modal內容</h4>
     <p>Modal內容</p>
-</Modal>
+</Modal>;
 ```
+
 ```js
 // 懶人包: 有不想要的屬性可以全部 inline style 自己設定改掉, body有超出modal高度會有scrollbar能用 不會爆版 建議至少要用body
 

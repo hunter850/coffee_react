@@ -1,6 +1,12 @@
 .Path-font {
-    color: #253945;
     line-height: 32px;
+}
+.Path-font > a {
+    text-decoration: none;
+}
+
+.Path-font > a > span {
+    color: #253945;
 }
 
 .Path-wrap {
