@@ -142,6 +142,7 @@ const Course = () => {
     // 搜尋框為空值時重置原始資料
     useEffect(() => {
         if (searchInp === "") {
+            setSortData('');
             numberConvertString(courseDataCopy);
             const pageArray = chunk(courseDataCopy, perPage);
             if (pageArray.length > 0) {
