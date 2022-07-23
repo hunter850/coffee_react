@@ -22,13 +22,7 @@ function ModalBody(props) {
             }
             {...others}
             className={bodyClass}
-            style={{
-                width: "100%",
-                maxHeight: "calc(90vh - 132px)",
-                overflow: "auto",
-                padding: "0px 36px",
-                ...style,
-            }}
+            style={style}
         >
             {children}
         </ElementWrap>

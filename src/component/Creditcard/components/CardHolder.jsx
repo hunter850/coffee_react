@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
-import "../css/cardNumberInput.css";
+import "../css/cardNumberInput.module.scss";
 
 function CardHolder({ cardName }) {
     const cardMask = useIndexArray(100);

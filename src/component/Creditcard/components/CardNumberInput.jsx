@@ -1,8 +1,7 @@
 import { Fragment, useState, useEffect, useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
-
-import "../css/cardNumberInput.css";
+import "../css/cardNumberInput.module.scss";
 
 function CardNumberInput({ cardNumber }) {
     //算出是不是Americna Express

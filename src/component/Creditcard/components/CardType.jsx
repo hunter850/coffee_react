@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import "../css/cardNumberInput.css";
+import "../css/cardNumberInput.module.scss";
 
 function CardType({ cardNumber }) {
     const cardTypeImageWrap = { width: "85px", height: "45px" };
