@@ -12,7 +12,7 @@ const CourseAdd = () => {
                 <Path
                     pathObj={{ path: ["．課程資訊管理", "．新增課程"] }}
                     backgroundColor={"#E3E7E7"}
-                    url="/course/manage"
+                    url={["/course/manage"]}
                 />
                 <div className="container">
                     <CourseAddList />

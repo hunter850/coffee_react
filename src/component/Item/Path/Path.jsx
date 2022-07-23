@@ -3,10 +3,8 @@ import "./Path.css";
 import { v4 } from "uuid";
 import { Link } from "react-router-dom";
 
-export default function Path({ pathObj, backgroundColor, url }) {
-    const urls = [];
-    const newurls = urls.push(url);
-    // console.log(urls);
+export default function Path({ pathObj, backgroundColor, url = [] }) {
+    const newUrls = url.length;
     return (
         <div className="container Path">
             <div
@@ -20,8 +18,8 @@ export default function Path({ pathObj, backgroundColor, url }) {
                     return (
                         <Link
                             to={
-                                url && i === newurls - 1
-                                    ? urls[newurls - 1]
+                                url && i === newUrls - 1
+                                    ? url[newUrls - 1]
                                     : "#"
                             }
                             key={v4()}
