@@ -9,6 +9,32 @@
     letter-spacing: 0.07rem;
 }
 
+.course-page-btn {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+    color: #999;
+    text-align: center;
+    margin-right: 3px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.course-page-btn:hover {
+    background-color: #eee;
+}
+.course-page-btn-focus {
+    background-color: #b79973;
+    color: #fff;
+}
+
+.course-page-btn-focus:hover {
+    background-color: #b79973;
+    color: #fff;
+}
+
 @media (max-width: 768px) {
     .Course-container {
         min-width: 768px;
