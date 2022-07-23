@@ -63,7 +63,7 @@ const Course = () => {
     //預設第一頁
     const [pageNow, setPageNow] = useState(1);
     //預設一頁幾筆
-    const [perPage, setPerPage] = useState(8);
+    const [perPage, setPerPage] = useState(7);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
 
