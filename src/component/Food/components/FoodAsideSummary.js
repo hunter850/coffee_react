@@ -1,10 +1,13 @@
 import "./FoodAsideSummary.css";
 import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
+import { useState } from "react";
 
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
 function FoodAsideSummary({ dataFromFoodDetail, show }) {
     const asideClass = show ? "aside" : "aside hide";
+    const [finalTotal, setFinalTotal] = useState(0);
+
     return (
         <>
             <div className={asideClass}>
@@ -107,13 +110,17 @@ function FoodAsideSummary({ dataFromFoodDetail, show }) {
                         </div>
                     </div>
                     {dataFromFoodDetail.map((item, i) => (
-                        <FoodAsideCount item={item} key={i} />
+                        <FoodAsideCount
+                            item={item}
+                            key={i}
+                            setFinalTotal={setFinalTotal}
+                        />
                     ))}
                 </div>
                 <div className="payarea">
                     <div className="payarea1">
                         <p className="finaltotal">合計</p>
-                        <p>$1000</p>
+                        <p>$ {finalTotal}</p>
                     </div>
                     <div className="pay">去結帳</div>
                 </div>

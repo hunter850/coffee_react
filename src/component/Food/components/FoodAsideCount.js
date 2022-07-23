@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-function FoodAsideCount({ item }) {
+function FoodAsideCount({ item, setFinalTotal }) {
     const {
         foodCount,
         menu_name,
@@ -10,7 +10,8 @@ function FoodAsideCount({ item }) {
         menu_photo,
     } = item;
     const [count, setCount] = useState(foodCount);
-
+    const subCount = menu_price_m * count;
+    setFinalTotal(subCount);
     return (
         <>
             <div key={menu_sid} className="detail">
@@ -47,7 +48,7 @@ function FoodAsideCount({ item }) {
                         <div
                             className="minusplus"
                             onClick={() => {
-                                count > 0
+                                count > 1
                                     ? setCount(count - 1)
                                     : setCount(count - 0);
                             }}
@@ -64,7 +65,7 @@ function FoodAsideCount({ item }) {
                             +
                         </div>
                         <div className="grow"></div>
-                        <div>$ {menu_price_m * foodCount}</div>
+                        <div>$ {subCount}</div>
                     </div>
                 </div>
             </div>

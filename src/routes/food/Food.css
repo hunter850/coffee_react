@@ -4,11 +4,13 @@
 
 .filterbtn-area {
     display: flex;
-    margin-left: 45px;
+    
+    margin: 0 42px ;
 }
 
 .foodcard-session {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 0 calc(100%/50);
 }
