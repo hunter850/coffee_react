@@ -67,8 +67,8 @@ const Course = () => {
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
 
-    const getCourseData = async () =>
-        await axios
+    const getCourseData = () =>
+        axios
             .get(courseDataGet)
             .then((res) => {
                 // 深拷貝一組沒有把數字轉換成中文的資料, 難度排序時使用

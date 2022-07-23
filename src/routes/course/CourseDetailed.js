@@ -40,8 +40,8 @@ const CourseDetailed = () => {
     const { sid } = useParams();
 
 
-    // const getCourseDataFk = async () => {
-    //     await axios.get(courseDataFkGet)
+    // const getCourseDataFk =  () => {
+    //      axios.get(courseDataFkGet)
     //         .then((res) => {
     //             const newCourseDataFk = res.data.filter((v, i) => {
     //                 return Number(v.course_sid) === Number(sid);
@@ -51,8 +51,8 @@ const CourseDetailed = () => {
     //         });
     // };
 
-    const getCourseDetailedData = async () => {
-        await axios.get(courseDataGet)
+    const getCourseDetailedData = () => {
+        axios.get(courseDataGet)
             .then((res) => {
                 // console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {
