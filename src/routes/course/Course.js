@@ -38,6 +38,11 @@ const numberConvertString = (data) => {
     }
 };
 
+const chunk = (arr, size) =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+        arr.slice(i * size, i * size + size)
+    );
+
 const Course = () => {
     // 排序下拉選單的狀態 - 狀態提升放這邊
     const [sortData, setSortData] = useState("");
@@ -48,36 +53,23 @@ const Course = () => {
     // 搜尋框值清空時渲染用的狀態
     const [courseDataCopy, setCourseDataCopy] = useState([]);
 
+    //預設第一頁
+    const [pageNow, setPageNow] = useState(1);
+    //預設一頁幾筆
+    const [perPage, setPerPage] = useState(5);
+    // 等伺服器抓完資料才知道多少(didMount時決定)
+    const [pageTotal, setPageTotal] = useState(0);
+    const [dataDisplay, setDataDisplay] = useState([]);
+    // console.log(courseData);
     // console.log(courseData);
     // console.log(courseDataCopy);
 
-    // 排序 - 價錢低到高
-    if (sortData === "priceAsc") {
-        courseData.sort(priceAsc);
-    }
-    // 排序 - 價錢高到低
-    if (sortData === "priceDesc") {
-        courseData.sort(priceDesc);
-    }
-
-    // 排序 - 難度初級到高級
-    if (sortData === "levelAsc") {
-        courseData.sort(levelAsc);
-        // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-        numberConvertString(courseData);
-    }
-    // 排序 - 難度高級到初級
-    if (sortData === "levelDesc") {
-        courseData.sort(levelDesc);
-        // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-        numberConvertString(courseData);
-    }
     // 搜尋框為空值時重置原始資料
     useEffect(() => {
         if (searchInp === "") {
-            setCourseData(courseDataCopy);
+            setCourseData(courseData);
         }
-    }, [searchInp, courseDataCopy]);
+    }, [searchInp, courseData]);
 
     const getCourseData = async () =>
         await axios
@@ -88,25 +80,78 @@ const Course = () => {
                 const newSortData = JSON.parse(JSON.stringify(res.data));
                 // console.log(sortData);
 
-                if (sortData === "levelAsc") {
-                    return setCourseData(newSortData);
-                }
-                if (sortData === "levelDesc") {
-                    return setCourseData(newSortData);
-                }
+                // if (sortData === "levelAsc") {
+                //     return setCourseDataCopy(newSortData);
+                // }
+                // if (sortData === "levelDesc") {
+                //     return setCourseDataCopy(newSortData);
+                // }
                 // 將資料庫的course_level數字轉換成中文
                 // numberConvertString(res.data);
                 const newCourseData = res.data;
                 numberConvertString(newCourseData);
-                setCourseData(newCourseData);
-                setCourseDataCopy(newCourseData);
+                // setCourseData(newCourseData);
+
+                setDataDisplay(newCourseData);
+                setCourseDataCopy(newSortData);
+                const pageArray = chunk(newCourseData, perPage);
+                if (pageArray.length > 0) {
+                    setPageTotal(pageArray.length);
+                    setCourseData(pageArray);
+                }
+
+                // 排序 - 價錢低到高
+                if (sortData === "priceAsc") {
+                    dataDisplay.sort(priceAsc);
+                    const pageArray = chunk(dataDisplay, perPage);
+                    if (pageArray.length > 0) {
+                        setPageTotal(pageArray.length);
+                        setCourseData(pageArray);
+                    }
+                }
+
+                // 排序 - 價錢高到低
+                if (sortData === "priceDesc") {
+                    dataDisplay.sort(priceDesc);
+                    const pageArray = chunk(dataDisplay, perPage);
+                    if (pageArray.length > 0) {
+                        setPageTotal(pageArray.length);
+                        setCourseData(pageArray);
+                    }
+                }
+
+                // 排序 - 難度初級到高級
+                if (sortData === "levelAsc") {
+                    courseDataCopy.sort(levelAsc);
+                    numberConvertString(courseDataCopy);
+                    const pageArray = chunk(courseDataCopy, perPage);
+                    if (pageArray.length > 0) {
+                        setPageTotal(pageArray.length);
+                        setCourseData(pageArray);
+                        // console.log(pageArray);
+                    }
+                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
+                }
+
+                // 排序 - 難度高級到初級
+                if (sortData === "levelDesc") {
+                    courseDataCopy.sort(levelDesc);
+                    numberConvertString(courseDataCopy);
+                    const pageArray = chunk(courseDataCopy, perPage);
+                    if (pageArray.length > 0) {
+                        setPageTotal(pageArray.length);
+                        setCourseData(pageArray);
+                        // console.log(pageArray);
+                    }
+                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
+                }
             })
             .catch((err) => {
                 console.log(err.response);
             });
     useEffect(() => {
         getCourseData();
-    }, [sortData]);
+    }, [sortData, pageNow]);
 
     const el = (
         <Fragment>
@@ -139,25 +184,43 @@ const Course = () => {
                             />
                         </Link>
 
-                        {courseData.map((v, i) => {
-                            return (
-                                <Link
-                                    to={`/course/detailed/${v.course_sid}`}
-                                    key={v.course_sid}
-                                >
-                                    <Card
-                                        courseData={{
-                                            course_level: v.course_level,
-                                            course_name: v.course_name,
-                                            course_content: v.course_content,
-                                            course_price: v.course_price,
-                                            course_sid: v.course_sid,
-                                            course_img_s: v.course_img_s,
+                        {courseData.length > 0 &&
+                            courseData[pageNow - 1].map((v, i) => {
+                                return (
+                                    <Link
+                                        to={`/course/detailed/${v.course_sid}`}
+                                        key={v.course_sid}
+                                    >
+                                        <Card
+                                            courseData={{
+                                                course_level: v.course_level,
+                                                course_name: v.course_name,
+                                                course_content:
+                                                    v.course_content,
+                                                course_price: v.course_price,
+                                                course_sid: v.course_sid,
+                                                course_img_s: v.course_img_s,
+                                            }}
+                                        />
+                                    </Link>
+                                );
+                            })}
+                    </div>
+                    <div className="d-flex">
+                        {Array(pageTotal)
+                            .fill(1)
+                            .map((v, i) => {
+                                return (
+                                    <div
+                                        key={i}
+                                        onClick={() => {
+                                            setPageNow(i + 1);
                                         }}
-                                    />
-                                </Link>
-                            );
-                        })}
+                                    >
+                                        {i + 1}
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
             </div>
