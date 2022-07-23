@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./FoodCard.css";
 import "./FoodAdd.css";
 

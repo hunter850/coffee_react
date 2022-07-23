@@ -12,6 +12,15 @@ import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
 
+// 餐點篩選
+const menuFiliter = [
+    { id: undefined, name: "全部餐點" },
+    { id: "1", name: "咖啡系列" },
+    { id: "2", name: "其他飲品" },
+    { id: "3", name: "千層蛋糕" },
+    { id: "4", name: "輕食沙拉" },
+];
+
 function Food() {
     // 從sql拿資料
     const [food, setFood] = useState([]);
@@ -19,18 +28,10 @@ function Food() {
         const response = await axios.get(foodDataGet);
         setFood(response.data);
     };
+    const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     useEffect(() => {
         foodData();
     }, []);
-
-    // 餐點篩選
-    const menuFiliter = [
-        { id: 1, name: "全部餐點" },
-        { id: 2, name: "咖啡系列" },
-        { id: 3, name: "其他飲品" },
-        { id: 4, name: "千層蛋糕" },
-        { id: 5, name: "輕食沙拉" },
-    ];
 
     const [showFoodDetail, setShowFoodDetail] = useState({
         menu_name: "",
@@ -46,25 +47,6 @@ function Food() {
         setDataFromFoodDetail([...dataFromFoodDetail, item]);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
-
-    // 食物的篩選
-    const all = food.filter(({ menu_categories }) => {
-        return menu_categories !== "1";
-    });
-    const coffee = food.filter(({ menu_categories }) => {
-        return menu_categories === "2";
-    });
-    const drinks = food.filter(({ menu_categories }) => {
-        return menu_categories === "3";
-    });
-    const cake = food.filter(({ menu_categories }) => {
-        return menu_categories === "4";
-    });
-    const lightmeal = food.filter(({ menu_categories }) => {
-        return menu_categories === "5";
-    });
-    const allfilteroption = [all, coffee, drinks, cake, lightmeal];
-    const [foodFilter, setFoodFilter] = useState(1);
 
     // 讓食物詳細頁面顯示
     const [isShow, setIsShow] = useState(false);
@@ -82,7 +64,7 @@ function Food() {
                                 {menuFiliter.map(({ id, name }) => {
                                     return (
                                         <Filterbutton
-                                            key={id}
+                                            key={`menuFiliter${id}`}
                                             id={id}
                                             name={name}
                                             setFoodFilter={setFoodFilter}
@@ -98,21 +80,25 @@ function Food() {
                             </button> */}
                             </div>
                             <div className="foodcard-session">
-                                {foodFilter &&
-                                    allfilteroption[foodFilter - 1].map(
-                                        ({ ...allfood }, i) => {
-                                            return (
-                                                <FoodCard
-                                                    key={`allfood${i}`}
-                                                    allfood={allfood}
-                                                    handleShowFoodDetailSelect={
-                                                        setShowFoodDetail
-                                                    }
-                                                    setIsShow={setIsShow}
-                                                />
-                                            );
-                                        }
-                                    )}
+                                {/* 這裡很重要 */}
+                                {food
+                                    .filter(
+                                        ({ menu_categories }) =>
+                                            !foodFilter ||
+                                            menu_categories === foodFilter
+                                    )
+                                    .map(({ ...allfood }, i) => {
+                                        return (
+                                            <FoodCard
+                                                key={`allfood${i}`}
+                                                allfood={allfood}
+                                                handleShowFoodDetailSelect={
+                                                    setShowFoodDetail
+                                                }
+                                                setIsShow={setIsShow}
+                                            />
+                                        );
+                                    })}
                             </div>
                         </div>
                     </div>
