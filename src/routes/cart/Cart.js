@@ -4,6 +4,7 @@ import useClass from "../../hooks/useClass";
 // import NavBar from "../../component/NavBar";
 import FakeNav from "../../component/FakeNav";
 import CartTab from "./CartTab";
+import { Link } from "react-router-dom";
 import { productData } from "./fakeData/productData";
 import { productCouponData } from "./fakeData/productCouponData";
 import { foodData } from "./fakeData/foodData.js";
@@ -61,6 +62,7 @@ function Cart() {
                         />
                     )}
                 </div>
+                <Link to="/cart/creditcard">信用卡</Link>
             </div>
         </Fragment>
     );

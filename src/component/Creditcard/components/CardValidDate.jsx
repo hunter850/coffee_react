@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import "../css/cardNumberInput.css";
+import "../css/cardNumberInput.module.scss";
 
 function CardValidDate({ cardMonth, cardYear }) {
     const monthContent = useMemo(() => {
