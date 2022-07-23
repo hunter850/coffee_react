@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./routes/frontPage/FrontPage";
 import Cart from "./routes/cart/Cart";
+import CartCreditCard from "./routes/cart/CartCreditCard";
 import Goods from "./routes/goods/Goods";
 import Food from "./routes/food/Food";
 import Reserve from "./routes/food/Reserve";
@@ -25,6 +26,10 @@ const App = () => {
                 <Routes>
                     <Route exact={true} path="/" element={<FrontPage />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route
+                        path="/cart/creditcard"
+                        element={<CartCreditCard />}
+                    />
                     <Route path="/goods" element={<Goods />} />
                     <Route path="/food" element={<Food />} />
                     <Route path="/reserve" element={<Reserve />} />
