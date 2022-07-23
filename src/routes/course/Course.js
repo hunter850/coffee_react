@@ -73,7 +73,6 @@ const Course = () => {
             .then((res) => {
                 // 深拷貝一組沒有把數字轉換成中文的資料, 難度排序時使用
                 const newSortData = JSON.parse(JSON.stringify(res.data));
-
                 const newCourseData = res.data;
                 // 將資料庫的course_level數字轉換成中文
                 numberConvertString(newCourseData);
@@ -110,27 +109,25 @@ const Course = () => {
                 // 排序 - 難度初級到高級
                 if (sortData === "levelAsc") {
                     courseDataCopy.sort(levelAsc);
+                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
                     numberConvertString(courseDataCopy);
                     const pageArray = chunk(courseDataCopy, perPage);
                     if (pageArray.length > 0) {
                         setPageTotal(pageArray.length);
                         setCourseData(pageArray);
-                        // console.log(pageArray);
                     }
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
                 }
 
                 // 排序 - 難度高級到初級
                 if (sortData === "levelDesc") {
                     courseDataCopy.sort(levelDesc);
+                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
                     numberConvertString(courseDataCopy);
                     const pageArray = chunk(courseDataCopy, perPage);
                     if (pageArray.length > 0) {
                         setPageTotal(pageArray.length);
                         setCourseData(pageArray);
-                        // console.log(pageArray);
                     }
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
                 }
             })
             .catch((err) => {
