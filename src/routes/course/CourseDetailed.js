@@ -20,6 +20,8 @@ const CourseDetailed = () => {
     const [signup, setSignup] = useState(0);
     const [notice, setNotice] = useState(0);
     const [item, setItem] = useState(0);
+    // Line Pay跳轉url
+    const [url, setUrl] = useState('');
 
     //確認每次進頁面跳到0,0的位子
     const [topZeroSure, setTopZeroSure] = useState(false);
@@ -38,6 +40,44 @@ const CourseDetailed = () => {
 
     // 取得當前click卡片的sid
     const { sid } = useParams();
+
+    // Line Pay 串接test
+    useEffect(() => {
+        if (start === true) {
+            const { course_name, course_price } = courseDetailedData[0];
+            const orders = {
+                amount: course_price,
+                currency: 'TWD',
+                packages: [
+                    {
+                        id: 'products_1',
+                        amount: course_price,
+                        products: [
+                            {
+                                name: course_name,
+                                quantity: 1,
+                                price: course_price
+                            }
+                        ]
+                    }
+                ],
+                orderId: sid
+            };
+            axios({
+                method: 'post',
+                url: `http://localhost:3500/createOrder/${JSON.stringify(orders)}`,
+            })
+                .then((res) => {
+                    // console.log(res.data);
+                    setUrl(res.data);
+                    if (url) {
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 3000);
+                    }
+                });
+        }
+    }, [start, url]);
 
 
     // const getCourseDataFk =  () => {
