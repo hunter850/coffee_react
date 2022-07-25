@@ -74,7 +74,7 @@ function FoodAsideCount({ item, dataFromFoodDetail }) {
                         >
                             -
                         </div>
-                        <h6 className="count">{foodCount}</h6>
+                        <h6 className="count">{count}</h6>
                         <div className="minusplus" timeid={timeID}>
                             +
                         </div>
