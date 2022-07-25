@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
 
-function Goods() {
+function Products() {
     return (
         <Fragment>
             <NavBar />
@@ -10,4 +10,4 @@ function Goods() {
     );
 }
 
-export default Goods;
+export default Products;
