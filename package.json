@@ -7,11 +7,6 @@
         "@testing-library/react": "^13.3.0",
         "@testing-library/user-event": "^13.5.0",
         "axios": "^0.27.2",
-<<<<<<< HEAD
-        "classnames": "^2.3.1",
-=======
-        "crypto-js": "^4.1.1",
->>>>>>> adcbed8918d9860cc98e909e9259a3c2a5a5eeaa
         "eslint-config-react-app": "^7.0.1",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-jsx-a11y": "^6.6.0",
