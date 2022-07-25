@@ -1,9 +1,6 @@
-* {
-    letter-spacing: 0.07rem;
-}
-
 .card-wrap {
     margin-right: -20px;
+    padding-bottom: 44px;
 }
 
 .course_card {
@@ -114,6 +111,8 @@
     }
     .card-wrap {
         margin-right: 0;
+        padding-bottom: 50px;
+        /* 底部到footer的距離 */
     }
 
     .card-wrap {

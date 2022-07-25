@@ -11,13 +11,22 @@ function Sort({
         setSortData(e);
         // console.log(e);
     };
+    // 計算總共有幾筆資料
+    const coursetotal = courseData.map((v, i) => {
+        return v.length * 1;
+    });
+    let coursetotals = 0;
+    for (let i = 0; i < coursetotal.length; i++) {
+        coursetotals += coursetotal[i];
+    }
+
     return (
         <div className="container ">
             <div className="CourseSort-wrap ">
                 <div className="Coursesort-txt">
                     <p>
                         搜尋結果符合條件&nbsp;
-                        <span className="num-color">{courseData.length}</span>
+                        <span className="num-color">{coursetotals}</span>
                         &nbsp;項目
                     </p>
                 </div>

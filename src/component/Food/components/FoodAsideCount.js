@@ -1,11 +1,41 @@
-function FoodAsideCount({ sendFoodDataToAsideCount }) {
-    const { foodCount, menu_name } = sendFoodDataToAsideCount;
+import React, { useState } from "react";
+function FoodAsideCount({ item, dataFromFoodDetail }) {
+    const {
+        foodCount,
+        menu_name,
+        sugar,
+        ice,
+        menu_price_m,
+        menu_sid,
+        menu_photo,
+        timeID,
+    } = item;
+
+    const subCount = menu_price_m * foodCount;
+    const [count, setCount] = useState(foodCount);
+    console.log("dataFromFoodDetail", dataFromFoodDetail);
+    // 檢核timeID是否一致
+    // const confirmTimeID = (timeID) => {
+    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
+    //     if (items) {
+    //         () => {
+    //             foodCount + 1;
+    //         };
+    //     }
+
+    //         const confirmTimeID = (timeID) => {
+    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
+    //     if (items) {
+    //         () => {
+    //             foodCount + 1;
+    //         };
+    //     }
 
     return (
         <>
-            <div className="detail">
+            <div key={menu_sid} className="detail">
                 <img
-                    src="https://www.niusnews.com/upload/imgs/default/202109_____Choco/0915/dog-4988985_1280.jpg"
+                    src={`http://localhost:3500/images/food/${menu_photo}`}
                     alt=""
                 />
                 <div className="center">
@@ -30,16 +60,30 @@ function FoodAsideCount({ sendFoodDataToAsideCount }) {
                             />
                         </svg>
                     </div>
-
+                    <p>
+                        {sugar} / {ice}
+                    </p>
                     <div className="calculate">
-                        <div className="minusplus">-</div>
-                        <h6 className="count">{foodCount}</h6>
-                        <div className="minusplus">+</div>
-                        <div style={{ flexGrow: 2 }}></div>
-                        <div>$500</div>
+                        <div
+                            className="minusplus"
+                            onClick={() => {
+                                return foodCount > 1
+                                    ? setCount(foodCount - 1)
+                                    : undefined;
+                            }}
+                        >
+                            -
+                        </div>
+                        <h6 className="count">{count}</h6>
+                        <div className="minusplus" timeid={timeID}>
+                            +
+                        </div>
+                        <div className="grow"></div>
+                        <div>$ {subCount}</div>
                     </div>
                 </div>
             </div>
+            <div>{timeID}</div>
         </>
     );
 }

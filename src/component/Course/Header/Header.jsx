@@ -1,13 +1,22 @@
 import { React } from "react";
 import "./Header.css";
 
-function Header({ setCourseData, courseData, searchInp, setSearchInp }) {
+function Header({
+    searchInp,
+    setSearchInp,
+    dataDisplay,
+    setDataDisplay,
+    setSearchSure,
+}) {
     // 關鍵字搜尋的function
     const courseSearch = () => {
-        const newCourseData = courseData.filter((v, i) => {
-            return v.course_name.includes(searchInp);
-        });
-        setCourseData(newCourseData);
+        if (searchInp !== "") {
+            const newCourseData = dataDisplay.filter((v, i) => {
+                return v.course_name.includes(searchInp);
+            });
+            setDataDisplay(newCourseData);
+            setSearchSure(true);
+        }
     };
     return (
         <div className="CourseHeader">

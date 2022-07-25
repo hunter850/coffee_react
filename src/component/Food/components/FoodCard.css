@@ -3,7 +3,7 @@
 }
 
 .food_card {
-    margin: 0 20px 31px 20px;
+    margin: 0 calc(100%/50) 31px;
     width: 320px;
     height: 420px;
     border-radius: 10px;
@@ -35,6 +35,12 @@
     background-color: #9ec4cd;
     border-radius: 10px 10px 0 0;
 }
+.photo {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
 
 .food_card_txt {
     padding: 18px 25px;
@@ -43,11 +49,13 @@
     /* width: calc((231 / 290)  * 100%); */
 }
 
-/* .food_card_price {
-    align-items: center;
-    justify-content: end;
-    transform: translateY(-10px);
-} */
+.food_card .menu_name {
+    font-weight: bolder;
+}
+
+.food_card_level {
+    display: none;
+}
 
 .font-min1 {
     padding: 18px 0;
@@ -57,4 +65,18 @@
     *font-size: 10px;
     transform-origin: 0 0;
     line-height: 20px;
+
+    color: #898787;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.font-min2 {
+    display: flex;
+    align-items: center;
+}
+
+.food_card .menu_price_m {
+    flex-grow: 2;
 }

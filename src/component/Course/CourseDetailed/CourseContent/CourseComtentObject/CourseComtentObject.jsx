@@ -1,19 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./CourseComtentObject.css";
+import { useRef, useEffect } from "react";
+function CourseComtentObject({ object, setObject, topZeroSure }) {
+    const objectScrollTop = useRef();
 
-function CourseComtentObject() {
-    // import { useRef, useEffect } from "react";
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().top);
-    // }, []);
-
-    // 1371
+    useEffect(() => {
+        if (topZeroSure === true) {
+            setObject(objectScrollTop.current.getBoundingClientRect().top);
+        }
+    }, [topZeroSure]);
 
     return (
-        <div>
+        <div ref={objectScrollTop}>
             <div
                 className="CourseContentItem"
-                style={{ marginTop: 30 }}
+                style={{ marginTop: 30, marginBottom: 72 }}
                 id="CourseComtentObject"
             >
                 <div className="d-flex f-aic CourseContentItem-wrap">

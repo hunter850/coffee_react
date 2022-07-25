@@ -1,8 +1,9 @@
 import { useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import "../css/cardNumberInput.css";
+import styles from "../css/cardNumberInput.module.scss";
 
 function CardValidDate({ cardMonth, cardYear }) {
+    const { card_valid_date } = styles;
     const monthContent = useMemo(() => {
         switch (cardMonth) {
             case "01":
@@ -69,24 +70,24 @@ function CardValidDate({ cardMonth, cardYear }) {
     }, [cardYear]);
 
     return (
-        <div className="card_valid_date">
+        <div className={card_valid_date}>
             <SwitchTransition mode="out-in">
                 <CSSTransition
                     key={monthContent}
                     timeout={250}
                     classNames="fade-slide"
                 >
-                    <span style={{ fontSize: "20px" }}>{monthContent}</span>
+                    <span>{monthContent}</span>
                 </CSSTransition>
             </SwitchTransition>
-            <span style={{ fontSize: "20px" }}> / </span>
+            <span> / </span>
             <SwitchTransition mode="out-in">
                 <CSSTransition
                     key={yearContent}
                     timeout={250}
                     classNames="fade-slide"
                 >
-                    <span style={{ fontSize: "20px" }}>{yearContent}</span>
+                    <span>{yearContent}</span>
                 </CSSTransition>
             </SwitchTransition>
         </div>

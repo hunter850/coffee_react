@@ -1,7 +1,14 @@
+import { useMemo } from "react";
 import ElementWrap from "../ElementWrap";
+import styles from "../modal.module.scss";
 
 function ModalHeader(props) {
     const { children, component = "div", className, style, ...others } = props;
+    const { modal_header } = styles;
+    const headerClass = useMemo(() => {
+        if (className) return modal_header + " " + className;
+        return modal_header;
+    }, [modal_header, className]);
     return (
         <ElementWrap
             component={
@@ -14,15 +21,8 @@ function ModalHeader(props) {
                     : component
             }
             {...others}
-            className={`modal_text ${className ?? ""}`}
-            style={{
-                width: "100%",
-                overflow: "hidden",
-                textAlign: "center",
-                minHeight: "24px",
-                flexShrink: "0",
-                ...style,
-            }}
+            className={headerClass}
+            style={style}
         >
             {children}
         </ElementWrap>

@@ -1,0 +1,397 @@
+.creditcard_wrap {
+    width: 520px;
+    height: 550.76px;
+}
+
+.creditcard_flip {
+    width: 433px;
+    height: 243.5625px;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center;
+    transition: all 1s ease-out;
+}
+
+.creditcard_flip_active {
+    @extend .creditcard_flip;
+    transform: rotateY(180deg);
+}
+
+%frame_basic {
+    border-radius: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    z-index: 3;
+}
+
+.frame_blur {
+    @extend %frame_basic;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.fram_number_focus {
+    @extend %frame_basic;
+    transform: translateX(30px) translateY(100px);
+    width: 373px;
+    height: 60px;
+    opacity: 1;
+}
+
+.fram_name_focus {
+    @extend %frame_basic;
+    transform: translateX(30px) translateY(163px);
+    width: 265px;
+    height: 60px;
+    opacity: 1;
+}
+
+.fram_valid_focus {
+    @extend %frame_basic;
+    transform: translateX(300px) translateY(163px);
+    width: 100px;
+    height: 60px;
+    opacity: 1;
+}
+
+.creditcard_containter {
+    width: 433px;
+    height: 243.5625px;
+    border-radius: 10px;
+    background-color: skyblue;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 15px;
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.25);
+    transform-style: preserve-3d;
+    transform-origin: center;
+    backface-visibility: hidden;
+    user-select: none;
+}
+
+.creditcard_containter_back {
+    @extend .creditcard_containter;
+    transform: rotateY(180deg);
+}
+
+.card_bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 340.47px;
+    height: 32px;
+}
+
+.cvv_wrap {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0px;
+    > p {
+        font-size: 12px;
+        text-align: end;
+        margin-bottom: 5px;
+        padding-right: 10px;
+    }
+}
+
+.cart_upper_containter {
+    display: flex;
+    justify-content: space-between;
+    width: 340.48px;
+}
+
+%line_basic {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #333;
+}
+
+.chip {
+    width: 50px;
+    height: 40px;
+    background-image: linear-gradient(to bottom left, #ffecc7, #d0b978);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    div:nth-child(1) {
+        @extend %line_basic;
+        top: 13px;
+    }
+    div:nth-child(2) {
+        @extend %line_basic;
+        top: 20px;
+    }
+    div:nth-child(3) {
+        @extend %line_basic;
+        top: 28px;
+    }
+    div:nth-child(4) {
+        position: absolute;
+        width: 1px;
+        height: 50px;
+        background-color: #333;
+        left: 25px;
+    }
+    div:nth-child(5) {
+        width: 20px;
+        height: 25px;
+        background-image: linear-gradient(to bottom left, #efdbab, #e1cb94);
+        border: 1px solid #333;
+        border-radius: 3px;
+        z-index: 1;
+    }
+}
+
+.card_img_wrap {
+    width: 85px;
+    height: 45px;
+}
+
+.card_type {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.text_span {
+    display: none;
+}
+
+.card_number {
+    position: relative;
+    width: 340.48px;
+    height: 48px;
+    > div {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    span {
+        font-size: 36px;
+        padding: 0px;
+        width: 21.28px;
+        color: #333;
+    }
+}
+
+.card_valid_date {
+    position: relative;
+    &::before {
+        content: "Valid Date";
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        bottom: 32px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    span {
+        font-size: 20px;
+    }
+}
+
+
+:global(.slide-enter) {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+}
+
+:global(.slide-enter-active) {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    transition-delay: 0.1s;
+    display: inline-block;
+}
+
+:global(.slide-enter-done) {
+    opacity: 1;
+    transform: translateY(0px);
+    display: inline-block;
+}
+
+:global(.slide-exit) {
+    opacity: 1;
+    transform: translateY(0px);
+    display: inline-block;
+}
+
+:global(.slide-exit-active) {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    display: inline-block;
+}
+
+:global(.slide-exit-done) {
+    opacity: 0;
+    transform: translateY(-20px);
+    display: inline-block;
+}
+
+:global(.right-enter) {
+    opacity: 0;
+    transform: translateX(20px) rotate(45deg);
+    display: inline-block;
+}
+
+:global(.right-enter-active) {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition-delay: 0.15s;
+    display: inline-block;
+}
+
+:global(.right-enter-done) {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg);
+    display: inline-block;
+}
+
+:global(.right-exit) {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg);
+    display: inline-block;
+}
+
+:global(.right-exit-active) {
+    opacity: 0;
+    transform: translateX(-20px) rotate(45deg);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    display: inline-block;
+}
+
+:global(.right-exit-done) {
+    opacity: 0;
+    transform: translateX(-20px) rotate(45deg);
+    display: inline-block;
+}
+
+/* ----------------分隔線-------------------- */
+
+:global(.fade-slide-enter) {
+    opacity: 0;
+    transform: translateY(10px);
+    display: inline-block;
+}
+
+:global(.fade-slide-enter-active) {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    display: inline-block;
+}
+
+:global(.fade-slide-enter-done) {
+    opacity: 1;
+    transform: translateY(0px);
+    display: inline-block;
+}
+
+:global(.fade-slide-exit) {
+    opacity: 1;
+    transform: translateY(0px);
+    display: inline-block;
+}
+
+:global(.fade-slide-exit-active) {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    display: inline-block;
+}
+
+:global(.fade-slide-exit-done) {
+    opacity: 0;
+    transform: translateY(-10px);
+    display: inline-block;
+}
+
+:global(.fade-enter) {
+    opacity: 0;
+    display: inline-block;
+}
+
+:global(.fade-enter-active) {
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+    display: inline-block;
+}
+
+:global(.fade-enter-done) {
+    opacity: 1;
+    display: inline-block;
+}
+
+:global(.fade-exit) {
+    opacity: 1;
+    display: inline-block;
+}
+
+:global(.fade-exit-active) {
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+    display: inline-block;
+}
+
+:global(.fade-exit-done) {
+    opacity: 0;
+    display: inline-block;
+}
+
+
+// --------------------------------------------------------
+
+.card_name {
+    height: 32px;
+    position: relative;
+    display: flex;
+    &::before {
+        content: "持卡人姓名";
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        bottom: 32px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    span {
+        font-size: 20px;
+        height: 32px;
+        padding: 0px;
+        color: #333;
+    }
+}
+.space_width {
+    min-width: 9px;
+}
+
+.card_name_split {
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+.hide_text {
+    overflow: hidden;
+    position: relative;
+}
+

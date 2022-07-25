@@ -2,11 +2,9 @@
 import "./CoursePath.css";
 import { useState, useEffect } from "react";
 
-// 此頁待修正**************************************
-function CoursePath() {
-
+function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
     // 麵包屑跳轉指向的ID
-    const pathId = ['#CourseContentItem', '#CourseComtentObject', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice'];
+    // const pathId = ['#CourseContentItem', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice', '#CourseComtentObject'];
     // 確認點擊事件
     const [confirmClick, setConfirmClick] = useState(false);
     // 初始高亮的狀態
@@ -26,11 +24,16 @@ function CoursePath() {
 
     const coursePaths = [
         "課程內容",
-        "適合對象",
         "需求材料",
         "報名資訊",
         "注意事項",
+        "適合對象",
     ];
+
+    const courseClickMove = (i) => {
+        const pathArr = [item, material, signup, notice, object];
+        window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
+    };
 
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
@@ -48,7 +51,6 @@ function CoursePath() {
         window.onscroll = () => {
             // console.log(document.documentElement.scrollTop);
             // console.log('scrollTop: ' + scrollTop);
-            // 798是這個DOM的頂部,用useRef查的
             if (confirmFixed === true) {
                 if (document.documentElement.scrollTop <= 798) {
                     setFixedRemoteControl(false);
@@ -57,33 +59,39 @@ function CoursePath() {
                 }
             }
 
-            // console.log(document.documentElement.scrollTop > scrollTop);
             // 頁面滾動後開啟Fixed開關
             if (document.documentElement.scrollTop > scrollTop) {
                 setConfirmFixed(true);
             }
 
-            // 一滾動視窗關閉確認點擊的狀態
-            if (scrollTop !== document.documentElement.scrollTop) {
-                setConfirmClick(false);
-            }
-
+            // 視窗滾動path高亮的function 參數 - scrollHeight : DOM離top的距離 , number第幾個path顯示高亮
             const pathFocus = (scrollHeight, number) => {
                 if (scrollTop >= scrollHeight) {
                     setStart(number);
                     setClickSure(defaultCoursePaths);
                 }
             };
-            // 內容不同高度不同,待修正 *********************************************************
+
+
+            // 一滾動視窗關閉確認點擊的狀態
+            if (scrollTop !== document.documentElement.scrollTop) {
+                setConfirmClick(false);
+            }
+
+
             if (confirmClick === false) {
-                pathFocus(0, 1);
-                pathFocus(1371, 2);
-                pathFocus(1407, 3);
-                pathFocus(1861, 4);
-                pathFocus(2200, 5);
+                // 確定網頁已經定位到top0的位子才執行
+                if (topZeroSure === true) {
+                    pathFocus(item, 1);
+                    pathFocus(material, 2);
+                    pathFocus(signup, 3);
+                    pathFocus(notice, 4);
+                    pathFocus(object, 5);
+                }
+
             }
         };
-    }, [defaultCoursePaths, confirmClick, confirmFixed]);
+    }, [defaultCoursePaths, confirmClick, confirmFixed, object, material, signup, notice, item, topZeroSure]);
 
     return (
         <div className="CoursePath-wrap">
@@ -94,13 +102,14 @@ function CoursePath() {
                             key={i}
                             className={`CoursePaths`}
                             onClick={() => {
+                                courseClickMove(i);
                                 setStart(i + 1);
                                 setConfirmClick(true);
                                 setConfirmFixed(true);
                                 setClickSure(defaultCoursePaths);
                             }}
                         >
-                            <a href={pathId[i]} className={`${clickSure[i].id === start ? "focus" : ""} }`}>{v.name}</a>
+                            <a href="#/" className={`${clickSure[i].id === start ? "focus" : ""} }`} >{v.name}</a>
                         </div>
 
                     );

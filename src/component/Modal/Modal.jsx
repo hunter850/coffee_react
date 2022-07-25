@@ -4,7 +4,7 @@ import useScrollbar from "../../hooks/useScrollbar";
 import ModalBody from "./components/ModalBody";
 import ModalHeader from "./components/ModalHeader";
 import ModalFooter from "./components/ModalFooter";
-import "./modal.css";
+import cssStyles from "./modal.module.scss";
 
 function Modal({
     children,
@@ -16,30 +16,15 @@ function Modal({
 }) {
     const setNow = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
+    const { close_button, modal_bg, modal_bord } = cssStyles;
     const styles = useMemo(() => {
         return {
             bgStyle: {
-                position: "fixed",
-                top: "0px",
-                left: "0px",
-                width: "100vw",
-                height: "100vh",
-                backgroundColor: "#0009",
                 display: "none",
-                justifyContent: "center",
-                alignItems: "center",
                 opacity: 0,
                 transition: `opacity ${time}s ease`,
-                zIndex: "1000",
             },
             bordStyle: {
-                maxWidth: "95%",
-                maxHeight: "calc(90vh - 60px)",
-                overflow: "hidden",
-                backgroundColor: "#fff",
-                borderRadius: "10px",
-                display: "flex",
-                flexDirection: "column",
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `
@@ -48,21 +33,6 @@ function Modal({
             },
         };
     }, [bordY, time]);
-    const staticStyles = useMemo(() => {
-        return {
-            button: {
-                border: "none",
-                outline: "none",
-                backgroundColor: "transparent",
-                width: "36px",
-                height: "36px",
-                cursor: "pointer",
-                position: "absolute",
-                right: "0px",
-                top: "0px",
-            },
-        };
-    }, []);
     const [modalBackground, setModalBackground] = useState(styles.bgStyle);
     const [modalBord, setModalBord] = useState(styles.bordStyle);
     const closeHandler = useCallback(() => {
@@ -95,10 +65,18 @@ function Modal({
         }
     }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
     return (
-        <div style={modalBackground} onClick={closeHandler}>
-            <div style={modalBord} onClick={(e) => e.stopPropagation()}>
+        <div
+            style={modalBackground}
+            onClick={closeHandler}
+            className={modal_bg}
+        >
+            <div
+                style={modalBord}
+                onClick={(e) => e.stopPropagation()}
+                className={modal_bord}
+            >
                 {closeButton && (
-                    <button style={staticStyles.button} onClick={closeHandler}>
+                    <button className={close_button} onClick={closeHandler}>
                         <svg
                             width="12"
                             height="12"

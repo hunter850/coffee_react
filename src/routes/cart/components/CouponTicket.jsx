@@ -1,18 +1,19 @@
 import { Fragment } from "react";
-import "./css/couponTicket.css";
+import cssStyle from "./css/couponTicket.module.scss";
 
 function CouponTicket(props) {
     const { coupon } = props;
+    const { coupon_wrap, coupon_left, coupon_mid, coupon_right } = cssStyle;
     return (
         <Fragment>
-            <div className="coupon_wrap">
-                <div className="coupon_left">
+            <div className={coupon_wrap}>
+                <div className={coupon_left}>
                     <h6>{coupon.name}</h6>
                     <p id="text_alert">到期日: {coupon.expire}</p>
                     {/* <p>說明: {coupon.name}</p> */}
                 </div>
-                <div className="coupon_mid"></div>
-                <div className="coupon_right">
+                <div className={coupon_mid}></div>
+                <div className={coupon_right}>
                     <svg
                         width="32"
                         height="32"

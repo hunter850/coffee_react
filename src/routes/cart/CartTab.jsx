@@ -1,11 +1,11 @@
-import { useState, useMemo, Fragment } from "react";
-import { useStyleChange } from "../../Contexts/SuperProvider";
+import { useState, Fragment } from "react";
 import GoodsHeader from "./components/GoodsHeader";
 import GoodsList from "./components/GoodsList";
 import TotalHeader from "./components/TotalHeader";
 import TotalBord from "./components/TotalBord";
 import Modal from "../../component/Modal/Modal";
 import ModalContent from "./components/ModalContent";
+import styles from "./css/cartTab.module.scss";
 
 function CartTab(props) {
     const {
@@ -15,45 +15,14 @@ function CartTab(props) {
         selectedCouponId,
         setSelectedCouponId,
     } = props;
-    // useStyleChange();若window.innerWidth <= 375 回傳 1 反之回傳 0
-    const breakPoint = useStyleChange();
+    const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const styles = useMemo(() => {
-        if (breakPoint === 1) {
-            return {};
-        } else {
-            return {
-                fakeBody: {
-                    backgroundColor: "var(--CREAM)",
-                },
-                cartContainer: {
-                    width: "100%",
-                    padding: "0px 200px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    maxWidth: "1440px",
-                    margin: "48px auto 0px",
-                    backgroundColor: "var(--CREAM)",
-                    outline: "1px solid red",
-                },
-                listWrap: {
-                    width: "71.63%",
-                },
-                totalWrap: {
-                    width: "25%",
-                },
-                modalBody: {
-                    padding: "24px 36px",
-                },
-            };
-        }
-    }, [breakPoint]);
 
     return (
         <Fragment>
-            <div style={styles.cartContainer}>
-                <div style={styles.listWrap}>
+            <div className={cart_container}>
+                <div className={list_wrap}>
                     {cartList.clength() >= 1 && (
                         <GoodsHeader showProduct={showProduct} />
                     )}
@@ -63,7 +32,7 @@ function CartTab(props) {
                         setModalIsOpen={setModalIsOpen}
                     />
                 </div>
-                <div style={styles.totalWrap}>
+                <div className={total_wrap}>
                     <TotalHeader
                         coupons={coupons}
                         selectedCouponId={selectedCouponId}
@@ -73,7 +42,7 @@ function CartTab(props) {
                 </div>
             </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
-                <Modal.Body style={styles.modalBody}>
+                <Modal.Body className={modal_body}>
                     <ModalContent
                         cartList={cartList}
                         deleteId={deleteId}

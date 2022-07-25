@@ -2,19 +2,10 @@
     box-sizing: border-box;
 }
 
-.navbar {
-    border-bottom: 1px solid black;
-}
-
 .navUl {
     display: flex;
     list-style-type: none;
     padding: 0px;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: black;
 }
 
 /* .navUl > li {

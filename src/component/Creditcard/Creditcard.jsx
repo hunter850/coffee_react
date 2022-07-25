@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useReducer } from "react";
 import CardUpperImage from "./components/CardUpperImage";
 import CardNumberInput from "./components/CardNumberInput";
 import CardHolder from "./components/CardHolder";
@@ -7,6 +7,7 @@ import CardBlackBar from "./components/CardBlackBar";
 import CardWhiteBar from "./components/CardWhiteBar";
 import CardType from "./components/CardType";
 import CardForm from "./components/CardForm";
+import styles from "./css/cardNumberInput.module.scss";
 
 function Creditcard(props) {
     const {
@@ -22,127 +23,72 @@ function Creditcard(props) {
         setCardCvv,
         cardSubmitHandler,
     } = props;
-    const styles = useMemo(() => {
-        return {
-            creditCardWrapStyle: {
-                width: "520px",
-                height: "550.76px",
-            },
-            cardFlipStyle: {
-                width: "433px",
-                height: "243.5625px",
-                borderRadius: "10px",
-                margin: "auto",
-                position: "relative",
-                transformStyle: "preserve-3d",
-                transformOrigin: "center",
-                transition: "all 1s ease-out",
-            },
-            cardBottomStyle: {
-                display: "flex",
-                justifyContent: "space-between",
-                width: "340.47px",
-                height: "32px",
-            },
-            cvvWrapStyle: {
-                width: "100%",
-                height: "100%",
-                padding: "10px 0px",
-            },
-            cvvText: {
-                fontSize: "12px",
-                textAlign: "end",
-                marginBottom: "5px",
-                paddingRight: "10px",
-            },
-            cardFrame: {
-                borderRadius: "5px",
-                opacity: "0",
-                position: "absolute",
-                top: "0px",
-                left: "0px",
-                width: "100%",
-                height: "100%",
-                transition: "all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85)",
-                overflow: "hidden",
-                border: "2px solid rgba(255, 255, 255, 0.65)",
-                zIndex: "3",
-            },
-        };
+    const {
+        creditcard_wrap,
+        creditcard_containter,
+        creditcard_containter_back,
+        card_bottom,
+        cvv_wrap,
+        creditcard_flip,
+        creditcard_flip_active,
+        frame_blur,
+        fram_number_focus,
+        fram_name_focus,
+        fram_valid_focus,
+    } = styles;
+    const reducer = useCallback((state, action) => {
+        switch (action.type) {
+            case "blur":
+                return frame_blur;
+            case "number":
+                return fram_number_focus;
+            case "name":
+                return fram_name_focus;
+            case "valid":
+                return fram_valid_focus;
+            default:
+                return frame_blur;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const cardContainterStyle = useMemo(() => {
-        return {
-            width: "433px",
-            height: "243.5625px",
-            borderRadius: "10px",
-            backgroundColor: "skyblue",
-            position: "absolute",
-            top: "0px",
-            left: "0px",
-            zIndex: "1",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "25px 15px",
-            boxShadow: "4px 4px 16px 0px rgba(0,0,0,.25)",
-            transformStyle: "preserve-3d",
-            transformOrigin: "center",
-            backfaceVisibility: "hidden",
-        };
-    }, []);
+    const [frameStyle, frameStyleDispatch] = useReducer(reducer, frame_blur);
+    const [flipIsActive, setFlipIsActive] = useState(false);
 
-    const cardContainerBackStyle = useMemo(() => {
-        return { ...cardContainterStyle, transform: "rotateY(180deg)" };
-    }, [cardContainterStyle]);
-    const [flipStyle, setFlipStyle] = useState(styles.cardFlipStyle);
-    const [frameStyle, setFrameStyle] = useState(styles.cardFrame);
-
+    // 翻卡效果class
     const focusHandler = useCallback(() => {
-        setFlipStyle((pre) => ({ ...pre, transform: "rotateY(180deg)" }));
+        setFlipIsActive(true);
     }, []);
     const blurHandler = useCallback(() => {
-        setFlipStyle((pre) => ({ ...pre, transform: "rotateY(0deg)" }));
+        setFlipIsActive(false);
     }, []);
+    const flipClass = useMemo(() => {
+        if (flipIsActive) return creditcard_flip_active;
+        return creditcard_flip;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [flipIsActive]);
+
+    // 白框reducer改className
     const cardFrameBlur = useCallback(() => {
-        setFrameStyle(styles.cardFrame);
-    }, [setFrameStyle, styles.cardFrame]);
+        frameStyleDispatch({ type: "blur" });
+    }, []);
     const cardNumberFocus = useCallback(() => {
-        setFrameStyle((pre) => ({
-            ...pre,
-            transform: "translateX(30px) translateY(100px)",
-            width: "373px",
-            height: "60px",
-            opacity: "1",
-        }));
-    }, [setFrameStyle]);
+        frameStyleDispatch({ type: "number" });
+    }, []);
     const cardNameFocus = useCallback(() => {
-        setFrameStyle((pre) => ({
-            ...pre,
-            transform: "translateX(30px) translateY(163px)",
-            width: "265px",
-            height: "60px",
-            opacity: "1",
-        }));
-    }, [setFrameStyle]);
+        frameStyleDispatch({ type: "name" });
+    }, []);
     const cardValidFocus = useCallback(() => {
-        setFrameStyle((pre) => ({
-            ...pre,
-            transform: "translateX(300px) translateY(163px)",
-            width: "100px",
-            height: "60px",
-            opacity: "1",
-        }));
-    }, [setFrameStyle]);
+        frameStyleDispatch({ type: "valid" });
+    }, []);
 
     return (
-        <div style={styles.creditCardWrapStyle}>
-            <div style={flipStyle}>
-                <div style={frameStyle}></div>
-                <div className="card_container" style={cardContainterStyle}>
+        <div className={creditcard_wrap}>
+            <div className={flipClass}>
+                <div className={frameStyle}></div>
+                <div className={creditcard_containter}>
                     <CardUpperImage cardNumber={cardNumber} />
                     <CardNumberInput cardNumber={cardNumber} />
-                    <div className="card_bottom" style={styles.cardBottomStyle}>
+                    <div className={card_bottom}>
                         <CardHolder cardName={cardName} />
                         <CardValidDate
                             cardMonth={cardMonth}
@@ -150,10 +96,10 @@ function Creditcard(props) {
                         />
                     </div>
                 </div>
-                <div className="card_container" style={cardContainerBackStyle}>
+                <div className={creditcard_containter_back}>
                     <CardBlackBar />
-                    <div style={styles.cvvWrapStyle}>
-                        <p style={styles.cvvText}>CVV</p>
+                    <div className={cvv_wrap}>
+                        <p>CVV</p>
                         <CardWhiteBar cardCvv={cardCvv} />
                         <CardType cardNumber={cardNumber} />
                     </div>

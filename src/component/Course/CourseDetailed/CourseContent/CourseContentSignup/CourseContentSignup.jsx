@@ -1,20 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import "./CourseContentSignup.css";
 import { useState } from "react";
-// import { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
-function CourseContentSignup() {
+function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder }) {
 
-    // const test = useRef();
-    // useEffect(() => {
-    //     console.log(test.current.getBoundingClientRect().bottom);
-    // }, []);
+    const signupScrollTop = useRef();
+    useEffect(() => {
+        if (topZeroSure === true) {
+            setSignup(
+                signupScrollTop.current.getBoundingClientRect().top
+            );
+        }
+    }, [topZeroSure]);
 
 
     const [displayNone, setdisplayNone] = useState(false);
-    const [count, setCount] = useState(1);
-    //選擇人數的增減控制器
+
     const numberPeople = () => {
         setCount(count + 1);
     };
@@ -23,7 +27,7 @@ function CourseContentSignup() {
     };
 
     return (
-        <div >
+        <div ref={signupScrollTop}>
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentSignup'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
@@ -98,7 +102,7 @@ function CourseContentSignup() {
                                 <div>總金額</div>
                                 <div>
                                     <div style={{ color: "#898787" }}>
-                                        NT$ 2000 / 人
+                                        NT$ {courseDataPrice} / 人
                                     </div>
                                     <div>
                                         NT$
@@ -108,13 +112,13 @@ function CourseContentSignup() {
                                                 paddingLeft: 26,
                                             }}
                                         >
-                                            {count * 2000}
+                                            {count * courseDataPrice}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <button className="courseSignUpBtnRwd">
+                                <button className="courseSignUpBtnRwd" onClick={() => sendOrder()}>
                                     報名課程
                                 </button>
                             </div>

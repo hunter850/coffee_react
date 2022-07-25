@@ -1,73 +1,19 @@
-import { useMemo, useCallback } from "react";
-import { useStyleChange } from "../../../Contexts/SuperProvider";
+import { useCallback } from "react";
 import useDebounce from "../../../hooks/useDebounce";
-// import useLog from "../../../hooks/useLog";
 import CounterGroup from "./CounterGroup";
-import "../css/cart.css";
+import styles from "./css/goodsList.module.scss";
 
 function GoodsList(props) {
     const { cartList, setDeleteId, setModalIsOpen } = props;
-    const breakPoint = useStyleChange();
-    const styles = useMemo(() => {
-        if (breakPoint === 1) {
-            return {};
-        } else {
-            return {
-                listWrap: {
-                    width: "100%",
-                },
-                listStyle: {
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    border: "1px solid var(--DARKGRAY)",
-                    padding: "9px 23px",
-                    backgroundColor: "#fff",
-                },
-                imgWrap: {
-                    width: "100px",
-                    height: "100px",
-                    border: "1px solid var(--GRAY)",
-                    flexShrink: "0",
-                },
-                imgStyle: {
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center center",
-                },
-                nameStyle: {
-                    fontSize: "16px",
-                    color: "var(--BLUE)",
-                    flexGrow: "1",
-                    textAlign: "center",
-                },
-                priceStyle: {
-                    fontSize: "16px",
-                    color: "var(--BLUE)",
-                    width: "40px",
-                    textAlign: "center",
-                },
-                multipliedStyle: {
-                    fontSize: "16px",
-                    color: "var(--BLUE)",
-                    width: "60px",
-                    textAlign: "center",
-                    flexShrink: "0",
-                },
-                deleteButtonStyle: {
-                    backgroundColor: "transparent",
-                    width: "36px",
-                    height: "36px",
-                    objectPosition: "center center",
-                    cursor: "pointer",
-                    border: "none",
-                    outline: "none",
-                },
-            };
-        }
-    }, [breakPoint]);
+    const {
+        cart_delete,
+        cart_list_ul,
+        list,
+        img_wrap,
+        p_name,
+        p_price,
+        p_multiply,
+    } = styles;
 
     useDebounce(
         () => {
@@ -85,30 +31,23 @@ function GoodsList(props) {
         [setDeleteId, setModalIsOpen]
     );
     return (
-        <ul style={styles.listWrap} className="cart_list_ul">
+        <ul className={cart_list_ul}>
             {cartList.cmap((item) => (
-                <li key={item.name} style={styles.listStyle}>
-                    <div style={styles.imgWrap}>
-                        <img
-                            src={item.picture}
-                            alt={item.name}
-                            style={styles.imgStyle}
-                        />
+                <li key={item.name} className={list}>
+                    <div className={img_wrap}>
+                        <img src={item.picture} alt={item.name} />
                     </div>
-                    <p style={styles.nameStyle}>{item.name}</p>
-                    <p style={styles.priceStyle}>{item.price}</p>
+                    <p className={p_name}>{item.name}</p>
+                    <p className={p_price}>{item.price}</p>
                     <CounterGroup
                         quantity={item.quantity}
                         id={item.id}
                         cartList={cartList}
                     />
-                    <p style={styles.multipliedStyle}>
-                        {item.price * item.quantity}
-                    </p>
+                    <p className={p_multiply}>{item.price * item.quantity}</p>
                     <button
                         onClick={() => deleteHandler(item.id)}
-                        style={styles.deleteButtonStyle}
-                        className="cart_delete_button"
+                        className={cart_delete}
                     >
                         <svg
                             width="16"

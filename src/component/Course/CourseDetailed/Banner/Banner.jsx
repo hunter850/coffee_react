@@ -2,7 +2,7 @@
 import "./Banner.css";
 
 
-function Banner({ courseDetailedData, start }) {
+function Banner({ courseDetailedData, start, courseClickMove }) {
     // console.log(courseDetailedData[0]);
     // 難度數字轉成中文
     // 確認取得資料才渲染頁面
@@ -103,8 +103,8 @@ function Banner({ courseDetailedData, start }) {
                         </span>
                         {courseDetailedData[0].course_price}
                     </div>
-                    <div className="Btn">
-                        <button className="banner-Btn-Hover bannerBtn">
+                    <div className="courseBannerBtn-wrap">
+                        <button className="banner-Btn-Hover courseBannerBtn" onClick={() => courseClickMove()}>
                             報名課程
                         </button>
                     </div>

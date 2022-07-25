@@ -1,16 +1,13 @@
 import "./FoodCardDetail.css";
 import { useState } from "react";
 
-function FoodCardDetail({
-    showFoodDetail,
-    setIsShow,
-    setGetDataFromFoodDetail,
-}) {
+function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const {
+        menu_sid,
         menu_name,
         menu_nutrition,
         menu_price_m,
-        // menu_sid,
+        menu_photo,
         // menu_categories,
     } = showFoodDetail;
 
@@ -45,6 +42,7 @@ function FoodCardDetail({
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
+    const [timeID, setTimeID] = useState(Date.now());
 
     return (
         <>
@@ -53,7 +51,7 @@ function FoodCardDetail({
                     <div className="food-detail-photoarea">
                         <figure>
                             <img
-                                src="https://www.niusnews.com/upload/imgs/default/202109_____Choco/0915/dog-4988985_1280.jpg"
+                                src={`http://localhost:3500/images/food/${menu_photo}`}
                                 alt=""
                                 className="food-detail-photo"
                             />
@@ -100,7 +98,7 @@ function FoodCardDetail({
                     <div className="foodchoice">冰熱選擇</div>
                     {icechoice.map(({ name, id }) => {
                         return (
-                            <div key={`icechoice${id}`}>
+                            <div key={`icechoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
                                     checked={ice === name}
@@ -109,8 +107,11 @@ function FoodCardDetail({
                                         setIce(e.target.value);
                                     }}
                                     id={name}
+                                    className="inputdetail"
                                 />
-                                <label htmlFor={name}>{name}</label>
+                                <label htmlFor={name} className="inputla">
+                                    {name}
+                                </label>
                             </div>
                         );
                     })}
@@ -118,7 +119,7 @@ function FoodCardDetail({
                     <div className="foodchoice">甜度選擇</div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
-                            <div key={`sugarchoice${id}`}>
+                            <div key={`sugarchoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
                                     checked={sugar === name}
@@ -127,18 +128,21 @@ function FoodCardDetail({
                                         setSugar(e.target.value);
                                     }}
                                     id={name}
+                                    className="inputdetail"
                                 />
-                                <label htmlFor={name}>{name}</label>
+                                <label htmlFor={name} className="inputla">
+                                    {name}
+                                </label>
                             </div>
                         );
                     })}
-                    <div style={{ display: "flex", marginTop: "20px" }}>
+                    <div className="cal">
                         <button
                             className="foodminusplus"
                             onClick={() => {
-                                foodCount > 1
+                                return foodCount > 1
                                     ? setFoodCount(foodCount - 1)
-                                    : setFoodCount(foodCount - 0);
+                                    : undefined;
                             }}
                         >
                             -
@@ -156,9 +160,15 @@ function FoodCardDetail({
                             className="addtoorder"
                             onClick={() => {
                                 setIsShow(false);
-                                setGetDataFromFoodDetail({
+                                setDataFromFoodDetail({
                                     menu_name,
                                     foodCount,
+                                    sugar,
+                                    ice,
+                                    menu_price_m,
+                                    menu_sid,
+                                    menu_photo,
+                                    timeID,
                                 });
                             }}
                         >
