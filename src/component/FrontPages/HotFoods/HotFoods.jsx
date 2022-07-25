@@ -1,4 +1,5 @@
 import React from "react";
+// import styles from "../HotFoods/HotFoods.module.scss";
 import "./HotFoods.css";
 
 function HotFoods() {
