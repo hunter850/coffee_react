@@ -1,0 +1,129 @@
+:root {
+    --blue: rgb(37, 57, 69);
+    --cream: rgb(252, 250, 247);
+    --gold: rgb(183, 153, 115);
+    --gray: rgb(217, 217, 217);
+    --dark-gray: rgb(203, 203, 203);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--cream);
+}
+.ui-wrap-main{
+    /* 限制範圍 */
+    width: 1440px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.ui-container{ 
+    /* 扣掉左右200px */
+    width: calc( 100% - 400px );
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+/* 資料表 */
+.ui-wrap-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 688px;
+    height: 880px;
+    border: 1.2px solid var(--blue);
+    border-radius: 3px;
+    margin-bottom: 100px;
+}
+.ui-title{
+    width: 100%;
+    color: var(--blue);
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px 0;
+}
+.ui-title::after{
+    content: " ";
+    display: block;
+    border-bottom: 1.2px solid var(--blue);
+    width: 100%;
+    padding: 5px 0;
+}
+.avatar{
+    width: 165px;
+    height: 165px;
+    background-color: var(--gray);
+    margin: 40px 0 50px 0;
+}
+.ui-info-wrap{
+    width: 440px;
+}
+.ui-info{
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.ui-info-title{
+    margin-right: 40px;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 1.15rem;
+}
+.ui-field{
+    border: 1px solid var(--gray);
+    border-radius: 3px;
+    width: 360px;
+    height: 36px;
+    background-color: transparent;
+    color: var(--blue);
+    font-size: 1rem;
+    padding: 0 9px;
+}
+.ui-field:focus {
+    outline: none;
+    border: 2px solid var(--gold);
+}
+.ui-btn-password{
+    width: 150px;
+    height: 30px;
+    border: 1.5px solid var(--blue);
+    border-radius: 3px;
+    color: var(--blue);
+    background-color: transparent;
+    cursor: pointer;
+}
+.ui-btn-password:hover{
+    color: var(--cream);
+    border: none;
+    background-color: var(--blue);
+    margin: 0;
+}
+/* 按鈕 */
+.ui-btn-wrap{
+    display: flex;
+    justify-content: flex-end;
+}
+.ui-btn{
+    width: 68px;
+    height: 30px;
+    border: 1.5px solid var(--blue);
+    border-radius: 3px;
+    color: var(--blue);
+    background-color: transparent;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.ui-btn-active{
+    color: var(--cream);
+    border: none;
+    background-color: var(--blue);
+    margin: 0;
+}

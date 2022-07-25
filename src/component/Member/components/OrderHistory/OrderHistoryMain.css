@@ -1,0 +1,115 @@
+:root {
+    --blue: rgb(37, 57, 69);
+    --cream: rgb(252, 250, 247);
+    --gold: rgb(183, 153, 115);
+    --gray: rgb(217, 217, 217);
+    --dark-gray: rgb(203, 203, 203);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--cream);
+}
+.odh-wrap-main{
+    /* 限制範圍 */
+    width: 1440px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.odh-container{ 
+    /* 扣掉左右200px */
+    width: calc( 100% - 400px );
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+/* 歷史訂單預覽 */
+.odh-wrap-right{
+    width: 688px;
+    min-height: 800px;
+    height: 100%;
+}
+.odh-info{
+    width: 100%;
+    height: 215px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid var(--dark-gray);
+    margin-bottom: 25px;
+    transition: .2s ease-out;
+}
+.odh-info:hover{
+    box-shadow: 4px 4px 5px 0px rgb(0,0,0,0.1);
+    cursor: pointer;
+    transform: translateY(-3px);
+    border: 1px solid var(--dark-gray);
+}
+.odh-info:hover .odh-btn{
+    background-color: var(--gold);
+    cursor: pointer;
+    
+}
+.odh-header{
+    width: 100%;
+    height: 65px;
+    background-color: var(--gray);
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 1px solid var(--dark-gray);
+    display: flex;
+    align-items: center;
+}
+.odh-date-wrap{
+    padding: 0 30px;
+    margin-right: 325px;
+}
+.odh-info-wrap{
+    display: flex;
+    align-items: flex-start;
+    padding: 40px 0;
+}
+.odh-content{
+    margin-left: 90px;
+    flex-grow: 1;
+}
+.odh-date-title, .odh-id{
+    font-size: 0.8rem;
+    color: var(--blue);
+    margin-bottom: 3px;
+}
+.odh-header>span{
+    margin-left: 10px;
+    font-size: 0.8rem;
+    color: var(--blue);
+}
+.odh-date{
+    color: var(--blue);
+}
+
+.odh-price{
+    margin-bottom: 25px;
+}
+.odh-price>span, .odh-state>span{
+    color: var(--blue);
+    margin-right: 40px;
+    font-weight: 600;
+}
+.odh-price>span:nth-child(2), .odh-state>span:nth-child(2){
+    color: var(--blue);
+    font-weight: 500;
+}
+.odh-btn{
+    width: 93px;
+    height: 30px;
+    border: none;
+    background-color: var(--blue);
+    color: var(--cream);
+    font-size: 0.85rem;
+    margin-right: 50px;
+}
