@@ -1,16 +1,10 @@
 import { Fragment, useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import "../css/cardNumberInput.module.scss";
+import styles from "../css/cardNumberInput.module.scss";
 
-function CardType({ cardNumber }) {
-    const cardTypeImageWrap = { width: "85px", height: "45px" };
-
-    const cardTypeStyle = {
-        width: "100%",
-        height: "100%",
-        objectFit: "contain",
-        objectPosition: "center center",
-    };
+function CardType(props) {
+    const { cardNumber } = props;
+    const { card_img_wrap, card_type } = styles;
 
     const imageSrc = useMemo(() => {
         switch (cardNumber[0]) {
@@ -35,7 +29,7 @@ function CardType({ cardNumber }) {
 
     return (
         <Fragment>
-            <div style={cardTypeImageWrap}>
+            <div className={card_img_wrap}>
                 <SwitchTransition>
                     <CSSTransition
                         key={imageSrc}
@@ -43,7 +37,7 @@ function CardType({ cardNumber }) {
                         classNames="fade"
                     >
                         <img
-                            style={cardTypeStyle}
+                            className={card_type}
                             src={imageSrc}
                             alt="VISA card"
                         />

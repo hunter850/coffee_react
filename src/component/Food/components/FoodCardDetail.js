@@ -42,6 +42,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
+    const [timeID, setTimeID] = useState(Date.now());
 
     return (
         <>
@@ -139,9 +140,9 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         <button
                             className="foodminusplus"
                             onClick={() => {
-                                foodCount > 1
+                                return foodCount > 1
                                     ? setFoodCount(foodCount - 1)
-                                    : setFoodCount(foodCount - 0);
+                                    : undefined;
                             }}
                         >
                             -
@@ -167,6 +168,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                     menu_price_m,
                                     menu_sid,
                                     menu_photo,
+                                    timeID,
                                 });
                             }}
                         >

@@ -42,6 +42,10 @@ const CourseDetailed = () => {
 
     // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
+    // 點擊後引到報名課程的區塊
+    const courseClickMove = () => {
+        window.scrollTo({ top: signup + 200, behavior: "smooth" });
+    };
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
     const sendOrder = () => {
@@ -143,7 +147,7 @@ const CourseDetailed = () => {
                     url={["/course"]}
                 />
                 <Carousel />
-                <Banner courseDetailedData={courseDetailedData} start={start} />
+                <Banner courseDetailedData={courseDetailedData} start={start} courseClickMove={courseClickMove} />
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">

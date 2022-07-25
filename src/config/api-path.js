@@ -7,7 +7,7 @@ export const courseDataGet = `${SERVER}/course`;
 export const courseDataFkGet = `${SERVER}/course/FK-get`;
 
 // FOOD
-export const foodDataGet = `${SERVER}/coffee-food-get`;
+export const foodDataGet = `${SERVER}/food`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/api`;
