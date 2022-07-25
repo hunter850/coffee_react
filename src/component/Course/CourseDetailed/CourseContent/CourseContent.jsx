@@ -18,6 +18,9 @@ function CourseContent({
     setItem,
     item,
     topZeroSure,
+    setCount,
+    count,
+    sendOrder,
 }) {
     return (
         <div className="CourseContent">
@@ -34,6 +37,9 @@ function CourseContent({
                 signup={signup}
                 setSignup={setSignup}
                 topZeroSure={topZeroSure}
+                setCount={setCount}
+                count={count}
+                sendOrder={sendOrder}
             />
             <CourseContentNotice
                 notice={notice}
