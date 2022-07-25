@@ -11,7 +11,7 @@ function FrontPage() {
     return (
         <Fragment>
             <NavBar />
-            <h2 className="color">首頁</h2>
+            {/* <h2 className="color">首頁</h2> */}
             <Carousel />
             <HotFoods />
             <LatestNews />
