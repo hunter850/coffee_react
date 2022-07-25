@@ -140,7 +140,7 @@ const NavBar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/goods" style={{ color: "white" }}>
+                        <Link to="/products" style={{ color: "white" }}>
                             商品
                         </Link>
                     </li>

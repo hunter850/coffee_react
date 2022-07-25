@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
     // 麵包屑跳轉指向的ID
-    const pathId = ['#CourseContentItem', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice', '#CourseComtentObject'];
+    // const pathId = ['#CourseContentItem', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice', '#CourseComtentObject'];
     // 確認點擊事件
     const [confirmClick, setConfirmClick] = useState(false);
     // 初始高亮的狀態
@@ -29,6 +29,11 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
         "注意事項",
         "適合對象",
     ];
+
+    const courseClickMove = (i) => {
+        const pathArr = [item, material, signup, notice, object];
+        window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
+    };
 
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
@@ -97,13 +102,14 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
                             key={i}
                             className={`CoursePaths`}
                             onClick={() => {
+                                courseClickMove(i);
                                 setStart(i + 1);
                                 setConfirmClick(true);
                                 setConfirmFixed(true);
                                 setClickSure(defaultCoursePaths);
                             }}
                         >
-                            <a href={pathId[i]} className={`${clickSure[i].id === start ? "focus" : ""} }`}>{v.name}</a>
+                            <a href="#/" className={`${clickSure[i].id === start ? "focus" : ""} }`} >{v.name}</a>
                         </div>
 
                     );

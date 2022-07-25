@@ -1,0 +1,14 @@
+.sharing_wrap{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffa;
+    > div  {
+        width: 25%;
+        background-color: #ccc;
+    }
+}
+
+.post_img{
+    width: 100%;
+    // height: auto;
+}

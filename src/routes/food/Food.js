@@ -41,16 +41,41 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
-
+    const isSameItem = (item1, item2) => {
+        return (
+            item1.ice === item2.ice &&
+            item1.sugar === item2.sugar &&
+            item1.menu_sid === item2.menu_sid
+        );
+    };
     // 食物累加到側邊欄
     const handleDetailAppend = (item) => {
-        setDataFromFoodDetail([...dataFromFoodDetail, item]);
+        let newData;
+        const isSameItemExist = dataFromFoodDetail.some((existedItem) =>
+            isSameItem(existedItem, item)
+        );
+        if (isSameItemExist) {
+            // 裡面有相同品項 品項增加所給的數量foodCount
+            newData = dataFromFoodDetail.map((existedItem) => {
+                if (isSameItem(existedItem, item)) {
+                    return {
+                        ...existedItem,
+                        foodCount: existedItem.foodCount + item.foodCount,
+                    };
+                }
+                return existedItem;
+            });
+        } else {
+            // 裡面沒有相同品項 新增
+            newData = [...dataFromFoodDetail, item];
+        }
+        setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
-
     // 讓食物詳細頁面顯示
     const [isShow, setIsShow] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
+    useEffect(() => { }, [dataFromFoodDetail]);
     return (
         <Fragment>
             <NavBar />
