@@ -1,4 +1,4 @@
-import { wrap } from "lodash";
+// import { wrap } from "lodash";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 
@@ -30,7 +30,7 @@ function Sharing() {
                     return (
                         <div key={i}>
                             <img
-                                src={`${imgSrc}/${v.src}`}
+                                src={`${imgSrc}/sharing/${v["img_name"]}`}
                                 alt={`pic${v.sid}`}
                                 className="post_img"
                             />
