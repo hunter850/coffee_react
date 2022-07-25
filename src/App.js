@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FrontPage from "./routes/frontPage/FrontPage";
 import Cart from "./routes/cart/Cart";
 import CartCreditCard from "./routes/cart/CartCreditCard";
-import Goods from "./routes/goods/Goods";
+import Products from "./routes/Products/Products";
 import Food from "./routes/food/Food";
 import Reserve from "./routes/food/Reserve";
 import Course from "./routes/course/Course";
@@ -30,7 +30,7 @@ const App = () => {
                         path="/cart/creditcard"
                         element={<CartCreditCard />}
                     />
-                    <Route path="/goods" element={<Goods />} />
+                    <Route path="/products" element={<Products />} />
                     <Route path="/food" element={<Food />} />
                     <Route path="/reserve" element={<Reserve />} />
                     <Route path="/course" element={<Course />} />

@@ -1,4 +1,5 @@
 import { Fragment, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import FakeNav from "../../component/FakeNav";
 import Creditcard from "../../component/Creditcard/Creditcard";
 
@@ -28,6 +29,7 @@ function CartCreditCard() {
                 setCardCvv={setCardCvv}
                 cardSubmitHandler={cardSubmitHandler}
             />
+            <Link to="/cart">cart</Link>
         </Fragment>
     );
 }

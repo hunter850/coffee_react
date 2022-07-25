@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
-function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure }) {
+function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder }) {
 
     const signupScrollTop = useRef();
     useEffect(() => {
@@ -18,8 +18,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure }
 
 
     const [displayNone, setdisplayNone] = useState(false);
-    const [count, setCount] = useState(1);
-    //選擇人數的增減控制器
+
     const numberPeople = () => {
         setCount(count + 1);
     };
@@ -119,7 +118,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure }
                                 </div>
                             </div>
                             <div>
-                                <button className="courseSignUpBtnRwd">
+                                <button className="courseSignUpBtnRwd" onClick={() => sendOrder()}>
                                     報名課程
                                 </button>
                             </div>
