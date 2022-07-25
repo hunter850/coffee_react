@@ -13,15 +13,14 @@ import { courseDataGet } from "../../config/api-path";
 // import { courseDataFkGet } from "../../config/api-path";
 
 const CourseDetailed = () => {
-
     // 每一個區塊離top多遠的狀態
     const [object, setObject] = useState(0);
     const [material, setMaterial] = useState(0);
     const [signup, setSignup] = useState(0);
     const [notice, setNotice] = useState(0);
     const [item, setItem] = useState(0);
-    // Line Pay跳轉url
-    // const [url, setUrl] = useState('');
+    // 儲存Line Pay跳轉url
+    const [url, setUrl] = useState('');
 
     //確認每次進頁面跳到0,0的位子
     const [topZeroSure, setTopZeroSure] = useState(false);
@@ -32,56 +31,55 @@ const CourseDetailed = () => {
     // 外鍵資料
     // const [courseDataFk, setCourseDataFk] = useState([]);
 
-    // 確認有拿到資料,才渲染
+    // 確認是否有拿到資料
     const [start, setStart] = useState(false);
+
+    //選擇人數的增減控制器 - 狀態提升
+    const [count, setCount] = useState(1);
 
     // 對照sid當筆資料的價格 - 狀態提升
     const [courseDataPrice, setCourseDataPrice] = useState(0);
 
-    // 取得當前click卡片的sid
+    // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
 
-    // Line Pay 串接test
-    // useEffect(() => {
-    //     if (start === true) {
-    //         const { course_name, course_price } = courseDetailedData[0];
-    //         const orders = {
-    //             amount: course_price,
-    //             currency: 'TWD',
-    //             packages: [
-    //                 {
-    //                     id: 'products_1',
-    //                     amount: course_price,
-    //                     products: [
-    //                         {
-    //                             name: course_name,
-    //                             quantity: 1,
-    //                             price: course_price
-    //                         }
-    //                     ]
-    //                 }
-    //             ],
-    //             orderId: sid
-    //         };
-    //         axios({
-    //             method: 'post',
-    //             url: `http://localhost:3500/createOrder/${JSON.stringify(orders)}`,
-    //         })
-    //             .then((res) => {
-    //                 // console.log(res.data);
-    //                 setUrl(res.data);
-    //                 // if (url) {
-    //                 //     setTimeout(() => {
-    //                 //         window.location.href = url;
-    //                 //     }, 3000);
-    //                 // }
-    //             });
-    //     }
-    // }, [start, url]);
+    // Line Pay 訂單請求發送 - click事件(報名課程)
+    const sendOrder = () => {
+        if (start === true) {
+            const { course_name, course_price } = courseDetailedData[0];
 
+            const orders = {
+                amount: course_price * count,
+                currency: 'TWD',
+                packages: [
+                    {
+                        id: sid,
+                        amount: course_price * count,
+                        products: [
+                            {
+                                name: course_name,
+                                quantity: count,
+                                price: course_price,
+                            }
+                        ]
+                    }
+                ],
+                orderId: sid
+            };
+            axios({
+                method: 'post',
+                url: `http://localhost:3500/course/createOrder/${JSON.stringify(orders)}`,
+            })
+                .then((res) => {
+                    console.log(res.data);
+                    setUrl(res.data);
+                });
+        }
+    };
 
-    // const getCourseDataFk =  () => {
-    //      axios.get(courseDataFkGet)
+    // 外鍵資料獲取
+    // const getCourseDataFk = () => {
+    //     axios.get(courseDataFkGet)
     //         .then((res) => {
     //             const newCourseDataFk = res.data.filter((v, i) => {
     //                 return Number(v.course_sid) === Number(sid);
@@ -110,6 +108,13 @@ const CourseDetailed = () => {
     // useEffect(() => {
     //     getCourseDataFk();
     // }, []);
+
+    // 完成付款後頁面自動跳轉
+    useEffect(() => {
+        if (url !== '') {
+            window.location.href = url;
+        }
+    }, [url]);
 
     useEffect(() => {
         //一進頁面到top 0
@@ -143,7 +148,7 @@ const CourseDetailed = () => {
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
                     <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} />
-                    <CourseContent courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} />
+                    <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} />
                 </div>
             </div>
         </Fragment>
