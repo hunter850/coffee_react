@@ -1,9 +1,13 @@
 import { Fragment, useState, useEffect, useRef, useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
-import "../css/cardNumberInput.module.scss";
+import useClass from "../../../hooks/useClass";
+import styles from "../css/cardNumberInput.module.scss";
 
-function CardHolder({ cardName }) {
+function CardHolder(props) {
+    const { cardName } = props;
+    const { card_name, card_name_split, hide_text } = styles;
+    const c = useClass();
     const cardMask = useIndexArray(100);
     const [tempArray, setTempArray] = useState([]);
     const [contentWidth, setContentWidth] = useState(0);
@@ -11,6 +15,11 @@ function CardHolder({ cardName }) {
     const nameRef = useRef(null);
     const nameSplit = useMemo(() => cardName.split(""), [cardName]);
     const nameLength = useMemo(() => cardName.split("").length, [cardName]);
+    const transitionGroupStyle = useMemo(() => {
+        if (textHide) return c(card_name_split, hide_text);
+        return card_name_split;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [textHide]);
 
     useEffect(() => {
         //紀錄transition leave時候的content
@@ -39,13 +48,9 @@ function CardHolder({ cardName }) {
 
     return (
         <Fragment>
-            <div
-                className="card_name"
-                style={{ height: "32px", display: "flex" }}
-                ref={nameRef}
-            >
+            <div className={card_name} ref={nameRef}>
                 <TransitionGroup
-                    className={`card_name_split ${textHide ? "hide_text" : ""}`}
+                    className={transitionGroupStyle}
                     style={{ maxWidth: `${contentWidth}px` }}
                 >
                     {cardMask.map((item) => (

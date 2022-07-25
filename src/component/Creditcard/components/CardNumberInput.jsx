@@ -1,9 +1,13 @@
 import { Fragment, useState, useEffect, useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
-import "../css/cardNumberInput.module.scss";
+import useClass from "../../../hooks/useClass";
+import styles from "../css/cardNumberInput.module.scss";
 
-function CardNumberInput({ cardNumber }) {
+function CardNumberInput(props) {
+    const { cardNumber } = props;
+    const { card_number, text_span } = styles;
+    const c = useClass();
     //算出是不是Americna Express
     const isShort = useMemo(() => {
         return (
@@ -32,16 +36,16 @@ function CardNumberInput({ cardNumber }) {
 
     return (
         <Fragment>
-            <div className="card_number">
+            <div className={card_number}>
                 <TransitionGroup>
                     {cardMask.map((item) => (
                         <Fragment key={item.index}>
                             <CSSTransition
                                 in={item.index < cardNumber.length}
                                 timeout={500}
-                                classNames="text_span slide"
+                                classNames={c(text_span, "slide")}
                             >
-                                <span className="text_span">
+                                <span className={text_span}>
                                     {cardNumber.split("")[item.index] ===
                                     undefined
                                         ? tempArray[item.index]

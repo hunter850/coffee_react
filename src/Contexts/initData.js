@@ -1,3 +1,3 @@
 export const initData = {
-    count: 0,
+    // count: 0,
 };
