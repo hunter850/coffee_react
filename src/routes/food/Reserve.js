@@ -1,11 +1,18 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
+import Path from "../../component/Item/Path/Path";
+import "./Reserve.css";
 
 function Reserve() {
     return (
         <Fragment>
             <NavBar />
-            <h2>訂位</h2>
+            <Path pathObj={{ path: ["．訂位"] }} />
+            <div className="container">
+                <div className="reserve">
+                    <div className="left"></div>
+                </div>
+            </div>
         </Fragment>
     );
 }

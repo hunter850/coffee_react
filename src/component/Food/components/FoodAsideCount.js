@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-function FoodAsideCount({ item, setFinalTotal }) {
+function FoodAsideCount({ item, dataFromFoodDetail }) {
     const {
         foodCount,
         menu_name,
@@ -8,10 +8,29 @@ function FoodAsideCount({ item, setFinalTotal }) {
         menu_price_m,
         menu_sid,
         menu_photo,
+        timeID,
     } = item;
+
+    const subCount = menu_price_m * foodCount;
     const [count, setCount] = useState(foodCount);
-    const subCount = menu_price_m * count;
-    setFinalTotal(subCount);
+    console.log("dataFromFoodDetail", dataFromFoodDetail);
+    // 檢核timeID是否一致
+    // const confirmTimeID = (timeID) => {
+    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
+    //     if (items) {
+    //         () => {
+    //             foodCount + 1;
+    //         };
+    //     }
+
+    //         const confirmTimeID = (timeID) => {
+    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
+    //     if (items) {
+    //         () => {
+    //             foodCount + 1;
+    //         };
+    //     }
+
     return (
         <>
             <div key={menu_sid} className="detail">
@@ -48,20 +67,15 @@ function FoodAsideCount({ item, setFinalTotal }) {
                         <div
                             className="minusplus"
                             onClick={() => {
-                                count > 1
-                                    ? setCount(count - 1)
-                                    : setCount(count - 0);
+                                return foodCount > 1
+                                    ? setCount(foodCount - 1)
+                                    : undefined;
                             }}
                         >
                             -
                         </div>
-                        <h6 className="count">{count}</h6>
-                        <div
-                            className="minusplus"
-                            onClick={() => {
-                                setCount(count + 1);
-                            }}
-                        >
+                        <h6 className="count">{foodCount}</h6>
+                        <div className="minusplus" timeid={timeID}>
                             +
                         </div>
                         <div className="grow"></div>
@@ -69,6 +83,7 @@ function FoodAsideCount({ item, setFinalTotal }) {
                     </div>
                 </div>
             </div>
+            <div>{timeID}</div>
         </>
     );
 }
