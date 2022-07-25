@@ -31,7 +31,6 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
     ];
 
     const courseClickMove = (i) => {
-        console.log(i);
         const pathArr = [item, material, signup, notice, object];
         window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
     };

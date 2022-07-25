@@ -113,7 +113,7 @@ const CourseDetailed = () => {
     //     getCourseDataFk();
     // }, []);
 
-    // 完成付款後頁面自動跳轉
+    // 建立訂單時跳轉付款頁面
     useEffect(() => {
         if (url !== '') {
             window.location.href = url;
