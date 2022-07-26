@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { sortBy, shuffle, orderBy } from "lodash";
 
 // redux有在createSlice裡面使用Immer library 簡單講就是可以使用更動原陣列或原物件的方式
+// 不會更動原物件 原陣列的方式需要用return
 // 注意只能在createSlice 或 createReducer內部有這樣的機制 在這之外請遵守react的imutable的規則
 // 參考官網https://redux.js.org/tutorials/essentials/part-3-data-flow 搜尋 Immer library就能找到解釋
 export const sampleSlice = createSlice({
@@ -17,25 +18,25 @@ export const sampleSlice = createSlice({
             state.push(action.payload);
         },
         deleteItem: (state, action) => {
-            state.value = state.value.filter((item) => {
+            return state.filter((item) => {
                 return item.sid !== action.payload;
             });
         },
         sortByPrice: (state) => {
-            state.value = sortBy(state.value, ["price"]);
+            return sortBy(state, ["price"]);
         },
         sortByPriceQuantity: (state) => {
-            state.value = sortBy(state.value, ["price", "quantity"]);
+            return sortBy(state, ["price", "quantity"]);
         },
         complexSort: (state) => {
-            state.value = orderBy(
-                state.value,
+            return orderBy(
+                state,
                 ["price", "quantity", "sid"],
                 ["asc", "desc", "asc"]
             );
         },
         randomSort: (state) => {
-            state.value = shuffle(state.value);
+            return shuffle(state);
         },
     },
 });
