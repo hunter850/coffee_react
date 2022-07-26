@@ -24,7 +24,7 @@ function Sharing() {
         <Fragment>
             <NavBar />
             <h2>分享牆</h2>
-            <h5>{JSON.stringify(rows[0])}</h5>
+            <pre>{JSON.stringify(rows[0], null, 4)}</pre>
             <div className={sharing_wrap} style={{ display: "flex" }}>
                 {rows.map((v, i) => {
                     return (
