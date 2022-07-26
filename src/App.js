@@ -1,4 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// -------- Redux ------------
+import store from "./app/store";
+import { Provider } from "react-redux";
+// ---------------------------
 import FrontPage from "./routes/frontPage/FrontPage";
 import Cart from "./routes/cart/Cart";
 import CartCreditCard from "./routes/cart/CartCreditCard";
@@ -26,44 +30,58 @@ import ProductsDetail from "./routes/Products/ProductsDetail";
 
 const App = () => {
     const el = (
-        <BrowserRouter>
-            <AllProvider>
-                <Routes>
-                    <Route exact={true} path="/" element={<FrontPage />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route
-                        path="/cart/creditcard"
-                        element={<CartCreditCard />}
-                    />
-                    <Route path="/products" element={<Products />} />
-                    <Route
-                        path="/products/detail/:products_sid"
-                        element={<ProductsDetail />}
-                    />
-                    <Route path="/food" element={<Food />} />
-                    <Route path="/reserve" element={<Reserve />} />
-                    <Route path="/course" element={<Course />} />
-                    <Route path="/course/manage" element={<CourseManage />} />
-                    <Route
-                        path="/course/detailed/:sid"
-                        element={<CourseDetailed />}
-                    />
-                    <Route path="/course/add/:sid" element={<CourseAdd />} />
-                    <Route path="/sharing" element={<Sharing />} />
-                    <Route path="/member" element={<Member />} />
-                    <Route path="/member/login" element={<Login />} />
-                    <Route path="/member/userinfo" element={<UserInfo />} />
-                    <Route path="/member/orderhistory" element={<OrderHistory />} />
-                    <Route path="/member/orderhistory/detail" element={<OrderHistoryDetail />} />
-                    <Route path="/points" element={<Points />} />
-                    <Route path="/coupon" element={<Coupon />} />
-                    <Route path="/game" element={<Game />} />
-                    <Route path="/store" element={<Store />} />
-                    <Route path="/getcoupon" element={<Getcoupon />} />
-                    <Route path="/getpoint" element={<Getpoint />} />
-                </Routes>
-            </AllProvider>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <AllProvider>
+                    <Routes>
+                        <Route exact={true} path="/" element={<FrontPage />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route
+                            path="/cart/creditcard"
+                            element={<CartCreditCard />}
+                        />
+                        <Route path="/products" element={<Products />} />
+                        <Route
+                            path="/products/detail/:products_sid"
+                            element={<ProductsDetail />}
+                        />
+                        <Route path="/food" element={<Food />} />
+                        <Route path="/reserve" element={<Reserve />} />
+                        <Route path="/course" element={<Course />} />
+                        <Route
+                            path="/course/manage"
+                            element={<CourseManage />}
+                        />
+                        <Route
+                            path="/course/detailed/:sid"
+                            element={<CourseDetailed />}
+                        />
+                        <Route
+                            path="/course/add/:sid"
+                            element={<CourseAdd />}
+                        />
+                        <Route path="/sharing" element={<Sharing />} />
+                        <Route path="/member" element={<Member />} />
+                        <Route path="/member/login" element={<Login />} />
+                        <Route path="/member/userinfo" element={<UserInfo />} />
+                        <Route
+                            path="/member/orderhistory"
+                            element={<OrderHistory />}
+                        />
+                        <Route
+                            path="/member/orderhistory/detail"
+                            element={<OrderHistoryDetail />}
+                        />
+                        <Route path="/points" element={<Points />} />
+                        <Route path="/coupon" element={<Coupon />} />
+                        <Route path="/game" element={<Game />} />
+                        <Route path="/store" element={<Store />} />
+                        <Route path="/getcoupon" element={<Getcoupon />} />
+                        <Route path="/getpoint" element={<Getpoint />} />
+                    </Routes>
+                </AllProvider>
+            </BrowserRouter>
+        </Provider>
     );
 
     return el;
