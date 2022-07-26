@@ -95,6 +95,7 @@ const [isOpen, setIsOpen] = useSate(false);
 
 ```js
 // 請傳入一個陣列,裡面放圖片的路徑,沒有限制數量,目前沒有做其他可選的參數,僅有一般輪播功能
+//此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
         "https://picsum.photos/id/249/1440/500",
