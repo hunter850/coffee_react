@@ -12,27 +12,8 @@ import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import "./Course.css";
 import numberConvertString from '../../component/Course/helper/numberConvertString';
-
-// 排序用的function
-const priceAsc = (a, b) => {
-    return a.course_price - b.course_price;
-};
-const priceDesc = (a, b) => {
-    return b.course_price - a.course_price;
-};
-const levelAsc = (a, b) => {
-    return a.course_level - b.course_level;
-};
-const levelDesc = (a, b) => {
-    return b.course_level - a.course_level;
-};
-
-// chunk - 依size分成子陣列，ex. chunk([1, 2, 3, 4, 5], 2) -> [[1,2],[3,4],[5]]
-// https://stackoverflow.com/questions/8495687/split-array-into-chunks
-const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-        arr.slice(i * size, i * size + size)
-    );
+import { priceAsc, priceDesc, levelAsc, levelDesc } from '../../component/Course/helper/sort';
+import { chunk } from '../../component/Course/helper/chunk';
 
 const Course = () => {
     // 排序下拉選單的狀態 - 狀態提升放這邊

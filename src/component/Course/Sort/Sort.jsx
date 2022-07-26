@@ -6,7 +6,6 @@ function Sort({
     courseData = [],
     sortData,
     setSortData,
-    courseManageData = [],
 }) {
     const sortCourseData = (e) => {
         setSortData(e);
@@ -27,11 +26,7 @@ function Sort({
                 <div className="Coursesort-txt">
                     <p>
                         搜尋結果符合條件&nbsp;
-                        <span className="num-color">
-                            {courseManageData.length !== 0
-                                ? courseManageData.length
-                                : coursetotals}
-                        </span>
+                        <span className="num-color">{coursetotals}</span>
                         &nbsp;項目
                     </p>
                 </div>
