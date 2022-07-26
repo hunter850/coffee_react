@@ -1,7 +1,7 @@
 .ProductsHeader {
     width: 100%;
     height: 500px;
-    background: url(../../images/35/material/products_header.jpg) no-repeat center center;
+    background: url("") no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
