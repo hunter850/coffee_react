@@ -1,17 +1,11 @@
 .course-Carousel {
-    height: 500px;
     width: 100%;
     overflow: hidden;
     position: relative;
 }
 
-.course-slideshow {
-    height: 500px;
-}
-
 .course-slideshowSlider {
     width: 100%;
-    height: 500px;
 }
 
 .Ellipse-wrap {

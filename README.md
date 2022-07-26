@@ -94,7 +94,8 @@ const [isOpen, setIsOpen] = useSate(false);
 ### Carousel 組件使用說明
 
 ```js
-// 請傳入一個陣列,裡面放圖片的路徑,沒有限制數量,目前沒有做其他可選的參數,僅有一般輪播功能
+// 1.輪播圖請傳入一個帶有圖片路徑的陣列
+// 2.height直接帶數字就好,預設為500
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -104,5 +105,6 @@ const [isOpen, setIsOpen] = useSate(false);
         "https://picsum.photos/id/216/1440/500",
         "https://picsum.photos/id/227/1440/500",
     ]}
+    height={300}
 />
 ```
