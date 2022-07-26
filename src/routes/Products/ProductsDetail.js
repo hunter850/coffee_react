@@ -1,25 +1,17 @@
-import { Fragment } from "react";
-import Header from "../../component/Products/Header";
-// import Sort from "../../component/Course/Sort/Sort";
+import { Fragment, useState } from "react";
 import Path from "../../component/Item/Path/Path";
 import NavBar from "../../component/NavBar";
-import BookMark from "../../component/Products/BookMark";
-import List from "../../component/Products/List";
 
-function Products() {
+function ProductsDetail() {
+    const [products_name] = useState("");
     const el = (
         <Fragment>
             <div className="Course-container">
                 <NavBar />
-                <Path pathObj={{ path: ["．商品列表"] }} />
-                <Header />
-                <BookMark />
-                {/* <Sort /> */}
-                <div className="container">
-                    <div className="d-flex f-w card-wrap">
-                        <List />
-                    </div>
+                <Path pathObj={{ path: ["．商品列表．", { products_name }] }} />
 
+                <div className="container">
+                    <div className="d-flex f-w card-wrap">{/* <List /> */}</div>
                     <div className="d-flex f-jcc">
                         {/* {Array(pageTotal)
                             .fill(1)
@@ -48,4 +40,4 @@ function Products() {
     return el;
 }
 
-export default Products;
+export default ProductsDetail;

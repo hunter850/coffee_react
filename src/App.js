@@ -22,6 +22,7 @@ import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
+import ProductsDetail from "./routes/Products/ProductsDetail";
 
 const App = () => {
     const el = (
@@ -35,6 +36,10 @@ const App = () => {
                         element={<CartCreditCard />}
                     />
                     <Route path="/products" element={<Products />} />
+                    <Route
+                        path="/products/detail/:products_sid"
+                        element={<ProductsDetail />}
+                    />
                     <Route path="/food" element={<Food />} />
                     <Route path="/reserve" element={<Reserve />} />
                     <Route path="/course" element={<Course />} />
