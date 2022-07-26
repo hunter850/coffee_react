@@ -3,7 +3,6 @@ import NavBar from "../../component/NavBar";
 import Path from "../../component/Item/Path/Path";
 import CourseAddList from "../../component/Course/CourseAdd/CourseAddList/CourseAddList";
 import CourseAddListDetailed from "../../component/Course/CourseAdd/CourseAddListDetailed/CourseAddListDetailed";
-import Btn from "../../component/Item/Btn/Btn";
 const CourseAdd = () => {
     const el = (
         <Fragment>
@@ -22,22 +21,10 @@ const CourseAdd = () => {
                         style={{ paddingTop: 33, paddingBottom: 86 }}
                     >
                         <div style={{ paddingRight: 12 }}>
-                            <Btn
-                                backgroundColor={"#6E7B83"}
-                                color={"#fff"}
-                                width={"290px"}
-                            >
-                                確定送出
-                            </Btn>
+                            <button className="CourseAdd-grey">確定送出</button>
                         </div>
                         <div>
-                            <Btn
-                                backgroundColor={"#A45959"}
-                                color={"#fff"}
-                                width={"290px"}
-                            >
-                                取消操作
-                            </Btn>
+                            <button className="CourseAdd-red">取消操作</button>
                         </div>
                     </div>
                 </div>
