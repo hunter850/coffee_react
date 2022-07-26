@@ -46,6 +46,32 @@
     padding-right: 63px;
 }
 
+.List-level-normal {
+    color: #cf8f54;
+    font-size: 1.0625rem;
+    line-height: 21px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #e4d5c9;
+    border-right: 1px solid #e4d5c9;
+    padding-left: 63px;
+    padding-right: 63px;
+}
+
+.List-level-hard {
+    color: #a45959;
+    font-size: 1.0625rem;
+    line-height: 21px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #e4d5c9;
+    border-right: 1px solid #e4d5c9;
+    padding-left: 63px;
+    padding-right: 63px;
+}
+
 .List-price {
     color: #3e3e3e;
     font-size: 0.75rem;
