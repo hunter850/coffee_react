@@ -56,10 +56,7 @@ const App = () => {
                             path="/course/detailed/:sid"
                             element={<CourseDetailed />}
                         />
-                        <Route
-                            path="/course/add/:sid"
-                            element={<CourseAdd />}
-                        />
+                        <Route path="/course/add" element={<CourseAdd />} />
                         <Route path="/sharing" element={<Sharing />} />
                         <Route path="/member" element={<Member />} />
                         <Route path="/member/login" element={<Login />} />
