@@ -22,7 +22,7 @@ function Header({
         <div className="CourseHeader">
             <div>
                 <div className="CourseHeader-title">
-                    <p>
+                    <p className="title-font">
                         帶你深入探索<span>有趣又獨特的咖啡體驗課程</span>
                     </p>
                 </div>
