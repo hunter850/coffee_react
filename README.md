@@ -90,3 +90,18 @@ const [isOpen, setIsOpen] = useSate(false);
     </Modal.Footer>
 </Modal>
 ```
+
+### Carousel 組件使用說明
+
+```js
+// 請傳入一個陣列,裡面放圖片的路徑,沒有限制數量,目前沒有做其他可選的參數,僅有一般輪播功能
+<Carousel
+    imgs={[
+        "https://picsum.photos/id/249/1440/500",
+        "https://picsum.photos/id/1014/1440/500",
+        "https://picsum.photos/id/120/1440/500",
+        "https://picsum.photos/id/216/1440/500",
+        "https://picsum.photos/id/227/1440/500",
+    ]}
+/>
+```
