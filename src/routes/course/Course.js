@@ -11,6 +11,7 @@ import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import "./Course.css";
+import numberConvertString from '../../component/Course/helper/numberConvertString';
 
 // 排序用的function
 const priceAsc = (a, b) => {
@@ -24,20 +25,6 @@ const levelAsc = (a, b) => {
 };
 const levelDesc = (a, b) => {
     return b.course_level - a.course_level;
-};
-// 資料庫course_level 轉 中文 function
-const numberConvertString = (data) => {
-    for (let i = 0; i < data.length; i++) {
-        if (Number(data[i].course_level) === 1) {
-            data[i].course_level = "初級";
-        }
-        if (Number(data[i].course_level) === 2) {
-            data[i].course_level = "中級";
-        }
-        if (Number(data[i].course_level) === 3) {
-            data[i].course_level = "高級";
-        }
-    }
 };
 
 // chunk - 依size分成子陣列，ex. chunk([1, 2, 3, 4, 5], 2) -> [[1,2],[3,4],[5]]
