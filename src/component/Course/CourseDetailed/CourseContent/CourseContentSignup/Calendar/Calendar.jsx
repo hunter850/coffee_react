@@ -1,4 +1,5 @@
-// import { useState } from "react";
+/* eslint-disable prettier/prettier */
+import { useState } from "react";
 import "./Calendar.css";
 
 // const serverDate = [
@@ -19,12 +20,17 @@ function Calendar() {
     // const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
     // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
     // const [doNotSelect, setDoNotSelect] = useState(myDate);
+    // 一開始未選中日期
+    const myDate = [18, 28];
+    const [dateClcik, setDateClcik] = useState(myDate[0]);
+    const dataBtnFocus = (item) => {
+        setDateClcik(item);
+    };
     // 年
     const myYear = new Date().getFullYear();
     // 月
     const myMonth = new Date().getMonth() + 1;
-    // 一開始未選中日期
-    const myDate = [18, 28];
+
 
     // 呈現yearAndMonth
     const now = new Date();
@@ -59,18 +65,16 @@ function Calendar() {
                         {daysDisplayArray.map((v, i) => {
                             return (
                                 <tr key={i}>
-                                    {v.map((item, idx) => (
-                                        <td key={idx}>
+                                    {v.map((item, index) => (
+                                        <td key={index}>
                                             <div
-                                                onClick={() => {
-                                                    console.log(item);
-                                                    // setMyDate(item);
-                                                }}
-                                                className={
-                                                    myDate.includes(item)
-                                                        ? ""
-                                                        : "pointerEvents"
+                                                onClick={() =>
+                                                    dataBtnFocus(item)
                                                 }
+                                                className={`${myDate.includes(item)
+                                                    ? ""
+                                                    : "pointerEvents"
+                                                    } courseDateBtn ${dateClcik === item ? 'courseDateBtnClick' : ''}`}
                                             >
                                                 {item < 10
                                                     ? "0" + item

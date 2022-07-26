@@ -47,8 +47,6 @@ function FoodCard({ handleShowFoodDetailSelect, setIsShow, allfood }) {
                         </div>
                     </div>
                 </div>
-                {/* detailShow為true時 FoodCardDetail 就會執行 */}
-                {/* {detailShow && <FoodCardDetail menu_sid={menu_sid} />} */}
             </div>
         </>
     );

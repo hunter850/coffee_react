@@ -70,7 +70,14 @@
     width: 459px !important;
 }
 
-.courseDate > tr > td > div:hover {
+.courseDateBtn:hover {
+    background-color: #c5ad8f;
+    color: #fff;
+    box-shadow: 1px 1px 10px 0px #00000040;
+    text-decoration: none;
+}
+
+.courseDateBtnClick {
     background-color: #c5ad8f;
     color: #fff;
     box-shadow: 1px 1px 10px 0px #00000040;

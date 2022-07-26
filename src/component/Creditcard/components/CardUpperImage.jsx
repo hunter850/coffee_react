@@ -1,17 +1,15 @@
 import { Fragment } from "react";
 import Chip from "./Chip";
 import CardType from "./CardType";
+import styles from "../css/cardNumberInput.module.scss";
 
-function CardUpperImage({ cardNumber }) {
-    const cardUpperContainerStyle = {
-        display: "flex",
-        justifyContent: "space-between",
-        width: "340.48px",
-    };
+function CardUpperImage(props) {
+    const { cardNumber } = props;
+    const { cart_upper_containter } = styles;
 
     return (
         <Fragment>
-            <div style={cardUpperContainerStyle}>
+            <div className={cart_upper_containter}>
                 <Chip />
                 <CardType cardNumber={cardNumber} />
             </div>

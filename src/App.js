@@ -11,6 +11,10 @@ import CourseManage from "./routes/course/CourseManage";
 import CourseAdd from "./routes/course/CourseAdd";
 import Sharing from "./routes/sharing/Sharing";
 import Member from "./routes/member/Member";
+import Login from "./routes/member/Login";
+import UserInfo from "./routes/member/UserInfo";
+import OrderHistory from "./routes/member/OrderHistory";
+import OrderHistoryDetail from "./routes/member/OrderHistoryDetail";
 import Game from "./routes/game/Game";
 import Points from "./routes/game/Points";
 import Coupon from "./routes/game/Coupon";
@@ -47,6 +51,10 @@ const App = () => {
                     <Route path="/course/add/:sid" element={<CourseAdd />} />
                     <Route path="/sharing" element={<Sharing />} />
                     <Route path="/member" element={<Member />} />
+                    <Route path="/member/login" element={<Login />} />
+                    <Route path="/member/userinfo" element={<UserInfo />} />
+                    <Route path="/member/orderhistory" element={<OrderHistory />} />
+                    <Route path="/member/orderhistory/detail" element={<OrderHistoryDetail />} />
                     <Route path="/points" element={<Points />} />
                     <Route path="/coupon" element={<Coupon />} />
                     <Route path="/game" element={<Game />} />

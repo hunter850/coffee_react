@@ -1,0 +1,165 @@
+:root {
+    --blue: rgb(37, 57, 69);
+    --cream: rgb(252, 250, 247);
+    --gold: rgb(183, 153, 115);
+    --gray: rgb(217, 217, 217);
+    --dark-gray: rgb(203, 203, 203);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--cream);
+}
+
+.lg-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 61px);
+    overflow: hidden;
+    background-color: var(--cream);
+}
+
+::placeholder {
+    font-size: 0.8rem;
+}
+
+.lg-form {
+    flex: 2;
+    text-align: center;
+    background: var(--cream);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+    transition: all 1s ease;
+}
+.lg-field-form {
+    width: 350px;
+}
+
+.lg-field-cont {
+    position: relative;
+    width: 100%;
+    height: 36px;
+}
+
+.lg-field {
+    width: 100%;
+    height: 100%;
+    background: var(--cream);
+    border-radius: 3px;
+    border: 1px solid var(--gray);
+    padding: 0 3rem;
+    font-size: 1rem;
+}
+.lg-field:focus{
+    outline: none;
+    border: 2px solid var(--gold);
+}
+
+.name {
+    transition: all 500ms ease;
+    overflow: hidden;
+}
+.name-height {
+    height: 0px;
+}
+
+.lg-field-cont:nth-child(2) {
+    margin: 25px 0;
+}
+
+.icon{
+    color: var(--blue);
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+}
+
+.lg-welcome {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(47, 72, 88);
+    color: var(--cream);
+    height: 100vh;
+    z-index: 1;
+    box-shadow: 1px 1px 15px 3px rgb(80, 80, 80);
+    transition: all 1s ease;
+}
+
+.wel-title{
+    font-size: 1.8rem;
+    margin-bottom: 100px;
+    opacity: 1;
+    transition: opacity 250ms ease;
+}
+
+.lg-switch{
+    width: 80px;
+    height: 35px;
+    padding: 7px 20px;
+    border: 1.5px solid var(--cream);
+    background: none;
+    border-radius: 3rem;
+    color: var(--cream);
+    outline: none;
+    cursor: pointer;
+    transition: all 250ms ease;
+}
+
+.lg-switch:hover {
+    background-color: var(--cream);
+    color: var(--blue);
+}
+
+.lg-form-title{
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    opacity: 1;
+    transition: opacity 250ms ease;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.fade {
+    transition-delay: 0.15s;
+}
+
+.particle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 1s ease;
+}
+.sign-up , .log-in{
+    width: 80px;
+    height: 35px;
+    padding: 8px 20px;
+    background: var(--blue);
+    border-radius: 3rem;
+    border: none;
+    color: var(--cream);
+    margin-top: 60px;
+    cursor: pointer;
+}
+.sign-up:hover, .log-in:hover{
+    background: var(--gold);
+}
