@@ -97,12 +97,12 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={numberPeopleReduce}>
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn`} onClick={() => numberPeopleReduce()} >
                                     -
                                 </button>
 
                                 <div className="people-number">{count}</div>
-                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={numberPeople}>
+                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={() => numberPeople()}>
                                     +
                                 </button>
                             </div>
@@ -134,7 +134,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
