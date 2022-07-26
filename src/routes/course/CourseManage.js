@@ -37,6 +37,7 @@ const CourseManage = () => {
         // setCourseManageData(res.data);
         // 深拷貝過的資料,保留lv的數字,供等級排序使用
         setCourseManageDataCopy(newCourseData);
+        // 將資料切割成每一頁要展示的陣列,渲染出來
         const pageArray = chunk(res.data, perPage);
         if (pageArray.length > 0) {
             setPageTotal(pageArray.length);
