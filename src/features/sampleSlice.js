@@ -14,40 +14,50 @@ export const sampleSlice = createSlice({
         { sid: 9, product_id: 8, quantity: 4, price: 130 },
     ],
     reducers: {
-        addItem: (state, action) => {
+        sampleAddItem: (state, action) => {
             state.push(action.payload);
         },
-        deleteItem: (state, action) => {
+        sampleDeleteItem: (state, action) => {
             return state.filter((item) => {
                 return item.sid !== action.payload;
             });
         },
-        sortByPrice: (state) => {
+        sampleChangeQuantity: (state, action) => {
+            return state.map((item) => {
+                if (item.sid !== action.payload.sid) return item;
+                return {
+                    ...item,
+                    quantity: item.quantity + action.payload.num,
+                };
+            });
+        },
+        sampleSortByPrice: (state) => {
             return sortBy(state, ["price"]);
         },
-        sortByPriceQuantity: (state) => {
+        sampleSortByPriceQuantity: (state) => {
             return sortBy(state, ["price", "quantity"]);
         },
-        complexSort: (state) => {
+        sampleComplexSort: (state) => {
             return orderBy(
                 state,
                 ["price", "quantity", "sid"],
                 ["asc", "desc", "asc"]
             );
         },
-        randomSort: (state) => {
+        sampleRandomSort: (state) => {
             return shuffle(state);
         },
     },
 });
 
 export const {
-    addItem,
-    deleteItem,
-    sortByPrice,
-    sortByPriceQuantity,
-    complexSort,
-    randomSort,
+    sampleAddItem,
+    sampleDeleteItem,
+    sampleChangeQuantity,
+    sampleSortByPrice,
+    sampleSortByPriceQuantity,
+    sampleComplexSort,
+    sampleRandomSort,
 } = sampleSlice.actions;
 
 export default sampleSlice.reducer;
