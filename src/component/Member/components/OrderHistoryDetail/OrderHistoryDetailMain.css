@@ -134,7 +134,7 @@ body{
 .odd-list-header>span:nth-child(1){
     width: 353px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 .odd-list-header>span:nth-child(3){
     width: 115px;

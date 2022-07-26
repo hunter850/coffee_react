@@ -2,12 +2,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-const-assign */
 import { useState, useEffect, useRef } from "react";
+import Modal from "../../../Modal/Modal";
 import "./LoginMain.css";
 
 function LoginMain() {
 
     const [isLog, setIsLog] = useState(false);
     const [changeText, setChangeText] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
 
     const welcomeWidth = useRef(null);
@@ -136,6 +138,12 @@ function LoginMain() {
                     <input className="log-in" type="button" value="登入" style={{display: change ? "none" : "block "}} /> */}
                 </form>
                 <div className="particle"></div>
+                <button onClick={() => setIsOpen(true)}>click</button>
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <Modal.Body>
+                        <h1>Hello</h1>
+                    </Modal.Body>
+                </Modal>
             </div>
         </>
     );
