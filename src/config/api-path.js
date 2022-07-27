@@ -11,3 +11,4 @@ export const foodDataGet = `${SERVER}/food`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/api`;
+export const getPostById = `${SERVER}/sharing/`;
