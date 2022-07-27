@@ -30,3 +30,28 @@
         transform: translate(-3px, -3px) scale(102%);
     }
 }
+
+@media (max-width: 1200px) {
+    .header_button {
+        padding: 10px 16px;
+        > span {
+            font-size: 14px;
+        }
+    }
+    .ticket_svg {
+        width: 22px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header_button {
+        padding: 10px 12px;
+    }
+    .ticket_svg {
+        width: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}
