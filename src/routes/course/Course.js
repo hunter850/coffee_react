@@ -14,6 +14,7 @@ import "./Course.css";
 import numberConvertString from '../../component/Course/helper/numberConvertString';
 import { priceAsc, priceDesc, levelAsc, levelDesc } from '../../component/Course/helper/sort';
 import { chunk } from '../../component/Course/helper/chunk';
+import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 
 const Course = () => {
     // 排序下拉選單的狀態 - 狀態提升放這邊
@@ -55,48 +56,13 @@ const Course = () => {
                 }
 
                 // 排序 - 價錢低到高
-                if (sortData === "priceAsc") {
-                    dataDisplay.sort(priceAsc);
-                    const pageArray = chunk(dataDisplay, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('priceAsc', priceAsc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
                 // 排序 - 價錢高到低
-                if (sortData === "priceDesc") {
-                    dataDisplay.sort(priceDesc);
-                    const pageArray = chunk(dataDisplay, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('priceDesc', priceDesc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
                 // 排序 - 難度初級到高級
-                if (sortData === "levelAsc") {
-                    courseDataCopy.sort(levelAsc);
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-                    numberConvertString(courseDataCopy);
-                    const pageArray = chunk(courseDataCopy, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('levelAsc', levelAsc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
                 // 排序 - 難度高級到初級
-                if (sortData === "levelDesc") {
-                    courseDataCopy.sort(levelDesc);
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-                    numberConvertString(courseDataCopy);
-                    const pageArray = chunk(courseDataCopy, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
+                sortDataFun('levelDesc', levelDesc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
             })
             .catch((err) => {
                 console.log(err.response);
