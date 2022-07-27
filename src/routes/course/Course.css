@@ -15,7 +15,7 @@
 }
 
 .CourseManage-container {
-    height: 150vh;
+    min-height: 1200px;
     background-color: #e3e7e7;
     min-width: 1440px;
 }
