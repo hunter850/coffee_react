@@ -31,7 +31,6 @@ function Post() {
     const scrollHandler = (e) => {
         const lastImg =
             wrap.current.lastElementChild.lastElementChild.lastElementChild;
-        console.log(lastImg.getBoundingClientRect().top);
 
         if (lastImg.getBoundingClientRect().top < 1000) {
             console.log("加載");
@@ -46,7 +45,7 @@ function Post() {
         window.addEventListener("scroll", scrollHandler);
 
         return () => {
-            window.removeEventListener(scrollHandler);
+            window.removeEventListener("scroll", scrollHandler);
         };
     }, []);
 

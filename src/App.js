@@ -58,8 +58,12 @@ const App = () => {
                             element={<CourseDetailed />}
                         />
                         <Route path="/course/add" element={<CourseAdd />} />
+                        <Route
+                            path="/sharing/:post_sid"
+                            element={<PostDetail />}
+                        />
                         <Route path="/sharing" element={<Post />} />
-                        <Route path="/sharing/post" element={<PostDetail />} />
+
                         <Route path="/member" element={<Member />} />
                         <Route path="/member/login" element={<Login />} />
                         <Route path="/member/userinfo" element={<UserInfo />} />
