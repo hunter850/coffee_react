@@ -64,7 +64,7 @@ function Post() {
                 >
                     {rows.map((v, i) => {
                         return (
-                            <Link key={i} to={`/sharing/post/${v.sid}`}>
+                            <Link key={i} to={`/sharing/${v.sid}`}>
                                 <PostCard cardData={v} />
                             </Link>
                         );
