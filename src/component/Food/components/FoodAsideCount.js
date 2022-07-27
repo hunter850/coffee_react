@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-function FoodAsideCount({ item, dataFromFoodDetail }) {
+import React from "react";
+function FoodAsideCount({ item, setDataFromCount }) {
     const {
         foodCount,
         menu_name,
@@ -10,27 +10,9 @@ function FoodAsideCount({ item, dataFromFoodDetail }) {
         menu_photo,
         timeID,
     } = item;
-
     const subCount = menu_price_m * foodCount;
-    const [count, setCount] = useState(foodCount);
-    console.log("dataFromFoodDetail", dataFromFoodDetail);
-    // 檢核timeID是否一致
-    // const confirmTimeID = (timeID) => {
-    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
-    //     if (items) {
-    //         () => {
-    //             foodCount + 1;
-    //         };
-    //     }
 
-    //         const confirmTimeID = (timeID) => {
-    //     const items = dataFromFoodDetail.find((v) => v.timeID === timeID);
-    //     if (items) {
-    //         () => {
-    //             foodCount + 1;
-    //         };
-    //     }
-
+    // (timeID, subCount);
     return (
         <>
             <div key={menu_sid} className="detail">
@@ -68,14 +50,19 @@ function FoodAsideCount({ item, dataFromFoodDetail }) {
                             className="minusplus"
                             onClick={() => {
                                 return foodCount > 1
-                                    ? setCount(foodCount - 1)
-                                    : undefined;
+                                    ? setDataFromCount(timeID, foodCount - 1)
+                                    : false;
                             }}
                         >
                             -
                         </div>
-                        <h6 className="count">{count}</h6>
-                        <div className="minusplus" timeid={timeID}>
+                        <h6 className="count">{foodCount}</h6>
+                        <div
+                            className="minusplus"
+                            onClick={() => {
+                                setDataFromCount(timeID, foodCount + 1);
+                            }}
+                        >
                             +
                         </div>
                         <div className="grow"></div>
@@ -83,7 +70,6 @@ function FoodAsideCount({ item, dataFromFoodDetail }) {
                     </div>
                 </div>
             </div>
-            <div>{timeID}</div>
         </>
     );
 }

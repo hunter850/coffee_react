@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import "./FoodCardDetail.css";
 import { useState } from "react";
+// import useData from "../../../hooks/useData";
 
 function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
+    // const [foodCount, setFoodCount] = useData("foodCount");
     const {
         menu_sid,
         menu_name,
@@ -43,7 +46,6 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
     const [timeID, setTimeID] = useState(Date.now());
-
     return (
         <>
             <div className="food-lightbox">

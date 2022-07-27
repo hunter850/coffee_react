@@ -3,8 +3,43 @@ import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
 
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
-function FoodAsideSummary({ dataFromFoodDetail, show, setFoodCount }) {
+function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
     const asideClass = show ? "aside" : "aside hide";
+    const perItem = dataFromFoodDetail.map(({ menu_price_m, foodCount }) => {
+        return menu_price_m * foodCount;
+    });
+    const totalPrice = perItem.reduce((a, b) => {
+        return a + b;
+    }, 0);
+
+    // console.log("dataFromCount", dataFromCount);
+    // setDataFromSummary(setDataFromCount);
+
+    // 金額總計---------------------------------------------------------
+
+    // const isSameID = (item1, item2) => {
+    //     return item1.timeID === item2.timeID;
+    // };
+
+    // const calcSummary = (timeID, subCount) => {
+    //     console.log("subCounfsdfdfst", timeID, subCount);
+    //     let newData;
+    //     const isSameIDExist = dataFromFoodDetail.some((existedID) =>
+    //         isSameID(existedID.timeID, timeID)
+    //     );
+    //     if (isSameIDExist) {
+    //         console.log("subCoust",  subCount);
+
+    //         return subCount;
+    //     } else {
+
+    //         const QQ =[...subCount,subCount]
+
+    //         console.log("QQ",  QQ);
+    //         return QQ;
+    //     }
+    //     setPriceFromAside(newData);
+    // };
 
     return (
         <>
@@ -107,11 +142,12 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setFoodCount }) {
                             <p className="bottom">04:15 PM</p>
                         </div>
                     </div>
-                    {dataFromFoodDetail.map((item, idx) => (
+                    {dataFromFoodDetail.map((item) => (
                         <FoodAsideCount
                             item={item}
                             key={item.timeID}
                             dataFromFoodDetail={dataFromFoodDetail}
+                            setDataFromCount={setDataFromSummary}
                         />
                     ))}
                 </div>
@@ -119,7 +155,7 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setFoodCount }) {
                 <div className="payarea">
                     <div className="payarea1">
                         <p className="finaltotal">合計</p>
-                        <p>$ 100000000</p>
+                        <p>$ {totalPrice}</p>
                     </div>
                     <div className="pay">去結帳</div>
                 </div>
