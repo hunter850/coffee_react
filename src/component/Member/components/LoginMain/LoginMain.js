@@ -11,6 +11,9 @@ function LoginMain() {
     const [changeText, setChangeText] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
+    const [welWidth, setWelWidth] = useState(0);
+    const [fmWidth, setFmWidth] = useState(0);
+
 
     const welcomeWidth = useRef(null);
     const formWidth = useRef(null);
@@ -18,10 +21,20 @@ function LoginMain() {
 
     // 掛載到頁面上執行一次
     useEffect(() => {
-        window.addEventListener("resize", () => {
-            welcomeWidth = welcomeWidth.current.clientWidth;
-            formWidth = formWidth.current.clientWidth;
-        });
+        
+        function resizehandler (){
+            setWelWidth(welcomeWidth.current.clientWidth)
+            setFmWidth(formWidth.current.clientWidth)
+        }
+        window.addEventListener("resize", resizehandler);
+
+        return ()=>  window.removeEventListener("resize", resizehandler);
+
+    }, []);
+
+    useEffect(() => {
+            setWelWidth(welcomeWidth.current.clientWidth)
+            setFmWidth(formWidth.current.clientWidth)
     }, []);
 
 
@@ -104,11 +117,11 @@ function LoginMain() {
     return (
         <>
             <div className="lg-wrapper">
-                <div className={`lg-welcome ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(${formWidth.current.clientWidth}px)`:""}} ref={welcomeWidth}>
+                <div className={`lg-welcome ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
                     <h1 className="wel-title">{changeText ? "還沒有帳號嗎？" : "Welcome back !"}</h1>
                     <button className="lg-switch" onClick={change}>{isLog ? "註冊" : "登入"}</button>
                 </div>
-                <form name="form1" action="" className={`lg-form ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(-${welcomeWidth.current.clientWidth}px)`:""}} ref={formWidth}>
+                <form name="form1" action="" className={`lg-form ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(-${welWidth}px)`:""}} ref={formWidth}>
                     <h1 className="lg-form-title">{isLog ? "登入會員" : "註冊會員"}</h1>
                     <div className="lg-field-form">
                         <div className= {`name lg-field-cont ${isLog ? "name-height":""}`}>
