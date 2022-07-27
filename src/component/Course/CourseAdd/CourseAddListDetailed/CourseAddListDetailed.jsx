@@ -21,7 +21,7 @@ function CourseAddListDetailed() {
                     </button>
                 </div>
                 <div>
-                    <p>課程簡介 :</p>
+                    <p>課程內容 :</p>
                     <textarea
                         type="text"
                         className="CourseAddListDetailed-inp"

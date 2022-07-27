@@ -1,26 +1,31 @@
 import React, { useContext, useReducer } from "react";
 import { initData } from "./initData";
+import produce from "immer";
 
 const StateContext = React.createContext([]);
 export function useControlData() {
     return useContext(StateContext);
 }
 
-function reducer(state, action) {
+const reducer = produce((draft, action) => {
     if (action.type === undefined) action.type = "POST";
-    if (state[action.name] === action.data) return state;
     switch (action.type) {
         case "POST":
-            return { ...state, [action.name]: action.data };
+            draft[action.name] = action.data;
+            break;
+        case "PRE":
+            draft[action.name] = action.data(draft[action.name]);
+            break;
+        case "RESET":
+            draft[action.name] = initData[action.name];
+            break;
         case "DELETE":
-            if (state[action.name] === undefined) return state;
-            const newState = { ...state };
-            delete newState[action.name];
-            return newState;
+            delete draft[action.name];
+            break;
         default:
-            return state;
+            break;
     }
-}
+});
 
 function StateProvider(props) {
     const { children } = props;
