@@ -19,3 +19,11 @@
 .modal_body {
     padding: 24px 36px;
 }
+
+@media (max-width: 1200px) {
+    .cart_container {
+        p, span {
+            font-size: 14px;
+        }
+    }
+}
