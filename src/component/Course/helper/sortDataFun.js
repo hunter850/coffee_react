@@ -5,10 +5,10 @@ export const sortDataFun = (
     sortFunction, // 排序的方法 - function
     Data, // 排序的資料 - 陣列
     perPage, // 一頁有幾筆資料
-    sortData, // 判斷是否與進來的value相同 - 現在真正的排序選單value值
+    sortData, // 當前排序選單的value值 - 狀態
     setPageTotal, //總頁數
     setCourseData, //最後渲染資料的操控器
-    chunk, // 切割的函式
+    chunk, // 切割用的函式
     numberConvertString = () => { } //數字轉換時傳進來
 ) => {
     if (sortData === sortStr) {
