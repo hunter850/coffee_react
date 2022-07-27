@@ -1,8 +1,30 @@
+/* eslint-disable prettier/prettier */
 import { Fragment } from "react";
+import { useState, useEffect } from "react";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
+import UserList from "./UserList";
+
+import axios from "axios";
 
 function UserInfo() {
+
+    const [list, setList] = useState([]);
+
+    const getUserData = async () => {
+
+        const response = await axios.get("http://localhost:3500/member/api/user-list");
+        setList(response.data);
+    }
+
+    useEffect(() => {
+        getUserData();
+    },[]);
+
+    // Object.values( )，把物件直接轉成陣列，才能使用陣列的方法
+    const avatar = Object.values(list).map((v,i)=>v.avatar);
+    console.log(avatar);
+    
     return (
         <>
             <div className="ui-wrap-main">
@@ -10,40 +32,25 @@ function UserInfo() {
                     <MemberMenu />
                     <div className="ui-wrap-right">
                         <div className="ui-title">編輯會員資料</div>
-                        <div className="avatar"></div>
+                        <img src={``} alt="" className="avatar"></img>
                         <div className="ui-info-wrap">
-                            <div className="ui-info">
-                                <div className="ui-info-title">姓名</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">暱稱</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">密碼</div>
-                                <button className="ui-btn-password">變更密碼</button>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">帳號</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">生日</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">手機</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">信箱</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
-                            <div className="ui-info">
-                                <div className="ui-info-title">地址</div>
-                                <input type="text" className="ui-field"/>
-                            </div>
+                            {
+                                list.map( (v, i) => {
+                                    return (
+                                        <div key={v.member_sid}>
+                                            <UserList list={{
+                                                member_name: v.member_name,
+                                                member_nickname: v.member_nickname,
+                                                member_account: v.member_account,
+                                                member_birthday: v.member_birthday,
+                                                member_mobile: v.member_mobile,
+                                                member_address: v.member_address,
+                                                member_mail: v.member_mail,
+                                            }}/>
+                                        </div>
+                                    )
+                                })
+                            }
                             <div className="ui-btn-wrap">
                                 <button className="ui-btn">取消</button>
                                 <button className="ui-btn ui-btn-active">保存</button>

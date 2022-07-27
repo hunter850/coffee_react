@@ -105,9 +105,7 @@ function LoginMain() {
             }
         });
         }
-
         setIsOpen(true);
-    
     };
 
 
