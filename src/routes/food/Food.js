@@ -11,8 +11,8 @@ import FoodCardDetail from "../../component/Food/components/FoodCardDetail";
 import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
-import { cond } from "lodash";
-import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
+// import { cond } from "lodash";
+// import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 
 // 餐點篩選
 const menuFiliter = [
