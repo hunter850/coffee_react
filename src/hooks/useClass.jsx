@@ -1,9 +1,7 @@
 import { useCallback } from "react";
-// import { cloneDeep } from "lodash";
 
 function useClass() {
     return useCallback((...ar) => {
-        // const tempArray = cloneDeep(ar);
         const outputArray = [];
         ar.forEach((item) => {
             if (typeof item === "string") {
