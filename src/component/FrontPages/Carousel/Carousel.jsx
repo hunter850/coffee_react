@@ -64,7 +64,7 @@ function TrySwiper() {
             slidesPerView={1}
             // 額外的模組 除了寫在inline還需要在上方import才能用
             modules={[
-                EffectCube,
+                // EffectCube,
                 // EffectFade,
                 // EffectFlip,
                 // EffectCoverflow,
@@ -74,8 +74,8 @@ function TrySwiper() {
                 Navigation,
                 Scrollbar,
             ]}
-            // effect屬性預設為slide 不需引入其他module
-            effect="cube"
+            // effect屬性預設為slide 不需引入其他module，如果為cube會變成盒子形狀的
+            effect="slide"
             // 自動播放
             autoplay={{
                 // 時間間隔
