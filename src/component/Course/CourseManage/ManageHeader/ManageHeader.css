@@ -58,6 +58,11 @@ input::-webkit-input-placeholder {
     top: 19px;
 }
 
+.ManageHeader-search-btn:hover {
+    background: #6e7b83;
+    cursor: pointer;
+}
+
 .ManageHeader-btn {
     padding-top: 66px;
 }
