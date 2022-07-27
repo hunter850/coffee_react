@@ -1,0 +1,80 @@
+.google-lightbox {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #4d4944;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.google-detail {
+    width: 50%;
+    height: 100%;
+    /* height: 100vh; */
+    background: #fcfaf7;
+    margin: 0 auto;
+    padding: 60px 0;
+    /* overflow: scroll; */
+    position: fixed;
+    right: 25%;
+    left: 25%;
+}
+.top {
+    height: 60px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 50%;
+}
+.middle {
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #eee5dd;
+    height: 200px;
+}
+.middle .choice {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+
+.country {
+    width: 48%;
+    height: 40px;
+    padding: 20px;
+}
+
+.address {
+    background-color: #4d4944;
+    margin: 20px 0;
+}
+.middle2 {
+    width: 100%;
+    height: 500px;
+    background-color: #afa;
+}
+.bottomarea {
+    width: 50%;
+    height: 82px;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    right: 25%;
+    left: 25%;
+}
+.bottoms {
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    background-color: #253945;
+    border-radius: 3px;
+    color: #eee5dd;
+}
