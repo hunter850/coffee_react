@@ -12,3 +12,50 @@
     width: 100%;
     // height: auto;
 }
+
+// Masonry
+.my_masonry_grid {
+    display: -webkit-box;
+    /* Not needed if autoprefixing */
+    display: -ms-flexbox;
+    /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px;
+    /* gutter size offset */
+    width: auto;
+}
+
+.my_masonry_grid_column {
+    padding-left: 12px;
+    /* gutter size */
+    background-clip: padding-box;
+
+    // 卡片
+    div {
+        /* change div to reference your elements you put in <Masonry> */
+        background: grey;
+        margin-bottom: 16px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .cover{
+            background-color: #000;
+            opacity: 0;
+        }
+        .cover{
+            background-color: #000;
+            opacity: .5;
+        }
+    }
+ 
+    div>img {
+        // object-fit: cover;
+        // object-position: center;
+        width: 100%;
+        vertical-align: middle;
+    }
+}
+
+
+
+
