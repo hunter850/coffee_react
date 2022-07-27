@@ -6,7 +6,14 @@ import styles from "../css/cardNumberInput.module.scss";
 
 function CardHolder(props) {
     const { cardName } = props;
-    const { card_name, card_name_split, hide_text } = styles;
+    const {
+        card_name,
+        card_name_split,
+        hide_text,
+        text_span,
+        space_width,
+        dots_for_hide,
+    } = styles;
     const c = useClass();
     const cardMask = useIndexArray(100);
     const [tempArray, setTempArray] = useState([]);
@@ -58,15 +65,16 @@ function CardHolder(props) {
                             <CSSTransition
                                 in={item.index < nameLength}
                                 timeout={500}
-                                classNames="text_span right"
+                                classNames={c(text_span, "right")}
                                 unmountOnExit
                             >
                                 <span
-                                    className={`text_span ${
+                                    className={c(
+                                        text_span,
                                         nameSplit[item.index] === " "
-                                            ? "space_width"
+                                            ? space_width
                                             : ""
-                                    }`}
+                                    )}
                                 >
                                     {nameSplit[item.index] === undefined
                                         ? tempArray[item.index]
@@ -76,7 +84,7 @@ function CardHolder(props) {
                         </Fragment>
                     ))}
                 </TransitionGroup>
-                {textHide ? <span style={{ marginLeft: "3px" }}>...</span> : ""}
+                {textHide && <span className={dots_for_hide}>...</span>}
             </div>
         </Fragment>
     );
