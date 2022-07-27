@@ -21,6 +21,8 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
     // 時段按鈕高亮控制
     const [btnClick, setBtnClick] = useState(0);
 
+    const [btnClickFocus, setBtnClickFocus] = useState(0);
+
     const timeArr = ['AM 9:00', 'PM 3:00'];
     // 選擇時段click後高亮 
     const courseContentBtnFocus = (i) => {
@@ -29,9 +31,14 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
 
     const numberPeople = () => {
         setCount(count + 1);
+        setBtnClickFocus(1);
+        setTimeout(() => {
+            setBtnClickFocus(0);
+        }, 0);
     };
     const numberPeopleReduce = () => {
         count > 1 ? setCount(count - 1) : setCount(count - 0);
+        setBtnClickFocus(2);
     };
 
     return (
@@ -97,12 +104,12 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <button className={`banner-Btn-Hover courseSignUpMinBtn`} onClick={() => numberPeopleReduce()} >
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={() => numberPeopleReduce()} >
                                     -
                                 </button>
 
                                 <div className="people-number">{count}</div>
-                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={() => numberPeople()}>
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn ${btnClickFocus === 1 ? 'courseSignUpMinBtnClick' : ''}`} onClick={() => numberPeople()}>
                                     +
                                 </button>
                             </div>

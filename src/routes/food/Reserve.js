@@ -9,9 +9,9 @@ function Reserve() {
             <NavBar />
             <Path pathObj={{ path: ["．訂位"] }} />
             <div className="container">
-                <div className="reserve">
-                    <div className="left"></div>
-                </div>
+                {/* <div className="reserve"> */}
+
+                {/* </div> */}
             </div>
         </Fragment>
     );

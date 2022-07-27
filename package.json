@@ -14,12 +14,13 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.30.1",
         "eslint-plugin-react-hooks": "^4.6.0",
+        "google-maps-react": "^2.0.6",
         "gsap": "^3.10.4",
         "lodash": "^4.17.21",
         "prettier": "^2.7.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-icons": "^4.4.0",
+        "react-geocode": "^0.2.3",
         "react-input-mask": "^2.0.4",
         "react-masonry-css": "^1.0.16",
         "react-redux": "^8.0.2",
@@ -33,7 +34,8 @@
         "swiper": "^8.3.1",
         "uuid": "^8.3.2",
         "uuidv4": "^6.2.13",
-        "web-vitals": "^2.1.4"
+        "web-vitals": "^2.1.4",
+        "react-icons": "^4.4.0"
     },
     "scripts": {
         "start": "react-scripts start",
