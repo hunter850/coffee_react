@@ -1,5 +1,6 @@
 import { Fragment, useMemo, useCallback } from "react";
 import InputMask from "react-input-mask";
+import styles from "../css/cardNumberInput.module.scss";
 
 function CardForm(props) {
     const {
@@ -21,6 +22,31 @@ function CardForm(props) {
         cardNameFocus,
         cardValidFocus,
     } = props;
+
+    const {
+        form_wrap,
+        form_container,
+        id_number,
+        form_number_label,
+        form_number_input,
+        id_name,
+        form_name_label,
+        form_name_input,
+        form_bottom,
+        card_valid,
+        card_date,
+        card_month,
+        id_card_month,
+        month_label,
+        month_select,
+        card_year,
+        year_select,
+        card_cvv,
+        id_cvv,
+        cvv_label,
+        cvv_input,
+        card_submit,
+    } = styles;
 
     const handleNumberInput = useCallback(
         (event) => {
@@ -67,28 +93,9 @@ function CardForm(props) {
 
     return (
         <Fragment>
-            <form
-                onSubmit={cardSubmitHandler}
-                style={{ marginTop: "-50px", width: "520px" }}
-            >
-                <div
-                    style={{
-                        padding: "80px 26px 30px",
-                        width: "520px",
-                        margin: "auto",
-                        border: "1px solid black",
-                        borderRadius: "10px",
-                        backgroundColor: "#fff",
-                    }}
-                >
-                    <label
-                        htmlFor="card_number"
-                        style={{
-                            marginBottom: "9px",
-                            display: "inline-block",
-                            fontSize: "20px",
-                        }}
-                    >
+            <form onSubmit={cardSubmitHandler} className={form_wrap}>
+                <div className={form_container}>
+                    <label htmlFor={id_number} className={form_number_label}>
                         卡號
                     </label>
                     <InputMask
@@ -98,79 +105,29 @@ function CardForm(props) {
                         onFocus={cardNumberFocus}
                         onBlur={cardFrameBlur}
                         maskChar={""}
-                        style={{
-                            height: "36px",
-                            fontSize: "16px",
-                            width: "100%",
-                            borderRadius: "3px",
-                            padding: "0px 9px",
-                            marginBottom: "20px",
-                        }}
-                        id="card_number"
+                        className={form_number_input}
+                        id={id_number}
                     />
-                    <label
-                        htmlFor="card_name"
-                        style={{
-                            marginBottom: "9px",
-                            display: "inline-block",
-                            fontSize: "20px",
-                        }}
-                    >
+                    <label htmlFor={id_name} className={form_name_label}>
                         持卡人姓名
                     </label>
                     <input
                         type="text"
-                        id="card_name"
-                        style={{
-                            height: "36px",
-                            fontSize: "16px",
-                            width: "100%",
-                            borderRadius: "3px",
-                            padding: "0px 9px",
-                            marginBottom: "20px",
-                        }}
+                        id={id_name}
+                        className={form_name_input}
                         value={cardName}
                         onChange={handleNameInput}
                         onFocus={cardNameFocus}
                         onBlur={cardFrameBlur}
                         autoComplete="off"
                     />
-                    <div
-                        className="form_bottom"
-                        style={{ width: "100%", display: "flex" }}
-                    >
-                        <div
-                            className="card_valid"
-                            style={{
-                                width: "70%",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                paddingRight: "30px",
-                            }}
-                        >
-                            <div
-                                className="card_date"
-                                style={{
-                                    width: "66.66%",
-                                    display: "flex",
-                                    paddingRight: "10px",
-                                }}
-                            >
-                                <div
-                                    className="card_month"
-                                    style={{
-                                        width: "50%",
-                                        paddingRight: "10px",
-                                    }}
-                                >
+                    <div className={form_bottom}>
+                        <div className={card_valid}>
+                            <div className={card_date}>
+                                <div className={card_month}>
                                     <label
-                                        htmlFor="credit_card_month"
-                                        style={{
-                                            width: "100%",
-                                            fontSize: "20px",
-                                            whiteSpace: "nowrap",
-                                        }}
+                                        htmlFor={id_card_month}
+                                        className={month_label}
                                     >
                                         Valid Date
                                     </label>
@@ -180,15 +137,11 @@ function CardForm(props) {
                                         onFocus={cardValidFocus}
                                         onBlur={cardFrameBlur}
                                         name="credit_card_month"
-                                        id="credit_card_month"
-                                        style={{
-                                            width: "100%",
-                                            height: "36px",
-                                            padding: "0px 9px",
-                                        }}
+                                        id={id_card_month}
+                                        className={month_select}
                                     >
                                         <option value="" disabled>
-                                            - 月份 -
+                                            -月份-
                                         </option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -204,30 +157,16 @@ function CardForm(props) {
                                         <option value="12">12</option>
                                     </select>
                                 </div>
-                                <div
-                                    className="card_year"
-                                    style={{
-                                        width: "50%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "end",
-                                    }}
-                                >
+                                <div className={card_year}>
                                     <select
                                         value={cardYear}
                                         onChange={yearHandler}
                                         onFocus={cardValidFocus}
                                         onBlur={cardFrameBlur}
-                                        name="credit_card_year"
-                                        id="credit_card_year"
-                                        style={{
-                                            width: "100%",
-                                            height: "36px",
-                                            padding: "0px 9px",
-                                        }}
+                                        className={year_select}
                                     >
                                         <option value="" disabled>
-                                            - 年份 -
+                                            -年份-
                                         </option>
                                         <option value="2022">2022</option>
                                         <option value="2023">2023</option>
@@ -244,25 +183,15 @@ function CardForm(props) {
                                     </select>
                                 </div>
                             </div>
-                            <div
-                                className="card_cvv"
-                                style={{ width: "33.33%" }}
-                            >
-                                <label
-                                    htmlFor="cvv"
-                                    style={{ width: "100%", fontSize: "20px" }}
-                                >
+                            <div className={card_cvv}>
+                                <label htmlFor={id_cvv} className={cvv_label}>
                                     CVV
                                 </label>
                                 <InputMask
                                     mask="9999"
                                     maskChar={""}
-                                    id="cvv"
-                                    style={{
-                                        width: "100%",
-                                        height: "36px",
-                                        padding: "0px 9px",
-                                    }}
+                                    id={id_cvv}
+                                    className={cvv_input}
                                     value={cardCvv}
                                     onChange={cvvHandler}
                                     onFocus={focusHandler}
@@ -270,20 +199,7 @@ function CardForm(props) {
                                 />
                             </div>
                         </div>
-                        <button
-                            type="submit"
-                            style={{
-                                width: "30%",
-                                height: "36px",
-                                marginTop: "26.4px",
-                                border: "none",
-                                outline: "none",
-                                backgroundColor: "#253945",
-                                borderRadius: "3px",
-                                color: "#fff",
-                                cursor: "pointer",
-                            }}
-                        >
+                        <button type="submit" className={card_submit}>
                             確認送出
                         </button>
                     </div>
