@@ -4,10 +4,12 @@
 .people-number {
     width: 147px;
     text-align: center;
+    border: none;
     border-bottom: 1px solid #d1cfcf;
     margin-right: 25px;
     margin-left: 19px;
     color: #3e3e3e;
+    font-size: 1.125rem;
 }
 
 .CourseContentBtn {
