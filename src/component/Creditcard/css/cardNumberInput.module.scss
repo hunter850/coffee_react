@@ -207,7 +207,6 @@
     }
 }
 
-
 :global(.slide-enter) {
     opacity: 0;
     transform: translateY(20px);
@@ -358,7 +357,6 @@
     display: inline-block;
 }
 
-
 // --------------------------------------------------------
 
 .card_name {
@@ -395,3 +393,174 @@
     position: relative;
 }
 
+.dots_for_hide {
+    margin-left: 3px;
+}
+
+// --------------------------------------------------------
+
+.form_wrap {
+    margin-top: -50px;
+    width: 520px;
+}
+
+.form_container {
+    padding: 80px 26px 30px;
+    width: 520px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+%label_basic {
+    margin-bottom: 9px;
+    display: inline-block;
+    font-size: 20px;
+    color: var(--BLUE);
+}
+
+%input_basic {
+    height: 36px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 0px 9px;
+    margin-bottom: 20px;
+    border: 1px solid var(--BLUE);
+}
+
+.id_number {
+    box-sizing: border-box;
+}
+
+.form_number_label {
+    @extend %label_basic;
+}
+
+.form_number_input {
+    @extend %input_basic;
+    &:focus {
+        border: 1px solid var(--GOLD);
+    }
+}
+
+.id_name {
+    box-sizing: border-box;
+}
+
+.form_name_label {
+    @extend %label_basic;
+}
+
+.form_name_input {
+    @extend %input_basic;
+    &:focus {
+        border: 1px solid var(--GOLD);
+    }
+}
+
+.form_bottom {
+    width: 100%;
+    display: flex;
+}
+
+.card_valid {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 30px;
+    color: var(--BLUE);
+}
+
+.card_date {
+    width: 66.66%;
+    display: flex;
+    padding-right: 10px;
+}
+
+.card_month {
+    width: 50%;
+    padding-right: 10px;
+}
+
+.id_card_month {
+    box-sizing: border-box;
+}
+
+.month_label {
+    width: 100%;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+%select_basic {
+    width: 100%;
+    height: 36px;
+    padding: 0px 9px;
+    border: 1px solid var(--BLUE);
+}
+
+.month_select {
+    @extend %select_basic;
+    &:focus {
+        border: 1px solid var(--GOLD);
+    }
+}
+
+.card_year {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.year_select {
+    @extend %select_basic;
+    &:focus {
+        border: 1px solid var(--GOLD);
+    }
+}
+
+.card_cvv {
+    width: 33.33%;
+}
+
+.id_cvv {
+    box-sizing: border-box;
+}
+
+.cvv_label {
+    width: 100%;
+    font-size: 20px;
+}
+
+.cvv_input {
+    width: 100%;
+    height: 36px;
+    padding: 0px 9px;
+    border: 1px solid var(--BLUE);
+    &:focus {
+        border: 1px solid var(--GOLD);
+    }
+}
+
+.card_submit {
+    width: 30%;
+    height: 36px;
+    margin-top: 26.4px;
+    border: none;
+    outline: none;
+    background-color: var(--BLUE);
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.black_bar {
+    width: 433px;
+    height: 45px;
+    background-color: rgba(0, 0, 19, 0.8);
+    flex-shrink: 0;
+}

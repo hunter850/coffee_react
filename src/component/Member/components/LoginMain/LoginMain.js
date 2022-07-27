@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-const-assign */
+import { set } from "lodash";
 import { useState, useEffect, useRef } from "react";
 import Modal from "../../../Modal/Modal";
 import "./LoginMain.css";
@@ -60,15 +61,12 @@ function LoginMain() {
         const val = event.target.value;
         console.log({ id, val });
         setMyform({ ...myform, [id]: val });
-        setFieldErrors({...fieldErrors,[event.target.name]:""})
     };
 
     // 錯誤訊息提示
-    const [fieldErrors, setFieldErrors] = useState({
-        name: '',
-        account: '',
-        password: '',
-    })
+    const [nameErrors, setNameErrors] = useState('')
+    const [accountErrors, setAccountErrors] = useState('')
+    const [passwordErrors, setPasswordErrors] = useState('')
 
 
 // --------------------- 處理登入 ---------------------
@@ -76,9 +74,21 @@ function LoginMain() {
     const handleLoginIn = (event) => {
         event.preventDefault();
 
-        if(!myform.member_account||!myform.member_password){
-            setFieldErrors({...fieldErrors,account:"請輸入正確帳號",password:"請輸入正確密碼"})
+
+        if(!myform.member_account){
+            setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
         }else{
+            setAccountErrors({...accountErrors,account:""});
+        }
+
+
+        if(!myform.member_password){
+            setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
+        }else{
+            setPasswordErrors({...passwordErrors,password:""});
+        }
+
+        if(myform.member_account && myform.member_password){
             fetch("http://localhost:3500/member/login",{
             method: "POST",
             body: JSON.stringify(myform),
@@ -92,13 +102,12 @@ function LoginMain() {
             if(result.success){
                 localStorage.setItem('auth', JSON.stringify(result.data));
                 setLoginSuccess(true);
-            } else {
-                setLoginSuccess(false);
             }
         });
+        }
 
         setIsOpen(true);
-    }
+    
     };
 
 
@@ -107,9 +116,27 @@ function LoginMain() {
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        if(!myform.member_name||!myform.member_account||!myform.member_password){
-            setFieldErrors({...fieldErrors, name:"請輸入正確姓名",account:"請輸入正確帳號",password:"請輸入正確密碼"})
+        if(!myform.member_name){
+            setNameErrors({...nameErrors, name:"請輸入正確格式"})
+            return;
         }else{
+            setNameErrors({...nameErrors,name:""});
+        }
+
+        if(!myform.member_account){
+            setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
+            return;
+        }else{
+            setAccountErrors({...accountErrors,account:""});
+        }
+
+        if(!myform.member_password){
+            setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
+            return;
+        }else{
+            setPasswordErrors({...passwordErrors,password:""});
+        }
+
             fetch("http://localhost:3500/member/sign-up",{
                 method: "POST",
                 body: JSON.stringify(myform),
@@ -124,7 +151,7 @@ function LoginMain() {
                     setSignSuccess(true);
                 } 
             });
-        }
+
         setIsOpen(true);
     };
 
@@ -141,7 +168,7 @@ function LoginMain() {
                     <div className="lg-field-form">
                         <div className= {`lg-field-cont ${isLog ? "name-height":""}`}>
                             <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" required/>
-                            <p className="lg-field-err">{fieldErrors.name}</p>
+                            <p className="lg-field-err">{nameErrors.name}</p>
                             <div className="icon">
                                 <i className="fa-solid fa-user"></i>
                             </div>
@@ -149,7 +176,7 @@ function LoginMain() {
 
                         <div className="account lg-field-cont">
                             <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" required/>
-                            <p className="lg-field-err">{fieldErrors.account}</p>
+                            <p className="lg-field-err">{accountErrors.account}</p>
                             <div className="icon">
                                 <i className="fa-solid fa-user-plus"></i>
                             </div>
@@ -157,7 +184,7 @@ function LoginMain() {
 
                         <div className="password lg-field-cont">
                             <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" required/>
-                            <p className="lg-field-err">{fieldErrors.password}</p>
+                            <p className="lg-field-err">{passwordErrors.password}</p>
                             <div className="icon">
                                 <i className="fa-solid fa-lock"></i>
                             </div>
@@ -172,8 +199,8 @@ function LoginMain() {
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Modal.Body>
-                        <h1 style={{display: isLog ? "block" : "none "}}>{ loginSuccess ? "登入成功" : "帳密錯誤" }</h1>
-                        <h1 style={{display: isLog ? "none" : "block "}}>{ signSuccess ? "註冊成功" : "註冊失敗" }</h1>
+                        <h1 style={{display: isLog ? "block" : "none "}}>{ loginSuccess ? "登入成功" : "請輸入正確帳密" }</h1>
+                        <h1 style={{display: isLog ? "none" : "block "}}>{ signSuccess ? "註冊成功" : "已有重複帳號" }</h1>
                     </Modal.Body>
                 </Modal>
             </div>
