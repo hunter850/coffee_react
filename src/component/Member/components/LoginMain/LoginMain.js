@@ -76,9 +76,10 @@ function LoginMain() {
     const handleLoginIn = (event) => {
         event.preventDefault();
 
-        // TODO: 欄位檢查
-
-        fetch("http://localhost:3500/member/login",{
+        if(!myform.member_account||!myform.member_password){
+            setFieldErrors({...fieldErrors,account:"請輸入正確帳號",password:"請輸入正確密碼"})
+        }else{
+            fetch("http://localhost:3500/member/login",{
             method: "POST",
             body: JSON.stringify(myform),
             headers: {
@@ -97,6 +98,7 @@ function LoginMain() {
         });
 
         setIsOpen(true);
+    }
     };
 
 
