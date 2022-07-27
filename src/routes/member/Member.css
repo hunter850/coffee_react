@@ -1,0 +1,115 @@
+:root {
+    --blue: rgb(37, 57, 69);
+    --cream: rgb(252, 250, 247);
+    --gold: rgb(183, 153, 115);
+    --gray: rgb(217, 217, 217);
+    --dark-gray: rgb(203, 203, 203);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--cream);
+}
+.mc-wrap-main{
+    /* 限制範圍 */
+    width: 1440px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mc-container{ 
+    /* 扣掉左右200px */
+    width: calc( 100% - 400px );
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+.mc-card{
+    width: 250px;
+    height: 360px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    margin-bottom: 60px;
+}
+.mc-like, .mc-coupon{
+    position: relative;
+    display: flex;
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: 36px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    
+}
+.mc-like>p, .mc-coupon>p{
+    margin-left: 20px;
+    
+}
+.fa-angle-right{
+    position: absolute;
+    right: 0px;
+}
+.mc-menu-wrap{
+    width: 570px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+.mc-user-name{
+    color: var(--blue);
+    font-size: 1.9rem;
+    font-weight: 600;
+}
+.mc-user-name::after{
+    content:" ";
+    display:block; 
+    border-bottom: 1px solid var(--gray);
+    width: 100%;
+    margin: 60px 0;
+}
+.mc-menu{
+    width: 255px;
+    height: 168px;
+    background-color: white;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 1.25rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 0px rgb(0,0,0,0.15);
+    margin-bottom: 35px;
+    padding: 41px 85px;
+    cursor: pointer;
+}
+.mc-menu:hover{
+    background-color: var(--blue);
+    color: var(--cream);
+    transform: translateY(-5px);
+    transform: scale(103%);
+    transition: .3s;
+    box-shadow: 5px 5px 5px 0px rgb(0,0,0,0.4);
+}
+.mc-menu>i{
+    font-size: 2.5rem;
+}
+.mc-menu::after{
+    display:block;
+    margin-top: 20px;
+}
+.mc-menu:nth-child(1)::after{
+    content:"會員資料";
+}
+.mc-menu:nth-child(2)::after{
+    content:"歷史訂單";
+}
+.mc-menu:nth-child(3)::after{
+    content:"分享記錄";
+}
+.mc-menu:nth-child(4)::after{
+    content:"我的點數";
+}

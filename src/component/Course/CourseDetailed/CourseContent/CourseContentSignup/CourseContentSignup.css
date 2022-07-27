@@ -1,3 +1,6 @@
+#CourseContentSignup {
+    margin-top: 30px;
+}
 .people-number {
     width: 147px;
     text-align: center;
@@ -8,7 +11,7 @@
 }
 
 .CourseContentBtn {
-    padding-right: 9px;
+    margin-right: 9px;
 }
 
 .CourseContentSignup-price {
@@ -36,6 +39,10 @@
     cursor: pointer;
 }
 .CourseContentBtnRwd:hover {
+    background-color: #c5ad8f;
+}
+
+.CourseContentBtnClick {
     background-color: #c5ad8f;
 }
 
@@ -68,6 +75,10 @@
     padding: 8px 0px;
     white-space: nowrap;
     cursor: pointer;
+}
+
+.courseSignUpMinBtnClick {
+    background-color: #896f4f;
 }
 
 .CourseContentBtn-focus {

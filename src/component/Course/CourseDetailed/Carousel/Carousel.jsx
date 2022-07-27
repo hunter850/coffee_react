@@ -4,10 +4,8 @@ import { useState, useEffect } from "react";
 import { v4 } from "uuid";
 
 
-function Carousel() {
+function Carousel({ imgs, height = 500 }) {
     const delay = 'ease 1000ms';
-    const imgs = ["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500",];
-
     const imgsLength = imgs.length;
     // 控制輪播圖片顯示哪一張
     const [page, setPage] = useState(1);
@@ -75,15 +73,15 @@ function Carousel() {
                 style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
             >
 
-                <div className="course-slideshowSlider" style={{ background: `url(${imgs[imgsLength - 1]}) no-repeat center center`, backgroundSize: 'cover' }} >
+                <div className="course-slideshowSlider" style={{ background: `url(${imgs[imgsLength - 1]}) no-repeat center center`, backgroundSize: 'cover', height: height }} >
                 </div>
                 {imgs.map((v, i) => {
                     return (
-                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgs[i]}) no-repeat center center`, backgroundSize: 'cover' }} >
+                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgs[i]}) no-repeat center center`, backgroundSize: 'cover', height: height }} >
                         </div>
                     );
                 })}
-                <div className="course-slideshowSlider" style={{ background: `url(${imgs[0]}) no-repeat center center`, backgroundSize: 'cover' }} >
+                <div className="course-slideshowSlider" style={{ background: `url(${imgs[0]}) no-repeat center center`, backgroundSize: 'cover', height: height }} >
                 </div>
 
             </div>

@@ -1,7 +1,13 @@
 import "./ManageHeader.css";
-import Btn from "../../../Item/Btn/Btn";
 import { Link } from "react-router-dom";
-function ManageHeader() {
+import { courseSearch } from "../../helper/courseSearch";
+function ManageHeader({
+    courseManageSortData,
+    setSearchInp,
+    searchInp,
+    setCourseManageSortData,
+    setSearchSure,
+}) {
     return (
         <div
             className="d-flex container ManageHeader-wrap"
@@ -13,8 +19,25 @@ function ManageHeader() {
                 </div>
                 <div className="ManageHeader-Header-input">
                     <div className="ManageHeader-search-wrap">
-                        <input type="text" placeholder="搜尋想要的課程" />
-                        <div className="ManageHeader-search-btn">
+                        <input
+                            type="text"
+                            placeholder="搜尋想要的課程"
+                            value={searchInp}
+                            onChange={(e) => {
+                                setSearchInp(e.target.value);
+                            }}
+                        />
+                        <div
+                            className="ManageHeader-search-btn"
+                            onClick={() =>
+                                courseSearch(
+                                    searchInp,
+                                    courseManageSortData,
+                                    setCourseManageSortData,
+                                    setSearchSure
+                                )
+                            }
+                        >
                             <svg
                                 width="32"
                                 height="33"
@@ -89,10 +112,8 @@ function ManageHeader() {
                 </div>
             </div>
             <div className="ManageHeader-btn">
-                <Link to="/course/add/001">
-                    <Btn width="290px" backgroundColor="#6E7B83">
-                        + 新增課程
-                    </Btn>
+                <Link to="/course/add">
+                    <button className="ManageHeaderBtn"> + 新增課程</button>
                 </Link>
             </div>
         </div>

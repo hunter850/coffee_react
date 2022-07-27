@@ -28,6 +28,7 @@ function Banner({ courseDetailedData, start, courseClickMove }) {
                                 color: "#3E3E3E",
                                 fontWeight: 600,
                             }}
+                            className="title-font"
                         >
                             {courseDetailedData[0].course_name}
                         </p>

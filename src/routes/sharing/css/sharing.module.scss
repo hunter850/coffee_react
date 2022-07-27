@@ -1,7 +1,7 @@
 .sharing_wrap{
     display: flex;
     flex-wrap: wrap;
-    background-color: red;
+    background-color: #ffa;
     > div  {
         width: 25%;
         background-color: #ccc;
@@ -9,6 +9,6 @@
 }
 
 .post_img{
-    width: 300px;
+    width: 100%;
     // height: auto;
 }

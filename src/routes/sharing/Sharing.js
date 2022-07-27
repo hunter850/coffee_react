@@ -7,7 +7,7 @@ import NavBar from "../../component/NavBar";
 import styles from "./css/sharing.module.scss";
 
 function Sharing() {
-    const { sharing_wrap } = styles;
+    const { sharing_wrap, post_img } = styles;
     const [rows, setRows] = useState([]);
 
     const getData = async () => {
@@ -24,7 +24,7 @@ function Sharing() {
         <Fragment>
             <NavBar />
             <h2>分享牆</h2>
-            <h5>{JSON.stringify(rows[0])}</h5>
+            <pre>{JSON.stringify(rows[0], null, 4)}</pre>
             <div className={sharing_wrap} style={{ display: "flex" }}>
                 {rows.map((v, i) => {
                     return (
@@ -32,7 +32,8 @@ function Sharing() {
                             <img
                                 src={`${imgSrc}/sharing/${v["img_name"]}`}
                                 alt={`pic${v.sid}`}
-                                className="post_img"
+                                className={post_img}
+                            // style={{ width: "100%" }}
                             />
                             <p>{v.title}</p>
                         </div>

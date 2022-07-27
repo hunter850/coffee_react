@@ -9,6 +9,17 @@
     letter-spacing: 0.07rem;
 }
 
+.CourseManage-wrap {
+    height: 100%;
+    background-color: #e3e7e7;
+}
+
+.CourseManage-container {
+    min-height: 1200px;
+    background-color: #e3e7e7;
+    min-width: 1440px;
+}
+
 .course-page-btn {
     width: 30px;
     height: 30px;
@@ -23,7 +34,7 @@
 }
 
 .course-page-btn:hover {
-    background-color: #eee;
+    background-color: #d1cfcf;
 }
 .course-page-btn-focus {
     background-color: #b79973;
@@ -33,6 +44,39 @@
 .course-page-btn-focus:hover {
     background-color: #b79973;
     color: #fff;
+}
+
+.course-manage-page-btn-focus {
+    background-color: #8b959c;
+    color: #fff;
+}
+
+.CourseAdd-grey {
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fff;
+    background-color: #6e7b83;
+    width: 290px;
+}
+
+.CourseAdd-red {
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+    box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fff;
+    background-color: #a45959;
+    width: 290px;
 }
 
 @media (max-width: 768px) {

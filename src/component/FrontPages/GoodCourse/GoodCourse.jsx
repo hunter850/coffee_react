@@ -4,7 +4,9 @@ import "./GoodCourse.css";
 function GoodCourse() {
     return (
         <>
-            <h2>精選課程</h2>
+            <div className="bottom-line m-auto">
+                <h2 className="home-title">精選課程</h2>
+            </div>
         </>
     );
 }

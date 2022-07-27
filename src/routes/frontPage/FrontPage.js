@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import NavBar from "../../component/NavBar";
+// import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import Carousel from "../../component/FrontPages/Carousel/Carousel";
 import HotFoods from "../../component/FrontPages/HotFoods/HotFoods";
 import LatestNews from "../../component/FrontPages/LatestNews/LatestNews";
@@ -11,7 +12,16 @@ function FrontPage() {
     return (
         <Fragment>
             <NavBar />
-            <h2 className="color">首頁</h2>
+            {/* <Carousel
+                imgs={[
+                    "https://picsum.photos/id/249/1440/500",
+                    // "../../images/frontPage/banner/"
+                    "https://picsum.photos/id/1014/1440/500",
+                    "https://picsum.photos/id/120/1440/500",
+                    "https://picsum.photos/id/216/1440/500",
+                    "https://picsum.photos/id/227/1440/500",
+                ]}
+            /> */}
             <Carousel />
             <HotFoods />
             <LatestNews />

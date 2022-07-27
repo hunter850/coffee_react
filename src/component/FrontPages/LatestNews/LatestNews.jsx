@@ -3,7 +3,9 @@ import React from "react";
 function LatestNews() {
     return (
         <>
-            <h2>最新消息</h2>
+            <div className="bottom-line m-auto">
+                <h2 className="home-title">最新消息</h2>
+            </div>
         </>
     );
 }

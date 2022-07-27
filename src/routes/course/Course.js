@@ -11,41 +11,10 @@ import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import "./Course.css";
-
-// 排序用的function
-const priceAsc = (a, b) => {
-    return a.course_price - b.course_price;
-};
-const priceDesc = (a, b) => {
-    return b.course_price - a.course_price;
-};
-const levelAsc = (a, b) => {
-    return a.course_level - b.course_level;
-};
-const levelDesc = (a, b) => {
-    return b.course_level - a.course_level;
-};
-// 資料庫course_level 轉 中文 function
-const numberConvertString = (data) => {
-    for (let i = 0; i < data.length; i++) {
-        if (Number(data[i].course_level) === 1) {
-            data[i].course_level = "初級";
-        }
-        if (Number(data[i].course_level) === 2) {
-            data[i].course_level = "中級";
-        }
-        if (Number(data[i].course_level) === 3) {
-            data[i].course_level = "高級";
-        }
-    }
-};
-
-// chunk - 依size分成子陣列，ex. chunk([1, 2, 3, 4, 5], 2) -> [[1,2],[3,4],[5]]
-// https://stackoverflow.com/questions/8495687/split-array-into-chunks
-const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-        arr.slice(i * size, i * size + size)
-    );
+import numberConvertString from '../../component/Course/helper/numberConvertString';
+import { priceAsc, priceDesc, levelAsc, levelDesc } from '../../component/Course/helper/sort';
+import { chunk } from '../../component/Course/helper/chunk';
+import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 
 const Course = () => {
     // 排序下拉選單的狀態 - 狀態提升放這邊
@@ -87,48 +56,13 @@ const Course = () => {
                 }
 
                 // 排序 - 價錢低到高
-                if (sortData === "priceAsc") {
-                    dataDisplay.sort(priceAsc);
-                    const pageArray = chunk(dataDisplay, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('priceAsc', priceAsc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
                 // 排序 - 價錢高到低
-                if (sortData === "priceDesc") {
-                    dataDisplay.sort(priceDesc);
-                    const pageArray = chunk(dataDisplay, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('priceDesc', priceDesc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
                 // 排序 - 難度初級到高級
-                if (sortData === "levelAsc") {
-                    courseDataCopy.sort(levelAsc);
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-                    numberConvertString(courseDataCopy);
-                    const pageArray = chunk(courseDataCopy, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
-
+                sortDataFun('levelAsc', levelAsc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
                 // 排序 - 難度高級到初級
-                if (sortData === "levelDesc") {
-                    courseDataCopy.sort(levelDesc);
-                    // 這裡因為是深拷貝的資料,所以必須重新把數字轉換成中文
-                    numberConvertString(courseDataCopy);
-                    const pageArray = chunk(courseDataCopy, perPage);
-                    if (pageArray.length > 0) {
-                        setPageTotal(pageArray.length);
-                        setCourseData(pageArray);
-                    }
-                }
+                sortDataFun('levelDesc', levelDesc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
             })
             .catch((err) => {
                 console.log(err.response);

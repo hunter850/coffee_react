@@ -29,9 +29,8 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
         "注意事項",
         "適合對象",
     ];
-
+    // Path點擊後位移
     const courseClickMove = (i) => {
-        console.log(i);
         const pathArr = [item, material, signup, notice, object];
         window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
     };

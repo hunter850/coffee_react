@@ -1,5 +1,4 @@
 import "./CourseAddListDetailed.css";
-import Btn from "../../../Item/Btn/Btn";
 
 function CourseAddListDetailed() {
     return (
@@ -14,13 +13,9 @@ function CourseAddListDetailed() {
                         className="CourseAddListDetailed-img"
                         style={{ marginBottom: 19 }}
                     ></div>
-                    <Btn
-                        backgroundColor={"#6E7B83"}
-                        color={"#fff"}
-                        width={"669px"}
-                    >
+                    <button className="CourseAddListDetailed-imgbtn">
                         上傳圖片
-                    </Btn>
+                    </button>
                     <button className="CourseAddListDetailed-btn">
                         + 新增圖片
                     </button>

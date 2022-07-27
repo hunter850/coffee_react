@@ -16,8 +16,16 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
         }
     }, [topZeroSure]);
 
-
+    // 控制選單收合
     const [displayNone, setdisplayNone] = useState(false);
+    // 時段按鈕高亮控制
+    const [btnClick, setBtnClick] = useState(0);
+
+    const timeArr = ['AM 9:00', 'PM 3:00'];
+    // 選擇時段click後高亮 
+    const courseContentBtnFocus = (i) => {
+        setBtnClick(i);
+    };
 
     const numberPeople = () => {
         setCount(count + 1);
@@ -28,7 +36,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
 
     return (
         <div ref={signupScrollTop}>
-            <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentSignup'>
+            <div className="CourseContentItem" id='CourseContentSignup'>
                 <div className="d-flex f-aic CourseContentItem-wrap">
                     <div className="d-flex CourseContent-title">
                         <svg
@@ -75,26 +83,26 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                 className="d-flex"
                                 style={{ paddingBottom: 17 }}
                             >
-                                <div className="CourseContentBtn">
-                                    <button className="CourseContentBtnRwd">
-                                        AM 9:00
-                                    </button>
+                                <div >
+                                    {timeArr.map((v, i) => {
+                                        return (
+                                            <button className={`CourseContentBtnRwd CourseContentBtn ${btnClick === i ? 'CourseContentBtnClick' : ''}`} key={i} onClick={() => { courseContentBtnFocus(i); }}>{v}</button>
+                                        );
+                                    })}
                                 </div>
-                                <button className="CourseContentBtnRwd">
-                                    PM 3:00
-                                </button>
+
                             </div>
                             <div style={{ paddingBottom: 12 }}>選擇人數</div>
                             <div
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={numberPeopleReduce}>
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn`} onClick={() => numberPeopleReduce()} >
                                     -
                                 </button>
 
                                 <div className="people-number">{count}</div>
-                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={numberPeople}>
+                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={() => numberPeople()}>
                                     +
                                 </button>
                             </div>
@@ -126,7 +134,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

@@ -1,8 +1,23 @@
-.banner-w {
-    width: 100%;
+.dot {
+    background-color: rgb(40, 39, 39);
+    width: 20px;
+    height: 20px;
 }
-/* .home-titletext {
-    width: 170px;
-    text-align: center;
-    border-bottom: 1px solid brown;
-} */
+
+.dot_active {
+    background-color: rgb(254, 254, 254);
+}
+
+
+/* 左右箭頭的樣式在這裡定義 */
+.swiper-button-prev::after {
+    content: "prev";
+}
+
+.swiper-button-next::after {
+    content: "next";
+}
+
+.drag_bar {
+    height: 5px;
+}

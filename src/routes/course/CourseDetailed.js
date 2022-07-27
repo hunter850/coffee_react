@@ -51,7 +51,7 @@ const CourseDetailed = () => {
     const sendOrder = () => {
         if (start === true) {
             const { course_name, course_price } = courseDetailedData[0];
-
+            // 發送客戶的訂單資訊給Line Pay (會先到後端加密)
             const orders = {
                 amount: course_price * count,
                 currency: 'TWD',
@@ -75,7 +75,7 @@ const CourseDetailed = () => {
                 url: `http://localhost:3500/course/createOrder/${JSON.stringify(orders)}`,
             })
                 .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     setUrl(res.data);
                 });
         }
@@ -113,7 +113,7 @@ const CourseDetailed = () => {
     //     getCourseDataFk();
     // }, []);
 
-    // 完成付款後頁面自動跳轉
+    // 建立訂單時跳轉付款頁面
     useEffect(() => {
         if (url !== '') {
             window.location.href = url;
@@ -146,7 +146,7 @@ const CourseDetailed = () => {
                     backgroundColor={"#fff"}
                     url={["/course"]}
                 />
-                <Carousel />
+                <Carousel imgs={["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500"]} />
                 <Banner courseDetailedData={courseDetailedData} start={start} courseClickMove={courseClickMove} />
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
@@ -161,4 +161,4 @@ const CourseDetailed = () => {
     return el;
 };
 
-export default CourseDetailed;
+export default CourseDetailed;;
