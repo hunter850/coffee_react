@@ -30,7 +30,6 @@ body {
 
 .lg-form {
     flex: 2;
-    text-align: center;
     background: var(--cream);
     height: 100%;
     display: flex;
@@ -64,16 +63,20 @@ body {
     border: 2px solid var(--gold);
 }
 
-.name {
+.lg-field-err{
+    color: red;
+    font-size: .8rem;
+    margin-top: 5px;
+}
+
+.name-height {
     transition: all 500ms ease;
     overflow: hidden;
-}
-.name-height {
     height: 0px;
 }
 
 .lg-field-cont:nth-child(2) {
-    margin: 25px 0;
+    margin: 30px 0;
 }
 
 .icon{
