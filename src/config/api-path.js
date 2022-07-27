@@ -10,4 +10,4 @@ export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const foodDataGet = `${SERVER}/food`;
 
 // SHARING
-export const getPosts = `${SERVER}/sharing/api`;
+export const getPosts = `${SERVER}/sharing/post`;

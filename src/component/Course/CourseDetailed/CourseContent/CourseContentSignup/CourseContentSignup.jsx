@@ -28,11 +28,22 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
     };
 
     const numberPeople = () => {
-        setCount(count + 1);
+        count < 10 ? setCount(count + 1) : setCount(count + 0);
     };
     const numberPeopleReduce = () => {
         count > 1 ? setCount(count - 1) : setCount(count - 0);
     };
+
+    // 輸入人數的數量
+    const numberInput = (e) => {
+        setCount(Number(e.target.value));
+    };
+    // 人數超過限制強制校正
+    useEffect(() => {
+        if (count > 10) {
+            setCount(10);
+        }
+    }, [count]);
 
     return (
         <div ref={signupScrollTop}>
@@ -97,12 +108,12 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                 className="d-flex PeopleNumberRwd"
                                 style={{ paddingBottom: 57 }}
                             >
-                                <button className={`banner-Btn-Hover courseSignUpMinBtn`} onClick={() => numberPeopleReduce()} >
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={() => numberPeopleReduce()} >
                                     -
                                 </button>
-
-                                <div className="people-number">{count}</div>
-                                <button className="banner-Btn-Hover courseSignUpMinBtn" onClick={() => numberPeople()}>
+                                <input type="number" value={count === 0 ? setCount(1) : count} className="people-number" onChange={(e) => numberInput(e)} />
+                                {/* <div className="people-number">{count}</div> */}
+                                <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={() => numberPeople()}>
                                     +
                                 </button>
                             </div>
@@ -134,7 +145,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 

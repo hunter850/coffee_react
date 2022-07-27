@@ -2,7 +2,29 @@ import { useCallback } from "react";
 
 function useClass() {
     return useCallback((...ar) => {
-        return ar.join(" ");
+        const outputArray = [];
+        ar.forEach((item) => {
+            if (typeof item === "string") {
+                outputArray.push(item);
+                return;
+            }
+            if (Array.isArray(item)) {
+                item.forEach((str) => {
+                    if (typeof str === "string") outputArray.push(str);
+                });
+                return;
+            }
+            if (typeof item === "object") {
+                for (let i in item) {
+                    if (!!item[i] === true) {
+                        outputArray.push(i);
+                    }
+                }
+                return;
+            }
+            return;
+        });
+        return outputArray.join(" ");
     }, []);
 }
 
