@@ -9,9 +9,11 @@ function useData(dataName) {
             return;
         }
         dispatch({ name: dataName, data: updateData });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const resetData = useCallback(() => {
         dispatch({ type: "RESET", name: dataName });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     if (dataName === undefined) {
         return [state, dispatch];
