@@ -19,8 +19,7 @@
 }
 
 .banner-Btn-Hover:hover {
-    /* btn組件是行內css,所以用!important */
-    background-color: #aa8b64 !important;
+    background-color: #aa8b64;
 }
 
 .CourseDetailed_banner_level {

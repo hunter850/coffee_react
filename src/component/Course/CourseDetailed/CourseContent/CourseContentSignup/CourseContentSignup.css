@@ -77,6 +77,10 @@
     cursor: pointer;
 }
 
+.courseSignUpMinBtnClick {
+    background-color: #896f4f;
+}
+
 .CourseContentBtn-focus {
     background-color: #c5ad8f;
 }

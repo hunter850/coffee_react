@@ -90,3 +90,21 @@ const [isOpen, setIsOpen] = useSate(false);
     </Modal.Footer>
 </Modal>
 ```
+
+### Carousel 組件使用說明
+
+```js
+// 1.輪播圖請傳入一個帶有圖片路徑的陣列,沒限制輪播張數
+// 2.height直接帶數字就好,預設為500
+// 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
+<Carousel
+    imgs={[
+        "https://picsum.photos/id/249/1440/500",
+        "https://picsum.photos/id/1014/1440/500",
+        "https://picsum.photos/id/120/1440/500",
+        "https://picsum.photos/id/216/1440/500",
+        "https://picsum.photos/id/227/1440/500",
+    ]}
+    height={300}
+/>
+```

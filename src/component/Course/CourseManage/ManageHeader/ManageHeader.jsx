@@ -1,5 +1,4 @@
 import "./ManageHeader.css";
-import Btn from "../../../Item/Btn/Btn";
 import { Link } from "react-router-dom";
 function ManageHeader() {
     return (
@@ -89,10 +88,8 @@ function ManageHeader() {
                 </div>
             </div>
             <div className="ManageHeader-btn">
-                <Link to="/course/add/001">
-                    <Btn width="290px" backgroundColor="#6E7B83">
-                        + 新增課程
-                    </Btn>
+                <Link to="/course/add">
+                    <button className="ManageHeaderBtn"> + 新增課程</button>
                 </Link>
             </div>
         </div>

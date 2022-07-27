@@ -1,13 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { React } from "react";
 import "./Card.css";
+import { imgSrc } from "../../../config/api-path";
 
 function Card({ courseData }) {
     const { course_level, course_name, course_content, course_price, course_img_s } = courseData;
 
     return (
         <div className="course_card">
-            <div className="course_card_top" style={{ background: `url(http://localhost:3500/images/course/${course_img_s}) no-repeat center center`, backgroundSize: 'cover' }}>
+            <div className="course_card_top" style={{ background: `url(${imgSrc}/course/${course_img_s}) no-repeat center center`, backgroundSize: 'cover' }}>
                 <div
                     className={`course_card_level ${course_level === "中級"
                         ? "course_card_level-normal"

@@ -146,7 +146,7 @@ const CourseDetailed = () => {
                     backgroundColor={"#fff"}
                     url={["/course"]}
                 />
-                <Carousel />
+                <Carousel imgs={["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500"]} />
                 <Banner courseDetailedData={courseDetailedData} start={start} courseClickMove={courseClickMove} />
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
