@@ -11,6 +11,8 @@ import FoodCardDetail from "../../component/Food/components/FoodCardDetail";
 import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
+// import { cond } from "lodash";
+// import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 
 // 餐點篩選
 const menuFiliter = [
@@ -22,7 +24,7 @@ const menuFiliter = [
 ];
 
 function Food() {
-    // 從sql拿資料
+    // 從sql拿資料---------------------------------
     const [food, setFood] = useState([]);
     const foodData = async () => {
         const response = await axios.get(foodDataGet);
@@ -41,6 +43,11 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
+    // 讓食物詳細頁面顯示
+    const [isShow, setIsShow] = useState(false);
+    // const [isShowAside, setIsShowAside] = useState(false);
+
+    //食物累加到側邊欄-----------------------------------------------------
     const isSameItem = (item1, item2) => {
         return (
             item1.ice === item2.ice &&
@@ -48,7 +55,7 @@ function Food() {
             item1.menu_sid === item2.menu_sid
         );
     };
-    // 食物累加到側邊欄
+
     const handleDetailAppend = (item) => {
         let newData;
         const isSameItemExist = dataFromFoodDetail.some((existedItem) =>
@@ -68,14 +75,24 @@ function Food() {
         } else {
             // 裡面沒有相同品項 新增
             newData = [...dataFromFoodDetail, item];
+            // [{}, {}, {}, {}]
         }
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
-    // 讓食物詳細頁面顯示
-    const [isShow, setIsShow] = useState(false);
-    // const [isShowAside, setIsShowAside] = useState(false);
-    useEffect(() => { }, [dataFromFoodDetail]);
+    //相同timeID的判斷--------------------------------------------------
+    const setDataFromSummary = (timeID, foodCount) => {
+        const newData = dataFromFoodDetail.map((item) => {
+            const detailCount = item.timeID;
+            if (detailCount === timeID) {
+                return { ...item, foodCount };
+                // { foodCount: 1 } => { foodCount: 2 }
+            }
+            return item;
+        });
+        setDataFromFoodDetail(newData);
+    };
+
     return (
         <Fragment>
             <NavBar />
@@ -85,6 +102,7 @@ function Food() {
                     <Slideshow />
                     <div className="container">
                         <div>
+                            {/* <GoogleMap /> */}
                             <div className="filterbtn-area">
                                 {menuFiliter.map(({ id, name }) => {
                                     return (
@@ -139,6 +157,7 @@ function Food() {
                     show={dataFromFoodDetail.length > 0}
                     // setIsShowAside={setIsShowAside}
                     dataFromFoodDetail={dataFromFoodDetail}
+                    setDataFromSummary={setDataFromSummary}
                 />
             </div>
         </Fragment>
