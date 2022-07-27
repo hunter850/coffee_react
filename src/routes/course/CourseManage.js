@@ -35,6 +35,10 @@ const CourseManage = () => {
     const [perPage, setPerPage] = useState(7);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
+    // Header搜尋框的狀態 - 狀態提升放這邊
+    const [searchInp, setSearchInp] = useState("");
+    // 判斷是否點擊搜尋按鈕
+    const [searchSure, setSearchSure] = useState(false);
 
     const courseManageDataGet = async () => {
         const res = await axios.get(courseDataGet);
@@ -66,53 +70,79 @@ const CourseManage = () => {
         courseManageDataGet();
     }, [sortData]);
 
+    // 一般搜尋框搜尋的渲染
+    useEffect(() => {
+        if (searchSure === true) {
+            setPageNow(1);
+            const pageArray = chunk(courseManageSortData, perPage);
+            if (pageArray.length > 0) {
+                setPageTotal(pageArray.length);
+                setCourseManageData(pageArray);
+            }
+            setSearchSure(false);
+        }
+    }, [searchSure]);
+
+    // 搜尋框為空值時重置原始資料
+    useEffect(() => {
+        if (searchInp === "") {
+            setSortData('');
+            numberConvertString(courseManageDataCopy);
+            const pageArray = chunk(courseManageDataCopy, perPage);
+            if (pageArray.length > 0) {
+                setPageTotal(pageArray.length);
+                setCourseManageData(pageArray);
+            }
+        }
+    }, [searchInp]);
+
     const el = (
         <Fragment>
-
-            <div className="CourseManage-container">
-                <NavBar />
-                <div className="ManageHeader">
-                    <ManageHeader />
-                </div>
-                <Sort sortclass={"sortGrey"} courseData={courseManageData} setSortData={setSortData} sortData={sortData} />
-                <div className="container" style={{ paddingBottom: 104 }}>
-                    {courseManageData.length > 0 &&
-                        courseManageData[pageNow - 1].map((v, i) => {
-                            return (
-                                <List
-                                    key={v.course_sid}
-                                    courseData={{
-                                        course_level: v.course_level,
-                                        course_name: v.course_name,
-                                        course_price: v.course_price,
-                                        course_img_s: v.course_img_s,
-                                    }}
-                                />
-                            );
-                        })}
-                </div>
-                <div className="d-flex f-jcc">
-                    {Array(pageTotal)
-                        .fill(1)
-                        .map((v, i) => {
-                            return (
-                                <div
-                                    key={i}
-                                    onClick={() => {
-                                        setPageNow(i + 1);
-                                    }}
-                                    className={`course-page-btn ${pageNow === i + 1
-                                        ? "course-manage-page-btn-focus"
-                                        : ""
-                                        }`}
-                                >
-                                    {i + 1}
-                                </div>
-                            );
-                        })}
+            <div className="CourseManage-wrap">
+                <div className="CourseManage-container">
+                    <NavBar />
+                    <div className="ManageHeader">
+                        <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
+                    </div>
+                    <Sort sortclass={"sortGrey"} courseData={courseManageData} setSortData={setSortData} sortData={sortData} />
+                    <div className="container" style={{ paddingBottom: 104 }}>
+                        {courseManageData.length > 0 &&
+                            courseManageData[pageNow - 1].map((v, i) => {
+                                return (
+                                    <List
+                                        key={v.course_sid}
+                                        courseData={{
+                                            course_level: v.course_level,
+                                            course_name: v.course_name,
+                                            course_price: v.course_price,
+                                            course_img_s: v.course_img_s,
+                                        }}
+                                    />
+                                );
+                            })}
+                    </div>
+                    <div className="d-flex f-jcc">
+                        {Array(pageTotal)
+                            .fill(1)
+                            .map((v, i) => {
+                                return (
+                                    <div
+                                        key={i}
+                                        onClick={() => {
+                                            setPageNow(i + 1);
+                                        }}
+                                        className={`course-page-btn ${pageNow === i + 1
+                                            ? "course-manage-page-btn-focus"
+                                            : ""
+                                            }`}
+                                    >
+                                        {i + 1}
+                                    </div>
+                                );
+                            })}
+                    </div>
                 </div>
             </div>
-
         </Fragment>
     );
 

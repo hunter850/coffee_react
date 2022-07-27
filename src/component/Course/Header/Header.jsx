@@ -1,5 +1,6 @@
 import { React } from "react";
 import "./Header.css";
+import { courseSearch } from "../helper/courseSearch";
 
 function Header({
     searchInp,
@@ -8,16 +9,6 @@ function Header({
     setDataDisplay,
     setSearchSure,
 }) {
-    // 關鍵字搜尋的function
-    const courseSearch = () => {
-        if (searchInp !== "") {
-            const newCourseData = dataDisplay.filter((v, i) => {
-                return v.course_name.includes(searchInp);
-            });
-            setDataDisplay(newCourseData);
-            setSearchSure(true);
-        }
-    };
     return (
         <div className="CourseHeader">
             <div>
@@ -38,7 +29,14 @@ function Header({
                         />
                         <div
                             className="Coursesearch-btn"
-                            onClick={courseSearch}
+                            onClick={() =>
+                                courseSearch(
+                                    searchInp,
+                                    dataDisplay,
+                                    setDataDisplay,
+                                    setSearchSure
+                                )
+                            }
                         >
                             <svg
                                 width="32"

@@ -1,7 +1,12 @@
 import "./FoodCard.css";
 import "./FoodAdd.css";
 
-function FoodCard({ handleShowFoodDetailSelect, setIsShow, allfood }) {
+function FoodCard({
+    handleShowFoodDetailSelect,
+    setIsShow,
+    allfood,
+    // foodCount,
+}) {
     const {
         menu_name,
         menu_nutrition,
@@ -38,6 +43,7 @@ function FoodCard({ handleShowFoodDetailSelect, setIsShow, allfood }) {
                                         menu_sid,
                                         menu_categories,
                                         menu_photo,
+                                        // foodCount,
                                     });
                                     setIsShow(true);
                                 }}
