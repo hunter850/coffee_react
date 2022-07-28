@@ -4,6 +4,16 @@ import Path from "../../component/Item/Path/Path";
 import CourseAddList from "../../component/Course/CourseAdd/CourseAddList/CourseAddList";
 import CourseAddListDetailed from "../../component/Course/CourseAdd/CourseAddListDetailed/CourseAddListDetailed";
 const CourseAdd = () => {
+    // 選擇的檔案
+    const [selectedFile, setSelectedFile] = useState(null);
+    // 是否有檔案被挑選
+    const [isFilePicked, setIsFilePicked] = useState(false);
+    // 預覽圖片
+    const [preview, setPreview] = useState("");
+    // 要發給資料庫的照片檔名
+    const [imgName, setImgName] = useState("");
+    console.log("要給資料庫的檔名: " + imgName);
+
     // 要新增的資料狀態
     const [formData, setFormData] = useState({
         course_name: "",
@@ -17,8 +27,14 @@ const CourseAdd = () => {
     // 外鍵狀態
     const [formDataFk, setFormDataFk] = useState({
         course_sid: "",
-        course_date: "",
-        course_time: "",
+        course_date: {
+            date1: "",
+            date2: "",
+        },
+        course_time: {
+            time1: "",
+            time2: "",
+        },
         course_img_l: "",
     });
     const el = (
@@ -35,6 +51,14 @@ const CourseAdd = () => {
                         <CourseAddList
                             formData={formData}
                             setFormData={setFormData}
+                            selectedFile={selectedFile}
+                            setSelectedFile={setSelectedFile}
+                            isFilePicked={isFilePicked}
+                            setIsFilePicked={setIsFilePicked}
+                            preview={preview}
+                            setPreview={setPreview}
+                            imgName={imgName}
+                            setImgName={setImgName}
                         />
                         <CourseAddListDetailed
                             formData={formData}

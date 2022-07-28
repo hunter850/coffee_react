@@ -1,7 +1,67 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 import "./CourseAddList.css";
+import { useRef, useEffect, useState } from "react";
+import { courseImages } from "../../../../config/api-path";
 
-function CourseAddList({ setFormData, formData }) {
+function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName }) {
     const { course_name, course_price, course_level, course_img_s } = formData;
+    const file = useRef();
+    const imgFile = (event) => {
+        event.preventDefault();
+        file.current.click();
+    };
+
+    // 當選擇檔案更動時建立預覽圖
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview("");
+            return;
+        }
+        const objectUrl = URL.createObjectURL(selectedFile);
+        // console.log(objectUrl);
+        setPreview(objectUrl);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [selectedFile]);
+
+    const changeHandler = (e) => {
+        const file = e.target.files[0];
+        // console.log(file);
+        if (file) {
+            setIsFilePicked(true);
+            setSelectedFile(file);
+            setImgName("");
+        } else {
+            setIsFilePicked(false);
+            setSelectedFile(null);
+            setImgName("");
+        }
+    };
+
+    useEffect(() => {
+        if (selectedFile) {
+            const fd = new FormData();
+            fd.append("avatar", selectedFile);
+            fetch(courseImages, {
+                method: "POST",
+                body: fd,
+            })
+                .then((response) => response.json())
+                .then((result) => {
+                    // console.log("Success:", result.filename);
+                    setImgName(result.filename);
+                    setFormData({ ...formData, course_img_s: result.filename });
+                });
+        }
+
+
+    }, [selectedFile]);
+
+    const handleSubmission = () => { };
+
     return (
         <div className="CourseAddList">
             <div className="d-flex CourseAddList-wrap">
@@ -9,9 +69,23 @@ function CourseAddList({ setFormData, formData }) {
                     <p>標題圖片 :</p>
                     <div
                         className="CourseAddList-img"
-                        value={course_img_s}
+                        style={{
+                            background: `url(${preview}) no-repeat center center`,
+                        }}
                     ></div>
-                    <button className="CourseAddList-btn">上傳圖片</button>
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: "none" }}
+                        ref={file}
+                        onChange={(e) => changeHandler(e)}
+                    />
+                    <button
+                        className="CourseAddList-btn"
+                        onClick={(event) => imgFile(event)}
+                    >
+                        上傳圖片
+                    </button>
                 </div>
                 <div>
                     <div>
@@ -30,7 +104,7 @@ function CourseAddList({ setFormData, formData }) {
                         />
                     </div>
                     <div>
-                        <p>課程價格 :</p>
+                        <p onClick={handleSubmission}>課程價格 :</p>
                         <div className="d-flex">
                             <input
                                 type="text"

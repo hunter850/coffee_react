@@ -1,6 +1,14 @@
 import "./CourseAddListDetailed.css";
 
-function CourseAddListDetailed() {
+function CourseAddListDetailed({
+    formData,
+    setFormData,
+    formDataFk,
+    setFormDataFk,
+}) {
+    const { course_content, course_people, course_material } = formData;
+    const { course_date, course_time } = formDataFk;
+
     return (
         <div className="CourseAddListDetailed d-flex f-jcc">
             <div className="CourseAddListDetailedCenter">
@@ -25,6 +33,13 @@ function CourseAddListDetailed() {
                     <textarea
                         type="text"
                         className="CourseAddListDetailed-inp"
+                        value={course_content}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                course_content: e.target.value,
+                            })
+                        }
                     ></textarea>
                 </div>
                 <div>
@@ -32,6 +47,13 @@ function CourseAddListDetailed() {
                     <textarea
                         type="text"
                         className="CourseAddListDetailed-object-inp"
+                        value={course_people}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                course_people: e.target.value,
+                            })
+                        }
                     ></textarea>
                 </div>
                 <div>
@@ -39,6 +61,13 @@ function CourseAddListDetailed() {
                     <textarea
                         type="text"
                         className="CourseAddListDetailed-material-inp"
+                        value={course_material}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                course_material: e.target.value,
+                            })
+                        }
                     ></textarea>
                 </div>
                 <div>
@@ -58,16 +87,31 @@ function CourseAddListDetailed() {
                                 type="text"
                                 className="CourseAddListDetailed-date-inp"
                                 placeholder="選擇日期"
+                                value={course_date.data1}
+                                onChange={(e) =>
+                                    setFormDataFk({
+                                        ...formDataFk,
+                                        course_date: {
+                                            ...course_date,
+                                            date1: e.target.value,
+                                        },
+                                    })
+                                }
                             />
                             <input
                                 type="text"
                                 className="CourseAddListDetailed-time-inp"
-                                placeholder="選擇時段1"
-                            />
-                            <input
-                                type="text"
-                                className="CourseAddListDetailed-time-inp"
-                                placeholder="選擇時段2"
+                                placeholder="選擇時段"
+                                value={course_time.time1}
+                                onChange={(e) => {
+                                    setFormDataFk({
+                                        ...formDataFk,
+                                        course_time: {
+                                            ...course_time,
+                                            time1: e.target.value,
+                                        },
+                                    });
+                                }}
                             />
                             <div className="delet-img"></div>
                         </div>
@@ -79,16 +123,31 @@ function CourseAddListDetailed() {
                                 type="text"
                                 className="CourseAddListDetailed-date-inp"
                                 placeholder="選擇日期"
+                                value={course_date.data2}
+                                onChange={(e) =>
+                                    setFormDataFk({
+                                        ...formDataFk,
+                                        course_date: {
+                                            ...course_date,
+                                            date2: e.target.value,
+                                        },
+                                    })
+                                }
                             />
                             <input
                                 type="text"
                                 className="CourseAddListDetailed-time-inp"
-                                placeholder="選擇時段1"
-                            />
-                            <input
-                                type="text"
-                                className="CourseAddListDetailed-time-inp"
-                                placeholder="選擇時段2"
+                                placeholder="選擇時段"
+                                value={course_time.time2}
+                                onChange={(e) => {
+                                    setFormDataFk({
+                                        ...formDataFk,
+                                        course_time: {
+                                            ...course_time,
+                                            time2: e.target.value,
+                                        },
+                                    });
+                                }}
                             />
                             <div className="delet-img"></div>
                         </div>
