@@ -17,8 +17,14 @@ const CourseAdd = () => {
     // 外鍵狀態
     const [formDataFk, setFormDataFk] = useState({
         course_sid: "",
-        course_date: "",
-        course_time: "",
+        course_date: {
+            date1: "",
+            date2: "",
+        },
+        course_time: {
+            time1: "",
+            time2: "",
+        },
         course_img_l: "",
     });
     const el = (
