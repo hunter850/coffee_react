@@ -4,7 +4,9 @@ import store from "./app/store";
 import { Provider } from "react-redux";
 // ---------------------------
 import FrontPage from "./routes/frontPage/FrontPage";
-import Cart from "./routes/cart/Cart";
+// import Cart from "./routes/cart/Cart";
+// import CartContextWrap from "./routes/cart/CartContextWrap";
+import Cart from "./routes/cart/cart/Cart";
 import CartCreditCard from "./routes/cart/CartCreditCard";
 import Products from "./routes/Products/Products";
 import Food from "./routes/food/Food";

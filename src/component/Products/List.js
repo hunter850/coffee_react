@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
 
-function List() {
+function List(props) {
+    const { renderData } = props;
+
     return (
         <>
             <div className="products_list">
@@ -31,25 +33,25 @@ function List() {
                     </div>
                 </div>
                 <div className="card_regin">
-                    {Array(20)
-                        .fill(1)
-                        .map((v, i) => {
-                            return (
-                                <Link to="/products/detail/1" key={i}>
-                                    <Card
-                                        cardData={{
-                                            card_tag: "純苦",
-                                            card_name: "曼巴咖啡",
-                                            card_content:
-                                                "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                            card_price: "450",
-                                            card_sid: 3,
-                                            card_img_s: "bag-09-01.jpg",
-                                        }}
-                                    />
-                                </Link>
-                            );
-                        })}
+                    {renderData.map((v, i) => {
+                        return (
+                            <Link
+                                to={`/products/detail/${v.products_sid}`}
+                                key={v.products_sid}
+                            >
+                                <Card
+                                    cardData={{
+                                        card_tag: "純苦",
+                                        card_name: v.products_name,
+                                        card_content: v.products_info,
+                                        card_price: v.products_price,
+                                        card_sid: v.products_sid,
+                                        card_img_s: v.products_pic,
+                                    }}
+                                />
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </>

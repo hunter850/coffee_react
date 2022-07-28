@@ -6,7 +6,7 @@ function PicRender() {
         <div>
             <div className="productPic">
                 <img
-                    src="http://localhost:3500/images/products/bag-50/bag-09-01.jpg"
+                    src="http://localhost:3500/images/products/1/bag1-1.jpg"
                     alt="main product's pic"
                 />
             </div>
@@ -18,7 +18,7 @@ function PicRender() {
                             <Fragment key={i}>
                                 <img
                                     src={
-                                        "http://localhost:3500/images/products/bag-50/bag-09-01.jpg"
+                                        "http://localhost:3500/images/products/1/bag1-1.jpg"
                                     }
                                     alt="small product's pic"
                                 />

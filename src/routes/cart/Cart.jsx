@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useCallback } from "react";
 import useArray from "../../hooks/useArray";
 import useClass from "../../hooks/useClass";
+import { useCart } from "./contexts/cartContext/CartProvider";
 // import NavBar from "../../component/NavBar";
 import FakeNav from "../../component/FakeNav";
 import CartTab from "./CartTab";
@@ -17,14 +18,17 @@ function Cart() {
     const { fake_body } = styles;
     const [showProduct, setShowProduct] = useState(true);
     const [selectedCouponId, setSelectedCouponId] = useState(-1);
+    // const [checkData, setCheckData] = useCart("checkData");
     const c = useClass();
     const productList = useArray([]);
     const productCoupon = useArray([]);
     const foodList = useArray([]);
     const foodCoupon = useArray([]);
     useEffect(() => {
+        // [{id:1, picture: "1.jpg", name: ["manba"], price: 240, quantity: 1}]
         setTimeout(() => {
             productList.cto(productData);
+            // setCheckData({ ...checkData, cartList: productData });
             productCoupon.cto(productCouponData);
         }, 50);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,6 +55,7 @@ function Cart() {
                             showProduct={showProduct}
                             selectedCouponId={selectedCouponId}
                             setSelectedCouponId={setSelectedCouponId}
+                            listName={"productList"}
                         />
                     ) : (
                         <CartTab
@@ -59,9 +64,11 @@ function Cart() {
                             showProduct={showProduct}
                             selectedCouponId={selectedCouponId}
                             setSelectedCouponId={setSelectedCouponId}
+                            listName={"foodList"}
                         />
                     )}
                 </div>
+                {/* <pre>{JSON.stringify(checkData, null, 4)}</pre> */}
                 <Link to="/cart/creditcard">信用卡</Link>
             </div>
         </Fragment>
