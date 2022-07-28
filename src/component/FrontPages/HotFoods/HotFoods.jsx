@@ -8,18 +8,28 @@ import "./HotFoods.css";
 function HotFoods() {
     return (
         <Fragment>
-            <div className="bottom-line m-auto">
-                <h2 className="home-title">熱銷餐點</h2>
+            <div className="home-container">
+                <div className="bottom-line m-auto">
+                    <h2 className="home-title">熱銷餐點</h2>
+                </div>
+                <div className="d-flex m-auto">
+                    <Link to="/food">
+                        <HotfoodCard />
+                    </Link>
+                    <Link to="/food">
+                        <HotfoodCard hotfoodmargin={200} />
+                    </Link>
+                    <Link to="/food">
+                        <HotfoodCard />
+                    </Link>
+                    <Link to="/food">
+                        <HotfoodCard hotfoodmargin={200} />
+                    </Link>
+                </div>
+                <Link to="/food">
+                    <ViewmoreBtn />
+                </Link>
             </div>
-            <div className="d-flex m-auto">
-                <HotfoodCard />
-                <HotfoodCard hotfoodmargin={200} />
-                <HotfoodCard />
-                <HotfoodCard hotfoodmargin={200} />
-            </div>
-            <Link to="/food">
-                <ViewmoreBtn />
-            </Link>
         </Fragment>
     );
 }

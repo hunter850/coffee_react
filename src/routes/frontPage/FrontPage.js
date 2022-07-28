@@ -22,7 +22,8 @@ function FrontPage() {
             />
             {/* <Carousel /> */}
             <HotFoods />
-            <LatestNews />
+            <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
+            {/* <LatestNews/> */}
             <StarProducts />
             <GoodCourse />
         </Fragment>

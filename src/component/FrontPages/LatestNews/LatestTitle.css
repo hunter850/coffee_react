@@ -1,0 +1,19 @@
+.latestnew-day {
+    color: black;
+    font-size: 16px ;
+    padding-right: 200px;
+}
+
+.latestnew-title{
+    color: black;
+    font-size: 24px;
+}
+.titleitem-layout {
+    width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
