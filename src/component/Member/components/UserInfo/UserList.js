@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 
@@ -23,7 +23,8 @@ function UserList({list,isOpen,setIsOpen}) {
     };
 
     // --------------------- 處理變更密碼 ---------------------
-    const handlePasswordEdit = (e)=>{
+
+    const handlePasswordEdit = async (e)=>{
         e.preventDefault();
 
         setIsOpen(true);
