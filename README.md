@@ -108,3 +108,14 @@ const [isOpen, setIsOpen] = useSate(false);
     height={300}
 />
 ```
+
+
+### Tag 組件使用說明
+
+```js
+ tagContext預設文字為: 標籤,
+ tagBgc預設顏色: #ccc,
+ tagPaddingX預設左右方向padding: 10px
+
+// 引入時導入相關參數, 如沒導入也有預設
+```
