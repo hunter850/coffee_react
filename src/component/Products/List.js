@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
 
-function List() {
+function List(props) {
+    const { renderData } = props;
+
     return (
         <>
             <div className="products_list">
@@ -12,7 +14,7 @@ function List() {
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
-                            class="bi bi-grid-3x2-gap-fill"
+                            className="bi bi-grid-3x2-gap-fill"
                             viewBox="0 0 16 16"
                         >
                             <path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V9z" />
@@ -20,95 +22,36 @@ function List() {
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
-                            class="bi bi-list-ul"
+                            className="bi bi-list-ul"
                             viewBox="0 0 16 16"
                         >
                             <path
-                                fill-rule="evenodd"
+                                fillRule="evenodd"
                                 d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
                             />
                         </svg>
                     </div>
                 </div>
-                <div class="card_regin">
-                    <Link to="/products/detail/1">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
-                    <Link to="#/">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
-                    <Link to="#/">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
-                    <Link to="#/">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
-                    <Link to="#/">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
-                    <Link to="#/">
-                        <Card
-                            cardData={{
-                                card_tag: "純苦",
-                                card_name: "曼巴咖啡",
-                                card_content:
-                                    "介紹範例文字與範圍,範例文字與範圍,介紹範例文字與範圍.456464545",
-                                card_price: "450",
-                                card_sid: 3,
-                                card_img_s: "bag-09-01.jpg",
-                            }}
-                        />
-                    </Link>
+                <div className="card_regin">
+                    {renderData.map((v, i) => {
+                        return (
+                            <Link
+                                to={`/products/detail/${v.products_sid}`}
+                                key={v.products_sid}
+                            >
+                                <Card
+                                    cardData={{
+                                        card_tag: "純苦",
+                                        card_name: v.products_name,
+                                        card_content: v.products_info,
+                                        card_price: v.products_price,
+                                        card_sid: v.products_sid,
+                                        card_img_s: v.products_pic,
+                                    }}
+                                />
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </>

@@ -4,7 +4,9 @@ import store from "./app/store";
 import { Provider } from "react-redux";
 // ---------------------------
 import FrontPage from "./routes/frontPage/FrontPage";
-import Cart from "./routes/cart/Cart";
+// import Cart from "./routes/cart/Cart";
+// import CartContextWrap from "./routes/cart/CartContextWrap";
+import Cart from "./routes/cart/cart/Cart";
 import CartCreditCard from "./routes/cart/CartCreditCard";
 import Products from "./routes/Products/Products";
 import Food from "./routes/food/Food";
@@ -13,7 +15,7 @@ import Course from "./routes/course/Course";
 import CourseDetailed from "./routes/course/CourseDetailed";
 import CourseManage from "./routes/course/CourseManage";
 import CourseAdd from "./routes/course/CourseAdd";
-import Sharing from "./routes/sharing/Sharing";
+import Post from "./routes/sharing/Post";
 import Member from "./routes/member/Member";
 import Login from "./routes/member/Login";
 import UserInfo from "./routes/member/UserInfo";
@@ -27,6 +29,7 @@ import Getpoint from "./routes/game/Getpoint";
 import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
 import ProductsDetail from "./routes/Products/ProductsDetail";
+import PostDetail from "./routes/sharing/PostDetail";
 
 const App = () => {
     const el = (
@@ -57,7 +60,13 @@ const App = () => {
                             element={<CourseDetailed />}
                         />
                         <Route path="/course/add" element={<CourseAdd />} />
-                        <Route path="/sharing" element={<Sharing />} />
+
+                        <Route
+                            path="/sharing/:post_sid"
+                            element={<PostDetail />}
+                        />
+                        <Route path="/sharing" element={<Post />} />
+
                         <Route path="/member" element={<Member />} />
                         <Route path="/member/login" element={<Login />} />
                         <Route path="/member/userinfo" element={<UserInfo />} />

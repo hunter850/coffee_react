@@ -1,0 +1,22 @@
+.productPic {
+    width: 509px;
+    margin-right: 27px;
+    border-radius: 10px;
+    // border: 1px solid var(--BLUE);
+    img {
+        width: 100%;
+        border: 1px solid var(--BLUE);
+        border-radius: 10px;
+    }
+}
+.littlePic {
+    width: 86px;
+    display: flex;
+    border-radius: 3px;
+    img {
+        width: 100%;
+        margin-right: 15px;
+        border: 1px solid var(--BLUE);
+        border-radius: 3px;
+    }
+}

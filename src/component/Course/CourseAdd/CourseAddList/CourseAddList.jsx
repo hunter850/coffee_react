@@ -1,13 +1,91 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 import "./CourseAddList.css";
+import { useRef, useEffect, useState } from "react";
+import { courseImages } from "../../../../config/api-path";
 
-function CourseAddList() {
+function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName }) {
+    const { course_name, course_price, course_level, course_img_s } = formData;
+    // 取得上傳照片的input
+    const file = useRef();
+    // 模擬點擊上傳照片的input,本身已經display:none
+    const imgFile = (event) => {
+        event.preventDefault();
+        file.current.click();
+    };
+
+    // 當選擇檔案更動時建立預覽圖
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview("");
+            return;
+        }
+        const objectUrl = URL.createObjectURL(selectedFile);
+        // console.log(objectUrl);
+        setPreview(objectUrl);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [selectedFile]);
+
+    const changeHandler = (e) => {
+        const file = e.target.files[0];
+        // console.log(file);
+        if (file) {
+            setIsFilePicked(true);
+            setSelectedFile(file);
+            setImgName("");
+        } else {
+            setIsFilePicked(false);
+            setSelectedFile(null);
+            setImgName("");
+        }
+    };
+
+    useEffect(() => {
+        if (selectedFile) {
+            const fd = new FormData();
+            fd.append("avatar", selectedFile);
+            fetch(courseImages, {
+                method: "POST",
+                body: fd,
+            })
+                .then((response) => response.json())
+                .then((result) => {
+                    // console.log("Success:", result.filename);
+                    // 發送到資料庫的照片檔名
+                    setImgName(result.filename);
+                    // 將檔名存在要發給資料庫的formData裡
+                    setFormData({ ...formData, course_img_s: result.filename });
+                });
+        }
+    }, [selectedFile]);
+
     return (
         <div className="CourseAddList">
             <div className="d-flex CourseAddList-wrap">
                 <div style={{ paddingRight: 63 }}>
                     <p>標題圖片 :</p>
-                    <div className="CourseAddList-img"></div>
-                    <button className="CourseAddList-btn">上傳圖片</button>
+                    <div
+                        className="CourseAddList-img"
+                        style={{
+                            background: `url(${preview}) no-repeat center center`,
+                        }}
+                    ></div>
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: "none" }}
+                        ref={file}
+                        onChange={(e) => changeHandler(e)}
+                    />
+                    <button
+                        className="CourseAddList-btn"
+                        onClick={(event) => imgFile(event)}
+                    >
+                        上傳圖片
+                    </button>
                 </div>
                 <div>
                     <div>
@@ -16,12 +94,29 @@ function CourseAddList() {
                             type="text"
                             placeholder="限制11字"
                             className="coursenameinp"
+                            value={course_name}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    course_name: e.target.value,
+                                })
+                            }
                         />
                     </div>
                     <div>
                         <p>課程價格 :</p>
                         <div className="d-flex">
-                            <input type="text" className="coursepriceinp" />
+                            <input
+                                type="text"
+                                className="coursepriceinp"
+                                value={course_price}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        course_price: e.target.value,
+                                    })
+                                }
+                            />
                             <p style={{ color: "#3E3E3E", paddingLeft: 20 }}>
                                 NT$/ 人
                             </p>
@@ -29,11 +124,20 @@ function CourseAddList() {
                     </div>
                     <div>
                         <p>課程難度 :</p>
-                        <select className="courselevelinp">
-                            <option>選擇課程難度</option>
-                            <option>初級</option>
-                            <option>中級</option>
-                            <option>高級</option>
+                        <select
+                            className="courselevelinp"
+                            value={course_level}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    course_level: e.target.value,
+                                })
+                            }
+                        >
+                            <option value={""}>選擇課程難度</option>
+                            <option value={1}>初級</option>
+                            <option value={2}>中級</option>
+                            <option value={3}>高級</option>
                         </select>
                     </div>
                 </div>

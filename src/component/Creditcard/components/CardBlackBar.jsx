@@ -1,16 +1,12 @@
 import { Fragment } from "react";
+import styles from "../css/cardNumberInput.module.scss";
 
 function CardBlackBar() {
-    const balckBarStyle = {
-        width: "433px",
-        height: "45px",
-        backgroundColor: "rgba(0, 0, 19, 0.8)",
-        flexShrink: "0",
-    };
+    const { black_bar } = styles;
 
     return (
         <Fragment>
-            <div style={balckBarStyle}></div>
+            <div className={black_bar}></div>
         </Fragment>
     );
 }

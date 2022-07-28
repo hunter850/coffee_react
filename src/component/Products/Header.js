@@ -10,7 +10,7 @@ function Header({
     const headerSearch = () => {
         if (searchInp !== "") {
             const newSearchData = dataDisplay.filter((v, i) => {
-                return v.course_name.includes(searchInp);
+                return v.productsRows.products_name.includes(searchInp);
             });
             setDataDisplay(newSearchData);
             setSearchSure(true);
