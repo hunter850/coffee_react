@@ -7,7 +7,9 @@ import { courseImages } from "../../../../config/api-path";
 
 function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName }) {
     const { course_name, course_price, course_level, course_img_s } = formData;
+    // 取得上傳照片的input
     const file = useRef();
+    // 模擬點擊上傳照片的input,本身已經display:none
     const imgFile = (event) => {
         event.preventDefault();
         file.current.click();
@@ -52,15 +54,13 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
                 .then((response) => response.json())
                 .then((result) => {
                     // console.log("Success:", result.filename);
+                    // 發送到資料庫的照片檔名
                     setImgName(result.filename);
+                    // 將檔名存在要發給資料庫的formData裡
                     setFormData({ ...formData, course_img_s: result.filename });
                 });
         }
-
-
     }, [selectedFile]);
-
-    const handleSubmission = () => { };
 
     return (
         <div className="CourseAddList">
@@ -104,7 +104,7 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
                         />
                     </div>
                     <div>
-                        <p onClick={handleSubmission}>課程價格 :</p>
+                        <p>課程價格 :</p>
                         <div className="d-flex">
                             <input
                                 type="text"
@@ -113,7 +113,7 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
                                 onChange={(e) =>
                                     setFormData({
                                         ...formData,
-                                        course_price: Number(e.target.value),
+                                        course_price: e.target.value,
                                     })
                                 }
                             />
@@ -130,7 +130,7 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
-                                    course_level: Number(e.target.value),
+                                    course_level: e.target.value,
                                 })
                             }
                         >
