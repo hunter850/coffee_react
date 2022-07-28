@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Fragment } from "react";
-import { useState, useEffect } from "react";
+import { useState,useContext,useEffect } from "react";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
@@ -8,6 +8,7 @@ import UserList from "./UserList";
 import Modal from "../../../Modal/Modal";
 
 import axios from "axios";
+import AuthContext from "../../AuthContext";
 
 function UserInfo() {
 
@@ -44,34 +45,44 @@ function UserInfo() {
 
     // --------------------- 送出修改密碼 ---------------------
 
-    const confirmPassword = (e)=>{
+    // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
+
+    const { authorized, sid, account, token } = useContext(AuthContext);
+    console.log(token);
+
+    const confirmPassword = async (e)=>{
         e.preventDefault();
 
-        if( editPass.member_password !=="" && editPass.new_password !=="" && editPass.confirm_password !==""){
-            
-            if( editPass.new_password === editPass.confirm_password){
-                
-                fetch("http://localhost:3500/member/api/edit-password",{
-                        method: "POST",
-                        body: JSON.stringify(editPass),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    })
-                    .then((r) => r.json())
-                    .then((result) => {
-                        console.log(result);
-                        if(result.success){
-                            console.log("舊密碼正確");
-                        } 
-                    });
-            }else{
-                alert("失敗")
-            }
+        if( editPass.member_password ==="" && editPass.new_password ==="" && editPass.confirm_password ===""){
+            // todo:錯誤訊息提示，欄位必填
+            alert("欄位必填")
+            return;
         }
-
-
+        if( editPass.new_password === editPass.confirm_password){
+            
+            await fetch("http://localhost:3500/member/api/edit-password",{
+                    method: "POST",
+                    body: JSON.stringify(editPass),
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    }
+                })
+                .then((r) => r.json())
+                .then((result) => {
+                    console.log(result);
+                    if(result.success){
+                        alert("修改成功");
+                    } 
+                });
+        }else{
+            alert("失敗")
+        }
     }
+
+    // useEffect(()=>{
+    //     confirmPassword();
+    // },[editPass]);
 
     return (
         <>
@@ -131,7 +142,7 @@ function UserInfo() {
                         </div>
                         <div className="ed-Pass-btn-wrap">
                                 <button className="ui-btn">取消</button>
-                                <button className="ui-btn ui-btn-active" onClick={confirmPassword}>修改</button>
+                                <button type="submit" className="ui-btn ui-btn-active" onClick={confirmPassword}>修改</button>
                         </div>
                     </form>
                 </Modal.Body>
