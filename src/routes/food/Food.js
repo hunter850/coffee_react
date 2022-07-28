@@ -12,7 +12,8 @@ import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
 // import { cond } from "lodash";
-// import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
+import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
+import DateTime from "../../component/Food/components/DateTime";
 
 // 餐點篩選
 const menuFiliter = [
@@ -30,11 +31,10 @@ function Food() {
         const response = await axios.get(foodDataGet);
         setFood(response.data);
     };
-    const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     useEffect(() => {
         foodData();
     }, []);
-
+    const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
         menu_name: "",
         menu_nutrition: "",
@@ -43,8 +43,11 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
-    // 讓食物詳細頁面顯示
+    // 讓顯示的開關
+    const [showDate, setShowDate] = useState(true);
     const [isShow, setIsShow] = useState(false);
+    const [showMap, setShowMap] = useState(true);
+
     // const [isShowAside, setIsShowAside] = useState(false);
 
     //食物累加到側邊欄-----------------------------------------------------
@@ -92,6 +95,9 @@ function Food() {
         });
         setDataFromFoodDetail(newData);
     };
+    //拿自取時段的資料--------------------------------------------------
+    const [dataFromDate, setDataFromDate] = useState("");
+    const [dataFromDateTime, setDataFromDateTime] = useState("");
 
     return (
         <Fragment>
@@ -102,7 +108,19 @@ function Food() {
                     <Slideshow />
                     <div className="container">
                         <div>
-                            {/* <GoogleMap /> */}
+                            {showMap && (
+                                <GoogleMap
+                                    setShowMap={setShowMap}
+                                    setShowDate={setShowDate}
+                                />
+                            )}
+                            {showDate && (
+                                <DateTime
+                                    setShowDate={setShowDate}
+                                    setDataFromDate={setDataFromDate}
+                                    setDataFromDateTime={setDataFromDateTime}
+                                />
+                            )}
                             <div className="filterbtn-area">
                                 {menuFiliter.map(({ id, name }) => {
                                     return (
@@ -158,6 +176,10 @@ function Food() {
                     // setIsShowAside={setIsShowAside}
                     dataFromFoodDetail={dataFromFoodDetail}
                     setDataFromSummary={setDataFromSummary}
+                    dataFromDate={dataFromDate}
+                    dataFromDateTime={dataFromDateTime}
+                    setShowDate={setShowDate}
+                    setShowMap={setShowMap}
                 />
             </div>
         </Fragment>

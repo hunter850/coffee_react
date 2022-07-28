@@ -6,6 +6,7 @@ import TotalBord from "./components/TotalBord";
 import Modal from "../../component/Modal/Modal";
 import ModalContent from "./components/ModalContent";
 import styles from "./css/cartTab.module.scss";
+import useData from "../../hooks/useData";
 
 function CartTab(props) {
     const {
@@ -14,13 +15,17 @@ function CartTab(props) {
         showProduct,
         selectedCouponId,
         setSelectedCouponId,
+        listName,
     } = props;
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [list, setList] = useData(listName);
 
     return (
         <Fragment>
+            <pre>{JSON.stringify(list, null, 4)}</pre>
             <div className={cart_container}>
                 <div className={list_wrap}>
                     {cartList.clength() >= 1 && (

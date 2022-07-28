@@ -11,7 +11,7 @@ function Card({ cardData }) {
             <div
                 className="card_card_top"
                 style={{
-                    background: `url(http://localhost:3500/images/products/bag-50/${card_img_s}) no-repeat center center`,
+                    background: `url(http://localhost:3500/images/products/1/${card_img_s}) no-repeat center center`,
                     backgroundSize: "cover",
                 }}
             >
