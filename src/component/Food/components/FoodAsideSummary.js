@@ -3,7 +3,15 @@ import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
 
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
-function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
+function FoodAsideSummary({
+    dataFromFoodDetail,
+    show,
+    setDataFromSummary,
+    dataFromDateTime,
+    dataFromDate,
+    setShowDate,
+    setShowMap,
+}) {
     const asideClass = show ? "aside" : "aside hide";
     const perItem = dataFromFoodDetail.map(({ menu_price_m, foodCount }) => {
         return menu_price_m * foodCount;
@@ -11,35 +19,6 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
     const totalPrice = perItem.reduce((a, b) => {
         return a + b;
     }, 0);
-
-    // console.log("dataFromCount", dataFromCount);
-    // setDataFromSummary(setDataFromCount);
-
-    // 金額總計---------------------------------------------------------
-
-    // const isSameID = (item1, item2) => {
-    //     return item1.timeID === item2.timeID;
-    // };
-
-    // const calcSummary = (timeID, subCount) => {
-    //     console.log("subCounfsdfdfst", timeID, subCount);
-    //     let newData;
-    //     const isSameIDExist = dataFromFoodDetail.some((existedID) =>
-    //         isSameID(existedID.timeID, timeID)
-    //     );
-    //     if (isSameIDExist) {
-    //         console.log("subCoust",  subCount);
-
-    //         return subCount;
-    //     } else {
-
-    //         const QQ =[...subCount,subCount]
-
-    //         console.log("QQ",  QQ);
-    //         return QQ;
-    //     }
-    //     setPriceFromAside(newData);
-    // };
 
     return (
         <>
@@ -85,7 +64,11 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
                     <div className="txt">
                         <div className="takeout">
                             <h6>自取門市</h6>
-                            <h6>
+                            <h6
+                                onClick={() => {
+                                    setShowMap(true);
+                                }}
+                            >
                                 <svg
                                     width="20"
                                     height="20"
@@ -116,7 +99,11 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
                     <div className="txt">
                         <div className="takeout">
                             <h6>自取時間</h6>
-                            <h6>
+                            <h6
+                                onClick={() => {
+                                    setShowDate(true);
+                                }}
+                            >
                                 <svg
                                     width="20"
                                     height="20"
@@ -138,8 +125,8 @@ function FoodAsideSummary({ dataFromFoodDetail, show, setDataFromSummary }) {
                             </h6>
                         </div>
                         <div className="edit">
-                            <p>2022年8月24日 週三</p>
-                            <p className="bottom">04:15 PM</p>
+                            <p>{dataFromDate}</p>
+                            <p className="bottom">{dataFromDateTime}</p>
                         </div>
                     </div>
                     {dataFromFoodDetail.map((item) => (
