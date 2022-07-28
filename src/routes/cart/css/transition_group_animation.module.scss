@@ -185,15 +185,18 @@
 
 :global(.tab-fade-enter) {
     opacity: 0;
+    transform: translateX(-80px) translateY(10px) scale(70%);
 }
 
 :global(.tab-fade-enter-active) {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    transform: translateX(0px) translateY(0px) scale(100%);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 :global(.tab-fade-enter-done) {
     opacity: 1;
+    transform: translateX(0px) translateY(0px) scale(100%);
 }
 
 :global(.tab-fade-exit) {
@@ -204,7 +207,7 @@
 :global(.tab-fade-exit-active) {
     opacity: 0;
     transform: translateX(-80px) translateY(10px) scale(70%);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
 :global(.tab-fade-exit-done) {

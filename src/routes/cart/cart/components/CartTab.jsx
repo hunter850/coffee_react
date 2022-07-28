@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import useData from "../../../../hooks/useData";
-// eslint-disable-next-line no-unused-vars
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Modal from "../../../../component/Modal/Modal";
 import ModalContent from "./ModalContent";
 import GoodsHeader from "./GoodsHeader";
@@ -18,10 +18,28 @@ function CartTab() {
             <div className={cart_container}>
                 <div className={list_wrap}>
                     {list.length >= 1 && <GoodsHeader />}
-                    <GoodsList
-                        setDeleteId={setDeleteId}
-                        setModalIsOpen={setModalIsOpen}
-                    />
+                    <SwitchTransition mode="out-in">
+                        <CSSTransition
+                            key={nowList}
+                            timeout={250}
+                            classNames="tab-fade"
+                            appear={false}
+                        >
+                            {nowList === "productList" ? (
+                                <GoodsList
+                                    setDeleteId={setDeleteId}
+                                    setModalIsOpen={setModalIsOpen}
+                                    listName={"productList"}
+                                />
+                            ) : (
+                                <GoodsList
+                                    setDeleteId={setDeleteId}
+                                    setModalIsOpen={setModalIsOpen}
+                                    listName={"foodList"}
+                                />
+                            )}
+                        </CSSTransition>
+                    </SwitchTransition>
                 </div>
                 <div className={total_wrap}></div>
             </div>
