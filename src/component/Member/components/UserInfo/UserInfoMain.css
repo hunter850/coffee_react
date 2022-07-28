@@ -127,3 +127,54 @@ body{
     background-color: var(--blue);
     margin: 0;
 }
+/* 變更密碼 */
+.editPassword{
+    display: block;
+}
+.ed-Pass:nth-child(1){
+    margin-top: 30px;
+}
+.ed-Pass{
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.ed-Pass-h1{
+    text-align: center;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 30px 0;
+}
+.ed-Pass-wrap{
+    border: 1.2px solid var(--blue);
+    border-radius: 3px;
+    margin-bottom: 30px;
+    padding: 50px;
+}
+.ed-Pass-title{
+    margin-right: 35px;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 1.15rem;
+}
+.ed-Pass-field{
+    border: 1px solid var(--gray);
+    border-radius: 3px;
+    width: 300px;
+    height: 36px;
+    background-color: transparent;
+    color: var(--blue);
+    font-size: 1rem;
+    padding: 0 9px;
+}
+.ed-Pass-field:focus {
+    outline: none;
+    border: 2px solid var(--gold);
+}
+.ed-Pass-btn-wrap{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}

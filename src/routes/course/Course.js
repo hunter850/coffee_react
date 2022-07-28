@@ -11,9 +11,14 @@ import Sort from "../../component/Course/Sort/Sort";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import "./Course.css";
-import numberConvertString from '../../component/Course/helper/numberConvertString';
-import { priceAsc, priceDesc, levelAsc, levelDesc } from '../../component/Course/helper/sort';
-import { chunk } from '../../component/Course/helper/chunk';
+import numberConvertString from "../../component/Course/helper/numberConvertString";
+import {
+    priceAsc,
+    priceDesc,
+    levelAsc,
+    levelDesc,
+} from "../../component/Course/helper/sort";
+import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 
 const Course = () => {
@@ -56,13 +61,51 @@ const Course = () => {
                 }
 
                 // 排序 - 價錢低到高
-                sortDataFun('priceAsc', priceAsc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
+                sortDataFun(
+                    "priceAsc",
+                    priceAsc,
+                    dataDisplay,
+                    perPage,
+                    sortData,
+                    setPageTotal,
+                    setCourseData,
+                    chunk
+                );
                 // 排序 - 價錢高到低
-                sortDataFun('priceDesc', priceDesc, dataDisplay, perPage, sortData, setPageTotal, setCourseData, chunk);
+                sortDataFun(
+                    "priceDesc",
+                    priceDesc,
+                    dataDisplay,
+                    perPage,
+                    sortData,
+                    setPageTotal,
+                    setCourseData,
+                    chunk
+                );
                 // 排序 - 難度初級到高級
-                sortDataFun('levelAsc', levelAsc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
+                sortDataFun(
+                    "levelAsc",
+                    levelAsc,
+                    courseDataCopy,
+                    perPage,
+                    sortData,
+                    setPageTotal,
+                    setCourseData,
+                    chunk,
+                    numberConvertString
+                );
                 // 排序 - 難度高級到初級
-                sortDataFun('levelDesc', levelDesc, courseDataCopy, perPage, sortData, setPageTotal, setCourseData, chunk, numberConvertString);
+                sortDataFun(
+                    "levelDesc",
+                    levelDesc,
+                    courseDataCopy,
+                    perPage,
+                    sortData,
+                    setPageTotal,
+                    setCourseData,
+                    chunk,
+                    numberConvertString
+                );
             })
             .catch((err) => {
                 console.log(err.response);
@@ -76,7 +119,7 @@ const Course = () => {
     // 搜尋框為空值時重置原始資料
     useEffect(() => {
         if (searchInp === "") {
-            setSortData('');
+            setSortData("");
             numberConvertString(courseDataCopy);
             const pageArray = chunk(courseDataCopy, perPage);
             if (pageArray.length > 0) {

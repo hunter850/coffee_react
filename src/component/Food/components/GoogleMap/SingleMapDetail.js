@@ -1,132 +1,180 @@
-import React, { Component } from "react";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import React, { useState, useEffect } from "react";
+import GoogleMapReact from "google-map-react";
+import axios from "axios";
+import { mapAPI } from "../../../../config/api-path";
 
-// 申請的google api key
-import { ApiKey } from "./ApiKey";
+const shops_dummy = [
+    {
+        key: "shop_1",
+        lat: 25.042118,
+        lng: 121.548479,
+        text: "Cafe 1",
+    },
+    {
+        key: "shop_2",
+        lat: 25.042118,
+        lng: 121.541489,
+        text: "Cafe 2",
+    },
+];
 
-const mapStyles = {
-    width: "100%",
-    height: "40vh",
-};
+// 我的位置
+const MyPositionMarker = ({ text }) => <div>{text}</div>;
+const ShopMarker = ({ text }) => <div>{text}</div>;
 
-export class SingleMapDetail extends Component {
-    static defaultProps = {
-        lat: 25.0259029,
-        lng: 121.5703875,
+const SingleMapDetail = (props) => {
+    const [mapApis, setMapApis] = useState([]);
+    const [aa, setAA] = useState(false);
+
+    const mapAPiGet = async () => {
+        const response = await axios.get(mapAPI);
+        setMapApis(response.data);
     };
+    useEffect(() => {
+        if (mapApis.length > 0) {
+            setAA(true);
+        }
+    }, [mapApis]);
 
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {},
-    };
+    useEffect(() => {
+        mapAPiGet();
+    }, []);
+    if (aa === true) {
+        console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
+    }
 
-    onMarkerClick = (props, marker, e) =>
-        this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true,
+    // const SingleMapDetail = (props) => {
+    //     const [mapApis, setMapApis] = useState([]);
+    //     const [aa, setAA] = useState(false);
+
+    //     const mapAPiGet = async () => {
+    //         const response = await axios.get(mapAPI);
+    //         setMapApis(response.data);
+    //     };
+    //     useEffect(() => {
+    //         if (mapApis.length > 0) {
+    //             setAA(true);
+    //         }
+    //     }, [mapApis]);
+
+    //     useEffect(() => {
+    //         mapAPiGet();
+    //     }, []);
+    //     if (aa === true) {
+    //         console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
+    //         setAA(false);
+
+    // 預設位置
+    const [myPosition, setMyPosition] = useState({}); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
+    const [mapApiLoaded, setMapApiLoaded] = useState(false);
+    const [mapInstance, setMapInstance] = useState(null);
+    const [mapApi, setMapApi] = useState(null);
+    // Effect
+    useEffect(() => {
+        console.log("myPosition", myPosition);
+    }, [myPosition]);
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            setMyPosition({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            });
         });
+    }, []);
 
-    onMapClicked = (props) => {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null,
+    // 找咖啡廳
+    // const [places, setPlaces] = useState([]);
+    // 創建一個 state
+    // const [searchType, setSearchType] = useState("cafe");
+
+    // 找咖啡廳
+    const [shops, setShops] = useState(shops_dummy);
+
+    // 當地圖載入完成，將地圖實體與地圖 API 傳入 state 供之後使用
+    const apiHasLoaded = ({ map, maps }) => {
+        setMapInstance(map);
+        setMapApi(maps);
+        setMapApiLoaded(true);
+    };
+
+    const handleCenterChange = () => {
+        if (mapApiLoaded) {
+            setMyPosition({
+                // center.lat() 與 center.lng() 會回傳正中心的經緯度
+                lat: mapInstance.center.lat(),
+                lng: mapInstance.center.lng(),
             });
         }
     };
 
-    onMapReady = (mapProps, map) => {
-        this.map = map;
-    };
+    // 搜尋
+    const findLocation = () => {
+        if (mapApiLoaded) {
+            const service = new mapApi.places.PlacesService(mapInstance);
+            const request = {
+                location: myPosition,
+                radius: 1000,
+                // type: searchType,
+            };
 
-    componentDidUpdate(prevProps, prevState) {
-        console.log(
-            "componentDidUpdate",
-            prevProps.lat,
-            this.props.lat,
-            prevProps.lng,
-            this.props.lng
-        );
-
-        if (prevProps.google !== this.props.google) {
-            this.loadMap();
-        }
-
-        if (
-            prevProps.lat !== this.props.lat ||
-            prevProps.lng !== this.props.lng
-        ) {
-            this.recenterMap();
-        }
-    }
-
-    recenterMap = () => {
-        const map = this.map;
-        const curr = { lat: this.props.lat, lng: this.props.lng };
-
-        const google = this.props.google;
-        const maps = google.maps;
-
-        console.log(this.props, this.map);
-
-        if (map) {
-            //console.log(this.markerOne.current.marker)
-            let center = new maps.LatLng(curr.lat, curr.lng);
-            map.panTo(center);
-            map.setZoom(12);
-
-            //console.log(this.infoWindowOne.current.infowindow)
-            // let markerCurrent = this.markerOne.current.marker
-            // let infowindowCurrent = this.infoWindowOne.current.infowindow
-            // infowindowCurrent.open(map, markerCurrent)
+            service.nearbySearch(request, (results, status) => {
+                if (status === mapApi.places.PlacesServiceStatus.OK) {
+                    // setPlaces(results);
+                }
+            });
         }
     };
 
-    render() {
-        //console.log(this.props)
-        return (
-            <Map
-                google={this.props.google}
-                containerStyle={{
-                    width: "100%",
-                    height: "250px",
-                    position: "relative",
+    return (
+        <div style={{ height: "50vh", width: "100%" }}>
+            <input type="button" value="開始搜尋" onClick={findLocation} />
+            {/* <div onClick={handleSearchType}>
+            </div> */}
+            <GoogleMapReact
+                bootstrapURLKeys={{
+                    key: mapApis,
+                    // 請輸入googlemap的key
+                    libraries: ["places"], // 要在這邊放入我們要使用的 API
                 }}
-                zoom={17}
-                mapTypeControl={false}
-                scaleControl={false}
-                streetViewControl={false}
-                fullscreenControl={false}
-                style={mapStyles}
-                initialCenter={{
-                    lat: this.props.lat,
-                    lng: this.props.lng,
-                }}
-                onClick={this.onMapClicked}
-                onReady={this.onMapReady}
+                // onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
+                defaultCenter={props.center}
+                center={myPosition}
+                defaultZoom={props.zoom}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={apiHasLoaded}
             >
-                <Marker
-                    onClick={this.onMarkerClick}
-                    name={"物件位置"}
-                    position={{ lat: this.props.lat, lng: this.props.lng }}
+                <MyPositionMarker
+                    lat={myPosition.lat}
+                    lng={myPosition.lng}
+                    text="My Position"
                 />
-                <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}
-                >
-                    <div>
-                        <h1>{this.props.infoTitle}</h1>
-                        <p>{this.props.infoContent}</p>
-                    </div>
-                </InfoWindow>
-            </Map>
-        );
-    }
-}
+                {shops.map((shop) => (
+                    <ShopMarker {...shop} />
+                ))}
+                {/* 使用 map 方法渲染 */}
+                {/* {places.map((item, i) => (
+                    <CafeMarker
+                        key={i}
+                        //    key={item.i}
+                        icon={item.icon}
+                        lat={item.geometry.location.lat()}
+                        lng={item.geometry.location.lng()}
+                        text={item.name}
+                        placeId={item.place_id}
+                    />
+                ))} */}
+            </GoogleMapReact>
+            {/* <input/> */}
+        </div>
+    );
+};
+// 由於改寫成 functional component，故另外設定 defaultProps
+SingleMapDetail.defaultProps = {
+    center: {
+        lat: 25.042118,
+        lng: 121.541489,
+    },
+    zoom: 15,
+};
 
-export default GoogleApiWrapper({
-    apiKey: ApiKey,
-    language: "zh-TW",
-})(SingleMapDetail);
+export default SingleMapDetail;
