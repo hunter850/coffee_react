@@ -14,12 +14,9 @@ function Cart() {
     const { container, px_200 } = bs_flex;
     const { fake_body } = styles;
     const c = useClass();
-    // eslint-disable-next-line no-unused-vars
-    const [nowList, setNowList] = useData("nowList");
-    // eslint-disable-next-line no-unused-vars
-    const [productList, setProductList] = useData("productList");
-    // eslint-disable-next-line no-unused-vars
-    const [foodList, setFoodList] = useData("foodList");
+    const [, setNowList] = useData("nowList");
+    const [, setProductList] = useData("productList");
+    const [, setFoodList] = useData("foodList");
     useEffect(() => {
         axios.get(getProduct).then((result) => {
             setProductList(result.data);
