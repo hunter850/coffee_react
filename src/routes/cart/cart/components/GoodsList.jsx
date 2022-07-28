@@ -1,52 +1,37 @@
-import { useCallback } from "react";
-import useDebounce from "../../../hooks/useDebounce";
 import CounterGroup from "./CounterGroup";
 import styles from "./css/goodsList.module.scss";
+import useData from "../../../../hooks/useData";
 
-function GoodsList(props) {
-    const { cartList, setDeleteId, setModalIsOpen } = props;
+function GoodsList() {
     const {
         cart_delete,
         cart_list_ul,
-        list,
+        list_style,
         img_wrap,
         p_name,
         p_price,
         p_multiply,
     } = styles;
-
-    useDebounce(
-        () => {
-            console.log(cartList.value);
-        },
-        300,
-        [cartList]
-    );
-
-    const deleteHandler = useCallback(
-        (itemId) => {
-            setDeleteId(itemId);
-            setModalIsOpen(true);
-        },
-        [setDeleteId, setModalIsOpen]
-    );
+    const [nowList] = useData("nowList");
+    // eslint-disable-next-line no-unused-vars
+    const [list, setList] = useData(nowList);
     return (
         <ul className={cart_list_ul}>
-            {cartList.cmap((item) => (
-                <li key={item.name} className={list}>
+            {list.map((item) => (
+                <li key={item.name + item.id} className={list_style}>
                     <div className={img_wrap}>
                         <img src={item.picture} alt={item.name} />
                     </div>
-                    <p className={p_name}>{item.name}</p>
+                    <p className={p_name}>
+                        {item.name[0]}
+                        {item.name[1] && <span>{item.name[1]}</span>}
+                        {item.name[2] && <span>{item.name[2]}</span>}
+                    </p>
                     <p className={p_price}>{item.price}</p>
-                    <CounterGroup
-                        quantity={item.quantity}
-                        id={item.id}
-                        cartList={cartList}
-                    />
+                    <CounterGroup quantity={item.quantity} id={item.id} />
                     <p className={p_multiply}>{item.price * item.quantity}</p>
                     <button
-                        onClick={() => deleteHandler(item.id)}
+                        // onClick={() => deleteHandler(item.id)}
                         className={cart_delete}
                     >
                         <svg
