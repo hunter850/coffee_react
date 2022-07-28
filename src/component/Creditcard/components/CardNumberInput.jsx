@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
 import useClass from "../../../hooks/useClass";
 import styles from "../css/cardNumberInput.module.scss";
+import "../../../routes/cart/css/transition_group_animation.module.scss";
 
 function CardNumberInput(props) {
     const { cardNumber } = props;
