@@ -12,3 +12,7 @@ export const foodDataGet = `${SERVER}/food`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/post`;
+
+// Products
+
+export const productsDataGet = `${SERVER}/products/api`;
