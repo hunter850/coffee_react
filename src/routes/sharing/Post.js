@@ -22,23 +22,13 @@ function Post() {
     const refTimes = useRef(null);
 
     const [getDataTimes, setGetDataTimes] = useState(0);
-    refTimes.current = getDataTimes;
 
     const [rows, setRows] = useState([]);
 
     const getData = async () => {
-        setGetDataTimes((pre) => {
-            console.log(pre);
-            return pre + 1;
-        });
-
         const r = await axios(getPosts, {
-            params: { times: refTimes.current },
+            params: { times: getDataTimes },
         });
-
-        // setGetDataTimes(getDataTimes + 1);
-
-        console.log("await", refTimes.current);
 
         return r.data;
     };
@@ -49,21 +39,11 @@ function Post() {
 
         if (lastImg.getBoundingClientRect().top < 1000) {
             console.log("加載");
-
-            const r = await getData();
-
-            setRows((pre) => {
-                return [...pre, ...r.rows];
-            });
+            setGetDataTimes((pre) => pre + 1);
         }
     };
 
     useEffect(() => {
-        (async () => {
-            const r = await getData();
-            console.log(r);
-            setRows(r.rows);
-        })();
         window.addEventListener("scroll", debounce(scrollHandler, 100));
 
         return () => {
@@ -72,11 +52,13 @@ function Post() {
     }, []);
 
     useEffect(() => {
-        // setGetDataTimes((pre) => {
-        //     console.log(pre);
-        //     return pre + 1;
-        // });
-    }, [rows]);
+        (async () => {
+            const r = await getData();
+            setRows((pre) => {
+                return [...pre, ...r.rows];
+            });
+        })();
+    }, [getDataTimes]);
 
     return (
         <Fragment>
