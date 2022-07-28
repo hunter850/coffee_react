@@ -18,13 +18,14 @@
 
 .cart_list_ul {
     width: 100%;
+    position: relative;
     li:last-child {
         border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
     }
 }
 
-.list {
+.list_style {
     width: 100%;
     display: flex;
     justify-content: space-between;

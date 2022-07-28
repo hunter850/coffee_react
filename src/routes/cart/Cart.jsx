@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState, useCallback } from "react";
+import { Fragment, useEffect, useState } from "react";
 import useArray from "../../hooks/useArray";
 import useClass from "../../hooks/useClass";
-import { useCart } from "./contexts/cartContext/CartProvider";
+// import { useCart } from "./contexts/cartContext/CartProvider";
 // import NavBar from "../../component/NavBar";
 import FakeNav from "../../component/FakeNav";
 import CartTab from "./CartTab";
