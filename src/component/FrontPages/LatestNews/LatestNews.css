@@ -1,9 +1,17 @@
-.bag-color {
-    background-color: #324A59;
-}
 .home-title-white {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     /* font-family: 'Rubik', sans-serif; */
     color:rgb(255, 251, 251); 
     text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px rgb(231, 231, 231), 3px 3px rgb(231, 231, 231);
+}
+
+.bottom-line-white {
+    width: 160px;
+    color: #FFFFFF;
+    text-align: center;
+    border-bottom: 1px solid #FFFFFF;
+    padding-bottom: 20px;
+}
+.mt-20 {
+    /* margin-top: 20px; */
 }

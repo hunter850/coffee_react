@@ -1,8 +1,9 @@
-.star-container {
-    /* background-color: #FEFEFD; */
-    background-color: #c6a8ec;
-    min-width: 1440px;
+.home-container {
+    background-color: #FEFEFD;
+    padding-right: 200px;
+    padding-left: 200px;
     letter-spacing: 0.5rem;
+    margin: auto;
 }
 .bottom-line {
     width: 160px;
