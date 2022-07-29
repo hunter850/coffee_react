@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { imgSrc } from "./../../../config/api-path";
+import { useAuth } from "../../../component/Member/AuthContextProvider";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import styles from "./../css/postNav.module.scss";
 
 function PostNav({ scrollDir = "up" }) {
+    const { authorized, sid, account, token, avatar } = useAuth();
     const {
         post_nav,
         container,
@@ -19,17 +20,11 @@ function PostNav({ scrollDir = "up" }) {
 
     const [memberAvatar, setMemberAvatar] = useState("lao_pi.png");
 
-    useEffect(() => {
-        const auth = localStorage.getItem("auth");
-        if (auth) {
-            setMemberAvatar(JSON.parse(auth));
-        }
-    }, []);
 
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
-                <h4 style={{ width: "25%" }}>分享牆</h4>
+                <h4 style={{ width: "25%" }}>分享牆{avatar}</h4>
                 <div className={search_wrap}>
                     <div className={search_bar}>search</div>
                 </div>
@@ -45,7 +40,7 @@ function PostNav({ scrollDir = "up" }) {
                     </li>
                     <li className={avatar_wrap}>
                         <img
-                            src={`${imgSrc}/member/lao_pi.png`}
+                            src={`${imgSrc}/member/${avatar}`}
                             alt="avatar"
                             width="36px"
                         />
