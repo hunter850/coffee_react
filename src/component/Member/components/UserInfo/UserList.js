@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { useState} from "react";
-import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 
 function UserList({list,isOpen,setIsOpen}) {
