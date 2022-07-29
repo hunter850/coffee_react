@@ -95,7 +95,6 @@ function Getcoupon() {
                 );
                 setCouponHandle2(null);
             });
-        console.log(124);
     }
 
     const onFinished = (winner) => {

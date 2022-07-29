@@ -32,7 +32,7 @@
     background-color: transparent;
     border: none;
     margin: auto;
-    z-index: 999;
+    /* z-index: 999; */
 }
 .HideLunchLogo{
     position: absolute;
