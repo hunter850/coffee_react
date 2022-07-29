@@ -9,7 +9,7 @@ import Modal from "../../../Modal/Modal";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
-import { method } from "lodash";
+import { method, result } from "lodash";
 
 import { useAuth } from "../../AuthContextProvider";
 
@@ -73,27 +73,25 @@ function UserInfo() {
 
     // --------------------- 送出修改密碼 ---------------------
 
-    // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
-
     const confirmPassword = async (e) => {
         e.preventDefault();
 
         if(!editPass.member_password){
-            setPassErrors({...passErrors, member_password:"欄位必填"})
+            setPassErrors({...passErrors, member_password:"欄位必填！"})
             return;
         }else{
             setPassErrors({...passErrors,member_password:""});
         }
 
         if(!editPass.new_password){
-            setNewPassErrors({...newPassErrors,new_password:"欄位必填"})
+            setNewPassErrors({...newPassErrors,new_password:"欄位必填！"})
             return;
         }else{
             setNewPassErrors({...newPassErrors,new_password:""});
         }
 
         if(!editPass.confirm_password){
-            setConfirmErrors({...confirmErrors,confirm_password:"欄位必填"})
+            setConfirmErrors({...confirmErrors,confirm_password:"欄位必填！"})
             return;
         }else{
             setConfirmErrors({...confirmErrors,confirm_password:""});
@@ -104,6 +102,7 @@ function UserInfo() {
         //     return;
         // }
 
+        // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
         if (editPass.new_password === editPass.confirm_password) {
             await fetch("http://localhost:3500/member/api/edit-password", {
                 method: "POST",
@@ -118,16 +117,18 @@ function UserInfo() {
                     console.log(result);
                     if (result.success) {
                         alert("修改成功");
+                    }else{
+                        alert(`${result.error}`)
                     }
                 });
         } else {
-            alert("失敗");
+            alert("新密碼輸入錯誤")
         }
     };
 
     // useEffect(()=>{
     //     confirmPassword();
-    // },[editPass]);
+    // },[]);
 
     return (
         <>
@@ -174,9 +175,7 @@ function UserInfo() {
                         <div className="ed-Pass-h1">修改您的密碼</div>
                         <div className="ed-Pass-wrap">
                             <div className="ed-Pass">
-                                <div className="ed-Pass-title">
-                                    請輸入舊密碼
-                                </div>
+                                <label className="ed-Pass-title">請輸入舊密碼</label>
                                 <input
                                     type="text"
                                     className="ed-Pass-field"
@@ -187,9 +186,7 @@ function UserInfo() {
                                 <p className="ed-Pass-field-err">{passErrors.member_password}</p>
                             </div>
                             <div className="ed-Pass">
-                                <div className="ed-Pass-title">
-                                    請輸入新密碼
-                                </div>
+                                <label className="ed-Pass-title">請輸入新密碼</label>
                                 <input
                                     type="text"
                                     className="ed-Pass-field"
@@ -200,9 +197,7 @@ function UserInfo() {
                                 <p className="ed-Pass-field-err">{newPassErrors.new_password}</p>
                             </div>
                             <div className="ed-Pass">
-                                <div className="ed-Pass-title">
-                                    請確認新密碼
-                                </div>
+                                <label className="ed-Pass-title">請確認新密碼</label>
                                 <input
                                     type="text"
                                     className="ed-Pass-field"
