@@ -34,7 +34,7 @@ function Cart() {
             console.log("now", productList);
             if (preProductList.length === 0) return;
             if (preProductList.length !== productList.length) {
-                axios.put()
+                axios.put();
             }
         },
         300,
@@ -98,14 +98,8 @@ function Cart() {
                 setFoodCoupons(result.data);
             })
             .catch((error) => console.log(error));
-    }, [
-        setFoodList,
-        setProductList,
-        setProductCoupons,
-        setFoodCoupons,
-        token,
-        sid,
-    ]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <Fragment>
             <div className={fake_body}>
