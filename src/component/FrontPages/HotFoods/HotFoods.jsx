@@ -12,7 +12,7 @@ function HotFoods() {
                 <div className="bottom-line m-auto">
                     <h2 className="home-title">熱銷餐點</h2>
                 </div>
-                <div className="d-flex m-auto">
+                <div className="d-flex hotfood-magin-auto">
                     <Link to="/food">
                         <HotfoodCard />
                     </Link>

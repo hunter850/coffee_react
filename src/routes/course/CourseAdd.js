@@ -16,11 +16,12 @@ const CourseAdd = () => {
     const [isFilePickeds, setIsFilePickeds] = useState(false);
     // 預覽圖片
     const [preview, setPreview] = useState("");
-    const [previews, setPreviews] = useState("");
+    const [previews, setPreviews] = useState([]);
     // 要發給資料庫的照片檔名
     const [imgName, setImgName] = useState("");
     const [imgNames, setImgNames] = useState("");
-    console.log("要給資料庫的檔名: " + imgName);
+    // console.log("要給資料庫的檔名: " + imgName);
+    // 監聽後端是否回傳sid
     const [monitor, setMonitor] = useState(false);
 
     // 要新增的資料狀態
@@ -44,7 +45,7 @@ const CourseAdd = () => {
             time1: "",
             time2: "",
         },
-        course_img_l: "",
+        course_img_l: [],
     });
 
     const handleSubmission = (e) => {
@@ -57,6 +58,7 @@ const CourseAdd = () => {
         }).then((response) => {
             // console.log(response.config.data);
             console.log(response);
+            // 確定拿到sid後塞給外鍵的formData
             setFormDataFk({ ...formDataFk, course_sid: response.data });
             setMonitor(true);
         });
@@ -64,6 +66,7 @@ const CourseAdd = () => {
 
     useEffect(() => {
         // console.log(formDataFk.course_sid);
+        // 確定有sid後發送外鍵的請求
         if (monitor === true) {
             axios({
                 method: "post",

@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import LatestTitle from "./LatestTitle";
+import "./LatestNews.css";
 
 function LatestNews({ bagcolorblue, latesttitlecolor }) {
     return (
         <Fragment>
             <div
-                className="home-container mt-20 mb-20"
+                className="home-container p-20"
                 style={{ backgroundColor: bagcolorblue }}
             >
                 <div className="bottom-line-white m-auto">

@@ -11,7 +11,7 @@
 }
 
 .view-more-link {
-    /* margin: auto; */
+    transform:translateX(50%);
 }
 
 .arrow-icon-right {

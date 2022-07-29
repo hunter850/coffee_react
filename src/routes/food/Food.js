@@ -14,6 +14,7 @@ import { foodDataGet } from "../../config/api-path";
 // import { cond } from "lodash";
 import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 import DateTime from "../../component/Food/components/DateTime";
+import all from "gsap/all";
 
 // 餐點篩選
 const menuFiliter = [
@@ -44,13 +45,12 @@ function Food() {
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
     // 讓顯示的開關
-    const [showDate, setShowDate] = useState(true);
+    const [showDate, setShowDate] = useState(false);
     const [isShow, setIsShow] = useState(false);
-    const [showMap, setShowMap] = useState(true);
-
+    const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
-
     //食物累加到側邊欄-----------------------------------------------------
+
     const isSameItem = (item1, item2) => {
         return (
             item1.ice === item2.ice &&
@@ -73,18 +73,22 @@ function Food() {
                         foodCount: existedItem.foodCount + item.foodCount,
                     };
                 }
+                console.log("existedItem", existedItem);
                 return existedItem;
             });
         } else {
             // 裡面沒有相同品項 新增
+
             newData = [...dataFromFoodDetail, item];
             // [{}, {}, {}, {}]
         }
+
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
     //相同timeID的判斷--------------------------------------------------
     const setDataFromSummary = (timeID, foodCount) => {
+        // console.log("dataFromFoodDetail", dataFromFoodDetail);
         const newData = dataFromFoodDetail.map((item) => {
             const detailCount = item.timeID;
             if (detailCount === timeID) {
@@ -99,78 +103,116 @@ function Food() {
     const [dataFromDate, setDataFromDate] = useState("");
     const [dataFromDateTime, setDataFromDateTime] = useState("");
 
+    //如果餐點為沙拉或蛋糕，直接加數量到aside-------------------------------
+
+    const handleCakeCount = (allfood) => {
+        const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
+        let newData = [
+            ...dataFromFoodDetail,
+            {
+                menu_sid: menu_sid,
+                menu_price_m: menu_price_m,
+                menu_photo: menu_photo,
+                menu_name: menu_name,
+                timeID: Date.now(),
+                foodCount: 1,
+                ice: "",
+                sugar: "",
+            },
+        ];
+
+        setDataFromFoodDetail(newData);
+    };
+
+    // console.log("newD888ata", {
+    //     ...obj[0],
+    //     timeID: Date.now(),
+    //     foodCount: 1,
+    //     ice: "",
+    //     sugar: "",
+    // });
+
+    // if (isSameItem(existedItem, newItem)) {
+    //     const aa = {
+    //         ...newItem,
+    //         timeID: Date.now(),
+    //         foodCount: 1,
+    //         ice: "1",
+    //         sugar: "",
+    //     };
+    //     console.log("11", aa);
     return (
         <Fragment>
             <NavBar />
             <Path pathObj={{ path: ["．點餐"] }} />
-            <div className="foodpage">
+            <div className="container">
+                <Slideshow />
                 <div>
-                    <Slideshow />
-                    <div className="container">
-                        <div>
-                            {showMap && (
-                                <GoogleMap
-                                    setShowMap={setShowMap}
-                                    setShowDate={setShowDate}
+                    {showMap && (
+                        <GoogleMap
+                            setShowMap={setShowMap}
+                            setShowDate={setShowDate}
+                        />
+                    )}
+                    {showDate && (
+                        <DateTime
+                            setShowDate={setShowDate}
+                            setDataFromDate={setDataFromDate}
+                            setDataFromDateTime={setDataFromDateTime}
+                        />
+                    )}
+                    <div className="filterbtn-area">
+                        {menuFiliter.map(({ id, name }) => {
+                            return (
+                                <Filterbutton
+                                    key={`menuFiliter${id}`}
+                                    id={id}
+                                    name={name}
+                                    setFoodFilter={setFoodFilter}
                                 />
-                            )}
-                            {showDate && (
-                                <DateTime
-                                    setShowDate={setShowDate}
-                                    setDataFromDate={setDataFromDate}
-                                    setDataFromDateTime={setDataFromDateTime}
-                                />
-                            )}
-                            <div className="filterbtn-area">
-                                {menuFiliter.map(({ id, name }) => {
-                                    return (
-                                        <Filterbutton
-                                            key={`menuFiliter${id}`}
-                                            id={id}
-                                            name={name}
-                                            setFoodFilter={setFoodFilter}
-                                        />
-                                    );
-                                })}
-                                {/* <button
+                            );
+                        })}
+                        {/* <button
                                 onClick={() => {
                                     setIsShowAside(true);
                                 }}
                             >
                                 按按看
                             </button> */}
-                            </div>
-                            <div className="foodcard-session">
-                                {/* 這裡很重要 */}
-                                {food
-                                    .filter(
-                                        ({ menu_categories }) =>
-                                            !foodFilter ||
-                                            menu_categories === foodFilter
-                                    )
-                                    .map(({ ...allfood }, i) => {
-                                        return (
-                                            <FoodCard
-                                                key={`allfood${i}`}
-                                                allfood={allfood}
-                                                handleShowFoodDetailSelect={
-                                                    setShowFoodDetail
-                                                }
-                                                setIsShow={setIsShow}
-                                            />
-                                        );
-                                    })}
-                            </div>
-                        </div>
                     </div>
-                    {isShow && (
-                        <FoodCardDetail
-                            showFoodDetail={showFoodDetail}
-                            setIsShow={setIsShow}
-                            setDataFromFoodDetail={handleDetailAppend}
-                        />
-                    )}
+                    <div className="foodcard-session">
+                        {/* 這裡很重要 */}
+                        {food
+                            .filter(
+                                ({ menu_categories }) =>
+                                    !foodFilter ||
+                                    menu_categories === foodFilter
+                            )
+                            .map(({ ...allfood }, i) => {
+                                return (
+                                    <FoodCard
+                                        key={`allfood${i}`}
+                                        allfood={allfood}
+                                        handleShowFoodDetailSelect={
+                                            setShowFoodDetail
+                                        }
+                                        setIsShow={setIsShow}
+                                        setDataFromFoodDetail={
+                                            setDataFromFoodDetail
+                                        }
+                                        handleCakeCount={handleCakeCount}
+                                    />
+                                );
+                            })}
+                    </div>
                 </div>
+                {isShow && (
+                    <FoodCardDetail
+                        showFoodDetail={showFoodDetail}
+                        setIsShow={setIsShow}
+                        setDataFromFoodDetail={handleDetailAppend}
+                    />
+                )}
                 <FoodAsideSummary
                     show={dataFromFoodDetail.length > 0}
                     // setIsShowAside={setIsShowAside}
