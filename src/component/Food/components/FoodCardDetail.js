@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import "./FoodCardDetail.css";
+import "./FoodCardDetail.scss";
 import { useState } from "react";
 // import useData from "../../../hooks/useData";
 
@@ -12,7 +12,6 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
         menu_photo,
         // menu_categories,
     } = showFoodDetail;
-
     const icechoice = [
         {
             id: 1,
@@ -45,21 +44,27 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
     const [timeID, setTimeID] = useState(Date.now());
+    const orderclass = ice && sugar ? "order" : "order disabled";
 
     return (
         <>
-            <div className="food-lightbox">
-                <div className="food-detail">
-                    <div className="food-detail-photoarea">
+            <div
+                className="food-lightbox"
+                // onClick={() => {
+                //     setIsShow(false);
+                // }}
+            >
+                <div className="detail">
+                    <div className="detail-photoarea">
                         <figure>
                             <img
                                 src={`http://localhost:3500/images/food/${menu_photo}`}
                                 alt=""
-                                className="food-detail-photo"
+                                className="photo"
                             />
                         </figure>
                         <div>
-                            <div className="detail-menu-name">{menu_name}</div>
+                            <div className="menu_name">{menu_name}</div>
                             <div>{menu_nutrition}</div>
                             <div>NT$ {menu_price_m}</div>
                         </div>
@@ -97,7 +102,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             </svg>
                         </div>
                     </div>
-                    <div className="foodchoice">冰熱選擇</div>
+                    <div className="choice">冰熱選擇</div>
                     {icechoice.map(({ name, id }) => {
                         return (
                             <div key={`icechoice${id}`} className="inputarea">
@@ -118,7 +123,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         );
                     })}
 
-                    <div className="foodchoice">甜度選擇</div>
+                    <div className="choice">甜度選擇</div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
                             <div key={`sugarchoice${id}`} className="inputarea">
@@ -140,7 +145,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     })}
                     <div className="cal">
                         <button
-                            className="foodminusplus"
+                            className="count"
                             onClick={() => {
                                 return foodCount > 1
                                     ? setFoodCount(foodCount - 1)
@@ -151,7 +156,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         </button>
                         <div className="foodcount">{foodCount}</div>
                         <button
-                            className="foodminusplus"
+                            className="count"
                             onClick={() => {
                                 setFoodCount(foodCount + 1);
                             }}
@@ -159,7 +164,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             +
                         </button>
                         <button
-                            className="addtoorder"
+                            className={orderclass}
                             onClick={() => {
                                 setIsShow(false);
                                 setDataFromFoodDetail({

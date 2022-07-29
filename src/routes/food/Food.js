@@ -86,6 +86,7 @@ function Food() {
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
+
     //相同timeID的判斷--------------------------------------------------
     const setDataFromSummary = (timeID, foodCount) => {
         // console.log("dataFromFoodDetail", dataFromFoodDetail);
@@ -102,45 +103,37 @@ function Food() {
     //拿自取時段的資料--------------------------------------------------
     const [dataFromDate, setDataFromDate] = useState("");
     const [dataFromDateTime, setDataFromDateTime] = useState("");
-
-    //如果餐點為沙拉或蛋糕，直接加數量到aside-------------------------------
-
+    //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複----------------
     const handleCakeCount = (allfood) => {
         const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
-        let newData = [
-            ...dataFromFoodDetail,
-            {
-                menu_sid: menu_sid,
-                menu_price_m: menu_price_m,
-                menu_photo: menu_photo,
-                menu_name: menu_name,
-                timeID: Date.now(),
-                foodCount: 1,
-                ice: "",
-                sugar: "",
-            },
-        ];
-
+        let newData;
+        const compareItems = (item1, item2) =>
+            item1.menu_sid === item2.menu_sid;
+        const isSameFood = dataFromFoodDetail.some((existedItem) => {
+            return compareItems(existedItem, allfood);
+        });
+        if (isSameFood) {
+            newData = dataFromFoodDetail.map((item) => {
+                return item;
+            });
+        } else {
+            newData = [
+                ...dataFromFoodDetail,
+                {
+                    menu_sid: menu_sid,
+                    menu_price_m: menu_price_m,
+                    menu_photo: menu_photo,
+                    menu_name: menu_name,
+                    timeID: Date.now(),
+                    foodCount: 1,
+                    ice: "",
+                    sugar: "",
+                },
+            ];
+        }
         setDataFromFoodDetail(newData);
     };
 
-    // console.log("newD888ata", {
-    //     ...obj[0],
-    //     timeID: Date.now(),
-    //     foodCount: 1,
-    //     ice: "",
-    //     sugar: "",
-    // });
-
-    // if (isSameItem(existedItem, newItem)) {
-    //     const aa = {
-    //         ...newItem,
-    //         timeID: Date.now(),
-    //         foodCount: 1,
-    //         ice: "1",
-    //         sugar: "",
-    //     };
-    //     console.log("11", aa);
     return (
         <Fragment>
             <NavBar />

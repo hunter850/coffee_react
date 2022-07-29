@@ -1,4 +1,4 @@
-import "./FilterButton.css";
+import "./FilterButton.scss";
 
 const Filterbutton = ({ id, name, setFoodFilter }) => {
     return (

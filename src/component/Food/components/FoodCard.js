@@ -1,11 +1,12 @@
-import "./FoodCard.css";
-import "./FoodAdd.css";
+import "./FoodCard.scss";
+import "./FoodAdd.scss";
 
 function FoodCard({
     handleShowFoodDetailSelect,
     setIsShow,
     allfood,
     handleCakeCount,
+
     // foodCount,
 }) {
     const {

@@ -1,0 +1,119 @@
+.food-lightbox {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: #4d4944;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    .detail {
+        width: 50%;
+        height: 100%;
+        /* height: 100vh; */
+        background: #fcfaf7;
+        margin: 0 auto;
+        padding: 80px 27px 20px 27px;
+        overflow: scroll;
+        
+
+        .detail-photoarea {
+            display: flex;
+
+            .photo {
+                object-fit: cover;
+                object-position: 20% 60%;
+
+                width: 480px;
+                height: 380px;
+                border-radius: 10px;
+                margin-right: 45px;
+            }
+
+            .menu_name {
+                font-size: 20px;
+            }
+        }
+
+        .choice {
+            width: 100%;
+            height: 45px;
+            background-color: #e4d5c9;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .inputarea {
+            display: flex;
+        }
+        .inputdetail {
+            width: 40px;
+            height: 20.15px;
+            margin: 6px 0;
+        }
+        .inputla {
+            font-size: 20px;
+        }
+        .cal {
+            display: flex;
+            margin-top: 20px;
+
+            .count {
+                width: 41px;
+                background-color: #c5ad8f;
+                color: #fff;
+                border: none;
+                text-align: center;
+                font-size: 18px;
+                border-radius: 3px;
+                /* box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1); */
+                /* padding: 8px 0px; */
+                white-space: nowrap;
+                cursor: pointer;
+            }
+
+            .foodcount {
+                width: 47px;
+                text-align: center;
+                border-bottom: 1px solid #d1cfcf;
+                margin-right: 15px;
+                margin-left: 15px;
+                color: #3e3e3e;
+                padding-top: 5px;
+            }
+
+            .order {
+                width: 100%;
+                background-color: rgb(37, 57, 69);
+                color: #fff;
+                border: none;
+                text-align: center;
+                font-size: 18px;
+                border-radius: 3px;
+                /* box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1); */
+                padding: 8px 0px;
+                white-space: nowrap;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+            .order.disabled {
+                width: 100%;
+                background-color: #c5ad8f;
+                color: #fff;
+                border: none;
+                text-align: center;
+                font-size: 18px;
+                border-radius: 3px;
+                /* box-shadow: 4px 4px 3px 0px rgb(0, 0, 0, 0.1); */
+                padding: 8px 0px;
+                white-space: nowrap;
+                cursor: pointer;
+                margin-left: 20px;
+                pointer-events: none;
+            }
+        }
+    }
+}
