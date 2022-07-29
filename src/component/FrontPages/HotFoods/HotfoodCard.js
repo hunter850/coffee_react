@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-// import HotFoodImg from "../../../images/frontpage/food/Rectangle 133.png";
+import HotFoodImg from "../../../images/frontpage/food/Rectangle-133.png";
 import "./HotfoodCard.css";
 
 export default function HotfoodCard({ hotfoodmargin }) {
