@@ -6,6 +6,7 @@ import HotFoods from "../../component/FrontPages/HotFoods/HotFoods";
 import LatestNews from "../../component/FrontPages/LatestNews/LatestNews";
 import StarProducts from "../../component/FrontPages/StarProducts/StarProducts";
 import GoodCourse from "../../component/FrontPages/GoodCourse/GoodCourse";
+import Footer from "../../component/Footer";
 import "./FrontPage.css";
 
 function FrontPage() {
@@ -25,6 +26,7 @@ function FrontPage() {
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
             <StarProducts />
             <GoodCourse />
+            <Footer />
         </Fragment>
     );
 }

@@ -10,7 +10,7 @@ export default function HotfoodCard({ hotfoodmargin }) {
                 style={{ marginTop: hotfoodmargin }}
             >
                 <div className="hotfood-circle">
-                    {/* <img src={HotFoodImg} alt="" /> */}
+                    <img src={HotFoodImg} alt="" />
                 </div>
                 <p className="hotfood-name" style={{ color: "black" }}>
                     凱薩沙拉
