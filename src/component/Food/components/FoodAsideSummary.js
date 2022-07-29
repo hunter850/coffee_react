@@ -19,7 +19,6 @@ function FoodAsideSummary({
     const totalPrice = perItem.reduce((a, b) => {
         return a + b;
     }, 0);
-
     return (
         <>
             <div className={asideClass}>
@@ -142,7 +141,7 @@ function FoodAsideSummary({
                 <div className="payarea">
                     <div className="payarea1">
                         <p className="finaltotal">合計</p>
-                        <p>$ {totalPrice}</p>
+                        <p>${totalPrice}</p>
                     </div>
                     <div className="pay">去結帳</div>
                 </div>

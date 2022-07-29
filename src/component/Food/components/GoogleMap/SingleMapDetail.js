@@ -40,7 +40,7 @@ const SingleMapDetail = (props) => {
         mapAPiGet();
     }, []);
     if (aa === true) {
-        console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
+        console.log("key", mapApis[0].mapapi_key);
     }
 
     // const SingleMapDetail = (props) => {
@@ -71,7 +71,7 @@ const SingleMapDetail = (props) => {
     const [mapApi, setMapApi] = useState(null);
     // Effect
     useEffect(() => {
-        console.log("myPosition", myPosition);
+        // console.log("myPosition", myPosition);
     }, [myPosition]);
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function (position) {
