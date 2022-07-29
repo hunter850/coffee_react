@@ -1,8 +1,9 @@
 .goodcourse-paragraph {
     width: 500px;
-    height: 300px;
+    height: 270px;
     background-color: #D9D9D9;
     padding:20px 20px;
+    color: black;
 }
 
 .goodcourse-img {
@@ -10,11 +11,13 @@
     height: 400px;
 }
 .goodcourse-text {
-    line-height: 2rem;
+    line-height: 2.5rem;
+    padding-top: 10px;
 }
 
 .container-relative {
     position: relative;
+    background-color: #FCFAF7;
 }
 
 .right-brewedcoffee {
@@ -22,7 +25,17 @@
     top:300px;
     right: 300px;
 }
-.left-barist {
+.right-barista-img {
     position: absolute;
-    top:
+    top:600px;
+    right:300px;
+}
+.left-barista {
+    position: absolute;
+    top:700px;
+    z-index: 99;
+}
+
+.foodCourse-btn {
+    transform: translateX(100px) translateY(-200px);
 }

@@ -1,11 +1,16 @@
 import React, { Fragment } from "react";
 import "./ViewmoreBtn.css";
 
-
-export default function ViewmoreBtn() {
+export default function ViewmoreBtn({ Vbpaddingtop, transform }) {
     return (
         <Fragment>
-            <div className="view-more-link">
+            <div
+                className="view-more-link"
+                style={{
+                    paddingTop: Vbpaddingtop,
+                    transform: `translateX(${transform}px)`,
+                }}
+            >
                 <div className="view-more-text">View More</div>
                 <div className="arrow-icon-right">
                     <img

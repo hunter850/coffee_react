@@ -138,7 +138,7 @@ const FakeNav = () => {
                         </Link>
                     </li>
                     <li className={nav_link}>
-                        <Link to="/goods" className={nav_text}>
+                        <Link to="/products" className={nav_text}>
                             商品
                         </Link>
                     </li>

@@ -1,30 +1,49 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "./PicRender.scss";
 
-function PicRender() {
+function PicRender(props) {
+    const { renderData, dataLoaded } = props;
+    console.log(renderData);
+    console.log(
+        dataLoaded ? renderData[0].products_picMuti.split(",") : "還沒讀"
+    );
+
     const el = (
         <div>
             <div className="productPic">
                 <img
-                    src="http://localhost:3500/images/products/1/bag1-1.jpg"
+                    src={
+                        dataLoaded
+                            ? `http://localhost:3500/images/products/${renderData[0].products_with_products_categories_sid}/${renderData[0].products_pic}`
+                            : ""
+                    }
                     alt="main product's pic"
                 />
             </div>
             <div className="littlePic">
-                {Array(3)
-                    .fill(1)
-                    .map((v, i) => {
-                        return (
-                            <Fragment key={i}>
-                                <img
-                                    src={
-                                        "http://localhost:3500/images/products/1/bag1-1.jpg"
-                                    }
-                                    alt="small product's pic"
-                                />
-                            </Fragment>
-                        );
-                    })}
+                {dataLoaded
+                    ? renderData[0].products_picMuti.split(",").map((v, i) => {
+                          return (
+                              <Fragment key={i}>
+                                  <img
+                                      src={
+                                          dataLoaded
+                                              ? `http://localhost:3500/images/products/${
+                                                    renderData[0]
+                                                        .products_with_products_categories_sid
+                                                }/${
+                                                    renderData[0].products_picMuti.split(
+                                                        ","
+                                                    )[i]
+                                                }`
+                                              : ""
+                                      }
+                                      alt="small product's pic"
+                                  />
+                              </Fragment>
+                          );
+                      })
+                    : ""}
             </div>
         </div>
     );
