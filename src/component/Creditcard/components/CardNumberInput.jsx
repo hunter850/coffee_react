@@ -1,14 +1,12 @@
 import { Fragment, useState, useEffect, useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import useIndexArray from "../../../hooks/useIndexArray";
-import useClass from "../../../hooks/useClass";
 import styles from "../css/cardNumberInput.module.scss";
 import "../../../routes/cart/css/transition_group_animation.module.scss";
 
 function CardNumberInput(props) {
     const { cardNumber } = props;
     const { card_number } = styles;
-    const c = useClass();
     //算出是不是Americna Express
     const isShort = useMemo(() => {
         return (

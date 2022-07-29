@@ -11,7 +11,6 @@ function CardHolder(props) {
         card_name,
         card_name_split,
         hide_text,
-        text_span,
         space_width,
         dots_for_hide,
     } = styles;
