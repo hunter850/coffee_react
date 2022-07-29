@@ -1,31 +1,159 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./CourseAddListDetailed.css";
+import { useRef, useEffect } from "react";
+import { courseImages } from "../../../../config/api-path";
 
 function CourseAddListDetailed({
     formData,
     setFormData,
     formDataFk,
     setFormDataFk,
+    selectedFiles,
+    setSelectedFiles,
+    previews,
+    setPreviews,
+    isFilePickeds,
+    setIsFilePickeds,
+    imgNames,
+    setImgNames,
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
 
+    const files = useRef();
+    const imgFiles = (event) => {
+        event.preventDefault();
+        files.current.click();
+    };
+    // console.log(selectedFiles);
+    // 當選擇檔案更動時建立預覽圖
+    useEffect(() => {
+        if (!selectedFiles) {
+            setPreviews([]);
+            return;
+        }
+        const objectUrl = URL.createObjectURL(selectedFiles);
+        // console.log(objectUrl);
+        const newPreviews = previews.length < 5 ? previews.push(objectUrl) : setPreviews(previews);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [selectedFiles]);
+
+    const changeHandlers = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            setIsFilePickeds(true);
+            setSelectedFiles(file);
+            setImgNames("");
+        } else {
+            setIsFilePickeds(false);
+            setSelectedFiles(null);
+            setImgNames("");
+        }
+    };
+
+    useEffect(() => {
+        if (selectedFiles) {
+            const fds = new FormData();
+            fds.append("avatar", selectedFiles);
+            fetch(courseImages, {
+                method: "POST",
+                body: fds,
+            })
+                .then((response) => response.json())
+                .then((result) => {
+                    // console.log("Success:", result.filename);
+                    // 發送到資料庫的照片檔名
+                    setImgNames(result.filename);
+                    // 限制最多只收5張圖片
+                    if (formDataFk.course_img_l.length < 5) {
+                        formDataFk.course_img_l.push(result.filename);
+                    }
+                    // 將檔名存在要發給資料庫的formData裡
+                    setFormDataFk({
+                        ...formDataFk,
+                        course_img_l: formDataFk.course_img_l,
+                    });
+                });
+        }
+    }, [selectedFiles]);
+
+    // 刪除輪播圖片
+    const deleteImg = (e) => {
+        e.preventDefault();
+        const newPreviews = previews.length > 0 ? previews.pop() : setPreviews(previews);
+        if (formDataFk.course_img_l.length > 0) {
+            formDataFk.course_img_l.pop();
+        }
+        setFormDataFk({
+            ...formDataFk,
+            course_img_l: formDataFk.course_img_l,
+        });
+    };
+
     return (
         <div className="CourseAddListDetailed d-flex f-jcc">
             <div className="CourseAddListDetailedCenter">
-                <div>
+                <div >
                     <p style={{ paddingBottom: 10, paddingTop: 44 }}>
                         內頁輪播圖片 :
                     </p>
-                    <p style={{ fontWeight: 400, paddingBottom: 5 }}>圖片1 :</p>
-                    <div
-                        className="CourseAddListDetailed-img"
-                        style={{ marginBottom: 19 }}
-                    ></div>
-                    <button className="CourseAddListDetailed-imgbtn">
+                    <div className={`${previews.length > 0 ? 'course-display-none' : ''}`}>
+                        <p
+                            style={{
+                                fontWeight: 400,
+                                paddingBottom: 5,
+                            }}
+                        >
+                            圖片 1 :
+                        </p>
+                        <div
+                            className="CourseAddListDetailed-img"
+                            style={{ marginBottom: 19 }}
+                        ></div>
+                    </div>
+                    {previews.map((v, i) => {
+                        return (
+                            <div key={i}>
+                                <p
+                                    style={{
+                                        fontWeight: 400,
+                                        paddingBottom: 5,
+                                    }}
+                                >
+                                    圖片 {i + 1} :
+                                </p>
+                                <div
+                                    className="CourseAddListDetailed-img"
+                                    style={{
+                                        background: `url(${v
+                                            })  center center / cover no-repeat`,
+                                        marginBottom: 19,
+                                    }}
+                                ></div>
+                            </div>
+                        );
+                    })}
+
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: "none" }}
+                        ref={files}
+                        onChange={(e) => changeHandlers(e)}
+                    />
+                    <button
+                        className="CourseAddListDetailed-imgbtn"
+                        onClick={(event) => imgFiles(event)}
+                    >
                         上傳圖片
                     </button>
-                    <button className="CourseAddListDetailed-btn">
-                        + 新增圖片
+                    <button className="CourseAddListDetailed-btn" onClick={(e) => deleteImg(e)}>
+                        - 刪除圖片
                     </button>
                 </div>
                 <div>
@@ -160,7 +288,7 @@ function CourseAddListDetailed({
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

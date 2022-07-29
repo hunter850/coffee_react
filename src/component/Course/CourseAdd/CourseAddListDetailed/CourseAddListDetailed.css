@@ -10,11 +10,15 @@
     margin-top: 62px;
 }
 
+.course-display-none {
+    display: none;
+}
+
 .CourseAddListDetailed-img {
     width: 669px;
     height: 233px;
-    background: #bbbbbb;
     margin: 0 auto;
+    border: 1px solid #d9d9d9;
 }
 
 .CourseAddListDetailed-btn {

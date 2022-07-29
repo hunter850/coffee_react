@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import styles from "../css/cardNumberInput.module.scss";
+import "../../../routes/cart/css/transition_group_animation.module.scss";
 
 function CardType(props) {
     const { cardNumber } = props;

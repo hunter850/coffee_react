@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 
@@ -7,15 +7,16 @@ function UserList({list,isOpen,setIsOpen}) {
 
     const { member_name, member_nickname, member_account, member_password, member_birthday, member_mobile, member_address, member_mail } = list;
 
+    console.log(list);
     // 欄位輸入的值
     const [userList, setUserList] = useState({
-        member_name: member_name,
-        member_nickname: member_nickname,
-        member_account: member_account,
-        member_birthday: member_birthday,
-        member_mobile: member_mobile,
-        member_address: member_address,
-        member_mail: member_mail,
+        member_name: member_name ? member_name :"",
+        member_nickname: member_nickname ? member_nickname:"",
+        member_account: member_account ? member_account:"",
+        member_birthday: member_birthday ? member_birthday:"",
+        member_mobile: member_mobile ? member_mobile:"",
+        member_address: member_address ? member_address:"",
+        member_mail: member_mail ? member_mail:"",
     });
 
     const changeFields = (event) => {
@@ -23,7 +24,8 @@ function UserList({list,isOpen,setIsOpen}) {
     };
 
     // --------------------- 處理變更密碼 ---------------------
-    const handlePasswordEdit = (e)=>{
+
+    const handlePasswordEdit = async (e)=>{
         e.preventDefault();
 
         setIsOpen(true);
@@ -49,7 +51,7 @@ function UserList({list,isOpen,setIsOpen}) {
             </div>
             <div className="ui-info">
                 <div className="ui-info-title">生日</div>
-                <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday.split("T")[0]}  onChange={changeFields} />
+                <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday !== null ? userList.member_birthday.split("T")[0] : "" } onChange={changeFields} />
             </div>
             <div className="ui-info">
                 <div className="ui-info-title">手機</div>
