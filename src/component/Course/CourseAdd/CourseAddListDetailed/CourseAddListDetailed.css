@@ -21,6 +21,28 @@
     border: 1px solid #d9d9d9;
 }
 
+.CourseAddListDetailed-btn-red:hover {
+    background-color: #a45959;
+    color: #fff;
+}
+
+.CourseAddListDetailed-btn-red {
+    border: none;
+    text-align: center;
+    font-size: 1.125rem;
+    border-radius: 3px;
+    box-shadow: 5px 5px 5px 0px rgb(0, 0, 0, 0.15);
+    padding: 8px 0px;
+    white-space: nowrap;
+    cursor: pointer;
+    width: 669px;
+    color: #6e7b83;
+    background-color: #fff;
+    margin-top: 19px;
+    margin-bottom: 45px;
+    background: url(/src/images/course/border-image.png) no-repeat;
+}
+
 .CourseAddListDetailed-btn {
     border: none;
     text-align: center;

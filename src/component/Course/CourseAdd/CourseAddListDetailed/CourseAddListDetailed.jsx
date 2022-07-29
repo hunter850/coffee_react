@@ -152,8 +152,8 @@ function CourseAddListDetailed({
                     >
                         上傳圖片
                     </button>
-                    <button className="CourseAddListDetailed-btn" onClick={(e) => deleteImg(e)}>
-                        - 刪除圖片
+                    <button className="CourseAddListDetailed-btn-red" onClick={(e) => deleteImg(e)}>
+                        刪除圖片
                     </button>
                 </div>
                 <div>
@@ -288,7 +288,7 @@ function CourseAddListDetailed({
                     </button>
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 
