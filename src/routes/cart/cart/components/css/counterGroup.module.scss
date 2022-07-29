@@ -1,0 +1,37 @@
+.button_wrap {
+    display: flex;
+    align-items: center;
+}
+
+.list_input {
+    padding: 0px;
+    height: 36px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--BLUE);
+    text-align: center;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+%quantity_button_basic {
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--BLUE);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.minus_button {
+    @extend %quantity_button_basic;
+    background: url("../../../../../images/cart/minus.svg") center center / 16px 16px no-repeat;
+}
+
+.plus_button {
+    @extend %quantity_button_basic;
+    background: url("../../../../../images/cart/plus.svg") center center / 16px 16px no-repeat;
+}
