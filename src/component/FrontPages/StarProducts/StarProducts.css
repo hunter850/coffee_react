@@ -4,6 +4,7 @@
     padding-left: 200px;
     letter-spacing: 0.5rem;
     margin: auto;
+    
 }
 .bottom-line {
     width: 160px;
@@ -16,7 +17,7 @@
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     /* font-family: 'Rubik', sans-serif; */
     color:rgba(10, 10, 10, 0.73); 
-    text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px rgb(231, 231, 231), 3px 3px rgb(231, 231, 231);
+    /* text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px rgb(231, 231, 231), 3px 3px rgb(231, 231, 231); */
 
 }
 .m-auto {
