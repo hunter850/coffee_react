@@ -75,7 +75,7 @@ function StarProducts() {
                             }}
                         />
                     </Link>
-                    <Link to="#/">
+                    {/* <Link to="#/">
                         <Card
                             cardData={{
                                 card_tag: "純苦",
@@ -87,7 +87,7 @@ function StarProducts() {
                                 card_img_s: "bag-09-01.jpg",
                             }}
                         />
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </Fragment>
