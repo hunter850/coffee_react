@@ -66,16 +66,15 @@ function CardHolder(props) {
                             <CSSTransition
                                 in={item.index < nameLength}
                                 timeout={500}
-                                classNames={c(text_span, "right")}
+                                classNames={"right"}
                                 unmountOnExit
                             >
                                 <span
-                                    className={c(
-                                        text_span,
+                                    className={
                                         nameSplit[item.index] === " "
                                             ? space_width
                                             : ""
-                                    )}
+                                    }
                                 >
                                     {nameSplit[item.index] === undefined
                                         ? tempArray[item.index]

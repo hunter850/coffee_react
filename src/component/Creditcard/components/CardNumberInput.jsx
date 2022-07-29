@@ -7,7 +7,7 @@ import "../../../routes/cart/css/transition_group_animation.module.scss";
 
 function CardNumberInput(props) {
     const { cardNumber } = props;
-    const { card_number, text_span } = styles;
+    const { card_number } = styles;
     const c = useClass();
     //算出是不是Americna Express
     const isShort = useMemo(() => {
@@ -44,9 +44,9 @@ function CardNumberInput(props) {
                             <CSSTransition
                                 in={item.index < cardNumber.length}
                                 timeout={500}
-                                classNames={c(text_span, "slide")}
+                                classNames={"slide"}
                             >
-                                <span className={text_span}>
+                                <span>
                                     {cardNumber.split("")[item.index] ===
                                     undefined
                                         ? tempArray[item.index]
