@@ -2,11 +2,11 @@ import { Fragment, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
-import { debounce } from "lodash";
+import { throttle } from "lodash";
 
 import { getPosts, imgSrc } from "../../config/api-path";
 import FakeNav from "../../component/FakeNav";
-import styles from "./css/sharing.module.scss";
+import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
 
@@ -43,8 +43,9 @@ function Post() {
 
     const scrollHandler = async (e) => {
         setScrollY((pre) => {
-            pre.shift();
-            return [...pre, window.scrollY];
+            const newPre = [...pre];
+            newPre.shift();
+            return [...newPre, window.scrollY];
         });
 
         const lastImg =
@@ -57,10 +58,10 @@ function Post() {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", debounce(scrollHandler, 100));
+        window.addEventListener("scroll", throttle(scrollHandler, 100));
 
         return () => {
-            window.removeEventListener("scroll", debounce(scrollHandler, 100));
+            window.removeEventListener("scroll", throttle(scrollHandler, 100));
         };
     }, []);
 
@@ -72,14 +73,6 @@ function Post() {
             });
         })();
     }, [getDataTimes]);
-
-    // useEffect(() => {
-    //     setScrollY((pre) => {
-    //         console.log(pre);
-    //         console.log(window.scrollY);
-    //         return window.scrollY;
-    //     });
-    // }, [window.scrollY]);
 
     const scrollDir = useMemo(() => {
         if (scrollY[0] >= scrollY[1]) {
@@ -93,11 +86,15 @@ function Post() {
         <Fragment>
             <FakeNav />
             <PostNav scrollDir={scrollDir} />
-            <pre style={{ marginTop: "5rem" }}>
+            {/* <pre style={{ marginTop: "5rem" }}>
                 {JSON.stringify(rows[0], null, 2)}
-            </pre>
+            </pre> */}
 
-            <div className={container} ref={wrap}>
+            <div
+                className={container}
+                ref={wrap}
+                style={{ paddingTop: "4rem" }}
+            >
                 {/* <pre>{JSON.stringify(imgAry, null, 4)}</pre> */}
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
@@ -105,13 +102,9 @@ function Post() {
                     columnClassName={my_masonry_grid_column}
                 >
                     {rows.map((v, i, arr) => {
-                        const q = arr.length;
                         return (
                             <Link key={i} to={`/sharing/${v.sid}`}>
                                 <PostCard cardData={v} />
-                                <span>
-                                    index:{i},{q}
-                                </span>
                             </Link>
                         );
                     })}

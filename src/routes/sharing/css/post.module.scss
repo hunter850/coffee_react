@@ -38,7 +38,7 @@
     background-clip: padding-box;
 
     // 卡片
-    div {
+    a>div {
         /* change div to reference your elements you put in <Masonry> */
         background: grey;
         margin-bottom: 16px;
