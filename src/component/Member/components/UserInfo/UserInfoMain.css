@@ -178,3 +178,8 @@ body{
     justify-content: flex-end;
     margin-bottom: 30px;
 }
+.ed-Pass-field-err{
+    color: red;
+    font-size: .8rem;
+    margin-top: 5px;
+}

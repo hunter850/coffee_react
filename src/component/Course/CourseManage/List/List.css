@@ -79,6 +79,9 @@
     align-items: center;
     padding-left: 45px;
 }
+.List-price > span {
+    width: 45px;
+}
 
 .List-edit-icon {
     background: url(/src/images/course/edit.png) center center no-repeat;

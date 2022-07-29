@@ -11,6 +11,7 @@
 }
 
 .view-more-link {
+    width: 150px;
     transform:translateX(50%);
 }
 

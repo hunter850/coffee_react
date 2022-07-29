@@ -102,7 +102,9 @@ function LoginMain() {
         })
         .then((r) => r.json())
         .then((result) => {
+            
             console.log(result);
+
             if(result.success){
                 localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
                 setAuth({...result.data, authorized: true});

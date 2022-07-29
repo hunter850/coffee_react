@@ -1,13 +1,17 @@
+/* eslint-disable prettier/prettier */
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-// import { useContext} from "react";
-// import AuthContext from "../../AuthContext";
+import { useContext} from "react";
+import AuthContext from "../../component/Member/AuthContext";
 
 import NavBar from "../../component/NavBar";
 import "./Member.css";
 
 function Member() {
+
+    const { authorized, name } = useContext(AuthContext);
+
     return (
         <Fragment>
             <NavBar />
@@ -27,9 +31,10 @@ function Member() {
                         </div>
                     </div>
                     <div className="wrap-left">
-                        <div className="mc-user-name">Hi！王曉明</div>
+                        <div className="mc-user-name">Hi！{name}</div>
                         <div className="mc-menu-wrap">
-                            <Link to="/member/userinfo">
+                            <Link
+                                to={ authorized ? "/member/userinfo" : "/member/login" }>
                                 <div className="mc-menu">
                                     <i className="fa-solid fa-user"></i>
                                 </div>

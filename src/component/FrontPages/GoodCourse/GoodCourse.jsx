@@ -13,7 +13,7 @@ function GoodCourse() {
                     <h2 className="home-title">精選課程</h2>
                 </div>
                 <Link to="./course">
-                    <div>
+                    <div className="goodcourseimg-scale">
                         <img
                             className="goodcourse-img"
                             src={courseImg1}

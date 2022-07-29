@@ -1,29 +1,51 @@
-import React, { useMemo } from "react";
+import React, { useState, useEffect } from "react";
+import { imgSrc } from "./../../../config/api-path";
+import { useAuth } from "../../../component/Member/AuthContextProvider";
+
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import styles from "./../css/postnav.module.scss";
+import styles from "./../css/postNav.module.scss";
 
 function PostNav({ scrollDir = "up" }) {
-    const { post_nav, container, collapse, search_wrap, search_bar } = styles;
+    const { authorized, sid, account, token, avatar } = useAuth();
+    const {
+        post_nav,
+        container,
+        collapse,
+        search_wrap,
+        search_bar,
+        icon_wrap,
+        avatar_wrap,
+    } = styles;
+
+    const [memberAvatar, setMemberAvatar] = useState("lao_pi.png");
+
 
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
-                <h4 style={{ width: "25%" }}>分享牆</h4>
+                <h4 style={{ width: "25%" }}>分享牆{avatar}</h4>
                 <div className={search_wrap}>
                     <div className={search_bar}>search</div>
                 </div>
-                <div
-                    className="icon_wrap"
+                <ul
+                    className={icon_wrap}
                     style={{ width: "25%", textAlign: "end" }}
                 >
-                    <BsFillPlusSquareFill
-                        color="#324A59"
-                        fontSize="24"
-                        style={{ marginRight: "1.5rem" }}
-                    />
-                    <FaHeart color="#324A59" fontSize="24" />
-                </div>
+                    <li>
+                        <BsFillPlusSquareFill color="#324A59" fontSize="24" />
+                    </li>
+                    <li>
+                        <FaHeart color="#324A59" fontSize="24" />
+                    </li>
+                    <li className={avatar_wrap}>
+                        <img
+                            src={`${imgSrc}/member/${avatar}`}
+                            alt="avatar"
+                            width="36px"
+                        />
+                    </li>
+                </ul>
             </div>
         </div>
     );

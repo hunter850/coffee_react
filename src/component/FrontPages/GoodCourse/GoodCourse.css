@@ -7,9 +7,13 @@
 }
 
 .goodcourse-img {
-    width: 550px;
-    height: 400px;
+    width: 594px;
+    height: 424px;
 }
+/* .goodcourseimg-scale img:hover {
+    transform: scale(1.1);
+} */
+
 .goodcourse-text {
     line-height: 2.5rem;
     padding-top: 10px;
