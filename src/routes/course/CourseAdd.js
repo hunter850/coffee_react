@@ -7,8 +7,9 @@ import CourseAddListDetailed from "../../component/Course/CourseAdd/CourseAddLis
 import { courseDataAdd, courseDataAddFk } from "../../config/api-path";
 import axios from "axios";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 const CourseAdd = () => {
-    // 選擇的檔案
+    // 選擇的檔案 - s是給外鍵用的
     const [selectedFile, setSelectedFile] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState(null);
     // 是否有檔案被挑選
@@ -23,7 +24,6 @@ const CourseAdd = () => {
     // console.log("要給資料庫的檔名: " + imgName);
     // 監聽後端是否回傳sid
     const [monitor, setMonitor] = useState(false);
-
     // 要新增的資料狀態
     const [formData, setFormData] = useState({
         course_name: "",
@@ -47,9 +47,11 @@ const CourseAdd = () => {
         },
         course_img_l: [],
     });
-
+    // 新增資料的請求
     const handleSubmission = (e) => {
         e.preventDefault();
+        // console.log(formData);
+        // 這裡需要檢查欄位 (還沒做)
         axios({
             method: "post",
             url: courseDataAdd,
@@ -131,9 +133,11 @@ const CourseAdd = () => {
                                 </button>
                             </div>
                             <div>
-                                <button className="CourseAdd-red">
-                                    取消操作
-                                </button>
+                                <Link to="/course/manage">
+                                    <button className="CourseAdd-red">
+                                        取消操作
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </form>

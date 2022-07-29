@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./PicRender.scss";
 
 function PicRender(props) {
@@ -7,17 +7,24 @@ function PicRender(props) {
     console.log(
         dataLoaded ? renderData[0].products_picMuti.split(",") : "還沒讀"
     );
+    useEffect(() => {
+        if (dataLoaded) {
+            let imgLink = `http://localhost:3500/images/products/${renderData[0].products_with_products_categories_sid}/${renderData[0].products_pic}`;
+            setimgSelect(imgLink);
+        }
+    }, [dataLoaded]);
+
+    const [imgSelect, setimgSelect] = useState("");
 
     const el = (
         <div>
             <div className="productPic">
                 <img
-                    src={
-                        dataLoaded
-                            ? `http://localhost:3500/images/products/${renderData[0].products_with_products_categories_sid}/${renderData[0].products_pic}`
-                            : ""
-                    }
+                    src={dataLoaded ? imgSelect : ""}
                     alt="main product's pic"
+                    onChange={() => {
+                        setimgSelect(imgSelect);
+                    }}
                 />
             </div>
             <div className="littlePic">
@@ -26,6 +33,9 @@ function PicRender(props) {
                           return (
                               <Fragment key={i}>
                                   <img
+                                      onClick={(e) => {
+                                          setimgSelect(e.target.src);
+                                      }}
                                       src={
                                           dataLoaded
                                               ? `http://localhost:3500/images/products/${

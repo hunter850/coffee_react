@@ -46,7 +46,7 @@ function Productinfo(props) {
                     <input
                         className="inputStyle"
                         value={productsCount}
-                        onClick={(e) => {
+                        onChange={(e) => {
                             setproductsCount(e.target.value);
                         }}
                     />
