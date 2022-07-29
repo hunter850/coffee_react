@@ -12,7 +12,7 @@
 }
 
 .aside.hide {
-    transition: 0.3s right;
+    /* transition: 0.3s right; */
     display: none;
     right: -383px;
 }

@@ -2,6 +2,10 @@ import { Fragment, useMemo } from "react";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import styles from "../css/cardNumberInput.module.scss";
 import "../../../routes/cart/css/transition_group_animation.module.scss";
+import jcb from "../../../images/cart/JCB_logo.png";
+import amex from "../../../images/cart/amex.png";
+import visa from "../../../images/cart/visa.png";
+import mastercard from "../../../images/cart/mastercard.png";
 
 function CardType(props) {
     const { cardNumber } = props;
@@ -11,20 +15,20 @@ function CardType(props) {
         switch (cardNumber[0]) {
             case "3":
                 if (cardNumber[1] === "5") {
-                    return "https://upload.wikimedia.org/wikipedia/commons/4/40/JCB_logo.svg";
+                    return jcb;
                 } else if (cardNumber[1] === "4" || cardNumber[1] === "7") {
-                    return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/amex.png";
+                    return amex;
                 } else {
-                    return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png";
+                    return visa;
                 }
             case "4":
-                return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png";
+                return visa;
             case "5":
-                return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/mastercard.png";
+                return mastercard;
             case undefined:
-                return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png";
+                return visa;
             default:
-                return "https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png";
+                return visa;
         }
     }, [cardNumber]);
 

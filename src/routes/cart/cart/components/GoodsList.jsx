@@ -42,7 +42,11 @@ function GoodsList(props) {
                             {item.name[2] && <span>({item.name[2]})</span>}
                         </p>
                         <p className={p_price}>{item.price}</p>
-                        <CounterGroup quantity={item.quantity} id={item.id} />
+                        <CounterGroup
+                            quantity={item.quantity}
+                            id={item.id}
+                            listName={listName}
+                        />
                         <p className={p_multiply}>
                             {item.price * item.quantity}
                         </p>

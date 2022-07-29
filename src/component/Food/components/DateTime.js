@@ -37,8 +37,6 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
             ],
         },
     ];
-    console.log("month", dateGet);
-    console.log("inputDateinputDate", inputDate, inputTime);
     return (
         <>
             <div className="google-lightbox">

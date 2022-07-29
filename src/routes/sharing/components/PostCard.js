@@ -1,4 +1,20 @@
+import styles from "./../css/postCard.module.scss";
+import { FaHeart } from "react-icons/fa";
+
 function PostCard({ cardData }) {
+    const {
+        post_card,
+        post_card_fig,
+        like_wrap,
+        like_str,
+        content_wrap,
+        title_nickname,
+        nickname_span,
+        title_span,
+        tags_wrap,
+        hi,
+    } = styles;
+
     //     "tags": [
     //         {
     //             "sid": 2,
@@ -7,20 +23,6 @@ function PostCard({ cardData }) {
     //             "name": "拉花",
     //             "times": 8
     //         },
-    //         {
-    //             "sid": 3,
-    //             "post_sid": 1,
-    //             "tag_sid": 3,
-    //             "name": "好有趣阿",
-    //             "times": 2
-    //         },
-    //         {
-    //             "sid": 4,
-    //             "post_sid": 1,
-    //             "tag_sid": 4,
-    //             "name": "拉花好好玩",
-    //             "times": 2
-    //         }
     //     ]
 
     const {
@@ -32,15 +34,35 @@ function PostCard({ cardData }) {
         likes,
         tags,
         topic_sid,
-        avatar,
     } = cardData;
     return (
         <>
-            <div>
+            <div className={post_card}>
                 <img
                     src={`http://localhost:3500/images/sharing/${img_name}`}
                     alt={title}
                 />
+
+                <ul>
+                    <li className={like_wrap}>
+                        <FaHeart color="#fff" fontSize="1.25rem" />
+                        <span className={like_str}>{likes}</span>
+                    </li>
+                    <li className={content_wrap}>
+                        <div className={title_nickname}>
+                            <span className={nickname_span}>
+                                {member_nickname}
+                            </span>
+                            <span className={title_span}>{title}</span>
+                        </div>
+                        <div className={tags_wrap}>
+                            {tags &&
+                                tags.map((v, i) => {
+                                    return <span key={i}>{v.name}</span>;
+                                })}
+                        </div>
+                    </li>
+                </ul>
             </div>
         </>
     );

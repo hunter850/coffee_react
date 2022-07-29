@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import "./CourseAddList.css";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { courseImages } from "../../../../config/api-path";
 
 function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName }) {

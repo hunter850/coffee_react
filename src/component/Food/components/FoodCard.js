@@ -5,6 +5,7 @@ function FoodCard({
     handleShowFoodDetailSelect,
     setIsShow,
     allfood,
+    handleCakeCount,
     // foodCount,
 }) {
     const {
@@ -36,16 +37,19 @@ function FoodCard({
                             <div
                                 className="foodadd"
                                 onClick={() => {
-                                    handleShowFoodDetailSelect({
-                                        menu_name,
-                                        menu_nutrition,
-                                        menu_price_m,
-                                        menu_sid,
-                                        menu_categories,
-                                        menu_photo,
-                                        // foodCount,
-                                    });
-                                    setIsShow(true);
+                                    if (
+                                        menu_categories === "1" ||
+                                        menu_categories === "2"
+                                    ) {
+                                        handleShowFoodDetailSelect(allfood);
+                                        setIsShow(true);
+                                    }
+                                    if (
+                                        menu_categories === "3" ||
+                                        menu_categories === "4"
+                                    ) {
+                                        handleCakeCount(allfood);
+                                    }
                                 }}
                             >
                                 加入

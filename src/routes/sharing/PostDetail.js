@@ -10,13 +10,6 @@ function PostDetail() {
     const { post_sid } = useParams();
     const navigate = useNavigate();
 
-    // const config = {
-    //     params: { page: searchParams.get("page") },
-    //     // headers: {
-    //     //     Authorization: `Bearer ${token}`,
-    //     // },
-    // };
-
     useEffect(() => {
         (async () => {
             console.log(getPosts, post_sid);
