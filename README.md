@@ -96,6 +96,7 @@ const [isOpen, setIsOpen] = useSate(false);
 ```js
 // 1.輪播圖請傳入一個帶有圖片路徑的陣列,沒限制輪播張數
 // 2.height直接帶數字就好,預設為500
+// 3.width預設100%
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -106,9 +107,9 @@ const [isOpen, setIsOpen] = useSate(false);
         "https://picsum.photos/id/227/1440/500",
     ]}
     height={300}
+    width={100}
 />
 ```
-
 
 ### Tag 組件使用說明
 
