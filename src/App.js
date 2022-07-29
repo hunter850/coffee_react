@@ -39,7 +39,11 @@ const App = () => {
                 <AuthContextProvider>
                     <AllProvider>
                         <Routes>
-                            <Route exact={true} path="/" element={<FrontPage />} />
+                            <Route
+                                exact={true}
+                                path="/"
+                                element={<FrontPage />}
+                            />
                             <Route path="/cart" element={<Cart />} />
                             <Route
                                 path="/cart/creditcard"
@@ -71,7 +75,10 @@ const App = () => {
 
                             <Route path="/member" element={<Member />} />
                             <Route path="/member/login" element={<Login />} />
-                            <Route path="/member/userinfo" element={<UserInfo />} />
+                            <Route
+                                path="/member/userinfo"
+                                element={<UserInfo />}
+                            />
                             <Route
                                 path="/member/orderhistory"
                                 element={<OrderHistory />}

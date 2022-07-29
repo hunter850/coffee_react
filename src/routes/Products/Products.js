@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import Header from "../../component/Products/Header";
 // import Sort from "../../component/Course/Sort/Sort";
 import Path from "../../component/Item/Path/Path";
+import FakeNav from "../../component/FakeNav";
 import NavBar from "../../component/NavBar";
 import BookMark from "../../component/Products/BookMark";
 import List from "../../component/Products/List";
@@ -48,22 +49,22 @@ function Products() {
     }, []);
 
     // 一般搜尋框搜尋的渲染
-    useEffect(() => {
-        if (searchSure === true) {
-            setPageNow(1);
-            const pageArray = chunk(productsRows, DataRows.perPage);
-            if (pageArray.length > 0) {
-                setPageTotal(pageArray.length);
-                setRenderData(pageArray);
-            }
-            setSearchSure(false);
-        }
-    }, [searchSure]);
+    // useEffect(() => {
+    //     if (searchSure === true) {
+    //         setPageNow(1);
+    //         const pageArray = chunk(productsRows, DataRows.perPage);
+    //         if (pageArray.length > 0) {
+    //             setPageTotal(pageArray.length);
+    //             setRenderData(pageArray);
+    //         }
+    //         setSearchSure(false);
+    //     }
+    // }, [searchSure]);
 
     const el = (
         <Fragment>
             <div className="Course-container">
-                <NavBar />
+                <FakeNav />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
                     searchInp={searchInp}
