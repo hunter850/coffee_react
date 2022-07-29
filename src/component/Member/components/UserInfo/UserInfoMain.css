@@ -131,14 +131,11 @@ body{
 .editPassword{
     display: block;
 }
-.ed-Pass:nth-child(1){
+/* .ed-Pass:nth-child(1){
     margin-top: 30px;
-}
+} */
 .ed-Pass{
-    display: flex;
-    margin-bottom: 30px;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
 }
 .ed-Pass-h1{
     text-align: center;
@@ -148,12 +145,17 @@ body{
     margin: 30px 0;
 }
 .ed-Pass-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
     border: 1.2px solid var(--blue);
     border-radius: 3px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     padding: 50px;
 }
 .ed-Pass-title{
+    flex-grow: 50%;
     margin-right: 35px;
     color: var(--blue);
     font-weight: 500;
@@ -181,5 +183,4 @@ body{
 .ed-Pass-field-err{
     color: red;
     font-size: .8rem;
-    margin-top: 5px;
 }
