@@ -1,5 +1,9 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
+
+// import { useContext} from "react";
+// import AuthContext from "../../AuthContext";
+
 import NavBar from "../../component/NavBar";
 import "./Member.css";
 

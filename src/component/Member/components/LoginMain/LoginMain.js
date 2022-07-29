@@ -2,11 +2,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-const-assign */
 import { set } from "lodash";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef,useContext } from "react";
 import Modal from "../../../Modal/Modal";
 import "./LoginMain.css";
 
+import AuthContext from "../../AuthContext";
+
 function LoginMain() {
+
+    const {setAuth} = useContext(AuthContext);
 
     const [isLog, setIsLog] = useState(false);
     const [changeText, setChangeText] = useState(false);
@@ -100,12 +104,13 @@ function LoginMain() {
         .then((result) => {
             console.log(result);
             if(result.success){
-                localStorage.setItem('auth', JSON.stringify(result.data));
+                localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
+                setAuth({...result.data, authorized: true});
                 setLoginSuccess(true);
             }
+            setIsOpen(true);
         });
         }
-        setIsOpen(true);
     };
 
 

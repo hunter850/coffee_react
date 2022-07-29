@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+
+export function useAuth(){
+    return useContext(AuthContext);
+}
 
 function AuthContextProvider({ children }) {
 
@@ -22,16 +26,16 @@ function AuthContextProvider({ children }) {
 
     let localAuth = {
         authorized: false,
-        sid: " ",
-        account: " ",
-        token: " ",
-        name: " ",
-        birthday: " ",
-        mobile: " ",
-        address: " ",
-        mail: " ",
-        level: " ",
-        avatar: " ",
+        sid: "",
+        account: "",
+        token: "",
+        name: "",
+        birthday: "",
+        mobile: "",
+        address: "",
+        mail: "",
+        level: "",
+        avatar: "",
     };
 
     // let localAuth = { ...unAuthState };
