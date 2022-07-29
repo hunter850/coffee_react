@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Fragment } from "react";
 import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
@@ -36,7 +36,6 @@ function UserInfo() {
     // };
 
     useEffect(() => {
-        console.log(token);
         axios
             .get("http://localhost:3500/member/api/user-list", {
                 headers: {
@@ -58,8 +57,12 @@ function UserInfo() {
         (v, i) => v.member_password
     );
 
+    const [passErrors, setPassErrors] = useState('')
+    const [newPassErrors, setNewPassErrors] = useState('')
+    const [confirmErrors, setConfirmErrors] = useState('')
+
     const [editPass, setEditPass] = useState({
-        member_password: member_password,
+        member_password: "",
         new_password: "",
         confirm_password: "",
     });
@@ -72,20 +75,35 @@ function UserInfo() {
 
     // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
 
-    console.log(token);
-
     const confirmPassword = async (e) => {
         e.preventDefault();
 
-        if (
-            editPass.member_password === "" ||
-            editPass.new_password === "" ||
-            editPass.confirm_password === ""
-        ) {
-            // todo:錯誤訊息提示，欄位必填
-            alert("欄位必填");
+        if(!editPass.member_password){
+            setPassErrors({...passErrors, member_password:"欄位必填"})
             return;
+        }else{
+            setPassErrors({...passErrors,member_password:""});
         }
+
+        if(!editPass.new_password){
+            setNewPassErrors({...newPassErrors,new_password:"欄位必填"})
+            return;
+        }else{
+            setNewPassErrors({...newPassErrors,new_password:""});
+        }
+
+        if(!editPass.confirm_password){
+            setConfirmErrors({...confirmErrors,confirm_password:"欄位必填"})
+            return;
+        }else{
+            setConfirmErrors({...confirmErrors,confirm_password:""});
+        }
+
+        // if ( editPass.member_password === "" || editPass.new_password === "" || editPass.confirm_password === "") {
+        //     alert("欄位必填");
+        //     return;
+        // }
+
         if (editPass.new_password === editPass.confirm_password) {
             await fetch("http://localhost:3500/member/api/edit-password", {
                 method: "POST",
@@ -126,15 +144,11 @@ function UserInfo() {
                                         <UserList
                                             list={{
                                                 member_name: v.member_name,
-                                                member_nickname:
-                                                    v.member_nickname,
-                                                member_account:
-                                                    v.member_account,
-                                                member_birthday:
-                                                    v.member_birthday,
+                                                member_nickname: v.member_nickname,
+                                                member_account: v.member_account,
+                                                member_birthday: v.member_birthday,
                                                 member_mobile: v.member_mobile,
-                                                member_address:
-                                                    v.member_address,
+                                                member_address: v.member_address,
                                                 member_mail: v.member_mail,
                                             }}
                                             isOpen={isOpen}
@@ -170,6 +184,7 @@ function UserInfo() {
                                     value={editPass.member_password}
                                     onChange={editPassword}
                                 />
+                                <p className="ed-Pass-field-err">{passErrors.member_password}</p>
                             </div>
                             <div className="ed-Pass">
                                 <div className="ed-Pass-title">
@@ -182,6 +197,7 @@ function UserInfo() {
                                     value={editPass.new_password}
                                     onChange={editPassword}
                                 />
+                                <p className="ed-Pass-field-err">{newPassErrors.new_password}</p>
                             </div>
                             <div className="ed-Pass">
                                 <div className="ed-Pass-title">
@@ -194,6 +210,7 @@ function UserInfo() {
                                     value={editPass.confirm_password}
                                     onChange={editPassword}
                                 />
+                                <p className="ed-Pass-field-err">{confirmErrors.confirm_password}</p>
                             </div>
                         </div>
                         <div className="ed-Pass-btn-wrap">
