@@ -1,0 +1,57 @@
+.header_button {
+    outline: none;
+    background-color: var(--GRAY);
+    border: 1px solid var(--DARKGRAY);
+    width: 100%;
+    border-radius: 3px 3px 0px 0px;
+    padding: 10px 27px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    > span {
+        font-size: 16px;
+        color: var(--BLUE);
+        svg {
+            margin-left: 3px;
+        }
+    }
+}
+
+.ticket_svg {
+    color: var(--BLUE);
+}
+
+.coupon_label {
+    > div {
+        transition: transform 0.3s ease;
+    }
+    &:hover > div {
+        transform: translate(-3px, -3px) scale(102%);
+    }
+}
+
+@media (max-width: 1200px) {
+    .header_button {
+        padding: 10px 16px;
+        > span {
+            font-size: 14px;
+        }
+    }
+    .ticket_svg {
+        width: 22px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header_button {
+        padding: 10px 12px;
+    }
+    .ticket_svg {
+        width: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}
