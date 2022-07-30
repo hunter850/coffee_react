@@ -66,7 +66,10 @@ const App = () => {
                                 path="/course/detailed/:sid"
                                 element={<CourseDetailed />}
                             />
-                            <Route path="/course/add" element={<CourseAdd />} />
+                            <Route path="/course/add">
+                                <Route element={<CourseAdd />} path="" />
+                                <Route element={<CourseAdd />} path=":sid" />
+                            </Route>
                             <Route
                                 path="/course/orders"
                                 element={<OrderCompleted />}
