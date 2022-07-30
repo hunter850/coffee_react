@@ -2,6 +2,7 @@
 import "./List.css";
 import { imgSrc, courseDelete } from "../../../../config/api-path";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function List({ courseData, setConfirmDelete }) {
     const { course_name, course_level, course_price, course_img_s, course_sid } =
@@ -38,7 +39,9 @@ function List({ courseData, setConfirmDelete }) {
                 NT$ &nbsp;
                 <span style={{ fontSize: "1.0625rem" }}>{course_price}</span>
             </div>
-            <div className="List-edit-icon"></div>
+            <Link to={`/course/add/${course_sid}`}>
+                <div className="List-edit-icon"></div>
+            </Link>
             <div className="List-delete-icon" onClick={() => deleteCourse()}></div>
         </div>
     );

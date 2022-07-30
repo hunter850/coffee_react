@@ -13,12 +13,15 @@ export const getOrderHistory = `${SERVER}/member/api/order-history`;
 // COURSE
 
 export const courseDataGet = `${SERVER}/course`;
+export const courseDataGetSid = `${SERVER}/course/data`;
 export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const courseDataAdd = `${SERVER}/course/add`;
 export const courseDataAddFk = `${SERVER}/course/addfk`;
+export const courseDataEdit = `${SERVER}/course/edit`;
 export const courseDelete = `${SERVER}/course/delete`;
 export const courseImages = `${SERVER}/course/upload`;
 export const coursePhotos = `${SERVER}/course/uploads`;
+export const linePayApi = `${SERVER}/course/createOrder`;
 
 // FOOD
 export const foodDataGet = `${SERVER}/food`;
