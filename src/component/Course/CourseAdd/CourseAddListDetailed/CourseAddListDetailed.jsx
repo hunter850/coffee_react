@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./CourseAddListDetailed.css";
 import { useRef, useEffect } from "react";
-import { courseImages } from "../../../../config/api-path";
+import { courseImages, imgSrc } from "../../../../config/api-path";
 
 function CourseAddListDetailed({
     formData,
@@ -18,9 +18,26 @@ function CourseAddListDetailed({
     setIsFilePickeds,
     imgNames,
     setImgNames,
+    getCourseDataFk,
+    getCourseData,
+    start
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
+
+    useEffect(() => {
+        // 有取得資料才渲染
+        if (start === true) {
+            setFormData({
+                ...formData, course_name: getCourseData[0].course_name
+                , course_price: getCourseData[0].course_price
+                , course_level: getCourseData[0].course_level
+                , course_content: getCourseData[0].course_content
+                , course_people: getCourseData[0].course_people
+                , course_material: getCourseData[0].course_material
+            });
+        }
+    }, [getCourseData]);
 
     const files = useRef();
     const imgFiles = (event) => {

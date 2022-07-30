@@ -4,6 +4,7 @@ export const imgSrc = `${SERVER}/images`;
 // COURSE
 
 export const courseDataGet = `${SERVER}/course`;
+export const courseDataGetSid = `${SERVER}/course/data`;
 export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const courseDataAdd = `${SERVER}/course/add`;
 export const courseDataAddFk = `${SERVER}/course/addfk`;
