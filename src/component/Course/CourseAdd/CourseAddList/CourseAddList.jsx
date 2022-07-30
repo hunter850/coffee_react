@@ -3,10 +3,17 @@
 /* eslint-disable no-unused-vars */
 import "./CourseAddList.css";
 import { useRef, useEffect } from "react";
-import { courseImages } from "../../../../config/api-path";
+import { courseImages, imgSrc } from "../../../../config/api-path";
 
-function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName }) {
+function CourseAddList({ start, setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName, getCourseData }) {
     const { course_name, course_price, course_level, course_img_s } = formData;
+
+    useEffect(() => {
+        // 有取得資料才渲染
+        if (start === true) {
+            setPreview(`${imgSrc}/course/${getCourseData[0].course_img_s}`);
+        }
+    }, [getCourseData]);
     // 取得上傳照片的input
     const file = useRef();
     // 模擬點擊上傳照片的input,本身已經display:none
@@ -62,7 +69,7 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
         }
     }, [selectedFile]);
 
-    return (
+    const add = (
         <div className="CourseAddList">
             <div className="d-flex CourseAddList-wrap">
                 <div style={{ paddingRight: 63 }}>
@@ -154,6 +161,10 @@ function CourseAddList({ setFormData, formData, selectedFile, setSelectedFile, i
             </div>
         </div>
     );
+
+
+
+    return add;
 }
 
 export default CourseAddList;
