@@ -2,7 +2,8 @@ import { Fragment, useEffect } from "react";
 import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
-import useLog from "../../../hooks/useLog";
+import usePrevious from "../../../hooks/usePrevious";
+import useDebounce from "../../../hooks/useDebounce";
 import { Link } from "react-router-dom";
 // import NavBar from "../../../component/NavBar";
 import FakeNav from "../../../component/FakeNav";
@@ -22,12 +23,23 @@ function Cart() {
     const { fake_body } = styles;
     const c = useClass();
     const [, setNowList] = useData("nowList");
-    const [, setProductList] = useData("productList");
+    const [productList, setProductList] = useData("productList");
     const [, setFoodList] = useData("foodList");
-    const [productCoupons, setProductCoupons] = useData("productCoupons");
-    const [foodCoupons, setFoodCoupons] = useData("foodCoupons");
-    useLog(productCoupons);
-    useLog(foodCoupons);
+    const [, setProductCoupons] = useData("productCoupons");
+    const [, setFoodCoupons] = useData("foodCoupons");
+    const preProductList = usePrevious(productList);
+    useDebounce(
+        () => {
+            console.log("pre", preProductList);
+            console.log("now", productList);
+            if (preProductList.length === 0) return;
+            if (preProductList.length !== productList.length) {
+                axios.put();
+            }
+        },
+        300,
+        [preProductList, productList]
+    );
     const { token, sid } = useAuth();
     useEffect(() => {
         if (!token) {
@@ -86,14 +98,8 @@ function Cart() {
                 setFoodCoupons(result.data);
             })
             .catch((error) => console.log(error));
-    }, [
-        setFoodList,
-        setProductList,
-        setProductCoupons,
-        setFoodCoupons,
-        token,
-        sid,
-    ]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <Fragment>
             <div className={fake_body}>

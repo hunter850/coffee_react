@@ -21,6 +21,10 @@
     font-weight: 300;
 }
 
+.CoursePaths > a:visited {
+    color: #898787;
+}
+
 .CoursePaths > a:hover {
     color: #b79973;
 }
