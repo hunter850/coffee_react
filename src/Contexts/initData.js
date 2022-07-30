@@ -4,8 +4,8 @@ export const initData = {
     foodList: [],
     productCoupons: [],
     foodCoupons: [],
-    coupons: [],
-    selectedCoupon: -1,
+    selectedProductCouponId: -1,
+    selectedFoodCouponId: -1,
     total: 0,
     foodCount: [],
 };
