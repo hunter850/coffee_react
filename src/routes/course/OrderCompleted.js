@@ -6,6 +6,7 @@ function OrderCompleted() {
     const url = new URL(getSid);
     url.searchParams.get("orderId");
     console.log(url.searchParams.get("orderId"));
+    const orderNumber = parseInt(new Date() / 1000);
     return (
         <>
             <FakeNav />
@@ -29,9 +30,11 @@ function OrderCompleted() {
                             </div>
                             <div className="order-details">
                                 <div className="order-number-label">
-                                    Order Number
+                                    訂單編號
                                 </div>
-                                <div className="order-number">0987</div>
+                                <div className="order-number">
+                                    {orderNumber}
+                                </div>
                             </div>
                             <div className="order-footer">Thank you!</div>
                         </div>
