@@ -7,7 +7,6 @@ function List({ courseData, setConfirmDelete }) {
     const { course_name, course_level, course_price, course_img_s, course_sid } =
         courseData;
 
-
     const deleteCourse = () => {
         // console.log(course_sid);
         if (window.confirm(`確定要刪除${course_name}嗎`)) {
@@ -17,8 +16,6 @@ function List({ courseData, setConfirmDelete }) {
                     setConfirmDelete(true);
                 });
         }
-
-
     };
 
     return (

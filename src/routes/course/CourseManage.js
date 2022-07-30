@@ -27,8 +27,6 @@ const CourseManage = () => {
     const [courseManageDataCopy, setCourseManageDataCopy] = useState([]);
     // 排序的狀態
     const [sortData, setSortData] = useState('');
-    // console.log(courseManageData);
-    // console.log(courseManageDataCopy);
     // 預設第一頁
     const [pageNow, setPageNow] = useState(1);
     // 預設一頁幾筆
@@ -80,6 +78,7 @@ const CourseManage = () => {
 
     useEffect(() => {
         courseManageDataGet();
+        // 將確認刪除資料的狀態初始化
         setConfirmDelete(false);
     }, [sortData, confirmDelete]);
 
@@ -108,8 +107,6 @@ const CourseManage = () => {
             }
         }
     }, [searchInp]);
-
-
 
     const el = (
         <Fragment>
