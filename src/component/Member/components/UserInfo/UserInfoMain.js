@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
@@ -10,6 +10,8 @@ import Modal from "../../../Modal/Modal";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
+
+import { AiFillPicture } from "react-icons/ai";
 
 import { useAuth } from "../../AuthContextProvider";
 
@@ -29,6 +31,48 @@ function UserInfo() {
         member_address: address ? address:"",
         member_mail: mail ? mail:"",
     });
+
+    // --------------------- 頭貼預覽 ---------------------
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [isFilePicked, setIsFilePicked] = useState(false);
+    const [preview, setPreview] = useState('');
+
+    const avatarFile = useRef();
+
+    const imgFile = (e) => {
+        avatarFile.current.click();
+    };
+
+    useEffect(() => {
+
+        if (!selectedFile) {
+            setPreview('');
+            return;
+        }
+        const avatarUrl = URL.createObjectURL(selectedFile);
+        console.log(avatarUrl);
+        setPreview(avatarUrl);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(avatarUrl);
+        
+    }, [selectedFile]);
+
+    const changeHandler = (e) => {
+        const file = e.target.files[0]
+    
+        if (file) {
+          setIsFilePicked(true)
+          setSelectedFile(file)
+
+        } else {
+          setIsFilePicked(false)
+          setSelectedFile(null)
+
+        }
+      }
+    
 
     // const getUserData = () => {
     //     axios
@@ -59,8 +103,8 @@ function UserInfo() {
     }, [token]);
 
     // Object.values( )，把物件直接轉成陣列，才能使用陣列的方法
-    const avatar = Object.values(list).map((v, i) => v.avatar);
-    console.log(avatar);
+    // const avatar = Object.values(list).map((v, i) => v.avatar);
+    // console.log(avatar);
 
     // --------------------- 編輯會員資料 ---------------------
     
@@ -160,10 +204,6 @@ function UserInfo() {
         }
     };
 
-    // useEffect(()=>{
-    //     confirmPassword();
-    // },[]);
-
     return (
         <>
             <div className="ui-wrap-main">
@@ -171,7 +211,11 @@ function UserInfo() {
                     <MemberMenu />
                     <div className="ui-wrap-right">
                         <div className="ui-title">編輯會員資料</div>
-                        <img src={``} alt="" className="avatar"></img>
+                        <div className="avatar" onClick={imgFile} onChange={changeHandler} style={{ backgroundImage: `url(${preview})`,backgroundRepeat: 'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover',}}>
+                            {/* <AiFillPicture size={'1.5em'} style={{"margin":"10"+"px"}}/> */}
+                            <input type="file" name="avatar" style={{ display: "none" }} ref={avatarFile}/>
+                            {/* <img src={preview} alt="" /> */}
+                        </div>
                         <div className="ui-info-wrap">
                             {list.map((v, i) => {
                                 return (

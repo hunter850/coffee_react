@@ -36,7 +36,7 @@ body{
     flex-direction: column;
     align-items: center;
     width: 688px;
-    height: 830px;
+    height: 860px;
     border: 1.2px solid var(--blue);
     border-radius: 3px;
     margin-bottom: 100px;
@@ -57,10 +57,11 @@ body{
     padding: 5px 0;
 }
 .avatar{
-    width: 165px;
-    height: 165px;
+    width: 200px;
+    height: 200px;
     background-color: var(--gray);
     margin: 40px 0 50px 0;
+    cursor: pointer;
 }
 .ui-info-wrap{
     width: 440px;
