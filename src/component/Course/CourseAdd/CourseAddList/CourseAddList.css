@@ -66,6 +66,10 @@
     margin-bottom: 45px;
 }
 
+.courselevelinp:hover {
+    color: #3e3e3e;
+}
+
 .courseintroduceinp {
     width: 669px;
     height: 120px;
