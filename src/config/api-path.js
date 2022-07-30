@@ -1,6 +1,15 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
 
+
+// MEMBER
+export const login = `${SERVER}/member/api/login`;
+export const signUp = `${SERVER}/member/api/sign-up`;
+export const getUserData = `${SERVER}/member/api/user-list`;
+export const editUserData = `${SERVER}/member/api/edit-user-list`;
+export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
+export const getOrderHistory = `${SERVER}/member/api/order-history`;
+
 // COURSE
 
 export const courseDataGet = `${SERVER}/course`;

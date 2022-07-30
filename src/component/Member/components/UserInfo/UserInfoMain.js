@@ -4,21 +4,31 @@ import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
+import { getUserData,editUserData,editPasswordAPI } from "../../../../config/api-path";
 
 import Modal from "../../../Modal/Modal";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
-import { method, result } from "lodash";
 
 import { useAuth } from "../../AuthContextProvider";
 
 function UserInfo() {
-    const { authorized, sid, account, token } = useContext(AuthContext);
+    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail } = useContext(AuthContext);
     // const { token } = useAuth();
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+
+    // 欄位輸入的值(把onChange事件的狀態提升到這層)
+    const [userList, setUserList] = useState({
+        member_name: name ? name :"",
+        member_nickname: nickname ? nickname:"",
+        member_birthday: birthday ? birthday:"",
+        member_mobile: mobile ? mobile:"",
+        member_address: address ? address:"",
+        member_mail: mail ? mail:"",
+    });
 
     // const getUserData = () => {
     //     axios
@@ -37,19 +47,43 @@ function UserInfo() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3500/member/api/user-list", {
+            .get(getUserData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
                 setList(response.data);
+                console.log(response.data);
             });
     }, [token]);
 
     // Object.values( )，把物件直接轉成陣列，才能使用陣列的方法
     const avatar = Object.values(list).map((v, i) => v.avatar);
     console.log(avatar);
+
+    // --------------------- 編輯會員資料 ---------------------
+    
+    const handleEditUserList = (e)=>{
+        fetch(editUserData,{
+                method: "POST",
+                body: JSON.stringify(userList),
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+        })
+        .then((r) => r.json())
+        .then((result) => {
+            console.log(result.data);
+            if (result.success) {
+                alert("修改成功");
+                setUserList(result.data);
+            }else{
+                alert("編輯失敗")
+            }
+        });
+    }
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -104,7 +138,7 @@ function UserInfo() {
 
         // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
         if (editPass.new_password === editPass.confirm_password) {
-            await fetch("http://localhost:3500/member/api/edit-password", {
+            await fetch(editPasswordAPI, {
                 method: "POST",
                 body: JSON.stringify(editPass),
                 headers: {
@@ -152,6 +186,8 @@ function UserInfo() {
                                                 member_address: v.member_address,
                                                 member_mail: v.member_mail,
                                             }}
+                                            userList={userList}
+                                            setUserList={setUserList}
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
                                         />
@@ -159,10 +195,8 @@ function UserInfo() {
                                 );
                             })}
                             <div className="ui-btn-wrap">
-                                <button className="ui-btn">取消</button>
-                                <button className="ui-btn ui-btn-active">
-                                    保存
-                                </button>
+                                <button type="submit" className="ui-btn">取消</button>
+                                <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ const AuthContext = React.createContext({
     account: "",
     token: "",
     name: "",
+    nickname: "",
     birthday: "",
     mobile: "",
     address: "",
