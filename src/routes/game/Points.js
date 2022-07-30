@@ -109,7 +109,7 @@ function Points() {
                         id="points_record_table_a"
                         className="display_justify_content tableStyle"
                     >
-                        <table className="table">
+                        <table className="Ptable">
                             <thead>
                                 <tr>
                                     <th scope="col" className="th1">

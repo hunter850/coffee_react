@@ -94,12 +94,6 @@
         color: #fff;
     }
 
-    body {
-        /* background: url(./copon_img/img1.jpg); */
-        background-position: 50% 80%;
-        opacity: 0.9;
-    }
-
     .bg {
         background-color: #fff;
         opacity: 0.9;
@@ -113,10 +107,10 @@
         background-color: #B79973;
         border-color: #B79973;
     }
-    a {
+    /* a {
         color: #B79973;
         text-decoration:none;
-    }
+    } */
     .page-link{
         color: #B79973;
     }
@@ -211,6 +205,6 @@
 .th3{
     background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius:0 20px 0 0 ;
 }
-.table{
+.Ptable{
     width: 1040px;
 }
