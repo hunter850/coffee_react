@@ -10,8 +10,8 @@ import Banner from "../../component/Course/CourseDetailed/Banner/Banner";
 import CoursePath from "../../component/Course/CourseDetailed/CoursePath/CoursePath";
 import CourseContent from "../../component/Course/CourseDetailed/CourseContent/CourseContent";
 import axios from "axios";
-import { courseDataGet } from "../../config/api-path";
-import { courseDataFkGet } from "../../config/api-path";
+import { courseDataGet, linePayApi, courseDataFkGet } from "../../config/api-path";
+
 
 const CourseDetailed = () => {
     // 每一個區塊離top多遠的狀態
@@ -73,7 +73,7 @@ const CourseDetailed = () => {
             };
             axios({
                 method: 'post',
-                url: `http://localhost:3500/course/createOrder/${JSON.stringify(orders)}`,
+                url: `${linePayApi}/${JSON.stringify(orders)}`,
             })
                 .then((res) => {
                     // console.log(res.data);

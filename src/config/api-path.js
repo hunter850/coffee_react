@@ -12,6 +12,7 @@ export const courseDataEdit = `${SERVER}/course/edit`;
 export const courseDelete = `${SERVER}/course/delete`;
 export const courseImages = `${SERVER}/course/upload`;
 export const coursePhotos = `${SERVER}/course/uploads`;
+export const linePayApi = `${SERVER}/course/createOrder`;
 
 // FOOD
 export const foodDataGet = `${SERVER}/food`;
