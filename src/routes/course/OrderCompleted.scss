@@ -23,7 +23,7 @@
 }
 
 .paper {
-    background: #ffffff;
+    background: #eee;
     position: absolute;
     z-index: 2;
     margin: 0 12px;
@@ -56,15 +56,15 @@
     background: linear-gradient(
             45deg,
             transparent 33.333%,
-            #ffffff 33.333%,
-            #ffffff 66.667%,
+            #eee 33.333%,
+            #eee 66.667%,
             transparent 66.667%
         ),
         linear-gradient(
             -45deg,
             transparent 33.333%,
-            #ffffff 33.333%,
-            #ffffff 66.667%,
+            #eee 33.333%,
+            #eee 66.667%,
             transparent 66.667%
         );
     background-size: 16px 40px;
