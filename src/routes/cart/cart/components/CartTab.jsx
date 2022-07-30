@@ -5,8 +5,9 @@ import Modal from "../../../../component/Modal/Modal";
 import ModalContent from "./ModalContent";
 import GoodsHeader from "./GoodsHeader";
 import GoodsList from "./GoodsList";
+import TotalHeader from "./TotalHeader";
+import TotalBord from "./TotalBord";
 import styles from "./css/cartTab.module.scss";
-
 function CartTab() {
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
@@ -41,7 +42,10 @@ function CartTab() {
                         </CSSTransition>
                     </SwitchTransition>
                 </div>
-                <div className={total_wrap}></div>
+                <div className={total_wrap}>
+                    <TotalHeader />
+                    <TotalBord />
+                </div>
             </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
                 <Modal.Body className={modal_body}>
