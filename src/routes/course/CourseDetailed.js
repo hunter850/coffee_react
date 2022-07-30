@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { Fragment, useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import CoursePath from "../../component/Course/CourseDetailed/CoursePath/CourseP
 import CourseContent from "../../component/Course/CourseDetailed/CourseContent/CourseContent";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
-// import { courseDataFkGet } from "../../config/api-path";
+import { courseDataFkGet } from "../../config/api-path";
 
 const CourseDetailed = () => {
     // 每一個區塊離top多遠的狀態
@@ -29,7 +30,7 @@ const CourseDetailed = () => {
     const [courseDetailedData, setCourseDetailedData] = useState([]);
 
     // 外鍵資料
-    // const [courseDataFk, setCourseDataFk] = useState([]);
+    const [courseDataFk, setCourseDataFk] = useState([]);
 
     // 確認是否有拿到資料
     const [start, setStart] = useState(false);
@@ -82,16 +83,16 @@ const CourseDetailed = () => {
     };
 
     // 外鍵資料獲取
-    // const getCourseDataFk = () => {
-    //     axios.get(courseDataFkGet)
-    //         .then((res) => {
-    //             const newCourseDataFk = res.data.filter((v, i) => {
-    //                 return Number(v.course_sid) === Number(sid);
-    //             });
-    //             setCourseDataFk(newCourseDataFk);
-    //             console.log(newCourseDataFk);
-    //         });
-    // };
+    const getCourseDataFk = () => {
+        axios.get(courseDataFkGet)
+            .then((res) => {
+                const newCourseDataFk = res.data.filter((v, i) => {
+                    return Number(v.course_sid) === Number(sid);
+                });
+                setCourseDataFk(newCourseDataFk);
+                console.log(newCourseDataFk);
+            });
+    };
 
     const getCourseDetailedData = () => {
         axios.get(courseDataGet)
@@ -109,9 +110,9 @@ const CourseDetailed = () => {
     };
 
     // 外鍵 - 取得當前sid外鍵資料
-    // useEffect(() => {
-    //     getCourseDataFk();
-    // }, []);
+    useEffect(() => {
+        getCourseDataFk();
+    }, []);
 
     // 建立訂單時跳轉付款頁面
     useEffect(() => {
