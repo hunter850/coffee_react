@@ -39,11 +39,14 @@ const CourseManage = () => {
     const [searchInp, setSearchInp] = useState("");
     // 判斷是否點擊搜尋按鈕
     const [searchSure, setSearchSure] = useState(false);
-
+    // 判斷是否刪除資料
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    // 上一次渲染時的頁數
+    const oldPageNow = pageNow;
     const courseManageDataGet = async () => {
         const res = await axios.get(courseDataGet);
         const newCourseData = JSON.parse(JSON.stringify(res.data));
-        //lv資料數字轉中文
+        // lv資料數字轉中文
         numberConvertString(res.data);
         // setCourseManageData(res.data);
         // 深拷貝過的資料,保留lv的數字,供等級排序使用
@@ -51,6 +54,15 @@ const CourseManage = () => {
         setCourseManageSortData(res.data);
         // 將資料切割成每一頁要展示的陣列,渲染出來
         const pageArray = chunk(res.data, perPage);
+
+        // 如果切完的陣列長度少於上次渲染的頁數,將頁數跳至陣列長度的頁數
+        // 如果長度.頁數相等則在當前頁面
+        if (pageArray.length < oldPageNow) {
+            setPageNow(pageArray.length);
+        } else {
+            setPageNow(oldPageNow);
+        }
+
         if (pageArray.length > 0) {
             setPageTotal(pageArray.length);
             setCourseManageData(pageArray);
@@ -68,7 +80,8 @@ const CourseManage = () => {
 
     useEffect(() => {
         courseManageDataGet();
-    }, [sortData]);
+        setConfirmDelete(false);
+    }, [sortData, confirmDelete]);
 
     // 一般搜尋框搜尋的渲染
     useEffect(() => {
@@ -96,6 +109,8 @@ const CourseManage = () => {
         }
     }, [searchInp]);
 
+
+
     const el = (
         <Fragment>
             <div className="CourseManage-wrap">
@@ -116,7 +131,9 @@ const CourseManage = () => {
                                             course_name: v.course_name,
                                             course_price: v.course_price,
                                             course_img_s: v.course_img_s,
+                                            course_sid: v.course_sid
                                         }}
+                                        setConfirmDelete={setConfirmDelete}
                                     />
                                 );
                             })}
