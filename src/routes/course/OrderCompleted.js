@@ -1,12 +1,38 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./OrderCompleted.scss";
 import FakeNav from "../../component/FakeNav";
+import axios from "axios";
+import { courseDataGet } from "../../config/api-path";
+import { useEffect, useState } from "react";
+
 function OrderCompleted() {
+    // 存當筆訂單的資料
+    const [courseData, setCourseData] = useState({});
+    console.log(courseData);
     // 取得網址裡的sid
     const getSid = window.location.href;
     const url = new URL(getSid);
     url.searchParams.get("orderId");
-    console.log(url.searchParams.get("orderId"));
+    const courseSid = url.searchParams.get("orderId");
+    console.log(courseSid);
+
     const orderNumber = parseInt(new Date() / 1000);
+
+    // 取得當筆訂單的資訊
+    const getCourseData = () => {
+        axios.get(courseDataGet).then((res) => {
+            res.data.map((v, i) => {
+                if (Number(v.course_sid) === Number(courseSid)) {
+                    return setCourseData(v);
+                }
+            });
+        });
+    };
+    useEffect(() => {
+        getCourseData();
+    }, []);
+
     return (
         <>
             <FakeNav />
