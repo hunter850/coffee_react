@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import Path from "../../component/Item/Path/Path";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import Banner from "../../component/Course/CourseDetailed/Banner/Banner";
@@ -134,7 +134,7 @@ const CourseDetailed = () => {
     const el = (
         <Fragment>
             <div className="CourseDetailed-container">
-                <NavBar />
+                <FakeNav />
                 <Path
                     pathObj={{
                         path: [

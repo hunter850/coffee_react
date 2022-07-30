@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Fragment, useState, useEffect } from "react";
-import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import ManageHeader from "../../component/Course/CourseManage/ManageHeader/ManageHeader";
 import List from "../../component/Course/CourseManage/List/List";
 import Sort from "../../component/Course/Sort/Sort";
@@ -100,7 +100,7 @@ const CourseManage = () => {
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
-                    <NavBar />
+                    <FakeNav />
                     <div className="ManageHeader">
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
                     </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useState } from "react";
-import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import Path from "../../component/Item/Path/Path";
 import CourseAddList from "../../component/Course/CourseAdd/CourseAddList/CourseAddList";
 import CourseAddListDetailed from "../../component/Course/CourseAdd/CourseAddListDetailed/CourseAddListDetailed";
@@ -86,7 +86,7 @@ const CourseAdd = () => {
     const el = (
         <Fragment>
             <div style={{ backgroundColor: "#E3E7E7", minWidth: "1440px" }}>
-                <NavBar />
+                <FakeNav />
                 <Path
                     pathObj={{ path: ["．課程資訊管理", "．新增課程"] }}
                     backgroundColor={"#E3E7E7"}
