@@ -29,12 +29,12 @@ function CourseAddListDetailed({
         // 有取得資料才渲染
         if (start === true) {
             setFormData({
-                ...formData, course_name: getCourseData[0].course_name
-                , course_price: getCourseData[0].course_price
-                , course_level: getCourseData[0].course_level
-                , course_content: getCourseData[0].course_content
-                , course_people: getCourseData[0].course_people
-                , course_material: getCourseData[0].course_material
+                ...formData, course_name: getCourseData[0].course_name,
+                course_price: getCourseData[0].course_price,
+                course_level: getCourseData[0].course_level,
+                course_content: getCourseData[0].course_content,
+                course_people: getCourseData[0].course_people,
+                course_material: getCourseData[0].course_material
             });
         }
     }, [getCourseData]);
