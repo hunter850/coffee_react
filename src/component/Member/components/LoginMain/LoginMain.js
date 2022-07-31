@@ -4,6 +4,7 @@
 import { set } from "lodash";
 import { useState, useEffect, useRef,useContext } from "react";
 import Modal from "../../../Modal/Modal";
+import { login,signUp } from "../../../../config/api-path";
 import "./LoginMain.css";
 
 import AuthContext from "../../AuthContext";
@@ -93,7 +94,7 @@ function LoginMain() {
         }
 
         if(myform.member_account && myform.member_password){
-            fetch("http://localhost:3500/member/login",{
+            fetch(login,{
             method: "POST",
             body: JSON.stringify(myform),
             headers: {
@@ -142,7 +143,7 @@ function LoginMain() {
             setPasswordErrors({...passwordErrors,password:""});
         }
 
-            fetch("http://localhost:3500/member/sign-up",{
+            fetch(signUp,{
                 method: "POST",
                 body: JSON.stringify(myform),
                 headers: {
@@ -155,9 +156,8 @@ function LoginMain() {
                 if(result.success){
                     setSignSuccess(true);
                 } 
+                setIsOpen(true);
             });
-
-        setIsOpen(true);
     };
 
 
@@ -197,8 +197,6 @@ function LoginMain() {
                     </div>
                     <button type="submit" onClick={handleLoginIn} className="log-in" style={{display: isLog ? "block" : "none "}}>登入</button>
                     <button type="submit" onClick={handleSignUp} className="sign-up" style={{display: isLog ? "none" : "block "}}>註冊</button>
-                    {/* <input className="sign-up" type="button" value="註冊" style={{display: change ? "block" : "none "}}/>
-                    <input className="log-in" type="button" value="登入" style={{display: change ? "none" : "block "}} /> */}
                 </form>
                 <div className="particle"></div>
 

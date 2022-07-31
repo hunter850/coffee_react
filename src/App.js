@@ -15,6 +15,7 @@ import Course from "./routes/course/Course";
 import CourseDetailed from "./routes/course/CourseDetailed";
 import CourseManage from "./routes/course/CourseManage";
 import CourseAdd from "./routes/course/CourseAdd";
+import OrderCompleted from "./routes/course/OrderCompleted";
 import Post from "./routes/sharing/Post";
 import Member from "./routes/member/Member";
 import Login from "./routes/member/Login";
@@ -65,8 +66,14 @@ const App = () => {
                                 path="/course/detailed/:sid"
                                 element={<CourseDetailed />}
                             />
-                            <Route path="/course/add" element={<CourseAdd />} />
-
+                            <Route path="/course/add">
+                                <Route element={<CourseAdd />} path="" />
+                                <Route element={<CourseAdd />} path=":sid" />
+                            </Route>
+                            <Route
+                                path="/course/orders"
+                                element={<OrderCompleted />}
+                            />
                             <Route
                                 path="/sharing/:post_sid"
                                 element={<PostDetail />}

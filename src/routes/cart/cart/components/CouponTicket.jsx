@@ -1,9 +1,25 @@
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import cssStyle from "./css/couponTicket.module.scss";
+import useData from "../../../../hooks/useData";
+import useClass from "../../../../hooks/useClass";
 
 function CouponTicket(props) {
     const { coupon } = props;
-    const { coupon_wrap, coupon_left, coupon_mid, coupon_right } = cssStyle;
+    const {
+        coupon_wrap,
+        coupon_left,
+        coupon_mid,
+        coupon_right,
+        coupon_selected_active,
+    } = cssStyle;
+    const [nowList] = useData("nowList");
+    const nowCouponType = useMemo(() => {
+        return nowList === "productList"
+            ? "selectedProductCouponId"
+            : "selectedFoodCouponId";
+    }, [nowList]);
+    const [selectedCouponId] = useData(nowCouponType);
+    const c = useClass();
     return (
         <Fragment>
             <div className={coupon_wrap}>
@@ -15,6 +31,10 @@ function CouponTicket(props) {
                 <div className={coupon_mid}></div>
                 <div className={coupon_right}>
                     <svg
+                        className={c({
+                            [coupon_selected_active]:
+                                coupon.id === selectedCouponId,
+                        })}
                         width="32"
                         height="32"
                         viewBox="0 0 32 32"

@@ -84,7 +84,7 @@
         min-width: 768px;
     }
     .CourseDetailed-container {
-        width: 768px;
+        min-width: 768px;
     }
 }
 
@@ -93,6 +93,6 @@
         min-width: 375px;
     }
     .CourseDetailed-container {
-        width: 375px;
+        min-width: 375px;
     }
 }

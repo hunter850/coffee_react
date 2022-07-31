@@ -22,7 +22,31 @@
     cursor: pointer;
     border: none;
 }
-.active{
+/* .active{
+    background-color: var(--blue);
+    color: var(--cream);
+    cursor: pointer;
+    border: none;
+} */
+.nav-link-active{
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--blue);
+    background-color: var(--blue);
+    color: var(--cream);
+    cursor: pointer;
+    border: none;
+}
+.nav-link-active:hover{
     background-color: var(--blue);
     color: var(--cream);
     cursor: pointer;

@@ -1,10 +1,23 @@
 /* eslint-disable prettier/prettier */
 import "./List.css";
-import { imgSrc } from "../../../../config/api-path";
+import { imgSrc, courseDelete } from "../../../../config/api-path";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-function List({ courseData }) {
-    const { course_name, course_level, course_price, course_img_s } =
+function List({ courseData, setConfirmDelete }) {
+    const { course_name, course_level, course_price, course_img_s, course_sid } =
         courseData;
+
+    const deleteCourse = () => {
+        // console.log(course_sid);
+        if (window.confirm(`確定要刪除${course_name}嗎`)) {
+            axios.delete(`${courseDelete}/${course_sid}`)
+                .then(res => {
+                    console.log(res);
+                    setConfirmDelete(true);
+                });
+        }
+    };
 
     return (
         <div className="courseList d-flex f-aic">
@@ -26,8 +39,10 @@ function List({ courseData }) {
                 NT$ &nbsp;
                 <span style={{ fontSize: "1.0625rem" }}>{course_price}</span>
             </div>
-            <div className="List-edit-icon"></div>
-            <div className="List-delete-icon"></div>
+            <Link to={`/course/add/${course_sid}`}>
+                <div className="List-edit-icon"></div>
+            </Link>
+            <div className="List-delete-icon" onClick={() => deleteCourse()}></div>
         </div>
     );
 }

@@ -3,6 +3,9 @@
     justify-content: center;
     align-items: center;
     height: 122px;
+    &:hover svg {
+        opacity: 0.3;
+    }
 }
 
 .coupon_left {
@@ -80,6 +83,8 @@
         font-size: 24px;
         line-height: 122px;
         color: #fff;
+        transition: opacity 0.3s ease;
+        opacity: 0;
     }
 }
 .coupon_mid {
@@ -127,4 +132,8 @@
         -webkit-transform-origin: center center;
         transform: rotate(45deg);
     }
+}
+
+.coupon_selected_active {
+    opacity: 1 !important;
 }

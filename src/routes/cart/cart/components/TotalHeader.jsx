@@ -1,12 +1,38 @@
-import { Fragment, useMemo, useState } from "react";
-import Modal from "../../../component/Modal/Modal";
+import { Fragment, useMemo, useState, useCallback } from "react";
+import useData from "../../../../hooks/useData";
+import Modal from "../../../../component/Modal/Modal";
 import CouponTicket from "./CouponTicket";
 import cssStyle from "./css/totalHeader.module.scss";
 
-function TotalHeader(props) {
-    const { coupons, selectedCouponId, setSelectedCouponId } = props;
+function TotalHeader() {
     const { header_button, ticket_svg, coupon_label } = cssStyle;
     const [isOpen, setIsOpen] = useState(false);
+    const [nowList] = useData("nowList");
+    const nowCouponList = useMemo(() => {
+        return nowList === "productList" ? "productCoupons" : "foodCoupons";
+    }, [nowList]);
+    const nowCouponType = useMemo(() => {
+        return nowList === "productList"
+            ? "selectedProductCouponId"
+            : "selectedFoodCouponId";
+    }, [nowList]);
+    const [coupons] = useData(nowCouponList);
+    const [selectedCouponId, setSelectedCouponId] = useData(nowCouponType);
+    // totalHeader的標題
+    const selectedCouponName = useMemo(() => {
+        if (selectedCouponId === -1) return "";
+        return coupons.find((coupon) => coupon.id === selectedCouponId).name;
+    }, [selectedCouponId, coupons]);
+    // radio再點一次取消選取
+    const cancelCouponSelectHandler = useCallback(
+        (e, couponId) => {
+            if (couponId === selectedCouponId) {
+                e.preventDefault();
+                setSelectedCouponId(-1);
+            }
+        },
+        [selectedCouponId, setSelectedCouponId]
+    );
     const styles = useMemo(() => {
         return {
             modalBodyStyle: {
@@ -39,7 +65,9 @@ function TotalHeader(props) {
                     />
                 </svg>
                 <span>
-                    {selectedCouponId === -1 ? "選擇優惠卷" : ""}
+                    {selectedCouponId === -1
+                        ? "選擇優惠卷"
+                        : selectedCouponName}
                     <svg
                         width="9"
                         height="11"
@@ -63,12 +91,15 @@ function TotalHeader(props) {
                 </Modal.Header>
                 <Modal.Body style={styles.modalBodyStyle}>
                     <form>
-                        {coupons.value.map((coupon) => (
+                        {coupons.map((coupon) => (
                             <label
                                 key={coupon.id}
                                 htmlFor={coupon.name + coupon.id}
                                 style={styles.labelStyle}
                                 className={coupon_label}
+                                onClick={(e) =>
+                                    cancelCouponSelectHandler(e, coupon.id)
+                                }
                             >
                                 <CouponTicket coupon={coupon} />
                                 <input

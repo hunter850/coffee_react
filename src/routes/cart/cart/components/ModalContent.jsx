@@ -1,15 +1,37 @@
-import { Fragment, useCallback } from "react";
+import { Fragment, useCallback, useMemo } from "react";
 import useData from "../../../../hooks/useData";
+import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import Btn from "../../../../component/Item/Btn/Btn";
+import axios from "axios";
+import { getProduct, getFood } from "../../../../config/api-path";
 
 function ModalContent(props) {
     const { deleteId, setModalIsOpen } = props;
+    const { token } = useAuth();
     const [nowList] = useData("nowList");
     const [list, setList] = useData(nowList);
+    const nowApiAddress = useMemo(() => {
+        return nowList === "productList" ? getProduct : getFood;
+    }, [nowList]);
     const deleteHandler = useCallback(() => {
+        axios
+            .delete(nowApiAddress, {
+                params: {
+                    data: deleteId,
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((result) => console.log(result.data))
+            .catch((result) => {
+                console.log(result);
+                alert(result.response.data.error.message);
+            });
         setList(list.filter((item) => item.id !== deleteId));
         setModalIsOpen(false);
-    }, [deleteId, list, setList, setModalIsOpen]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [deleteId, list, setList, setModalIsOpen, nowApiAddress]);
     const cancelHandler = useCallback(() => {
         setModalIsOpen(false);
     }, [setModalIsOpen]);

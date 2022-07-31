@@ -30,6 +30,7 @@ function AuthContextProvider({ children }) {
         account: "",
         token: "",
         name: "",
+        nickname: "",
         birthday: "",
         mobile: "",
         address: "",

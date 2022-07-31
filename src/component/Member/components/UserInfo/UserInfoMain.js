@@ -1,24 +1,78 @@
 /* eslint-disable prettier/prettier */
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
+import { getUserData,editUserData,editPasswordAPI } from "../../../../config/api-path";
 
 import Modal from "../../../Modal/Modal";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
-import { method, result } from "lodash";
+
+import { AiFillPicture } from "react-icons/ai";
 
 import { useAuth } from "../../AuthContextProvider";
 
 function UserInfo() {
-    const { authorized, sid, account, token } = useContext(AuthContext);
+    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail } = useContext(AuthContext);
     // const { token } = useAuth();
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+
+    // 欄位輸入的值(把onChange事件的狀態提升到這層)
+    const [userList, setUserList] = useState({
+        member_name: name ? name :"",
+        member_nickname: nickname ? nickname:"",
+        member_birthday: birthday ? birthday:"",
+        member_mobile: mobile ? mobile:"",
+        member_address: address ? address:"",
+        member_mail: mail ? mail:"",
+    });
+
+    // --------------------- 頭貼預覽 ---------------------
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [isFilePicked, setIsFilePicked] = useState(false);
+    const [preview, setPreview] = useState('');
+
+    const avatarFile = useRef();
+
+    const imgFile = (e) => {
+        avatarFile.current.click();
+    };
+
+    useEffect(() => {
+
+        if (!selectedFile) {
+            setPreview('');
+            return;
+        }
+        const avatarUrl = URL.createObjectURL(selectedFile);
+        console.log(avatarUrl);
+        setPreview(avatarUrl);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(avatarUrl);
+        
+    }, [selectedFile]);
+
+    const changeHandler = (e) => {
+        const file = e.target.files[0]
+    
+        if (file) {
+          setIsFilePicked(true)
+          setSelectedFile(file)
+
+        } else {
+          setIsFilePicked(false)
+          setSelectedFile(null)
+
+        }
+      }
+    
 
     // const getUserData = () => {
     //     axios
@@ -37,19 +91,43 @@ function UserInfo() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3500/member/api/user-list", {
+            .get(getUserData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             .then((response) => {
                 setList(response.data);
+                console.log(response.data);
             });
     }, [token]);
 
     // Object.values( )，把物件直接轉成陣列，才能使用陣列的方法
-    const avatar = Object.values(list).map((v, i) => v.avatar);
-    console.log(avatar);
+    // const avatar = Object.values(list).map((v, i) => v.avatar);
+    // console.log(avatar);
+
+    // --------------------- 編輯會員資料 ---------------------
+    
+    const handleEditUserList = (e)=>{
+        fetch(editUserData,{
+                method: "POST",
+                body: JSON.stringify(userList),
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+        })
+        .then((r) => r.json())
+        .then((result) => {
+            console.log(result.data);
+            if (result.success) {
+                alert("修改成功");
+                setUserList(result.data);
+            }else{
+                alert("編輯失敗")
+            }
+        });
+    }
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -104,7 +182,7 @@ function UserInfo() {
 
         // 先比對新密碼兩次都打正確，再送到後端比對舊密碼是否正確，正確就修改成功！
         if (editPass.new_password === editPass.confirm_password) {
-            await fetch("http://localhost:3500/member/api/edit-password", {
+            await fetch(editPasswordAPI, {
                 method: "POST",
                 body: JSON.stringify(editPass),
                 headers: {
@@ -126,10 +204,6 @@ function UserInfo() {
         }
     };
 
-    // useEffect(()=>{
-    //     confirmPassword();
-    // },[]);
-
     return (
         <>
             <div className="ui-wrap-main">
@@ -137,7 +211,11 @@ function UserInfo() {
                     <MemberMenu />
                     <div className="ui-wrap-right">
                         <div className="ui-title">編輯會員資料</div>
-                        <img src={``} alt="" className="avatar"></img>
+                        <div className="avatar" onClick={imgFile} onChange={changeHandler} style={{ backgroundImage: `url(${preview})`,backgroundRepeat: 'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover',}}>
+                            {/* <AiFillPicture size={'1.5em'} style={{"margin":"10"+"px"}}/> */}
+                            <input type="file" name="avatar" style={{ display: "none" }} ref={avatarFile}/>
+                            {/* <img src={preview} alt="" /> */}
+                        </div>
                         <div className="ui-info-wrap">
                             {list.map((v, i) => {
                                 return (
@@ -152,6 +230,8 @@ function UserInfo() {
                                                 member_address: v.member_address,
                                                 member_mail: v.member_mail,
                                             }}
+                                            userList={userList}
+                                            setUserList={setUserList}
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
                                         />
@@ -159,10 +239,8 @@ function UserInfo() {
                                 );
                             })}
                             <div className="ui-btn-wrap">
-                                <button className="ui-btn">取消</button>
-                                <button className="ui-btn ui-btn-active">
-                                    保存
-                                </button>
+                                <button type="submit" className="ui-btn">取消</button>
+                                <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
                         </div>
                     </div>
