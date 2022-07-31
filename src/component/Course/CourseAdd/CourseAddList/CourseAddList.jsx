@@ -77,7 +77,8 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                     <div
                         className="CourseAddList-img"
                         style={{
-                            background: `url(${preview})  center center / cover no-repeat`,
+                            background: `url(${imgSrc}/course/${formData.course_img_s
+                                })  center center / cover no-repeat`,
                         }}
                     ></div>
                     <input

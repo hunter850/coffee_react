@@ -9,6 +9,8 @@ import {
     courseDataAddFk,
     courseDataGetSid,
     courseDataFkGet,
+    courseDataEdit,
+    courseDataEditFk,
 } from "../../config/api-path";
 import axios from "axios";
 import { useEffect } from "react";
@@ -36,6 +38,7 @@ const CourseAdd = () => {
     // console.log("要給資料庫的檔名: " + imgName);
     // 監聽後端是否回傳sid
     const [monitor, setMonitor] = useState(false);
+    const [monitorFk, setMonitorFk] = useState(false);
     // 要新增的資料狀態
     const [formData, setFormData] = useState({
         course_name: "",
@@ -80,42 +83,107 @@ const CourseAdd = () => {
             });
         }
     }, []);
-
-    // 新增資料的請求
+    // 新增資料的請求,如果有取得sid會進行資料修改(編輯功能)
     const handleSubmission = (e) => {
         e.preventDefault();
-        // console.log(formData);
-        // 這裡需要檢查欄位 (還沒做)
-        axios({
-            method: "post",
-            url: courseDataAdd,
-            data: formData,
-            "content-type": "application/x-www-form-urlencoded",
-        }).then((response) => {
-            // console.log(response.config.data);
-            console.log(response);
-            // 確定拿到sid後塞給外鍵的formData
-            setFormDataFk({ ...formDataFk, course_sid: response.data });
-            setMonitor(true);
-        });
+        if (sid) {
+            axios({
+                method: "put",
+                url: courseDataEdit,
+                data: { ...formData, course_sid: sid },
+                "content-type": "application/x-www-form-urlencoded",
+            }).then((res) => {
+                console.log(res);
+                setMonitorFk(true);
+            });
+        } else {
+            // console.log(formData);
+            // 這裡需要檢查欄位 (還沒做)
+            axios({
+                method: "post",
+                url: courseDataAdd,
+                data: formData,
+                "content-type": "application/x-www-form-urlencoded",
+            }).then((response) => {
+                console.log(response.config.data);
+                console.log(response);
+                // 確定拿到sid後塞給外鍵的formData
+                setFormDataFk({ ...formDataFk, course_sid: response.data });
+                setMonitor(true);
+            });
+        }
     };
 
     useEffect(() => {
-        // console.log(formDataFk.course_sid);
-        // 確定有sid後發送外鍵的請求
+        // 發送請求前將資料整理成陣列
+        const dataArr = [];
+        const timeArr = [];
+        dataArr.push(
+            formDataFk.course_date.date1,
+            formDataFk.course_date.date2
+        );
+        timeArr.push(
+            formDataFk.course_time.time1,
+            formDataFk.course_time.time2
+        );
+        // 確定有sid後發送新增外鍵的請求
         if (monitor === true) {
             axios({
                 method: "post",
                 url: courseDataAddFk,
-                data: formDataFk,
+                data: {
+                    ...formDataFk,
+                    course_date: dataArr,
+                    course_time: timeArr,
+                },
                 "content-type": "application/x-www-form-urlencoded",
             }).then((response) => {
                 // console.log(response.config.data);
                 console.log(response);
                 setMonitor(false);
+                // 確定新增完成後跳轉頁面
+                if (response.status === 200) {
+                    // 這樣localhost是多少都沒關係
+                    const localhost = window.location.origin;
+                    window.location.href = `${localhost}/course/manage`;
+                }
             });
         }
     }, [monitor]);
+    // 修改外鍵的請求
+    useEffect(() => {
+        if (monitorFk === true) {
+            const dataArr = [];
+            const timeArr = [];
+            dataArr.push(
+                formDataFk.course_date.date1,
+                formDataFk.course_date.date2
+            );
+            timeArr.push(
+                formDataFk.course_time.time1,
+                formDataFk.course_time.time2
+            );
+            axios({
+                method: "put",
+                url: courseDataEditFk,
+                data: {
+                    ...formDataFk,
+                    course_date: dataArr,
+                    course_time: timeArr,
+                },
+                "content-type": "application/x-www-form-urlencoded",
+            }).then((res) => {
+                console.log(res);
+                setMonitorFk(false);
+                // 確定修改完成後跳轉
+                if (res.status === 200) {
+                    // 這樣localhost是多少都沒關係
+                    const localhost = window.location.origin;
+                    window.location.href = `${localhost}/course/manage`;
+                }
+            });
+        }
+    }, [monitorFk]);
 
     const add = (
         <Fragment>
@@ -221,6 +289,7 @@ const CourseAdd = () => {
                             getCourseDataFk={getCourseDataFk}
                             getCourseData={getCourseData}
                             start={start}
+                            sid={sid}
                         />
                         <div
                             className="d-flex f-jcc"
