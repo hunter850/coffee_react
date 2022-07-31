@@ -7,6 +7,10 @@ import Modal from "../../../Modal/Modal";
 import { login,signUp } from "../../../../config/api-path";
 import "./LoginMain.css";
 
+import { FaUser } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+
 import AuthContext from "../../AuthContext";
 
 function LoginMain() {
@@ -175,7 +179,7 @@ function LoginMain() {
                             <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" required/>
                             <p className="lg-field-err">{nameErrors.name}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-user"></i>
+                                <FaUser/>
                             </div>
                         </div>
 
@@ -183,7 +187,7 @@ function LoginMain() {
                             <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" required/>
                             <p className="lg-field-err">{accountErrors.account}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-user-plus"></i>
+                                <FaUserPlus size={'1.15rem'}/>
                             </div>
                         </div>
 
@@ -191,7 +195,7 @@ function LoginMain() {
                             <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" required/>
                             <p className="lg-field-err">{passwordErrors.password}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-lock"></i>
+                                <FaLock/>
                             </div>
                         </div>
                     </div>
