@@ -23,7 +23,7 @@ function ModalContent(props) {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            .then((result) => console.log(result.data))
+            // .then((result) => console.log(result.data))
             .catch((result) => {
                 console.log(result);
                 alert(result.response.data.error.message);
