@@ -1,7 +1,6 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
 
-
 // MEMBER
 export const login = `${SERVER}/member/api/login`;
 export const signUp = `${SERVER}/member/api/sign-up`;
@@ -19,9 +18,9 @@ export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const courseDataAdd = `${SERVER}/course/add`;
 export const courseDataAddFk = `${SERVER}/course/addfk`;
 export const courseDataEdit = `${SERVER}/course/edit`;
+export const courseDataEditFk = `${SERVER}/course/editFk`;
 export const courseDelete = `${SERVER}/course/delete`;
 export const courseImages = `${SERVER}/course/upload`;
-export const coursePhotos = `${SERVER}/course/uploads`;
 export const linePayApi = `${SERVER}/course/createOrder`;
 
 // FOOD
