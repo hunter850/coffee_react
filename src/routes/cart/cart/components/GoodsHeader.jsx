@@ -2,8 +2,7 @@ import { Fragment } from "react";
 import useData from "../../../../hooks/useData";
 import styles from "./css/goodsHeader.module.scss";
 
-function GoodsHeader(props) {
-    const { showProduct } = props;
+function GoodsHeader() {
     const { list_wrap, header_text } = styles;
     const [nowList] = useData("nowList");
     return (
