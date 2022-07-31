@@ -4,6 +4,7 @@ import courseImg2 from "../../../images/frontpage/course/barista.png";
 import "./GoodCourse.css";
 import { Link } from "react-router-dom";
 import ViewmoreBtn from "../ViewmoreBtn";
+import topArrow from "../../../images/frontpage/material/icon_arrow_02.svg";
 
 function GoodCourse() {
     return (
@@ -46,9 +47,18 @@ function GoodCourse() {
                         />
                     </div>
                 </Link>
+                <Link to="./course">
+                    <ViewmoreBtn Vbpaddingtop={500} transform={1077} />
+                </Link>
             </div>
-            <Link to="./course">
-                <ViewmoreBtn Vbpaddingtop={500} transform={1077} />
+
+            <Link to="#top">
+                <div className="pagetop-wrap">
+                    <div className="pagetop-btn">
+                        <img src={topArrow} width="24px" height="24px" alt="" />
+                    </div>
+                    <p className="pagetop-text">Page Top</p>
+                </div>
             </Link>
         </Fragment>
     );

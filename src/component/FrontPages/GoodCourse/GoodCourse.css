@@ -43,3 +43,14 @@
 .foodCourse-btn {
     transform: translateX(100px) translateY(-200px);
 }
+.pagetop-wrap{
+    margin: auto;
+    margin-bottom:30px;
+}
+
+.pagetop-btn {
+    text-align: center;
+}
+.pagetop-text {
+    text-align: center;
+}

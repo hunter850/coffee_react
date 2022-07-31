@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import "./navBar.css";
+import "./NavBar.css";
+import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
 
 const NavBar = () => {
     // =============================================
@@ -129,6 +130,11 @@ const NavBar = () => {
                     className="navUl"
                     style={{ height: "60px", backgroundColor: "#253945" }}
                 >
+                    <li>
+                        <div>
+                            <img src={coffeeLogo} width="75px" height="32px" alt="" />
+                        </div>
+                    </li>
                     <li>
                         <Link to="/" style={{ color: "white" }}>
                             首頁
