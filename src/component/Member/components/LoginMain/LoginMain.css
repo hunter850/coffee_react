@@ -57,6 +57,7 @@ body {
     border: 1px solid var(--gray);
     padding: 0 3rem;
     font-size: 1rem;
+    letter-spacing: 0.15rem;
 }
 .lg-field:focus{
     outline: none;

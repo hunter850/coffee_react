@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { useState, useContext, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
-import { getUserData,editUserData,editPasswordAPI } from "../../../../config/api-path";
+import { getUserData,editUserData,editPasswordAPI,uploadAvatar } from "../../../../config/api-path";
 
 import Modal from "../../../Modal/Modal";
 
@@ -14,13 +14,15 @@ import AuthContext from "../../AuthContext";
 import { AiFillPicture } from "react-icons/ai";
 
 import { useAuth } from "../../AuthContextProvider";
+import { set } from "lodash";
 
 function UserInfo() {
-    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail } = useContext(AuthContext);
+    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail, avatar } = useContext(AuthContext);
     // const { token } = useAuth();
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [editSuccess,setEditSuccess] =useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -31,49 +33,6 @@ function UserInfo() {
         member_address: address ? address:"",
         member_mail: mail ? mail:"",
     });
-
-    // --------------------- 頭貼預覽 ---------------------
-
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [isFilePicked, setIsFilePicked] = useState(false);
-    const [preview, setPreview] = useState('');
-
-    const avatarFile = useRef();
-
-    const imgFile = (e) => {
-        avatarFile.current.click();
-    };
-
-    useEffect(() => {
-
-        if (!selectedFile) {
-            setPreview('');
-            return;
-        }
-        const avatarUrl = URL.createObjectURL(selectedFile);
-        console.log(avatarUrl);
-        setPreview(avatarUrl);
-
-        // 當元件unmounted時清除記憶體
-        return () => URL.revokeObjectURL(avatarUrl);
-        
-    }, [selectedFile]);
-
-    const changeHandler = (e) => {
-        const file = e.target.files[0]
-    
-        if (file) {
-          setIsFilePicked(true)
-          setSelectedFile(file)
-
-        } else {
-          setIsFilePicked(false)
-          setSelectedFile(null)
-
-        }
-      }
-    
-
     // const getUserData = () => {
     //     axios
     //         .get("http://localhost:3500/member/api/user-list", {
@@ -89,6 +48,8 @@ function UserInfo() {
     //     // setList(response.data);
     // };
 
+    const [ avatarField,setAvatarField ] = useState("");
+
     useEffect(() => {
         axios
             .get(getUserData, {
@@ -99,8 +60,10 @@ function UserInfo() {
             .then((response) => {
                 setList(response.data);
                 console.log(response.data);
+                setAvatarField(response.data[0].avatar);
+                console.log(avatarField);
             });
-    }, [token]);
+    }, [avatarField,token]);
 
     // Object.values( )，把物件直接轉成陣列，才能使用陣列的方法
     // const avatar = Object.values(list).map((v, i) => v.avatar);
@@ -204,6 +167,73 @@ function UserInfo() {
         }
     };
 
+    // 取消的按鈕
+    const navigate = useNavigate();
+
+    const cacel = (e)=>{
+        e.preventDefault();
+        navigate("/member/userinfo");
+        setIsOpen(false);
+    }
+
+    // --------------------- 頭貼預覽 ---------------------
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const avatarFile = useRef();
+
+    // 模擬點擊隱藏的 input
+    const uploadFile = () => {
+        avatarFile.current.click();
+    };
+
+    useEffect(() => {
+
+        if (!selectedFile) {
+            setAvatarField("");
+            return;
+        }
+        const avatarUrl = URL.createObjectURL(selectedFile);
+        console.log(avatarUrl);
+        setAvatarField(avatarUrl);
+
+        // 當元件unmounted時清除記憶體
+        return () => URL.revokeObjectURL(avatarUrl);
+        
+    }, [selectedFile]);
+
+    // onChange時把選擇的照片設成setSelectedFile
+    const changeAvatar = (e) => {
+        const file = e.target.files[0];
+        console.log(file);
+    
+        if (file) {
+            setSelectedFile(file);
+
+        } else {
+            setSelectedFile(null);
+        }
+    }
+
+    // 把頭貼存進資料庫
+    useEffect(() => {
+        if (selectedFile) {
+            const fd = new FormData();
+            fd.append("avatar", selectedFile);
+            fetch(uploadAvatar, {
+                method: "POST",
+                body: fd,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((r) => r.json())
+                .then((result) => {
+                    console.log(result);
+                });
+        }
+    }, [selectedFile]);
+
     return (
         <>
             <div className="ui-wrap-main">
@@ -211,10 +241,9 @@ function UserInfo() {
                     <MemberMenu />
                     <div className="ui-wrap-right">
                         <div className="ui-title">編輯會員資料</div>
-                        <div className="avatar" onClick={imgFile} onChange={changeHandler} style={{ backgroundImage: `url(${preview})`,backgroundRepeat: 'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover',}}>
+                        <div className="avatar" onClick={uploadFile} onChange={changeAvatar} style={{ backgroundImage: `url(http://localhost:3500/avatar/${avatarField})`,backgroundRepeat: 'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover',}}>
                             {/* <AiFillPicture size={'1.5em'} style={{"margin":"10"+"px"}}/> */}
                             <input type="file" name="avatar" style={{ display: "none" }} ref={avatarFile}/>
-                            {/* <img src={preview} alt="" /> */}
                         </div>
                         <div className="ui-info-wrap">
                             {list.map((v, i) => {
@@ -239,7 +268,7 @@ function UserInfo() {
                                 );
                             })}
                             <div className="ui-btn-wrap">
-                                <button type="submit" className="ui-btn">取消</button>
+                                <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
                                 <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
                         </div>
@@ -287,7 +316,7 @@ function UserInfo() {
                             </div>
                         </div>
                         <div className="ed-Pass-btn-wrap">
-                            <button className="ui-btn">取消</button>
+                            <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
                             <button
                                 type="submit"
                                 className="ui-btn ui-btn-active"

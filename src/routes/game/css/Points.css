@@ -56,7 +56,7 @@
         text-decoration: none;
         color: rgb(213, 211, 211) !important;
         border: 1px solid #B79973;
-        font-size: 24px;
+        font-size: 16px;
         display: inline-block;
         border-radius: 0.3em;
         transition: all 0.2s ease-in-out;
@@ -80,7 +80,6 @@
     .Pbutton:hover {
         background-color: #b8a58d;
         color: #fff;
-        /* border-bottom: 4px solid #893429; */
     }
     
     .Pbutton:hover:before {
@@ -107,10 +106,6 @@
         background-color: #B79973;
         border-color: #B79973;
     }
-    /* a {
-        color: #B79973;
-        text-decoration:none;
-    } */
     .page-link{
         color: #B79973;
     }
