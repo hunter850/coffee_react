@@ -6,6 +6,10 @@
     box-shadow: 1px 1px 10px 1px #00000026;
     margin-bottom: 14px;
 }
+.courseList:hover {
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+    transition: all 0.5s ease-in-out;
+}
 
 .courseList::before {
     display: block;
