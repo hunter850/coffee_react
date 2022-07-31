@@ -9,6 +9,7 @@ export const getUserData = `${SERVER}/member/api/user-list`;
 export const editUserData = `${SERVER}/member/api/edit-user-list`;
 export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
 export const getOrderHistory = `${SERVER}/member/api/order-history`;
+export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
 
 // COURSE
 
