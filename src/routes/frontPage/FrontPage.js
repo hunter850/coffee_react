@@ -26,7 +26,7 @@ function FrontPage() {
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
             <StarProducts />
             <GoodCourse />
-            <Footer />
+            <Footer bagcolorblue={"#324A59"}/>
         </Fragment>
     );
 }

@@ -5,10 +5,15 @@
 .navUl {
     display: flex;
     list-style-type: none;
-    padding: 0px;
+    padding: 10px;
+    justify-content: center;
 }
 
 /* .navUl > li {
+} */
+
+/* .logostyle img{
+
 } */
 
 .navUl > li > a {
