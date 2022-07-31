@@ -1,0 +1,29 @@
+.footerlogo-wrap {
+    padding: 40px 100px 0px 50px;
+}
+
+.footertext {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+.footertext1 ul>li {
+    padding: 3px;
+}
+.footertext-wrap {
+    margin-top:60px;
+    margin-bottom:80px;
+}
+.footer-pdr-48 {
+    padding-right: 48px;
+}
+.footer-pdr-82{
+    padding-right: 82px;
+}
+.partition {
+    border-bottom: 1px solid #FFFFFF;
+}
+.Copyrighttext {
+    color: #ffffff;
+    font-size: 12px;
+    padding: 10px 0px 100px 10px;
+}
