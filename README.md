@@ -123,24 +123,27 @@ const [isOpen, setIsOpen] = useSate(false);
 
 ### 放置客服教學(有空再放就好了，不放應該也沒關係(?))
 
-++步驟1: 在頁面import這些(後四個import注意路徑的相對位置)
-```
+++步驟 1: 在頁面 import 這些(後四個 import 注意路徑的相對位置)
+
+```js
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
 import "../../component/Bot/Bot.css";
+```
 
-```
-++步驟2: 在頁面主要function內加入這兩行
-```
+++步驟 2: 在頁面主要 function 內加入這兩行
+
+```js
 const [botOpen, setBotOpen] = useState(false);
 const [chatBot, setChatBot] = useState(null);
 ```
 
-++步驟3: 加入useEffect以下內容 (假如你的頁面沒有使用useEffect，記得在最上方 import {useEffect} from "react";)
-```
+++步驟 3: 加入 useEffect 以下內容 (假如你的頁面沒有使用 useEffect，記得在最上方 import {useEffect} from "react";)
+
+```js
 useEffect(() => {
     if (botOpen) {
         setChatBot(
@@ -165,10 +168,11 @@ useEffect(() => {
         setChatBot(null);
     }
 }, [botOpen]);
+```
 
-```
-++步驟4: 在在頁面主要function 的 return 加入以下內容
-```
+++步驟 4: 在在頁面主要 function 的 return 加入以下內容
+
+```js
 return (
     <div className="BotContainer">
         {chatBot}
@@ -266,5 +270,5 @@ return (
             </svg>
         </button>
     </div>
-)
+);
 ```
