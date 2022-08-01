@@ -24,7 +24,7 @@ function PostNav({ scrollDir = "up" }) {
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
-                <h4 style={{ width: "25%" }}>分享牆{avatar}</h4>
+                <h4 style={{ width: "25%" }}>分享牆</h4>
                 <div className={search_wrap}>
                     <div className={search_bar}>search</div>
                 </div>

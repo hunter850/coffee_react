@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useRef, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
@@ -9,6 +9,7 @@ import FakeNav from "../../component/FakeNav";
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
+import PostDetail from "./PostDetail";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -25,6 +26,7 @@ function Post() {
         my_masonry_grid_column,
     } = styles;
     const wrap = useRef(null);
+    const { post_sid } = useParams();
 
     const [getDataTimes, setGetDataTimes] = useState(0);
 
@@ -32,6 +34,8 @@ function Post() {
 
     const [scrollY, setScrollY] = useState([0, 0]);
     const [scrollDirect, setScrollDirect] = useState("");
+
+    const bodyHeight = useRef(null);
 
     const getData = async () => {
         const r = await axios(getPosts, {
@@ -51,10 +55,23 @@ function Post() {
         const lastImg =
             wrap.current.lastElementChild.lastElementChild.lastElementChild;
 
-        if (lastImg.getBoundingClientRect().top < 1000) {
-            setGetDataTimes((pre) => pre + 1);
+        if (lastImg) {
+            if (lastImg.getBoundingClientRect().top < 1000) {
+                setGetDataTimes((pre) => pre + 1);
+            }
         }
     }, 100);
+
+    useEffect(() => {
+        if (post_sid) {
+            setTimeout(() => {
+                window.scrollTo(0, scrollY[1]);
+            }, 0);
+            // document.querySelector("body").style.overflow = "hidden";
+        } else {
+            // document.querySelector("body").style.overflow = "visible";
+        }
+    }, [post_sid]);
 
     useEffect(() => {
         (async () => {
@@ -73,6 +90,8 @@ function Post() {
     }, [getDataTimes]);
 
     const scrollDir = useMemo(() => {
+        bodyHeight.current = document.body.scrollHeight;
+
         if (scrollY[0] >= scrollY[1]) {
             return "up";
         } else {
@@ -84,16 +103,12 @@ function Post() {
         <Fragment>
             <FakeNav />
             <PostNav scrollDir={scrollDir} />
-            {/* <pre style={{ marginTop: "5rem" }}>
-                {JSON.stringify(rows[0], null, 2)}
-            </pre> */}
 
             <div
                 className={container}
                 ref={wrap}
                 style={{ paddingTop: "4rem" }}
             >
-                {/* <pre>{JSON.stringify(imgAry, null, 4)}</pre> */}
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
@@ -107,6 +122,12 @@ function Post() {
                         );
                     })}
                 </Masonry>
+                {post_sid && (
+                    <PostDetail
+                        windowScrollY={scrollY[1]}
+                        bodyHeight={bodyHeight.current}
+                    />
+                )}
             </div>
         </Fragment>
     );
