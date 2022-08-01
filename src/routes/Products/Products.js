@@ -11,26 +11,27 @@ import { productsDataGet } from "../../config/api-path";
 import { chunk } from "../../component/Course/helper/chunk";
 
 function Products() {
-    // 判斷是否點擊搜尋按鈕
-    const [searchSure, setSearchSure] = useState(false);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
     // -------------------------------------------------
     const [searchInp, setSearchInp] = useState("");
-    const [productsRows, setproductsRow] = useState([]);
+    // const [productsRows, setproductsRow] = useState([]);
     const [renderData, setRenderData] = useState([]);
     const [DataRows, setDataRows] = useState({});
+    const [fetchData, setFetchData] = useState({});
     const [pageNow, setPageNow] = useState(1);
+    const [dataLoaded, setDataLoaded] = useState(false);
 
+    let saveTotalData = [];
+    let fetchingData = [];
+    let pageData = [];
     // ---------- AXIOS ----------------------------
     const getProductsData = () => {
         return axios.get(productsDataGet).then((res) => {
             const productsData = JSON.parse(JSON.stringify(res.data));
-            console.log("productsData", productsData.rows);
-            console.log("res.data", res.data);
-            setproductsRow(productsData.rows);
-            setRenderData(productsData.rows);
-            setDataRows(productsData);
+            saveTotalData = productsData.totalData;
+            fetchingData = productsData;
+            pageData = productsData.rows;
         });
     };
 
@@ -45,21 +46,29 @@ function Products() {
     // ---------- AXIOS ----------------------------
 
     useEffect(() => {
-        getProductsData();
-    }, []);
+        async function fetchFunc() {
+            await getProductsData();
+            await setDataRows(saveTotalData);
+            await setRenderData(pageData);
+            await setFetchData(fetchingData);
+            await setDataLoaded(true);
+            const pagechunk = await chunk(saveTotalData, 8);
+            await console.log([pagechunk]);
+            await setPageTotal(pagechunk.length);
+        }
+        fetchFunc();
+    }, [setDataLoaded]);
 
-    // 一般搜尋框搜尋的渲染
-    // useEffect(() => {
-    //     if (searchSure === true) {
-    //         setPageNow(1);
-    //         const pageArray = chunk(productsRows, DataRows.perPage);
-    //         if (pageArray.length > 0) {
-    //             setPageTotal(pageArray.length);
-    //             setRenderData(pageArray);
-    //         }
-    //         setSearchSure(false);
-    //     }
-    // }, [searchSure]);
+    // DataRows 全部產品資料
+    // (62) [{...},{...},{...},{...},{...}...]
+    // renderData 一頁內的內容
+    // (8) [{...},{...},{...},{...},{...},{...},{...},{...},]
+    // fetchData 來自後端的全部資料
+    //
+    useEffect(() => {
+        const pagechunk = chunk(DataRows, 8);
+        setRenderData(pagechunk[+pageNow - 1]);
+    }, [pageNow]);
 
     const el = (
         <Fragment>
@@ -67,25 +76,31 @@ function Products() {
                 <FakeNav />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
-                    searchInp={searchInp}
-                    setSearchInp={setSearchInp}
-                    productsRows={productsRows}
-                    searchSure={searchSure}
-                    setSearchSure={setSearchSure}
+                // searchInp={searchInp}
+                // setSearchInp={setSearchInp}
+                // productsRows={productsRows}
+                // searchSure={searchSure}
+                // setSearchSure={setSearchSure}
                 />
-                <BookMark />
-                {/* <Sort /> */}
+                <BookMark
+                    DataRows={DataRows}
+                    renderData={renderData}
+                    setRenderData={setRenderData}
+                    dataLoaded={dataLoaded}
+                    setPageTotal={setPageTotal}
+                    setPageNow={setPageNow}
+                />
                 <div className="container">
                     <div className="d-flex f-w card-wrap">
                         <List
+                            dataLoaded={dataLoaded}
                             DataRows={DataRows}
-                            productsRows={productsRows}
                             renderData={renderData}
                         />
                     </div>
 
                     <div className="d-flex f-jcc">
-                        {Array(DataRows.totalPages)
+                        {Array(pageTotal)
                             .fill(1)
                             .map((v, i) => {
                                 return (
