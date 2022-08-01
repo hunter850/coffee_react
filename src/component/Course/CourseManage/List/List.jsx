@@ -18,7 +18,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
 
     // 刪除資料的請求
     useEffect(() => {
-        console.log(sid);
+        // console.log(sid);
         if (myBoolean === 1) {
             setIsOpen(false);
             setMyBoolean(-1);
