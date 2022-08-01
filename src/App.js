@@ -32,6 +32,7 @@ import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
 import ProductsDetail from "./routes/Products/ProductsDetail";
 import PostDetail from "./routes/sharing/PostDetail";
+import LatestnewsDetail from "./routes/frontPage/LatestnewsDetail";
 
 const App = () => {
     const el = (
@@ -44,6 +45,10 @@ const App = () => {
                                 exact={true}
                                 path="/"
                                 element={<FrontPage />}
+                            />
+                            <Route
+                                path="/LatestnewsDetail"
+                                element={<LatestnewsDetail />}
                             />
                             <Route path="/cart" element={<Cart />} />
                             <Route
