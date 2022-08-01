@@ -1,4 +1,5 @@
 import React from "react";
+import { icechoice, sugarchoice } from "../../../config/constant";
 function FoodAsideCount({ item, setDataFromCount }) {
     const {
         foodCount,
@@ -12,7 +13,13 @@ function FoodAsideCount({ item, setDataFromCount }) {
     } = item;
     const subCount = menu_price_m * foodCount;
 
-    // (timeID, subCount);
+    const ice1 = icechoice.find(({ id }) => {
+        return id === ice;
+    });
+    const sugar1 = sugarchoice.find(({ id }) => {
+        return id === sugar;
+    });
+    const displaynone = sugar ? "display" : "display none";
     return (
         <>
             <div key={menu_sid} className="detail">
@@ -42,8 +49,8 @@ function FoodAsideCount({ item, setDataFromCount }) {
                             />
                         </svg>
                     </div>
-                    <p>
-                        {sugar} / {ice}
+                    <p className={displaynone }>
+                        {ice && ice1.name} / {sugar && sugar1.name}
                     </p>
                     <div className="calculate">
                         <div
