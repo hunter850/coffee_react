@@ -26,7 +26,10 @@ function Member() {
             <div className="mc-wrap-main">
                 <div className="mc-container">
                     <div className="wrap-right">
-                        <div className="mc-card"></div>
+                        <div className="mc-card">
+                            <div className="cardF">123</div>
+                            <div className="cardB">456</div>
+                        </div>
                         <div className="mc-like">
                             <FaHeart size={'0.8rem'} style={{"color":"rgb(183, 153, 115)"}}/>
                             <p>收藏<span>0</span>項</p>
@@ -47,9 +50,12 @@ function Member() {
                                     <FaUser size={'1.5em'}/>
                                 </div>
                             </Link>
-                            <div className="mc-menu">
-                                <IoIosListBox size={'1.7em'}/>
-                            </div>
+                            <Link
+                                to={ authorized ? "/member/orderhistory" : "/member/login" }>
+                                <div className="mc-menu">
+                                    <IoIosListBox size={'1.7em'}/>
+                                </div>
+                            </Link>
                             <div className="mc-menu">
                                 <FaPen size={'1.5em'}/>
                             </div>

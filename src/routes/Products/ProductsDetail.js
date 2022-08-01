@@ -22,16 +22,10 @@ function ProductsDetail() {
             setRenderData(productsData.rows);
             setDataRows(productsData);
 
-            console.log(
-                productsRows.filter((v, i) => {
-                    return +v.products_sid === +products_sid;
-                })
-            );
             const nowData = productsData.rows.filter((v, i) => {
                 return +v.products_sid === +products_sid;
             });
             setRenderData(nowData);
-            console.log(nowData);
             setDataLoaded(true);
         });
     };
@@ -58,8 +52,11 @@ function ProductsDetail() {
     //----------------------------------------------------------
 
     useEffect(() => {
-        getProductsData();
-    }, [dataLoaded]);
+        async function fetchFunc() {
+            await getProductsData();
+        }
+        fetchFunc();
+    }, []);
 
     const el = (
         <Fragment>

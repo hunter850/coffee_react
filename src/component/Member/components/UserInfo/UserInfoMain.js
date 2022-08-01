@@ -12,6 +12,7 @@ import axios from "axios";
 import AuthContext from "../../AuthContext";
 
 import { AiFillPicture } from "react-icons/ai";
+import { FaCheckCircle } from "react-icons/fa";
 
 import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
@@ -59,9 +60,9 @@ function UserInfo() {
             })
             .then((response) => {
                 setList(response.data);
-                console.log(response.data);
+                // console.log(response.data);
                 setAvatarField(response.data[0].avatar);
-                console.log(avatarField);
+                // console.log(avatarField);
             });
     }, [avatarField,token]);
 
@@ -84,10 +85,11 @@ function UserInfo() {
         .then((result) => {
             console.log(result.data);
             if (result.success) {
-                alert("修改成功");
                 setUserList(result.data);
+                setEditSuccess(true);
             }else{
-                alert("編輯失敗")
+                // alert("編輯失敗")
+                setEditSuccess(false);
             }
         });
     }
@@ -170,9 +172,13 @@ function UserInfo() {
     // 取消的按鈕
     const navigate = useNavigate();
 
-    const cacel = (e)=>{
+    const cancel = (e)=>{
         e.preventDefault();
-        navigate("/member/userinfo");
+        navigate("/member");
+    }
+
+    const passCancel = (e)=>{
+        e.preventDefault();
         setIsOpen(false);
     }
 
@@ -194,7 +200,7 @@ function UserInfo() {
             return;
         }
         const avatarUrl = URL.createObjectURL(selectedFile);
-        console.log(avatarUrl);
+        // console.log(avatarUrl);
         setAvatarField(avatarUrl);
 
         // 當元件unmounted時清除記憶體
@@ -268,7 +274,7 @@ function UserInfo() {
                                 );
                             })}
                             <div className="ui-btn-wrap">
-                                <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
+                                <button type="submit" className="ui-btn" onClick={cancel}>取消</button>
                                 <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
                         </div>
@@ -316,7 +322,7 @@ function UserInfo() {
                             </div>
                         </div>
                         <div className="ed-Pass-btn-wrap">
-                            <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
+                            <button type="submit" className="ui-btn" onClick={passCancel}>取消</button>
                             <button
                                 type="submit"
                                 className="ui-btn ui-btn-active"
@@ -326,6 +332,16 @@ function UserInfo() {
                             </button>
                         </div>
                     </form>
+                </Modal.Body>
+            </Modal>
+
+            <Modal isOpen={editSuccess} setIsOpen={setEditSuccess}>
+                <Modal.Body>
+                    <div className="edit-msg-wrap">
+                        <div className="edit-msg">
+                        <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>{ editSuccess ? "修改成功" : "編輯失敗" }
+                        </div>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>
