@@ -15,7 +15,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
         setIsOpen(true);
     };
 
-
+    // 
     useEffect(() => {
         if (myBoolean === 1) {
             setIsOpen(false);
