@@ -6,16 +6,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setMyBoolean }) {
+function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setMyBoolean, setSid }) {
     const { course_name, course_level, course_price, course_img_s, course_sid } =
         courseData;
 
     const deleteCourse = () => {
         // console.log(course_sid);
+        setSid(course_sid);
         setIsOpen(true);
     };
 
-    // 
+    // 刪除資料的請求
     useEffect(() => {
         if (myBoolean === 1) {
             setIsOpen(false);
@@ -23,6 +24,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
             axios.delete(`${courseDelete}/${course_sid}`)
                 .then(res => {
                     console.log(res);
+                    // 確認刪除的狀態
                     setConfirmDelete(true);
                 });
         }

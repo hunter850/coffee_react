@@ -21,9 +21,11 @@ import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
 
 const CourseManage = () => {
+    // 取得點擊的sid
+    const [sid, setSid] = useState(0);
     // Modal控制器
     const [isOpen, setIsOpen] = useState(false);
-    // 確定警示框點擊確定或取消
+    // 確定警示框點擊確定或取消 -1 是預設 0是false 1是true
     const [myBoolean, setMyBoolean] = useState(-1);
     // 獲取資料
     const [courseManageData, setCourseManageData] = useState([]);
@@ -129,7 +131,7 @@ const CourseManage = () => {
                     <FakeNav />
                     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} >
                         <Modal.Body style={{ padding: '0' }}>
-                            <MessageBox returnBoolean={returnBoolean} />
+                            <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
                         </Modal.Body>
                     </Modal>
                     <div className="ManageHeader">
@@ -154,6 +156,7 @@ const CourseManage = () => {
                                         isOpen={isOpen}
                                         setMyBoolean={setMyBoolean}
                                         myBoolean={myBoolean}
+                                        setSid={setSid}
                                     />
                                 );
                             })}
@@ -180,7 +183,7 @@ const CourseManage = () => {
                     </div>
                 </div>
             </div>
-        </Fragment >
+        </Fragment>
     );
 
     return el;

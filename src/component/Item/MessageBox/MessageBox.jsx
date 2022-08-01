@@ -1,12 +1,17 @@
 import "./MessageBox.scss";
-function MessageBox({ returnBoolean }) {
+function MessageBox({ returnBoolean, courseManageDataCopy, sid, isOpen }) {
+    const courseName = courseManageDataCopy.filter((v, i) => {
+        return sid === v.course_sid;
+    });
     return (
         <>
             <div className="MessageBox-body">
                 <div className="MessageBox">
                     <div className="MessageBox-title">警告視窗</div>
                     <div className="MessageBox-txt">
-                        確定要刪除xxx嗎?真的確定嗎?要不要再考慮一下?真的要這樣?
+                        {isOpen
+                            ? `確定要刪除"${courseName[0].course_name}"嗎?`
+                            : ""}
                     </div>
                     <div className="d-flex MessageBox-btn-wrap">
                         <div
