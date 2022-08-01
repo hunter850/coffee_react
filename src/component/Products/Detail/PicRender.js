@@ -3,10 +3,10 @@ import "./PicRender.scss";
 
 function PicRender(props) {
     const { renderData, dataLoaded } = props;
-    console.log(renderData);
-    console.log(
-        dataLoaded ? renderData[0].products_picMuti.split(",") : "還沒讀"
-    );
+    // console.log(renderData);
+    // console.log(
+    //     dataLoaded ? renderData[0].products_picMuti.split(",") : "還沒讀"
+    // );
     useEffect(() => {
         if (dataLoaded) {
             let imgLink = `http://localhost:3500/images/products/${renderData[0].products_with_products_categories_sid}/${renderData[0].products_pic}`;
