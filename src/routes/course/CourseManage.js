@@ -129,7 +129,7 @@ const CourseManage = () => {
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
                     <FakeNav />
-                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} >
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} style={{ overflow: "visible" }}>
                         <Modal.Body style={{ padding: '0' }}>
                             <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
                         </Modal.Body>

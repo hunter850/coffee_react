@@ -7,21 +7,21 @@ function MessageBox({ returnBoolean, courseManageDataCopy, sid, isOpen }) {
         <>
             <div className="MessageBox-body">
                 <div className="MessageBox">
-                    <div className="MessageBox-title">警告視窗</div>
-                    <div className="MessageBox-txt">
+                    <div className="MessageBox-title title-font">警告視窗</div>
+                    <div className="MessageBox-txt ">
                         {isOpen
                             ? `確定要刪除"${courseName[0].course_name}"嗎?`
                             : ""}
                     </div>
                     <div className="d-flex MessageBox-btn-wrap">
                         <div
-                            className="MessageBox-confirm-btn"
+                            className="MessageBox-confirm-btn title-font"
                             onClick={() => returnBoolean(true)}
                         >
                             確認
                         </div>
                         <div
-                            className="MessageBox-cancel-btn"
+                            className="MessageBox-cancel-btn title-font"
                             onClick={() => returnBoolean(false)}
                         >
                             取消
