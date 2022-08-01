@@ -17,8 +17,12 @@ import {
 } from "../../component/Course/helper/sort";
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
+import MessageBox from '../../component/Item/MessageBox/MessageBox';
+import Modal from "../../component/Modal/Modal";
 
 const CourseManage = () => {
+    // Modal控制器
+    const [isOpen, setIsOpen] = useState(true);
     // 獲取資料
     const [courseManageData, setCourseManageData] = useState([]);
     // 排序用的資料
@@ -113,6 +117,11 @@ const CourseManage = () => {
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
                     <FakeNav />
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
+                        <Modal.Body style={{ padding: '0' }}>
+                            <MessageBox />
+                        </Modal.Body>
+                    </Modal>
                     <div className="ManageHeader">
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
                     </div>
@@ -157,7 +166,7 @@ const CourseManage = () => {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     );
 
     return el;
