@@ -199,3 +199,14 @@ body{
     font-weight: 600;
     line-height: 150px;
 }
+.ed-field-err{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 37px;
+    color: red;
+    font-size: .8rem;
+}
+.ui-info-check{
+    position: relative;
+}

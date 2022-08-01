@@ -13,6 +13,7 @@ import AuthContext from "../../AuthContext";
 
 import { AiFillPicture } from "react-icons/ai";
 import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
@@ -23,7 +24,7 @@ function UserInfo() {
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [editSuccess,setEditSuccess] =useState(false);
+    const [editSuccess,setEditSuccess] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -71,8 +72,23 @@ function UserInfo() {
     // console.log(avatar);
 
     // --------------------- 編輯會員資料 ---------------------
-    
+
+    const [edit, setEdit] = useState({
+        member_mobile: "",
+    });
+
+    const [mobileError, setMobileError] = useState('')
+    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
     const handleEditUserList = (e)=>{
+
+        if(userList.member_mobile && !mobile_re.test(userList.member_mobile)){
+            setMobileError({...mobileError, member_mobile:"手機格式錯誤"})
+            return;
+        }else{
+            setMobileError({...mobileError, member_mobile:""})
+        }
+        
         fetch(editUserData,{
                 method: "POST",
                 body: JSON.stringify(userList),
@@ -88,7 +104,6 @@ function UserInfo() {
                 setUserList(result.data);
                 setEditSuccess(true);
             }else{
-                // alert("編輯失敗")
                 setEditSuccess(false);
             }
         });
@@ -160,12 +175,16 @@ function UserInfo() {
                     console.log(result);
                     if (result.success) {
                         alert("修改成功");
+                    }else if(result.passError){
+                        setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
+                        // alert(`${result.error}`)
                     }else{
-                        alert(`${result.error}`)
+                        setConfirmErrors({...confirmErrors,confirm_password:"新舊密碼相同"})
                     }
                 });
         } else {
-            alert("新密碼輸入錯誤")
+            setNewPassErrors({...newPassErrors,new_password:"新密碼輸入錯誤"});
+            // alert("新密碼輸入錯誤");
         }
     };
 
@@ -269,6 +288,7 @@ function UserInfo() {
                                             setUserList={setUserList}
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
+                                            mobileError={mobileError}
                                         />
                                     </div>
                                 );
@@ -339,7 +359,10 @@ function UserInfo() {
                 <Modal.Body>
                     <div className="edit-msg-wrap">
                         <div className="edit-msg">
-                        <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>{ editSuccess ? "修改成功" : "編輯失敗" }
+                            {
+                                editSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                            }
+                        { editSuccess ? "修改成功" : "編輯失敗" }
                         </div>
                     </div>
                 </Modal.Body>
