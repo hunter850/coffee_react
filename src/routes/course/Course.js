@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import Card from "../../component/Item/Card/Card";
 import Path from "../../component/Item/Path/Path";
 import Header from "../../component/Course/Header/Header";
@@ -145,7 +145,7 @@ const Course = () => {
     const el = (
         <Fragment>
             <div className="Course-container">
-                <NavBar />
+                <FakeNav />
                 <Path pathObj={{ path: ["．課程資訊"] }} />
                 <Header
                     searchInp={searchInp}

@@ -1,11 +1,14 @@
 import SuperProvider from "./SuperProvider";
 import StateProvider from "./StateProvider";
+import ScrollTop from "./ScrollTop";
 
 function AllProvider(props) {
     const { children } = props;
     return (
         <StateProvider>
-            <SuperProvider>{children}</SuperProvider>
+            <SuperProvider>
+                <ScrollTop>{children}</ScrollTop>
+            </SuperProvider>
         </StateProvider>
     );
 }

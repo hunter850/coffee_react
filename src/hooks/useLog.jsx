@@ -4,7 +4,7 @@ const useLog = (...value) => {
     useEffect(() => {
         console.log(...value);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, value);
+    }, [...value]);
 };
 
 export default useLog;

@@ -39,6 +39,7 @@ body{
 .mc-like, .mc-coupon{
     position: relative;
     display: flex;
+    align-items: center;
     border-bottom: 1px solid var(--gray);
     margin-bottom: 36px;
     padding-bottom: 10px;
@@ -46,13 +47,14 @@ body{
     
 }
 .mc-like>p, .mc-coupon>p{
+    color: var(--blue);
     margin-left: 20px;
     
 }
-.fa-angle-right{
+/* .fa-angle-right{
     position: absolute;
     right: 0px;
-}
+} */
 .mc-menu-wrap{
     width: 570px;
     display: flex;
@@ -94,9 +96,9 @@ body{
     transition: .3s;
     box-shadow: 5px 5px 5px 0px rgb(0,0,0,0.4);
 }
-.mc-menu>i{
+/* .mc-menu>i{
     font-size: 2.5rem;
-}
+} */
 .mc-menu::after{
     display:block;
     margin-top: 20px;
@@ -105,11 +107,13 @@ body{
     content:"會員資料";
 }
 .mc-menu:nth-child(2)::after{
+    margin-top: 15px;
     content:"歷史訂單";
 }
 .mc-menu:nth-child(3)::after{
     content:"分享記錄";
 }
 .mc-menu:nth-child(4)::after{
+    margin-top: 15px;
     content:"我的點數";
 }

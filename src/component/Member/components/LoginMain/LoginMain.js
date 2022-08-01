@@ -4,7 +4,12 @@
 import { set } from "lodash";
 import { useState, useEffect, useRef,useContext } from "react";
 import Modal from "../../../Modal/Modal";
+import { login,signUp } from "../../../../config/api-path";
 import "./LoginMain.css";
+
+import { FaUser } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 
 import AuthContext from "../../AuthContext";
 
@@ -93,7 +98,7 @@ function LoginMain() {
         }
 
         if(myform.member_account && myform.member_password){
-            fetch("http://localhost:3500/member/login",{
+            fetch(login,{
             method: "POST",
             body: JSON.stringify(myform),
             headers: {
@@ -142,7 +147,7 @@ function LoginMain() {
             setPasswordErrors({...passwordErrors,password:""});
         }
 
-            fetch("http://localhost:3500/member/sign-up",{
+            fetch(signUp,{
                 method: "POST",
                 body: JSON.stringify(myform),
                 headers: {
@@ -155,9 +160,8 @@ function LoginMain() {
                 if(result.success){
                     setSignSuccess(true);
                 } 
+                setIsOpen(true);
             });
-
-        setIsOpen(true);
     };
 
 
@@ -175,7 +179,7 @@ function LoginMain() {
                             <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" required/>
                             <p className="lg-field-err">{nameErrors.name}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-user"></i>
+                                <FaUser/>
                             </div>
                         </div>
 
@@ -183,7 +187,7 @@ function LoginMain() {
                             <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" required/>
                             <p className="lg-field-err">{accountErrors.account}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-user-plus"></i>
+                                <FaUserPlus size={'1.15rem'}/>
                             </div>
                         </div>
 
@@ -191,14 +195,12 @@ function LoginMain() {
                             <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" required/>
                             <p className="lg-field-err">{passwordErrors.password}</p>
                             <div className="icon">
-                                <i className="fa-solid fa-lock"></i>
+                                <FaLock/>
                             </div>
                         </div>
                     </div>
                     <button type="submit" onClick={handleLoginIn} className="log-in" style={{display: isLog ? "block" : "none "}}>登入</button>
                     <button type="submit" onClick={handleSignUp} className="sign-up" style={{display: isLog ? "none" : "block "}}>註冊</button>
-                    {/* <input className="sign-up" type="button" value="註冊" style={{display: change ? "block" : "none "}}/>
-                    <input className="log-in" type="button" value="登入" style={{display: change ? "none" : "block "}} /> */}
                 </form>
                 <div className="particle"></div>
 

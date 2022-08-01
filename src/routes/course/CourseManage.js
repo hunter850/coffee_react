@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Fragment, useState, useEffect } from "react";
-import NavBar from "../../component/NavBar";
+import FakeNav from "../../component/FakeNav";
 import ManageHeader from "../../component/Course/CourseManage/ManageHeader/ManageHeader";
 import List from "../../component/Course/CourseManage/List/List";
 import Sort from "../../component/Course/Sort/Sort";
@@ -17,8 +17,12 @@ import {
 } from "../../component/Course/helper/sort";
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
+import MessageBox from '../../component/Item/MessageBox/MessageBox';
+import Modal from "../../component/Modal/Modal";
 
 const CourseManage = () => {
+    // Modal控制器
+    const [isOpen, setIsOpen] = useState(true);
     // 獲取資料
     const [courseManageData, setCourseManageData] = useState([]);
     // 排序用的資料
@@ -27,8 +31,6 @@ const CourseManage = () => {
     const [courseManageDataCopy, setCourseManageDataCopy] = useState([]);
     // 排序的狀態
     const [sortData, setSortData] = useState('');
-    // console.log(courseManageData);
-    // console.log(courseManageDataCopy);
     // 預設第一頁
     const [pageNow, setPageNow] = useState(1);
     // 預設一頁幾筆
@@ -39,11 +41,14 @@ const CourseManage = () => {
     const [searchInp, setSearchInp] = useState("");
     // 判斷是否點擊搜尋按鈕
     const [searchSure, setSearchSure] = useState(false);
-
+    // 判斷是否刪除資料
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    // 上一次渲染時的頁數
+    const oldPageNow = pageNow;
     const courseManageDataGet = async () => {
         const res = await axios.get(courseDataGet);
         const newCourseData = JSON.parse(JSON.stringify(res.data));
-        //lv資料數字轉中文
+        // lv資料數字轉中文
         numberConvertString(res.data);
         // setCourseManageData(res.data);
         // 深拷貝過的資料,保留lv的數字,供等級排序使用
@@ -51,6 +56,15 @@ const CourseManage = () => {
         setCourseManageSortData(res.data);
         // 將資料切割成每一頁要展示的陣列,渲染出來
         const pageArray = chunk(res.data, perPage);
+
+        // 如果切完的陣列長度少於上次渲染的頁數,將頁數跳至陣列長度的頁數
+        // 如果長度.頁數相等則在當前頁面
+        if (pageArray.length < oldPageNow) {
+            setPageNow(pageArray.length);
+        } else {
+            setPageNow(oldPageNow);
+        }
+
         if (pageArray.length > 0) {
             setPageTotal(pageArray.length);
             setCourseManageData(pageArray);
@@ -68,7 +82,9 @@ const CourseManage = () => {
 
     useEffect(() => {
         courseManageDataGet();
-    }, [sortData]);
+        // 將確認刪除資料的狀態初始化
+        setConfirmDelete(false);
+    }, [sortData, confirmDelete]);
 
     // 一般搜尋框搜尋的渲染
     useEffect(() => {
@@ -100,7 +116,12 @@ const CourseManage = () => {
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
-                    <NavBar />
+                    <FakeNav />
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
+                        <Modal.Body style={{ padding: '0' }}>
+                            <MessageBox />
+                        </Modal.Body>
+                    </Modal>
                     <div className="ManageHeader">
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
                     </div>
@@ -116,7 +137,9 @@ const CourseManage = () => {
                                             course_name: v.course_name,
                                             course_price: v.course_price,
                                             course_img_s: v.course_img_s,
+                                            course_sid: v.course_sid
                                         }}
+                                        setConfirmDelete={setConfirmDelete}
                                     />
                                 );
                             })}
@@ -143,7 +166,7 @@ const CourseManage = () => {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     );
 
     return el;

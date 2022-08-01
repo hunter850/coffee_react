@@ -4,7 +4,7 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import styles from "./../css/postNav.module.scss";
+import styles from "./../css/postnav.module.scss";
 
 function PostNav({ scrollDir = "up" }) {
     const { authorized, sid, account, token, avatar } = useAuth();

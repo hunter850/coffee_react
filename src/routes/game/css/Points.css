@@ -1,0 +1,205 @@
+.PointContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #FCFAF7;
+    position: relative;
+    /* background-size: cover;
+    opacity: 0.9; */
+}
+
+    .display_justify_content {
+        display: flex;
+        justify-content: center;
+    }
+
+    .px24 {
+        font-size: 24px;
+    }
+
+
+    .display_flex_wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .display_none {
+        display: none;
+    }
+
+    .border_collapse {
+        border-collapse: collapse;
+    }
+
+    @keyframes sheen {
+        0% {
+            transform: skewY(-45deg) translateX(0);
+        }
+
+        100% {
+            transform: skewY(-45deg) translateX(12.5em);
+        }
+    }
+
+    .wrapper {
+        display: block;
+        /* transform: translate(-50%, -50%); */
+    }
+
+    .Pbutton  {
+        width: 186px;
+        height: 54px;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        color: rgb(213, 211, 211) !important;
+        border: 1px solid #B79973;
+        font-size: 16px;
+        display: inline-block;
+        border-radius: 0.3em;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .Pbutton:before {
+        content: "";
+        background-color: rgba(255, 255, 255, 0.5);
+        /* height: 100%;
+        width: 3em; */
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -4.5em;
+        transform: skewX(-45deg) translateX(0);
+        transition: none;
+    }
+    
+    .Pbutton:hover {
+        background-color: #b8a58d;
+        color: #fff;
+    }
+    
+    .Pbutton:hover:before {
+        transform: skewX(-45deg) translateX(13.5em);
+        transition: all 0.5s ease-in-out;
+    }
+    
+
+    .active {
+        background-color: #B79973;
+        color: #fff;
+    }
+
+    .bg {
+        background-color: #fff;
+        opacity: 0.9;
+    }
+    table{
+        border-collapse: separate;
+    }
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #B79973;
+        border-color: #B79973;
+    }
+    .page-link{
+        color: #B79973;
+    }
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+    }
+    /* ========================= */
+
+    .loading {
+        font-size: 24px;
+        
+        font-weight: 300;
+        text-align: center;
+    }
+    .loading span {
+        display: inline-block;
+        margin: 0 8px;
+    }
+
+    .loading07 span {
+        position: relative;
+        color:#fff;
+    }
+    .loading07 span::after {
+        position: absolute;
+        /* top: 0;
+        left: 0; */
+        content: attr(data-text);
+        color: #fff;
+        opacity: 0;
+        transform: scale(1.5);
+        animation: loading07 10s infinite;
+    }
+    .loading07 span:nth-child(2)::after {
+        animation-delay: 0.1s;
+    }
+    .loading07 span:nth-child(3)::after {
+        animation-delay: 0.2s;
+    }
+    .loading07 span:nth-child(4)::after {
+        animation-delay: 0.3s;
+    }
+    .loading07 span:nth-child(5)::after {
+        animation-delay: 0.4s;
+    }
+    .loading07 span:nth-child(6)::after {
+        animation-delay: 0.5s;
+    }
+    .loading07 span:nth-child(7)::after {
+        animation-delay: 0.6s;
+    }
+    @keyframes loading07 {
+        0%, 75%, 100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+        25%, 50% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+.totalpoints{
+    color: #893429;font-weight: bold;
+}
+.m10{
+    margin-top: 10px; 
+}
+.mt5{
+    margin-top:5px;
+}
+.recordstyle{
+    text-decoration:none;margin-top:0px;margin-right:10px;margin-bottom:20px;
+}
+.theUse{
+    text-decoration:none;margin-top:0px;
+}
+.tableStyle{
+    height: 500px; width:1200px;
+}
+.th1{
+    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius: 20px 0 0 0;
+}
+.th2{
+    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);
+}
+.th3{
+    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius:0 20px 0 0 ;
+}
+.Ptable{
+    width: 1040px;
+}

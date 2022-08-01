@@ -1,14 +1,27 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
 
+// MEMBER
+export const login = `${SERVER}/member/api/login`;
+export const signUp = `${SERVER}/member/api/sign-up`;
+export const getUserData = `${SERVER}/member/api/user-list`;
+export const editUserData = `${SERVER}/member/api/edit-user-list`;
+export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
+export const getOrderHistory = `${SERVER}/member/api/order-history`;
+export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
+
 // COURSE
 
 export const courseDataGet = `${SERVER}/course`;
+export const courseDataGetSid = `${SERVER}/course/data`;
 export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const courseDataAdd = `${SERVER}/course/add`;
 export const courseDataAddFk = `${SERVER}/course/addfk`;
+export const courseDataEdit = `${SERVER}/course/edit`;
+export const courseDataEditFk = `${SERVER}/course/editFk`;
+export const courseDelete = `${SERVER}/course/delete`;
 export const courseImages = `${SERVER}/course/upload`;
-export const coursePhotos = `${SERVER}/course/uploads`;
+export const linePayApi = `${SERVER}/course/createOrder`;
 
 // FOOD
 export const foodDataGet = `${SERVER}/food`;

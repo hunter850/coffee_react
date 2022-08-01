@@ -3,7 +3,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./CourseAddListDetailed.css";
 import { useRef, useEffect } from "react";
-import { courseImages } from "../../../../config/api-path";
+import { courseImages, imgSrc, courseDataFkGet } from "../../../../config/api-path";
+import axios from "axios";
 
 function CourseAddListDetailed({
     formData,
@@ -18,9 +19,53 @@ function CourseAddListDetailed({
     setIsFilePickeds,
     imgNames,
     setImgNames,
+    getCourseDataFk,
+    getCourseData,
+    start,
+    sid
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
+    // console.log(formDataFk);
+    // console.log(formData);
+    // console.log(sid);
+    useEffect(() => {
+        if (sid) {
+            axios.get(courseDataFkGet)
+                .then((res) => {
+                    const newDataFk = res.data.filter((v, i) => {
+                        return Number(v.course_sid) === Number(sid);
+                    });
+                    // console.log(newDataFk);
+                    // 將資料庫的資料整理成物件格式,塞回儲存資料的狀態
+                    const dateArr = newDataFk[0].course_date.split(',');
+                    const timeArr = newDataFk[0].course_time.split(',');
+
+                    setFormDataFk({
+                        ...formDataFk,
+                        course_sid: newDataFk[0].course_sid,
+                        course_img_l: newDataFk[0].course_img_l.split(','),
+                        course_time: { time1: timeArr[0], time2: timeArr[1] },
+                        course_date: { date1: dateArr[0], date2: dateArr[1] },
+                    });
+                });
+        }
+    }, []);
+
+    useEffect(() => {
+        // 有取得資料才渲染
+        if (start === true) {
+            setFormData({
+                ...formData, course_name: getCourseData[0].course_name,
+                course_price: getCourseData[0].course_price,
+                course_level: getCourseData[0].course_level,
+                course_content: getCourseData[0].course_content,
+                course_people: getCourseData[0].course_people,
+                course_material: getCourseData[0].course_material,
+                course_img_s: getCourseData[0].course_img_s,
+            });
+        }
+    }, [getCourseData]);
 
     const files = useRef();
     const imgFiles = (event) => {
@@ -102,7 +147,7 @@ function CourseAddListDetailed({
                     <p style={{ paddingBottom: 10, paddingTop: 44 }}>
                         內頁輪播圖片 :
                     </p>
-                    <div className={`${previews.length > 0 ? 'course-display-none' : ''}`}>
+                    <div className={`${formDataFk.course_img_l.length > 0 ? 'course-display-none' : ''}`}>
                         <p
                             style={{
                                 fontWeight: 400,
@@ -116,7 +161,7 @@ function CourseAddListDetailed({
                             style={{ marginBottom: 19 }}
                         ></div>
                     </div>
-                    {previews.map((v, i) => {
+                    {formDataFk.course_img_l.map((v, i) => {
                         return (
                             <div key={i}>
                                 <p
@@ -127,14 +172,16 @@ function CourseAddListDetailed({
                                 >
                                     圖片 {i + 1} :
                                 </p>
+
                                 <div
                                     className="CourseAddListDetailed-img"
                                     style={{
-                                        background: `url(${v
+                                        background: `url(${imgSrc}/course/${v
                                             })  center center / cover no-repeat`,
                                         marginBottom: 19,
                                     }}
                                 ></div>
+
                             </div>
                         );
                     })}
@@ -215,7 +262,7 @@ function CourseAddListDetailed({
                                 type="text"
                                 className="CourseAddListDetailed-date-inp"
                                 placeholder="選擇日期"
-                                value={course_date.data1}
+                                value={course_date.date1}
                                 onChange={(e) =>
                                     setFormDataFk({
                                         ...formDataFk,
@@ -251,7 +298,7 @@ function CourseAddListDetailed({
                                 type="text"
                                 className="CourseAddListDetailed-date-inp"
                                 placeholder="選擇日期"
-                                value={course_date.data2}
+                                value={course_date.date2}
                                 onChange={(e) =>
                                     setFormDataFk({
                                         ...formDataFk,

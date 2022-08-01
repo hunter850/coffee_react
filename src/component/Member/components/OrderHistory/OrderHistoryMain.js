@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OderHistoryCard from "./OderHistoryCard";
+import { getOrderHistory } from "../../../../config/api-path";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -33,7 +34,7 @@ function OrderHistoryMain() {
     const [cards, setCards] = useState([]);
 
     const getData = async () => {
-        const response = await axios.get("http://localhost:3500/member/order-history");
+        const response = await axios.get(getOrderHistory);
 
         setCards(response.data);
     };

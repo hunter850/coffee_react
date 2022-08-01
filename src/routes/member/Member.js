@@ -8,6 +8,14 @@ import AuthContext from "../../component/Member/AuthContext";
 import NavBar from "../../component/NavBar";
 import "./Member.css";
 
+import { FaUser } from "react-icons/fa";
+import { IoIosListBox } from "react-icons/io";
+import { FaPen } from "react-icons/fa";
+import { FaCoffee } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { RiCoupon2Fill } from "react-icons/ri";
+import { FaAngleRight } from "react-icons/fa";
+
 function Member() {
 
     const { authorized, name } = useContext(AuthContext);
@@ -20,14 +28,14 @@ function Member() {
                     <div className="wrap-right">
                         <div className="mc-card"></div>
                         <div className="mc-like">
-                            <i className="fa-solid fa-heart"></i>
+                            <FaHeart size={'0.8rem'} style={{"color":"rgb(183, 153, 115)"}}/>
                             <p>收藏<span>0</span>項</p>
-                            <i className="fa-solid fa-angle-right"></i>
+                            <FaAngleRight size={'1.1rem'} style={{"color":"rgb(37, 57, 69)","position":"absolute","right":"0","top":"4"+"px"}}/>
                         </div>
                         <div className="mc-coupon">
-                            <i className="fa-solid fa-heart"></i>
+                            <RiCoupon2Fill size={'0.95rem'} style={{"color":"rgb(183, 153, 115)"}}/>
                             <p>優惠券<span>0</span>張</p>
-                            <i className="fa-solid fa-angle-right"></i>
+                            <FaAngleRight size={'1.1rem'} style={{"color":"rgb(37, 57, 69)","position":"absolute","right":"0","top":"4"+"px"}}/>
                         </div>
                     </div>
                     <div className="wrap-left">
@@ -36,15 +44,17 @@ function Member() {
                             <Link
                                 to={ authorized ? "/member/userinfo" : "/member/login" }>
                                 <div className="mc-menu">
-                                    <i className="fa-solid fa-user"></i>
+                                    <FaUser size={'1.5em'}/>
                                 </div>
                             </Link>
-                            <div className="mc-menu"></div>
                             <div className="mc-menu">
-                                <i className="fa-solid fa-pencil"></i>
+                                <IoIosListBox size={'1.7em'}/>
                             </div>
                             <div className="mc-menu">
-                                <i className="fa-solid fa-mug-hot"></i>
+                                <FaPen size={'1.5em'}/>
+                            </div>
+                            <div className="mc-menu">
+                                <FaCoffee size={'1.7em'}/>
                             </div>
                         </div>
                     </div>
