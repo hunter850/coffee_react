@@ -41,7 +41,7 @@ function Post() {
         return r.data;
     };
 
-    const scrollHandler = async (e) => {
+    const scrollHandler = throttle((e) => {
         setScrollY((pre) => {
             const newPre = [...pre];
             newPre.shift();
@@ -52,18 +52,9 @@ function Post() {
             wrap.current.lastElementChild.lastElementChild.lastElementChild;
 
         if (lastImg.getBoundingClientRect().top < 1000) {
-            console.log("加載");
             setGetDataTimes((pre) => pre + 1);
         }
-    };
-
-    useEffect(() => {
-        window.addEventListener("scroll", throttle(scrollHandler, 100));
-
-        return () => {
-            window.removeEventListener("scroll", throttle(scrollHandler, 100));
-        };
-    }, []);
+    }, 100);
 
     useEffect(() => {
         (async () => {
@@ -71,7 +62,14 @@ function Post() {
             setRows((pre) => {
                 return [...pre, ...r.rows];
             });
+
+            window.addEventListener("scroll", scrollHandler);
         })();
+
+        return () => {
+            // console.log("移除監聽");
+            window.removeEventListener("scroll", scrollHandler);
+        };
     }, [getDataTimes]);
 
     const scrollDir = useMemo(() => {
