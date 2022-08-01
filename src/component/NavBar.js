@@ -125,100 +125,107 @@ const NavBar = () => {
                 zIndex: "999",
             }}
         >
-            <nav className="navbar">
-                <ul
-                    className="navUl"
-                    style={{ height: "60px", backgroundColor: "#253945" }}
-                >
-                    <li>
-                        <div>
-                            <img src={coffeeLogo} width="75px" height="32px" alt="" />
-                        </div>
-                    </li>
-                    <li>
-                        <Link to="/" style={{ color: "white" }}>
-                            首頁
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/store" style={{ color: "white" }}>
-                            店家資訊
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/products" style={{ color: "white" }}>
-                            商品
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/food" style={{ color: "white" }}>
-                            點餐
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/course" style={{ color: "white" }}>
-                            課程
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/sharing" style={{ color: "white" }}>
-                            分享牆
-                        </Link>
-                    </li>
-                    {/* <li><Link to="/game">遊戲</Link></li> */}
-                    <li className="gameLi" style={gameListyle} ref={gameLi}>
-                        <button
-                            onClick={displayHandler2}
-                            style={{ color: "white" }}
-                        >
-                            遊戲
-                        </button>
-                        <ul
-                            className="gameUl"
-                            style={gameDisplay}
-                            onClick={clickHandler2}
-                        >
-                            <li>
-                                <Link to="/getpoint">獲得積分</Link>
-                            </li>
-                            <li>
-                                <Link to="/getcoupon">獲得優惠券</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li
-                        className="memberLi"
-                        style={memberListyle}
-                        ref={memberLi}
+            <nav className="navbar-wrap d-flex">
+                <div className="navlogostyle">
+                    <img
+                        src={coffeeLogo}
+                        style={{ backgroundColor: "#253945" }}
+                        width="75px"
+                        height="60px"
+                        alt=""
+                    />
+                </div>
+                <div className="navlistul">
+                    <ul
+                        className="navUl"
+                        style={{ height: "60px", backgroundColor: "#253945" }}
                     >
-                        <button
-                            onClick={displayHandler}
-                            style={{ color: "white" }}
+                        <li>
+                            <Link to="/" style={{ color: "white" }}>
+                                首頁
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/store" style={{ color: "white" }}>
+                                店家資訊
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/products" style={{ color: "white" }}>
+                                商品
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/food" style={{ color: "white" }}>
+                                點餐
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/course" style={{ color: "white" }}>
+                                課程
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/sharing" style={{ color: "white" }}>
+                                分享牆
+                            </Link>
+                        </li>
+                        {/* <li><Link to="/game">遊戲</Link></li> */}
+                        <li className="gameLi" style={gameListyle} ref={gameLi}>
+                            <button
+                                onClick={displayHandler2}
+                                style={{ color: "white" }}
+                            >
+                                遊戲
+                            </button>
+                            <ul
+                                className="gameUl"
+                                style={gameDisplay}
+                                onClick={clickHandler2}
+                            >
+                                <li>
+                                    <Link to="/getpoint">獲得積分</Link>
+                                </li>
+                                <li>
+                                    <Link to="/getcoupon">獲得優惠券</Link>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li
+                            className="memberLi"
+                            style={memberListyle}
+                            ref={memberLi}
                         >
-                            會員
-                        </button>
-                        <ul
-                            className="memberUl"
-                            style={memberDisplay}
-                            onClick={clickHandler}
-                        >
-                            <li>
-                                <Link to="/member">會員中心</Link>
-                            </li>
-                            <li>
-                                <Link to="/points">我的積分</Link>
-                            </li>
-                            <li>
-                                <Link to="/coupon">我的優惠卷</Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <Link to="/cart" style={{ color: "white" }}>
-                            購物車
-                        </Link>
-                    </li>
-                </ul>
+                            <button
+                                onClick={displayHandler}
+                                style={{ color: "white" }}
+                            >
+                                會員
+                            </button>
+                            <ul
+                                className="memberUl"
+                                style={memberDisplay}
+                                onClick={clickHandler}
+                            >
+                                <li>
+                                    <Link to="/member">會員中心</Link>
+                                </li>
+                                <li>
+                                    <Link to="/points">我的積分</Link>
+                                </li>
+                                <li>
+                                    <Link to="/coupon">我的優惠卷</Link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <Link to="/cart" style={{ color: "white" }}>
+                                購物車
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </header>
     );
