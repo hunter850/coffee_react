@@ -246,13 +246,6 @@ function CourseAddListDetailed({
                     ></textarea>
                 </div>
                 <div>
-                    <p>注意事項 :</p>
-                    <textarea
-                        type="text"
-                        className="CourseAddListDetailed-inp"
-                    ></textarea>
-                </div>
-                <div>
                     <p style={{ paddingBottom: 6 }}>報名資訊 :</p>
                     <div style={{ paddingBottom: 6 }}>
                         <p style={{ fontWeight: 400 }}>報名時間 1 :</p>
@@ -288,7 +281,7 @@ function CourseAddListDetailed({
                                     });
                                 }}
                             />
-                            <div className="delet-img"></div>
+
                         </div>
                     </div>
                     <div style={{ paddingBottom: 21 }}>
@@ -324,14 +317,14 @@ function CourseAddListDetailed({
                                     });
                                 }}
                             />
-                            <div className="delet-img"></div>
+
                         </div>
                     </div>
                     <button
                         className="CourseAddListDetailed-btn"
                         style={{ marginBottom: 92 }}
                     >
-                        + 報名時間
+                        自動填表
                     </button>
                 </div>
             </div>
