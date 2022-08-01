@@ -3,8 +3,6 @@ import "./CoursePath.css";
 import { useState, useEffect } from "react";
 
 function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
-    // 麵包屑跳轉指向的ID
-    // const pathId = ['#CourseContentItem', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice', '#CourseComtentObject'];
     // 確認點擊事件
     const [confirmClick, setConfirmClick] = useState(false);
     // 初始高亮的狀態
@@ -51,18 +49,19 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
         window.onscroll = () => {
             // console.log(document.documentElement.scrollTop);
             // console.log('scrollTop: ' + scrollTop);
-            if (confirmFixed === true) {
-                if (document.documentElement.scrollTop <= 798) {
-                    setFixedRemoteControl(false);
-                } else {
-                    setFixedRemoteControl(true);
-                }
+            // 達到指定的scrollTop,開啟Fixed
+            // if (confirmFixed === true) {
+            if (document.documentElement.scrollTop <= 798) {
+                setFixedRemoteControl(false);
+            } else {
+                setFixedRemoteControl(true);
             }
+            // }
 
             // 頁面滾動後開啟Fixed開關
-            if (document.documentElement.scrollTop > scrollTop) {
-                setConfirmFixed(true);
-            }
+            // if (document.documentElement.scrollTop > scrollTop) {
+            // setConfirmFixed(true);
+            // }
 
             // 視窗滾動path高亮的function 參數 - scrollHeight : DOM離top的距離 , number第幾個path顯示高亮
             const pathFocus = (scrollHeight, number) => {
@@ -72,26 +71,31 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
                 }
             };
 
-
             // 一滾動視窗關閉確認點擊的狀態
-            if (scrollTop !== document.documentElement.scrollTop) {
-                setConfirmClick(false);
+            // if (scrollTop !== document.documentElement.scrollTop) {
+            //     setConfirmClick(false);
+            // }
+
+            // if (confirmClick === false) {
+            // 確定網頁已經定位到top0的位子才執行
+            if (topZeroSure === true) {
+                pathFocus(item, 1);
+                pathFocus(material, 2);
+                pathFocus(signup, 3);
+                pathFocus(notice, 4);
+                pathFocus(object, 5);
             }
 
-
-            if (confirmClick === false) {
-                // 確定網頁已經定位到top0的位子才執行
-                if (topZeroSure === true) {
-                    pathFocus(item, 1);
-                    pathFocus(material, 2);
-                    pathFocus(signup, 3);
-                    pathFocus(notice, 4);
-                    pathFocus(object, 5);
-                }
-
-            }
+            // }
         };
-    }, [defaultCoursePaths, confirmClick, confirmFixed, object, material, signup, notice, item, topZeroSure]);
+    }, [defaultCoursePaths, confirmClick, confirmFixed, object, material, signup, notice, item, topZeroSure, start]);
+
+    const movePath = (i) => {
+        courseClickMove(i);
+        setStart(i + 1);
+        // setClickSure(defaultCoursePaths);
+    };
+
 
     return (
         <div className="CoursePath-wrap">
@@ -101,13 +105,7 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
                         <div
                             key={i}
                             className={`CoursePaths`}
-                            onClick={() => {
-                                courseClickMove(i);
-                                setStart(i + 1);
-                                setConfirmClick(true);
-                                setConfirmFixed(true);
-                                setClickSure(defaultCoursePaths);
-                            }}
+                            onClick={() => movePath(i)}
                         >
                             <a href="#/" className={`${clickSure[i].id === start ? "focus" : ""} }`} >{v.name}</a>
                         </div>
