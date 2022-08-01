@@ -150,16 +150,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                     </div>
                 </div>
             </div>
-            <div className="d-flex f-jcc">
-                <div>
-                    <p>課程簡介 :</p>
-                    <textarea
-                        type="text"
-                        className="courseintroduceinp"
-                        placeholder="限制34字"
-                    ></textarea>
-                </div>
-            </div>
         </div>
     );
 

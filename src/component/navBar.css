@@ -1,20 +1,30 @@
 * {
+    margin: 0px;
     box-sizing: border-box;
 }
 
 .navUl {
     display: flex;
     list-style-type: none;
-    padding: 10px;
-    justify-content: center;
+    padding: 15px;
+    /* justify-content: center; */
+}
+.navbar-wrap {
+    width: 100%;
+    padding-right: 50px;
 }
 
 /* .navUl > li {
 } */
 
-/* .logostyle img{
+.navlogostyle{
+    display: flex;
+    align-items: center;
+}
 
-} */
+.navlistul {
+    width: 100%;
+}
 
 .navUl > li > a {
     padding: 0px 40px;

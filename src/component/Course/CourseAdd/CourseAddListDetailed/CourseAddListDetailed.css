@@ -148,16 +148,6 @@
     margin: 0 auto;
 }
 
-.delet-img {
-    background: url(/src/images/course/delete.png) no-repeat center center;
-    width: 40px;
-    height: 40px;
-    border-radius: 2px;
-    position: absolute;
-    right: 40px;
-    top: 18.5px;
-}
-
 .CourseAddListDetailedCenter {
     text-align: center;
 }
