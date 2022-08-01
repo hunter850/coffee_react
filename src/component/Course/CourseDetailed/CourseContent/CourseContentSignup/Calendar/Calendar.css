@@ -53,6 +53,9 @@
 .courseDate > tr > td {
     color: #3e3e3e;
 }
+.courseDate > tr {
+    cursor: not-allowed;
+}
 
 .pointerEvents {
     pointer-events: none;
