@@ -11,14 +11,17 @@ function FoodAsideSummary({
     dataFromDate,
     setShowDate,
     setShowMap,
+    selectedAddress,
 }) {
     const asideClass = show ? "aside" : "aside hide";
-    const perItem = dataFromFoodDetail.map(({ menu_price_m, foodCount }) => {
-        return menu_price_m * foodCount;
-    });
-    const totalPrice = perItem.reduce((a, b) => {
-        return a + b;
-    }, 0);
+
+    const totalPrice = dataFromFoodDetail.reduce(
+        (accumulator, { menu_price_m, foodCount }) =>
+            accumulator + menu_price_m * foodCount,
+        0
+    );
+
+    const { title, address2, address1 } = selectedAddress;
     return (
         <>
             <div className={asideClass}>
@@ -89,9 +92,9 @@ function FoodAsideSummary({
                             </h6>
                         </div>
                         <div className="edit">
-                            <p>來拎+B(大安店)</p>
+                            <p>來拎+B{title}</p>
                             <p className="bottom">
-                                台北市大安區復興南路一段390號
+                                {address1} {address2}
                             </p>
                         </div>
                     </div>

@@ -17,8 +17,14 @@ import {
 } from "../../component/Course/helper/sort";
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
+import MessageBox from '../../component/Item/MessageBox/MessageBox';
+import Modal from "../../component/Modal/Modal";
 
 const CourseManage = () => {
+    // Modal控制器
+    const [isOpen, setIsOpen] = useState(false);
+    // 確定警示框點擊確定或取消
+    const [myBoolean, setMyBoolean] = useState(-1);
     // 獲取資料
     const [courseManageData, setCourseManageData] = useState([]);
     // 排序用的資料
@@ -107,12 +113,25 @@ const CourseManage = () => {
             }
         }
     }, [searchInp]);
+    // 警示窗點了確定還是取消
+    const returnBoolean = (boolean) => {
+        if (boolean === true) {
+            setMyBoolean(1);
+        } else {
+            setMyBoolean(0);
+        }
+    };
 
     const el = (
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
                     <FakeNav />
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} >
+                        <Modal.Body style={{ padding: '0' }}>
+                            <MessageBox returnBoolean={returnBoolean} />
+                        </Modal.Body>
+                    </Modal>
                     <div className="ManageHeader">
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
                     </div>
@@ -131,6 +150,10 @@ const CourseManage = () => {
                                             course_sid: v.course_sid
                                         }}
                                         setConfirmDelete={setConfirmDelete}
+                                        setIsOpen={setIsOpen}
+                                        isOpen={isOpen}
+                                        setMyBoolean={setMyBoolean}
+                                        myBoolean={myBoolean}
                                     />
                                 );
                             })}
@@ -157,7 +180,7 @@ const CourseManage = () => {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </Fragment >
     );
 
     return el;

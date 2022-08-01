@@ -1,7 +1,10 @@
 .MessageBox-body {
-    position: absolute;
-    top: calc(50% - 100px);
-    left: calc(50% - 200px);
+    width: 410px;
+    height: 210px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 10px 1px #00000026;
 }
 .MessageBox {
     background-color: #f5f5f5;
@@ -9,9 +12,9 @@
     width: 400px;
     height: 200px;
     border-radius: 3px;
-    margin: 0 auto;
     position: relative;
-    animation: shaking 500ms cubic-bezier(0.68, -0.55, 0.265, 0.9);
+    margin: 0 auto;
+    overflow: visible;
     .MessageBox-btn-wrap {
         position: absolute;
         bottom: 3%;
@@ -26,19 +29,6 @@
     color: #e3e7e7;
     border-radius: 3px 3px 0 0;
     position: relative;
-}
-
-.MessageBox-title::before {
-    content: "x";
-    font-size: 1.25rem;
-    display: block;
-    width: 42px;
-    line-height: 42px;
-    color: #e3e7e7;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
 }
 
 .MessageBox-txt {
@@ -73,16 +63,4 @@
     line-height: 42px;
     box-shadow: 1px 1px 10px 1px #00000026;
     cursor: pointer;
-}
-
-@keyframes shaking {
-    0% {
-        transform: translateX(-2%);
-    }
-    50% {
-        transform: translateX(2%);
-    }
-    100% {
-        transform: translateX(0%);
-    }
 }
