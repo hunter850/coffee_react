@@ -4,7 +4,7 @@
     transition: 0.3s right;
     top: 60px;
     right: 0;
-    background-color: #d4d0f1; 
+    background-color: #d4d0f1;
     position: fixed;
     border: 1px solid #000;
     /* overflow: hidden;
@@ -43,13 +43,13 @@
 }
 
 .aside .takeout {
-    display: flex; 
+    display: flex;
 }
 .aside .takeout :nth-child(1) {
     flex-grow: 1;
 }
 .aside .bottom {
-    padding-bottom: 10px ;
+    padding-bottom: 10px;
     border-bottom: 1.5px solid #e4d5c9;
 }
 .aside .edit {
@@ -122,4 +122,7 @@
 }
 .grow {
     flex-grow: 2;
-} 
+}
+.display.none {
+    visibility: hidden;
+}

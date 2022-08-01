@@ -68,7 +68,7 @@
 
  
     div>img {
-        min-height: 200px;
+        min-height: 120px;
         max-height: 600px;
         object-fit: cover;
         object-position: center;
@@ -80,6 +80,7 @@
 
 @media (max-width:700px) {
     .my_masonry_grid_column div>img {
+        min-height: 80px;
         max-height: 400px;
     }
 }

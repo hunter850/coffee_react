@@ -1,13 +1,8 @@
 import React, { useMemo, Fragment } from "react";
 import "./Btn.css";
 
-const defaultButtonStyle = {
-    backgroundColor: "#253945",
-    color: "#fff",
-};
-
 export default function Btn({
-    style = defaultButtonStyle,
+    style = {},
     children,
     type = "button",
     width = "120px",

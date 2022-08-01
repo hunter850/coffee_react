@@ -30,41 +30,26 @@
             position: fixed;
             width: 50%;
         }
-        .middle {
-            margin-top: 60px;
-            padding: 20px;
-            background-color: #eee5dd;
-            height: 200px;
-            .choice {
-                margin-top: 20px;
-                display: flex;
-                justify-content: space-between;
-                border-radius: 3px;
-            }
-            .country {
-                width: 48%;
-                height: 40px;
-                // padding: 20px;
-                padding: 0 20px;
-            }
-            .address {
-                background-color: #ffffff;
-                margin: 20px 0;
-                height: 50px;
-                border-radius: 3px;
-                border: 1px solid #ccc;
-                display: flex;
-                align-items: center;
-                padding: 0 20px;
-            }
-        }
 
         .middle2 {
             width: 100%;
-            height: 500px;
+            height: auto;
             margin: 0 auto;
-            padding:20px
+            padding: 20px;
+            .mapdetail {
+                height: 300px;
+                width: 100%;
+                .mapshow {
+                    width: 220px;
+                    height: auto;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    background-color: #efefef;
+                }
+            }
         }
+
         .bottomarea {
             width: 50%;
             height: 82px;
@@ -86,3 +71,4 @@
         }
     }
 }
+// SingleMapDetail

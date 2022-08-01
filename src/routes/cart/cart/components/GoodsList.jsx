@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import useData from "../../../../hooks/useData";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import CounterGroup from "./CounterGroup";
@@ -17,13 +16,10 @@ function GoodsList(props) {
         p_multiply,
     } = styles;
     const [list] = useData(listName);
-    const deleteHandler = useCallback(
-        (itemId) => {
-            setDeleteId(itemId);
-            setModalIsOpen(true);
-        },
-        [setDeleteId, setModalIsOpen]
-    );
+    const deleteHandler = (itemId) => {
+        setDeleteId(itemId);
+        setModalIsOpen(true);
+    };
     return (
         <TransitionGroup component="ul" className={cart_list_ul}>
             {list.map((item) => (

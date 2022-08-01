@@ -167,3 +167,17 @@ body {
 .sign-up:hover, .log-in:hover{
     background: var(--gold);
 }
+/* 提示訊息 */
+.lg-msg-wrap{
+    width: 300px;
+    height: 150px;
+}
+.lg-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 150px;
+}

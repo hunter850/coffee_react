@@ -81,7 +81,7 @@ const App = () => {
                             />
                             <Route
                                 path="/sharing/:post_sid"
-                                element={<PostDetail />}
+                                element={<Post />}
                             />
                             <Route path="/sharing" element={<Post />} />
 
