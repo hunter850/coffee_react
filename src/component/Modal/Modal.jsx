@@ -33,7 +33,9 @@ function Modal(props) {
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `
-                    transform ${time + 0.2}s ease, opacity ${time + 0.2}s ease
+                    transform ${
+                        time === 0 ? time : time + 0.2
+                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
                 `,
             },
         };
