@@ -16,6 +16,7 @@ function Modal(props) {
         time = 0.5,
         closeButton = true,
         className = "",
+        style,
     } = props;
     const setNow = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
@@ -38,7 +39,10 @@ function Modal(props) {
         };
     }, [bordY, time]);
     const [modalBackground, setModalBackground] = useState(styles.bgStyle);
-    const [modalBord, setModalBord] = useState(styles.bordStyle);
+    const [modalBord, setModalBord] = useState({
+        ...styles.bordStyle,
+        ...style,
+    });
     const closeHandler = useCallback(() => {
         setIsOpen(false);
     }, [setIsOpen]);
