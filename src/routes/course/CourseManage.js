@@ -157,6 +157,7 @@ const CourseManage = () => {
                                         setMyBoolean={setMyBoolean}
                                         myBoolean={myBoolean}
                                         setSid={setSid}
+                                        sid={sid}
                                     />
                                 );
                             })}
