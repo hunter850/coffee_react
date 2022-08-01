@@ -2,68 +2,38 @@ import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import axios from "axios";
 import { mapAPI } from "../../../../config/api-path";
+import "./GoogleMap.scss";
 
 const shops_dummy = [
     {
         key: "shop_1",
-        lat: 25.042118,
-        lng: 121.548479,
-        text: "Cafe 1",
+        lat: 25.062318,
+        lng: 121.541489,
+        title: "光復店",
+        icon: "/food/coffee1.png",
+        address1: "光復南路500號",
+        address2: "大安區 台北市 106台灣",
     },
     {
         key: "shop_2",
-        lat: 25.042118,
-        lng: 121.541489,
-        text: "Cafe 2",
+        lat: 25.052318,
+        lng: 121.541389,
+        title: "大安店",
+        icon: "/food/coffee1.png",
+        address1: "光復南路300號",
+        address2: "大安區 台北市 106台灣",
+        // image:require('icons/map_icons/map_icon_std_orange.svg')
     },
 ];
 
 // 我的位置
 const MyPositionMarker = ({ text }) => <div>{text}</div>;
-const ShopMarker = ({ text }) => <div>{text}</div>;
 
 const SingleMapDetail = (props) => {
+    const { setStoreInfo, storeInfo } = props;
+    const { title, address1, address2 } = storeInfo;
     const [mapApis, setMapApis] = useState([]);
-    const [aa, setAA] = useState(false);
-
-    const mapAPiGet = async () => {
-        const response = await axios.get(mapAPI);
-        setMapApis(response.data);
-    };
-    useEffect(() => {
-        if (mapApis.length > 0) {
-            setAA(true);
-        }
-    }, [mapApis]);
-
-    useEffect(() => {
-        mapAPiGet();
-    }, []);
-    if (aa === true) {
-        console.log("key", mapApis[0].mapapi_key);
-    }
-
-    // const SingleMapDetail = (props) => {
-    //     const [mapApis, setMapApis] = useState([]);
-    //     const [aa, setAA] = useState(false);
-
-    //     const mapAPiGet = async () => {
-    //         const response = await axios.get(mapAPI);
-    //         setMapApis(response.data);
-    //     };
-    //     useEffect(() => {
-    //         if (mapApis.length > 0) {
-    //             setAA(true);
-    //         }
-    //     }, [mapApis]);
-
-    //     useEffect(() => {
-    //         mapAPiGet();
-    //     }, []);
-    //     if (aa === true) {
-    //         console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
-    //         setAA(false);
-
+    const initialState = { title: "", address2: "", address1: "" };
     // 預設位置
     const [myPosition, setMyPosition] = useState({}); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
     const [mapApiLoaded, setMapApiLoaded] = useState(false);
@@ -73,6 +43,7 @@ const SingleMapDetail = (props) => {
     useEffect(() => {
         // console.log("myPosition", myPosition);
     }, [myPosition]);
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function (position) {
             setMyPosition({
@@ -81,6 +52,51 @@ const SingleMapDetail = (props) => {
             });
         });
     }, []);
+    // -----------------------------------------------------
+
+    useEffect(() => {
+        const mapAPiGet = async () => {
+            const response = await axios.get(mapAPI);
+            setMapApis(response.data);
+        };
+        mapAPiGet();
+    }, []);
+    if (mapApis.length > 0) {
+        console.log("key", mapApis[0].mapapi_key);
+    }
+
+    const ShopMarker = ({ icon, title, address2, address1 }) => (
+        <div>
+            <img
+                src={icon}
+                alt="coffee"
+                onClick={() => {
+                    setStoreInfo({ title, address2, address1 });
+                }}
+            />
+        </div>
+    );
+
+    // const SingleMapDetail = (props) => {
+    //     const [mapApis, setMapApis] = useState([]);
+    //     const [api, setApi] = useState(false);
+
+    //     const mapAPiGet = async () => {
+    //         const response = await axios.get(mapAPI);
+    //         setMapApis(response.data);
+    //     };
+    //     useEffect(() => {
+    //         if (mapApis.length > 0) {
+    //             setApi(true);
+    //         }
+    //     }, [mapApis]);
+
+    //     useEffect(() => {
+    //         mapAPiGet();
+    //     }, []);
+    //     if (api === true) {
+    //         console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
+    //         setApi(false);
 
     // 找咖啡廳
     // const [places, setPlaces] = useState([]);
@@ -126,17 +142,17 @@ const SingleMapDetail = (props) => {
     };
 
     return (
-        <div style={{ height: "50vh", width: "100%" }}>
-            <input type="button" value="開始搜尋" onClick={findLocation} />
+        <div className="mapdetail">
+            {/* <input type="button" value="開始搜尋" onClick={findLocation} />; */}
             {/* <div onClick={handleSearchType}>
             </div> */}
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: mapApis,
+                    key: mapAPI,
                     // 請輸入googlemap的key
                     libraries: ["places"], // 要在這邊放入我們要使用的 API
                 }}
-                // onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
+                onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
                 defaultCenter={props.center}
                 center={myPosition}
                 defaultZoom={props.zoom}
@@ -151,6 +167,7 @@ const SingleMapDetail = (props) => {
                 {shops.map((shop) => (
                     <ShopMarker {...shop} />
                 ))}
+
                 {/* 使用 map 方法渲染 */}
                 {/* {places.map((item, i) => (
                     <CafeMarker
@@ -164,7 +181,13 @@ const SingleMapDetail = (props) => {
                     />
                 ))} */}
             </GoogleMapReact>
+
             {/* <input/> */}
+            <div className="mapshow">
+                <h6>{title}</h6>
+                <p>{address2}</p>
+                <p>{address1}</p>
+            </div>
         </div>
     );
 };

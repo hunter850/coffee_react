@@ -1,30 +1,27 @@
 import "./GoogleMap.scss";
 import SingleMapDetail from "./SingleMapDetail";
+import { useEffect, useState } from "react";
 
-function GoogleMap({ setShowMap, setShowDate }) {
+function GoogleMap({ setShowMap, setShowDate, setSelectedAddress }) {
+    const [storeInfo, setStoreInfo] = useState({});
+
+    useEffect(() => {
+        console.log("did mount");
+    }, []);
+
+    useEffect(() => {
+        console.log("render");
+    });
+
+    useEffect(() => {
+        console.log("did update");
+    }, [storeInfo]);
     return (
         <>
             <div className="google-lightbox">
                 <div className="detail">
                     <div className="top">
                         <h6>選擇自取門市</h6>
-                    </div>
-                    <div className="middle">
-                        <p>地點依縣市尋找</p>
-                        <div className="choice">
-                            <select className="country">
-                                <option value="1" disabled>
-                                    請選擇縣市
-                                </option>
-                                <option>1</option>
-                            </select>
-
-                            <select className="country">
-                                <option>1342424</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                        <div className="address">明天會更好</div>
                     </div>
 
                     <div className="middle2 ">
@@ -68,7 +65,10 @@ function GoogleMap({ setShowMap, setShowDate }) {
                             </svg>
                             取得目前所在位置
                         </p>
-                        <SingleMapDetail />
+                        <SingleMapDetail
+                            setStoreInfo={setStoreInfo}
+                            storeInfo={storeInfo}
+                        />
                     </div>
 
                     <div className="bottomarea">
@@ -76,6 +76,7 @@ function GoogleMap({ setShowMap, setShowDate }) {
                             className="bottoms"
                             onClick={() => {
                                 setShowMap(false);
+                                setSelectedAddress(storeInfo);
                             }}
                         >
                             <h6>送出</h6>

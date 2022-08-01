@@ -11,10 +11,8 @@ import FoodCardDetail from "../../component/Food/components/FoodCardDetail";
 import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
-// import { cond } from "lodash";
 import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 import DateTime from "../../component/Food/components/DateTime";
-import all from "gsap/all";
 
 // 餐點篩選
 const menuFiliter = [
@@ -26,15 +24,17 @@ const menuFiliter = [
 ];
 
 function Food() {
-    // 從sql拿資料---------------------------------
+    // 從sql拿資料--------------------------------------------------------
     const [food, setFood] = useState([]);
-    const foodData = async () => {
-        const response = await axios.get(foodDataGet);
-        setFood(response.data);
-    };
+
     useEffect(() => {
+        const foodData = async () => {
+            const response = await axios.get(foodDataGet);
+            setFood(response.data);
+        };
         foodData();
     }, []);
+    // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
         menu_name: "",
@@ -44,13 +44,16 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
-    // 讓顯示的開關
+    //拿自取時段的資料--------------------------------------------------
+    const [dataFromDate, setDataFromDate] = useState("");
+    const [dataFromDateTime, setDataFromDateTime] = useState("");
+    // 顯示的開關
     const [showDate, setShowDate] = useState(false);
     const [isShow, setIsShow] = useState(false);
     const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
+    const [selectedAddress, setSelectedAddress] = useState({});
     //食物累加到側邊欄-----------------------------------------------------
-
     const isSameItem = (item1, item2) => {
         return (
             item1.ice === item2.ice &&
@@ -58,7 +61,6 @@ function Food() {
             item1.menu_sid === item2.menu_sid
         );
     };
-
     const handleDetailAppend = (item) => {
         let newData;
         const isSameItemExist = dataFromFoodDetail.some((existedItem) =>
@@ -73,23 +75,18 @@ function Food() {
                         foodCount: existedItem.foodCount + item.foodCount,
                     };
                 }
-                console.log("existedItem", existedItem);
                 return existedItem;
             });
         } else {
             // 裡面沒有相同品項 新增
-
             newData = [...dataFromFoodDetail, item];
             // [{}, {}, {}, {}]
         }
-
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
-
     //相同timeID的判斷--------------------------------------------------
     const setDataFromSummary = (timeID, foodCount) => {
-        // console.log("dataFromFoodDetail", dataFromFoodDetail);
         const newData = dataFromFoodDetail.map((item) => {
             const detailCount = item.timeID;
             if (detailCount === timeID) {
@@ -100,10 +97,7 @@ function Food() {
         });
         setDataFromFoodDetail(newData);
     };
-    //拿自取時段的資料--------------------------------------------------
-    const [dataFromDate, setDataFromDate] = useState("");
-    const [dataFromDateTime, setDataFromDateTime] = useState("");
-    //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複----------------
+    //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複--------------
     const handleCakeCount = (allfood) => {
         const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
         let newData;
@@ -114,6 +108,7 @@ function Food() {
         });
         if (isSameFood) {
             newData = dataFromFoodDetail.map((item) => {
+                console.log("item", item);
                 return item;
             });
         } else {
@@ -145,6 +140,7 @@ function Food() {
                         <GoogleMap
                             setShowMap={setShowMap}
                             setShowDate={setShowDate}
+                            setSelectedAddress={setSelectedAddress}
                         />
                     )}
                     {showDate && (
@@ -215,6 +211,7 @@ function Food() {
                     dataFromDateTime={dataFromDateTime}
                     setShowDate={setShowDate}
                     setShowMap={setShowMap}
+                    selectedAddress={selectedAddress}
                 />
             </div>
         </Fragment>
