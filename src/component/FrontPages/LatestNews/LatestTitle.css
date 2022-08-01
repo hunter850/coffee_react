@@ -1,11 +1,11 @@
 .latestnew-day {
-    color: #FFFFFF;
-    font-size: 16px ;
+    color: #ffffff;
+    font-size: 16px;
     padding-right: 200px;
 }
 
-.latestnew-title{
-    color: #FFFFFF;
+.latestnew-title {
+    color: #ffffff;
     font-size: 24px;
 }
 .titleitem-layout {
@@ -13,8 +13,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    /* margin-bottom: 20px;
+    margin-top: 20px; */
+    margin: 20px auto;
 }
