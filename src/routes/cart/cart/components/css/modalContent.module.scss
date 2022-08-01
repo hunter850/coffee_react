@@ -1,0 +1,17 @@
+.modal_wrap {
+    margin-top: 12px;
+    text-align: end;
+}
+.confirm_button {
+    font-size: 13px;
+    margin-right: 4px;
+    width: 75px;
+}
+
+.cancel_button {
+    border: 1px solid var(--BLUE);
+    font-size: 13px;
+    color: var(--BLUE);
+    background-color: #fff;
+    width: 75px;
+}
