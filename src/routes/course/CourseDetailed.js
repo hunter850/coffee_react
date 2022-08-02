@@ -41,10 +41,15 @@ const CourseDetailed = () => {
     // 對照sid當筆資料的價格 - 狀態提升
     const [courseDataPrice, setCourseDataPrice] = useState(0);
 
+    // 控制點擊path位移的索引
+    const [index, setIndex] = useState(0);
+
     // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
+
     // 點擊後引到報名課程的區塊
     const courseClickMove = () => {
+        setIndex(2);
         window.scrollTo({ top: signup + 200, behavior: "smooth" });
     };
 
@@ -90,7 +95,7 @@ const CourseDetailed = () => {
                     return Number(v.course_sid) === Number(sid);
                 });
                 setCourseDataFk(newCourseDataFk);
-                console.log(newCourseDataFk);
+                // console.log(newCourseDataFk);
             });
     };
 
@@ -152,7 +157,7 @@ const CourseDetailed = () => {
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
-                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} />
+                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} index={index} setIndex={setIndex} />
                     <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} />
                 </div>
             </div>

@@ -7,7 +7,7 @@ function CourseContentMaterial({ materia, setMaterial, topZeroSure }) {
     const materialScrollTop = useRef();
     useEffect(() => {
         if (topZeroSure === true) {
-            setMaterial(materialScrollTop.current.getBoundingClientRect().top,);
+            setMaterial(materialScrollTop.current.getBoundingClientRect().top);
         }
 
     }, [topZeroSure]);

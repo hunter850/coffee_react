@@ -24,7 +24,11 @@ function CourseContent({
 }) {
     return (
         <div className="CourseContent">
-            <CourseContentItem setItem={setItem} item={item}>
+            <CourseContentItem
+                setItem={setItem}
+                item={item}
+                topZeroSure={topZeroSure}
+            >
                 課程內容
             </CourseContentItem>
             <CourseContentMaterial
