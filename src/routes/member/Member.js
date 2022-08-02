@@ -94,11 +94,13 @@ function Member() {
                             {/* 差多少點升等，3000 10000 30000 */}
                             <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                         </div>
-                        <div className="mc-coupon">
-                            <RiCoupon2Fill size={'0.95rem'} style={{ "color": "rgb(183, 153, 115)" }} />
-                            <p>優惠券<span>0</span>張</p>
-                            <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
-                        </div>
+                        <Link to={authorized ? "/coupon" : "/member/login"}>
+                            <div className="mc-coupon">
+                                <RiCoupon2Fill size={'0.95rem'} style={{ "color": "rgb(183, 153, 115)" }} />
+                                <p>優惠券<span>0</span>張</p>
+                                <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
+                            </div>
+                        </Link>
                     </div>
                     <div className="wrap-left">
                         <div className="mc-user-name">Hi！{name}</div>
