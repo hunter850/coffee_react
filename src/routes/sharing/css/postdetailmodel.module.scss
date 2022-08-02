@@ -1,5 +1,8 @@
 .post_detail_wrap{
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 999;
     overflow: hidden;
     top: 0;
@@ -10,10 +13,42 @@
     padding: 1px;
 
     .post_detail{
-        margin: 4rem auto 0;
+        display: flex;
         border-radius: 10px;
-        width: 980px;
+        width: 1066px;
         height: 820px;
+        // aspect-ratio: 5/3.6;
+        overflow: hidden;
         background-color: #fff;
+
+        >div{
+            flex: 1 0 0;
+            background-color: #ffa;
+            overflow: hidden;
+        }
+        .post_detail_carousel{
+            flex: 1 0 0;
+            height: 100%;
+            background-color: #ccc;
+        }
+        
+    }
+}
+
+@media (max-width:1200px) {
+    .post_detail_wrap{
+        .post_detail{
+            width: 90%;
+            height: auto;
+            aspect-ratio: 13/10;
+        }
+    }
+}
+@media (max-width:768px) {
+    .post_detail_wrap{
+        .post_detail{
+            width: 90%;
+            height: 90%;
+        }
     }
 }
