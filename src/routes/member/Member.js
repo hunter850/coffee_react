@@ -42,7 +42,8 @@ function Member() {
             });
     }, [token]);
 
-    const name = Object.values(getData).map((v, i) => v.member_name);
+    const name = getData[0] ? getData[0].member_name : "";
+    // const name = Object.values(getData).map((v, i) => v.member_name);
     const level = Object.values(getData).map((v, i) => v.member_level);
     const nickname = Object.values(getData).map((v, i) => v.member_nickname);
 
