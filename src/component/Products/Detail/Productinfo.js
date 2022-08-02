@@ -7,7 +7,7 @@ import {
     sendCartPost,
     addUserLike,
 } from "../../../config/api-path";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import AuthContext from "../../Member/AuthContext";
 
 function Productinfo(props) {
@@ -52,6 +52,7 @@ function Productinfo(props) {
         couponGetFunc();
     }, [dataLoaded]);
 
+    // axios post
     const sendCart = () => {
         // console.log("送資料~");
         return axios
@@ -78,6 +79,13 @@ function Productinfo(props) {
             });
     };
 
+    // function
+    useEffect(() => {
+        if (productsCount < 1) {
+            setproductsCount(1);
+        }
+    }, [productsCount]);
+
     const el = (
         <div className="productInfo">
             <h2 className="title-font">
@@ -91,19 +99,20 @@ function Productinfo(props) {
                 }}
             ></p>
             <ul className="tagArea">
-                {Array(3)
-                    .fill(1)
-                    .map((v, i) => {
-                        return (
-                            <li key={i}>
-                                <Tag
-                                    tagContext={"標籤文字"}
-                                    tagBgc={"#b79973"}
-                                    tagPaddingX={"15px"}
-                                />
-                            </li>
-                        );
-                    })}
+                <li>
+                    <Tag
+                        tagContext={`${renderData[0].products_name} 8折`}
+                        tagBgc={"#b79973"}
+                        tagPaddingX={"15px"}
+                    />
+                </li>
+                <li>
+                    <Tag
+                        tagContext={"積分換優惠"}
+                        tagBgc={"#b79973"}
+                        tagPaddingX={"15px"}
+                    />
+                </li>
             </ul>
             <h5>${dataLoaded ? renderData[0].products_price : ""}元</h5>
             <div className="productsCount">
@@ -117,10 +126,14 @@ function Productinfo(props) {
                         }}
                     ></button>
                     <input
+                        type="number"
                         className="inputStyle"
                         value={productsCount}
                         onChange={(e) => {
                             setproductsCount(e.target.value);
+                        }}
+                        oninput={(e) => {
+                            e.replace(/[^\d]/g, "");
                         }}
                     />
                     <button
@@ -142,29 +155,33 @@ function Productinfo(props) {
                     sendCart();
                 }}
             />
-            {/* {dataLoaded?UserLike.products_sid === renderData[0].products_sid ? (
-                <Btn
-                    width={"375px"}
-                    backgroundColor={"#FCFAF7"}
-                    color={"var(--BLUE)"}
-                    children={"加入收藏"}
-                    style={{ marginTop: "20px", marginBottom: "79px" }}
-                    onClick={() => {
-                        addToUserLike();
-                    }}
-                />
+            {dataLoaded ? (
+                UserLike.products_sid === renderData[0].products_sid ? (
+                    <Btn
+                        width={"375px"}
+                        backgroundColor={"#FCFAF7"}
+                        color={"var(--BLUE)"}
+                        children={"加入收藏"}
+                        style={{ marginTop: "20px", marginBottom: "79px" }}
+                        onClick={() => {
+                            addToUserLike();
+                        }}
+                    />
+                ) : (
+                    <Btn
+                        width={"375px"}
+                        backgroundColor={"#FCFAF7"}
+                        color={"var(--BLUE)"}
+                        children={"加入收藏"}
+                        style={{ marginTop: "20px", marginBottom: "79px" }}
+                        onClick={() => {
+                            addToUserLike();
+                        }}
+                    />
+                )
             ) : (
-                <Btn
-                    width={"375px"}
-                    backgroundColor={"#FCFAF7"}
-                    color={"var(--BLUE)"}
-                    children={"加入收藏"}
-                    style={{ marginTop: "20px", marginBottom: "79px" }}
-                    onClick={() => {
-                        addToUserLike();
-                    }}
-                />
-            )} */}
+                ""
+            )}
         </div>
     );
     return el;
