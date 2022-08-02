@@ -73,23 +73,40 @@ function UserInfo() {
 
     // --------------------- 編輯會員資料 ---------------------
 
-    const [edit, setEdit] = useState({
-        member_mobile: "",
-    });
-
-    const [mobileError, setMobileError] = useState('')
+    const [mobileError, setMobileError] = useState("")
     const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
+    const [mailError, setMailError] = useState("")
+    const mail_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+
+    const [addressError, setAddressError] = useState("")
 
     const handleEditUserList = (e)=>{
 
-        if(userList.member_mobile && !mobile_re.test(userList.member_mobile)){
-            setMobileError({...mobileError, member_mobile:"手機格式錯誤"})
-            return;
-        }else{
-            setMobileError({...mobileError, member_mobile:""})
-        }
+        let isPass = true;
+
         
-        fetch(editUserData,{
+        if( userList.member_mobile ==="" || !mobile_re.test(userList.member_mobile)){
+            setMobileError("手機格式錯誤");
+            isPass = false;
+        }else{
+            setMobileError("");
+        }
+        if( userList.member_address ===""){
+            setAddressError("地址必填");
+            isPass = false;
+        }else{
+            setAddressError("");
+        }
+        if( userList.member_mail ==="" || !mail_re.test(userList.member_mail)){
+            setMailError("信箱格式錯誤");
+            isPass = false;
+        }else{
+            setMailError("");
+        }
+        if(isPass){
+
+            fetch(editUserData,{
                 method: "POST",
                 body: JSON.stringify(userList),
                 headers: {
@@ -107,7 +124,9 @@ function UserInfo() {
                 setEditSuccess(false);
             }
         });
+        }
     }
+
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -289,6 +308,8 @@ function UserInfo() {
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
                                             mobileError={mobileError}
+                                            mailError={mailError}
+                                            addressError={addressError}
                                         />
                                     </div>
                                 );
