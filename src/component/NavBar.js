@@ -1,9 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./navBar.css";
 import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
+import AuthContext from "./Member/AuthContext";
 
 const NavBar = () => {
+    // 判斷是否為管理者用
+    const { sid } = useContext(AuthContext);
+    // console.log(sid);
     // =============================================
     const memberListyle = {
         position: "relative",
@@ -161,7 +165,14 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/course" style={{ color: "white" }}>
+                            <Link
+                                to={
+                                    Number(sid) === 43
+                                        ? "/course/manage"
+                                        : `/course`
+                                }
+                                style={{ color: "white" }}
+                            >
                                 課程
                             </Link>
                         </li>

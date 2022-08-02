@@ -12,6 +12,7 @@ function FoodAsideSummary({
     setShowDate,
     setShowMap,
     selectedAddress,
+    setDataFromFoodDetail,
 }) {
     const asideClass = show ? "aside" : "aside hide";
 
@@ -131,14 +132,24 @@ function FoodAsideSummary({
                             <p className="bottom">{dataFromDateTime}</p>
                         </div>
                     </div>
-                    {dataFromFoodDetail.map((item) => (
-                        <FoodAsideCount
-                            item={item}
-                            key={item.timeID}
-                            dataFromFoodDetail={dataFromFoodDetail}
-                            setDataFromCount={setDataFromSummary}
-                        />
-                    ))}
+                    <div className="wrapper">
+                        {dataFromFoodDetail.map((item) => (
+                            <FoodAsideCount
+                                item={item}
+                                key={item.timeID}
+                                dataFromFoodDetail={dataFromFoodDetail}
+                                setDataFromCount={setDataFromSummary}
+                                removeItem={() => {
+                                    const newOrder = dataFromFoodDetail.filter(
+                                        (val) => {
+                                            return item.timeID !== val.timeID;
+                                        }
+                                    );
+                                    setDataFromFoodDetail(newOrder);
+                                }}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 <div className="payarea">

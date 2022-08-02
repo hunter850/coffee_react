@@ -19,6 +19,11 @@
     font-size: 1.25rem;
     color: #898787;
     font-weight: 300;
+    pointer-events: none;
+}
+
+.CoursePaths {
+    cursor: pointer;
 }
 
 .CoursePaths > a:visited {

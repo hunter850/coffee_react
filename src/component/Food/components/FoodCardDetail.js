@@ -31,7 +31,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                 className="photo"
                             />
                         </figure>
-                        <div>
+                        <div className="photoaside">
                             <div className="menu_name">{menu_name}</div>
                             <div>{menu_nutrition}</div>
                             <div>NT$ {menu_price_m}</div>

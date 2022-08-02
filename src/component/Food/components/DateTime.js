@@ -39,11 +39,11 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
     ];
     return (
         <>
-            <div className="google-lightbox">
-                <div className="detail">
+            <div className="time-lightbox">
+                <div className="detail1">
                     <div className="top">
                         <h6>選擇自取時段</h6>
-                        <div
+                        <div className="close"
                             onClick={() => {
                                 // setShowDate(false);
                             }}
