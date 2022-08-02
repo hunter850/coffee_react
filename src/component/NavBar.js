@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "./navBar.css";
 import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
 
+import memberbtnImg from "../../src/images/frontpage/member-icon.png";
+// console.log(memberbtnImg);
+
 import AuthContext from "./Member/AuthContext";
 
 const NavBar = () => {
