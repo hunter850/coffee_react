@@ -1,6 +1,5 @@
 .nav-header {
     background-color: #253945;
-
     .nav-header-wrap {
         height: 100%;
         display: flex;
@@ -15,7 +14,6 @@
             }
         }
     }
-
     nav {
         @media (max-width: 375px) {
             .nav-logo {
@@ -34,7 +32,7 @@
                 cursor: pointer;
             }
             li {
-                padding-right: 35px;
+                padding: 0 17.5px 0 17.5px;
                 a {
                     color: #ffffff;
                     text-decoration: none;
