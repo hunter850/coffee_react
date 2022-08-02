@@ -1,0 +1,19 @@
+.detail-container {
+    width: 100%;
+    padding-left: 400px;
+    padding-right: 400px;
+    justify-content: center;
+    text-align: center;
+}
+.smallleastnewtitle {
+    padding-top: 50px;
+    font-size: 30px;
+    font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
+}
+.latestnews-tag {
+    padding-right: 10px;
+    justify-content: space-between;
+}
+.leastnewdetailImg {
+    width: 100%;
+}

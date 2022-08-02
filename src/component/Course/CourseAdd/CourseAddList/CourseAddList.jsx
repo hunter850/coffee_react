@@ -77,7 +77,8 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                     <div
                         className="CourseAddList-img"
                         style={{
-                            background: `url(${preview})  center center / cover no-repeat`,
+                            background: `url(${imgSrc}/course/${formData.course_img_s
+                                })  center center / cover no-repeat`,
                         }}
                     ></div>
                     <input
@@ -147,16 +148,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                             <option value={3}>高級</option>
                         </select>
                     </div>
-                </div>
-            </div>
-            <div className="d-flex f-jcc">
-                <div>
-                    <p>課程簡介 :</p>
-                    <textarea
-                        type="text"
-                        className="courseintroduceinp"
-                        placeholder="限制34字"
-                    ></textarea>
                 </div>
             </div>
         </div>

@@ -2,19 +2,21 @@
 import { Fragment, useState, useEffect } from "react";
 import NavBar from "../../component/NavBar";
 import React from "react";
-import "./Food.css";
+import "./Food.scss";
 import Filterbutton from "../../component/Food/components/FilterButton";
-import Slideshow from "../../component/Food/components/SlideShow";
+// import Slideshow from "../../component/Food/components/SlideShow";
 import FoodCard from "../../component/Food/components/FoodCard";
 import Path from "../../component/Item/Path/Path";
 import FoodCardDetail from "../../component/Food/components/FoodCardDetail";
 import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
-// import { cond } from "lodash";
 import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 import DateTime from "../../component/Food/components/DateTime";
-import all from "gsap/all";
+import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
+import ca from "../../images/food/carousel001.png";
+import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
+import FakeNav from "../../component/FakeNav";
 
 // 餐點篩選
 const menuFiliter = [
@@ -26,15 +28,17 @@ const menuFiliter = [
 ];
 
 function Food() {
-    // 從sql拿資料---------------------------------
+    // 從sql拿資料--------------------------------------------------------
     const [food, setFood] = useState([]);
-    const foodData = async () => {
-        const response = await axios.get(foodDataGet);
-        setFood(response.data);
-    };
+
     useEffect(() => {
+        const foodData = async () => {
+            const response = await axios.get(foodDataGet);
+            setFood(response.data);
+        };
         foodData();
     }, []);
+    // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
         menu_name: "",
@@ -44,13 +48,16 @@ function Food() {
         menu_categories: "",
     });
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
-    // 讓顯示的開關
+    //拿自取時段的資料--------------------------------------------------
+    const [dataFromDate, setDataFromDate] = useState("");
+    const [dataFromDateTime, setDataFromDateTime] = useState("");
+    // 顯示的開關
     const [showDate, setShowDate] = useState(false);
     const [isShow, setIsShow] = useState(false);
     const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
+    const [selectedAddress, setSelectedAddress] = useState({});
     //食物累加到側邊欄-----------------------------------------------------
-
     const isSameItem = (item1, item2) => {
         return (
             item1.ice === item2.ice &&
@@ -58,7 +65,6 @@ function Food() {
             item1.menu_sid === item2.menu_sid
         );
     };
-
     const handleDetailAppend = (item) => {
         let newData;
         const isSameItemExist = dataFromFoodDetail.some((existedItem) =>
@@ -67,29 +73,25 @@ function Food() {
         if (isSameItemExist) {
             // 裡面有相同品項 品項增加所給的數量foodCount
             newData = dataFromFoodDetail.map((existedItem) => {
+                console.log("existedItem", existedItem);
                 if (isSameItem(existedItem, item)) {
                     return {
                         ...existedItem,
                         foodCount: existedItem.foodCount + item.foodCount,
                     };
                 }
-                console.log("existedItem", existedItem);
                 return existedItem;
             });
         } else {
             // 裡面沒有相同品項 新增
-
             newData = [...dataFromFoodDetail, item];
             // [{}, {}, {}, {}]
         }
-
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
-
     //相同timeID的判斷--------------------------------------------------
     const setDataFromSummary = (timeID, foodCount) => {
-        // console.log("dataFromFoodDetail", dataFromFoodDetail);
         const newData = dataFromFoodDetail.map((item) => {
             const detailCount = item.timeID;
             if (detailCount === timeID) {
@@ -100,10 +102,7 @@ function Food() {
         });
         setDataFromFoodDetail(newData);
     };
-    //拿自取時段的資料--------------------------------------------------
-    const [dataFromDate, setDataFromDate] = useState("");
-    const [dataFromDateTime, setDataFromDateTime] = useState("");
-    //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複----------------
+    //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複--------------
     const handleCakeCount = (allfood) => {
         const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
         let newData;
@@ -114,7 +113,8 @@ function Food() {
         });
         if (isSameFood) {
             newData = dataFromFoodDetail.map((item) => {
-                return item;
+                console.log("item", item);
+                return { ...item, foodCount: item.foodCount + 1 };
             });
         } else {
             newData = [
@@ -136,86 +136,92 @@ function Food() {
 
     return (
         <Fragment>
-            <NavBar />
-            <Path pathObj={{ path: ["．點餐"] }} />
-            <div className="container">
-                <Slideshow />
-                <div>
-                    {showMap && (
-                        <GoogleMap
-                            setShowMap={setShowMap}
-                            setShowDate={setShowDate}
-                        />
-                    )}
-                    {showDate && (
-                        <DateTime
-                            setShowDate={setShowDate}
-                            setDataFromDate={setDataFromDate}
-                            setDataFromDateTime={setDataFromDateTime}
-                        />
-                    )}
-                    <div className="filterbtn-area">
-                        {menuFiliter.map(({ id, name }) => {
-                            return (
-                                <Filterbutton
-                                    key={`menuFiliter${id}`}
-                                    id={id}
-                                    name={name}
-                                    setFoodFilter={setFoodFilter}
-                                />
-                            );
-                        })}
-                        {/* <button
+            {/* <NavBar /> */}
+            <FakeNav />
+            <div className="Food-container">
+                <Path pathObj={{ path: ["．點餐"] }} />
+                <Carousel imgs={[ca, ca1]} />
+                <div className="container">
+                    <div>
+                        {showMap && (
+                            <GoogleMap
+                                setShowMap={setShowMap}
+                                setShowDate={setShowDate}
+                                setSelectedAddress={setSelectedAddress}
+                            />
+                        )}
+                        {showDate && (
+                            <DateTime
+                                setShowDate={setShowDate}
+                                setDataFromDate={setDataFromDate}
+                                setDataFromDateTime={setDataFromDateTime}
+                            />
+                        )}
+                        <div className="filterbtn-area">
+                            {menuFiliter.map(({ id, name }) => {
+                                return (
+                                    <Filterbutton
+                                        key={`menuFiliter${id}`}
+                                        id={id}
+                                        name={name}
+                                        setFoodFilter={setFoodFilter}
+                                    />
+                                );
+                            })}
+                            {/* <button
                                 onClick={() => {
                                     setIsShowAside(true);
                                 }}
                             >
                                 按按看
                             </button> */}
+                        </div>
+                        <div className="foodcard-session">
+                            {/* 這裡很重要 */}
+                            {food
+                                .filter(
+                                    ({ menu_categories }) =>
+                                        !foodFilter ||
+                                        menu_categories === foodFilter
+                                )
+                                .map(({ ...allfood }, i) => {
+                                    return (
+                                        <FoodCard
+                                            key={`allfood${i}`}
+                                            allfood={allfood}
+                                            handleShowFoodDetailSelect={
+                                                setShowFoodDetail
+                                            }
+                                            setIsShow={setIsShow}
+                                            setDataFromFoodDetail={
+                                                setDataFromFoodDetail
+                                            }
+                                            handleCakeCount={handleCakeCount}
+                                        />
+                                    );
+                                })}
+                        </div>
                     </div>
-                    <div className="foodcard-session">
-                        {/* 這裡很重要 */}
-                        {food
-                            .filter(
-                                ({ menu_categories }) =>
-                                    !foodFilter ||
-                                    menu_categories === foodFilter
-                            )
-                            .map(({ ...allfood }, i) => {
-                                return (
-                                    <FoodCard
-                                        key={`allfood${i}`}
-                                        allfood={allfood}
-                                        handleShowFoodDetailSelect={
-                                            setShowFoodDetail
-                                        }
-                                        setIsShow={setIsShow}
-                                        setDataFromFoodDetail={
-                                            setDataFromFoodDetail
-                                        }
-                                        handleCakeCount={handleCakeCount}
-                                    />
-                                );
-                            })}
-                    </div>
-                </div>
-                {isShow && (
-                    <FoodCardDetail
-                        showFoodDetail={showFoodDetail}
-                        setIsShow={setIsShow}
-                        setDataFromFoodDetail={handleDetailAppend}
+                    {isShow && (
+                        <FoodCardDetail
+                            showFoodDetail={showFoodDetail}
+                            setIsShow={setIsShow}
+                            setDataFromFoodDetail={handleDetailAppend}
+                        />
+                    )}
+                    <FoodAsideSummary
+                        show={dataFromFoodDetail.length > 0}
+                        // setIsShowAside={setIsShowAside}
+                        dataFromFoodDetail={dataFromFoodDetail}
+                        setDataFromSummary={setDataFromSummary}
+                        dataFromDate={dataFromDate}
+                        dataFromDateTime={dataFromDateTime}
+                        setShowDate={setShowDate}
+                        setShowMap={setShowMap}
+                        selectedAddress={selectedAddress}
+                        setDataFromFoodDetail={setDataFromFoodDetail}
                     />
-                )}
-                <FoodAsideSummary
-                    show={dataFromFoodDetail.length > 0}
-                    // setIsShowAside={setIsShowAside}
-                    dataFromFoodDetail={dataFromFoodDetail}
-                    setDataFromSummary={setDataFromSummary}
-                    dataFromDate={dataFromDate}
-                    dataFromDateTime={dataFromDateTime}
-                    setShowDate={setShowDate}
-                    setShowMap={setShowMap}
-                />
+                </div>
             </div>
         </Fragment>
     );

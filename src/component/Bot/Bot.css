@@ -76,11 +76,9 @@
     overflow-wrap: break-word;
     font-size: 12px;
 }
-
 .react-chatbot-kit-chat-message-container::-webkit-scrollbar{
     display: none !important;
 }
-
 .FoodMenuTable{
     width:184px;
     table-layout: fixed;

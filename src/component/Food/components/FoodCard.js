@@ -1,6 +1,6 @@
 import "./FoodCard.scss";
 import "./FoodAdd.scss";
-
+import { useEffect } from "react";
 function FoodCard({
     handleShowFoodDetailSelect,
     setIsShow,
@@ -17,7 +17,6 @@ function FoodCard({
         menu_categories,
         menu_photo,
     } = allfood;
-
     return (
         <>
             <div className="food_card" key={menu_sid}>

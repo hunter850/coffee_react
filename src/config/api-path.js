@@ -1,7 +1,6 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
 
-
 // MEMBER
 export const login = `${SERVER}/member/api/login`;
 export const signUp = `${SERVER}/member/api/sign-up`;
@@ -9,6 +8,7 @@ export const getUserData = `${SERVER}/member/api/user-list`;
 export const editUserData = `${SERVER}/member/api/edit-user-list`;
 export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
 export const getOrderHistory = `${SERVER}/member/api/order-history`;
+export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
 
 // COURSE
 
@@ -18,9 +18,9 @@ export const courseDataFkGet = `${SERVER}/course/FK-get`;
 export const courseDataAdd = `${SERVER}/course/add`;
 export const courseDataAddFk = `${SERVER}/course/addfk`;
 export const courseDataEdit = `${SERVER}/course/edit`;
+export const courseDataEditFk = `${SERVER}/course/editFk`;
 export const courseDelete = `${SERVER}/course/delete`;
 export const courseImages = `${SERVER}/course/upload`;
-export const coursePhotos = `${SERVER}/course/uploads`;
 export const linePayApi = `${SERVER}/course/createOrder`;
 
 // FOOD
@@ -33,6 +33,10 @@ export const getPosts = `${SERVER}/sharing/post`;
 // Products
 
 export const productsDataGet = `${SERVER}/products/api`;
+export const couponDataGet = `${SERVER}/products/api/coupon`;
+export const sendCartPost = `${SERVER}/products/api/detail`;
+export const addUserLike = `${SERVER}/products/api/userLike`;
+
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;
 export const getFood = `${SERVER}/cart/read_food/api`;

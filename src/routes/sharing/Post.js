@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useRef, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
@@ -9,6 +9,7 @@ import FakeNav from "../../component/FakeNav";
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
+import PostDetailModel from "./components/PostDetailModel";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -23,9 +24,12 @@ function Post() {
         post_img,
         my_masonry_grid,
         my_masonry_grid_column,
+        fake_a,
     } = styles;
     const wrap = useRef(null);
+    const setParams = useParams();
 
+    const [post_sid, setPost_sid] = useState(0);
     const [getDataTimes, setGetDataTimes] = useState(0);
 
     const [rows, setRows] = useState([]);
@@ -41,9 +45,10 @@ function Post() {
         return r.data;
     };
 
-    const scrollHandler = async (e) => {
+    const scrollHandler = throttle((e) => {
         setScrollY((pre) => {
             const newPre = [...pre];
+
             newPre.shift();
             return [...newPre, window.scrollY];
         });
@@ -51,19 +56,28 @@ function Post() {
         const lastImg =
             wrap.current.lastElementChild.lastElementChild.lastElementChild;
 
-        if (lastImg.getBoundingClientRect().top < 1000) {
-            console.log("加載");
-            setGetDataTimes((pre) => pre + 1);
+        if (lastImg) {
+            if (lastImg.getBoundingClientRect().top < 1000) {
+                setGetDataTimes((pre) => pre + 1);
+            }
         }
-    };
+    }, 100);
 
     useEffect(() => {
-        window.addEventListener("scroll", throttle(scrollHandler, 100));
+        const pathname = window.location.pathname.replace("/sharing", "");
+        console.log(pathname);
+        if (pathname === "" || pathname === "/") {
+            setPost_sid(0);
+        }
+    }, [window.location.pathname]);
 
-        return () => {
-            window.removeEventListener("scroll", throttle(scrollHandler, 100));
-        };
-    }, []);
+    useEffect(() => {
+        if (post_sid) {
+            document.querySelector("body").style.overflow = "hidden";
+        } else {
+            document.querySelector("body").style.overflow = "visible";
+        }
+    }, [post_sid]);
 
     useEffect(() => {
         (async () => {
@@ -71,7 +85,14 @@ function Post() {
             setRows((pre) => {
                 return [...pre, ...r.rows];
             });
+
+            window.addEventListener("scroll", scrollHandler);
         })();
+
+        return () => {
+            // console.log("移除監聽");
+            window.removeEventListener("scroll", scrollHandler);
+        };
     }, [getDataTimes]);
 
     const scrollDir = useMemo(() => {
@@ -86,29 +107,41 @@ function Post() {
         <Fragment>
             <FakeNav />
             <PostNav scrollDir={scrollDir} />
-            {/* <pre style={{ marginTop: "5rem" }}>
-                {JSON.stringify(rows[0], null, 2)}
-            </pre> */}
 
-            <div
-                className={container}
-                ref={wrap}
-                style={{ paddingTop: "4rem" }}
-            >
-                {/* <pre>{JSON.stringify(imgAry, null, 4)}</pre> */}
+            <div className={container} ref={wrap}>
+                <p>寬:{window.innerWidth}</p>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
                     columnClassName={my_masonry_grid_column}
                 >
-                    {rows.map((v, i, arr) => {
+                    {rows.map((v, i) => {
                         return (
-                            <Link key={i} to={`/sharing/${v.sid}`}>
+                            <a
+                                key={i}
+                                href={`/sharing/${v.sid}`}
+                                onClick={(e) => {
+                                    window.history.pushState(
+                                        {},
+                                        v.title,
+                                        `/sharing/${v.sid}`
+                                    );
+                                    e.preventDefault();
+                                    setPost_sid(v.sid);
+                                }}
+                            >
                                 <PostCard cardData={v} />
-                            </Link>
+                            </a>
                         );
                     })}
                 </Masonry>
+                {post_sid !== 0 && (
+                    <PostDetailModel
+                        post_sid={post_sid}
+                        setPost_sid={setPost_sid}
+                        windowScrollY={scrollY[1]}
+                    />
+                )}
             </div>
         </Fragment>
     );

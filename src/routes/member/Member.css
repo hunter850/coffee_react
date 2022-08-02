@@ -1,10 +1,10 @@
-:root {
+/* :root {
     --blue: rgb(37, 57, 69);
     --cream: rgb(252, 250, 247);
     --gold: rgb(183, 153, 115);
     --gray: rgb(217, 217, 217);
     --dark-gray: rgb(203, 203, 203);
-}
+} */
 *{
     margin: 0;
     padding: 0;
@@ -35,10 +35,72 @@ body{
     background-color: var(--gray);
     border-radius: 10px;
     margin-bottom: 60px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.flipped {
+    transform: rotateY(180deg);
+}
+.cardF{
+    position: relative;
+    width: 250px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    backface-visibility: hidden; 
+}
+.cardF-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 220px;
+    text-align: center;
+}
+.cardF-desc{
+    font-size: 8px;
+    color: var(--blue);
+    margin-top: 15px;
+}
+.cardB{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    transform: rotateY(180deg);
+    backface-visibility: hidden; 
+}
+.cardB-desc{
+    font-size: .8rem;
+    color: var(--blue);
+    margin-top: 15px;
+}
+.cardB-desc::before{
+    content:" ";
+    display:block; 
+    width: 180px;
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+}
+.cardB-level{
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.cardB-level>span{
+    margin-left: 10px;
+    letter-spacing: normal;
 }
 .mc-like, .mc-coupon{
     position: relative;
     display: flex;
+    align-items: center;
     border-bottom: 1px solid var(--gray);
     margin-bottom: 36px;
     padding-bottom: 10px;
@@ -46,13 +108,14 @@ body{
     
 }
 .mc-like>p, .mc-coupon>p{
+    color: var(--blue);
     margin-left: 20px;
     
 }
-.fa-angle-right{
+/* .fa-angle-right{
     position: absolute;
     right: 0px;
-}
+} */
 .mc-menu-wrap{
     width: 570px;
     display: flex;
@@ -83,7 +146,7 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 10px 0px rgb(0,0,0,0.15);
     margin-bottom: 35px;
-    padding: 41px 85px;
+    padding: 41px 75px;
     cursor: pointer;
 }
 .mc-menu:hover{
@@ -94,22 +157,29 @@ body{
     transition: .3s;
     box-shadow: 5px 5px 5px 0px rgb(0,0,0,0.4);
 }
-.mc-menu>i{
+/* .mc-menu>i{
     font-size: 2.5rem;
-}
+} */
 .mc-menu::after{
     display:block;
     margin-top: 20px;
 }
-.mc-menu:nth-child(1)::after{
+.mc-menu>p{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+/* .mc-menu:nth-child(1)::after{
     content:"會員資料";
 }
 .mc-menu:nth-child(2)::after{
+    margin-top: 15px;
     content:"歷史訂單";
 }
 .mc-menu:nth-child(3)::after{
     content:"分享記錄";
 }
 .mc-menu:nth-child(4)::after{
+    margin-top: 15px;
     content:"我的點數";
-}
+} */

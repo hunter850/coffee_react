@@ -1,10 +1,10 @@
-:root {
+/* :root {
     --blue: rgb(37, 57, 69);
     --cream: rgb(252, 250, 247);
     --gold: rgb(183, 153, 115);
     --gray: rgb(217, 217, 217);
     --dark-gray: rgb(203, 203, 203);
-}
+} */
 
 * {
     margin: 0;
@@ -57,6 +57,7 @@ body {
     border: 1px solid var(--gray);
     padding: 0 3rem;
     font-size: 1rem;
+    letter-spacing: 0.15rem;
 }
 .lg-field:focus{
     outline: none;
@@ -165,4 +166,18 @@ body {
 }
 .sign-up:hover, .log-in:hover{
     background: var(--gold);
+}
+/* 提示訊息 */
+.lg-msg-wrap{
+    width: 300px;
+    height: 150px;
+}
+.lg-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 150px;
 }

@@ -1,4 +1,4 @@
-.filterbutton{
+.filterbutton {
     width: 130px;
     height: 44px;
     border-radius: 3px;
@@ -10,7 +10,26 @@
     justify-content: center;
     margin: 40px 40px;
 }
-.filterbutton:hover{
+.filterbutton:hover {
     background-color: #3d595b;
 }
 
+@media (max-width: 375px) {
+    .filterbutton {
+        width: 100px;
+        height: 44px;
+        padding: 30px 10px;
+        border-radius: 3px;
+        font-size: 13px;
+        background-color: #253945;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+  display: flex;
+    }
+    .filterbutton:hover {
+        background-color: #3d595b;
+    }
+}

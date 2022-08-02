@@ -42,7 +42,6 @@ function PostCard({ cardData }) {
                     src={`http://localhost:3500/images/sharing/${img_name}`}
                     alt={title}
                 />
-
                 <ul>
                     <li className={like_wrap}>
                         <FaHeart color="#fff" fontSize="1.25rem" />
@@ -58,7 +57,7 @@ function PostCard({ cardData }) {
                         <div className={tags_wrap}>
                             {tags &&
                                 tags.map((v, i) => {
-                                    return <span key={i}>{v.name}</span>;
+                                    return <span key={i}>{v}</span>;
                                 })}
                         </div>
                     </li>

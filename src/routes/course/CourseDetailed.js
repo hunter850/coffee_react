@@ -41,10 +41,21 @@ const CourseDetailed = () => {
     // 對照sid當筆資料的價格 - 狀態提升
     const [courseDataPrice, setCourseDataPrice] = useState(0);
 
+    // 控制點擊path位移的索引
+    const [index, setIndex] = useState(0);
+
+    // 日曆用的日期
+    const [date, setDate] = useState([]);
+
+    // 開課的時間
+    const [time, setTime] = useState([]);
+
     // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
+
     // 點擊後引到報名課程的區塊
     const courseClickMove = () => {
+        setIndex(2);
         window.scrollTo({ top: signup + 200, behavior: "smooth" });
     };
 
@@ -90,7 +101,18 @@ const CourseDetailed = () => {
                     return Number(v.course_sid) === Number(sid);
                 });
                 setCourseDataFk(newCourseDataFk);
-                console.log(newCourseDataFk);
+
+                // 判斷有拿到資料才做切割 (將日期切割成需要的格式)
+                if (newCourseDataFk.length > 0) {
+                    const Date = newCourseDataFk[0].course_date.split(',');
+                    const Time = newCourseDataFk[0].course_time.split(',');
+                    setTime(Time);
+                    const newDate = Date.map((v, i) => {
+                        return Number(v.split('-')[2]);
+                    });
+                    setDate(newDate);
+                    // console.log(date);
+                }
             });
     };
 
@@ -112,7 +134,7 @@ const CourseDetailed = () => {
     // 外鍵 - 取得當前sid外鍵資料
     useEffect(() => {
         getCourseDataFk();
-    }, []);
+    }, [setDate, setTime]);
 
     // 建立訂單時跳轉付款頁面
     useEffect(() => {
@@ -152,8 +174,8 @@ const CourseDetailed = () => {
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
-                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} />
-                    <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} />
+                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} index={index} setIndex={setIndex} />
+                    <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} date={date} time={time} />
                 </div>
             </div>
         </Fragment>

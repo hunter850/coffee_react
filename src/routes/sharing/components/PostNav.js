@@ -4,7 +4,7 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import styles from "./../css/postNav.module.scss";
+import styles from "./../css/postnav.module.scss";
 
 function PostNav({ scrollDir = "up" }) {
     const { authorized, sid, account, token, avatar } = useAuth();
@@ -24,7 +24,7 @@ function PostNav({ scrollDir = "up" }) {
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
-                <h4 style={{ width: "25%" }}>分享牆{avatar}</h4>
+                <h4 style={{ width: "25%" }}>分享牆</h4>
                 <div className={search_wrap}>
                     <div className={search_bar}>search</div>
                 </div>

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import "./FoodCardDetail.scss";
 import { useState } from "react";
+import { icechoice, sugarchoice } from "../../../config/constant";
 // import useData from "../../../hooks/useData";
 
 function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
@@ -12,48 +13,15 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
         menu_photo,
         // menu_categories,
     } = showFoodDetail;
-    const icechoice = [
-        {
-            id: 1,
-            name: "正常冰",
-        },
-        {
-            id: 2,
-            name: "少冰",
-        },
-        {
-            id: 3,
-            name: "去冰",
-        },
-        {
-            id: 4,
-            name: "常溫",
-        },
-        {
-            id: 5,
-            name: "熱",
-        },
-    ];
-    const sugarchoice = [
-        { id: 1, name: "無糖" },
-        { id: 2, name: "微糖" },
-        { id: 3, name: "半糖" },
-        { id: 4, name: "全糖" },
-    ];
+
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
-    const [timeID, setTimeID] = useState(Date.now());
     const orderclass = ice && sugar ? "order" : "order disabled";
 
     return (
         <>
-            <div
-                className="food-lightbox"
-                // onClick={() => {
-                //     setIsShow(false);
-                // }}
-            >
+            <div className="food-lightbox">
                 <div className="detail">
                     <div className="detail-photoarea">
                         <figure>
@@ -63,7 +31,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                 className="photo"
                             />
                         </figure>
-                        <div>
+                        <div className="photoaside">
                             <div className="menu_name">{menu_name}</div>
                             <div>{menu_nutrition}</div>
                             <div>NT$ {menu_price_m}</div>
@@ -108,15 +76,18 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             <div key={`icechoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
-                                    checked={ice === name}
-                                    value={name}
+                                    checked={ice === id}
+                                    value={id}
                                     onChange={(e) => {
                                         setIce(e.target.value);
                                     }}
-                                    id={name}
+                                    id={`icechoice${id}`}
                                     className="inputdetail"
                                 />
-                                <label htmlFor={name} className="inputla">
+                                <label
+                                    htmlFor={`icechoice${id}`}
+                                    className="inputla"
+                                >
                                     {name}
                                 </label>
                             </div>
@@ -129,15 +100,18 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             <div key={`sugarchoice${id}`} className="inputarea">
                                 <input
                                     type="radio"
-                                    checked={sugar === name}
-                                    value={name}
+                                    checked={sugar === id}
+                                    value={id}
                                     onChange={(e) => {
                                         setSugar(e.target.value);
                                     }}
-                                    id={name}
+                                    id={`sugarchoice${id}`}
                                     className="inputdetail"
                                 />
-                                <label htmlFor={name} className="inputla">
+                                <label
+                                    htmlFor={`sugarchoice${id}`}
+                                    className="inputla"
+                                >
                                     {name}
                                 </label>
                             </div>
@@ -175,7 +149,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                                     menu_price_m,
                                     menu_sid,
                                     menu_photo,
-                                    timeID,
+                                    timeID: Date.now(),
                                 });
                             }}
                         >

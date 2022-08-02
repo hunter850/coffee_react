@@ -1,21 +1,26 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import useSetNow from "../../hooks/useSetNow";
 import useScrollbar from "../../hooks/useScrollbar";
+import useClass from "../../hooks/useClass";
 import ModalBody from "./components/ModalBody";
 import ModalHeader from "./components/ModalHeader";
 import ModalFooter from "./components/ModalFooter";
 import cssStyles from "./modal.module.scss";
 
-function Modal({
-    children,
-    isOpen,
-    setIsOpen,
-    bordY = -30,
-    time = 0.5,
-    closeButton = true,
-}) {
+function Modal(props) {
+    const {
+        children,
+        isOpen,
+        setIsOpen,
+        bordY = -30,
+        time = 0.5,
+        closeButton = true,
+        className = "",
+        style,
+    } = props;
     const setNow = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
+    const c = useClass();
     const { close_button, modal_bg, modal_bord } = cssStyles;
     const styles = useMemo(() => {
         return {
@@ -28,13 +33,18 @@ function Modal({
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `
-                    transform ${time + 0.2}s ease, opacity ${time + 0.2}s ease
+                    transform ${
+                        time === 0 ? time : time + 0.2
+                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
                 `,
             },
         };
     }, [bordY, time]);
     const [modalBackground, setModalBackground] = useState(styles.bgStyle);
-    const [modalBord, setModalBord] = useState(styles.bordStyle);
+    const [modalBord, setModalBord] = useState({
+        ...styles.bordStyle,
+        ...style,
+    });
     const closeHandler = useCallback(() => {
         setIsOpen(false);
     }, [setIsOpen]);
@@ -73,7 +83,7 @@ function Modal({
             <div
                 style={modalBord}
                 onClick={(e) => e.stopPropagation()}
-                className={modal_bord}
+                className={c(modal_bord, className)}
             >
                 {closeButton && (
                     <button className={close_button} onClick={closeHandler}>
