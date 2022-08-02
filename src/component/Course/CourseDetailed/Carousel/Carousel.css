@@ -69,4 +69,12 @@
     .course-Carousel {
         height: 267px;
     }
+
+    .course-slideshow {
+        height: 267px !important;
+    }
+
+    .course-slideshowSlider {
+        height: 267px !important;
+    }
 }

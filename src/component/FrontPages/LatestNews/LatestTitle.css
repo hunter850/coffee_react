@@ -15,8 +15,8 @@
     align-items: center;
     border-bottom: 1px solid #ffffff;
     padding-bottom: 20px;
-<<<<<<< HEAD
     margin: 20px auto;
 }
-=======
->>>>>>> 6879c29a8e1f396d896afd0934711086f0d27436
+.home-box {
+    background-color: #324A59;
+}

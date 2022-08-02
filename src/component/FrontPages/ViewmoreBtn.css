@@ -11,7 +11,7 @@
 }
 
 .view-more-link {
-    width: 150px;
+    width: 100%;
     transform:translateX(50%);
 }
 

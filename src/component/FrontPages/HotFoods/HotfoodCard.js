@@ -9,6 +9,7 @@ export default function HotfoodCard({ hotfoodmargin }) {
                 className="hotfood-container m-auto"
                 style={{ marginTop: hotfoodmargin }}
             >
+
                 <div className="hotfood-circle">
                     <img src={HotFoodImg} alt="" />
                 </div>
@@ -16,6 +17,7 @@ export default function HotfoodCard({ hotfoodmargin }) {
                     凱薩沙拉
                 </p>
                 <p style={{ color: "black" }}>NT$ 499</p>
+
             </div>
         </Fragment>
     );

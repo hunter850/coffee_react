@@ -6,14 +6,11 @@ import { useState, useRef, useEffect } from "react";
 function CourseContentItem({ marginTop, children, item, setItem, topZeroSure }) {
     const [displayNone, setdisplayNone] = useState(false);
 
-
     const itemScrollTop = useRef();
     useEffect(() => {
-
         if (topZeroSure === true) {
             setItem(itemScrollTop.current.getBoundingClientRect().top);
         }
-
     }, [topZeroSure]);
     return (
         <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem' ref={itemScrollTop}>

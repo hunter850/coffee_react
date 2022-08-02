@@ -30,15 +30,40 @@ const shops_dummy = [
 const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
 const SingleMapDetail = (props) => {
-    const { setStoreInfo, storeInfo } = props;
-    const { title, address1, address2 } = storeInfo;
-    const [mapApis, setMapApis] = useState([]);
-    const initialState = { title: "", address2: "", address1: "" };
-    // 預設位置
+    // 從SQL拿googlemap Key
+    const [apiFromSql, setApiFromSql] = useState([]);
+    useEffect(() => {
+        const mapAPiGet = async () => {
+            const response = await axios.get(mapAPI);
+            setApiFromSql(response.data);
+        };
+        mapAPiGet();
+    }, []);
+    if (apiFromSql.length > 0) {
+        console.log("key!!!!", apiFromSql[0].mapapi_key);
+    }
+
+    // -----------------------------------------------------
+    const [mapApi, setMapApi] = useState(null);
     const [myPosition, setMyPosition] = useState({}); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
     const [mapApiLoaded, setMapApiLoaded] = useState(false);
     const [mapInstance, setMapInstance] = useState(null);
-    const [mapApi, setMapApi] = useState(null);
+    const { setStoreInfo, storeInfo } = props;
+    const { title, address1, address2 } = storeInfo;
+    const initialState = { title: "", address2: "", address1: "" };
+    // 預設位置
+
+    const ShopMarker = ({ icon, title, address2, address1 }) => (
+        <div>
+            <img
+                src={icon}
+                alt="coffee"
+                onClick={() => {
+                    setStoreInfo({ title, address2, address1 });
+                }}
+            />
+        </div>
+    );
     // Effect
     useEffect(() => {
         // console.log("myPosition", myPosition);
@@ -52,50 +77,26 @@ const SingleMapDetail = (props) => {
             });
         });
     }, []);
-    // -----------------------------------------------------
-
-    useEffect(() => {
-        const mapAPiGet = async () => {
-            const response = await axios.get(mapAPI);
-            setMapApis(response.data);
-        };
-        mapAPiGet();
-    }, []);
-    if (mapApis.length > 0) {
-        console.log("key", mapApis[0].mapapi_key);
-    }
-
-    const ShopMarker = ({ icon, title, address2, address1 }) => (
-        <div>
-            <img
-                src={icon}
-                alt="coffee"
-                onClick={() => {
-                    setStoreInfo({ title, address2, address1 });
-                }}
-            />
-        </div>
-    );
 
     // const SingleMapDetail = (props) => {
-    //     const [mapApis, setMapApis] = useState([]);
+    //     const [apiFromSql, setApiFromSql] = useState([]);
     //     const [api, setApi] = useState(false);
 
     //     const mapAPiGet = async () => {
     //         const response = await axios.get(mapAPI);
-    //         setMapApis(response.data);
+    //         setApiFromSql(response.data);
     //     };
     //     useEffect(() => {
-    //         if (mapApis.length > 0) {
+    //         if (apiFromSql.length > 0) {
     //             setApi(true);
     //         }
-    //     }, [mapApis]);
+    //     }, [apiFromSql]);
 
     //     useEffect(() => {
     //         mapAPiGet();
     //     }, []);
     //     if (api === true) {
-    //         console.log("mapApismapApismapApis", mapApis[0].mapapi_key);
+    //         console.log("mapApismapApismapApis", apiFromSql[0].mapapi_key);
     //         setApi(false);
 
     // 找咖啡廳
@@ -148,8 +149,9 @@ const SingleMapDetail = (props) => {
             </div> */}
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: mapAPI,
-                    // 請輸入googlemap的key
+                    key: "請輸入googlemap的key",
+
+                    // 請輸入googlemap的key  ""
                     libraries: ["places"], // 要在這邊放入我們要使用的 API
                 }}
                 onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
@@ -185,8 +187,10 @@ const SingleMapDetail = (props) => {
             {/* <input/> */}
             <div className="mapshow">
                 <h6>{title}</h6>
-                <p>{address2}</p>
-                <p>{address1}</p>
+                <p className="txt">
+                    {address2}
+                    {address1}
+                </p>
             </div>
         </div>
     );

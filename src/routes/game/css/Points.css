@@ -48,8 +48,8 @@
         /* transform: translate(-50%, -50%); */
     }
 
-    .Pbutton  {
-        width: 186px;
+    .Pbutton{
+        width: 124px;
         height: 54px;
         padding: 10px 25px;
         text-align: center;
@@ -67,8 +67,8 @@
     .Pbutton:before {
         content: "";
         background-color: rgba(255, 255, 255, 0.5);
-        /* height: 100%;
-        width: 3em; */
+        height: 100%;
+        width: 3em;
         display: block;
         position: absolute;
         top: 0;
@@ -80,6 +80,7 @@
     .Pbutton:hover {
         background-color: #b8a58d;
         color: #fff;
+        /* border-bottom: 4px solid #893429; */
     }
     
     .Pbutton:hover:before {
@@ -116,61 +117,6 @@
         min-width: 100%;
         min-height: 100%;
         z-index: -1;
-    }
-    /* ========================= */
-
-    .loading {
-        font-size: 24px;
-        
-        font-weight: 300;
-        text-align: center;
-    }
-    .loading span {
-        display: inline-block;
-        margin: 0 8px;
-    }
-
-    .loading07 span {
-        position: relative;
-        color:#fff;
-    }
-    .loading07 span::after {
-        position: absolute;
-        /* top: 0;
-        left: 0; */
-        content: attr(data-text);
-        color: #fff;
-        opacity: 0;
-        transform: scale(1.5);
-        animation: loading07 10s infinite;
-    }
-    .loading07 span:nth-child(2)::after {
-        animation-delay: 0.1s;
-    }
-    .loading07 span:nth-child(3)::after {
-        animation-delay: 0.2s;
-    }
-    .loading07 span:nth-child(4)::after {
-        animation-delay: 0.3s;
-    }
-    .loading07 span:nth-child(5)::after {
-        animation-delay: 0.4s;
-    }
-    .loading07 span:nth-child(6)::after {
-        animation-delay: 0.5s;
-    }
-    .loading07 span:nth-child(7)::after {
-        animation-delay: 0.6s;
-    }
-    @keyframes loading07 {
-        0%, 75%, 100% {
-            transform: scale(1.5);
-            opacity: 0;
-        }
-        25%, 50% {
-            transform: scale(1);
-            opacity: 1;
-        }
     }
 
 .totalpoints{

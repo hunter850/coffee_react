@@ -1,14 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import "./CoursePath.css";
 import { useState, useEffect } from "react";
 
-function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
-    // 麵包屑跳轉指向的ID
-    // const pathId = ['#CourseContentItem', '#CourseContentMaterial', '#CourseContentSignup', '#CourseContentNotice', '#CourseComtentObject'];
-    // 確認點擊事件
-    const [confirmClick, setConfirmClick] = useState(false);
-    // 初始高亮的狀態
-    const [start, setStart] = useState(1);
+function CoursePath({ object, material, signup, notice, item, topZeroSure, setClickMove, clickMove, setIndex, index }) {
 
     // 生成物件型狀態的函式
     const initState = (items) => {
@@ -29,39 +24,28 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
         "注意事項",
         "適合對象",
     ];
-    // Path點擊後位移
-    const courseClickMove = (i) => {
-        const pathArr = [item, material, signup, notice, object];
-        window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
-    };
 
     const defaultCoursePaths = initState(coursePaths);
     const [clickSure, setClickSure] = useState(defaultCoursePaths);
 
+    // 初始高亮的狀態
+    const [start, setStart] = useState(1);
+
     // 麵包屑fixed開關
     const [fixedRemoteControl, setFixedRemoteControl] = useState(false);
-    // 限制不要一進頁面就Fixed
-    const [confirmFixed, setConfirmFixed] = useState(document.documentElement.scrollTop === 0 ? true : false);
 
-    // scrollTop大於DOM頂部開啟fixed,小於則關閉
     useEffect(() => {
         // 如果沒抓到documentElement,就抓body
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         //onscroll滾動事件
         window.onscroll = () => {
-            // console.log(document.documentElement.scrollTop);
-            // console.log('scrollTop: ' + scrollTop);
-            if (confirmFixed === true) {
-                if (document.documentElement.scrollTop <= 798) {
-                    setFixedRemoteControl(false);
-                } else {
-                    setFixedRemoteControl(true);
-                }
-            }
-
-            // 頁面滾動後開啟Fixed開關
-            if (document.documentElement.scrollTop > scrollTop) {
-                setConfirmFixed(true);
+            // console.log(item);
+            // console.log(material);
+            // 達到指定的scrollTop,開啟Fixed
+            if (document.documentElement.scrollTop <= 798) {
+                setFixedRemoteControl(false);
+            } else {
+                setFixedRemoteControl(true);
             }
 
             // 視窗滾動path高亮的function 參數 - scrollHeight : DOM離top的距離 , number第幾個path顯示高亮
@@ -72,26 +56,48 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
                 }
             };
 
-
-            // 一滾動視窗關閉確認點擊的狀態
-            if (scrollTop !== document.documentElement.scrollTop) {
-                setConfirmClick(false);
-            }
-
-
-            if (confirmClick === false) {
-                // 確定網頁已經定位到top0的位子才執行
-                if (topZeroSure === true) {
-                    pathFocus(item, 1);
-                    pathFocus(material, 2);
-                    pathFocus(signup, 3);
-                    pathFocus(notice, 4);
-                    pathFocus(object, 5);
-                }
-
+            // 確定網頁已經定位到top0的位子才執行
+            if (topZeroSure === true) {
+                pathFocus(item, 1);
+                pathFocus(material, 2);
+                pathFocus(signup, 3);
+                pathFocus(notice, 4);
+                pathFocus(object, 5);
             }
         };
-    }, [defaultCoursePaths, confirmClick, confirmFixed, object, material, signup, notice, item, topZeroSure]);
+    }, [defaultCoursePaths, object, material, signup, notice, item, topZeroSure, start]);
+
+    // Path點擊後位移
+    const courseClickMove = (i) => {
+        const pathArr = [item, material, signup, notice, object];
+        window.scrollTo({ top: pathArr[i] + 200, behavior: "smooth" });
+    };
+
+    // 判斷path是否被點擊
+    const [clickPaths, setClickPaths] = useState(false);
+
+    // path位移function
+    const movePath = (i) => {
+        // path被點擊
+        setClickPaths(true);
+        // 位移的索引
+        setIndex(i);
+        // 高亮的索引
+        setStart(i + 1);
+    };
+
+    useEffect(() => {
+        // 點擊path的時候才執行
+        if (clickPaths === true) {
+            courseClickMove(index);
+            setTimeout(() => {
+                setClickPaths(false);
+            }, 0);
+        }
+    }, [index, start, clickPaths]);
+
+
+
 
     return (
         <div className="CoursePath-wrap">
@@ -101,13 +107,8 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure }) {
                         <div
                             key={i}
                             className={`CoursePaths`}
-                            onClick={() => {
-                                courseClickMove(i);
-                                setStart(i + 1);
-                                setConfirmClick(true);
-                                setConfirmFixed(true);
-                                setClickSure(defaultCoursePaths);
-                            }}
+                            onClick={() => movePath(i)}
+
                         >
                             <a href="#/" className={`${clickSure[i].id === start ? "focus" : ""} }`} >{v.name}</a>
                         </div>

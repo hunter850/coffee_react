@@ -1,10 +1,10 @@
-:root {
+/* :root {
     --blue: rgb(37, 57, 69);
     --cream: rgb(252, 250, 247);
     --gold: rgb(183, 153, 115);
     --gray: rgb(217, 217, 217);
     --dark-gray: rgb(203, 203, 203);
-}
+} */
 *{
     margin: 0;
     padding: 0;
@@ -198,4 +198,15 @@ body{
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 150px;
+}
+.ed-field-err{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 37px;
+    color: red;
+    font-size: .8rem;
+}
+.ui-info-check{
+    position: relative;
 }

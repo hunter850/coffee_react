@@ -20,10 +20,11 @@
         position: fixed;
         right: 25%;
         left: 25%;
+        color: #3e3e3e;
 
         .top {
             height: 60px;
-            background-color: #ffffff;
+            background-color: #D9DFDF;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,16 +37,19 @@
             height: auto;
             margin: 0 auto;
             padding: 20px;
+            margin-top: 40px;
             .mapdetail {
-                height: 300px;
+                height: 400px;
                 width: 100%;
                 .mapshow {
-                    width: 220px;
+                    width: 100%;
                     height: auto;
                     padding: 10px;
                     border: 1px solid #ccc;
                     border-radius: 10px;
                     background-color: #efefef;
+                    color: #3e3e3e;
+                    .txt{color: #B79973;}
                 }
             }
         }
@@ -53,7 +57,7 @@
         .bottomarea {
             width: 50%;
             height: 82px;
-            background-color: #ffffff;
+            background-color: #D9DFDF;
             position: fixed;
             bottom: 0;
             right: 25%;
@@ -71,4 +75,56 @@
         }
     }
 }
-// SingleMapDetail
+
+@media (max-width: 375px) {
+    .google-lightbox {
+        position: absolute;
+        width: 0px;
+        .detail {
+            width: 375px;
+            height: 100%;
+            right: 0%;
+            left: 0%;
+            .top {
+                height: 40px;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                width: 375px;
+            }
+
+            .middle2 {
+                width: 375px;
+                height: auto;
+                padding: 0;
+              
+           
+                .mapdetail {
+                    height: 400px;
+                    width: 375px;
+                    .mapshow {
+                        width: 375px;
+                        height: auto;
+                        padding: 10px;
+                    }
+                }
+            }
+
+            .bottomarea {
+                width: 100%;
+                height: 52px;
+                background-color: #D9DFDF;
+                bottom: 0;
+                right: 0%;
+                left: 0%;
+                .bottoms {
+                    height: 32px;
+                    margin: 10px;
+                    color: #eee5dd;
+                }
+            }
+        }
+    }
+}

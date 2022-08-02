@@ -19,6 +19,7 @@
     height: 12px;
     top: 17px;
     right: 68px;
+    cursor: pointer;
 }
 
 .Calendar-arror-right {
@@ -29,6 +30,7 @@
     height: 12px;
     top: 17px;
     right: 27px;
+    cursor: pointer;
 }
 .courseCalendarWrap > table {
     width: 100%;

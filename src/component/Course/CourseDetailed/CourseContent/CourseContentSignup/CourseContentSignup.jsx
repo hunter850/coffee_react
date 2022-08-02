@@ -6,7 +6,7 @@ import { useRef, useEffect } from "react";
 import Calendar from './Calendar/Calendar';
 
 
-function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder }) {
+function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder, date, time }) {
 
     const signupScrollTop = useRef();
     useEffect(() => {
@@ -21,13 +21,13 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
     const [displayNone, setdisplayNone] = useState(false);
     // 時段按鈕高亮控制
     const [btnClick, setBtnClick] = useState(0);
-
-    const timeArr = ['AM 9:00', 'PM 3:00'];
+    // 課程時間的陣列
+    const timeArr = time.length > 0 ? time : ['AM 08:00', 'PM 08:00'];
     // 選擇時段click後高亮 
     const courseContentBtnFocus = (i) => {
         setBtnClick(i);
     };
-
+    // 限制報名人數
     const numberPeople = () => {
         count < 10 ? setCount(count + 1) : setCount(count + 0);
     };
@@ -88,7 +88,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                 </div>
                 <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
                     <div className=" CourseContentDate">
-                        <Calendar />
+                        <Calendar date={date} />
                         <div className="CourseContentItem-text-color">
                             <div style={{ paddingBottom: 12 }}>選擇時段</div>
                             <div

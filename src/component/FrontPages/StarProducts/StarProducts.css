@@ -1,11 +1,12 @@
 .home-container {
+    width: 1440px;
     background-color: #FEFEFD;
     padding-right: 200px;
     padding-left: 200px;
     letter-spacing: 0.5rem;
     margin: auto;
-    
 }
+
 .bottom-line {
     width: 160px;
     color: rgb(10, 10, 10);
@@ -24,4 +25,7 @@
     margin: auto;
     margin-top: 48px;
     margin-bottom: 100px;
+}
+.starproduct-box {
+    overflow:visible;
 }

@@ -13,6 +13,7 @@ import AuthContext from "../../AuthContext";
 
 import { AiFillPicture } from "react-icons/ai";
 import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
@@ -23,7 +24,7 @@ function UserInfo() {
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [editSuccess,setEditSuccess] =useState(false);
+    const [editSuccess,setEditSuccess] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -71,9 +72,41 @@ function UserInfo() {
     // console.log(avatar);
 
     // --------------------- 編輯會員資料 ---------------------
-    
+
+    const [mobileError, setMobileError] = useState("")
+    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
+    const [mailError, setMailError] = useState("")
+    const mail_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+
+    const [addressError, setAddressError] = useState("")
+
     const handleEditUserList = (e)=>{
-        fetch(editUserData,{
+
+        let isPass = true;
+
+        
+        if( userList.member_mobile ==="" || !mobile_re.test(userList.member_mobile)){
+            setMobileError("手機格式錯誤");
+            isPass = false;
+        }else{
+            setMobileError("");
+        }
+        if( userList.member_address ===""){
+            setAddressError("地址必填");
+            isPass = false;
+        }else{
+            setAddressError("");
+        }
+        if( userList.member_mail ==="" || !mail_re.test(userList.member_mail)){
+            setMailError("信箱格式錯誤");
+            isPass = false;
+        }else{
+            setMailError("");
+        }
+        if(isPass){
+
+            fetch(editUserData,{
                 method: "POST",
                 body: JSON.stringify(userList),
                 headers: {
@@ -88,11 +121,12 @@ function UserInfo() {
                 setUserList(result.data);
                 setEditSuccess(true);
             }else{
-                // alert("編輯失敗")
                 setEditSuccess(false);
             }
         });
+        }
     }
+
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -160,12 +194,16 @@ function UserInfo() {
                     console.log(result);
                     if (result.success) {
                         alert("修改成功");
+                    }else if(result.passError){
+                        setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
+                        // alert(`${result.error}`)
                     }else{
-                        alert(`${result.error}`)
+                        setConfirmErrors({...confirmErrors,confirm_password:"新舊密碼相同"})
                     }
                 });
         } else {
-            alert("新密碼輸入錯誤")
+            setNewPassErrors({...newPassErrors,new_password:"新密碼輸入錯誤"});
+            // alert("新密碼輸入錯誤");
         }
     };
 
@@ -269,6 +307,9 @@ function UserInfo() {
                                             setUserList={setUserList}
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
+                                            mobileError={mobileError}
+                                            mailError={mailError}
+                                            addressError={addressError}
                                         />
                                     </div>
                                 );
@@ -339,7 +380,10 @@ function UserInfo() {
                 <Modal.Body>
                     <div className="edit-msg-wrap">
                         <div className="edit-msg">
-                        <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>{ editSuccess ? "修改成功" : "編輯失敗" }
+                            {
+                                editSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                            }
+                        { editSuccess ? "修改成功" : "編輯失敗" }
                         </div>
                     </div>
                 </Modal.Body>

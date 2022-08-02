@@ -21,10 +21,16 @@ function CourseContent({
     setCount,
     count,
     sendOrder,
+    date,
+    time,
 }) {
     return (
         <div className="CourseContent">
-            <CourseContentItem setItem={setItem} item={item}>
+            <CourseContentItem
+                setItem={setItem}
+                item={item}
+                topZeroSure={topZeroSure}
+            >
                 課程內容
             </CourseContentItem>
             <CourseContentMaterial
@@ -40,6 +46,8 @@ function CourseContent({
                 setCount={setCount}
                 count={count}
                 sendOrder={sendOrder}
+                date={date}
+                time={time}
             />
             <CourseContentNotice
                 notice={notice}
