@@ -6,7 +6,7 @@ import "./LatestNews.css";
 function LatestNews({ bagcolorblue, latesttitlecolor }) {
     return (
         <Fragment>
-            <div className="home-box">
+            <div className="home-box-color">
                 <div
                     className="home-container p-20"
                     style={{ backgroundColor: bagcolorblue }}

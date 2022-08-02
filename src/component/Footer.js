@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Footer({ bagcolorblue }) {
     return (
         <Fragment>
-            <home-box>
+            <div className="home-box-color">
                 <div
                     className="home-container"
                     style={{ backgroundColor: bagcolorblue }}
@@ -83,7 +83,7 @@ export default function Footer({ bagcolorblue }) {
                         </div>
                     </div>
                 </div>
-            </home-box>
+            </div>
         </Fragment>
     );
 }
