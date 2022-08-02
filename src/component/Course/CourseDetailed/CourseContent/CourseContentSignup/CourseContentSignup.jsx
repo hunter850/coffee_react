@@ -21,13 +21,13 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
     const [displayNone, setdisplayNone] = useState(false);
     // 時段按鈕高亮控制
     const [btnClick, setBtnClick] = useState(0);
-
+    // 課程時間的陣列
     const timeArr = time.length > 0 ? time : ['AM 08:00', 'PM 08:00'];
     // 選擇時段click後高亮 
     const courseContentBtnFocus = (i) => {
         setBtnClick(i);
     };
-
+    // 限制報名人數
     const numberPeople = () => {
         count < 10 ? setCount(count + 1) : setCount(count + 0);
     };
