@@ -12,7 +12,7 @@ function PostDetail() {
     const navigate = useNavigate();
 
     const clickHandler = (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         if (e.target.id === "goPrev") {
             goPrev();
         }
@@ -25,11 +25,11 @@ function PostDetail() {
 
     useEffect(() => {
         (async () => {
-            console.log(getPosts, post_sid);
+            // console.log(getPosts, post_sid);
             const r = await axios(`${getPosts}/${post_sid}`);
 
             if (r.data.code !== 200) {
-                console.log("first");
+                // console.log("first");
                 navigate("/sharing");
             }
             setData(r.data);
