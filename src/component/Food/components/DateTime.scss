@@ -1,4 +1,4 @@
-.google-lightbox {
+.time-lightbox {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -8,8 +8,9 @@
     right: 0;
     left: 0;
     z-index: 1;
+    color: #3e3e3e;
 
-    .detail {
+    .detail1 {
         width: 50%;
         height: 100%;
         /* height: 100vh; */
@@ -23,12 +24,13 @@
 
         .top {
             height: 60px;
-            background-color: #ffffff;
+            background-color: #d9dfdf;
             display: flex;
             justify-content: center;
             align-items: center;
             position: fixed;
             width: 50%;
+            color: #3e3e3e;
         }
         .middle {
             margin-top: 60px;
@@ -81,7 +83,7 @@
         .bottomarea {
             width: 50%;
             height: 82px;
-            background-color: #ffffff;
+            background-color: #d9dfdf;
             position: fixed;
             bottom: 0;
             right: 25%;
@@ -95,6 +97,77 @@
                 background-color: #253945;
                 border-radius: 3px;
                 color: #eee5dd;
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .time-lightbox {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+
+        .detail1 {
+            width: 100%;
+            right: 0%;
+            left: 0%;
+
+            .top {
+                height: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                width: 100%;
+            }
+            .close {
+                display: none;
+            }
+            .middle {
+                margin-top: 60px;
+                padding: 0 20px 20px 20px;
+                height: auto;
+                .select {
+                    margin-bottom: 20px;
+                }
+                .datetime {
+                    width: 100%;
+                    height: 40px;
+                    padding: 0 20px;
+                }
+                .calendar {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .date {
+                        width: 77px;
+                        height: 100px;
+                        padding: 10px;
+                        border-radius: 10px;
+
+                        text-align: center;
+                    }
+                }
+            }
+            .bottomarea {
+                width: 100%;
+                height: 52px;
+                right: 0%;
+                left: 0%;
+                .bottoms {
+                    height: 32px;
+                    margin: 10px;
+                    color: #eee5dd;
+                }
             }
         }
     }

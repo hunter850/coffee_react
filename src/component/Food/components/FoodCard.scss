@@ -16,7 +16,7 @@
     .food_card_top {
         width: 100%;
         height: 270px;
-        background-color: #9ec4cd;
+        // background-color: #9ec4cd;
         border-radius: 10px 10px 0 0;
         .photo {
             width: 100%;
@@ -55,6 +55,51 @@
             align-items: center;
             .menu_price_m {
                 flex-grow: 2;
+            }
+            .foodadd {
+                width: 70px;
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .food_card {
+        width: 290px;
+        height: 140px;
+        box-shadow: 0 0;
+        border: 1px solid #d9dfdf;
+        display: flex;
+
+        .food_card_top {
+            width: 140px;
+            height: 100%;
+
+            .photo {
+                height: 100%;
+                width: 140px;
+                border-radius: 10px;
+            }
+        }
+        .food_card_txt {
+            width: 150px;
+            padding: 10px 15px;
+
+            .font-min1 {
+                width: 150px;
+                line-height: 10px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: wrap;
+                margin: 10px 0;
+                padding: 0 0;
+            }
+            .font-min2 {
+                display: inline;
+                .foodadd {
+                    margin: 10px 0;
+                }
             }
         }
     }
