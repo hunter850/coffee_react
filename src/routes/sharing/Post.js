@@ -9,7 +9,7 @@ import FakeNav from "../../component/FakeNav";
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
-import PostDetailModel from "./components/PostDetailModel";
+import PostDetailModel from "./components/PostDetailModal";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -103,6 +103,12 @@ function Post() {
         }
     }, [scrollY]);
 
+    const modalHandler = (e, v) => {
+        window.history.pushState({}, v.title, `/sharing/${v.sid}`);
+        e.preventDefault();
+        setPost_sid(v.sid);
+    };
+
     return (
         <Fragment>
             <FakeNav />
@@ -121,13 +127,7 @@ function Post() {
                                 key={i}
                                 href={`/sharing/${v.sid}`}
                                 onClick={(e) => {
-                                    window.history.pushState(
-                                        {},
-                                        v.title,
-                                        `/sharing/${v.sid}`
-                                    );
-                                    e.preventDefault();
-                                    setPost_sid(v.sid);
+                                    modalHandler(e, v);
                                 }}
                             >
                                 <PostCard cardData={v} />

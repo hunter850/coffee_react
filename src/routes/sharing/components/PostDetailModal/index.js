@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import styles from "./../css/postdetailmodel.module.scss";
-import { getPosts } from "../../../config/api-path";
+import styles from "../../css/postdetailmodal.module.scss";
+import PostDeatailCarousel from "./PostDetailCarousel";
+import { getPosts } from "../../../../config/api-path";
 import { useNavigate } from "react-router-dom";
+import CancelBtn from "./CancelBtn";
+import PostDetailContent from "./PostDetailContent";
 
-function PostDetailModel({ post_sid, setPost_sid, windowScrollY }) {
-    const { post_detail_wrap, post_detail, post_detail_carousel } = styles;
+function PostDetailModal({ post_sid, setPost_sid, windowScrollY }) {
+    const {
+        post_detail_wrap,
+        post_detail,
+        post_detail_carousel,
+        post_detail_content,
+    } = styles;
     const [data, setData] = useState([]);
 
     const navigate = useNavigate();
 
     const clickHandler = (e) => {
-        // console.log(e.target.id);
+        console.log(e.target);
         if (e.target.id === "detailCover") {
             goPrev();
         }
@@ -46,15 +54,18 @@ function PostDetailModel({ post_sid, setPost_sid, windowScrollY }) {
             style={{ top: windowScrollY }}
         >
             <div className={post_detail}>
-                <div className={post_detail_carousel}></div>
-                <div>
-                    <h2>detail</h2>
-                    <p>searchParams{post_sid}</p>
-                    <p>{JSON.stringify(data, null, 4)}</p>
+                <div className={post_detail_carousel}>
+                    {data.rows && <PostDeatailCarousel imgs={data.rows.imgs} />}
                 </div>
+
+                <div className={post_detail_content}>
+                    {data.rows && <PostDetailContent data={data} />}
+                </div>
+
+                <CancelBtn goPrev={goPrev} />
             </div>
         </div>
     );
 }
 
-export default PostDetailModel;
+export default PostDetailModal;
