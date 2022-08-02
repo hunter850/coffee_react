@@ -1,27 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
 import "./Calendar.css";
+import { chunk } from '../../../../helper/chunk';
 
-// const serverDate = [
-//     {
-//         course_date: new Date(),
-//     },
-// ];
+function Calendar({ date }) {
 
-// console.log(serverDate[0].course_date);
-
-const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-        arr.slice(i * size, i * size + size)
-    );
-
-function Calendar() {
-    // const [myYear, setMyYear] = useState(new Date().getFullYear());
-    // const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
-    // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
-    // const [doNotSelect, setDoNotSelect] = useState(myDate);
-    // 一開始未選中日期
-    const myDate = [18, 28];
+    // 一開始未選中日期 - 可報名日期的陣列
+    const myDate = date;
     const [dateClcik, setDateClcik] = useState(myDate[0]);
     const dataBtnFocus = (item) => {
         setDateClcik(item);
@@ -29,8 +14,25 @@ function Calendar() {
     // 年
     const myYear = new Date().getFullYear();
     // 月
-    const myMonth = new Date().getMonth() + 1;
+    const Month = new Date().getMonth() + 1;
+    // 當前月份
+    const [myMonth, setMyMonth] = useState(Month);
 
+    // 控制日曆上月份切換
+    const handleFlipPage = (direction) => {
+        // 傳進來的參數如果為previous,往前一個月
+        if (direction === 'previous') {
+            if (myMonth > 1) {
+                setMyMonth(myMonth - 1);
+            }
+        }
+        // 傳進來的參數如果為next,往後一個月
+        if (direction === 'next') {
+            if (myMonth < 12) {
+                setMyMonth(myMonth + 1);
+            }
+        }
+    };
 
     // 呈現yearAndMonth
     const now = new Date();
@@ -71,7 +73,7 @@ function Calendar() {
                                                 onClick={() =>
                                                     dataBtnFocus(item)
                                                 }
-                                                className={`${myDate.includes(item)
+                                                className={`${myDate.includes(item) && Month <= myMonth
                                                     ? ""
                                                     : "pointerEvents"
                                                     } courseDateBtn ${dateClcik === item ? 'courseDateBtnClick' : ''}`}
@@ -87,8 +89,8 @@ function Calendar() {
                         })}
                     </tbody>
                 </table>
-                <div className="Calendar-arror-left"></div>
-                <div className="Calendar-arror-right"></div>
+                <div className="Calendar-arror-left" onClick={() => handleFlipPage('previous')}></div>
+                <div className="Calendar-arror-right" onClick={() => handleFlipPage('next')}></div>
             </div>
         </div>
     );

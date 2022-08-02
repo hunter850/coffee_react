@@ -1,9 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./navBar.css";
 import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
+<<<<<<< HEAD
+import memberbtnImg from "../../src/images/frontpage/member-icon.png";
+// console.log(memberbtnImg);
+=======
+import AuthContext from "./Member/AuthContext";
 
+>>>>>>> e800d7786a52247701dbe4cc4e15925971797500
 const NavBar = () => {
+    // 判斷是否為管理者用
+    const { sid } = useContext(AuthContext);
+    // console.log(sid);
     // =============================================
     const memberListyle = {
         position: "relative",
@@ -161,7 +170,14 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/course" style={{ color: "white" }}>
+                            <Link
+                                to={
+                                    Number(sid) === 43
+                                        ? "/course/manage"
+                                        : `/course`
+                                }
+                                style={{ color: "white" }}
+                            >
                                 課程
                             </Link>
                         </li>
@@ -211,17 +227,33 @@ const NavBar = () => {
                                 <li>
                                     <Link to="/member">會員中心</Link>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Link to="/points">我的積分</Link>
                                 </li>
                                 <li>
                                     <Link to="/coupon">我的優惠卷</Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
                         <li>
                             <Link to="/cart" style={{ color: "white" }}>
                                 購物車
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/member">
+                                <svg                                   
+                                    width="18"
+                                    height="20"
+                                    viewBox="0 0 18 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M9 10C11.7617 10 14 7.76172 14 5C14 2.23828 11.7617 0 9 0C6.23828 0 4 2.23828 4 5C4 7.76172 6.23828 10 9 10ZM12.5 11.25H11.8477C10.9805 11.6484 10.0156 11.875 9 11.875C7.98438 11.875 7.02344 11.6484 6.15234 11.25H5.5C2.60156 11.25 0.25 13.6016 0.25 16.5V18.125C0.25 19.1602 1.08984 20 2.125 20H15.875C16.9102 20 17.75 19.1602 17.75 18.125V16.5C17.75 13.6016 15.3984 11.25 12.5 11.25Z"
+                                        fill="black"
+                                    />
+                                </svg>
                             </Link>
                         </li>
                     </ul>
