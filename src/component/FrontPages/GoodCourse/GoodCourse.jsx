@@ -61,9 +61,11 @@ function GoodCourse() {
                     </div>
                 </div>
 
-                <Link to="./course">
-                    <ViewmoreBtn Vbpaddingtop={500} transform={1077} />
-                </Link>
+                <div className="home-box">
+                    <Link to="./course">
+                        <ViewmoreBtn Vbpaddingtop={500} transform={920} />
+                    </Link>
+                </div>
             </div>
 
             <Link to="#top">

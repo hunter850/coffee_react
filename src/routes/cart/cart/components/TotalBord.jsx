@@ -1,7 +1,6 @@
 import { Fragment, useMemo, useState, useEffect } from "react";
 import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
-import useLog from "../../../../hooks/useLog";
 
 function TotalBord() {
     // 現在是商品或餐點
@@ -64,7 +63,8 @@ function TotalBord() {
 
     const compute = useGSAPCompute();
     useEffect(() => {
-        compute({total: totalPrice - discount}, tween, setTween);
+        compute({ total: totalPrice - discount }, tween, setTween);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [totalPrice, discount]);
     return (
         <Fragment>
