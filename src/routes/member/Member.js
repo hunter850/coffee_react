@@ -121,10 +121,13 @@ function Member() {
                                 <FaPen size={'1.5em'} />
                                 <p>分享記錄</p>
                             </div>
-                            <div className="mc-menu">
-                                <FaCoffee size={'1.7em'} />
-                                <p>我的點數</p>
-                            </div>
+                            <Link
+                                to={authorized ? "/points" : "/member/login"}>
+                                <div className="mc-menu">
+                                    <FaCoffee size={'1.7em'} />
+                                    <p>我的點數</p>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

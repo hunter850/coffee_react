@@ -73,10 +73,6 @@ function UserInfo() {
 
     // --------------------- 編輯會員資料 ---------------------
 
-    // const [mobileSuccess,setMobileSuccess] = useState(false);
-    // const [mailSuccess,setMailSuccess] = useState(false);
-    // const [addressSuccess,setAddressSuccess] = useState(false);
-
     const [mobileError, setMobileError] = useState("")
     const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
 
@@ -87,49 +83,48 @@ function UserInfo() {
 
     const handleEditUserList = (e)=>{
 
+        let isPass = true;
+
         
         if( userList.member_mobile ==="" || !mobile_re.test(userList.member_mobile)){
             setMobileError("手機格式錯誤");
-            return;
-            // setMobileSuccess(false);
+            isPass = false;
         }else{
             setMobileError("");
-            // setMobileSuccess((pre)=>pre=true);
         }
         if( userList.member_address ===""){
             setAddressError("地址必填");
-            return;
-            // setMobileSuccess(false);
+            isPass = false;
         }else{
             setAddressError("");
-            // setAddressSuccess((pre)=>pre=true);
         }
         if( userList.member_mail ==="" || !mail_re.test(userList.member_mail)){
             setMailError("信箱格式錯誤");
-            return;
-            // setMobileSuccess(false);
+            isPass = false;
         }else{
             setMailError("");
-            // setMailSuccess((pre)=>pre=true);
         }
-                fetch(editUserData,{
-                    method: "POST",
-                    body: JSON.stringify(userList),
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json",
-                    },
-            })
-            .then((r) => r.json())
-            .then((result) => {
-                console.log(result.data);
-                if (result.success) {
-                    setUserList(result.data);
-                    setEditSuccess(true);
-                }else{
-                    setEditSuccess(false);
-                }
-            });
+        if(isPass){
+
+            fetch(editUserData,{
+                method: "POST",
+                body: JSON.stringify(userList),
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+        })
+        .then((r) => r.json())
+        .then((result) => {
+            console.log(result.data);
+            if (result.success) {
+                setUserList(result.data);
+                setEditSuccess(true);
+            }else{
+                setEditSuccess(false);
+            }
+        });
+        }
     }
 
 
