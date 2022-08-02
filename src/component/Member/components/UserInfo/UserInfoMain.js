@@ -120,6 +120,10 @@ function UserInfo() {
             if (result.success) {
                 setUserList(result.data);
                 setEditSuccess(true);
+                setTimeout(() => {
+                    const SERVER = window.location.origin;
+                    window.location.href = `${SERVER}/member`;
+                }, 300);
             }else{
                 setEditSuccess(false);
             }
@@ -193,7 +197,14 @@ function UserInfo() {
                 .then((result) => {
                     console.log(result);
                     if (result.success) {
-                        alert("修改成功");
+
+                        setIsOpen(false);
+                        setEditSuccess(true);
+                        setTimeout(() => {
+                            const SERVER = window.location.origin;
+                            window.location.href = `${SERVER}/member`;
+                        }, 300);
+
                     }else if(result.passError){
                         setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
                         // alert(`${result.error}`)
@@ -203,7 +214,6 @@ function UserInfo() {
                 });
         } else {
             setNewPassErrors({...newPassErrors,new_password:"新密碼輸入錯誤"});
-            // alert("新密碼輸入錯誤");
         }
     };
 
@@ -328,37 +338,45 @@ function UserInfo() {
                     <form name="editPassword" className="editPassword">
                         <div className="ed-Pass-h1">修改您的密碼</div>
                         <div className="ed-Pass-wrap">
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請輸入舊密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="member_password"
-                                    value={editPass.member_password}
-                                    onChange={editPassword}
-                                />
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請輸入舊密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="member_password"
+                                        value={editPass.member_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{passErrors.member_password}</p>
                             </div>
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請輸入新密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="new_password"
-                                    value={editPass.new_password}
-                                    onChange={editPassword}
-                                />
+
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請輸入新密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="new_password"
+                                        value={editPass.new_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{newPassErrors.new_password}</p>
                             </div>
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請確認新密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="confirm_password"
-                                    value={editPass.confirm_password}
-                                    onChange={editPassword}
-                                />
+
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請確認新密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="confirm_password"
+                                        value={editPass.confirm_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{confirmErrors.confirm_password}</p>
                             </div>
                         </div>
