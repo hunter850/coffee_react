@@ -254,11 +254,14 @@
   version "7.16.7"
   resolved "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.16.7.tgz"
   integrity sha512-hsEnFemeiW4D08A5gUAZxLBTXpZ39P+a+DGDsHw1yxqyQ/jzFEnxf5uTEGp+3bzAbNOxU1paTgYS4ECU/IgfDw==
+<<<<<<< HEAD
 
 "@babel/helper-validator-identifier@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.18.6.tgz#9c97e30d31b2b8c72a1d08984f2ca9b574d7a076"
   integrity sha512-MmetCkz9ej86nJQV+sFCxoGGrUbU3q02kgLciwkrt9QqEB7cP39oKEY0PakknEO0Gu20SskMRi+AYZ3b1TpN9g==
+=======
+>>>>>>> 69732fd9dacfa94c1477f659040c7e4ee228ec24
 
 "@babel/helper-validator-option@^7.16.7":
   version "7.16.7"
@@ -1082,6 +1085,7 @@
   dependencies:
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
+<<<<<<< HEAD
 
 "@babel/types@^7.18.6":
   version "7.18.10"
@@ -1091,6 +1095,8 @@
     "@babel/helper-string-parser" "^7.18.10"
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
+=======
+>>>>>>> 69732fd9dacfa94c1477f659040c7e4ee228ec24
 
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
