@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useRef, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
@@ -9,7 +9,7 @@ import FakeNav from "../../component/FakeNav";
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
-import PostDetail from "./PostDetail";
+import PostDetailModel from "./components/PostDetailModel";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -24,10 +24,12 @@ function Post() {
         post_img,
         my_masonry_grid,
         my_masonry_grid_column,
+        fake_a,
     } = styles;
     const wrap = useRef(null);
-    const { post_sid } = useParams();
+    let location = useLocation();
 
+    const [post_sid, setPost_sid] = useState(0);
     const [getDataTimes, setGetDataTimes] = useState(0);
 
     const [rows, setRows] = useState([]);
@@ -64,12 +66,9 @@ function Post() {
 
     useEffect(() => {
         if (post_sid) {
-            setTimeout(() => {
-                window.scrollTo(0, scrollY[1]);
-            }, 0);
-            // document.querySelector("body").style.overflow = "hidden";
+            document.querySelector("body").style.overflow = "hidden";
         } else {
-            // document.querySelector("body").style.overflow = "visible";
+            document.querySelector("body").style.overflow = "visible";
         }
     }, [post_sid]);
 
@@ -103,29 +102,38 @@ function Post() {
         <Fragment>
             <FakeNav />
             <PostNav scrollDir={scrollDir} />
-
-            <div
-                className={container}
-                ref={wrap}
-                style={{ paddingTop: "4rem" }}
-            >
+            <div className={container} ref={wrap}>
+                {/* pid:{location} */}
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
                     columnClassName={my_masonry_grid_column}
                 >
-                    {rows.map((v, i, arr) => {
+                    {rows.map((v, i) => {
                         return (
-                            <Link key={i} to={`/sharing/${v.sid}`}>
+                            <a
+                                key={i}
+                                href={`/sharing/${v.sid}`}
+                                onClick={(e) => {
+                                    window.history.pushState(
+                                        {},
+                                        v.title,
+                                        `/sharing/${v.sid}`
+                                    );
+                                    e.preventDefault();
+                                    setPost_sid(v.sid);
+                                }}
+                            >
                                 <PostCard cardData={v} />
-                            </Link>
+                            </a>
                         );
                     })}
                 </Masonry>
                 {post_sid && (
-                    <PostDetail
+                    <PostDetailModel
+                        post_sid={post_sid}
+                        setPost_sid={setPost_sid}
                         windowScrollY={scrollY[1]}
-                        bodyHeight={bodyHeight.current}
                     />
                 )}
             </div>

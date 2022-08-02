@@ -1,9 +1,53 @@
 import Btn from "../../Item/Btn/Btn";
 import Tag from "../../Item/Tag/Tag";
 import "./Productinfo.scss";
+import axios from "axios";
+import { couponDataGet, sendCartPost } from "../../../config/api-path";
+import { useEffect, useState, useContext } from "react";
+import AuthContext from "../../Member/AuthContext";
 
 function Productinfo(props) {
     const { renderData, dataLoaded, productsCount, setproductsCount } = props;
+    const [couponRender, setCouponRender] = useState([]);
+
+    const Auth = useContext(AuthContext);
+
+    let CouponData = [];
+    const getCouponData = async () => {
+        return axios
+            .get(`${couponDataGet}/${renderData[0].products_sid}`)
+            .then((res) => {
+                const fetchCouponData = JSON.parse(JSON.stringify(res.data));
+                CouponData = fetchCouponData;
+            });
+    };
+
+    useEffect(() => {
+        async function couponGetFunc() {
+            // console.log("renderData", renderData);
+            if (renderData[0].products_sid) {
+                await getCouponData();
+                // console.log("CouponData", CouponData);
+                setCouponRender(CouponData);
+                // console.log("couponRender", couponRender);
+            }
+        }
+        couponGetFunc();
+    }, [dataLoaded]);
+
+    const sendCart = () => {
+        console.log("送資料~");
+        return axios
+            .post(`${sendCartPost}/${renderData[0].products_sid}`, {
+                ...renderData,
+                quantity: productsCount,
+                member: Auth ? Auth : "沒東西",
+            })
+            .then((res) => {
+                const fetchCartData = JSON.parse(JSON.stringify(res.data));
+                console.log(fetchCartData);
+            });
+    };
 
     const el = (
         <div className="productInfo">
@@ -65,6 +109,9 @@ function Productinfo(props) {
                 color={"#FFF"}
                 children={"加入購物車"}
                 style={{ marginTop: "30px" }}
+                onClick={() => {
+                    sendCart();
+                }}
             />
             <Btn
                 width={"375px"}
