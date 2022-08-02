@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import "./navBar.css";
+import "./NavBar.css";
 import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
 
 const NavBar = () => {
