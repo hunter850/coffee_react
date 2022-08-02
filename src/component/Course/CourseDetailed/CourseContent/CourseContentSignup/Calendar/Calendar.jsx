@@ -21,7 +21,7 @@ function Calendar() {
     // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
     // const [doNotSelect, setDoNotSelect] = useState(myDate);
     // 一開始未選中日期
-    const myDate = [18, 28];
+    const myDate = [1, 18];
     const [dateClcik, setDateClcik] = useState(myDate[0]);
     const dataBtnFocus = (item) => {
         setDateClcik(item);

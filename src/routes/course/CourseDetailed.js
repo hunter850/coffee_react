@@ -95,7 +95,15 @@ const CourseDetailed = () => {
                     return Number(v.course_sid) === Number(sid);
                 });
                 setCourseDataFk(newCourseDataFk);
-                // console.log(newCourseDataFk);
+                console.log(newCourseDataFk);
+                // 判斷有拿到資料才做切割 (將日期切割成需要的格式)
+                if (newCourseDataFk.length > 0) {
+                    const Date = newCourseDataFk[0].course_date.split(',');
+                    const newDate = Date.map((v, i) => {
+                        return v.split('-')[2];
+                    });
+                    // console.log(newDate);
+                }
             });
     };
 
