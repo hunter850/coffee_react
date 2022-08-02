@@ -60,7 +60,9 @@ function Member() {
                                         xmlns="http://www.w3.org/2000/svg"
                                         x="0"
                                         y="0"
-                                        fill="currentColor"
+                                        fill="white"
+                                        width="60px"
+                                        height="60px"
                                         enableBackground="new 77.2 328.8 441 185.1"
                                         version="1.1"
                                         viewBox="77.2 328.8 441 185.1"
@@ -89,6 +91,7 @@ function Member() {
                         <div className="mc-like">
                             <FaHeart size={'0.8rem'} style={{ "color": "rgb(183, 153, 115)" }} />
                             <p>收藏<span>0</span>項</p>
+                            {/* 差多少點升等，3000 10000 30000 */}
                             <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                         </div>
                         <div className="mc-coupon">
@@ -104,19 +107,23 @@ function Member() {
                                 to={authorized ? "/member/userinfo" : "/member/login"}>
                                 <div className="mc-menu">
                                     <FaUser size={'1.5em'} />
+                                    <p>會員資料</p>
                                 </div>
                             </Link>
                             <Link
                                 to={authorized ? "/member/orderhistory" : "/member/login"}>
                                 <div className="mc-menu">
                                     <IoIosListBox size={'1.7em'} />
+                                    <p>歷史訂單</p>
                                 </div>
                             </Link>
                             <div className="mc-menu">
                                 <FaPen size={'1.5em'} />
+                                <p>分享記錄</p>
                             </div>
                             <div className="mc-menu">
                                 <FaCoffee size={'1.7em'} />
+                                <p>我的點數</p>
                             </div>
                         </div>
                     </div>
