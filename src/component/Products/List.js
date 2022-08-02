@@ -3,7 +3,7 @@ import Card from "./Card";
 import "./List.scss";
 
 function List(props) {
-    const { renderData } = props;
+    const { renderData, dataLoaded } = props;
 
     return (
         <>
@@ -33,25 +33,27 @@ function List(props) {
                     </div>
                 </div>
                 <div className="card_regin">
-                    {renderData.map((v, i) => {
-                        return (
-                            <Link
-                                to={`/products/detail/${v.products_sid}`}
-                                key={v.products_sid}
-                            >
-                                <Card
-                                    cardData={{
-                                        card_tag: "純苦",
-                                        card_name: v.products_name,
-                                        card_content: v.products_info,
-                                        card_price: v.products_price,
-                                        card_sid: v.products_sid,
-                                        card_img_s: v.products_pic,
-                                    }}
-                                />
-                            </Link>
-                        );
-                    })}
+                    {dataLoaded
+                        ? renderData.map((v, i) => {
+                              return (
+                                  <Link
+                                      to={`/products/detail/${v.products_sid}`}
+                                      key={v.products_sid}
+                                  >
+                                      <Card
+                                          cardData={{
+                                              card_tag: "純苦",
+                                              card_name: v.products_name,
+                                              card_content: v.products_info,
+                                              card_price: v.products_price,
+                                              card_sid: v.products_sid,
+                                              card_img_s: v.products_pic,
+                                          }}
+                                      />
+                                  </Link>
+                              );
+                          })
+                        : ""}
                 </div>
             </div>
         </>

@@ -2,7 +2,9 @@
 import { useEffect, useState} from "react";
 import "./UserInfoMain.css";
 
-function UserList({list,isOpen,setIsOpen,userList,setUserList}) {
+import { MdError } from "react-icons/md";
+
+function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError}) {
 
     const { member_name, member_nickname, member_birthday, member_mobile, member_address, member_mail} = list;
 
@@ -55,9 +57,12 @@ function UserList({list,isOpen,setIsOpen,userList,setUserList}) {
                 <div className="ui-info-title">生日</div>
                 <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday !== null ? userList.member_birthday.split("T")[0] : "" } onChange={changeFields} />
             </div>
-            <div className="ui-info">
-                <div className="ui-info-title">手機</div>
-                <input type="text" className="ui-field" name="member_mobile" value={userList.member_mobile} onChange={changeFields} />
+            <div className="ui-info-check">
+                <div className="ui-info">
+                    <div className="ui-info-title">手機</div>
+                    <input type="text" className="ui-field" name="member_mobile" value={userList.member_mobile} onChange={changeFields} />
+                </div>
+                <p className="ed-field-err">{ mobileError!=="" ? <MdError style={{"marginTop":"2px","marginRight":"4px"}}/> : "" }{mobileError.member_mobile}</p>
             </div>
             <div className="ui-info">
                 <div className="ui-info-title">地址</div>

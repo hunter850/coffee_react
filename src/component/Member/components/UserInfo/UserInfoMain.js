@@ -12,6 +12,8 @@ import axios from "axios";
 import AuthContext from "../../AuthContext";
 
 import { AiFillPicture } from "react-icons/ai";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
@@ -22,7 +24,7 @@ function UserInfo() {
 
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [editSuccess,setEditSuccess] =useState(false);
+    const [editSuccess,setEditSuccess] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -59,9 +61,9 @@ function UserInfo() {
             })
             .then((response) => {
                 setList(response.data);
-                console.log(response.data);
+                // console.log(response.data);
                 setAvatarField(response.data[0].avatar);
-                console.log(avatarField);
+                // console.log(avatarField);
             });
     }, [avatarField,token]);
 
@@ -70,8 +72,23 @@ function UserInfo() {
     // console.log(avatar);
 
     // --------------------- 編輯會員資料 ---------------------
-    
+
+    const [edit, setEdit] = useState({
+        member_mobile: "",
+    });
+
+    const [mobileError, setMobileError] = useState('')
+    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
     const handleEditUserList = (e)=>{
+
+        if(userList.member_mobile && !mobile_re.test(userList.member_mobile)){
+            setMobileError({...mobileError, member_mobile:"手機格式錯誤"})
+            return;
+        }else{
+            setMobileError({...mobileError, member_mobile:""})
+        }
+        
         fetch(editUserData,{
                 method: "POST",
                 body: JSON.stringify(userList),
@@ -84,10 +101,10 @@ function UserInfo() {
         .then((result) => {
             console.log(result.data);
             if (result.success) {
-                alert("修改成功");
                 setUserList(result.data);
+                setEditSuccess(true);
             }else{
-                alert("編輯失敗")
+                setEditSuccess(false);
             }
         });
     }
@@ -158,21 +175,29 @@ function UserInfo() {
                     console.log(result);
                     if (result.success) {
                         alert("修改成功");
+                    }else if(result.passError){
+                        setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
+                        // alert(`${result.error}`)
                     }else{
-                        alert(`${result.error}`)
+                        setConfirmErrors({...confirmErrors,confirm_password:"新舊密碼相同"})
                     }
                 });
         } else {
-            alert("新密碼輸入錯誤")
+            setNewPassErrors({...newPassErrors,new_password:"新密碼輸入錯誤"});
+            // alert("新密碼輸入錯誤");
         }
     };
 
     // 取消的按鈕
     const navigate = useNavigate();
 
-    const cacel = (e)=>{
+    const cancel = (e)=>{
         e.preventDefault();
-        navigate("/member/userinfo");
+        navigate("/member");
+    }
+
+    const passCancel = (e)=>{
+        e.preventDefault();
         setIsOpen(false);
     }
 
@@ -194,7 +219,7 @@ function UserInfo() {
             return;
         }
         const avatarUrl = URL.createObjectURL(selectedFile);
-        console.log(avatarUrl);
+        // console.log(avatarUrl);
         setAvatarField(avatarUrl);
 
         // 當元件unmounted時清除記憶體
@@ -263,12 +288,13 @@ function UserInfo() {
                                             setUserList={setUserList}
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
+                                            mobileError={mobileError}
                                         />
                                     </div>
                                 );
                             })}
                             <div className="ui-btn-wrap">
-                                <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
+                                <button type="submit" className="ui-btn" onClick={cancel}>取消</button>
                                 <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
                         </div>
@@ -316,7 +342,7 @@ function UserInfo() {
                             </div>
                         </div>
                         <div className="ed-Pass-btn-wrap">
-                            <button type="submit" className="ui-btn" onClick={cacel}>取消</button>
+                            <button type="submit" className="ui-btn" onClick={passCancel}>取消</button>
                             <button
                                 type="submit"
                                 className="ui-btn ui-btn-active"
@@ -326,6 +352,19 @@ function UserInfo() {
                             </button>
                         </div>
                     </form>
+                </Modal.Body>
+            </Modal>
+
+            <Modal isOpen={editSuccess} setIsOpen={setEditSuccess}>
+                <Modal.Body>
+                    <div className="edit-msg-wrap">
+                        <div className="edit-msg">
+                            {
+                                editSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                            }
+                        { editSuccess ? "修改成功" : "編輯失敗" }
+                        </div>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>

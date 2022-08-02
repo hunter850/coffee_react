@@ -10,6 +10,8 @@ import "./LoginMain.css";
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle } from "react-icons/fa";
 
 import AuthContext from "../../AuthContext";
 
@@ -29,7 +31,6 @@ function LoginMain() {
 
     const welcomeWidth = useRef(null);
     const formWidth = useRef(null);
-
 
     // 掛載到頁面上執行一次
     useEffect(() => {
@@ -113,13 +114,16 @@ function LoginMain() {
             if(result.success){
                 localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
                 setAuth({...result.data, authorized: true});
+                setTimeout(() => {
+                    const SERVER = window.location.origin;
+                    window.location.href = `${SERVER}/member`;
+                }, 400);
                 setLoginSuccess(true);
             }
             setIsOpen(true);
         });
         }
     };
-
 
     // --------------------- 處理註冊 ---------------------
 
@@ -205,9 +209,25 @@ function LoginMain() {
                 <div className="particle"></div>
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                    <Modal.Body>
-                        <h1 style={{display: isLog ? "block" : "none "}}>{ loginSuccess ? "登入成功" : "請輸入正確帳密" }</h1>
-                        <h1 style={{display: isLog ? "none" : "block "}}>{ signSuccess ? "註冊成功" : "已有重複帳號" }</h1>
+                    <Modal.Body className="lg-msg-wrap">
+                        <div>
+                            <div className="lg-msg" style={{display: isLog ? "flex" : "none "}}>
+                            {
+                                loginSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                            }
+                            { loginSuccess ? "登入成功" : "請輸入正確帳密" }
+                            </div>
+                        </div>
+                        <div>
+                            <div className="lg-msg" style={{display: isLog ? "none" : "flex "}}>
+                            {
+                                loginSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                            }
+                            { signSuccess ? "註冊成功" : "已有重複帳號" }
+                            </div>
+                        </div>
+                        {/* <h1 style={{display: isLog ? "block" : "none "}}>{ loginSuccess ? "登入成功" : "請輸入正確帳密" }</h1>
+                        <h1 style={{display: isLog ? "none" : "block "}}>{ signSuccess ? "註冊成功" : "已有重複帳號" }</h1> */}
                     </Modal.Body>
                 </Modal>
             </div>

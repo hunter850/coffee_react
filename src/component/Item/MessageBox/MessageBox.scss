@@ -6,6 +6,7 @@
     border-radius: 3px;
     position: relative;
     margin: 0 auto;
+    overflow: visible;
     .MessageBox-btn-wrap {
         position: absolute;
         bottom: 3%;
@@ -22,21 +23,14 @@
     position: relative;
 }
 
-.MessageBox-title::before {
-    content: "x";
-    font-size: 1.25rem;
-    display: block;
-    width: 42px;
-    line-height: 42px;
-    color: #e3e7e7;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
+.MessageBox-title::after {
+    content: " !";
+    color: #a45959;
+    font-weight: bolder;
 }
 
 .MessageBox-txt {
-    text-align: center;
+    justify-content: center;
     width: 375px;
     margin: auto;
     display: flex;

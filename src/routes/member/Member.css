@@ -35,6 +35,67 @@ body{
     background-color: var(--gray);
     border-radius: 10px;
     margin-bottom: 60px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.flipped {
+    transform: rotateY(180deg);
+}
+.cardF{
+    position: relative;
+    width: 250px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    backface-visibility: hidden; 
+}
+.cardF-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 220px;
+    text-align: center;
+}
+.cardF-desc{
+    font-size: 8px;
+    color: var(--blue);
+    margin-top: 15px;
+}
+.cardB{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    transform: rotateY(180deg);
+    backface-visibility: hidden; 
+}
+.cardB-desc{
+    font-size: .8rem;
+    color: var(--blue);
+    margin-top: 15px;
+}
+.cardB-desc::before{
+    content:" ";
+    display:block; 
+    width: 180px;
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+}
+.cardB-level{
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.cardB-level>span{
+    margin-left: 10px;
+    letter-spacing: normal;
 }
 .mc-like, .mc-coupon{
     position: relative;

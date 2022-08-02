@@ -19,7 +19,7 @@ function LatestNews({ bagcolorblue, latesttitlecolor }) {
                     </h2>
                 </div>
                 <div>
-                    <Link to="#/">
+                    <Link to="/LatestnewsDetail">
                         <LatestTitle />
                     </Link>
                     <Link to="#/">

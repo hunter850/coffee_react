@@ -185,3 +185,28 @@ body{
     color: red;
     font-size: .8rem;
 }
+/* 提示訊息 */
+.edit-msg-wrap{
+    width: 300px;
+    height: 150px;
+}
+.edit-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 150px;
+}
+.ed-field-err{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 37px;
+    color: red;
+    font-size: .8rem;
+}
+.ui-info-check{
+    position: relative;
+}
