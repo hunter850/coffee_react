@@ -146,7 +146,7 @@ body{
     border-radius: 10px;
     box-shadow: 5px 5px 10px 0px rgb(0,0,0,0.15);
     margin-bottom: 35px;
-    padding: 41px 85px;
+    padding: 41px 75px;
     cursor: pointer;
 }
 .mc-menu:hover{
@@ -164,7 +164,12 @@ body{
     display:block;
     margin-top: 20px;
 }
-.mc-menu:nth-child(1)::after{
+.mc-menu>p{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+/* .mc-menu:nth-child(1)::after{
     content:"會員資料";
 }
 .mc-menu:nth-child(2)::after{
@@ -177,4 +182,4 @@ body{
 .mc-menu:nth-child(4)::after{
     margin-top: 15px;
     content:"我的點數";
-}
+} */

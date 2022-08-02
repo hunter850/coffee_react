@@ -13,7 +13,7 @@ function OderHistoryCard({cards}) {
                     <div className="odh-header">
                         <div className="odh-date-wrap">
                             <div className="odh-date-title">下訂日期</div>
-                            <div className="odh-date">2022年06月24日</div>
+                            <div className="odh-date">{order_time.split("-")[0]+"年"+order_time.split("-")[1]+"月"+order_time.split("-")[2].split("T")[0]+"日"}</div>
                         </div>
                         <span className="odh-id">訂單編號</span>
                         <span>{order_id}</span>
