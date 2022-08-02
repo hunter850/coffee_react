@@ -4,11 +4,25 @@ import Logo from "./Logo/Logo";
 function NavBar() {
     return (
         <header className="nav-header">
-            <nav className="container d-flex f-aic  nav-header-wrap">
+            <nav className="container  nav-header-wrap">
+                <div className="nav-menu">
+                    <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 20 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M0.714286 3.21429H19.2857C19.6802 3.21429 20 2.89451 20 2.5V0.714286C20 0.319777 19.6802 0 19.2857 0H0.714286C0.319777 0 0 0.319777 0 0.714286V2.5C0 2.89451 0.319777 3.21429 0.714286 3.21429ZM0.714286 10.3571H19.2857C19.6802 10.3571 20 10.0374 20 9.64286V7.85714C20 7.46263 19.6802 7.14286 19.2857 7.14286H0.714286C0.319777 7.14286 0 7.46263 0 7.85714V9.64286C0 10.0374 0.319777 10.3571 0.714286 10.3571ZM0.714286 17.5H19.2857C19.6802 17.5 20 17.1802 20 16.7857V15C20 14.6055 19.6802 14.2857 19.2857 14.2857H0.714286C0.319777 14.2857 0 14.6055 0 15V16.7857C0 17.1802 0.319777 17.5 0.714286 17.5Z"
+                            fill="white"
+                        />
+                    </svg>
+                </div>
                 <div className="nav-logo">
                     <Logo />
                 </div>
-                <ul className="d-flex nav-ul media-nav-display-none">
+                <ul className="nav-ul nav-media-display-none">
                     <li>
                         <Link to="/">首頁</Link>
                     </li>
@@ -76,7 +90,7 @@ function NavBar() {
                             />
                         </svg>
                     </div>
-                    <div className="media-nav-display-none">
+                    <div className="nav-media-display-none">
                         <svg
                             width="18"
                             height="20"
