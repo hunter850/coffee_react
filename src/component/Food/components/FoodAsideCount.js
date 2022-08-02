@@ -1,6 +1,6 @@
 import React from "react";
 import { icechoice, sugarchoice } from "../../../config/constant";
-function FoodAsideCount({ item, setDataFromCount }) {
+function FoodAsideCount({ item, setDataFromCount, removeItem }) {
     const {
         foodCount,
         menu_name,
@@ -36,6 +36,7 @@ function FoodAsideCount({ item, setDataFromCount }) {
                             viewBox="0 0 100 100"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            onClick={removeItem}
                         >
                             <path
                                 d="M34.375 34.375C35.2038 34.375 35.9987 34.7042 36.5847 35.2903C37.1708 35.8763 37.5 36.6712 37.5 37.5V75C37.5 75.8288 37.1708 76.6237 36.5847 77.2097C35.9987 77.7958 35.2038 78.125 34.375 78.125C33.5462 78.125 32.7513 77.7958 32.1653 77.2097C31.5792 76.6237 31.25 75.8288 31.25 75V37.5C31.25 36.6712 31.5792 35.8763 32.1653 35.2903C32.7513 34.7042 33.5462 34.375 34.375 34.375V34.375ZM50 34.375C50.8288 34.375 51.6237 34.7042 52.2097 35.2903C52.7958 35.8763 53.125 36.6712 53.125 37.5V75C53.125 75.8288 52.7958 76.6237 52.2097 77.2097C51.6237 77.7958 50.8288 78.125 50 78.125C49.1712 78.125 48.3763 77.7958 47.7903 77.2097C47.2042 76.6237 46.875 75.8288 46.875 75V37.5C46.875 36.6712 47.2042 35.8763 47.7903 35.2903C48.3763 34.7042 49.1712 34.375 50 34.375V34.375ZM68.75 37.5C68.75 36.6712 68.4208 35.8763 67.8347 35.2903C67.2487 34.7042 66.4538 34.375 65.625 34.375C64.7962 34.375 64.0013 34.7042 63.4153 35.2903C62.8292 35.8763 62.5 36.6712 62.5 37.5V75C62.5 75.8288 62.8292 76.6237 63.4153 77.2097C64.0013 77.7958 64.7962 78.125 65.625 78.125C66.4538 78.125 67.2487 77.7958 67.8347 77.2097C68.4208 76.6237 68.75 75.8288 68.75 75V37.5Z"
@@ -49,16 +50,25 @@ function FoodAsideCount({ item, setDataFromCount }) {
                             />
                         </svg>
                     </div>
-                    <p className={displaynone }>
+                    <p className={displaynone}>
                         {ice && ice1.name} / {sugar && sugar1.name}
                     </p>
                     <div className="calculate">
                         <div
                             className="minusplus"
                             onClick={() => {
-                                return foodCount > 1
-                                    ? setDataFromCount(timeID, foodCount - 1)
-                                    : false;
+                                // return foodCount > 1
+                                //     ? setDataFromCount(timeID, foodCount - 1)
+                                //     : false;
+
+                                if (foodCount > 1) {
+                                    return setDataFromCount(
+                                        timeID,
+                                        foodCount - 1
+                                    );
+                                } else {
+                                    return removeItem();
+                                }
                             }}
                         >
                             -
