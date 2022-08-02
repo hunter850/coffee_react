@@ -1,19 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { useState } from "react";
 import "./Calendar.css";
-
-// const serverDate = [
-//     {
-//         course_date: new Date(),
-//     },
-// ];
-
-// console.log(serverDate[0].course_date);
-
-const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-        arr.slice(i * size, i * size + size)
-    );
+import { chunk } from '../../../../helper/chunk';
 
 function Calendar({ date }) {
     // const [myYear, setMyYear] = useState(new Date().getFullYear());
