@@ -2,16 +2,23 @@ import Btn from "../../Item/Btn/Btn";
 import Tag from "../../Item/Tag/Tag";
 import "./Productinfo.scss";
 import axios from "axios";
-import { couponDataGet, sendCartPost } from "../../../config/api-path";
+import {
+    couponDataGet,
+    sendCartPost,
+    addUserLike,
+} from "../../../config/api-path";
 import { useEffect, useState, useContext } from "react";
 import AuthContext from "../../Member/AuthContext";
 
 function Productinfo(props) {
+    // identify zone
     const { renderData, dataLoaded, productsCount, setproductsCount } = props;
     const [couponRender, setCouponRender] = useState([]);
+    const [userLike, setUserLike] = useState([]);
 
     const Auth = useContext(AuthContext);
 
+    // axios get
     let CouponData = [];
     const getCouponData = async () => {
         return axios
@@ -22,25 +29,47 @@ function Productinfo(props) {
             });
     };
 
+    let UserLike = [];
+    const getUserLike = async () => {
+        return axios
+            .get(`${addUserLike}/${renderData[0].products_sid}`)
+            .then((res) => {
+                const fetchUserLike = JSON.parse(JSON.stringify(res.data));
+                UserLike = fetchUserLike;
+            });
+    };
+
     useEffect(() => {
         async function couponGetFunc() {
-            // console.log("renderData", renderData);
             if (renderData[0].products_sid) {
                 await getCouponData();
-                // console.log("CouponData", CouponData);
                 setCouponRender(CouponData);
-                // console.log("couponRender", couponRender);
+                await getUserLike();
+                console.log(UserLike);
+                setUserLike(UserLike);
             }
         }
         couponGetFunc();
     }, [dataLoaded]);
 
     const sendCart = () => {
-        console.log("送資料~");
+        // console.log("送資料~");
         return axios
             .post(`${sendCartPost}/${renderData[0].products_sid}`, {
                 ...renderData,
                 quantity: productsCount,
+                member: Auth ? Auth : "沒東西",
+            })
+            .then((res) => {
+                const fetchCartData = JSON.parse(JSON.stringify(res.data));
+                console.log(fetchCartData);
+            });
+    };
+
+    const addToUserLike = () => {
+        // console.log("送資料~");
+        return axios
+            .post(`${addUserLike}/${renderData[0].products_sid}`, {
                 member: Auth ? Auth : "沒東西",
             })
             .then((res) => {
@@ -113,13 +142,29 @@ function Productinfo(props) {
                     sendCart();
                 }}
             />
-            <Btn
-                width={"375px"}
-                backgroundColor={"#FCFAF7"}
-                color={"var(--BLUE)"}
-                children={"加入收藏"}
-                style={{ marginTop: "20px", marginBottom: "79px" }}
-            />
+            {/* {dataLoaded?UserLike.products_sid === renderData[0].products_sid ? (
+                <Btn
+                    width={"375px"}
+                    backgroundColor={"#FCFAF7"}
+                    color={"var(--BLUE)"}
+                    children={"加入收藏"}
+                    style={{ marginTop: "20px", marginBottom: "79px" }}
+                    onClick={() => {
+                        addToUserLike();
+                    }}
+                />
+            ) : (
+                <Btn
+                    width={"375px"}
+                    backgroundColor={"#FCFAF7"}
+                    color={"var(--BLUE)"}
+                    children={"加入收藏"}
+                    style={{ marginTop: "20px", marginBottom: "79px" }}
+                    onClick={() => {
+                        addToUserLike();
+                    }}
+                />
+            )} */}
         </div>
     );
     return el;
