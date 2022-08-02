@@ -8,8 +8,8 @@
     
 }
 
-.Cbutton  {
-    width: 186px;
+.Cbutton{
+    width: 124px;
     height: 54px;
     padding: 10px 25px;
     text-align: center;
@@ -27,8 +27,8 @@
 .Cbutton:before {
     content: "";
     background-color: rgba(255, 255, 255, 0.5);
-    /* height: 100%;
-    width: 3em; */
+    height: 100%;
+    width: 3em;
     display: block;
     position: absolute;
     top: 0;
@@ -68,16 +68,6 @@
 
 .c_p_disabled{
     filter:contrast(50%);
-}
-
-
-a{
-    text-decoration: none;
-    color: #000;
-}
-a:hover{
-    text-decoration: none;
-    color: #000;
 }
 
 /* ====================== */
@@ -235,56 +225,6 @@ p.photographer:after {
 .card2 .social ul .g {
     background-color: #212121;
 }
-
-/* ============= */
-/* .star:hover:after {
-    content: "Favorite";
-    right: -70px;
-}
-.f:hover:after {
-    content: "Share on Facebook";
-    right: -132px;
-}
-.t:hover:after {
-    content: "Share on Twitter";
-    right: -112px;
-}
-.m:hover:after {
-    content: "Share on Medium";
-    right: -122px;
-}
-.g:hover:after {
-    content: "Fork on Github";
-    right: -106px;
-}
-.star:hover:after, .f:hover:after, .t:hover:after, .m:hover:after, .g:hover:after {
-    display: inline;
-    background-color: #f06292;
-    padding: 4px 8px;
-    transition-delay: 300ms;
-    transition: 300ms;
-    color: #000;
-    position: absolute;
-    top: 0;
-    font-size: 12px;
-    font-weight: 100;
-}
-.star:hover:before, .f:hover:before, .t:hover:before, .m:hover:before, .g:hover:before {
-    display: block;
-    content: "";
-    position: absolute;
-    right: -12px;
-    width: 0;
-    height: 0;
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-right: 10px solid #f06292;
-}
-.star:after, .f:after, .t:after, .m:after, .g:after {
-    z-index: 100;
-} */
-/* ============================ */
-
 
 #myVideo {
     position: fixed;

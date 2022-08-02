@@ -9,6 +9,7 @@
     height: 310px;
     background: url(../../images/Coupon/ChatBox.png) no-repeat center center;
     background-size: cover;
+    
 }
 .react-chatbot-kit-chat-btn-send {
     width: 46px;
@@ -17,8 +18,7 @@
 .react-chatbot-kit-chat-bot-message {
     margin-left:0px;
 }
-.react-chatbot-kit-error-docs {
-}
+
 .react-chatbot-kit-chat-bot-avatar{
     display: none !important;
 }
@@ -76,7 +76,8 @@
     overflow-wrap: break-word;
     font-size: 12px;
 }
-::-webkit-scrollbar {
+
+.react-chatbot-kit-chat-message-container::-webkit-scrollbar{
     display: none !important;
 }
 
