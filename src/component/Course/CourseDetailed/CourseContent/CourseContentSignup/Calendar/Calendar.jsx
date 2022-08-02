@@ -20,7 +20,7 @@ function Calendar({ date }) {
     // const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
     // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
     // const [doNotSelect, setDoNotSelect] = useState(myDate);
-    // 一開始未選中日期
+    // 一開始未選中日期 - 可報名日期的陣列
     const myDate = date;
     const [dateClcik, setDateClcik] = useState(myDate[0]);
     const dataBtnFocus = (item) => {
