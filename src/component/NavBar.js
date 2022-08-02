@@ -2,13 +2,10 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./navBar.css";
 import coffeeLogo from "../../src/images/frontpage/0+B(白).png";
-<<<<<<< HEAD
 import memberbtnImg from "../../src/images/frontpage/member-icon.png";
 // console.log(memberbtnImg);
-=======
 import AuthContext from "./Member/AuthContext";
 
->>>>>>> e800d7786a52247701dbe4cc4e15925971797500
 const NavBar = () => {
     // 判斷是否為管理者用
     const { sid } = useContext(AuthContext);
