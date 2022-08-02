@@ -4,7 +4,7 @@ import "./UserInfoMain.css";
 
 import { MdError } from "react-icons/md";
 
-function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError}) {
+function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError,mailError,addressError}) {
 
     const { member_name, member_nickname, member_birthday, member_mobile, member_address, member_mail} = list;
 
@@ -62,15 +62,21 @@ function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError}) {
                     <div className="ui-info-title">手機</div>
                     <input type="text" className="ui-field" name="member_mobile" value={userList.member_mobile} onChange={changeFields} />
                 </div>
-                <p className="ed-field-err">{ mobileError!=="" ? <MdError style={{"marginTop":"2px","marginRight":"4px"}}/> : "" }{mobileError.member_mobile}</p>
+                <p className="ed-field-err">{ mobileError!=="" ? <MdError style={{"marginTop":"2px","marginRight":"4px"}}/> : "" }{mobileError}</p>
             </div>
-            <div className="ui-info">
-                <div className="ui-info-title">地址</div>
-                <input type="text" className="ui-field" name="member_address" value={userList.member_address} onChange={changeFields} />
+            <div className="ui-info-check">
+                <div className="ui-info">
+                    <div className="ui-info-title">地址</div>
+                    <input type="text" className="ui-field" name="member_address" value={userList.member_address} onChange={changeFields} />
+                </div>
+                <p className="ed-field-err">{ addressError!=="" ? <MdError style={{"marginTop":"2px","marginRight":"4px"}}/> : "" }{addressError}</p>
             </div>
-            <div className="ui-info">
-                <div className="ui-info-title">信箱</div>
-                <input type="text" className="ui-field" name="member_mail" value={userList.member_mail} onChange={changeFields} />
+            <div className="ui-info-check">
+                <div className="ui-info">
+                    <div className="ui-info-title">信箱</div>
+                    <input type="text" className="ui-field" name="member_mail" value={userList.member_mail} onChange={changeFields}/>
+                    <p className="ed-field-err">{ mailError!=="" ? <MdError style={{"marginTop":"2px","marginRight":"4px"}}/> : "" }{mailError}</p>
+                </div>
             </div>
         </form>
         </>

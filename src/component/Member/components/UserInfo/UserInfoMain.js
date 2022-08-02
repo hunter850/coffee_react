@@ -73,41 +73,65 @@ function UserInfo() {
 
     // --------------------- 編輯會員資料 ---------------------
 
-    const [edit, setEdit] = useState({
-        member_mobile: "",
-    });
+    // const [mobileSuccess,setMobileSuccess] = useState(false);
+    // const [mailSuccess,setMailSuccess] = useState(false);
+    // const [addressSuccess,setAddressSuccess] = useState(false);
 
-    const [mobileError, setMobileError] = useState('')
+    const [mobileError, setMobileError] = useState("")
     const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
+    const [mailError, setMailError] = useState("")
+    const mail_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+
+    const [addressError, setAddressError] = useState("")
 
     const handleEditUserList = (e)=>{
 
-        if(userList.member_mobile && !mobile_re.test(userList.member_mobile)){
-            setMobileError({...mobileError, member_mobile:"手機格式錯誤"})
-            return;
-        }else{
-            setMobileError({...mobileError, member_mobile:""})
-        }
         
-        fetch(editUserData,{
-                method: "POST",
-                body: JSON.stringify(userList),
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-        })
-        .then((r) => r.json())
-        .then((result) => {
-            console.log(result.data);
-            if (result.success) {
-                setUserList(result.data);
-                setEditSuccess(true);
-            }else{
-                setEditSuccess(false);
-            }
-        });
+        if( userList.member_mobile ==="" || !mobile_re.test(userList.member_mobile)){
+            setMobileError("手機格式錯誤");
+            return;
+            // setMobileSuccess(false);
+        }else{
+            setMobileError("");
+            // setMobileSuccess((pre)=>pre=true);
+        }
+        if( userList.member_address ===""){
+            setAddressError("地址必填");
+            return;
+            // setMobileSuccess(false);
+        }else{
+            setAddressError("");
+            // setAddressSuccess((pre)=>pre=true);
+        }
+        if( userList.member_mail ==="" || !mail_re.test(userList.member_mail)){
+            setMailError("信箱格式錯誤");
+            return;
+            // setMobileSuccess(false);
+        }else{
+            setMailError("");
+            // setMailSuccess((pre)=>pre=true);
+        }
+                fetch(editUserData,{
+                    method: "POST",
+                    body: JSON.stringify(userList),
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+            })
+            .then((r) => r.json())
+            .then((result) => {
+                console.log(result.data);
+                if (result.success) {
+                    setUserList(result.data);
+                    setEditSuccess(true);
+                }else{
+                    setEditSuccess(false);
+                }
+            });
     }
+
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -289,6 +313,8 @@ function UserInfo() {
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
                                             mobileError={mobileError}
+                                            mailError={mailError}
+                                            addressError={addressError}
                                         />
                                     </div>
                                 );

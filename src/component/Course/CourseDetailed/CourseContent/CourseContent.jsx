@@ -21,6 +21,8 @@ function CourseContent({
     setCount,
     count,
     sendOrder,
+    date,
+    time,
 }) {
     return (
         <div className="CourseContent">
@@ -44,6 +46,8 @@ function CourseContent({
                 setCount={setCount}
                 count={count}
                 sendOrder={sendOrder}
+                date={date}
+                time={time}
             />
             <CourseContentNotice
                 notice={notice}
