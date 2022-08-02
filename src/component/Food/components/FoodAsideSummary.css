@@ -1,20 +1,30 @@
 .aside {
+    display: flex;
     width: 383px;
-    height: 1500px;
-    transition: 0.3s right;
+    height: 100vh;
+    transition: 0.3s transform;
     top: 60px;
     right: 0;
+    transform: translateX(70%);
     background-color: #d4d0f1;
     position: fixed;
     border: 1px solid #000;
-    /* overflow: hidden;
-    /* background-color: #FCFAF7; */
+    color: #3e3e3e;
+    flex-direction: column;
+}
+
+.aside .wrapper {
+    overflow-y: scroll;
+}
+
+.aside:hover {
+    transform: translateX(0%);
 }
 
 .aside.hide {
-    /* transition: 0.3s right; */
-    display: none;
-    right: -383px;
+    transition: 0.3s transform;
+    /* display: none; */
+    transform: translateX(100%);
 }
 .aside .top {
     display: flex;
@@ -23,20 +33,24 @@
     padding: 0 20px;
     background-color: #fff;
     box-shadow: 0 3px 3px #ccc;
-    position: fixed;
+    /* position: fixed; */
     width: 383px;
-    height: 70px;
+    /* height: 70px; */
 }
+
 .aside .middle {
-    position: fixed;
-    bottom: 0;
-    top: 132px;
+    /* position: fixed; */
+    /* bottom: 0; */
+    display: flex;
+    /* top: 132px; */
     background-color: #fff;
     box-shadow: 0 -2px 3px #ccc;
-    padding: 0px 10px 100px 20px;
+    padding: 0px 10px 10px 10px;
     overflow-y: scroll;
     width: 383px;
-    height: auto;
+    /* height: auto; */
+    flex-direction: column;
+    flex: 6;
 }
 .aside .txt {
     margin: 10px 0;
@@ -106,12 +120,16 @@
 }
 
 .payarea {
-    position: fixed;
-    bottom: 0;
+    /* position: fixed; */
+    display: flex;
+    /* bottom: 0; */
     width: 383px;
     background-color: #fff;
     box-shadow: 0 -2px 3px #ccc;
-    padding: 20px;
+    padding: 20px 10px;
+    flex: 1;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 .aside .payarea .payarea1 {
     display: flex;
