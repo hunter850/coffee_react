@@ -15,13 +15,13 @@ const chunk = (arr, size) =>
         arr.slice(i * size, i * size + size)
     );
 
-function Calendar() {
+function Calendar({ date }) {
     // const [myYear, setMyYear] = useState(new Date().getFullYear());
     // const [myMonth, setMyMonth] = useState(new Date().getMonth() + 1);
     // const [myDate, setMyDate] = useState([14, 16, 22, 27, 5, 2, 24]);
     // const [doNotSelect, setDoNotSelect] = useState(myDate);
     // 一開始未選中日期
-    const myDate = [1, 18];
+    const myDate = date;
     const [dateClcik, setDateClcik] = useState(myDate[0]);
     const dataBtnFocus = (item) => {
         setDateClcik(item);
