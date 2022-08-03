@@ -1,5 +1,5 @@
 .home-container {
-    width: 1440px;
+    width: 100%;
     background-color: #FEFEFD;
     padding-right: 200px;
     padding-left: 200px;
@@ -18,6 +18,7 @@
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     /* font-family: 'Rubik', sans-serif; */
     color:rgba(10, 10, 10, 0.73); 
+    /* align-items: center; */
     /* text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px rgb(231, 231, 231), 3px 3px rgb(231, 231, 231); */
 
 }
@@ -28,4 +29,14 @@
 }
 .starproduct-box {
     overflow:visible;
+}
+@media screen and (max-width:400px){
+    .home-container {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .starproduct-box {
+        flex-direction: column;
+    }
 }

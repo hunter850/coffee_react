@@ -1,0 +1,14 @@
+.tagComponent {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 32px;
+}
+
+.tagP {
+  margin: 0 0 0 0;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+/*# sourceMappingURL=Tag.css.map */

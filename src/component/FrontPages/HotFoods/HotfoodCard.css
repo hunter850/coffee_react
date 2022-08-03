@@ -19,11 +19,15 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
-@media (max-width: 375px) {
+@media screen and (max-width: 376px) {
     .hotfood-container {
-        width:150px;
+       /* padding-left: 0;
+      pad */
     }
     .hotfood-circle img{
-        display: none;
+        /* display: none; */
+        width: 230px;
+        height: 230px;
+        border-radius: 100%;
     }
 }

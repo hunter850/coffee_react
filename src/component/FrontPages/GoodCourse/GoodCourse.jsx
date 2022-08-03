@@ -63,12 +63,12 @@ function GoodCourse() {
 
                 <div className="home-box">
                     <Link to="./course">
-                        <ViewmoreBtn Vbpaddingtop={500} transform={920} />
+                        <ViewmoreBtn Vbpaddingtop={500} transform={0} />
                     </Link>
                 </div>
             </div>
 
-            <Link to="#top">
+            <Link to="#top" width="200px">
                 <div className="pagetop-wrap">
                     <div className="pagetop-btn">
                         <img src={topArrow} width="24px" height="24px" alt="" />

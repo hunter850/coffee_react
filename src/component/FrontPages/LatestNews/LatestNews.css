@@ -19,3 +19,9 @@
 .home-box-color {
     background-color: #324A59;
 }
+@media screen and (max-width:400px) {
+    .home-box-color {
+        padding: 0px;
+    }
+    
+}
