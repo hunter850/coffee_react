@@ -140,6 +140,19 @@ function NavBar({ navPosition = 'fixed' }) {
                     <li>
                         <Link to="/reserve">訂位</Link>
                     </li>
+                    {/* 後台權限預製 */}
+                    {/* <li>
+                        <Link
+                            to={
+                                Number(sid) === 43
+                                    ? "/course/manage"
+                                    : `/course`
+                            }
+                            style={{ color: "white" }}
+                        >
+                            課程
+                        </Link>
+                    </li> */}
                     <li>
                         <Link to="/course">課程</Link>
                     </li>
