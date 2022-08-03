@@ -2,9 +2,10 @@ import NavBar from "../../component/NavBar";
 import "./css/GetCoupon.css";
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";
-import { useState, useRef, useEffect,useContext } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import { useNavigate } from 'react-router-dom';
+// ====
+import { useNavigate } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
 import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
@@ -15,8 +16,8 @@ import "../../component/Bot/Bot.css";
 
 function Getcoupon() {
     const { token } = useAuth();
+    // ========
     let navigate = useNavigate();
-    //const { authorized, token } = useContext(AuthContext);
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
 
@@ -73,7 +74,7 @@ function Getcoupon() {
             body: JSON.stringify(),
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
             },
         })
             .then((r) => r.json())
