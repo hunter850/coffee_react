@@ -53,6 +53,7 @@
     transform: translateX(100px) translateY(-200px);
 }
 .pagetop-wrap {
+    width: 200px;
     margin: auto;
     margin-bottom: 30px;
 }
@@ -64,5 +65,5 @@
     text-align: center;
 }
 .home-box {
-    width: 1100px;
+    /* width: 1100px; */
 }

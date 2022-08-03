@@ -221,7 +221,7 @@ function LoginMain() {
                         <div>
                             <div className="lg-msg" style={{display: isLog ? "none" : "flex "}}>
                             {
-                                loginSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
+                                signSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
                             }
                             { signSuccess ? "註冊成功" : "已有重複帳號" }
                             </div>

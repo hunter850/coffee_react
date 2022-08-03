@@ -1,0 +1,31 @@
+.products_list {
+  width: 100%;
+  margin-top: 66px;
+}
+
+.products_list h3 {
+  margin-bottom: 54px;
+}
+
+.products_list .list_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.products_list .list_title svg {
+  width: 36px;
+  margin-left: 8px;
+}
+
+.products_list .card_regin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+/*# sourceMappingURL=List.css.map */

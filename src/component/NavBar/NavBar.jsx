@@ -3,9 +3,14 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AuthContext from '../Member/AuthContext';
 
-function NavBar() {
+function NavBar({ navPosition = 'fixed' }) {
+    const { sid, name } = useContext(AuthContext);
+    console.log(name);
+
+    console.log(useContext(AuthContext));
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
     // 判斷RWD
@@ -41,9 +46,35 @@ function NavBar() {
             }
         });
     }, [windowsWidth, mediaS]);
+    // 未登錄顯示icon
+    const memberIcon = (<div className="nav-media-display-none">
+        <Link to="/member/login">
+            <svg
+                width="18"
+                height="20"
+                viewBox="0 0 18 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M9 10C11.7617 10 14 7.76172 14 5C14 2.23828 11.7617 0 9 0C6.23828 0 4 2.23828 4 5C4 7.76172 6.23828 10 9 10ZM12.5 11.25H11.8477C10.9805 11.6484 10.0156 11.875 9 11.875C7.98438 11.875 7.02344 11.6484 6.15234 11.25H5.5C2.60156 11.25 0.25 13.6016 0.25 16.5V18.125C0.25 19.1602 1.08984 20 2.125 20H15.875C16.9102 20 17.75 19.1602 17.75 18.125V16.5C17.75 13.6016 15.3984 11.25 12.5 11.25Z"
+                    fill="white"
+                />
+            </svg>
+        </Link>
+    </div>);
+    // 登入顯示打招呼
+    const memberName = (
+        <Link to="/member">
+            <div className="member-name">
+                您好! <span >{name}</span>
+            </div>
+        </Link>
+    );
+
 
     return (
-        <header className="nav-header">
+        <header className="nav-header" style={{ position: navPosition }}>
             <nav className="container  nav-header-wrap" >
                 <div className="nav-menu">
                     <svg
@@ -60,7 +91,9 @@ function NavBar() {
                     </svg>
                 </div>
                 <div className="nav-logo">
-                    <Logo mediaS={mediaS} />
+                    <Link to="/">
+                        <Logo mediaS={mediaS} />
+                    </Link>
                 </div>
                 <ul className="nav-ul nav-media-display-none">
                     <li>
@@ -74,6 +107,9 @@ function NavBar() {
                     </li>
                     <li>
                         <Link to="/food">點餐</Link>
+                    </li>
+                    <li>
+                        <Link to="/reserve">訂位</Link>
                     </li>
                     <li>
                         <Link to="/course">課程</Link>
@@ -141,22 +177,7 @@ function NavBar() {
                             </svg>
                         </Link>
                     </div>
-                    <div className="nav-media-display-none">
-                        <Link to="/member/login">
-                            <svg
-                                width="18"
-                                height="20"
-                                viewBox="0 0 18 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M9 10C11.7617 10 14 7.76172 14 5C14 2.23828 11.7617 0 9 0C6.23828 0 4 2.23828 4 5C4 7.76172 6.23828 10 9 10ZM12.5 11.25H11.8477C10.9805 11.6484 10.0156 11.875 9 11.875C7.98438 11.875 7.02344 11.6484 6.15234 11.25H5.5C2.60156 11.25 0.25 13.6016 0.25 16.5V18.125C0.25 19.1602 1.08984 20 2.125 20H15.875C16.9102 20 17.75 19.1602 17.75 18.125V16.5C17.75 13.6016 15.3984 11.25 12.5 11.25Z"
-                                    fill="white"
-                                />
-                            </svg>
-                        </Link>
-                    </div>
+                    {sid !== '' ? memberName : memberIcon}
                 </div>
             </nav>
         </header>

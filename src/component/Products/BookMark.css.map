@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACf,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,IAAI;CAInB;;AATD,AAMI,kBANc,CAMd,EAAE,CAAC;EACC,YAAY,EAAE,IAAI;CACrB",
+    "sources": [
+        "BookMark.scss"
+    ],
+    "names": [],
+    "file": "BookMark.css"
+}

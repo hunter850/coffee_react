@@ -1,0 +1,25 @@
+.detailBtm {
+  background: url(../../../images/products/line_deco.png) repeat-x left top;
+  background-size: 30px auto;
+  padding-top: 80px;
+}
+
+.detailBtm .productsSpec {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.detailBtm .productsSpec h3 {
+  margin-right: 30px;
+}
+
+.detailBtm .productsSpec div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border: 1px solid var(--BLUE);
+  border-radius: 10px;
+  padding: 27px 22px;
+}
+/*# sourceMappingURL=DetailBtm.css.map */

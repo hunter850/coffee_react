@@ -7,6 +7,7 @@ import AuthContext from "../../component/Member/AuthContext";
 import { getUserData } from "../../config/api-path";
 import axios from "axios";
 
+import Modal from "../../component/Modal/Modal";
 import NavBar from "../../component/NavBar";
 import "./Member.css";
 
@@ -21,6 +22,7 @@ import { FaAngleRight } from "react-icons/fa";
 function Member() {
 
     const { authorized, token } = useContext(AuthContext);
+    const [isOpen, setIsOpen] = useState(false);
 
     const myCard = useRef();
 
@@ -31,6 +33,12 @@ function Member() {
     const [getData, setGetData] = useState([]);
 
     useEffect(() => {
+
+        if (!token) {
+            setIsOpen(true);
+            return;
+        }
+
         axios
             .get(getUserData, {
                 headers: {
@@ -134,6 +142,14 @@ function Member() {
                     </div>
                 </div>
             </div>
+
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
+                    <Modal.Body className="mr-msg-wrap">
+                        <div>
+                            <div className="mr-msg" onClick={()=>{window.location.href =`${window.location.origin}/member/login`}}>請先登入</div>
+                        </div>
+                    </Modal.Body>
+                </Modal>
         </Fragment>
     );
 }

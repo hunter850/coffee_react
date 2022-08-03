@@ -1,3 +1,6 @@
+*{
+    outline: 1px solid red;
+}
 .view-more-text {
     width: 100px;
     color: black;
@@ -7,15 +10,16 @@
 }
 .view-more-text:hover {
     color: #324A59;
-    /* color: #B79973; */
 }
 
 .view-more-link {
     width: 100%;
-    transform:translateX(50%);
+    padding-left: 45%;
+    /* transform:translateX(50%); */
 }
 
 .arrow-icon-right {
+    width: 50px;
     position: relative;
     top:-35px;
     left:95px;

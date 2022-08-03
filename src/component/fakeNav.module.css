@@ -1,0 +1,79 @@
+.header_style {
+  width: 100%;
+  background-color: var(--BLUE);
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  top: 0px;
+  z-index: 999;
+}
+
+.nav_wrap {
+  height: 60px;
+  background-color: var(--BLUE);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+}
+
+.nav_link > a {
+  padding: 0px 6px;
+  line-height: 60px;
+}
+
+.nav_text {
+  color: white;
+}
+
+.game_list {
+  position: relative;
+}
+
+.game_list button {
+  padding: 0px 6px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: white;
+  line-height: 60px;
+}
+
+.game_list a {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  padding: 6px 10px;
+}
+
+.game_ul li {
+  border: 1px solid black;
+}
+
+.member_list {
+  position: relative;
+}
+
+.member_list button {
+  padding: 0px 6px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 60px;
+}
+
+.member_list a {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  padding: 6px 10px;
+}
+
+.member_ul li {
+  border: 1px solid black;
+}
+/*# sourceMappingURL=fakeNav.module.css.map */
