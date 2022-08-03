@@ -3,7 +3,7 @@ import Header from "../../component/Products/Header";
 // import Sort from "../../component/Course/Sort/Sort";
 import Path from "../../component/Item/Path/Path";
 import FakeNav from "../../component/FakeNav";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import BookMark from "../../component/Products/BookMark";
 import List from "../../component/Products/List";
 import axios from "axios";
@@ -73,7 +73,7 @@ function Products() {
     const el = (
         <Fragment>
             <div className="Course-container">
-                <FakeNav />
+                <NavBar />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
                 // searchInp={searchInp}
