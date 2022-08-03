@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import { Fragment, useState, useEffect } from "react";
-import FakeNav from "../../component/FakeNav";
+import NavBar from "../../component/NavBar/NavBar";
 import ManageHeader from "../../component/Course/CourseManage/ManageHeader/ManageHeader";
 import List from "../../component/Course/CourseManage/List/List";
 import Sort from "../../component/Course/Sort/Sort";
@@ -128,7 +128,7 @@ const CourseManage = () => {
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
-                    <FakeNav />
+                    <NavBar />
                     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} style={{ overflow: "visible" }}>
                         <Modal.Body style={{ padding: '0' }}>
                             <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />

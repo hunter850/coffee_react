@@ -33,9 +33,9 @@ export const getPosts = `${SERVER}/sharing/post`;
 // Products
 
 export const productsDataGet = `${SERVER}/products/api`;
-export const couponDataGet = `${SERVER}/products/api/coupon`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
+export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;
