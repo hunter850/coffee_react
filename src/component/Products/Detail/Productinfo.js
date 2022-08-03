@@ -9,6 +9,8 @@ import {
 } from "../../../config/api-path";
 import { useEffect, useContext, useState } from "react";
 import AuthContext from "../../Member/AuthContext";
+import Modal from "../../Modal/Modal";
+import { Link } from "react-router-dom";
 
 function Productinfo(props) {
     // identify zone
@@ -18,6 +20,7 @@ function Productinfo(props) {
     const [infoLoaded, setInfoLoaded] = useState(false);
     const [checkLike, setCheckLike] = useState(false);
     const [btnContext, setBtnContext] = useState("未加入收藏");
+    const [isOpen, setIsOpen] = useState(false);
 
     const Auth = useContext(AuthContext);
 
@@ -129,22 +132,24 @@ function Productinfo(props) {
             ></p>
             <ul className="tagArea">
                 <li>
-                    <Tag
-                        tagContext={
-                            dataLoaded
-                                ? `${renderData[0].products_name} 8折`
-                                : ""
-                        }
-                        tagBgc={"#b79973"}
-                        tagPaddingX={"15px"}
-                    />
+                    <Link to="/getcoupon">
+                        <Tag
+                            tagContext={"遊戲拿優惠"}
+                            tagBgc={"#b79973"}
+                            tagPaddingX={"15px"}
+                            divClassName={"getgame"}
+                        />
+                    </Link>
                 </li>
                 <li>
-                    <Tag
-                        tagContext={"積分換優惠"}
-                        tagBgc={"#b79973"}
-                        tagPaddingX={"15px"}
-                    />
+                    <Link to="/member">
+                        <Tag
+                            tagContext={"積分換優惠"}
+                            tagBgc={"#b79973"}
+                            tagPaddingX={"15px"}
+                            divClassName={"getscore"}
+                        />
+                    </Link>
                 </li>
             </ul>
             <h5>${dataLoaded ? renderData[0].products_price : ""}元</h5>
@@ -182,7 +187,12 @@ function Productinfo(props) {
                 children={"加入購物車"}
                 style={{ marginTop: "30px" }}
                 onClick={() => {
-                    sendCart();
+                    if (Auth.authorized) {
+                        sendCart();
+                    } else {
+                        setIsOpen(true);
+                        // alert("請先登入會員");
+                    }
                 }}
             />
             {infoLoaded ? (
@@ -193,18 +203,36 @@ function Productinfo(props) {
                     children={btnContext}
                     style={{ marginTop: "20px", marginBottom: "79px" }}
                     onClick={() => {
-                        if (checkLike) {
-                            console.log("要刪除");
-                            delUserLike();
+                        if (Auth.authorized) {
+                            if (checkLike) {
+                                console.log("要刪除");
+                                delUserLike();
+                            } else {
+                                console.log("要加入");
+                                sendUserLike();
+                            }
                         } else {
-                            console.log("要加入");
-                            sendUserLike();
+                            // alert("請先登入會員");
+                            console.log(Auth);
+                            setIsOpen(true);
                         }
                     }}
                 />
             ) : (
                 ""
             )}
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
         </div>
     );
     return el;

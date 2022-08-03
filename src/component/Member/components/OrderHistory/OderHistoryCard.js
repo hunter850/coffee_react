@@ -8,7 +8,7 @@ function OderHistoryCard({cards}) {
     console.log(order_sid);
     return (
         <>
-            <Link to="/member/orderhistory/detail">
+            <Link to={`/member/orderhistory/detail/${order_sid}`}>
                 <div className="odh-info">
                     <div className="odh-header">
                         <div className="odh-date-wrap">

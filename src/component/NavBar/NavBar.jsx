@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
@@ -7,6 +8,10 @@ import { useState, useEffect } from "react";
 function NavBar() {
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
+    // 判斷RWD
+    const [mediaS, setMediaS] = useState(false);
+    // 取得視窗寬度
+    const [windowsWidth, setWindowsWidth] = useState(window.innerWidth);
 
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
@@ -18,11 +23,24 @@ function NavBar() {
         }
     };
 
+    // 取消下拉選單顯示
     useEffect(() => {
         window.addEventListener('click', () => {
             setNavDropDown('');
         });
     }, [navDropDown]);
+
+    // 判斷時機點不太對,所以邏輯相反<=375正常要是true
+    useEffect(() => {
+        setWindowsWidth(window.innerWidth);
+        window.addEventListener('resize', () => {
+            if (windowsWidth <= 375) {
+                setMediaS(false);
+            } else {
+                setMediaS(true);
+            }
+        });
+    }, [windowsWidth, mediaS]);
 
     return (
         <header className="nav-header">
@@ -42,7 +60,7 @@ function NavBar() {
                     </svg>
                 </div>
                 <div className="nav-logo">
-                    <Logo />
+                    <Logo mediaS={mediaS} />
                 </div>
                 <ul className="nav-ul nav-media-display-none">
                     <li>
