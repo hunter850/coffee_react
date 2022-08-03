@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import Path from "../../component/Item/Path/Path";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import DetailPage from "../../component/Products/Detail/DetailPage";
 import axios from "axios";
 import { productsDataGet } from "../../config/api-path";
@@ -13,7 +13,7 @@ function ProductsDetail() {
     const [renderData, setRenderData] = useState([]);
     const [dataRows, setDataRows] = useState({});
     const [dataLoaded, setDataLoaded] = useState(false);
-    const [productsCount, setproductsCount] = useState(1);
+    const [productsCount, setProductsCount] = useState(1);
 
     const getProductsData = () => {
         return axios.get(productsDataGet).then((res) => {
@@ -22,11 +22,13 @@ function ProductsDetail() {
             setRenderData(productsData.rows);
             setDataRows(productsData);
 
-            const nowData = productsData.rows.filter((v, i) => {
+            const nowData = productsData.totalData.filter((v, i) => {
                 return +v.products_sid === +products_sid;
             });
             setRenderData(nowData);
             setDataLoaded(true);
+            console.log("data_check", res.data);
+            console.log("renderData", nowData);
         });
     };
 
@@ -52,11 +54,13 @@ function ProductsDetail() {
     //----------------------------------------------------------
 
     useEffect(() => {
+        // console.log("products_sid params", products_sid);
         async function fetchFunc() {
             await getProductsData();
         }
         fetchFunc();
-    }, []);
+        console.log("data", renderData);
+    }, [dataLoaded]);
 
     const el = (
         <Fragment>
@@ -79,7 +83,7 @@ function ProductsDetail() {
                         renderData={renderData}
                         dataLoaded={dataLoaded}
                         productsCount={productsCount}
-                        setproductsCount={setproductsCount}
+                        setProductsCount={setProductsCount}
                     />
                 </div>
             </div>

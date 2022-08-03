@@ -113,3 +113,40 @@ body{
     font-size: 0.85rem;
     margin-right: 50px;
 }
+/* 提示訊息 */
+.or-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.or-msg-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 250px;
+}
+.or-msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.or-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 45px;
+    border-radius: 3px;
+    color: var(--cream);
+    border: none;
+    background-color: var(--blue);
+    margin: 0 20px 50px 20px;
+    cursor: pointer;
+}

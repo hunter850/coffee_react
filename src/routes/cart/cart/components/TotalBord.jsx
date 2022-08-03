@@ -1,11 +1,14 @@
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState, useEffect } from "react";
 import useData from "../../../../hooks/useData";
+import useGSAPCompute from "../../../../hooks/useGSAPCompute";
 
 function TotalBord() {
     // 現在是商品或餐點
     const [nowList] = useData("nowList");
     // 取得產品列表
     const [list] = useData(nowList);
+    // 數字跳動
+    const [tween, setTween] = useState({ count: 0 });
     // 根據nowList取得useData要用的字串
     const [nowCouponType, selectedCouponType] =
         nowList === "productList"
@@ -57,6 +60,12 @@ function TotalBord() {
                 (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
+
+    const compute = useGSAPCompute();
+    useEffect(() => {
+        compute({ total: totalPrice - discount }, tween, setTween);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [totalPrice, discount]);
     return (
         <Fragment>
             <div>
@@ -71,6 +80,7 @@ function TotalBord() {
                 <div>
                     <p>結算金額</p>
                     <p>{totalPrice - discount} 元</p>
+                    <p>tween: {parseInt(tween.total)} 元</p>
                     <button>確認</button>
                 </div>
             </div>

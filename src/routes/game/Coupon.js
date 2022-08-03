@@ -173,7 +173,7 @@ function Coupon() {
                                 type === 2 ? "active" : " "
                             }`}
                         >
-                            已使用或過期
+                            已逾期
                         </Link>
                     </div>
                 </div>

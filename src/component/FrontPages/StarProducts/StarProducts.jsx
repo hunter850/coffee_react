@@ -1,14 +1,3 @@
-// import React from "react";
-
-// function StarProducts() {
-//     return (
-//         <>
-//             <h2>推薦商品</h2>
-//         </>
-//     );
-// }
-
-// export default StarProducts;
 import { Fragment } from "react";
 // import StarCard from "./StarCard";
 import Card from "../../Products/Card";
@@ -22,7 +11,7 @@ function StarProducts() {
                 <div className="bottom-line m-auto">
                     <h2 className="home-title">推薦商品</h2>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex starproduct-box">
                     <Link to="/products/detail/1">
                         <Card
                             cardData={{
@@ -75,7 +64,7 @@ function StarProducts() {
                             }}
                         />
                     </Link>
-                    {/* <Link to="#/">
+                    <Link to="#/">
                         <Card
                             cardData={{
                                 card_tag: "純苦",
@@ -87,7 +76,7 @@ function StarProducts() {
                                 card_img_s: "bag-09-01.jpg",
                             }}
                         />
-                    </Link> */}
+                    </Link>
                 </div>
             </div>
         </Fragment>

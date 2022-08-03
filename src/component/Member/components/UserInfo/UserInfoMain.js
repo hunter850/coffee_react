@@ -25,6 +25,7 @@ function UserInfo() {
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [editSuccess,setEditSuccess] = useState(false);
+    const [avatarFaild,setAvatarFaild] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -73,23 +74,40 @@ function UserInfo() {
 
     // --------------------- 編輯會員資料 ---------------------
 
-    const [edit, setEdit] = useState({
-        member_mobile: "",
-    });
-
-    const [mobileError, setMobileError] = useState('')
+    const [mobileError, setMobileError] = useState("")
     const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+
+    const [mailError, setMailError] = useState("")
+    const mail_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+
+    const [addressError, setAddressError] = useState("")
 
     const handleEditUserList = (e)=>{
 
-        if(userList.member_mobile && !mobile_re.test(userList.member_mobile)){
-            setMobileError({...mobileError, member_mobile:"手機格式錯誤"})
-            return;
-        }else{
-            setMobileError({...mobileError, member_mobile:""})
-        }
+        let isPass = true;
+
         
-        fetch(editUserData,{
+        if( userList.member_mobile ==="" || !mobile_re.test(userList.member_mobile)){
+            setMobileError("手機格式錯誤");
+            isPass = false;
+        }else{
+            setMobileError("");
+        }
+        if( userList.member_address ===""){
+            setAddressError("地址必填");
+            isPass = false;
+        }else{
+            setAddressError("");
+        }
+        if( userList.member_mail ==="" || !mail_re.test(userList.member_mail)){
+            setMailError("信箱格式錯誤");
+            isPass = false;
+        }else{
+            setMailError("");
+        }
+        if(isPass){
+
+            fetch(editUserData,{
                 method: "POST",
                 body: JSON.stringify(userList),
                 headers: {
@@ -103,11 +121,17 @@ function UserInfo() {
             if (result.success) {
                 setUserList(result.data);
                 setEditSuccess(true);
+                setTimeout(() => {
+                    const SERVER = window.location.origin;
+                    window.location.href = `${SERVER}/member`;
+                }, 300);
             }else{
                 setEditSuccess(false);
             }
         });
+        }
     }
+
 
     // --------------------- 拿到變更密碼欄位的值 ---------------------
 
@@ -174,7 +198,14 @@ function UserInfo() {
                 .then((result) => {
                     console.log(result);
                     if (result.success) {
-                        alert("修改成功");
+
+                        setIsOpen(false);
+                        setEditSuccess(true);
+                        setTimeout(() => {
+                            const SERVER = window.location.origin;
+                            window.location.href = `${SERVER}/member`;
+                        }, 300);
+
                     }else if(result.passError){
                         setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
                         // alert(`${result.error}`)
@@ -184,7 +215,6 @@ function UserInfo() {
                 });
         } else {
             setNewPassErrors({...newPassErrors,new_password:"新密碼輸入錯誤"});
-            // alert("新密碼輸入錯誤");
         }
     };
 
@@ -254,7 +284,10 @@ function UserInfo() {
             })
                 .then((r) => r.json())
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
+                    if(!result.success){
+                        setAvatarFaild(true);
+                    }
                 });
         }
     }, [selectedFile]);
@@ -289,6 +322,8 @@ function UserInfo() {
                                             isOpen={isOpen}
                                             setIsOpen={setIsOpen}
                                             mobileError={mobileError}
+                                            mailError={mailError}
+                                            addressError={addressError}
                                         />
                                     </div>
                                 );
@@ -307,37 +342,45 @@ function UserInfo() {
                     <form name="editPassword" className="editPassword">
                         <div className="ed-Pass-h1">修改您的密碼</div>
                         <div className="ed-Pass-wrap">
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請輸入舊密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="member_password"
-                                    value={editPass.member_password}
-                                    onChange={editPassword}
-                                />
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請輸入舊密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="member_password"
+                                        value={editPass.member_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{passErrors.member_password}</p>
                             </div>
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請輸入新密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="new_password"
-                                    value={editPass.new_password}
-                                    onChange={editPassword}
-                                />
+
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請輸入新密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="new_password"
+                                        value={editPass.new_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{newPassErrors.new_password}</p>
                             </div>
-                            <div className="ed-Pass">
-                                <label className="ed-Pass-title">請確認新密碼</label>
-                                <input
-                                    type="text"
-                                    className="ed-Pass-field"
-                                    name="confirm_password"
-                                    value={editPass.confirm_password}
-                                    onChange={editPassword}
-                                />
+
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請確認新密碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="confirm_password"
+                                        value={editPass.confirm_password}
+                                        onChange={editPassword}
+                                    />
+                                </div>
                                 <p className="ed-Pass-field-err">{confirmErrors.confirm_password}</p>
                             </div>
                         </div>
@@ -364,6 +407,14 @@ function UserInfo() {
                             }
                         { editSuccess ? "修改成功" : "編輯失敗" }
                         </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
+            <Modal isOpen={avatarFaild} setIsOpen={setAvatarFaild}>
+                <Modal.Body>
+                    <div className="edit-msg-wrap">
+                        <div className="edit-msg"><FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>頭貼沒有編輯</div>
                     </div>
                 </Modal.Body>
             </Modal>

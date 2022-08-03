@@ -10,13 +10,6 @@
     background: url(../../../images/Coupon/GameBG.png) no-repeat center center;
     background-size: cover;
 }
-
-/* a, a:visited {
-    color: rgb(86, 148, 240);
-    text-decoration: none;
-} */
-
-
 .subTitle {
     font-size: 12px;
     font-size: max(12px, 1.2vw);

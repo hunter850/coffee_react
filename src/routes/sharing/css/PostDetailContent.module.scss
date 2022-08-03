@@ -1,0 +1,69 @@
+
+
+.author{
+    display: flex;
+    margin-bottom: .25rem;
+    .avatar_wrap{
+        margin-right: 1rem;
+        width: 42px;
+        height: 42px;
+        border-radius: 42px;
+        overflow: hidden;
+    
+        >img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
+        .nickname{
+            line-height: 1.2rem;
+            // font-family: "Kosugi Maru","Noto Sans TC",sans-serif;
+        }
+        .grey_span{
+            color: #787878;
+            font-size: 12px;
+            // line-height: .5rem;
+        }
+    }
+}
+
+.post_content{
+    overflow-x: hidden;
+    overflow-y: auto;
+    .content_title{
+        color: #324A59;
+        // font-family: "Kosugi Maru","Noto Sans TC",sans-serif;
+    }
+}
+
+.msg_wrap{
+    position:absolute;
+    background-color: #fff;
+    width: 100%;
+    padding: .5rem 1rem;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    grid-row-start: 2;/*欄位從第二條橫線開始*/
+    grid-row-end: 3;/*欄位從第三條橫線結束*/
+    // height: 2rem;
+    
+    .msg_bar{
+        flex: 1 0 0;
+        border: 1px solid #DAD8D6;
+        border-radius: 3px;
+        outline: none;
+    }
+
+    .msg_submit{
+        cursor: pointer;
+        color: #324A59;
+        text-align: center;
+        line-height: 2rem;
+    }
+}

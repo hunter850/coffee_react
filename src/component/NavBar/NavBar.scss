@@ -1,0 +1,94 @@
+.nav-header {
+    background-color: #253945;
+    .nav-header-wrap {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .nav-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: block;
+            }
+        }
+    }
+    nav {
+        @media (max-width: 768px) {
+            .nav-logo {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-menu {
+                padding-left: 1px;
+            }
+        }
+        .nav-ul {
+            height: 60px;
+            align-items: center;
+            display: flex;
+            .nav-logo {
+                cursor: pointer;
+            }
+            li {
+                padding: 0 17.5px 0 17.5px;
+                a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
+                }
+                .nav-game-ul,
+                .nav-member-ul {
+                    text-align: center;
+                    position: absolute;
+                    z-index: 9999;
+                    background-color: #253945;
+                    left: -20px;
+                    top: 42px;
+                    white-space: nowrap;
+                    border-radius: 0 0 3px 3px;
+                    min-width: 105px;
+                    li {
+                        font-size: 0.625rem;
+                        padding: 12px 0;
+                    }
+                }
+                .nav-display-none {
+                    display: none;
+                }
+            }
+            .nav-game-li,
+            .nav-member-li {
+                position: relative;
+                .member-a,
+                .game-a {
+                    pointer-events: none;
+                }
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-media-display-none {
+                display: none;
+            }
+        }
+        div {
+            div {
+                cursor: pointer;
+            }
+            .cart-icon {
+                margin-right: 35px;
+            }
+            @media (max-width: 768px) {
+                .cart-icon {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .nav-header {
+        height: 65px;
+    }
+}
