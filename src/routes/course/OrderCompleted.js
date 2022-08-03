@@ -35,7 +35,7 @@ function OrderCompleted() {
 
     return (
         <>
-            <NavBar />
+            <NavBar navPosition={"static"} />
             <div className="container">
                 <div className="printer-top"></div>
 
