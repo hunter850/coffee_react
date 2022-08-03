@@ -65,9 +65,11 @@ function NavBar({ navPosition = 'fixed' }) {
     </div>);
     // 登入顯示打招呼
     const memberName = (
-        <div className="member-name">
-            您好! <span >{name}</span>
-        </div>
+        <Link to="/member">
+            <div className="member-name">
+                您好! <span >{name}</span>
+            </div>
+        </Link>
     );
 
 
