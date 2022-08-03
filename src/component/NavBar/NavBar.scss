@@ -51,6 +51,7 @@
                     white-space: nowrap;
                     border-radius: 0 0 3px 3px;
                     min-width: 105px;
+                    animation: opacity 0.5s linear;
                     li {
                         font-size: 0.625rem;
                         padding: 12px 0;
@@ -80,6 +81,10 @@
             }
             .cart-icon {
                 margin-right: 35px;
+                line-height: 60px;
+            }
+            .member-icon {
+                line-height: 60px;
             }
             @media (max-width: 768px) {
                 .cart-icon {
@@ -89,6 +94,8 @@
             .member-name {
                 font-size: 0.9rem;
                 color: #fff;
+                height: 100%;
+                line-height: 60px;
                 span {
                     font-size: 0.9rem;
                     color: #b79973;
@@ -97,8 +104,41 @@
         }
     }
 }
-@media (max-width: 768px) {
-    .nav-header {
-        height: 65px;
+
+.nav-sign-out-ul {
+    position: relative;
+    li {
+        animation: opacity 0.5s linear;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: center;
+        z-index: 9999;
+        background-color: #253945;
+        white-space: nowrap;
+        border-radius: 0 0 3px 3px;
+        min-width: 105px;
+        font-size: 0.9rem;
+        padding: 12px 0;
     }
+    .signout-display-none {
+        display: none;
+    }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.nav-solid-border-bottom {
+    border-bottom: 1px solid transparent;
+    width: 100%;
+    display: block;
+    margin-bottom: 59px;
 }
