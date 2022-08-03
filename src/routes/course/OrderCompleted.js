@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./OrderCompleted.scss";
-import FakeNav from "../../component/FakeNav";
+import NavBar from "../../component/NavBar/NavBar";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ function OrderCompleted() {
 
     return (
         <>
-            <FakeNav />
+            <NavBar />
             <div className="container">
                 <div className="printer-top"></div>
 

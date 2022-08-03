@@ -1,12 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OderHistoryCard from "./OderHistoryCard";
 import { getOrderHistory } from "../../../../config/api-path";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import AuthContext from "../../AuthContext";
+
+import Modal from "../../../Modal/Modal";
+
+import { RiFilePaper2Fill } from "react-icons/ri";
+import { FaShoppingCart } from "react-icons/fa";
 
 function OrderHistoryMain() {
+
+    const { token } = useContext(AuthContext);
+    const [isOpen, setIsOpen] = useState(false);
+
     // const [cards, setCards] = useState({
     //     order_sid: "",
     //     order_time: "",
@@ -34,14 +44,29 @@ function OrderHistoryMain() {
     const [cards, setCards] = useState([]);
 
     const getData = async () => {
-        const response = await axios.get(getOrderHistory);
+        const response = await axios.get(getOrderHistory, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
+        if(!response.data.length){
+            console.log(1);
+            setIsOpen(true);
+
+        }
         setCards(response.data);
     };
 
     useEffect(() => {
         getData();
     }, []);
+
+    // 跳轉到商品頁
+    const toProduct = () => {
+        const SERVER = window.location.origin;
+        window.location.href = `${SERVER}/products`;
+    }
 
     return (
         <>
@@ -65,6 +90,18 @@ function OrderHistoryMain() {
                     </div>
                 </div>
             </div>
+
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Modal.Body style={{ padding : "0"}}>
+                {/* <IoMdClose size={'2rem'}/> */}
+                    <div className="or-wrap">
+                        <div className="or-msg-wrap">
+                            <div className="or-msg"><RiFilePaper2Fill size={'2.5rem'} style={{display:"block",marginBottom:"40px"}}/>您尚未建立歷史訂單</div>
+                        </div>
+                        <button type="submit" className="or-btn" onClick={toProduct}><FaShoppingCart size={'.9rem'} style={{marginRight:"10px"}}/>至商品頁購買</button>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     );
 }
