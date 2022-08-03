@@ -1,7 +1,22 @@
+/* eslint-disable prettier/prettier */
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
+import { useEffect, useState } from "react";
 function NavBar() {
+    const [navDropDown, setNavDropDown] = useState("");
+    console.log(navDropDown);
+
+    const handleDropDown = (nav) => {
+        console.log(nav === navDropDown);
+        if (nav === navDropDown) {
+            setNavDropDown('');
+        } else {
+            setNavDropDown(nav);
+        }
+
+    };
+
     return (
         <header className="nav-header">
             <nav className="container  nav-header-wrap">
@@ -41,25 +56,33 @@ function NavBar() {
                     <li>
                         <Link to="/sharing">分享牆</Link>
                     </li>
-                    {/* <li><Link to="/game">遊戲</Link></li> */}
-                    <li style={{ cursor: "pointer" }}>
-                        <a href="/#" style={{ pointerEvents: "none" }}>
-                            遊戲
-                        </a>
-                        {/* <ul>
+                    <li
+                        style={{ cursor: "pointer" }}
+                        className="nav-game-li"
+                        onClick={() => handleDropDown("game")}
+                    >
+                        <a href="/#" className="game-a">遊戲</a>
+                        <ul
+                            className={`nav-game-ul ${navDropDown === "game" ? "" : "nav-display-none"
+                                }`}
+                        >
                             <li>
                                 <Link to="/getpoint">獲得積分</Link>
                             </li>
                             <li>
                                 <Link to="/getcoupon">獲得優惠券</Link>
                             </li>
-                        </ul> */}
+                        </ul>
                     </li>
-                    <li style={{ cursor: "pointer" }}>
-                        <a href="/#" style={{ pointerEvents: "none" }}>
-                            會員
-                        </a>
-                        {/* <ul className="memberUl">
+                    <li
+                        style={{ cursor: "pointer" }}
+                        className="nav-member-li"
+                        onClick={() => handleDropDown("member")}
+                    >
+                        <a href="/#" className="member-a">會員</a>
+                        <ul
+                            className={`nav-member-ul  ${navDropDown === "member" ? "" : "nav-display-none"}`}
+                        >
                             <li>
                                 <Link to="/member">會員中心</Link>
                             </li>
@@ -69,7 +92,7 @@ function NavBar() {
                             <li>
                                 <Link to="/coupon">我的優惠卷</Link>
                             </li>
-                        </ul> */}
+                        </ul>
                     </li>
                     <li>
                         <Link to="/cart">購物車</Link>
@@ -110,4 +133,4 @@ function NavBar() {
     );
 }
 
-export default NavBar;
+export default NavBar;;
