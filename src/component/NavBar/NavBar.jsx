@@ -78,6 +78,9 @@ function NavBar() {
                         <Link to="/food">點餐</Link>
                     </li>
                     <li>
+                        <Link to="/reserve">訂位</Link>
+                    </li>
+                    <li>
                         <Link to="/course">課程</Link>
                     </li>
                     <li>
