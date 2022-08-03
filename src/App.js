@@ -96,7 +96,7 @@ const App = () => {
                                 element={<OrderHistory />}
                             />
                             <Route
-                                path="/member/orderhistory/detail"
+                                path="/member/orderhistory/detail/:sid"
                                 element={<OrderHistoryDetail />}
                             />
                             <Route path="/points" element={<Points />} />
