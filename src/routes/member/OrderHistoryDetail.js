@@ -1,5 +1,5 @@
 import OrderHistoryDetailMain from "../../component/Member/components/OrderHistoryDetail/OrderHistoryDetailMain";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 
 function OrderHistoryDetail() {
     return (
