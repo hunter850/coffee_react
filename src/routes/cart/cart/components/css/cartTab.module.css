@@ -1,0 +1,32 @@
+.cart_container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1440px;
+  margin: 48px auto 0px;
+  background-color: var(--CREAM);
+  outline: 1px solid red;
+}
+
+.list_wrap {
+  width: 71.63%;
+}
+
+.total_wrap {
+  width: 25%;
+}
+
+.modal_body {
+  padding: 24px 36px;
+}
+
+@media (max-width: 1200px) {
+  .cart_container p, .cart_container span {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=cartTab.module.css.map */

@@ -1,0 +1,18 @@
+.products_Bookmark {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 54px;
+}
+
+.products_Bookmark li {
+  margin-right: 40px;
+}
+/*# sourceMappingURL=BookMark.css.map */

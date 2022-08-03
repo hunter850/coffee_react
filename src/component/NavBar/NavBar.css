@@ -1,0 +1,122 @@
+.nav-header {
+  background-color: #253945;
+}
+
+.nav-header .nav-header-wrap {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav-header .nav-header-wrap .nav-menu {
+  display: none;
+}
+
+@media (max-width: 375px) {
+  .nav-header .nav-header-wrap .nav-menu {
+    display: block;
+  }
+}
+
+@media (max-width: 375px) {
+  .nav-header nav .nav-logo {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-header nav .nav-menu {
+    padding-left: 1px;
+  }
+}
+
+.nav-header nav .nav-ul {
+  height: 60px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav-header nav .nav-ul .nav-logo {
+  cursor: pointer;
+}
+
+.nav-header nav .nav-ul li {
+  padding: 0 17.5px 0 17.5px;
+}
+
+.nav-header nav .nav-ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
+}
+
+.nav-header nav .nav-ul li .nav-game-ul,
+.nav-header nav .nav-ul li .nav-member-ul {
+  text-align: center;
+  position: absolute;
+  z-index: 9999;
+  background-color: #253945;
+  left: -20px;
+  top: 42px;
+  white-space: nowrap;
+  border-radius: 0 0 3px 3px;
+  min-width: 105px;
+}
+
+.nav-header nav .nav-ul li .nav-game-ul li,
+.nav-header nav .nav-ul li .nav-member-ul li {
+  font-size: 0.625rem;
+  padding: 12px 0;
+}
+
+.nav-header nav .nav-ul li .nav-display-none {
+  display: none;
+}
+
+.nav-header nav .nav-ul .nav-game-li,
+.nav-header nav .nav-ul .nav-member-li {
+  position: relative;
+}
+
+.nav-header nav .nav-ul .nav-game-li .member-a,
+.nav-header nav .nav-ul .nav-game-li .game-a,
+.nav-header nav .nav-ul .nav-member-li .member-a,
+.nav-header nav .nav-ul .nav-member-li .game-a {
+  pointer-events: none;
+}
+
+@media (max-width: 375px) {
+  .nav-header nav .nav-media-display-none {
+    display: none;
+  }
+}
+
+.nav-header nav div div {
+  cursor: pointer;
+}
+
+.nav-header nav div .cart-icon {
+  margin-right: 35px;
+}
+
+@media (max-width: 375px) {
+  .nav-header nav div .cart-icon {
+    margin: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .nav-header {
+    height: 65px;
+  }
+}
+/*# sourceMappingURL=NavBar.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,gBAAgB,EAAE,OAAO;EACzB,OAAO,EAAE,SAAS;EAClB,aAAa,EAAE,IAAI;CAItB;;AAPD,AAII,WAJO,CAIP,UAAU,CAAC;EACP,OAAO,EAAE,IAAI;CAChB",
+    "sources": [
+        "DetailPage.scss"
+    ],
+    "names": [],
+    "file": "DetailPage.css"
+}
