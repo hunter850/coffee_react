@@ -1,4 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import { useNavigate } from 'react-router-dom';
 import NavBar from "../../component/NavBar";
 import React from "react";
 import "./css/Getpoint.css";
@@ -14,6 +16,8 @@ import "react-chatbot-kit/build/main.css";
 import "../../component/Bot/Bot.css";
 // =======================
 function Getpoint() {
+    const { token } = useAuth();
+    let navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
@@ -53,6 +57,11 @@ function Getpoint() {
             );
         } else {
             setChatBot(null);
+        }
+        if (!token) {
+            alert("請先登入");
+            navigate("/member/login");
+            return;
         }
         CheckPoint();
     }, [botOpen]);
