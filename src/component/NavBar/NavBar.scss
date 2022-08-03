@@ -8,14 +8,14 @@
         .nav-menu {
             display: none;
         }
-        @media (max-width: 375px) {
+        @media (max-width: 768px) {
             .nav-menu {
                 display: block;
             }
         }
     }
     nav {
-        @media (max-width: 375px) {
+        @media (max-width: 768px) {
             .nav-logo {
                 width: 100%;
                 text-align: center;
@@ -67,7 +67,7 @@
                 }
             }
         }
-        @media (max-width: 375px) {
+        @media (max-width: 768px) {
             .nav-media-display-none {
                 display: none;
             }
@@ -79,7 +79,7 @@
             .cart-icon {
                 margin-right: 35px;
             }
-            @media (max-width: 375px) {
+            @media (max-width: 768px) {
                 .cart-icon {
                     margin: 0;
                 }
@@ -87,7 +87,7 @@
         }
     }
 }
-@media (max-width: 375px) {
+@media (max-width: 768px) {
     .nav-header {
         height: 65px;
     }
