@@ -1,0 +1,28 @@
+.foodadd {
+  width: 42px;
+  height: 32px;
+  background-color: #b79973;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 3px;
+  color: #ffffff;
+}
+
+.foodadd:hover {
+  background-color: #b3803e;
+}
+
+@media (max-width: 375px) {
+  .foodadd {
+    margin: 0 0;
+  }
+}
+/*# sourceMappingURL=FoodAdd.css.map */

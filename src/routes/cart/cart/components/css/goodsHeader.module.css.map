@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,QAAQ;CACpB;;AAED,AAAA,YAAY,CAAC;EACT,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,WAAW;CACrB",
+    "sources": [
+        "goodsHeader.module.scss"
+    ],
+    "names": [],
+    "file": "goodsHeader.module.css"
+}

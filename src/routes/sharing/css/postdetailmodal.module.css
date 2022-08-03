@@ -1,0 +1,64 @@
+.post_detail_wrap {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 999;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(25, 25, 25, 0.8);
+  padding: 1px;
+}
+
+.post_detail_wrap .post_detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 10px;
+  width: 1066px;
+  height: 820px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.post_detail_wrap .post_detail .post_detail_carousel {
+  width: 57.7%;
+  height: 100%;
+  background-color: rgba(25, 25, 25, 0.9);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.post_detail_wrap .post_detail .post_detail_content {
+  padding: 1rem;
+  width: 42.3%;
+  background-color: #fcfaf7;
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .post_detail_wrap .post_detail {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 13/10;
+  }
+}
+
+@media (max-width: 768px) {
+  .post_detail_wrap .post_detail {
+    width: 90%;
+    height: 90%;
+  }
+}
+/*# sourceMappingURL=postdetailmodal.module.css.map */
