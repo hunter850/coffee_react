@@ -60,7 +60,9 @@ function NavBar() {
                     </svg>
                 </div>
                 <div className="nav-logo">
-                    <Logo mediaS={mediaS} />
+                    <Link to="/">
+                        <Logo mediaS={mediaS} />
+                    </Link>
                 </div>
                 <ul className="nav-ul nav-media-display-none">
                     <li>
