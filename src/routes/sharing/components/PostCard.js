@@ -15,16 +15,6 @@ function PostCard({ cardData }) {
         hi,
     } = styles;
 
-    //     "tags": [
-    //         {
-    //             "sid": 2,
-    //             "post_sid": 1,
-    //             "tag_sid": 2,
-    //             "name": "拉花",
-    //             "times": 8
-    //         },
-    //     ]
-
     const {
         sid,
         title,

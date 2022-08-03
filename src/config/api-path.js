@@ -26,6 +26,7 @@ export const linePayApi = `${SERVER}/course/createOrder`;
 // FOOD
 export const foodDataGet = `${SERVER}/food`;
 export const mapAPI = `${SERVER}/mapapi`;
+export const foodData = `${SERVER}/food/addfooddata`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/post`;
@@ -33,9 +34,9 @@ export const getPosts = `${SERVER}/sharing/post`;
 // Products
 
 export const productsDataGet = `${SERVER}/products/api`;
-export const couponDataGet = `${SERVER}/products/api/coupon`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
+export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;

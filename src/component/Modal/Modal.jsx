@@ -9,6 +9,7 @@ import cssStyles from "./modal.module.scss";
 
 function Modal(props) {
     const {
+        bgClassName = "",
         children,
         isOpen,
         setIsOpen,
@@ -78,7 +79,7 @@ function Modal(props) {
         <div
             style={modalBackground}
             onClick={closeHandler}
-            className={modal_bg}
+            className={c(modal_bg, bgClassName)}
         >
             <div
                 style={modalBord}

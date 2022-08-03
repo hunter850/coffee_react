@@ -16,20 +16,9 @@
 
 @media (max-width: 375px) {
     .filterbutton {
-        width: 100px;
+        width: auto;
         height: 44px;
-        padding: 30px 10px;
-        border-radius: 3px;
-        font-size: 13px;
-        background-color: #253945;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        font-size: 11px;
         margin: 10px;
-  display: flex;
-    }
-    .filterbutton:hover {
-        background-color: #3d595b;
     }
 }

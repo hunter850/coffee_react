@@ -2,8 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import FakeNav from "../../component/FakeNav";
+import { useParams, Link } from "react-router-dom";
+import NavBar from "../../component/NavBar/NavBar";
 import Path from "../../component/Item/Path/Path";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import Banner from "../../component/Course/CourseDetailed/Banner/Banner";
@@ -11,15 +11,19 @@ import CoursePath from "../../component/Course/CourseDetailed/CoursePath/CourseP
 import CourseContent from "../../component/Course/CourseDetailed/CourseContent/CourseContent";
 import axios from "axios";
 import { courseDataGet, linePayApi, courseDataFkGet } from "../../config/api-path";
+import Modal from "../../component/Modal/Modal";
 
 
 const CourseDetailed = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     // 每一個區塊離top多遠的狀態
     const [object, setObject] = useState(0);
     const [material, setMaterial] = useState(0);
     const [signup, setSignup] = useState(0);
     const [notice, setNotice] = useState(0);
     const [item, setItem] = useState(0);
+
     // 儲存Line Pay跳轉url
     const [url, setUrl] = useState('');
 
@@ -60,36 +64,41 @@ const CourseDetailed = () => {
     };
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
-    const sendOrder = () => {
-        if (start === true) {
-            const { course_name, course_price } = courseDetailedData[0];
-            // 發送客戶的訂單資訊給Line Pay (會先到後端加密)
-            const orders = {
-                amount: course_price * count,
-                currency: 'TWD',
-                packages: [
-                    {
-                        id: sid,
-                        amount: course_price * count,
-                        products: [
-                            {
-                                name: course_name,
-                                quantity: count,
-                                price: course_price,
-                            }
-                        ]
-                    }
-                ],
-                orderId: sid
-            };
-            axios({
-                method: 'post',
-                url: `${linePayApi}/${JSON.stringify(orders)}`,
-            })
-                .then((res) => {
-                    // console.log(res.data);
-                    setUrl(res.data);
-                });
+    const sendOrder = (membersid) => {
+        console.log(membersid);
+        if (membersid !== '') {
+            if (start === true) {
+                const { course_name, course_price } = courseDetailedData[0];
+                // 發送客戶的訂單資訊給Line Pay (會先到後端加密)
+                const orders = {
+                    amount: course_price * count,
+                    currency: 'TWD',
+                    packages: [
+                        {
+                            id: sid,
+                            amount: course_price * count,
+                            products: [
+                                {
+                                    name: course_name,
+                                    quantity: count,
+                                    price: course_price,
+                                }
+                            ]
+                        }
+                    ],
+                    orderId: sid
+                };
+                axios({
+                    method: 'post',
+                    url: `${linePayApi}/${JSON.stringify(orders)}`,
+                })
+                    .then((res) => {
+                        // console.log(res.data);
+                        setUrl(res.data);
+                    });
+            }
+        } else {
+            setIsOpen(true);
         }
     };
 
@@ -157,7 +166,7 @@ const CourseDetailed = () => {
     const el = (
         <Fragment>
             <div className="CourseDetailed-container">
-                <FakeNav />
+                <NavBar />
                 <Path
                     pathObj={{
                         path: [
@@ -178,6 +187,18 @@ const CourseDetailed = () => {
                     <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} date={date} time={time} />
                 </div>
             </div>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>;
         </Fragment>
     );
 

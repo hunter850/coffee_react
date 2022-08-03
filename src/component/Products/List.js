@@ -48,6 +48,8 @@ function List(props) {
                                               card_price: v.products_price,
                                               card_sid: v.products_sid,
                                               card_img_s: v.products_pic,
+                                              card_img_file:
+                                                  v.products_with_products_categories_sid,
                                           }}
                                       />
                                   </Link>

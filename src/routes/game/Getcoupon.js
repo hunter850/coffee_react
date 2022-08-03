@@ -2,8 +2,9 @@ import NavBar from "../../component/NavBar";
 import "./css/GetCoupon.css";
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";
-import { useState, useRef, useEffect } from "react";
-//import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect,useContext } from "react";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import { useNavigate } from 'react-router-dom';
 import Modal from "../../component/Modal/Modal";
 import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
@@ -13,8 +14,9 @@ import "react-chatbot-kit/build/main.css";
 import "../../component/Bot/Bot.css";
 
 function Getcoupon() {
-    //const { auth, setAuth } = props
-    //const navigate = useNavigate()
+    const { token } = useAuth();
+    let navigate = useNavigate();
+    //const { authorized, token } = useContext(AuthContext);
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
 
@@ -71,6 +73,7 @@ function Getcoupon() {
             body: JSON.stringify(),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
         })
             .then((r) => r.json())
@@ -117,6 +120,7 @@ function Getcoupon() {
             body: JSON.stringify(),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
         })
             .then((r) => r.json())
@@ -186,6 +190,11 @@ function Getcoupon() {
             );
         } else {
             setChatBot(null);
+        }
+        if (!token) {
+            alert("請先登入");
+            navigate("/member/login");
+            return;
         }
     }, [botOpen]);
     return (
