@@ -230,7 +230,7 @@ function Productinfo(props) {
                         padding: "40px",
                     }}
                 >
-                    <h4>請先登入會員</h4>
+                    <h4>請先登入</h4>
                 </Link>
             </Modal>
         </div>
