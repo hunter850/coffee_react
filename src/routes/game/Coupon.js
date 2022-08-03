@@ -1,10 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
+import { useAuth } from "../../component/Member/AuthContextProvider";
 import NavBar from "../../component/NavBar";
 import "./css/Coupon.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";
-// import image from "../../images/Coupon/41_Card_01.JPG";
 import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
@@ -13,13 +13,12 @@ import "react-chatbot-kit/build/main.css";
 import "../../component/Bot/Bot.css";
 
 function Coupon() {
+    const { token } = useAuth();
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
     let location = useLocation();
     const [CouponList, setCouponList] = useState(null);
-
     const [searchParams] = useSearchParams();
-    // console.log(searchParams.get("type"));
     let type = parseInt(searchParams.get("type"));
     if (isNaN(type)) {
         type = 1;
@@ -27,9 +26,12 @@ function Coupon() {
 
     const Coupon_foruser = async () => {
         await axios
-            .get("http://localhost:3500/Coupon_foruser/API")
+            .get("http://localhost:3500/Coupon_foruser/API", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((result) => {
-                //console.log(result);
                 setCouponList(
                     <>
                         {result.data.rows2.map((v, i) => {
