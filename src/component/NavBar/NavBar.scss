@@ -1,4 +1,7 @@
 .nav-header {
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
     background-color: #253945;
     .nav-header-wrap {
         height: 100%;
