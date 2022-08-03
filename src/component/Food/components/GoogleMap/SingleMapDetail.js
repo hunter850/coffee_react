@@ -6,23 +6,76 @@ import "./GoogleMap.scss";
 
 const shops_dummy = [
     {
-        key: "shop_1",
-        lat: 25.062318,
-        lng: 121.541489,
-        title: "光復店",
-        icon: "/food/coffee1.png",
-        address1: "光復南路500號",
-        address2: "大安區 台北市 106台灣",
+        store_sid: 1,
+        key: 1,
+        store_name: "0+B 光復店",
+        store_road: "光復南路300號",
+        store_block: "大安區, 台北市, 106台灣",
+        lat: 25.03962792542701,
+        lng: 121.55742720101652,
     },
     {
-        key: "shop_2",
-        lat: 25.052318,
-        lng: 121.541389,
-        title: "大安店",
-        icon: "/food/coffee1.png",
-        address1: "光復南路300號",
-        address2: "大安區 台北市 106台灣",
-        // image:require('icons/map_icons/map_icon_std_orange.svg')
+        store_sid: 2,
+        key: 2,
+        store_name: "0+B 光復店",
+        store_road: "復興南路一段323號",
+        store_block: "大安區, 台北市, 106台灣",
+        lat: 25.034320914178288,
+        lng: 121.54372226899777,
+    },
+    {
+        store_sid: 3,
+        key: 3,
+        store_name: "0+B 龍門店",
+        store_road: "忠孝東路四段134號",
+        store_block: "大安區, 台北市, 106台灣",
+        lat: 25.041947238558986,
+        lng: 121.54824003860637,
+    },
+    {
+        store_sid: 4,
+        key: 4,
+        store_name: "0+B 永康店",
+        store_road: "永康街2號2樓",
+        store_block: "大安區, 台北市, 106台灣",
+        lat: 25.03475717724878,
+        lng: 121.52959140047166,
+    },
+    {
+        store_sid: 5,
+        key: 5,
+        store_name: "0+B 敦和店",
+        store_road: "敦化南路二段263號",
+        store_block: "大安區, 台北市, 106台灣",
+        lat: 25.027059214520953,
+        lng: 121.54864470715766,
+    },
+    {
+        store_sid: 6,
+        key: 6,
+        store_name: "0+B 微風南京店",
+        store_road: "南京東路三段337號",
+        store_block: "松山區, 台北市, 106台灣",
+        lat: 25.05377904290978,
+        lng: 121.54832427510259,
+    },
+    {
+        store_sid: 7,
+        key: 7,
+        store_name: "0+B 南京建國店",
+        store_road: "南京東路三段1號",
+        store_block: "中山區, 台北市, 106台灣",
+        lat: 25.054012307531703,
+        lng: 121.53708045485325,
+    },
+    {
+        store_sid: 8,
+        key: 8,
+        store_name: "0+B 南京三民店",
+        store_road: "南京東路五段171號",
+        store_block: "松山區, 台北市, 106台灣",
+        lat: 25.05323475716153,
+        lng: 121.56325881561968,
     },
 ];
 
@@ -49,17 +102,28 @@ const SingleMapDetail = (props) => {
     const [mapApiLoaded, setMapApiLoaded] = useState(false);
     const [mapInstance, setMapInstance] = useState(null);
     const { setStoreInfo, storeInfo } = props;
-    const { title, address1, address2 } = storeInfo;
-    const initialState = { title: "", address2: "", address1: "" };
+    const { store_name, store_road, store_block, store_sid } = storeInfo;
+    const initialState = { store_name: "", store_block: "", store_road: "" };
     // 預設位置
 
-    const ShopMarker = ({ icon, title, address2, address1 }) => (
+    const ShopMarker = ({
+        icon,
+        store_name,
+        store_block,
+        store_road,
+        store_sid,
+    }) => (
         <div>
             <img
                 src={icon}
                 alt="coffee"
                 onClick={() => {
-                    setStoreInfo({ title, address2, address1 });
+                    setStoreInfo({
+                        store_name,
+                        store_block,
+                        store_road,
+                        store_sid,
+                    });
                 }}
             />
         </div>
@@ -77,6 +141,16 @@ const SingleMapDetail = (props) => {
             });
         });
     }, []);
+
+    // const service = new props.maps.DistanceMatrixService();
+    // service.getDistanceMatrix({
+    //     origins: [myPosition],
+    //     destinations: shops_dummy,
+    //     travelMode: "WALKING", // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
+    //     unitSystem: props.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
+    //     avoidHighways: true, // 是否避開高速公路
+    //     avoidTolls: true, // 是否避開收費路線
+    // });
 
     // const SingleMapDetail = (props) => {
     //     const [apiFromSql, setApiFromSql] = useState([]);
@@ -114,15 +188,15 @@ const SingleMapDetail = (props) => {
         setMapApiLoaded(true);
     };
 
-    const handleCenterChange = () => {
-        if (mapApiLoaded) {
-            setMyPosition({
-                // center.lat() 與 center.lng() 會回傳正中心的經緯度
-                lat: mapInstance.center.lat(),
-                lng: mapInstance.center.lng(),
-            });
-        }
-    };
+    // const handleCenterChange = () => {
+    //     if (mapApiLoaded) {
+    //         setMyPosition({
+    //             // center.lat() 與 center.lng() 會回傳正中心的經緯度
+    //             lat: mapInstance.center.lat(),
+    //             lng: mapInstance.center.lng(),
+    //         });
+    //     }
+    // };
 
     // 搜尋
     const findLocation = () => {
@@ -149,12 +223,12 @@ const SingleMapDetail = (props) => {
             </div> */}
             <GoogleMapReact
                 bootstrapURLKeys={{
-                    key: "請輸入googlemap的key",
+                    key: "AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM",
 
                     // 請輸入googlemap的key  ""
                     libraries: ["places"], // 要在這邊放入我們要使用的 API
                 }}
-                onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
+                // onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
                 defaultCenter={props.center}
                 center={myPosition}
                 defaultZoom={props.zoom}
@@ -164,10 +238,10 @@ const SingleMapDetail = (props) => {
                 <MyPositionMarker
                     lat={myPosition.lat}
                     lng={myPosition.lng}
-                    text="My Position"
+                    text="我在這"
                 />
                 {shops.map((shop) => (
-                    <ShopMarker {...shop} />
+                    <ShopMarker {...shop} icon="/food/coffee1.png" />
                 ))}
 
                 {/* 使用 map 方法渲染 */}
@@ -186,10 +260,10 @@ const SingleMapDetail = (props) => {
 
             {/* <input/> */}
             <div className="mapshow">
-                <h6>{title}</h6>
+                <h6>{store_name}</h6>
                 <p className="txt">
-                    {address2}
-                    {address1}
+                    {store_block}
+                    {store_road}
                 </p>
             </div>
         </div>

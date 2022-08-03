@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState, useRef, useMemo } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";

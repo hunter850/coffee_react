@@ -37,13 +37,15 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
             ],
         },
     ];
+
     return (
         <>
             <div className="time-lightbox">
                 <div className="detail1">
                     <div className="top">
                         <h6>選擇自取時段</h6>
-                        <div className="close"
+                        <div
+                            className="close"
                             onClick={() => {
                                 // setShowDate(false);
                             }}
@@ -86,10 +88,14 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
                                 setInputDate(e.target.value);
                             }}
                         >
-                            {dateGet.map(({ id, timeperiod }) => {
+                            {dateGet.map(({ id, timeperiod }, i) => {
                                 return (
-                                    <option key={`dateGet${id}`}>
-                                        {timeperiod}
+                                    <option
+                                        key={`dateGet${id}`}
+                                        value={`2022-0${month}-0${date + i}`}
+                                    >
+                                        {/* {timeperiod} */}
+                                        {`${month}月${date + i}日`}
                                     </option>
                                 );
                             })}

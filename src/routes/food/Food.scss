@@ -28,7 +28,9 @@
             justify-content: center;
 
             .filterbtn-area {
-                display: flex;
+                // display: flex;
+                width: auto;
+                width: 100%;
                 margin: 0 0;
             overflow-x: scroll;
             }

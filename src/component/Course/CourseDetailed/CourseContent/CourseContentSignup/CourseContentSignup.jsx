@@ -2,12 +2,12 @@
 /* eslint-disable prettier/prettier */
 import "./CourseContentSignup.css";
 import { useState } from "react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
 import Calendar from './Calendar/Calendar';
+import AuthContext from "../../../../Member/AuthContext";
 
 
 function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder, date, time }) {
-
     const signupScrollTop = useRef();
     useEffect(() => {
         if (topZeroSure === true) {
@@ -17,6 +17,8 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
         }
     }, [topZeroSure]);
 
+    const { sid } = useContext(AuthContext);
+    console.log(sid);
     // 控制選單收合
     const [displayNone, setdisplayNone] = useState(false);
     // 時段按鈕高亮控制
@@ -138,7 +140,7 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                 </div>
                             </div>
                             <div>
-                                <button className="courseSignUpBtnRwd" onClick={() => sendOrder()}>
+                                <button className="courseSignUpBtnRwd" onClick={() => sendOrder(sid)}>
                                     報名課程
                                 </button>
                             </div>

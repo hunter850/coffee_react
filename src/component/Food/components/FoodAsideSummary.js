@@ -1,6 +1,9 @@
 import "./FoodAsideSummary.css";
 import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
+import axios from "axios";
+import { useEffect } from "react";
+import { foodData } from "../../../config/api-path";
 
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
 function FoodAsideSummary({
@@ -21,8 +24,29 @@ function FoodAsideSummary({
             accumulator + menu_price_m * foodCount,
         0
     );
+    console.log("dataFromFoodDetail", dataFromFoodDetail);
+    const { store_name, store_block, store_road, store_sid } = selectedAddress;
 
-    const { title, address2, address1 } = selectedAddress;
+    const standardTime = dataFromDate + " " + dataFromDateTime + ":00";
+
+    const handleSubmission = (e) => {
+        e.preventDefault();
+
+        axios({
+            method: "post",
+            url: foodData,
+            data: {
+                dataFromFoodDetail,
+                standardTime,
+                store_sid,
+            },
+            "content-type": "application/json",
+        }).then((response) => {
+            console.log(response);
+        });
+    };
+    // "content-type": "application/json",
+
     return (
         <>
             <div className={asideClass}>
@@ -93,9 +117,9 @@ function FoodAsideSummary({
                             </h6>
                         </div>
                         <div className="edit">
-                            <p>來拎+B{title}</p>
+                            <p>{store_name}</p>
                             <p className="bottom">
-                                {address1} {address2}
+                                {store_road} {store_block}
                             </p>
                         </div>
                     </div>
@@ -157,7 +181,9 @@ function FoodAsideSummary({
                         <p className="finaltotal">合計</p>
                         <p>${totalPrice}</p>
                     </div>
-                    <div className="pay">去結帳</div>
+                    <div className="pay" onClick={(e) => handleSubmission(e)}>
+                        去結帳
+                    </div>
                 </div>
                 {/* </div> */}
             </div>

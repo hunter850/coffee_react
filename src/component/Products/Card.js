@@ -3,15 +3,21 @@ import { React } from "react";
 import "./Card.css";
 
 function Card({ cardData }) {
-    const { card_tag, card_name, card_content, card_price, card_img_s } =
-        cardData;
+    const {
+        card_tag,
+        card_name,
+        card_content,
+        card_price,
+        card_img_s,
+        card_img_file,
+    } = cardData;
 
     return (
         <div className="card_card">
             <div
                 className="card_card_top"
                 style={{
-                    background: `url(http://localhost:3500/images/products/1/${card_img_s}) no-repeat center center`,
+                    background: `url(http://localhost:3500/images/products/${card_img_file}/${card_img_s}) no-repeat center center`,
                     backgroundSize: "cover",
                 }}
             >
@@ -19,7 +25,16 @@ function Card({ cardData }) {
             </div>
             <div className="card_card_down">
                 <div className="card_card_txt">
-                    <p style={{ fontWeight: "bolder" }}>{card_name}</p>
+                    <p
+                        style={{
+                            fontWeight: "bolder",
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {card_name}
+                    </p>
                     <p className="font-min" style={{ color: "#898787" }}>
                         {card_content}
                     </p>
