@@ -25,6 +25,7 @@ function UserInfo() {
     const [list, setList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [editSuccess,setEditSuccess] = useState(false);
+    const [avatarFaild,setAvatarFaild] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -283,7 +284,10 @@ function UserInfo() {
             })
                 .then((r) => r.json())
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
+                    if(!result.success){
+                        setAvatarFaild(true);
+                    }
                 });
         }
     }, [selectedFile]);
@@ -403,6 +407,14 @@ function UserInfo() {
                             }
                         { editSuccess ? "修改成功" : "編輯失敗" }
                         </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
+            <Modal isOpen={avatarFaild} setIsOpen={setAvatarFaild}>
+                <Modal.Body>
+                    <div className="edit-msg-wrap">
+                        <div className="edit-msg"><FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>頭貼沒有編輯</div>
                     </div>
                 </Modal.Body>
             </Modal>
