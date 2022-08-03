@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import CancelBtn from "./CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 
-function PostDetailModal({ post_sid, setPost_sid, windowScrollY }) {
+function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
     const {
         post_detail_wrap,
         post_detail,
