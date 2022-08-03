@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useState, useEffect } from "react";
-import NavBar from "../../component/NavBar";
+import { Fragment, useState, useEffect, useContext } from "react";
+// import NavBar from "../../component/NavBar";
+// import AuthContext from "../../component/Member/AuthContext";
 import React from "react";
 import "./Food.scss";
 import Filterbutton from "../../component/Food/components/FilterButton";
@@ -28,6 +29,11 @@ const menuFiliter = [
 ];
 
 function Food() {
+    // 判斷是否為管理者用
+    // const { sid } = useContext(AuthContext);
+    // console.log(sid);
+    // =============================================
+
     // 從sql拿資料--------------------------------------------------------
     const [food, setFood] = useState([]);
 

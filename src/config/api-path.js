@@ -26,6 +26,7 @@ export const linePayApi = `${SERVER}/course/createOrder`;
 // FOOD
 export const foodDataGet = `${SERVER}/food`;
 export const mapAPI = `${SERVER}/mapapi`;
+export const foodData = `${SERVER}/food/addfooddata`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/post`;
