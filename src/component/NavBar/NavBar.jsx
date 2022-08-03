@@ -2,11 +2,12 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 function NavBar() {
+    // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
-    console.log(navDropDown);
 
+    // 控制下拉選單顯示
     const handleDropDown = (nav) => {
         console.log(nav === navDropDown);
         if (nav === navDropDown) {
@@ -14,7 +15,6 @@ function NavBar() {
         } else {
             setNavDropDown(nav);
         }
-
     };
 
     return (
