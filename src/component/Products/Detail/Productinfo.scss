@@ -7,6 +7,28 @@
         display: flex;
         li {
             margin-right: 10px;
+            div {
+                position: relative;
+                cursor: pointer;
+                color: var(--CREAM);
+            }
+            div:hover::before {
+                position: absolute;
+                width: max-content;
+                top: -40px;
+                left: 0px;
+                color: #fff;
+                font-size: 0.8em;
+                background: var(--BLUE);
+                padding: 8px;
+                border-radius: 5px;
+            }
+            .getgame:hover::before {
+                content: "玩遊戲拿優惠";
+            }
+            .getscore:hover::before {
+                content: "會員積分換優惠";
+            }
         }
     }
     h5 {

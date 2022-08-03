@@ -6,14 +6,6 @@ function GoogleMap({ setShowMap, setShowDate, setSelectedAddress }) {
     const [storeInfo, setStoreInfo] = useState({});
 
     useEffect(() => {
-        console.log("did mount");
-    }, []);
-
-    useEffect(() => {
-        console.log("render");
-    });
-
-    useEffect(() => {
         console.log("did update");
     }, [storeInfo]);
     return (
