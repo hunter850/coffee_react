@@ -1,5 +1,4 @@
 .nav-header {
-    position: fixed;
     width: 100%;
     z-index: 999;
     background-color: #253945;
@@ -85,6 +84,14 @@
             @media (max-width: 768px) {
                 .cart-icon {
                     margin: 0;
+                }
+            }
+            .member-name {
+                font-size: 0.9rem;
+                color: #fff;
+                span {
+                    font-size: 0.9rem;
+                    color: #b79973;
                 }
             }
         }
