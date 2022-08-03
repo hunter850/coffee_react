@@ -2,10 +2,15 @@ import React from "react";
 import { imgSrc } from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
+import Tag from "./Tag";
+import Likes from "./Likes";
+
 function PostDetailContent({ data }) {
     const {
         title,
         avatar,
+        created_at,
+        updated_at,
         member_nickname,
         member_sid,
         topic_sid,
@@ -17,6 +22,7 @@ function PostDetailContent({ data }) {
     const topicName = ["未分類", "課程", "商品", "其它"];
 
     const {
+        grid_top,
         author,
         avatar_wrap,
         info,
@@ -30,7 +36,7 @@ function PostDetailContent({ data }) {
     } = styles;
     return (
         <>
-            <div className="grid_top">
+            <div className={grid_top}>
                 <div className={author}>
                     <div className={avatar_wrap}>
                         <img src={`${imgSrc}/member/${avatar}`} alt="avatar" />
@@ -42,25 +48,30 @@ function PostDetailContent({ data }) {
                 </div>
                 <div className={post_content}>
                     <h5 className={`${content_title} mb-1`}>{title}</h5>
-                    <p className="mb-3">{topicName[topic_sid]}</p>
+                    <div className="mb-3 d-flex align-items-center">
+                        <span className="me-3" style={{ color: "#324A59" }}>
+                            {topicName[topic_sid]}
+                        </span>
+                        <span
+                            className={grey_span}
+                            style={{ fontSize: "14px" }}
+                        >
+                            {updated_at
+                                ? `已編輯 ${updated_at.slice(0, 10)}`
+                                : { created_at }}
+                        </span>
+                    </div>
                     <p className="mb-5">{content}</p>
-                    <div className="mb-1">
-                        Tags:
+                    <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
-                            <span key={i}>{v}、</span>
+                            <Tag key={i} tagName={v} />
                         ))}
                     </div>
                     <div className="mb-1">
-                        <span>Likes:{likes}</span>
+                        <Likes likes={likes} />
                         <span>．留言:{comments}</span>
                     </div>
-                    <div>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur corporis quo ipsam eum, doloremque quos nulla aliquam architecto magnam totam iste officia, assumenda minus odio earum suscipit iure aspernatur ducimus?
-                        Illo deserunt voluptas eum, optio consectetur, dignissimos saepe quisquam quos eius qui assumenda sequi nisi architecto, sit ex. In eaque ipsa tempora, placeat commodi alias minus magni ullam voluptatem sed?
-                        Cum facilis perferendis nemo atque debitis enim quis reiciendis quibusdam consequuntur cupiditate dolorem nisi accusamus eveniet vero voluptatem earum iure similique, itaque obcaecati veniam nihil! Alias rem aliquid voluptatum accusantium!
-                        Ducimus minima placeat molestiae, fuga cum veritatis repudiandae cumque blanditiis ipsam accusantium animi quam recusandae ipsum est repellat atque officia, eum dolores et! Molestias debitis, error eius quisquam dolorem nemo!
-                        Repellendus autem dicta tempora aliquam consequatur placeat totam provident, facilis repudiandae fuga fugiat ipsam vitae ab assumenda natus iure, ipsum perferendis cum? Alias similique quaerat atque officia iste, illum saepe?
-                    </div>
+                    <div></div>
                     {/* <pre>{JSON.stringify(data.rows, null, 4)}</pre> */}
                 </div>
             </div>
