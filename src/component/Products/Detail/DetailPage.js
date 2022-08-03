@@ -4,7 +4,7 @@ import "./DetailPage.scss";
 import DetailBtm from "./DetailBtm";
 
 function DetailPage(props) {
-    const { renderData, dataLoaded, productsCount, setproductsCount } = props;
+    const { renderData, dataLoaded, productsCount, setProductsCount } = props;
     const el = (
         <div className="DetailPage">
             <div className="DetailTop">
@@ -13,7 +13,7 @@ function DetailPage(props) {
                     renderData={renderData}
                     dataLoaded={dataLoaded}
                     productsCount={productsCount}
-                    setproductsCount={setproductsCount}
+                    setProductsCount={setProductsCount}
                 />
             </div>
             <DetailBtm renderData={renderData} dataLoaded={dataLoaded} />
