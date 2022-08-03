@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
 import "./NavBar.scss";
@@ -8,15 +9,17 @@ import AuthContext from '../Member/AuthContext';
 
 function NavBar({ navPosition = 'fixed' }) {
     const { sid, name } = useContext(AuthContext);
-    console.log(name);
+    // console.log(name);
+    // console.log(useContext(AuthContext));
 
-    console.log(useContext(AuthContext));
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
     // 判斷RWD
     const [mediaS, setMediaS] = useState(false);
     // 取得視窗寬度
     const [windowsWidth, setWindowsWidth] = useState(window.innerWidth);
+    // 控制登入登出狀態
+    const [signOut, setSignOut] = useState('');
 
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
@@ -46,8 +49,22 @@ function NavBar({ navPosition = 'fixed' }) {
             }
         });
     }, [windowsWidth, mediaS]);
+
+    // 刪除 auth - 登入狀態
+    const handleSignOut = (auth) => {
+        setSignOut(auth);
+    };
+    // 刪除 auth - 登入狀態
+    useEffect(() => {
+        if (signOut === 'auth') {
+            localStorage.removeItem(signOut);
+            // 清掉後刷新,否則跳頁依然會是登入狀態
+            window.history.go(0);
+        }
+    }, [signOut]);
+
     // 未登錄顯示icon
-    const memberIcon = (<div className="nav-media-display-none">
+    const memberIcon = (<div className="nav-media-display-none  member-icon">
         <Link to="/member/login">
             <svg
                 width="18"
@@ -65,13 +82,25 @@ function NavBar({ navPosition = 'fixed' }) {
     </div>);
     // 登入顯示打招呼
     const memberName = (
-        <Link to="/member">
-            <div className="member-name">
+        <li
+            style={{ cursor: "pointer" }}
+            className="nav-member-li"
+        >
+            <div className="member-name" onClick={(e) => handleDropDown(e, "signout")}>
                 您好! <span >{name}</span>
             </div>
-        </Link>
+            <ul
+                className="nav-sign-out-ul"
+            >
+                <li className={`nav-sign-out  ${navDropDown === "signout" ? "" : "signout-display-none"
+                    }`}
+                    onClick={() => handleSignOut('auth')}
+                >
+                    登出
+                </li>
+            </ul>
+        </li>
     );
-
 
     return (
         <header className="nav-header" style={{ position: navPosition }}>
@@ -159,7 +188,7 @@ function NavBar({ navPosition = 'fixed' }) {
                     <li>
                         <Link to="/cart">購物車</Link>
                     </li>
-                </ul>
+                </ul >
                 <div className="d-flex nav-icon-wrap">
                     <div className="cart-icon">
                         <Link to="/cart">
@@ -177,7 +206,7 @@ function NavBar({ navPosition = 'fixed' }) {
                             </svg>
                         </Link>
                     </div>
-                    {sid !== '' ? memberName : memberIcon}
+                    {sid !== '' && signOut !== 'auth' ? memberName : memberIcon}
                 </div>
             </nav>
         </header>
