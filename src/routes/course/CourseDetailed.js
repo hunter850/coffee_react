@@ -60,36 +60,39 @@ const CourseDetailed = () => {
     };
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
-    const sendOrder = () => {
-        if (start === true) {
-            const { course_name, course_price } = courseDetailedData[0];
-            // 發送客戶的訂單資訊給Line Pay (會先到後端加密)
-            const orders = {
-                amount: course_price * count,
-                currency: 'TWD',
-                packages: [
-                    {
-                        id: sid,
-                        amount: course_price * count,
-                        products: [
-                            {
-                                name: course_name,
-                                quantity: count,
-                                price: course_price,
-                            }
-                        ]
-                    }
-                ],
-                orderId: sid
-            };
-            axios({
-                method: 'post',
-                url: `${linePayApi}/${JSON.stringify(orders)}`,
-            })
-                .then((res) => {
-                    // console.log(res.data);
-                    setUrl(res.data);
-                });
+    const sendOrder = (membersid) => {
+        console.log(membersid);
+        if (membersid !== '') {
+            if (start === true) {
+                const { course_name, course_price } = courseDetailedData[0];
+                // 發送客戶的訂單資訊給Line Pay (會先到後端加密)
+                const orders = {
+                    amount: course_price * count,
+                    currency: 'TWD',
+                    packages: [
+                        {
+                            id: sid,
+                            amount: course_price * count,
+                            products: [
+                                {
+                                    name: course_name,
+                                    quantity: count,
+                                    price: course_price,
+                                }
+                            ]
+                        }
+                    ],
+                    orderId: sid
+                };
+                axios({
+                    method: 'post',
+                    url: `${linePayApi}/${JSON.stringify(orders)}`,
+                })
+                    .then((res) => {
+                        // console.log(res.data);
+                        setUrl(res.data);
+                    });
+            }
         }
     };
 
