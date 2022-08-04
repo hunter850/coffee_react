@@ -3,6 +3,8 @@
 /* eslint-disable no-const-assign */
 import { set } from "lodash";
 import { useState, useEffect, useRef,useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useNav } from "../../../../Contexts/NavProvider";
 import Modal from "../../../Modal/Modal";
 import { login,signUp } from "../../../../config/api-path";
 import "./LoginMain.css";
@@ -31,6 +33,9 @@ function LoginMain() {
 
     const welcomeWidth = useRef(null);
     const formWidth = useRef(null);
+
+    const navigate = useNavigate();
+    const {getCount} = useNav();
 
     // 掛載到頁面上執行一次
     useEffect(() => {
@@ -115,8 +120,10 @@ function LoginMain() {
                 localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
                 setAuth({...result.data, authorized: true});
                 setTimeout(() => {
-                    const SERVER = window.location.origin;
-                    window.location.href = `${SERVER}/member`;
+                    getCount();
+                    navigate("/member", {replace: false})
+                    // const SERVER = window.location.origin;
+                    // window.location.href = `${SERVER}/member`;
                 }, 400);
                 setLoginSuccess(true);
             }

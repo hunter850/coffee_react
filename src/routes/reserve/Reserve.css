@@ -1,0 +1,75 @@
+.reserve {
+    margin: 100px 0;
+    width: 60%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #253945;
+    overflow: scroll;
+    border-radius: 10px;
+}
+
+.left {
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+}
+
+.store {
+    width: 100px;
+    height: 50px;
+    background-color: #d9dfdf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px 0 0 3px;
+    margin: 10px 0;
+}
+.branchchoice {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.a {
+    width: 400px;
+    height: 50px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 0 3px 3px 0;
+    font-size: 16px;
+    color: #324a59;
+    text-align: center;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+}
+.infor {
+    width: 100px;
+    height: 50px;
+    background-color: #eee5dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin: 10px 43px;
+}
+
+.reserve-txt {
+    padding: 10px 50px;
+    color: #d9dfdf;
+    line-height: 2rem;
+}
+
+.submit {
+    width: 200px;
+    height: 50px;
+    color: #324a59;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 3px;
+    background-color: #d9dfdf;
+}

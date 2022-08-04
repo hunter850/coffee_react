@@ -97,10 +97,7 @@ const SingleMapDetail = (props) => {
     }
 
     // -----------------------------------------------------
-    const [mapApi, setMapApi] = useState(null);
-    const [myPosition, setMyPosition] = useState({}); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
-    const [mapApiLoaded, setMapApiLoaded] = useState(false);
-    const [mapInstance, setMapInstance] = useState(null);
+    const [myPosition, setMyPosition] = useState(props.center); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
     const { setStoreInfo, storeInfo } = props;
     const { store_name, store_road, store_block, store_sid } = storeInfo;
     const initialState = { store_name: "", store_block: "", store_road: "" };
@@ -134,102 +131,34 @@ const SingleMapDetail = (props) => {
     }, [myPosition]);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            setMyPosition({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            });
-        });
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                setMyPosition({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                });
+            },
+            function (positionError) {
+                console.log("positionError ", positionError);
+            }
+        );
     }, []);
 
-    // const service = new props.maps.DistanceMatrixService();
-    // service.getDistanceMatrix({
-    //     origins: [myPosition],
-    //     destinations: shops_dummy,
-    //     travelMode: "WALKING", // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
-    //     unitSystem: props.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
-    //     avoidHighways: true, // 是否避開高速公路
-    //     avoidTolls: true, // 是否避開收費路線
-    // });
-
-    // const SingleMapDetail = (props) => {
-    //     const [apiFromSql, setApiFromSql] = useState([]);
-    //     const [api, setApi] = useState(false);
-
-    //     const mapAPiGet = async () => {
-    //         const response = await axios.get(mapAPI);
-    //         setApiFromSql(response.data);
-    //     };
-    //     useEffect(() => {
-    //         if (apiFromSql.length > 0) {
-    //             setApi(true);
-    //         }
-    //     }, [apiFromSql]);
-
-    //     useEffect(() => {
-    //         mapAPiGet();
-    //     }, []);
-    //     if (api === true) {
-    //         console.log("mapApismapApismapApis", apiFromSql[0].mapapi_key);
-    //         setApi(false);
-
     // 找咖啡廳
-    // const [places, setPlaces] = useState([]);
-    // 創建一個 state
-    // const [searchType, setSearchType] = useState("cafe");
-
-    // 找咖啡廳
-    const [shops, setShops] = useState(shops_dummy);
+    const shops = shops_dummy;
 
     // 當地圖載入完成，將地圖實體與地圖 API 傳入 state 供之後使用
-    const apiHasLoaded = ({ map, maps }) => {
-        setMapInstance(map);
-        setMapApi(maps);
-        setMapApiLoaded(true);
-    };
-
-    // const handleCenterChange = () => {
-    //     if (mapApiLoaded) {
-    //         setMyPosition({
-    //             // center.lat() 與 center.lng() 會回傳正中心的經緯度
-    //             lat: mapInstance.center.lat(),
-    //             lng: mapInstance.center.lng(),
-    //         });
-    //     }
-    // };
-
-    // 搜尋
-    const findLocation = () => {
-        if (mapApiLoaded) {
-            const service = new mapApi.places.PlacesService(mapInstance);
-            const request = {
-                location: myPosition,
-                radius: 1000,
-                // type: searchType,
-            };
-
-            service.nearbySearch(request, (results, status) => {
-                if (status === mapApi.places.PlacesServiceStatus.OK) {
-                    // setPlaces(results);
-                }
-            });
-        }
-    };
+    const apiHasLoaded = ({ map, maps }) => { };
 
     return (
         <div className="mapdetail">
-            {/* <input type="button" value="開始搜尋" onClick={findLocation} />; */}
-            {/* <div onClick={handleSearchType}>
-            </div> */}
             <GoogleMapReact
                 bootstrapURLKeys={{
                     key: "AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM",
-
                     // 請輸入googlemap的key  ""
                     libraries: ["places"], // 要在這邊放入我們要使用的 API
                 }}
                 // onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
-                defaultCenter={props.center}
                 center={myPosition}
                 defaultZoom={props.zoom}
                 yesIWantToUseGoogleMapApiInternals
@@ -243,39 +172,28 @@ const SingleMapDetail = (props) => {
                 {shops.map((shop) => (
                     <ShopMarker {...shop} icon="/food/coffee1.png" />
                 ))}
-
-                {/* 使用 map 方法渲染 */}
-                {/* {places.map((item, i) => (
-                    <CafeMarker
-                        key={i}
-                        //    key={item.i}
-                        icon={item.icon}
-                        lat={item.geometry.location.lat()}
-                        lng={item.geometry.location.lng()}
-                        text={item.name}
-                        placeId={item.place_id}
-                    />
-                ))} */}
             </GoogleMapReact>
 
             {/* <input/> */}
-            <div className="mapshow">
-                <h6>{store_name}</h6>
-                <p className="txt">
-                    {store_block}
-                    {store_road}
-                </p>
-            </div>
+            {store_name && (
+                <div className="mapshow">
+                    <h6>{store_name}</h6>
+                    <p className="txt">
+                        {store_block}
+                        {store_road}
+                    </p>
+                </div>
+            )}
         </div>
     );
 };
 // 由於改寫成 functional component，故另外設定 defaultProps
 SingleMapDetail.defaultProps = {
     center: {
-        lat: 25.042118,
-        lng: 121.541489,
+        lat: 25.034320914178288,
+        lng: 121.54372226899777,
     },
-    zoom: 15,
+    zoom: 13,
 };
 
 export default SingleMapDetail;

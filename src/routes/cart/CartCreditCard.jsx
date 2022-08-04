@@ -1,6 +1,6 @@
 import { Fragment, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import FakeNav from "../../component/FakeNav";
+import NavBar from "../../component/NavBar/NavBar";
 import Creditcard from "../../component/Creditcard/Creditcard";
 
 function CartCreditCard() {
@@ -15,7 +15,7 @@ function CartCreditCard() {
     }, []);
     return (
         <Fragment>
-            <FakeNav />
+            <NavBar />
             <Creditcard
                 cardNumber={cardNumber}
                 setCardNumber={setCardNumber}

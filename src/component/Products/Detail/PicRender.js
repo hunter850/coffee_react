@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import "./PicRender.scss";
+import Magnifier from "react-magnifier";
 
 function PicRender(props) {
     const { renderData, dataLoaded } = props;
@@ -19,13 +20,24 @@ function PicRender(props) {
     const el = (
         <div>
             <div className="productPic">
-                <img
+                <Magnifier
                     src={dataLoaded ? imgSelect : ""}
                     alt="main product's pic"
                     onChange={() => {
                         setimgSelect(imgSelect);
                     }}
+                    mgShowOverflow={false}
+                    zoomFactor={2}
+                    mgWidth={100}
+                    mgHeight={100}
                 />
+                {/* <img
+                    src={dataLoaded ? imgSelect : ""}
+                    alt="main product's pic"
+                    onChange={() => {
+                        setimgSelect(imgSelect);
+                    }}
+                /> */}
             </div>
             <div className="littlePic">
                 {dataLoaded

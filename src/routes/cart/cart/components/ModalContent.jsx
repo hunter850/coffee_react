@@ -1,6 +1,7 @@
 import { Fragment, useCallback } from "react";
 import useData from "../../../../hooks/useData";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
+import { useNav } from "../../../../Contexts/NavProvider";
 import Btn from "../../../../component/Item/Btn/Btn";
 import axios from "axios";
 import { getProduct, getFood } from "../../../../config/api-path";
@@ -13,6 +14,7 @@ function ModalContent(props) {
     const [nowList] = useData("nowList");
     const [list, setList] = useData(nowList);
     const nowApiAddress = nowList === "productList" ? getProduct : getFood;
+    const { getCount } = useNav();
     const deleteHandler = useCallback(() => {
         axios
             .delete(nowApiAddress, {
@@ -23,7 +25,10 @@ function ModalContent(props) {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            // .then((result) => console.log(result.data))
+            .then(() => {
+                // console.log(result.data);
+                getCount();
+            })
             .catch((result) => {
                 console.log(result);
                 alert(result.response.data.error.message);

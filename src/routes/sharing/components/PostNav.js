@@ -5,7 +5,6 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import styles from "./../css/postnav.module.scss";
-import { _missingPlugin } from "gsap/gsap-core";
 
 function PostNav({ scrollDir = "up" }) {
     const { authorized, sid, account, token, avatar } = useAuth();
