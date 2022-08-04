@@ -1,13 +1,27 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export function useAuth(){
+export function useAuth() {
     return useContext(AuthContext);
 }
 
-function AuthContextProvider({ children }) {
+export const authOrigin = {
+    authorized: false,
+    sid: "",
+    account: "",
+    token: "",
+    name: "",
+    nickname: "",
+    birthday: "",
+    mobile: "",
+    address: "",
+    mail: "",
+    level: "",
+    avatar: "",
+};
 
+function AuthContextProvider({ children }) {
     const localAuthStr = localStorage.getItem("auth");
 
     // const unAuthState = {
@@ -24,25 +38,12 @@ function AuthContextProvider({ children }) {
     //     avatar: " ",
     // };
 
-    let localAuth = {
-        authorized: false,
-        sid: "",
-        account: "",
-        token: "",
-        name: "",
-        nickname: "",
-        birthday: "",
-        mobile: "",
-        address: "",
-        mail: "",
-        level: "",
-        avatar: "",
-    };
+    let localAuth = authOrigin;
 
     // let localAuth = { ...unAuthState };
 
     const [auth, setAuth] = useState(localAuth);
-
+    // console.log(auth);
     // 用有沒有 auth 判斷是否為登入狀態，把 authorized 設為 true 表示已登入
     if (localAuthStr) {
         try {
@@ -51,7 +52,7 @@ function AuthContextProvider({ children }) {
                 localAuth = { ...localAuth, authorized: true };
                 console.log(localAuth);
             }
-        } catch (ex) {}
+        } catch (ex) { }
     }
 
     // const navigate = useNavigate();
