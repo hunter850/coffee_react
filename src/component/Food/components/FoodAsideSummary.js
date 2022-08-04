@@ -5,9 +5,9 @@ import axios from "axios";
 import { useContext } from "react";
 import { foodData } from "../../../config/api-path";
 import AuthContext from "../../Member/AuthContext";
-
+import { useNavigate } from "react-router-dom";
 // import { useGetCart } from "../../../component/NavBar/NavWrap";
-// import { useNavigate } from "react-router-dom";
+
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
 function FoodAsideSummary({
     dataFromFoodDetail,
@@ -22,7 +22,7 @@ function FoodAsideSummary({
     setIsOpen,
 }) {
     const asideClass = show ? "aside" : "aside hide";
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // const { getCount,count } = useGetCart();
     // console.log("useGetCart", count);
 
@@ -40,8 +40,8 @@ function FoodAsideSummary({
     //
 
     const handleSubmission = (e) => {
-        e.preventDefault();
-        if (Auth.sid !== "")
+        // e.preventDefault();
+        if (Auth.sid)
             axios({
                 method: "post",
                 url: foodData,
@@ -54,8 +54,8 @@ function FoodAsideSummary({
 
                 "content-type": "application/json",
             }).then((response) => {
-                console.log(response);
-                // navigate("/cart");
+                // console.log(response);
+                navigate("/cart");
             });
         else {
             setIsOpen(true);
@@ -198,13 +198,7 @@ function FoodAsideSummary({
                         <p className="finaltotal">合計</p>
                         <p>${totalPrice}</p>
                     </div>
-                    <div
-                        className="pay"
-                        onClick={(e) => {
-                            handleSubmission(e);
-                            // getCount();
-                        }}
-                    >
+                    <div className="pay" onClick={handleSubmission}>
                         去結帳
                     </div>
                 </div>

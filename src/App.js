@@ -29,6 +29,7 @@ import Points from "./routes/game/Points";
 import Coupon from "./routes/game/Coupon";
 import Getcoupon from "./routes/game/Getcoupon";
 import Getpoint from "./routes/game/Getpoint";
+import PointsToCoupon from "./routes/game/PointsToCoupon";
 import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
 import ProductsDetail from "./routes/Products/ProductsDetail";
@@ -107,6 +108,7 @@ const App = () => {
                             <Route path="/store" element={<Store />} />
                             <Route path="/getcoupon" element={<Getcoupon />} />
                             <Route path="/getpoint" element={<Getpoint />} />
+                            <Route path="/PointsToCoupon" element={<PointsToCoupon />} />
                         </Routes>
                     </AllProvider>
                 </AuthContextProvider>

@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./DateTime.scss";
 
 function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
-    const [inputDate, setInputDate] = useState("");
-    const [inputTime, setInputTime] = useState("");
     const store_time = [
         { store_time_sid: "1", time: "08:00" },
         { store_time_sid: "2", time: "08:30" },
@@ -14,7 +12,6 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
         { store_time_sid: "7", time: "11:00" },
         { store_time_sid: "8", time: "11:30" },
     ];
-
     const getdate = new Date();
     const month = getdate.getMonth() + 1; //  拿到月份
     const date = getdate.getDate(); // 拿到日期
@@ -40,6 +37,8 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
             ],
         },
     ];
+    const [inputTime, setInputTime] = useState(store_time[0].time);
+    const [inputDate, setInputDate] = useState(`2022-0${month}-0${date}`);
 
     return (
         <>

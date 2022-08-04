@@ -6,6 +6,7 @@
     padding: 20px;
     background-color: #253945;
     overflow: scroll;
+    border-radius: 10px;
 }
 
 .left {
