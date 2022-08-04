@@ -19,7 +19,7 @@ import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
 
 function UserInfo() {
-    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail, avatar } = useContext(AuthContext);
+    const { authorized, sid, token, name, nickname, birthday, mobile, address, mail, avatar, setAuth } = useContext(AuthContext);
     // const { token } = useAuth();
 
     const [list, setList] = useState([]);
@@ -122,9 +122,10 @@ function UserInfo() {
                 setUserList(result.data);
                 setEditSuccess(true);
                 setTimeout(() => {
-                    const SERVER = window.location.origin;
-                    window.location.href = `${SERVER}/member`;
-                }, 300);
+                    navigate("/member");
+                    // const SERVER = window.location.origin;
+                    // window.location.href = `${SERVER}/member`;
+                }, 1000);
             }else{
                 setEditSuccess(false);
             }
@@ -202,9 +203,10 @@ function UserInfo() {
                         setIsOpen(false);
                         setEditSuccess(true);
                         setTimeout(() => {
-                            const SERVER = window.location.origin;
-                            window.location.href = `${SERVER}/member`;
-                        }, 300);
+                            navigate("/member");
+                            // const SERVER = window.location.origin;
+                            // window.location.href = `${SERVER}/member`;
+                        }, 1000);
 
                     }else if(result.passError){
                         setPassErrors({...passErrors,member_password:"舊密碼錯誤"});
@@ -260,7 +262,7 @@ function UserInfo() {
     // onChange時把選擇的照片設成setSelectedFile
     const changeAvatar = (e) => {
         const file = e.target.files[0];
-        console.log(file);
+        // console.log(file);
     
         if (file) {
             setSelectedFile(file);
@@ -288,6 +290,7 @@ function UserInfo() {
                     if(!result.success){
                         setAvatarFaild(true);
                     }
+                    avatarFile.current.value = "";
                 });
         }
     }, [selectedFile]);
@@ -414,7 +417,7 @@ function UserInfo() {
             <Modal isOpen={avatarFaild} setIsOpen={setAvatarFaild}>
                 <Modal.Body>
                     <div className="edit-msg-wrap">
-                        <div className="edit-msg"><FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>頭貼沒有編輯</div>
+                        <div className="edit-msg"><FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>頭貼沒有修改</div>
                     </div>
                 </Modal.Body>
             </Modal>

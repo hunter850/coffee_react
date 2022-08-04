@@ -78,10 +78,14 @@ body{
     margin-left: 90px;
     flex-grow: 1;
 }
-.odh-date-title, .odh-id{
+.odh-date-title{
     font-size: 0.8rem;
     color: var(--blue);
     margin-bottom: 3px;
+}
+.odh-id{
+    font-size: 0.8rem;
+    color: var(--blue);
 }
 .odh-header>span{
     margin-left: 10px;
