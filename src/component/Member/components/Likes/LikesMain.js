@@ -13,6 +13,9 @@ function LikesMain() {
     const { token } = useContext(AuthContext);
 
     // --------------------- 拿到收藏的資料 ---------------------
+
+    const [myLikes, setMyLikes] = useState([]);
+
     useEffect(() => {
         axios
             .get(getUserLikes, {
@@ -22,6 +25,7 @@ function LikesMain() {
             })
             .then((response) => {
                 console.log(response.data);
+                setMyLikes(response.data);
             });
     }, [token]);
 
@@ -30,7 +34,22 @@ function LikesMain() {
             <div className="like-wrap-main">
                 <div className="like-container">
                     <MemberMenu />
-                    <LikesCard />
+                    <div className="like-wrap-right">
+                        <div className="like-wrap">
+                            {myLikes.map((v,i) => {
+                                return(
+                                    <div key={v.products_sid}>
+                                            <LikesCard myLikes={{
+                                                products_name: v.products_name,
+                                                products_pic: v.products_pic,
+                                                products_price: v.products_price,
+                                                products_sid: v.products_sid,
+                                            }}/>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
