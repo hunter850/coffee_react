@@ -1,5 +1,8 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
+// NAV
+
+export const getCartCount = `${SERVER}/cart/cart_count/api`;
 
 // MEMBER
 export const login = `${SERVER}/member/api/login`;

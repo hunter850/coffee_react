@@ -4,12 +4,32 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import CartCount from "../../Contexts/CartCount";
+import axios, { Axios } from "axios";
+import { getCartCount } from "../../config/api-path";
+
+export const ConutContext = React.createContext();
+
+
+
 
 function NavBar({ navPosition = 'fixed' }) {
-    const { sid, name, setAuth } = useAuth();
+    const { sid, name, setAuth, token } = useAuth();
+
+    const [count, setCount] = useState(0);
+    const getCount = useCallback(() => {
+        axios.get(getCartCount, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((res) => {
+                setCount(res.data.cartTotalCount);
+                // console.log(res.data.cartTotalCount);
+            });
+    }, []);
+
+
     // console.log(cartCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
@@ -57,18 +77,10 @@ function NavBar({ navPosition = 'fixed' }) {
     }, [windowsWidth, mediaS]);
 
     // 刪除 auth - 登入狀態
-    const handleSignOut = (auth) => {
+    const handleSignOut = () => {
         localStorage.removeItem("auth");
         setAuth({ ...authOrigin });
     };
-    // 刪除 auth - 登入狀態
-    // useEffect(() => {
-    //     if (signOut === 'auth') {
-    //         localStorage.removeItem(signOut);
-    //         // 清掉後刷新,否則跳頁依然會是登入狀態
-    //         // window.history.go(0);
-    //     }
-    // }, [signOut]);
 
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
@@ -110,7 +122,8 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-        <>
+        <ConutContext.Provider value={getCount}>
+            <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
@@ -213,7 +226,7 @@ function NavBar({ navPosition = 'fixed' }) {
                     <div className="d-flex nav-icon-wrap">
                         <div className="cart-icon">
                             <div className="cart-icon-count">
-                                {cartCountNum}
+                                {count}
                             </div>
                             <Link to="/cart">
                                 <svg width="24" height="24" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" >
@@ -227,7 +240,7 @@ function NavBar({ navPosition = 'fixed' }) {
                 </nav>
             </header>
             <div className="nav-solid-border-bottom"></div>
-        </>
+        </ConutContext.Provider>
     );
 }
 
