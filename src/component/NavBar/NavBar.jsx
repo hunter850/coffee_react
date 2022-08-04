@@ -13,8 +13,6 @@ import { getCartCount } from "../../config/api-path";
 export const ConutContext = React.createContext();
 
 
-
-
 function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, setAuth, token } = useAuth();
 
