@@ -12,7 +12,7 @@ function MemberMenu() {
                     <NavLink className={({isActive})=>isActive?"nav-link-active":"member-menu"} to="/member/orderhistory">歷史訂單</NavLink>
                     <div className="member-menu">分享記錄</div>
                     <NavLink className={({isActive})=>isActive?"nav-link-active":"member-menu"} to="/points">我的點數</NavLink>
-                    <div className="member-menu">我的收藏</div>
+                    <NavLink className={({isActive})=>isActive?"nav-link-active":"member-menu"} to="/member/likes">我的收藏</NavLink>
                     <NavLink className={({isActive})=>isActive?"nav-link-active":"member-menu"} to="/coupon">優惠券</NavLink>
                 </div>
             </div>

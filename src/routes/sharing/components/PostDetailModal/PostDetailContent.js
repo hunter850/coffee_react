@@ -61,7 +61,8 @@ function PostDetailContent({ data }) {
                                 : { created_at }}
                         </span>
                     </div>
-                    <p className="mb-5">{content}</p>
+                    {/* 內文 */}
+                    <p className="mb-5">{content}{content}{content}{content}{content}{content}{content}{content}{content}</p>
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />

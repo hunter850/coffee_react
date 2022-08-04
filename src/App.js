@@ -22,6 +22,7 @@ import Login from "./routes/member/Login";
 import UserInfo from "./routes/member/UserInfo";
 import OrderHistory from "./routes/member/OrderHistory";
 import OrderHistoryDetail from "./routes/member/OrderHistoryDetail";
+import Likes from "./routes/member/Likes"
 import AuthContextProvider from "./component/Member/AuthContextProvider";
 import Game from "./routes/game/Game";
 import Points from "./routes/game/Points";
@@ -99,6 +100,7 @@ const App = () => {
                                 path="/member/orderhistory/detail/:sid"
                                 element={<OrderHistoryDetail />}
                             />
+                            <Route path="/member/likes" element={<Likes />} />
                             <Route path="/points" element={<Points />} />
                             <Route path="/coupon" element={<Coupon />} />
                             <Route path="/game" element={<Game />} />

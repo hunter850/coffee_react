@@ -1,4 +1,4 @@
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import LoginMain from "../../component/Member/components/LoginMain/LoginMain";
 
 function Login() {
