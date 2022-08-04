@@ -11,8 +11,9 @@ import { useEffect, useContext, useState } from "react";
 import AuthContext from "../../Member/AuthContext";
 import Modal from "../../Modal/Modal";
 import { Link } from "react-router-dom";
-import "./ModalCss.scss";
+// import "./ModalCss.scss";
 import CartCount from "../../../Contexts/CartCount";
+import { useNav } from "../../../Contexts/NavProvider";
 
 function Productinfo(props) {
     // identify zone
@@ -27,6 +28,7 @@ function Productinfo(props) {
 
     const Auth = useContext(AuthContext);
     const cartCount = useContext(CartCount);
+    const { getCount } = useNav();
 
     // axios get
 
@@ -77,7 +79,8 @@ function Productinfo(props) {
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
                 console.log(fetchCartData);
-                cartCount.setCartCountNum(cartCount.cartCountNum + 1);
+                // cartCount.setCartCountNum(cartCount.cartCountNum + 1);
+                getCount();
             });
     };
 

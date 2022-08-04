@@ -199,3 +199,6 @@ body{
     line-height: 150px;
     cursor: pointer;
 }
+.dark-bg{
+    background-color: #000000e0;
+}

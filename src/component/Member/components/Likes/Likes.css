@@ -28,6 +28,9 @@ body{
     min-height: 800px;
     height: 100%;
 }
+.like-wrap{
+    display: block;
+}
 .like-info{
     display: flex;
     justify-content: center;
@@ -50,28 +53,28 @@ body{
     cursor: pointer;
 }
 .like-info-wrap{
-    display: flex;
-    align-items: flex-start;
+    width: 555px;
     padding: 15px 0;
 }
 .like-content{
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .like-pic{
     background-color: var(--gray);
     width: 120px;
     height: 120px;
-    margin-right: 30px;
+    /* margin-right: 30px; */
 }
 .like-name{
     word-wrap: break-word;
-    margin-right: 30px;
+    /* margin-right: 30px; */
     color: var(--blue);
     font-weight: 600;
 }
 .like-price{
-    margin-right: 45px;
+    /* margin-right: 45px; */
     color: var(--gold);
     font-weight: 600;
 }
