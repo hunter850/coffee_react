@@ -162,3 +162,9 @@
     display: block;
     margin-bottom: 59px;
 }
+
+@media (max-width: 768px) {
+    .nav-member-li {
+        display: none;
+    }
+}
