@@ -4,40 +4,20 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
-import CartCount from "../../Contexts/CartCount";
-// import axios, { Axios } from "axios";
-// import { getCartCount } from "../../config/api-path";
-import { useGetCart } from "./NavWrap";
-
-export const CountContext = React.createContext();
+import { useNav } from "../../Contexts/NavProvider";
 
 
 function NavBar({ navPosition = 'fixed' }) {
-    const { sid, name, setAuth, token } = useAuth();
-    const { getCount, count } = useGetCart();
+    const { sid, name, setAuth } = useAuth();
 
-    // const [count, setCount] = useState(0);
-
-    // const getCount = useCallback(() => {
-    //     axios.get(getCartCount, {
-    //         headers: { Authorization: `Bearer ${token}` },
-    //     })
-    //         .then((res) => {
-    //             setCount(res.data.cartTotalCount);
-    //             // console.log(res.data.cartTotalCount);
-    //         });
-    // }, []);
+    const { count, getCount } = useNav();
 
 
     // console.log(cartCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
-
-
-    const { cartCountNum } = useContext(CartCount);
-    console.log(cartCountNum);
 
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
@@ -76,6 +56,7 @@ function NavBar({ navPosition = 'fixed' }) {
             }
         });
     }, [windowsWidth, mediaS]);
+
     useEffect(() => {
         getCount();
     }, []);
@@ -126,7 +107,7 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-        <CountContext.Provider value={getCount}>
+        <>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
@@ -243,7 +224,7 @@ function NavBar({ navPosition = 'fixed' }) {
                 </nav>
             </header>
             <div className="nav-solid-border-bottom"></div>
-        </CountContext.Provider>
+        </>
     );
 }
 
