@@ -2,30 +2,44 @@
 import { React } from "react";
 import "./StarCard.css";
 
-function StarCard({ starData }) {
-    const { star_level, star_name, star_content, star_price, star_img_s } = starData;
+function Card({ cardData }) {
+    const {
+        card_tag,
+        card_name,
+        card_content,
+        card_price,
+        card_img_s,
+        card_img_file,
+    } = cardData;
 
     return (
-        <div className="star_card">
-            <div className="star_card_top" style={{ background: `url(http://localhost:3500/images/star/${star_img_s}) no-repeat center center`, backgroundSize: 'cover' }}>
-                <div
-                    className={`star_card_level ${star_level === "中級"
-                        ? "star_card_level-normal"
-                        : ""
-                        } ${star_level === "高級"
-                            ? "star_card_level-hard"
-                            : ""}`}
-                >
-                    {star_level}
-                </div>
+        <div className="card_card">
+            <div
+                className="card_card_top"
+                style={{
+                    // background: `url(http://localhost:3500/images/products/${card_img_file}/${card_img_s}) no-repeat center center`,
+                    background: `url(http://localhost:3500/images/frontpage/${card_img_file}/${card_img_s}) no-repeat center center`,
+                    backgroundSize: "cover",
+                }}
+            >
+                <div className="card_tag">{card_tag}</div>
             </div>
-            <div className="star_card_down" >
-                <div className="star_card_txt">
-                    <p style={{ fontWeight: "bolder" }}>{star_name}</p>
-                    <p className="font-min" style={{ color: "#898787" }}>
-                        {star_content}
+            <div className="card_card_down">
+                <div className="card_card_txt">
+                    <p
+                        style={{
+                            fontWeight: "bolder",
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {card_name}
                     </p>
-                    <div className="d-flex star_card_price">
+                    <p className="font-min" style={{ color: "#898787" }}>
+                        {card_content}
+                    </p>
+                    <div className="d-flex card_card_price">
                         <p
                             style={{
                                 fontSize: "0.75rem",
@@ -40,7 +54,7 @@ function StarCard({ starData }) {
                                 letterSpacing: "0.07rem",
                             }}
                         >
-                            {star_price}
+                            {card_price}
                         </p>
                     </div>
                 </div>
@@ -49,4 +63,4 @@ function StarCard({ starData }) {
     );
 }
 
-export default StarCard;
+export default Card;
