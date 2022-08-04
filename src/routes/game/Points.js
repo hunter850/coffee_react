@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import NavBar from "../../component/NavBar";
+//import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/Points.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -11,8 +12,6 @@ import ActionProvider from "../../component/Bot/ActionProvider.js";
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "../../component/Bot/Bot.css";
-
-// ===========
 
 function Points() {
     const { token } = useAuth();
@@ -98,17 +97,26 @@ function Points() {
             <div className="PointContainer">
                 <div className="display_justify_content load m10">
                     <p>目前有</p>
-                    <p style={{ color: "#red" }}>{TheTotalPoints}</p>
+                    <p style={{ color: "#B79973", fontWeight: "500" }}>
+                        {TheTotalPoints}
+                    </p>
                     <p>可用積分</p>
+                </div>
+                <div>
+                    {/* <h2> */}
+                    <Link
+                        to={{
+                            pathname: "/PointsToCoupon",
+                            search: "",
+                        }}
+                        className="PointsToCouponLink"
+                    >
+                        點擊轉優惠券
+                    </Link>
+                    {/* </h2> */}
                 </div>
                 <div className="display_justify_content load m10">
                     <div className=" display_justify_content wrapper">
-                        {/* <a
-                            className="recordstyle button <%=  type == 1 ? 'active' : '' %> "
-                            href="?type=1"
-                        >
-                            獲取紀錄
-                        </a> */}
                         <Link
                             to={{
                                 pathname: "/points",
@@ -122,12 +130,6 @@ function Points() {
                         </Link>
                     </div>
                     <div className=" display_justify_content wrapper">
-                        {/* <a
-                            className="button theUse <%=  type == 2 ? 'active' : '' %>"
-                            href="?type=2"
-                        >
-                            使用記錄
-                        </a> */}
                         <Link
                             to={{
                                 pathname: "/points",
@@ -160,16 +162,7 @@ function Points() {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="bg">
-                                {/* <% for(let i of rows){ %>
-                                    <tr className=" load">
-                                        <td><%= toDateString(i.create_at) %></td>
-                                        <td><%= type == 1 ? '每日簽到獎勵' : '咖啡拿鐵兌換券'; %></td>
-                                        <td><%= i.points_get %></td>
-                                    </tr>
-                                <% } %> */}
-                                {CouponList}
-                            </tbody>
+                            <tbody className="bg">{CouponList}</tbody>
                         </table>
                     </div>
                 </div>

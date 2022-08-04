@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect, useRef } from "react";
-import NavBar from "../../component/NavBar";
+//import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 import "./css/Store.css";
 import StoreVideo from "../../images/Coupon/store_video.mp4";
@@ -154,7 +155,6 @@ function Store() {
                 </ScrollMotionContainer>
 
                 <div className="Store_bg">
-
                     <div>
                         <ScrollMotionContainer
                             element="div"
@@ -177,7 +177,6 @@ function Store() {
                     </div>
                 </div>
                 <div className="banner_photos">
-
                     <ScrollMotionContainer
                         element="div"
                         className="banner_photos_part1"
@@ -217,7 +216,6 @@ function Store() {
                         </div>
                     </ScrollMotionContainer>
 
-            
                     <ScrollMotionContainer
                         element="div"
                         className="banner_photos_part2"
@@ -229,7 +227,7 @@ function Store() {
                             type="up"
                         />
                     </ScrollMotionContainer>
-                    
+
                     <ScrollMotionContainer
                         element="div"
                         className="banner_photos_part3"
@@ -245,7 +243,6 @@ function Store() {
                 <div className="quality_bg">
                     <div className="quality">
                         <div className="dsplay_flex_mm pt53">
-                        
                             <ScrollMotionContainer element="div">
                                 <ScrollMotionItem
                                     element="img"
@@ -272,7 +269,6 @@ function Store() {
                                 >
                                     <div className="quality_main_01_a">
                                         <div>
-                                            
                                             <img
                                                 src={require("../../images/Coupon/bg_tips_num_01.png")}
                                                 alt=""
@@ -288,7 +284,6 @@ function Store() {
                                         </p>
                                     </div>
                                     <div className="quality_main_01_c">
-                                        
                                         <img
                                             src={require("../../images/Coupon/img_tips_05.png")}
                                             alt=""
@@ -303,7 +298,6 @@ function Store() {
                                 >
                                     <div className="quality_main_01_a">
                                         <div>
-                                        
                                             <img
                                                 src={require("../../images/Coupon/bg_tips_num_02.png")}
                                                 alt=""
@@ -319,7 +313,6 @@ function Store() {
                                         </p>
                                     </div>
                                     <div className="quality_main_01_c">
-                                    
                                         <img
                                             src={require("../../images/Coupon/img_tips_04.png")}
                                             alt=""
@@ -334,7 +327,6 @@ function Store() {
                                 >
                                     <div className="quality_main_01_a">
                                         <div>
-                                            
                                             <img
                                                 src={require("../../images/Coupon/bg_tips_num_03.png")}
                                                 alt=""
@@ -353,7 +345,6 @@ function Store() {
                                         </p>
                                     </div>
                                     <div className="quality_main_01_c">
-                                        
                                         <img
                                             src={require("../../images/Coupon/img_tips_01.png")}
                                             alt=""
@@ -408,25 +399,25 @@ function Store() {
                 </div>
             </div>
             <div className="BotContainer">
-        {chatBot}
-        <button
-            className="BotBTN react-chatbot-kit-chat-btn-send"
-            onClick={() => setBotOpen(!botOpen)}
-        >
-            <svg
-                version="1.1"
-                id="Layer_1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 66 66"
-            >
-                {" "}
-                <image
-                    id="image0"
-                    width="66"
-                    height="66"
-                    x="0"
-                    y="0"
-                    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+                {chatBot}
+                <button
+                    className="BotBTN react-chatbot-kit-chat-btn-send"
+                    onClick={() => setBotOpen(!botOpen)}
+                >
+                    <svg
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 66 66"
+                    >
+                        {" "}
+                        <image
+                            id="image0"
+                            width="66"
+                            height="66"
+                            x="0"
+                            y="0"
+                            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
                             AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
                             CXBIWXMAAAsTAAALEwEAmpwYAAAPLUlEQVR42s1beVyU1fr/nnfeGYZxgGEXlH0nZVEUTHK5XdTQ
                             0h9aahaZy7037VN2zepmtyzvr6xbmXptUVMjLb2uueDCmoAImhoosu/LsAoD8w6zvef+YfrBZJkZ
@@ -499,10 +490,10 @@ function Store() {
                             b2vT6GhnV2VtbXVZIhZfixw/tnBCaGg1IWTIRJj/A2SvMbDZtB1+AAAAJXRFWHRkYXRlOmNyZWF0
                             ZQAyMDIyLTA3LTMwVDEwOjI1OjUwKzAwOjAwUMLiKgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0w
                             Ny0zMFQxMDoyNTo1MCswMDowMCGfWpYAAAAASUVORK5CYII="
-                />
-            </svg>
-        </button>
-    </div>
+                        />
+                    </svg>
+                </button>
+            </div>
         </Fragment>
     );
 }

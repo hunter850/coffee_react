@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import NavBar from "../../component/NavBar";
+//import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/Coupon.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -34,64 +35,6 @@ function Coupon() {
             .then((result) => {
                 setCouponList(
                     <>
-                        {/* {result.data.rows2.map((v, i) => {
-                            return (
-                                <div
-                                    className="display_justify_content main-sec"
-                                    key={i}
-                                >
-                                    <div
-                                        className={`${
-                                            type == 1 ? "card" : "card2"
-                                        } cardstyle`}
-                                    >
-                                        <div className="w4"></div>
-                                        <div className="coupon-style">
-                                            <div>
-                                                <div className="CouponName">
-                                                    {v.coupon_name}
-                                                </div>
-                                                <div className="coupon-inner-style">
-                                                    <div className="px14">
-                                                        {type === 1
-                                                            ? moment(
-                                                                    v.end_time
-                                                                ).format(
-                                                                    "YYYY-MM-DD HH:mm:ss"
-                                                                )
-                                                                : type === 2 &&
-                                                                v.status === 1
-                                                                ? moment(
-                                                                    v.used_time
-                                                                ).format(
-                                                                    "YYYY-MM-DD HH:mm:ss"
-                                                                )
-                                                                : moment(
-                                                                    v.end_time
-                                                                ).format(
-                                                                    "YYYY-MM-DD HH:mm:ss"
-                                                                )}
-                                                    </div>
-                                                    <div className="type-sec">
-                                                        {type === 1
-                                                            ? "到期"
-                                                            : type === 2 &&
-                                                                v.status === 1
-                                                            ? "已使用"
-                                                            : "已過期"}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="hoverStyle">
-                                        <div className="text-inner">
-                                            BUY NOW
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })} */}
                         {result.data.rows_type1.map((v, i) => {
                             if (type === 1) {
                                 return (
