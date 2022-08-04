@@ -1,4 +1,4 @@
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/GetCoupon.css";
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";

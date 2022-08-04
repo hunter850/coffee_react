@@ -2,7 +2,6 @@ import { Fragment, useState, useEffect } from "react";
 import Header from "../../component/Products/Header";
 // import Sort from "../../component/Course/Sort/Sort";
 import Path from "../../component/Item/Path/Path";
-import FakeNav from "../../component/FakeNav";
 import NavBar from "../../component/NavBar/NavBar";
 import BookMark from "../../component/Products/BookMark";
 import List from "../../component/Products/List";

@@ -4,8 +4,7 @@ import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
 import useDebounce from "../../../hooks/useDebounce";
 import { Link } from "react-router-dom";
-// import NavBar from "../../../component/NavBar";
-import FakeNav from "../../../component/FakeNav";
+import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
 import bs_flex from "../css/bs_flex.module.scss";
 import styles from "./css/cart.module.scss";
@@ -178,7 +177,7 @@ function Cart() {
     return (
         <Fragment>
             <div className={fake_body}>
-                <FakeNav />
+                <NavBar />
                 <div className={c(container, px_200)}>
                     <button onClick={() => setNowList("productList")}>
                         商品

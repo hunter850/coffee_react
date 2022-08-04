@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./css/postdetail.module.scss";
 import { getPosts } from "../../config/api-path";
 import { useParams, useNavigate } from "react-router-dom";
-import FakeNav from "../../component/FakeNav";
+import NavBar from "../../component/NavBar/NavBar";
 
 function PostDetail() {
     const [data, setData] = useState([]);
@@ -38,7 +38,7 @@ function PostDetail() {
 
     return (
         <>
-            <FakeNav />
+            <NavBar />
             <div>
                 <button id="goPrev" onClick={(e) => clickHandler(e)}>goPrev</button>
                 <h2>detail</h2>
