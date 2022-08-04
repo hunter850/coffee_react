@@ -10,13 +10,14 @@ import CartCount from "../../Contexts/CartCount";
 import axios, { Axios } from "axios";
 import { getCartCount } from "../../config/api-path";
 
-export const ConutContext = React.createContext();
+export const CountContext = React.createContext();
 
 
 function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, setAuth, token } = useAuth();
 
     const [count, setCount] = useState(0);
+
     const getCount = useCallback(() => {
         axios.get(getCartCount, {
             headers: { Authorization: `Bearer ${token}` },
@@ -120,7 +121,7 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-        <ConutContext.Provider value={getCount}>
+        <CountContext.Provider value={getCount}>
             <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
@@ -238,7 +239,7 @@ function NavBar({ navPosition = 'fixed' }) {
                 </nav>
             </header>
             <div className="nav-solid-border-bottom"></div>
-        </ConutContext.Provider>
+        </CountContext.Provider>
     );
 }
 
