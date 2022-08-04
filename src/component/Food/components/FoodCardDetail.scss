@@ -19,7 +19,10 @@
         padding: 20px 27px 20px 27px;
         overflow: scroll;
         color: #3e3e3e;
-    
+        svg {
+            cursor: pointer;
+        }
+
         .detail-photoarea {
             display: flex;
 
@@ -56,6 +59,7 @@
             width: 40px;
             height: 20.15px;
             margin: 6px 0;
+            cursor: pointer;
         }
         .inputla {
             font-size: 20px;
@@ -63,6 +67,7 @@
         .cal {
             display: flex;
             margin-top: 20px;
+            cursor: pointer;
 
             .count {
                 width: 41px;
@@ -217,7 +222,7 @@
                 }
                 .order {
                     width: 100%;
-                    background-color: #B79973;
+                    background-color: #b79973;
                     color: #fff;
                     display: flex;
                     justify-content: center;

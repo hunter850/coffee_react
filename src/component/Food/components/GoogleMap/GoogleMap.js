@@ -8,12 +8,21 @@ function GoogleMap({ setShowMap, setShowDate, setSelectedAddress }) {
     useEffect(() => {
         console.log("did update");
     }, [storeInfo]);
+
+    const handleChildClick = (e) => {
+        e.stopPropagation();
+    };
     return (
         <>
-            <div className="google-lightbox">
-                <div className="detail">
+            <div
+                className="google-lightbox"
+                onClick={() => {
+                    setShowMap(false);
+                }}
+            >
+                <div className="detail" onClick={handleChildClick}>
                     <div className="top">
-                        <h6>選擇自取門市</h6>
+                        <h6>選擇自取門市 & 時間</h6>
                     </div>
 
                     <div className="middle2 ">
@@ -62,6 +71,7 @@ function GoogleMap({ setShowMap, setShowDate, setSelectedAddress }) {
                             storeInfo={storeInfo}
                         />
                     </div>
+                    <div>123</div>
 
                     <div className="bottomarea">
                         <div
