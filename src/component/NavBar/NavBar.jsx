@@ -4,30 +4,6 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-<<<<<<< HEAD
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { useAuth, authOrigin } from "../Member/AuthContextProvider";
-import CartCount from "../../Contexts/CartCount";
-import axios, { Axios } from "axios";
-import { getCartCount } from "../../config/api-path";
-
-export const ConutContext = React.createContext();
-
-
-function NavBar({ navPosition = 'fixed' }) {
-    const { sid, name, setAuth, token } = useAuth();
-
-    const [count, setCount] = useState(0);
-    const getCount = useCallback(() => {
-        axios.get(getCartCount, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-            .then((res) => {
-                setCount(res.data.cartTotalCount);
-                // console.log(res.data.cartTotalCount);
-            });
-    }, []);
-=======
 import React, { useState, useEffect } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import { useNav } from "../../Contexts/NavProvider";
@@ -37,7 +13,6 @@ function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, setAuth } = useAuth();
 
     const { count, getCount } = useNav();
->>>>>>> c67884106b6e5ca61d41e0ff97f19acf670cecb6
 
 
     // console.log(cartCount);
@@ -81,13 +56,6 @@ function NavBar({ navPosition = 'fixed' }) {
             }
         });
     }, [windowsWidth, mediaS]);
-<<<<<<< HEAD
-=======
-
-    useEffect(() => {
-        getCount();
-    }, []);
->>>>>>> c67884106b6e5ca61d41e0ff97f19acf670cecb6
 
     // 刪除 auth - 登入狀態
     const handleSignOut = () => {
@@ -135,12 +103,7 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-<<<<<<< HEAD
-        <ConutContext.Provider value={getCount}>
-            <button onClick={getCount}>click</button>
-=======
         <>
->>>>>>> c67884106b6e5ca61d41e0ff97f19acf670cecb6
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
@@ -257,11 +220,7 @@ function NavBar({ navPosition = 'fixed' }) {
                 </nav>
             </header>
             <div className="nav-solid-border-bottom"></div>
-<<<<<<< HEAD
-        </ConutContext.Provider>
-=======
         </>
->>>>>>> c67884106b6e5ca61d41e0ff97f19acf670cecb6
     );
 }
 
