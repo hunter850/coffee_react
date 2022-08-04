@@ -6,11 +6,17 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from '../Member/AuthContext';
+import CartCount from "../../Contexts/CartCount";
 
-function NavBar({ navPosition = 'fixed' }) {
+function NavBar({ navPosition = 'fixed'  }) {
     const { sid, name } = useContext(AuthContext);
+    // console.log(cartCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
+
+    
+    const cartCount = useContext(CartCount);
+    console.log(cartCount.cartCountNum)
 
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");

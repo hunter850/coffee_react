@@ -62,15 +62,15 @@ function PostDetailContent({ data }) {
                         </span>
                     </div>
                     {/* 內文 */}
-                    <p className="mb-5">{content}{content}{content}{content}{content}{content}{content}{content}{content}</p>
+                    <p className="mb-5">{content}</p>
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />
                         ))}
                     </div>
-                    <div className="mb-1">
+                    <div className="mb-1 d-flex">
                         <Likes likes={likes} />
-                        <span>．留言:{comments}</span>
+                        <span>．留言 {comments}</span>
                     </div>
                     <div></div>
                     {/* <pre>{JSON.stringify(data.rows, null, 4)}</pre> */}

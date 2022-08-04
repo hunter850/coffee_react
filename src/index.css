@@ -124,6 +124,26 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-right: auto;
 }
 
+.mt-1 {
+    margin-top: .25rem;
+}
+
+.mt-2 {
+    margin-top: .5rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
 .mb-1 {
     margin-bottom: .25rem;
 }
@@ -142,6 +162,22 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .mb-5 {
     margin-bottom: 3rem;
+}
+
+.ms-1 {
+    margin-left: .25rem;
+}
+
+.ms-2 {
+    margin-left: .5rem;
+}
+
+.ms-3 {
+    margin-left: 1rem;
+}
+
+.ms-5 {
+    margin-left: 3rem;
 }
 
 .me-1 {
