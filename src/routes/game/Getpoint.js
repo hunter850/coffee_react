@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import { useNavigate } from 'react-router-dom';
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 import "./css/Getpoint.css";
 // import SnakeGame from "./Components/SnakeGame";

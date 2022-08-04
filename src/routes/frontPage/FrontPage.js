@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 // import Carousel from "../../component/FrontPages/Carousel/Carousel";
 import HotFoods from "../../component/FrontPages/HotFoods/HotFoods";

@@ -12,7 +12,7 @@ import { useNav } from "../../Contexts/NavProvider";
 function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, setAuth } = useAuth();
 
-    const { count, getCount } = useNav();
+    const { count, getCount, handleLogout } = useNav();
 
 
     // console.log(cartCount);
@@ -57,14 +57,11 @@ function NavBar({ navPosition = 'fixed' }) {
         });
     }, [windowsWidth, mediaS]);
 
-    useEffect(() => {
-        getCount();
-    }, []);
-
     // 刪除 auth - 登入狀態
     const handleSignOut = () => {
         localStorage.removeItem("auth");
         setAuth({ ...authOrigin });
+        handleLogout();
     };
 
     // 未登錄顯示icon

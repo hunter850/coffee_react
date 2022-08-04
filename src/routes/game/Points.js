@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/Points.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";

@@ -5,6 +5,8 @@ import axios from "axios";
 import { useContext } from "react";
 import { foodData } from "../../../config/api-path";
 import AuthContext from "../../Member/AuthContext";
+
+// import { useGetCart } from "../../../component/NavBar/NavWrap";
 // import { useNavigate } from "react-router-dom";
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
 function FoodAsideSummary({
@@ -21,6 +23,8 @@ function FoodAsideSummary({
 }) {
     const asideClass = show ? "aside" : "aside hide";
     // const navigate = useNavigate();
+    // const { getCount,count } = useGetCart();
+    // console.log("useGetCart", count);
 
     const totalPrice = dataFromFoodDetail.reduce(
         (accumulator, { menu_price_m, foodCount }) =>
@@ -198,6 +202,7 @@ function FoodAsideSummary({
                         className="pay"
                         onClick={(e) => {
                             handleSubmission(e);
+                            // getCount();
                         }}
                     >
                         去結帳
