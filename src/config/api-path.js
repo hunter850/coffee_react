@@ -1,5 +1,8 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
+// NAV
+
+export const getCartCount = `${SERVER}/cart/cart_count/api`;
 
 // MEMBER
 export const login = `${SERVER}/member/api/login`;
@@ -9,6 +12,7 @@ export const editUserData = `${SERVER}/member/api/edit-user-list`;
 export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
 export const getOrderHistory = `${SERVER}/member/api/order-history`;
 export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
+export const getUserLikes = `${SERVER}/member/api/member-likes`;
 
 // COURSE
 

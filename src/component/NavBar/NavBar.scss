@@ -75,13 +75,31 @@
                 display: none;
             }
         }
+        .nav-icon-wrap {
+            align-items: center;
+        }
         div {
             div {
                 cursor: pointer;
             }
             .cart-icon {
                 margin-right: 35px;
-                line-height: 60px;
+                position: relative;
+                .cart-icon-count {
+                    background-color: #b79973;
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: -8px;
+                    right: -12px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #253945;
+                    font-weight: bolder;
+                    font-size: 0.6rem;
+                }
             }
             .member-icon {
                 line-height: 60px;
@@ -99,6 +117,7 @@
                 span {
                     font-size: 0.9rem;
                     color: #b79973;
+                    font-weight: bolder;
                 }
             }
         }

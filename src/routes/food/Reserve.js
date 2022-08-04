@@ -1,7 +1,8 @@
 import { Fragment } from "react";
-import NavBar from "../../component/NavBar";
+// import NavBar from "../../component/NavBar";
 import Path from "../../component/Item/Path/Path";
 import "./Reserve.css";
+import NavBar from "../../component/NavBar/NavBar";
 
 function Reserve() {
     return (

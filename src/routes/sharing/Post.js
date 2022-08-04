@@ -118,7 +118,6 @@ function Post() {
             <PostNav scrollDir={scrollDir} />
 
             <div className={container} ref={wrap}>
-                <p>寬:{window.innerWidth}</p>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
