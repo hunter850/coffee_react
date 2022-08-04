@@ -167,26 +167,26 @@ function Reserve() {
                             })}
                         </select>
                     </div>
-                    <div className="branchchoice">
-                        <div className="store">分店</div>
-
-                        <select
-                            className="a"
-                            value={branch}
-                            onChange={(e) => {
-                                setBranch(e.target.value);
-                            }}
-                        >
-                            <option value="-1">請選擇分店</option>
-                            {places.map((v, i) => {
-                                return <option key={i}>{v.storeName}</option>;
-                            })}
-                        </select>
-                    </div>
+                 
                     <div className="price">
                         <div className="infor">價目表</div>
                         <div className="infor">分店資訊</div>
                     </div>
+                    <p className="reserve-txt">
+                        【線上訂位說明】 網路預約訂位以十人以內為限，訂位隔日起
+                        ~ 一個月內；十人以上訂位或包場需求，僅接受電話預約。
+                        <br /> <br />
+                        ★用餐當日訂位保留時間為10分鐘，請準時入席，逾時將取消訂位。座位將依餐廳當日訂位排定且無法指定座位，亦不接受現場臨時增加人數；若要變更人數，請於用餐前一日21:30前與餐廳聯繫，若需增加人數，視現場訂位狀況決定，敬請見諒。
+                        <br />
+                        ★若需取消或更改訂位，請提前告知。
+                        <br />
+                        ★如逾時取消訂位欲候補座位，再視現場訂位狀況而定。
+                        <br />
+                        ★網路訂位是否成功，可至「訂位紀錄」進行查詢。
+                        <br />
+                        ★網路訂位成功者，如未到場且未於線上或電話通知取消訂位，視同「訂位未到且未提前通知取消」，「訂位未到且未提前通知取消」次數達到三次，系統將取消您的網路訂位資格，造成不便敬請見諒。
+                        【為提供最好的用餐經驗與品質，請詳閱上述訂位說明，感謝您的配合並期待您的光臨！】
+                    </p>
                 </div>
             </div>
         </Fragment>
