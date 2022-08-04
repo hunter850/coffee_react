@@ -1,77 +1,36 @@
 import { useState, useEffect, useContext } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
+import LikesCard from "./LikesCard";
 import "./Likes.css";
 
-import { FaHeart } from "react-icons/fa";
+import { getUserLikes } from "../../../../config/api-path";
+
+import axios from "axios";
+import AuthContext from "../../AuthContext";
 
 function LikesMain() {
+
+    const { token } = useContext(AuthContext);
+
+    // --------------------- 拿到收藏的資料 ---------------------
+    useEffect(() => {
+        axios
+            .get(getUserLikes, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+            });
+    }, [token]);
+
     return (
         <>
             <div className="like-wrap-main">
                 <div className="like-container">
                     <MemberMenu />
-                    <div className="like-wrap-right">
-                        <div className="like-wrap">
-                            <div className="like-info">
-                                <div className="like-info-wrap">
-                                    <div className="like-content">
-                                        <div className="like-pic"></div>
-                                        <div className="like-name">瓜地馬拉花神(一包十入)</div>
-                                        <div className="like-price">320<span>元</span></div>
-                                        <button className="like-btn"><FaHeart style={{marginRight:"8px"}}/>取消收藏</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="like-wrap">
-                            <div className="like-info">
-                                <div className="like-info-wrap">
-                                    <div className="like-content">
-                                        <div className="like-pic"></div>
-                                        <div className="like-name">瓜地馬拉花神(一包十入)</div>
-                                        <div className="like-price">320<span>元</span></div>
-                                        <button className="like-btn"><FaHeart style={{marginRight:"8px"}}/>取消收藏</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="like-wrap">
-                            <div className="like-info">
-                                <div className="like-info-wrap">
-                                    <div className="like-content">
-                                        <div className="like-pic"></div>
-                                        <div className="like-name">瓜地馬拉花神(一包十入)</div>
-                                        <div className="like-price">320<span>元</span></div>
-                                        <button className="like-btn"><FaHeart style={{marginRight:"8px"}}/>取消收藏</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="like-wrap">
-                            <div className="like-info">
-                                <div className="like-info-wrap">
-                                    <div className="like-content">
-                                        <div className="like-pic"></div>
-                                        <div className="like-name">瓜地馬拉花神(一包十入)</div>
-                                        <div className="like-price">320<span>元</span></div>
-                                        <button className="like-btn"><FaHeart style={{marginRight:"8px"}}/>取消收藏</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="like-wrap">
-                            <div className="like-info">
-                                <div className="like-info-wrap">
-                                    <div className="like-content">
-                                        <div className="like-pic"></div>
-                                        <div className="like-name">瓜地馬拉花神(一包十入)</div>
-                                        <div className="like-price">320<span>元</span></div>
-                                        <button className="like-btn"><FaHeart style={{marginRight:"8px"}}/>取消收藏</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <LikesCard />
                 </div>
             </div>
         </>
