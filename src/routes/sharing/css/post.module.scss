@@ -2,6 +2,7 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+
     padding: 4rem 12px 0;
     background-color:#fcfaf7;
 }
@@ -28,6 +29,7 @@
     display: -ms-flexbox;
     /* Not needed if autoprefixing */
     display: flex;
+    margin-top: 3.5rem;
     margin-left: -12px;
     /* gutter size offset */
     width: auto;

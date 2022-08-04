@@ -4,13 +4,38 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import { useState, useEffect, useContext } from "react";
-import AuthContext from '../Member/AuthContext';
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import { useAuth, authOrigin } from "../Member/AuthContextProvider";
+import CartCount from "../../Contexts/CartCount";
+import axios, { Axios } from "axios";
+import { getCartCount } from "../../config/api-path";
+
+export const CountContext = React.createContext();
+
 
 function NavBar({ navPosition = 'fixed' }) {
-    const { sid, name } = useContext(AuthContext);
+    const { sid, name, setAuth, token } = useAuth();
+
+    const [count, setCount] = useState(0);
+
+    const getCount = useCallback(() => {
+        axios.get(getCartCount, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((res) => {
+                setCount(res.data.cartTotalCount);
+                // console.log(res.data.cartTotalCount);
+            });
+    }, []);
+
+
+    // console.log(cartCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
+
+
+    const { cartCountNum } = useContext(CartCount);
+    console.log(cartCountNum);
 
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
@@ -51,17 +76,10 @@ function NavBar({ navPosition = 'fixed' }) {
     }, [windowsWidth, mediaS]);
 
     // 刪除 auth - 登入狀態
-    const handleSignOut = (auth) => {
-        setSignOut(auth);
+    const handleSignOut = () => {
+        localStorage.removeItem("auth");
+        setAuth({ ...authOrigin });
     };
-    // 刪除 auth - 登入狀態
-    useEffect(() => {
-        if (signOut === 'auth') {
-            localStorage.removeItem(signOut);
-            // 清掉後刷新,否則跳頁依然會是登入狀態
-            window.history.go(0);
-        }
-    }, [signOut]);
 
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
@@ -103,7 +121,8 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-        <>
+        <CountContext.Provider value={getCount}>
+            <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
@@ -205,27 +224,22 @@ function NavBar({ navPosition = 'fixed' }) {
                     </ul>
                     <div className="d-flex nav-icon-wrap">
                         <div className="cart-icon">
+                            <div className="cart-icon-count">
+                                {count}
+                            </div>
                             <Link to="/cart">
-                                <svg
-                                    width="20"
-                                    height="18"
-                                    viewBox="0 0 20 18"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M17.5249 11.2224H7.34625L7.57351 12.3336H16.8936C17.4283 12.3336 17.8247 12.8301 17.7062 13.3516L17.5146 14.1945C18.1636 14.5095 18.6111 15.1748 18.6111 15.9447C18.6111 17.0281 17.725 17.9045 16.6381 17.8889C15.6025 17.874 14.7509 17.0337 14.723 15.9984C14.7077 15.4329 14.9342 14.9203 15.3064 14.5557H8.02695C8.38726 14.9087 8.61111 15.4004 8.61111 15.9447C8.61111 17.0493 7.69 17.9388 6.57396 17.887C5.58299 17.841 4.77705 17.0403 4.72497 16.0496C4.68476 15.2845 5.08733 14.6102 5.69896 14.2584L3.25983 2.33355H0.833334C0.37309 2.33355 0 1.96046 0 1.50022V0.944662C0 0.484419 0.37309 0.111328 0.833334 0.111328H4.39337C4.78924 0.111328 5.13045 0.389835 5.20979 0.777648L5.52806 2.33355H19.1663C19.7011 2.33355 20.0974 2.83011 19.9789 3.35157L18.3375 10.5738C18.2513 10.9532 17.914 11.2224 17.5249 11.2224ZM13.9941 6.778H12.5V4.69466C12.5 4.46456 12.3134 4.278 12.0833 4.278H11.25C11.0199 4.278 10.8333 4.46456 10.8333 4.69466V6.778H9.33927C8.96806 6.778 8.78216 7.22682 9.04465 7.48928L11.3721 9.81668C11.5348 9.97939 11.7986 9.97939 11.9613 9.81668L14.2887 7.48928C14.5512 7.22682 14.3653 6.778 13.9941 6.778Z"
-                                        fill="white"
-                                    />
+                                <svg width="24" height="24" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                                    <path d="M18.3375 10.5738L19.9789 3.35157C20.0974 2.83011 19.7011 2.33355 19.1663 2.33355H5.52806L5.20979 0.777648C5.13049 0.389835 4.78924 0.111328 4.39337 0.111328H0.833334C0.37309 0.111328 0 0.484419 0 0.944662V1.50022C0 1.96046 0.37309 2.33355 0.833334 2.33355H3.25983L5.69899 14.2584C5.11545 14.594 4.72222 15.2232 4.72222 15.9447C4.72222 17.0186 5.59278 17.8891 6.66667 17.8891C7.74056 17.8891 8.61111 17.0186 8.61111 15.9447C8.61111 15.4004 8.38726 14.9087 8.02695 14.5558H15.3064C14.9461 14.9087 14.7222 15.4004 14.7222 15.9447C14.7222 17.0186 15.5928 17.8891 16.6667 17.8891C17.7406 17.8891 18.6111 17.0186 18.6111 15.9447C18.6111 15.1748 18.1636 14.5095 17.5146 14.1945L17.7062 13.3516C17.8247 12.8301 17.4283 12.3336 16.8936 12.3336H7.57351L7.34625 11.2224H17.5249C17.914 11.2224 18.2513 10.9532 18.3375 10.5738Z" fill="#fff" />
                                 </svg>
+
                             </Link>
                         </div>
-                        {sid !== '' && signOut !== 'auth' ? memberName : memberIcon}
+                        {sid !== "" ? memberName : memberIcon}
                     </div>
                 </nav>
             </header>
             <div className="nav-solid-border-bottom"></div>
-        </>
+        </CountContext.Provider>
     );
 }
 

@@ -4,6 +4,7 @@ import styles from "../../css/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
 import Likes from "./Likes";
+import Comment from "./Comment";
 
 function PostDetailContent({ data }) {
     const {
@@ -18,6 +19,7 @@ function PostDetailContent({ data }) {
         likes,
         comments,
         tags,
+        comment,
     } = data.rows;
     const topicName = ["未分類", "課程", "商品", "其它"];
 
@@ -62,18 +64,19 @@ function PostDetailContent({ data }) {
                         </span>
                     </div>
                     {/* 內文 */}
-                    <p className="mb-5">{content}{content}{content}{content}{content}{content}{content}{content}{content}</p>
+                    <p className="mb-5">{content}</p>
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />
                         ))}
                     </div>
-                    <div className="mb-1">
+                    <div className="mb-1 d-flex">
                         <Likes likes={likes} />
-                        <span>．留言:{comments}</span>
+                        <span>．留言 {comments}</span>
                     </div>
-                    <div></div>
-                    {/* <pre>{JSON.stringify(data.rows, null, 4)}</pre> */}
+                    {comment.map((v, i) => {
+                        return <Comment key={i} data={v}/>;
+                    })}
                 </div>
             </div>
 
