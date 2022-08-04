@@ -167,7 +167,9 @@ function Reserve() {
                             })}
                         </select>
                     </div>
-                 
+                    <div className="submit">
+                        <h6>送出</h6>
+                    </div>
                     <div className="price">
                         <div className="infor">價目表</div>
                         <div className="infor">分店資訊</div>
