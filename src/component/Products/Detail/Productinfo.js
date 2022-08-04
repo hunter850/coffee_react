@@ -11,19 +11,33 @@ import { useEffect, useContext, useState } from "react";
 import AuthContext from "../../Member/AuthContext";
 import Modal from "../../Modal/Modal";
 import { Link } from "react-router-dom";
+// import "./ModalCss.scss";
+import CartCount from "../../../Contexts/CartCount";
 
 function Productinfo(props) {
     // identify zone
-    const { renderData, dataLoaded, productsCount, setProductsCount } = props;
+    const {
+        renderData,
+        dataLoaded,
+        productsCount,
+        setProductsCount,
+        // setCartCount,
+        // cartCount,
+    } = props;
 
     const [userLike, setUserLike] = useState([]);
     const [infoLoaded, setInfoLoaded] = useState(false);
     const [checkLike, setCheckLike] = useState(false);
     const [btnContext, setBtnContext] = useState("未加入收藏");
     const [isOpen, setIsOpen] = useState(false);
+    const [modalIdOpen, setModalIdOpen] = useState("one out");
 
     const Auth = useContext(AuthContext);
-
+    const cartCount = useContext(CartCount);
+    // check
+    // console.log("Auth", Auth);
+    console.log("cartCount", cartCount);
+    console.log("cartCount", cartCount.setCartCountNum);
     // axios get
 
     let userLikeData = [];
@@ -73,6 +87,8 @@ function Productinfo(props) {
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
                 console.log(fetchCartData);
+                cartCount.setCartCountNum(cartCount.cartCountNum + 1);
+                // setCartCount(+cartCount + 1);
             });
     };
 
@@ -190,8 +206,10 @@ function Productinfo(props) {
                     if (Auth.authorized) {
                         sendCart();
                     } else {
-                        setIsOpen(true);
+                        // setIsOpen(true);
                         // alert("請先登入會員");
+
+                        setModalIdOpen("one");
                     }
                 }}
             />
@@ -214,13 +232,41 @@ function Productinfo(props) {
                         } else {
                             // alert("請先登入會員");
                             console.log(Auth);
-                            setIsOpen(true);
+                            // setIsOpen(true);
+                            setModalIdOpen("one");
                         }
                     }}
                 />
             ) : (
                 ""
             )}
+            <div
+                id="modal-container"
+                // className={modalIdOpen}
+            >
+                <div class="modal-background">
+                    <div class="modal">
+                        <h4>請先登入</h4>
+                        <svg
+                            class="modal-svg"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100%"
+                            height="100%"
+                            preserveAspectRatio="none"
+                        >
+                            <rect
+                                x="0"
+                                y="0"
+                                fill="none"
+                                width="226"
+                                height="162"
+                                rx="3"
+                                ry="3"
+                            ></rect>
+                        </svg>
+                    </div>
+                </div>
+            </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <Link
                     to="/member/login"
@@ -229,9 +275,7 @@ function Productinfo(props) {
                         color: "var(--BLUE)",
                         padding: "40px",
                     }}
-                >
-                    <h4>請先登入</h4>
-                </Link>
+                ></Link>
             </Modal>
         </div>
     );
