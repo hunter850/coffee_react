@@ -4,29 +4,31 @@
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import CartCount from "../../Contexts/CartCount";
-import axios, { Axios } from "axios";
-import { getCartCount } from "../../config/api-path";
+// import axios, { Axios } from "axios";
+// import { getCartCount } from "../../config/api-path";
+import { useGetCart } from "./NavWrap";
 
 export const CountContext = React.createContext();
 
 
 function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, setAuth, token } = useAuth();
+    const { getCount, count } = useGetCart();
 
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
-    const getCount = useCallback(() => {
-        axios.get(getCartCount, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-            .then((res) => {
-                setCount(res.data.cartTotalCount);
-                // console.log(res.data.cartTotalCount);
-            });
-    }, []);
+    // const getCount = useCallback(() => {
+    //     axios.get(getCartCount, {
+    //         headers: { Authorization: `Bearer ${token}` },
+    //     })
+    //         .then((res) => {
+    //             setCount(res.data.cartTotalCount);
+    //             // console.log(res.data.cartTotalCount);
+    //         });
+    // }, []);
 
 
     // console.log(cartCount);
@@ -74,6 +76,9 @@ function NavBar({ navPosition = 'fixed' }) {
             }
         });
     }, [windowsWidth, mediaS]);
+    useEffect(() => {
+        getCount();
+    }, []);
 
     // 刪除 auth - 登入狀態
     const handleSignOut = () => {
@@ -122,7 +127,6 @@ function NavBar({ navPosition = 'fixed' }) {
 
     return (
         <CountContext.Provider value={getCount}>
-            <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
