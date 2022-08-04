@@ -166,7 +166,7 @@ const CourseDetailed = () => {
     const el = (
         <Fragment>
             <div className="CourseDetailed-container">
-                <NavBar navPosition={'static'} />
+                <NavBar navPosition={'absolute'} />
                 <Path
                     pathObj={{
                         path: [

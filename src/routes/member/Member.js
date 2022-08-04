@@ -8,7 +8,7 @@ import { getUserData } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./Member.css";
 
 import { FaUser } from "react-icons/fa";
@@ -143,7 +143,7 @@ function Member() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} bgClassName={"rgb(34, 34, 34)"}>
                     <Modal.Body className="mr-msg-wrap">
                         <div>
                             <div className="mr-msg" onClick={()=>{window.location.href =`${window.location.origin}/member/login`}}>請先登入</div>

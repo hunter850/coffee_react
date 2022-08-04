@@ -51,6 +51,7 @@
                     white-space: nowrap;
                     border-radius: 0 0 3px 3px;
                     min-width: 105px;
+                    animation: opacity 0.5s linear;
                     li {
                         font-size: 0.625rem;
                         padding: 12px 0;
@@ -107,6 +108,7 @@
 .nav-sign-out-ul {
     position: relative;
     li {
+        animation: opacity 0.5s linear;
         color: #fff;
         position: absolute;
         top: 0;
@@ -123,4 +125,20 @@
     .signout-display-none {
         display: none;
     }
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.nav-solid-border-bottom {
+    border-bottom: 1px solid transparent;
+    width: 100%;
+    display: block;
+    margin-bottom: 59px;
 }

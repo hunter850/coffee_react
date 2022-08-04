@@ -19,7 +19,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    height: calc(100vh - 61px);
+    /* height: calc(100vh - 61px); */
     overflow: hidden;
     background-color: var(--cream);
 }
@@ -38,6 +38,7 @@ body {
     align-items: center;
     color: var(--blue);
     transition: all 1s ease;
+    padding-top: 70px;
 }
 .lg-field-form {
     width: 350px;
