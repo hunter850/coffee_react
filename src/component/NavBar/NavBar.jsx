@@ -64,6 +64,10 @@ function NavBar({ navPosition = 'fixed' }) {
         handleLogout();
     };
 
+    useEffect(() => {
+        getCount();
+    }, []);
+
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
         <Link to="/member/login">
