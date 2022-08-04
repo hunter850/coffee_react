@@ -95,21 +95,21 @@ body{
 }
 
 /* 提示訊息 */
-.or-wrap{
+.li-wrap{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 40px;
 }
-.or-msg-wrap{
+.li-msg-wrap{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 300px;
     height: 250px;
 }
-.or-msg{
+.li-msg{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,7 +118,7 @@ body{
     font-size: 1.5rem;
     font-weight: 600;
 }
-.or-btn{
+.li-btn{
     display: flex;
     justify-content: center;
     align-items: center;

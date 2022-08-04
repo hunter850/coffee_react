@@ -2,6 +2,7 @@
     width: 100%;
     z-index: 999;
     background-color: #253945;
+    height: 60px;
     .nav-header-wrap {
         height: 100%;
         display: flex;
@@ -98,7 +99,7 @@
                     justify-content: center;
                     color: #253945;
                     font-weight: bolder;
-                    font-size: 0.6rem;
+                    font-size: 0.425rem;
                 }
             }
             .member-icon {
@@ -160,4 +161,10 @@
     width: 100%;
     display: block;
     margin-bottom: 59px;
+}
+
+@media (max-width: 768px) {
+    .nav-member-li {
+        display: none;
+    }
 }

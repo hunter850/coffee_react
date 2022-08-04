@@ -216,6 +216,7 @@ function CourseAddListDetailed({
                             })
                         }
                     ></textarea>
+                    <span className="course-add-error-txt">請輸入課程內容</span>
                 </div>
                 <div>
                     <p>適合對象 :</p>
@@ -230,6 +231,7 @@ function CourseAddListDetailed({
                             })
                         }
                     ></textarea>
+                    <span className="course-add-error-txt">請輸入適合對象</span>
                 </div>
                 <div>
                     <p>需求材料 :</p>
@@ -244,12 +246,12 @@ function CourseAddListDetailed({
                             })
                         }
                     ></textarea>
+                    <span className="course-add-error-txt">請輸入需求材料</span>
                 </div>
                 <div>
                     <p style={{ paddingBottom: 6 }}>報名資訊 :</p>
                     <div style={{ paddingBottom: 6 }}>
                         <p style={{ fontWeight: 400 }}>報名時間 1 :</p>
-
                         <div className="CourseAddListDetailed-select-inp ">
                             <input
                                 type="text"
@@ -283,6 +285,7 @@ function CourseAddListDetailed({
                             />
 
                         </div>
+
                     </div>
                     <div style={{ paddingBottom: 21 }}>
                         <p style={{ fontWeight: 400 }}>報名時間 2 :</p>

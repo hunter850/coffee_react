@@ -97,7 +97,7 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                 </div>
                 <div>
                     <div>
-                        <p>課程名稱 :</p>
+                        <p >課程名稱 :</p>
                         <input
                             type="text"
                             placeholder="限制11字"
@@ -110,6 +110,7 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                                 })
                             }
                         />
+                        <span className="course-add-error-txt">請輸入名稱</span>
                     </div>
                     <div>
                         <p>課程價格 :</p>
@@ -126,9 +127,10 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                                 }
                             />
                             <p style={{ color: "#3E3E3E", paddingLeft: 20 }}>
-                                NT$/ 人
+                                NT$/ 人  <span className="course-add-error-txt">請輸入價格</span>
                             </p>
                         </div>
+
                     </div>
                     <div>
                         <p>課程難度 :</p>
@@ -147,6 +149,7 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                             <option value={2}>中級</option>
                             <option value={3}>高級</option>
                         </select>
+                        <span className="course-add-error-txt">請選擇難度</span>
                     </div>
                 </div>
             </div>
