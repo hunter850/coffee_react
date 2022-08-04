@@ -2,7 +2,6 @@ import { Fragment, useState, useEffect } from "react";
 import Header from "../../component/Products/Header";
 // import Sort from "../../component/Course/Sort/Sort";
 import Path from "../../component/Item/Path/Path";
-import FakeNav from "../../component/FakeNav";
 import NavBar from "../../component/NavBar/NavBar";
 import BookMark from "../../component/Products/BookMark";
 import List from "../../component/Products/List";
@@ -76,11 +75,13 @@ function Products() {
                 <NavBar />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
-                // searchInp={searchInp}
-                // setSearchInp={setSearchInp}
-                // productsRows={productsRows}
-                // searchSure={searchSure}
-                // setSearchSure={setSearchSure}
+                    searchInp={searchInp}
+                    setSearchInp={setSearchInp}
+                    DataRows={DataRows}
+                    setDataRows={setDataRows}
+                    setRenderData={setRenderData}
+                    setPageNow={setPageNow}
+                    setPageTotal={setPageTotal}
                 />
                 <BookMark
                     DataRows={DataRows}

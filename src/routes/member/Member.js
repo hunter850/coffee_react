@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
@@ -8,7 +8,7 @@ import { getUserData } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./Member.css";
 
 import { FaUser } from "react-icons/fa";
@@ -20,7 +20,7 @@ import { RiCoupon2Fill } from "react-icons/ri";
 import { FaAngleRight } from "react-icons/fa";
 
 function Member() {
-
+    const navigate = useNavigate();
     const { authorized, token } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -143,10 +143,10 @@ function Member() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} bgClassName="dark-bg">
                     <Modal.Body className="mr-msg-wrap">
                         <div>
-                            <div className="mr-msg" onClick={()=>{window.location.href =`${window.location.origin}/member/login`}}>請先登入</div>
+                            <div className="mr-msg" onClick={()=>{navigate("/member/login", {replace: false})}}>請先登入</div>
                         </div>
                     </Modal.Body>
                 </Modal>

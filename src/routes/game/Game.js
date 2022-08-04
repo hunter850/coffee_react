@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 
 function Game() {
     return (

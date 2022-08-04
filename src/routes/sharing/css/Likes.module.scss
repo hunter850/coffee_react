@@ -1,0 +1,58 @@
+.like_wrap{
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: .75rem;
+}
+
+.heart {
+    display: inline-block;
+    position: absolute;
+    left:-20px;
+    top:-85%;
+    vertical-align: bottom;
+    width: 68px;
+    height: 68px;
+    
+    background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+
+    // animation: fave-heart 1s steps(28);
+
+    &>button{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+
+        border: none;
+        background-color: transparent;
+        // background-color: #ccc;
+
+    }
+}
+
+.heart:hover {
+    background-position: -1904px 0;
+    transition: background 1s steps(28);
+} 
+.liked {
+    background-position: -1904px 0;
+    transition: background 1s steps(28);
+}
+
+@keyframes fave-heart {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -1904px 0;
+    }
+}

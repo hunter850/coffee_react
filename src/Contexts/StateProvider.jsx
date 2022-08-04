@@ -1,4 +1,5 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
+import { useAuth } from "../component/Member/AuthContextProvider";
 import { initData } from "./initData";
 import produce from "immer";
 
@@ -29,7 +30,20 @@ const reducer = produce((draft, action) => {
 
 function StateProvider(props) {
     const { children } = props;
+    const { token } = useAuth();
     const [state, dispatch] = useReducer(reducer, initData);
+    useEffect(() => {
+        console.log("in");
+        if (!token) {
+            dispatch({ type: "RESET", name: "nowList" });
+            dispatch({ type: "RESET", name: "productList" });
+            dispatch({ type: "RESET", name: "foodList" });
+            dispatch({ type: "RESET", name: "productCoupons" });
+            dispatch({ type: "RESET", name: "foodCoupons" });
+            dispatch({ type: "RESET", name: "selectedProductCouponId" });
+            dispatch({ type: "RESET", name: "selectedFoodCouponId" });
+        }
+    }, [token]);
     return (
         <StateContext.Provider value={[state, dispatch]}>
             {children}

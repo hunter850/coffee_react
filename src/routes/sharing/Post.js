@@ -5,7 +5,8 @@ import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
 
 import { getPosts, imgSrc } from "../../config/api-path";
-import FakeNav from "../../component/FakeNav";
+import NavBar from "../../component/NavBar/NavBar";
+
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav.js";
@@ -111,11 +112,11 @@ function Post() {
 
     return (
         <Fragment>
-            <FakeNav />
+            <NavBar />
+            {/* <FakeNav /> */}
             <PostNav scrollDir={scrollDir} />
 
             <div className={container} ref={wrap}>
-                <p>寬:{window.innerWidth}</p>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}

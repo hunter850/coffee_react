@@ -99,21 +99,32 @@ const CourseAdd = () => {
         } else {
             // console.log(formData);
             // 這裡需要檢查欄位 (還沒做)
-            axios({
-                method: "post",
-                url: courseDataAdd,
-                data: formData,
-                "content-type": "application/x-www-form-urlencoded",
-            }).then((response) => {
-                console.log(response.config.data);
-                console.log(response);
-                // 確定拿到sid後塞給外鍵的formData
-                setFormDataFk({ ...formDataFk, course_sid: response.data });
-                setMonitor(true);
-            });
+            const {
+                course_content,
+                course_img_s,
+                course_level,
+                course_material,
+                course_name,
+                course_price,
+            } = formData;
+            if (course_name !== "") {
+                console.log(1);
+            }
+            // axios({
+            //     method: "post",
+            //     url: courseDataAdd,
+            //     data: formData,
+            //     "content-type": "application/x-www-form-urlencoded",
+            // }).then((response) => {
+            //     console.log(response.config.data);
+            //     console.log(response);
+            //     // 確定拿到sid後塞給外鍵的formData
+            //     setFormDataFk({ ...formDataFk, course_sid: response.data });
+            //     setMonitor(true);
+            // });
         }
     };
-
+    console.log(formData);
     useEffect(() => {
         // 發送請求前將資料整理成陣列
         const dataArr = [];

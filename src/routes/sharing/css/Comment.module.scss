@@ -1,0 +1,35 @@
+
+
+.comment_wrap{
+    display: flex;
+
+
+    >div{
+        flex-shrink: 0;
+        margin-bottom: .5rem;
+    }
+    .img_wrap{
+        width: 2rem;
+        height: 2rem;
+        margin-right: .75rem;
+
+        border-radius: 2rem;
+        overflow: hidden;
+      
+
+        >img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+
+    .name_wrap{
+        margin-right: .5rem;
+    }
+
+    .content_wrap{
+        flex: 0 1 auto;
+    }
+}

@@ -1,7 +1,13 @@
 .grid_top{
     display: flex;
     flex-direction: column;
+
+    padding-right: 1rem;
     height: calc(100% - 2.5rem);
+
+    >div{
+        padding-left: 1rem;
+    }
   
     .author{
         display: flex;
@@ -42,6 +48,8 @@
     // flex-shrink: 0;
     height: calc(100% - 2rem);
     overflow-y: auto;
+    overflow-x: visible;
+    // overflow-x: visible;
 
 
 

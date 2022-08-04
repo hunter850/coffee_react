@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
-import NavBar from "../../component/NavBar";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/Points.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -14,6 +15,7 @@ import "../../component/Bot/Bot.css";
 // ===========
 
 function Points() {
+    const { token } = useAuth();
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
     let location = useLocation();
@@ -28,34 +30,42 @@ function Points() {
     }
 
     const Points = async () => {
-        await axios.get("http://localhost:3500/Points/API").then((result) => {
-            setTheTotalPoints(
-                <>
-                    {result.data.rows2.map((v, i) => {
-                        return <p key={i}>{v.total_points}</p>;
-                    })}
-                </>
-            );
-            setCouponList(
-                <>
-                    {result.data.rows.map((v, i) => {
-                        return (
-                            <tr className=" load" key={i}>
-                                <td>
-                                    {moment(v.create_at).format("YYYY-MM-DD")}
-                                </td>
-                                <td>
-                                    {type === 1
-                                        ? "每日簽到獎勵"
-                                        : "咖啡拿鐵兌換券"}
-                                </td>
-                                <td>{v.points_get}</td>
-                            </tr>
-                        );
-                    })}
-                </>
-            );
-        });
+        await axios
+            .get("http://localhost:3500/Points/API", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((result) => {
+                setTheTotalPoints(
+                    <>
+                        {result.data.rows2.map((v, i) => {
+                            return <p key={i}>{v.total_points}</p>;
+                        })}
+                    </>
+                );
+                setCouponList(
+                    <>
+                        {result.data.rows.map((v, i) => {
+                            return (
+                                <tr className=" load" key={i}>
+                                    <td>
+                                        {moment(v.create_at).format(
+                                            "YYYY-MM-DD"
+                                        )}
+                                    </td>
+                                    <td>
+                                        {type === 1
+                                            ? "每日簽到獎勵"
+                                            : "咖啡拿鐵兌換券"}
+                                    </td>
+                                    <td>{v.points_get}</td>
+                                </tr>
+                            );
+                        })}
+                    </>
+                );
+            });
     };
     useEffect(() => {
         if (botOpen) {
@@ -86,9 +96,6 @@ function Points() {
         <Fragment>
             <NavBar />
             <div className="PointContainer">
-                <section>
-                    <div>查看我的積分表</div>
-                </section>
                 <div className="display_justify_content load m10">
                     <p>目前有</p>
                     <p style={{ color: "#red" }}>{TheTotalPoints}</p>

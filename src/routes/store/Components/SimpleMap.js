@@ -86,7 +86,7 @@ export default function SimpleMap(props) {
             lng: 121.54824003860637,
         },
         // center:defaultCenter,
-        zoom: 14,
+        zoom: 15,
     };
 
     return (

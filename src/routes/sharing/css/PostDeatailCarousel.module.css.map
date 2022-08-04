@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,MAAM,EAAE,IAAI;CACf;;AAED,AAAA,aAAa,CAAA;EACT,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,KAAK;EACjB,eAAe,EAAE,aAAa;CACjC;;AACD,AAAA,SAAS,CAAA;EACL,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CACtB",
-    "sources": [
-        "PostDeatailCarousel.module.scss"
-    ],
-    "names": [],
-    "file": "PostDeatailCarousel.module.css"
-}

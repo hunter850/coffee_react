@@ -1,12 +1,25 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
+// import { FaHeart } from "react-icons/fa";
+import styles from "../../css/Likes.module.scss";
 
-function Likes({ likes }) {
+function Likes({ likes,likeHandler }) {
+    const { like_wrap, heart, liked } = styles;
+
     return (
-        <span>
-            <FaHeart />
-            Likes: {likes}
-        </span>
+        <div className={like_wrap}>
+            <div className={heart}>
+                <button onClick={likeHandler}></button>
+            </div>
+            <span
+                style={{
+                    marginLeft: "2rem",
+                    lineHeight: "1.5rem",
+                    verticalAlign: "text-top",
+                }}
+            >
+                {likes}
+            </span>
+        </div>
     );
 }
 

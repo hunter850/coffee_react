@@ -38,6 +38,7 @@ body {
     align-items: center;
     color: var(--blue);
     transition: all 1s ease;
+    padding-top: 70px;
 }
 .lg-field-form {
     width: 350px;
