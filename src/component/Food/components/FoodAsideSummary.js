@@ -33,6 +33,7 @@ function FoodAsideSummary({
     const { store_name, store_block, store_road, store_sid } = selectedAddress;
 
     const standardTime = dataFromDate + " " + dataFromDateTime + ":00";
+    //
 
     const handleSubmission = (e) => {
         e.preventDefault();
@@ -193,7 +194,12 @@ function FoodAsideSummary({
                         <p className="finaltotal">合計</p>
                         <p>${totalPrice}</p>
                     </div>
-                    <div className="pay" onClick={(e) => handleSubmission(e)}>
+                    <div
+                        className="pay"
+                        onClick={(e) => {
+                            handleSubmission(e);
+                        }}
+                    >
                         去結帳
                     </div>
                 </div>

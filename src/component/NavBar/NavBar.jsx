@@ -121,7 +121,7 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-        <CountContext.Provider value={getCount}>
+        <CountContext.Provider value={[getCount]}>
             <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
