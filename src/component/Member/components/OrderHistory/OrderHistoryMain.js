@@ -51,7 +51,6 @@ function OrderHistoryMain() {
         });
 
         if(!response.data.length){
-            console.log(1);
             setIsOpen(true);
 
         }
