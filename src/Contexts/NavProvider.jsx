@@ -21,10 +21,17 @@ function NavProvider(props) {
             .then((res) => {
                 setCount(res.data.cartTotalCount);
                 // console.log(res.data.cartTotalCount);
+            })
+            .catch((error) => {
+                setCount(0);
+                console.log(error);
             });
     }, [token]);
+    const handleLogout = useCallback(() => {
+        setCount(0);
+    }, []);
     return (
-        <NavContext.Provider value={{ count, getCount }}>
+        <NavContext.Provider value={{ count, getCount, handleLogout }}>
             {children}
         </NavContext.Provider>
     );
