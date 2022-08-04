@@ -19,7 +19,7 @@ import ca from "../../images/food/carousel001.png";
 import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
 import Modal from "../../component/Modal/Modal";
 import { Link } from "react-router-dom";
-import Nav from "../../component/NavBar/Nav";
+import NavBar from "../../component/NavBar/NavBar";
 
 // 餐點篩選
 const menuFiliter = [
@@ -146,7 +146,7 @@ function Food() {
     return (
         <Fragment>
             {/* <NavBar /> */}
-            <Nav />
+            <NavBar />
             <div className="Food-container">
                 <Path pathObj={{ path: ["．點餐"] }} />
                 <Carousel imgs={[ca, ca1]} />
