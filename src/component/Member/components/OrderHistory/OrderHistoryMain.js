@@ -2,7 +2,7 @@ import { useState, useEffect,useContext } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OderHistoryCard from "./OderHistoryCard";
 import { getOrderHistory } from "../../../../config/api-path";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
@@ -16,6 +16,7 @@ function OrderHistoryMain() {
 
     const { token } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     // const [cards, setCards] = useState({
     //     order_sid: "",
@@ -63,8 +64,7 @@ function OrderHistoryMain() {
 
     // 跳轉到商品頁
     const toProduct = () => {
-        const SERVER = window.location.origin;
-        window.location.href = `${SERVER}/products`;
+        navigate("/products", {replace: false});
     }
 
     return (

@@ -290,6 +290,8 @@ function UserInfo() {
                     if(!result.success){
                         setAvatarFaild(true);
                     }
+                    // 頭貼重複上傳的話就不會觸發onChange，也就不會setSelectedFile
+                    // 在下次選取照片時先清掉之前的值，才能觸發onChange事件
                     avatarFile.current.value = "";
                 });
         }
@@ -303,7 +305,6 @@ function UserInfo() {
                     <div className="ui-wrap-right">
                         <div className="ui-title">編輯會員資料</div>
                         <div className="avatar" onClick={uploadFile} onChange={changeAvatar} style={{ backgroundImage: `url(http://localhost:3500/avatar/${avatarField})`,backgroundRepeat: 'no-repeat',backgroundPosition: 'center',backgroundSize: 'cover',}}>
-                            {/* <AiFillPicture size={'1.5em'} style={{"margin":"10"+"px"}}/> */}
                             <input type="file" name="avatar" style={{ display: "none" }} ref={avatarFile}/>
                         </div>
                         <div className="ui-info-wrap">
