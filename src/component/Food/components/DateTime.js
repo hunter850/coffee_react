@@ -10,6 +10,9 @@ function DateTime({ setDataFromDate, setDataFromDateTime, setShowDate }) {
         { store_time_sid: "3", time: "09:00" },
         { store_time_sid: "4", time: "09:30" },
         { store_time_sid: "5", time: "10:00" },
+        { store_time_sid: "6", time: "10:30" },
+        { store_time_sid: "7", time: "11:00" },
+        { store_time_sid: "8", time: "11:30" },
     ];
 
     const getdate = new Date();
