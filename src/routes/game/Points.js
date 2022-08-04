@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import "./css/Points.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -96,9 +96,6 @@ function Points() {
         <Fragment>
             <NavBar />
             <div className="PointContainer">
-                <section>
-                    <div>查看我的積分表</div>
-                </section>
                 <div className="display_justify_content load m10">
                     <p>目前有</p>
                     <p style={{ color: "#red" }}>{TheTotalPoints}</p>

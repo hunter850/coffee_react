@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect, useRef } from "react";
-import NavBar from "../../component/NavBar";
+import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 import "./css/Store.css";
 import StoreVideo from "../../images/Coupon/store_video.mp4";

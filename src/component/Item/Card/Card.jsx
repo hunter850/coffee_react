@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { React } from "react";
-import "./Card.css";
+import "./Card.scss";
 import { imgSrc } from "../../../config/api-path";
 
 function Card({ courseData }) {

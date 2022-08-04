@@ -1,15 +1,15 @@
-import React, { useCallback, useState, useContext } from "react";
-import { useAuth } from "../Member/AuthContextProvider";
+import React, { useContext, useCallback, useState } from "react";
+import { useAuth } from "../component/Member/AuthContextProvider";
+import { getCartCount } from "../config/api-path";
 import axios from "axios";
-import { getCartCount } from "../../config/api-path";
 
-export const CountContext = React.createContext();
+const NavContext = React.createContext();
 
-export function useGetCart() {
-    return useContext(CountContext);
+export function useNav() {
+    return useContext(NavContext);
 }
 
-function NavWrap(props) {
+function NavProvider(props) {
     const { children } = props;
     const [count, setCount] = useState(0);
     const { token } = useAuth();
@@ -23,12 +23,11 @@ function NavWrap(props) {
                 // console.log(res.data.cartTotalCount);
             });
     }, [token]);
-
     return (
-        <CountContext.Provider value={{ getCount, count }}>
+        <NavContext.Provider value={{ count, getCount }}>
             {children}
-        </CountContext.Provider>
+        </NavContext.Provider>
     );
 }
 
-export default NavWrap;
+export default NavProvider;
