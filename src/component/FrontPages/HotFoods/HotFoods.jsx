@@ -13,10 +13,10 @@ function HotFoods() {
                     <h2 className="home-title">熱銷餐點</h2>
                 </div>
                 <div className="d-flex hotfood-magin-auto">
-                    <Link to="/food/10" className="hotfoodcard-place">
+                    <Link to="/food/10" className="hotfoodcard-place d-flex">
                         <HotfoodCard />
                     </Link>
-                    <Link to="/food/11" className="hotfoodcard-place">
+                    {/* <Link to="/food/11" className="hotfoodcard-place">
                         <HotfoodCard />
                     </Link>
                     <Link to="/food" className="hotfoodcard-place" >
@@ -24,7 +24,7 @@ function HotFoods() {
                     </Link>
                     <Link to="/food" className="hotfoodcard-place">
                         <HotfoodCard />
-                    </Link>
+                    </Link> */}
                 </div>
                 <Link to="/food">
                     <ViewmoreBtn />
