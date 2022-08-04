@@ -17,7 +17,7 @@ const shops_dummy = [
     {
         store_sid: 2,
         key: 2,
-        store_name: "0+B 光復店",
+        store_name: "0+B 復興店",
         store_road: "復興南路一段323號",
         store_block: "大安區, 台北市, 106台灣",
         lat: 25.034320914178288,

@@ -17,7 +17,9 @@ import DateTime from "../../component/Food/components/DateTime";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import ca from "../../images/food/carousel001.png";
 import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
-import FakeNav from "../../component/FakeNav";
+import Modal from "../../component/Modal/Modal";
+import { Link } from "react-router-dom";
+import NavBar from "../../component/NavBar/NavBar";
 
 // 餐點篩選
 const menuFiliter = [
@@ -63,6 +65,7 @@ function Food() {
     const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState({});
+    const [isOpen, setIsOpen] = useState(false);
     //食物累加到側邊欄-----------------------------------------------------
     const isSameItem = (item1, item2) => {
         return (
@@ -143,7 +146,7 @@ function Food() {
     return (
         <Fragment>
             {/* <NavBar /> */}
-            <FakeNav />
+            <NavBar />
             <div className="Food-container">
                 <Path pathObj={{ path: ["．點餐"] }} />
                 <Carousel imgs={[ca, ca1]} />
@@ -226,8 +229,21 @@ function Food() {
                         setShowMap={setShowMap}
                         selectedAddress={selectedAddress}
                         setDataFromFoodDetail={setDataFromFoodDetail}
+                        setIsOpen={setIsOpen}
                     />
                 </div>
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <Link
+                        to="/member/login"
+                        style={{
+                            textDecoration: "none",
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        <h4>請先登入</h4>
+                    </Link>
+                </Modal>
             </div>
         </Fragment>
     );
