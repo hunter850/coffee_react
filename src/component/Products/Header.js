@@ -1,21 +1,49 @@
 import "./Header.css";
+import { chunk } from "../Course/helper/chunk";
+import { useEffect } from "react";
 
 function Header({
     searchInp,
     setSearchInp,
-    dataDisplay,
-    setDataDisplay,
-    setSearchSure,
+    DataRows,
+    setDataRows,
+    setRenderData,
+    setPageNow,
+    setPageTotal,
 }) {
     const headerSearch = () => {
         if (searchInp !== "") {
-            const newSearchData = dataDisplay.filter((v, i) => {
-                return v.productsRows.products_name.includes(searchInp);
+            console.log("DataRows", DataRows);
+            const newSearchData = DataRows.filter((v, i) => {
+                return v.products_name.includes(searchInp);
             });
-            setDataDisplay(newSearchData);
-            setSearchSure(true);
+            console.log("newSearchData", newSearchData);
+
+            if (newSearchData.length > 0) {
+                console.log("newSearchData1", newSearchData);
+                const pagechunk = chunk(newSearchData, 8);
+                setRenderData(pagechunk[0]);
+                setPageNow(1);
+                setPageTotal(pagechunk.length);
+            } else {
+                console.log("newSearchData2", newSearchData);
+                const pagechunk2 = chunk(DataRows, 8);
+                setRenderData(pagechunk2[0]);
+                setPageNow(1);
+                setPageTotal(pagechunk2.length);
+                // alert("為0");
+            }
         }
     };
+
+    useEffect(() => {
+        if (!searchInp) {
+            const pagechunk2 = chunk(DataRows, 8);
+            setRenderData(pagechunk2[0]);
+            setPageNow(1);
+            setPageTotal(pagechunk2.length);
+        }
+    }, [searchInp]);
 
     return (
         <>

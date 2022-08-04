@@ -76,11 +76,13 @@ function Products() {
                 <NavBar />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
-                // searchInp={searchInp}
-                // setSearchInp={setSearchInp}
-                // productsRows={productsRows}
-                // searchSure={searchSure}
-                // setSearchSure={setSearchSure}
+                    searchInp={searchInp}
+                    setSearchInp={setSearchInp}
+                    DataRows={DataRows}
+                    setDataRows={setDataRows}
+                    setRenderData={setRenderData}
+                    setPageNow={setPageNow}
+                    setPageTotal={setPageTotal}
                 />
                 <BookMark
                     DataRows={DataRows}
