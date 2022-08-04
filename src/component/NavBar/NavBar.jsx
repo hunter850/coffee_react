@@ -7,8 +7,9 @@ import Logo from "./Logo/Logo";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from '../Member/AuthContext';
 
-function NavBar({ navPosition = 'fixed' }) {
+function NavBar({ navPosition = 'fixed', cardCount }) {
     const { sid, name } = useContext(AuthContext);
+    console.log(cardCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
 
