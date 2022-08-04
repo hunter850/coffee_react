@@ -104,3 +104,10 @@
     background-color: #6e7b83;
     width: 245px;
 }
+
+.course-add-error-txt {
+    position: absolute;
+    padding-left: 10px;
+    color: #bd4949;
+    font-size: 0.825rem;
+}

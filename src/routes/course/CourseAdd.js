@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useState } from "react";
 import NavBar from "../../component/NavBar/NavBar";
