@@ -107,9 +107,10 @@ const CourseAdd = () => {
                 course_name,
                 course_price,
             } = formData;
-            if (course_name !== "") {
+            if (course_name === "") {
                 console.log(1);
             }
+
             // axios({
             //     method: "post",
             //     url: courseDataAdd,

@@ -7,6 +7,7 @@ import { useNav } from "../../../Contexts/NavProvider";
 import { Link } from "react-router-dom";
 import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
+import ChatBot from "../../../component/Bot/ChatBot";
 import bs_flex from "../css/bs_flex.module.scss";
 import styles from "./css/cart.module.scss";
 import axios from "axios";
@@ -206,6 +207,7 @@ function Cart() {
                 </div>
             </div>
             <Link to="/cart/creditcard">信用卡</Link>
+            <ChatBot />
         </Fragment>
     );
 }
