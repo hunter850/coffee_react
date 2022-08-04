@@ -109,7 +109,6 @@ function NavBar({ navPosition = 'fixed' }) {
 
     return (
         <>
-            <button onClick={getCount}>click</button>
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
