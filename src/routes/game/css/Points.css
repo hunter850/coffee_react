@@ -149,3 +149,29 @@
 .Ptable{
     width: 1040px;
 }
+.PointsToCouponLink{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 3.3;
+    position: relative;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    padding-right: 35px;
+    color:rgb(71, 68, 68) ;
+
+}
+.PointsToCouponLink:hover{
+    color: #B79973;
+}
+.PointsToCouponLink:after{
+    background: url(https://owls-cr.co.jp/common/images/icon/icon_arrow_a.svg) left top no-repeat;
+    content: "";
+    transition-duration: 0.4s;
+    display: block;
+    position: absolute;
+    top: -0.27778vw;
+    right: 0;
+    background-size: contain;
+    width: 32px;
+    height: 32px;
+}

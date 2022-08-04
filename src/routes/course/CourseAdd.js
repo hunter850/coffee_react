@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, useState } from "react";
 import NavBar from "../../component/NavBar/NavBar";
@@ -107,9 +108,10 @@ const CourseAdd = () => {
                 course_name,
                 course_price,
             } = formData;
-            if (course_name !== "") {
+            if (course_name === "") {
                 console.log(1);
             }
+
             // axios({
             //     method: "post",
             //     url: courseDataAdd,

@@ -33,7 +33,6 @@ function StateProvider(props) {
     const { token } = useAuth();
     const [state, dispatch] = useReducer(reducer, initData);
     useEffect(() => {
-        console.log("in");
         if (!token) {
             dispatch({ type: "RESET", name: "nowList" });
             dispatch({ type: "RESET", name: "productList" });
