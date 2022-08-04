@@ -107,16 +107,7 @@ function NavBar({ navPosition = 'fixed' }) {
     );
 
     return (
-<<<<<<< HEAD
         <>
-=======
-<<<<<<< HEAD
-        <CountContext.Provider value={[getCount]}>
-            <button onClick={getCount}>click</button>
-=======
-        <CountContext.Provider value={getCount}>
->>>>>>> 91ffae112c8b2e4c538fefef4b6954f0c24438c1
->>>>>>> 27c71fb69808e02eb28b4fb24ee91f32a1938d9c
             <header className="nav-header" style={{ position: navPosition }}>
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu">
