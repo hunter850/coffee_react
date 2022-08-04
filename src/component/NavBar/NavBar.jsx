@@ -5,16 +5,16 @@ import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
 import { useState, useEffect, useContext } from "react";
-import AuthContext from '../Member/AuthContext';
+import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import CartCount from "../../Contexts/CartCount";
 
-function NavBar({ navPosition = 'fixed'  }) {
-    const { sid, name } = useContext(AuthContext);
+function NavBar({ navPosition = 'fixed' }) {
+    const { sid, name, setAuth } = useAuth();
     // console.log(cartCount);
     // console.log(name);
     // console.log(useContext(AuthContext));
 
-    
+
     const cartCount = useContext(CartCount);
     console.log(cartCount.cartCountNum)
 
@@ -58,16 +58,17 @@ function NavBar({ navPosition = 'fixed'  }) {
 
     // 刪除 auth - 登入狀態
     const handleSignOut = (auth) => {
-        setSignOut(auth);
+        localStorage.removeItem("auth");
+        setAuth({ ...authOrigin })
     };
     // 刪除 auth - 登入狀態
-    useEffect(() => {
-        if (signOut === 'auth') {
-            localStorage.removeItem(signOut);
-            // 清掉後刷新,否則跳頁依然會是登入狀態
-            window.history.go(0);
-        }
-    }, [signOut]);
+    // useEffect(() => {
+    //     if (signOut === 'auth') {
+    //         localStorage.removeItem(signOut);
+    //         // 清掉後刷新,否則跳頁依然會是登入狀態
+    //         // window.history.go(0);
+    //     }
+    // }, [signOut]);
 
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
@@ -226,7 +227,7 @@ function NavBar({ navPosition = 'fixed'  }) {
                                 </svg>
                             </Link>
                         </div>
-                        {sid !== '' && signOut !== 'auth' ? memberName : memberIcon}
+                        {sid !== "" ? memberName : memberIcon}
                     </div>
                 </nav>
             </header>
