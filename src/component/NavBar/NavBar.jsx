@@ -57,10 +57,6 @@ function NavBar({ navPosition = 'fixed' }) {
         });
     }, [windowsWidth, mediaS]);
 
-    useEffect(() => {
-        getCount();
-    }, []);
-
     // 刪除 auth - 登入狀態
     const handleSignOut = () => {
         localStorage.removeItem("auth");
