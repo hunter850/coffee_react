@@ -5,6 +5,7 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import styles from "./../css/postnav.module.scss";
+import { _missingPlugin } from "gsap/gsap-core";
 
 function PostNav({ scrollDir = "up" }) {
     const { authorized, sid, account, token, avatar } = useAuth();
@@ -19,7 +20,6 @@ function PostNav({ scrollDir = "up" }) {
     } = styles;
 
     const [memberAvatar, setMemberAvatar] = useState("lao_pi.png");
-
 
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
@@ -40,7 +40,8 @@ function PostNav({ scrollDir = "up" }) {
                     </li>
                     <li className={avatar_wrap}>
                         <img
-                            src={`${imgSrc}/member/${avatar}`}
+                            src={`${imgSrc}/member/${avatar || "missing-image.jpg"
+                                }`}
                             alt="avatar"
                             width="36px"
                         />
