@@ -1,10 +1,10 @@
+
 import NavBar from "../../component/NavBar/NavBar";
 import "./css/GetCoupon.css";
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-// ====
 import { useNavigate } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
 import config from "../../component/Bot/config";
