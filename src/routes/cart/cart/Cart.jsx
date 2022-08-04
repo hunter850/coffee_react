@@ -3,6 +3,7 @@ import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
 import useDebounce from "../../../hooks/useDebounce";
+import { useNav } from "../../../Contexts/NavProvider";
 import { Link } from "react-router-dom";
 import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
@@ -24,11 +25,12 @@ function Cart() {
     const foodRef = useRef([]);
     const c = useClass();
     const [, setNowList] = useData("nowList");
-    const [productList, setProductList] = useData("productList");
-    const [foodList, setFoodList] = useData("foodList");
-    const [, setProductCoupons] = useData("productCoupons");
-    const [, setFoodCoupons] = useData("foodCoupons");
+    const [productList, setProductList, resetProduct] = useData("productList");
+    const [foodList, setFoodList, resetFood] = useData("foodList");
+    const [, setProductCoupons, resetProductCoupon] = useData("productCoupons");
+    const [, setFoodCoupons, resetFoodCoupon] = useData("foodCoupons");
     const { token } = useAuth();
+    const { getCount } = useNav();
     useDebounce(
         () => {
             // mount時的[]不做任何fetch
@@ -55,12 +57,13 @@ function Cart() {
                             },
                         }
                     )
-                    // .then((result) => {
-                    //     console.log(result.data);
-                    // })
+                    .then(() => {
+                        // console.log(result.data);
+                        getCount();
+                    })
                     .catch((result) => {
                         console.log(result);
-                        alert(result.response.data.error.message);
+                        // alert(result.response.data.error.message);
                     });
             }
         },
@@ -124,6 +127,10 @@ function Cart() {
 
     // didMount fetch 商品 餐點 的資料
     useEffect(() => {
+        resetProduct();
+        resetFood();
+        resetProductCoupon();
+        resetFoodCoupon();
         if (!token) {
             alert("請先登入");
             return;
@@ -138,7 +145,10 @@ function Cart() {
             .then((result) => {
                 setProductList(result.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+                resetProduct();
+            });
         // fetch 餐點
         axios
             .get(getFood, {
@@ -149,7 +159,10 @@ function Cart() {
             .then((result) => {
                 setFoodList(result.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+                resetFood();
+            });
         // fetch 商品優惠卷
         axios
             .get(getProductCoupon, {
@@ -160,7 +173,10 @@ function Cart() {
             .then((result) => {
                 setProductCoupons(result.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+                resetProductCoupon();
+            });
         // fetch 餐點優惠卷
         axios
             .get(getFoodCoupon, {
@@ -171,7 +187,10 @@ function Cart() {
             .then((result) => {
                 setFoodCoupons(result.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+                resetFoodCoupon();
+            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
