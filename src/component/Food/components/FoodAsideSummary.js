@@ -22,6 +22,7 @@ function FoodAsideSummary({
     setIsOpen,
 }) {
     const asideClass = show ? "aside" : "aside hide";
+
     const navigate = useNavigate();
     // const { getCount,count } = useGetCart();
     // console.log("useGetCart", count);
@@ -38,7 +39,10 @@ function FoodAsideSummary({
 
     const standardTime = dataFromDate + " " + dataFromDateTime + ":00";
     //
-
+    const checkOut =
+        store_name && dataFromDate && dataFromDateTime
+            ? "pay "
+            : "pay disabled";
     const handleSubmission = (e) => {
         // e.preventDefault();
         if (Auth.sid)
@@ -198,7 +202,7 @@ function FoodAsideSummary({
                         <p className="finaltotal">合計</p>
                         <p>${totalPrice}</p>
                     </div>
-                    <div className="pay" onClick={handleSubmission}>
+                    <div className={checkOut} onClick={handleSubmission}>
                         去結帳
                     </div>
                 </div>
