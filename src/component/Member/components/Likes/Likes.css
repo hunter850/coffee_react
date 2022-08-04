@@ -85,7 +85,10 @@ body{
     display: flex;
     align-items: center;
     border: none;
-    background-color: transparent;
+    background-color: var(--blue);
+    color: var(--cream);
+    padding: 5px 8px;
+    cursor: pointer;
 }
 
 /* 提示訊息 */
