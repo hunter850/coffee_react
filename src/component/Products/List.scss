@@ -16,4 +16,9 @@
         display: flex;
         flex-wrap: wrap;
     }
+    .products_cardstyle_svg{
+        svg{
+            cursor: pointer;
+        }
+    }
 }

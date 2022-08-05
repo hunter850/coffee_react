@@ -39,10 +39,10 @@ function BookMark(props) {
                         children={"全部"}
                         width={"76px"}
                         onClick={() => {
-                            setRenderData(DataRows);
                             const resetPage = chunk(DataRows, 8);
                             setPageTotal(resetPage.length);
                             setPageNow(1);
+                            setRenderData(resetPage[0]);
                         }}
                     />
                 </li>

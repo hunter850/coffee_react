@@ -14,12 +14,11 @@ function Reply({ data }) {
         name_wrap,
         class_nickname,
         grey_span,
+        grey_span_a,
         time_wrap,
     } = styles;
 
     const timeAbout = useTimeAbout();
-
-    const { } = styles;
 
     return (
         <div style={{ marginLeft: "38px" }}>
@@ -28,7 +27,7 @@ function Reply({ data }) {
                     <img src={`${imgSrc}/member/${avatar}`} alt="" />
                 </div>
                 <div className={name_wrap}>
-                    <spa className={class_nickname}>{nickname}</spa>
+                    <span className={class_nickname}>{nickname}</span>
                 </div>
                 <p>{content}</p>
             </div>
@@ -37,9 +36,9 @@ function Reply({ data }) {
                     {timeAbout(created_at)}
                 </span>
                 {member_sid === sid ? (
-                    <span className={grey_span}>刪除</span>
+                    <span className={grey_span_a}>刪除</span>
                 ) : (
-                    <span className={grey_span}>回覆</span>
+                    <span className={grey_span_a}>回覆</span>
                 )}
             </div>
         </div>

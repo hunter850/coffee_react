@@ -14,12 +14,12 @@ function Products() {
     const [pageTotal, setPageTotal] = useState(0);
     // -------------------------------------------------
     const [searchInp, setSearchInp] = useState("");
-    // const [productsRows, setproductsRow] = useState([]);
     const [renderData, setRenderData] = useState([]);
     const [DataRows, setDataRows] = useState({});
     const [fetchData, setFetchData] = useState({});
     const [pageNow, setPageNow] = useState(1);
     const [dataLoaded, setDataLoaded] = useState(false);
+    const [cardStyle, setCardStyle] = useState("card_card");
 
     let saveTotalData = [];
     let fetchingData = [];
@@ -97,6 +97,8 @@ function Products() {
                             dataLoaded={dataLoaded}
                             DataRows={DataRows}
                             renderData={renderData}
+                            cardStyle={cardStyle}
+                            setCardStyle={setCardStyle}
                         />
                     </div>
 

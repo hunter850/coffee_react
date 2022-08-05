@@ -7,7 +7,6 @@ function useTimeAbout() {
 
         const timeDiff = now - inputTime;
         let aboutTime = "";
-        console.log("timeDiff", timeDiff);
         switch (true) {
             case timeDiff < 60000: {
                 aboutTime = "剛剛";
