@@ -1,19 +1,28 @@
 .detail-container {
+    background-color: #EEE5DD;
     width: 100%;
-    padding-left: 400px;
-    padding-right: 400px;
+    padding-left: 200px;
+    padding-right: 200px;
     justify-content: center;
     text-align: center;
 }
-.smallleastnewtitle {
-    padding-top: 50px;
-    font-size: 30px;
+.leastnewtitle {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
 }
 .latestnews-tag {
-    padding-right: 10px;
+    padding: 10px 0 10px 0;
     justify-content: space-between;
 }
 .leastnewdetailImg {
     width: 100%;
+}
+.newslinedeco img{
+    /* background: url(src/images/frontpage/line_deco.png); */
+}
+.latestnewdetailcontent1 { 
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-size: 20px;
+    /* line-height: 1.5rem; */
+    font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
 }
