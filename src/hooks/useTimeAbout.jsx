@@ -30,7 +30,7 @@ function useTimeAbout() {
                 break;
             }
             default:
-                aboutTime = timeString;
+                aboutTime = timeString.slice(0, 10);
                 break;
         }
         return aboutTime;

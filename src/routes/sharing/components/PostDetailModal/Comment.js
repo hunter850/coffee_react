@@ -1,18 +1,19 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
+import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 
-import { imgSrc } from "../../../../config/api-path";
+import { imgSrc, replyAPI } from "../../../../config/api-path";
 import styles from "../../css/Comment.module.scss";
 import Reply from "./Reply";
 
 const emptyObj = {
     cmt_sid: 0,
     member_sid: 0,
-    content: "",
+    who: "",
 };
 
-function Comment({ data, replyTo, setReplyTo }) {
+function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
     const { authorized, sid, account, token } = useAuth();
     const {
         member_sid,
@@ -42,7 +43,8 @@ function Comment({ data, replyTo, setReplyTo }) {
 
     const timeAbout = useTimeAbout();
     const replyInput = useRef(null);
-    const replyHandler = () => {
+
+    const replyHandler = (toWho) => {
         if (!sid) {
             alert("請先登入");
             return;
@@ -52,23 +54,38 @@ function Comment({ data, replyTo, setReplyTo }) {
             const newObj = { ...pre };
             newObj.cmt_sid = comment_sid;
             newObj.member_sid = sid;
+            newObj.who = toWho;
 
             return newObj;
         });
     };
 
-    const replySubmit = () => {
-        if (
-            replyInput.current.value === "" ||
-            replyInput.current.value === " "
-        ) {
+    useEffect(() => {
+        if (replyTo.cmt_sid > 0 && replyInput.current) {
+            replyInput.current.focus();
+            replyInput.current.setAttribute("placeholder", "@" + replyTo.who);
+        }
+    }, [replyTo.who]);
+
+    const replySubmit = async () => {
+        if (replyInput.current.value === "") {
             replyInput.current.focus();
             return;
         }
 
-        console.log(replyTo, "hi", replyInput.current.value);
+        const data = {
+            member_sid: replyTo.member_sid,
+            comment_sid: replyTo.cmt_sid,
+            content: replyInput.current.value,
+        };
+        const r = await axios.post(replyAPI, data);
+        alert("回覆成功");
+        getPostDetailData();
+
         setReplyTo(emptyObj);
     };
+
+    const deleteHandler = () => { };
 
     return (
         <div className={wrap}>
@@ -89,12 +106,15 @@ function Comment({ data, replyTo, setReplyTo }) {
                 </span>
                 {member_sid === sid ? (
                     <>
-                        <span className={`${grey_span_a} me-2`}>刪除</span>
+                        <span
+                            className={`${grey_span_a} me-2`}
+                            onClick={deleteHandler}
+                        >
+                            刪除
+                        </span>
                         <span
                             className={grey_span_a}
-                            onClick={() => {
-                                replyHandler();
-                            }}
+                            onClick={() => replyHandler(nickname)}
                         >
                             回覆
                         </span>
@@ -102,20 +122,26 @@ function Comment({ data, replyTo, setReplyTo }) {
                 ) : (
                     <span
                         className={grey_span_a}
-                        onClick={() => {
-                            replyHandler();
-                        }}
+                        onClick={() => replyHandler(nickname)}
                     >
                         回覆
                     </span>
                 )}
             </div>
-            {reply && reply.map((v, i) => <Reply key={i} data={v} />)}
+            {reply &&
+                reply.map((v, i) => (
+                    <Reply
+                        key={i}
+                        data={v}
+                        replyTo={replyTo}
+                        setReplyTo={setReplyTo}
+                        replyHandler={replyHandler}
+                        getPostDetailData={getPostDetailData}
+                    />
+                ))}
+            {/*replyTo state有值才出現input */}
             {replyTo.cmt_sid === comment_sid && (
-                <div
-                    className={reply_input_wrap}
-                    style={{ marginLeft: "38px" }}
-                >
+                <div className={reply_input_wrap}>
                     <input
                         type="text"
                         className={reply_input}
@@ -132,7 +158,6 @@ function Comment({ data, replyTo, setReplyTo }) {
                         取消
                     </span>
                     <span className={reply_button} onClick={replySubmit}>
-                        {" "}
                         發送
                     </span>
                 </div>
