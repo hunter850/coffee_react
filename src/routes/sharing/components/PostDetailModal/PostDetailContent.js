@@ -7,7 +7,7 @@ import Tag from "./Tag";
 import Likes from "./Likes";
 import Comment from "./Comment";
 
-function PostDetailContent({ data }) {
+function PostDetailContent({ data, getPostDetailData }) {
     const {
         title,
         avatar,
@@ -28,6 +28,7 @@ function PostDetailContent({ data }) {
     const [replyTo, setReplyTo] = useState({
         cmt_sid: 0,
         member_sid: 0,
+        who: "",
     });
 
     const {
@@ -106,6 +107,7 @@ function PostDetailContent({ data }) {
                                 data={v}
                                 replyTo={replyTo}
                                 setReplyTo={setReplyTo}
+                                getPostDetailData={getPostDetailData}
                             />
                         );
                     })}
