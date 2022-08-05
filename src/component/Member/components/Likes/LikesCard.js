@@ -21,6 +21,7 @@ function LikesCard({myLikes,setMyLikes,setIsOpen}) {
 
     const navigate = useNavigate();
 
+// --------------------- 移除收藏的資料 ---------------------
     const handleCancel = (e) => {
     // console.log(deleteSid);
         axios.delete(delUserLikes, {
@@ -31,12 +32,11 @@ function LikesCard({myLikes,setMyLikes,setIsOpen}) {
                 Authorization: `Bearer ${token}`,
             },
         })
-            .then((response) => {
+        .then((response) => {
                 console.log(response);
                 
-
-            axios
-            .get(getUserLikes, {
+// --------------------- 移除完render新的收藏 ---------------------
+        axios.get(getUserLikes, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -52,16 +52,14 @@ function LikesCard({myLikes,setMyLikes,setIsOpen}) {
                 setMyLikes(response.data);
             });
 
+        // 愛心切換
         e.preventDefault();
         setHeartIsClick(!heartIsClick);
-
-
-            });
+    });
     }
 
     
     const gotoProduct = (id) => {
-        console.log("15848984");
         navigate(`/products/detail/${id}`);
     };
 

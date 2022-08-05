@@ -23,7 +23,7 @@ function LoginMain() {
 
     const {setAuth} = useContext(AuthContext);
 
-    const [isLog, setIsLog] = useState(false);
+    const [notLog, setNotLog] = useState(false);
     const [changeText, setChangeText] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [loginSuccess,setLoginSuccess] = useState(false);
@@ -42,7 +42,7 @@ function LoginMain() {
 
     // 掛載到頁面上執行一次
     useEffect(() => {
-        
+        // setIsVerify(true)
         function resizehandler (){
             setWelWidth(welcomeWidth.current.clientWidth)
             setFmWidth(formWidth.current.clientWidth)
@@ -60,10 +60,20 @@ function LoginMain() {
 
 
     const change = () =>{
-        setIsLog(!isLog);
-        setMyform({member_name: "",
+        setNotLog(!notLog);
+
+        setMyform({
+        member_name: "",
         member_account: "",
-        member_password: ""})
+        member_password: "",
+        member_mail: "",
+    })
+
+        setNameErrors("");
+        setAccountErrors("");
+        setPasswordErrors("");
+        setMailError("");
+
         setTimeout(()=>{
             setChangeText(!changeText);
         },300)
@@ -77,6 +87,10 @@ function LoginMain() {
         member_mail: "",
     });
 
+    const [myVerify, setMyVerify] = useState({
+        verification: ""
+    });
+
     // input的值
     const changeFields = (event) => {
         const id = event.target.id;
@@ -85,32 +99,42 @@ function LoginMain() {
         setMyform({ ...myform, [id]: val });
     };
 
+    const getVerify = (event) => {
+        const id = event.target.id;
+        const val = event.target.value;
+        console.log({ id, val });
+        setMyVerify({ ...myVerify, [id]: val });
+    };
+
     // 錯誤訊息提示
     const [nameErrors, setNameErrors] = useState('')
     const [accountErrors, setAccountErrors] = useState('')
     const [passwordErrors, setPasswordErrors] = useState('')
-
+    const [mailError, setMailError] = useState("")
+    const mail_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zAZ]{2,}))$/;
+    const [verifyError,setVerifyError] = useState('')
 
 // --------------------- 處理登入 ---------------------
 
     const handleLoginIn = (event) => {
         event.preventDefault();
 
+        let isPass = true;
 
-        if(!myform.member_account){
+        if( myform.member_account ===""){
             setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
+            isPass = false;
         }else{
-            setAccountErrors({...accountErrors,account:""});
+            setAccountErrors("");
         }
-
-
-        if(!myform.member_password){
+        if( myform.member_password ===""){
             setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
+            isPass = false;
         }else{
-            setPasswordErrors({...passwordErrors,password:""});
+            setPasswordErrors("");
         }
 
-        if(myform.member_account && myform.member_password){
+        if(isPass){
             fetch(login,{
             method: "POST",
             body: JSON.stringify(myform),
@@ -129,8 +153,6 @@ function LoginMain() {
                 setTimeout(() => {
                     getCount();
                     navigate("/member", {replace: false})
-                    // const SERVER = window.location.origin;
-                    // window.location.href = `${SERVER}/member`;
                 }, 400);
                 setLoginSuccess(true);
             }
@@ -144,27 +166,57 @@ function LoginMain() {
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        if(!myform.member_name){
-            setNameErrors({...nameErrors, name:"請輸入正確格式"})
-            return;
-        }else{
-            setNameErrors({...nameErrors,name:""});
-        }
+        // if(!myform.member_name){
+        //     setNameErrors({...nameErrors, name:"請輸入正確格式"})
+        //     return;
+        // }else{
+        //     setNameErrors({...nameErrors,name:""});
+        // }
 
-        if(!myform.member_account){
+        // if(!myform.member_account){
+        //     setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
+        //     return;
+        // }else{
+        //     setAccountErrors({...accountErrors,account:""});
+        // }
+
+        // if(!myform.member_password){
+        //     setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
+        //     return;
+        // }else{
+        //     setPasswordErrors({...passwordErrors,password:""});
+        // }
+
+        // 欄位檢查
+        let isPass = true;
+
+        if( !myform.member_name){
+            console.log(5165465);
+            setNameErrors({...nameErrors, name:"請輸入正確姓名"})
+            isPass = false;
+        }else{
+            setNameErrors("");
+        }
+        if( !myform.member_account){
             setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
-            return;
+            isPass = false;
         }else{
-            setAccountErrors({...accountErrors,account:""});
+            setAccountErrors("");
         }
-
-        if(!myform.member_password){
+        if( !myform.member_password){
             setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
-            return;
+            isPass = false;
         }else{
-            setPasswordErrors({...passwordErrors,password:""});
+            setPasswordErrors("");
+        }
+        if( !myform.member_mail || !mail_re.test(myform.member_mail)){
+            setMailError({...mailError,mail:"信箱格式錯誤"})
+            isPass = false;
+        }else{
+            setMailError("");
         }
 
+        if(isPass){
             fetch(signUp,{
                 method: "POST",
                 body: JSON.stringify(myform),
@@ -179,64 +231,80 @@ function LoginMain() {
                     setSignSuccess(true);
                     setTimeout(() => {
                         setIsVerify(true);
+                        setIsOpen(false);
                     }, 500);
                 } 
                 setIsOpen(true);
             });
+        }
+
     };
+
+// --------------------- 處理驗證 ---------------------
+    const handleVerify = ()=>{
+
+    }
 
 
     return (
         <>
             <div className="lg-wrapper">
-                <div className={`lg-welcome ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
-                    <h1 className="wel-title">{changeText ? "還沒有帳號嗎？" : "Welcome back !"}</h1>
-                    <button className="lg-switch" onClick={change}>{isLog ? "註冊" : "登入"}</button>
+                <div className="lg-welcome" style={{transform : notLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
+                    <h1 className="wel-title">{changeText ? "Welcome back !" : "還沒有帳號嗎？"}</h1>
+                    <button className="lg-switch" onClick={change}>{notLog ? "登入" : "註冊"}</button>
                 </div>
-                <form name="form1" action="" className={`lg-form ${isLog ? "fade":""}`} style={{transform : isLog ? `translate(-${welWidth}px)`:""}} ref={formWidth}>
-                    <h1 className="lg-form-title">{isLog ? "登入會員" : "註冊會員"}</h1>
-                    <div className="lg-field-form">
-                        <div className= {`lg-field-cont ${isLog ? "name-height":""}`}>
-                            <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" autoComplete="off"/>
+                <form name="form1" action="" className={`lg-form ${notLog ? "fade":""}`} style={{transform : notLog ? `translate(-${welWidth}px)`:""}} ref={formWidth} onChange={changeFields}>
+                    <h1 className={`${notLog ? "sign-form-title":"lg-form-title"}`}>{notLog ? "註冊會員" : "登入會員"}</h1>
+                    <div className={`${notLog ? "sign-field-form":"lg-field-form"}`}>
+                        <div className="lg-field-wrap">
+                            <div className= {`${notLog ? "name-open":"name-close"}`}>
+                                <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className={`lg-field ${notLog ? "name-open":"name-close"}`} placeholder="姓名" autoComplete="off"/>
+                                <div className={`icon ${notLog ? "icon-open":"icon-close"}`}>
+                                    <FaUser/>
+                                </div>
+                            </div>
                             <p className="lg-field-err">{nameErrors.name}</p>
-                            <div className="icon">
-                                <FaUser/>
-                            </div>
                         </div>
 
-                        <div className="account lg-field-cont">
-                            <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
+                        <div className="lg-field-wrap">
+                            <div className="account lg-field-cont">
+                                <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
+                                <div className="icon">
+                                    <FaUserPlus size={'1.15rem'}/>
+                                </div>
+                            </div>
                             <p className="lg-field-err">{accountErrors.account}</p>
-                            <div className="icon">
-                                <FaUserPlus size={'1.15rem'}/>
-                            </div>
                         </div>
 
-                        <div className="password lg-field-cont">
-                            <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
+                        <div className="lg-field-wrap">
+                            <div className="password lg-field-cont">
+                                <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
+                                <div className="icon">
+                                    <FaLock/>
+                                </div>
+                            </div>
                             <p className="lg-field-err">{passwordErrors.password}</p>
-                            <div className="icon">
-                                <FaLock/>
-                            </div>
                         </div>
 
-                        <div className= {`lg-field-cont ${isLog ? "mail-height":""}`}>
-                            <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className="lg-field" placeholder="請輸入信箱" autoComplete="off"/>
-                            <p className="lg-field-err">{passwordErrors.mail}</p>
-                            <div className="icon">
-                                <MdEmail size={"1.05rem"}/>
+                        <div className="lg-field-wrap">
+                            <div className= {`${notLog ? "mail-open":"mail-close"}`}>
+                                <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className={`lg-field ${notLog ? "mail-open":"mail-close"}`} placeholder="請輸入信箱" autoComplete="off"/>
+                                <div className={`icon ${notLog ? "icon-open":"icon-close"}`}>
+                                    <MdEmail size={"1.05rem"}/>
+                                </div>
                             </div>
+                            <p className="lg-field-err">{mailError.mail}</p>
                         </div>
                     </div>
-                    <button type="submit" onClick={handleLoginIn} className="log-in" style={{display: isLog ? "block" : "none "}}>登入</button>
-                    <button type="submit" onClick={handleSignUp} className="sign-up" style={{display: isLog ? "none" : "block "}}>註冊</button>
+                    <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
+                    <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
                 </form>
                 <div className="particle"></div>
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Modal.Body className="lg-msg-wrap">
                         <div>
-                            <div className="lg-msg" style={{display: isLog ? "flex" : "none "}}>
+                            <div className="lg-msg" style={{display: notLog ? "none" : "flex "}}>
                             {
                                 loginSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
                             }
@@ -244,7 +312,7 @@ function LoginMain() {
                             </div>
                         </div>
                         <div>
-                            <div className="lg-msg" style={{display: isLog ? "none" : "flex "}}>
+                            <div className="lg-msg" style={{display: notLog ? "flex" : "none "}}>
                             {
                                 signSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
                             }
@@ -256,32 +324,25 @@ function LoginMain() {
 
                 <Modal isOpen={isverify} setIsOpen={setIsVerify}>
                     <Modal.Body>
-                    <form name="editPassword" className="editPassword">
-                        <div className="ed-Pass-h1">驗證碼已寄至您的信箱</div>
-                        <div className="ed-Pass-wrap">
-                            <div className="ed-Pass-info-check">
-                                <div className="ed-Pass">
-                                    <label className="ed-Pass-title">請輸入驗證碼</label>
+                    <form name="verification" className="verify">
+                        <div className="verify-h1">驗證碼已寄至您的信箱！</div>
+                        <div className="verify-wrap">
+                            <div className="verify-check">
+                                <div className="verify-info-check">
+                                    <label className="verify-title">請輸入驗證碼</label>
                                     <input
                                         type="text"
-                                        className="ed-Pass-field"
-                                        name="member_password"
-                                        value={""}
-                                        onChange={""}
+                                        className="verify-field"
+                                        id="verification"
+                                        name="verification"
+                                        value={myVerify.verification}
+                                        onChange={getVerify}
+                                        autoComplete="off"
                                     />
                                 </div>
-                                <p className="ed-Pass-field-err">{""}</p>
+                                <p className="verify-field-err">{""}</p>
                             </div>
-                            <div className="ed-Pass-btn-wrap">
-                                <button type="submit" className="ui-btn" onClick={""}>取消</button>
-                                <button
-                                    type="submit"
-                                    className="ui-btn ui-btn-active"
-                                    onClick={""}
-                                >
-                                    修改
-                                </button>
-                            </div>
+                            <button type="submit" className="verify-btn" onClick={handleVerify}>送出確認</button>
                         </div>
                     </form>
                     </Modal.Body>
