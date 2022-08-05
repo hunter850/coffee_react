@@ -5,8 +5,9 @@ import "./CourseAddList.css";
 import { useRef, useEffect } from "react";
 import { courseImages, imgSrc } from "../../../../config/api-path";
 
-function CourseAddList({ start, setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName, getCourseData }) {
+function CourseAddList({ start, setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName, getCourseData, inputNameOnFocus }) {
     const { course_name, course_price, course_level, course_img_s } = formData;
+
 
     useEffect(() => {
         // 有取得資料才渲染
@@ -109,6 +110,8 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                                     course_name: e.target.value,
                                 })
                             }
+                            onFocus={() => inputNameOnFocus()}
+                        // onBlur
                         />
                         <span className="course-add-error-txt">請輸入名稱</span>
                     </div>

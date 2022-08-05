@@ -102,15 +102,26 @@ const CourseAdd = () => {
             // 這裡需要檢查欄位 (還沒做)
             const {
                 course_content,
-                course_img_s,
                 course_level,
                 course_material,
                 course_name,
                 course_price,
+                course_people,
             } = formData;
+            const test = [];
+            const newTest = test.push(formData);
+            test.map((v, i) => {
+                console.log(v);
+            });
+
             if (course_name === "") {
-                console.log(1);
+                console.log("course_name");
+                setFormData({ ...formData, course_name: "請輸入名稱" });
             }
+            // if (course_price === "") {
+            //     console.log("course_price");
+            //     setFormData({ ...formData, course_price: "請輸入價格" });
+            // }
 
             // axios({
             //     method: "post",
@@ -125,6 +136,10 @@ const CourseAdd = () => {
             //     setMonitor(true);
             // });
         }
+    };
+    // input獲得焦點時
+    const inputNameOnFocus = () => {
+        setFormData({ ...formData, course_name: "" });
     };
     console.log(formData);
     useEffect(() => {
@@ -220,6 +235,7 @@ const CourseAdd = () => {
                             setPreview={setPreview}
                             imgName={imgName}
                             setImgName={setImgName}
+                            inputNameOnFocus={inputNameOnFocus}
                         />
                         <CourseAddListDetailed
                             formData={formData}
