@@ -14,6 +14,8 @@ import { FaUserPlus } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { MdMarkEmailRead } from "react-icons/md";
 
 import AuthContext from "../../AuthContext";
 
@@ -26,6 +28,7 @@ function LoginMain() {
     const [isOpen, setIsOpen] = useState(false);
     const [loginSuccess,setLoginSuccess] = useState(false);
     const [signSuccess,setSignSuccess] = useState(false);
+    const [isverify,setIsVerify] = useState(false);
 
     const [welWidth, setWelWidth] = useState(0);
     const [fmWidth, setFmWidth] = useState(0);
@@ -58,6 +61,9 @@ function LoginMain() {
 
     const change = () =>{
         setIsLog(!isLog);
+        setMyform({member_name: "",
+        member_account: "",
+        member_password: ""})
         setTimeout(()=>{
             setChangeText(!changeText);
         },300)
@@ -68,6 +74,7 @@ function LoginMain() {
         member_name: "",
         member_account: "",
         member_password: "",
+        member_mail: "",
     });
 
     // input的值
@@ -170,6 +177,9 @@ function LoginMain() {
                 console.log(result);
                 if(result.success){
                     setSignSuccess(true);
+                    setTimeout(() => {
+                        setIsVerify(true);
+                    }, 500);
                 } 
                 setIsOpen(true);
             });
@@ -187,7 +197,7 @@ function LoginMain() {
                     <h1 className="lg-form-title">{isLog ? "登入會員" : "註冊會員"}</h1>
                     <div className="lg-field-form">
                         <div className= {`lg-field-cont ${isLog ? "name-height":""}`}>
-                            <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" required/>
+                            <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className="lg-field" placeholder="姓名" autoComplete="off"/>
                             <p className="lg-field-err">{nameErrors.name}</p>
                             <div className="icon">
                                 <FaUser/>
@@ -195,7 +205,7 @@ function LoginMain() {
                         </div>
 
                         <div className="account lg-field-cont">
-                            <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" required/>
+                            <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
                             <p className="lg-field-err">{accountErrors.account}</p>
                             <div className="icon">
                                 <FaUserPlus size={'1.15rem'}/>
@@ -203,10 +213,18 @@ function LoginMain() {
                         </div>
 
                         <div className="password lg-field-cont">
-                            <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" required/>
+                            <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
                             <p className="lg-field-err">{passwordErrors.password}</p>
                             <div className="icon">
                                 <FaLock/>
+                            </div>
+                        </div>
+
+                        <div className= {`lg-field-cont ${isLog ? "mail-height":""}`}>
+                            <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className="lg-field" placeholder="請輸入信箱" autoComplete="off"/>
+                            <p className="lg-field-err">{passwordErrors.mail}</p>
+                            <div className="icon">
+                                <MdEmail size={"1.05rem"}/>
                             </div>
                         </div>
                     </div>
@@ -230,11 +248,42 @@ function LoginMain() {
                             {
                                 signSuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/>
                             }
-                            { signSuccess ? "註冊成功" : "已有重複帳號" }
+                            { signSuccess ? "註冊成功！" : "已有重複帳號" }
                             </div>
                         </div>
-                        {/* <h1 style={{display: isLog ? "block" : "none "}}>{ loginSuccess ? "登入成功" : "請輸入正確帳密" }</h1>
-                        <h1 style={{display: isLog ? "none" : "block "}}>{ signSuccess ? "註冊成功" : "已有重複帳號" }</h1> */}
+                    </Modal.Body>
+                </Modal>
+
+                <Modal isOpen={isverify} setIsOpen={setIsVerify}>
+                    <Modal.Body>
+                    <form name="editPassword" className="editPassword">
+                        <div className="ed-Pass-h1">驗證碼已寄至您的信箱</div>
+                        <div className="ed-Pass-wrap">
+                            <div className="ed-Pass-info-check">
+                                <div className="ed-Pass">
+                                    <label className="ed-Pass-title">請輸入驗證碼</label>
+                                    <input
+                                        type="text"
+                                        className="ed-Pass-field"
+                                        name="member_password"
+                                        value={""}
+                                        onChange={""}
+                                    />
+                                </div>
+                                <p className="ed-Pass-field-err">{""}</p>
+                            </div>
+                            <div className="ed-Pass-btn-wrap">
+                                <button type="submit" className="ui-btn" onClick={""}>取消</button>
+                                <button
+                                    type="submit"
+                                    className="ui-btn ui-btn-active"
+                                    onClick={""}
+                                >
+                                    修改
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     </Modal.Body>
                 </Modal>
             </div>
