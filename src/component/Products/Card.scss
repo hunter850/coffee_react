@@ -23,6 +23,17 @@ $card-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
             height: 244px;
             background-color: #d1cfcf;
             border-radius: 10px 10px 0 0;
+            .card_tag{
+                transform: translate(13px, 11px);
+                background-color: var(--GOLD);
+                width: 54px;
+                height: 26px;
+                line-height: 26px;
+                text-align: center;
+                border-radius: 15px;
+                color: #fff;
+                font-size: 0.875rem;
+            }
         }
         .card_card_down {
             .card_card_txt {
@@ -85,6 +96,15 @@ $card-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
             background-color: #d1cfcf;
             border-radius: 10px 10px 0 0;
             .card_tag {
+                transform: translate(13px, 11px);
+                background-color: var(--GOLD);
+                width: 54px;
+                height: 26px;
+                line-height: 26px;
+                text-align: center;
+                border-radius: 15px;
+                color: #fff;
+                font-size: 0.875rem;
                 position: absolute;
                 left: 38%;
                 bottom: 50px;
