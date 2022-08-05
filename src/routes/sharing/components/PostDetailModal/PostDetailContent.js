@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { imgSrc } from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
@@ -24,6 +25,10 @@ function PostDetailContent({ data }) {
 
     const topicName = ["未分類", "課程", "商品", "其它"];
     const timeAbout = useTimeAbout();
+    const [replyTo, setReplyTo] = useState({
+        cmt_sid: 0,
+        member_sid: 0,
+    });
 
     const {
         grid_top,
@@ -44,7 +49,7 @@ function PostDetailContent({ data }) {
     const svgIcon = (
         <svg
             aria-label="更多選項"
-            class="_ab6-"
+            className="_ab6-"
             color="#262626"
             fill="#262626"
             height="28"
@@ -95,7 +100,14 @@ function PostDetailContent({ data }) {
                         <span>．留言 {comments}</span>
                     </div>
                     {comment.map((v, i) => {
-                        return <Comment key={i} data={v} />;
+                        return (
+                            <Comment
+                                key={i}
+                                data={v}
+                                replyTo={replyTo}
+                                setReplyTo={setReplyTo}
+                            />
+                        );
                     })}
                 </div>
             </div>

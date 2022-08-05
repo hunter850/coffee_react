@@ -52,8 +52,24 @@
                     border-radius: 10px;
                     background-color: #efefef;
                     color: #3e3e3e;
+                    margin: 5px 0;
+
                     .txt {
                         color: #b79973;
+                        display: flex;
+                        align-items: center;
+                        .txt1 {
+                            flex-grow: 2;
+                        }
+                        .distance {
+                            width: 80px;
+                            height: 40px;
+                            background-color: #253945;
+                            border-radius: 10px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
                     }
                 }
             }

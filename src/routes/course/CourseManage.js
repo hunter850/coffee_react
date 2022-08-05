@@ -91,17 +91,19 @@ const CourseManage = () => {
     }, [sortData, confirmDelete]);
 
     // 一般搜尋框搜尋的渲染
-    useEffect(() => {
-        if (searchSure === true) {
-            setPageNow(1);
-            const pageArray = chunk(courseManageSortData, perPage);
+    const courseSearch = () => {
+        setPageNow(1);
+        if (searchInp !== "") {
+            const newCourseData = courseManageSortData.filter((v, i) => {
+                return v.course_name.includes(searchInp);
+            });
+            const pageArray = chunk(newCourseData, perPage);
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseManageData(pageArray);
             }
-            setSearchSure(false);
         }
-    }, [searchSure]);
+    };
 
     // 搜尋框為空值時重置原始資料
     useEffect(() => {
@@ -135,7 +137,7 @@ const CourseManage = () => {
                         </Modal.Body>
                     </Modal>
                     <div className="ManageHeader">
-                        <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} />
+                        <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} courseSearch={courseSearch} />
                     </div>
                     <Sort sortclass={"sortGrey"} courseData={courseManageData} setSortData={setSortData} sortData={sortData} />
                     <div className="container" style={{ paddingBottom: 104 }}>

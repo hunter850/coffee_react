@@ -66,7 +66,6 @@ function Post() {
 
     useEffect(() => {
         const pathname = window.location.pathname.replace("/sharing", "");
-        console.log(pathname);
         if (pathname === "" || pathname === "/") {
             setPost_sid(0);
         }
@@ -91,7 +90,6 @@ function Post() {
         })();
 
         return () => {
-            // console.log("移除監聽");
             window.removeEventListener("scroll", scrollHandler);
         };
     }, [getDataTimes]);

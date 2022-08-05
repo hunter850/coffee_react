@@ -1,7 +1,8 @@
 import chocolate from "../../../images/frontpage/food/chocolate.jpg";
-import goldcake  from "../../../images/frontpage/food/goldcake.png";
-import mangobago  from "../../../images/frontpage/food/mangobago.jpg";
-import redtea  from "../../../images/frontpage/food/redtea.jpg";
+import goldcake from "../../../images/frontpage/food/goldcake.png";
+import mangobago from "../../../images/frontpage/food/mangobago.jpg";
+import redtea from "../../../images/frontpage/food/redtea.jpg";
+// import redtea from "../../../../src/images/food/readtea.jpg";
 
 const hotfooddata = [
     {
