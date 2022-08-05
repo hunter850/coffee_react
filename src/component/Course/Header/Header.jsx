@@ -1,14 +1,8 @@
 import { React } from "react";
 import "./Header.css";
-import { courseSearch } from "../helper/courseSearch";
+// import { courseSearch } from "../helper/courseSearch";
 
-function Header({
-    searchInp,
-    setSearchInp,
-    dataDisplay,
-    setDataDisplay,
-    setSearchSure,
-}) {
+function Header({ searchInp, setSearchInp, courseSearch }) {
     return (
         <div className="CourseHeader">
             <div>
@@ -29,14 +23,7 @@ function Header({
                         />
                         <div
                             className="Coursesearch-btn"
-                            onClick={() =>
-                                courseSearch(
-                                    searchInp,
-                                    dataDisplay,
-                                    setDataDisplay,
-                                    setSearchSure
-                                )
-                            }
+                            onClick={() => courseSearch()}
                         >
                             <svg
                                 width="32"

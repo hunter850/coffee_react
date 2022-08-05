@@ -26,8 +26,6 @@ const Course = () => {
     const [sortData, setSortData] = useState("");
     // Header搜尋框的狀態 - 狀態提升放這邊
     const [searchInp, setSearchInp] = useState("");
-    // 判斷是否點擊搜尋按鈕
-    const [searchSure, setSearchSure] = useState(false);
     // 主要渲染畫面的資料
     const [courseData, setCourseData] = useState([]);
     // 備份的資料,提供給難度排序(因為資料庫來的是數字,所以需要使用深拷貝出來還未被轉成中文的)跟搜尋框清空時使用
@@ -111,6 +109,8 @@ const Course = () => {
                 console.log(err.response);
             });
 
+
+
     // 向資料庫發請求,獲取資料
     useEffect(() => {
         getCourseData();
@@ -130,17 +130,19 @@ const Course = () => {
     }, [searchInp]);
 
     // 一般搜尋框搜尋的渲染
-    useEffect(() => {
-        if (searchSure === true) {
-            setPageNow(1);
-            const pageArray = chunk(dataDisplay, perPage);
+    const courseSearch = () => {
+        setPageNow(1);
+        if (searchInp !== "") {
+            const newCourseData = dataDisplay.filter((v, i) => {
+                return v.course_name.includes(searchInp);
+            });
+            const pageArray = chunk(newCourseData, perPage);
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseData(pageArray);
             }
-            setSearchSure(false);
         }
-    }, [searchSure]);
+    };
 
     const el = (
         <Fragment>
@@ -152,7 +154,9 @@ const Course = () => {
                     setSearchInp={setSearchInp}
                     dataDisplay={dataDisplay}
                     setDataDisplay={setDataDisplay}
-                    setSearchSure={setSearchSure}
+                    courseData={courseData}
+                    setCourseData={setCourseData}
+                    courseSearch={courseSearch}
                 />
                 <Sort
                     courseData={courseData}
