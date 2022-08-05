@@ -43,9 +43,6 @@ function LikesMain() {
             });
     }, [token]);
 
-    // --------------------- 移除收藏的資料 ---------------------
-    const [isLike, setIsLike] = useState(false);
-
     // 跳轉到商品頁
     const toProduct = () => {
         setIsOpen(false);

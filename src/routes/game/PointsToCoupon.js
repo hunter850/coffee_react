@@ -4,6 +4,10 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../component/NavBar/NavBar";
 import "./css/PointsToCoupon.css";
+import {
+    ScrollMotionContainer,
+    ScrollMotionItem,
+} from "../game/Components/ScrollMotion";
 //import PointsToCouponItem from "../game/Components/PointsToCouponItem";
 
 function PointsToCoupon() {
@@ -60,48 +64,77 @@ function PointsToCoupon() {
             <NavBar />
             <div className="PointsToCouponContainer">
                 <div className="PointsToCouponContainerInner">
-                    <div>目前積分: {points - count * 300}</div>
-                    <div>
+                    {/* <div className="textred">
+                        目前積分: {points - count * 300}
+                    </div> */}
+                    <ScrollMotionContainer element="div" className="textred">
+                        <ScrollMotionItem element="p" type="up">
+                            目前積分: {points - count * 300}
+                        </ScrollMotionItem>
+                    </ScrollMotionContainer>
+                    {/* <div>
                         兌換優惠券張數:
-                        {/* <button
-                            onClick={() => {
-                                if (count - 1 < 0) {
-                                    return;
-                                }
-                                setCount(count - 1);
-                            }}
-                            className="PointsToCouponbtn"
+                        <span className="textred">{count}</span>
+                    </div> */}
+                    <ScrollMotionContainer element="div">
+                        <ScrollMotionItem
+                            element="p"
+                            type="up"
+                            // className="textred"
                         >
-                            -
-                        </button>
-                        <span>{count < 0 ? 0 : count}</span>
-                        <button
-                            onClick={() => {
-                                if (count + 1 > points / 300) {
-                                    return;
-                                }
-                                setCount(count + 1);
-                            }}
-                            className="PointsToCouponbtn"
-                        >
-                            +
-                        </button> */}
-                        <span>{count}</span>
-                    </div>
-                    <div>
+                            兌換優惠券張數:{count}
+                        </ScrollMotionItem>
+                    </ScrollMotionContainer>
+                    {/* <div>
                         剩餘積分:
                         {points - count * 300 < 0
                             ? "積分不足"
                             : points - count * 300}
-                    </div>
+                    </div> */}
+                    <ScrollMotionContainer element="div">
+                        <ScrollMotionItem element="p" type="up">
+                            剩餘積分:
+                            {points - count * 300 < 0
+                                ? "積分不足"
+                                : points - count * 300}
+                        </ScrollMotionItem>
+                    </ScrollMotionContainer>
                     <div className="filledLinkBox">
                         <div
-                            className="filledLink"
+                            //className="filledLink"
+                            className={`${
+                                points - count * 300 < 300
+                                    ? "cRedAlert"
+                                    : "filledLink"
+                            } cardstyle`}
                             onClick={handlePointsToCoupon}
                         >
-                            兌換
+                            {points - count * 300 < 300 ? "已兌換完畢" : "兌換"}
                         </div>
                     </div>
+                    {/* <ScrollMotionContainer
+                        element="div"
+                        className="filledLinkBox"
+                    >
+                        <ScrollMotionItem
+                            element="p"
+                            type="up"
+                            className={`${
+                                points - count * 300 < 300
+                                    ? "cRedAlert"
+                                    : "filledLink"
+                            } cardstyle`}
+                            onClick={handlePointsToCoupon}
+                        >
+                            {points - count * 300 < 300 ? "已兌換完畢" : "兌換"}
+                        </ScrollMotionItem>
+                    </ScrollMotionContainer> */}
+                </div>
+                <div>
+                    <img
+                        src={require("../../images/Coupon/img_tips_04.png")}
+                        alt=""
+                    />
                 </div>
             </div>
         </Fragment>
