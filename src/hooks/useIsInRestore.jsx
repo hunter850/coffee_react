@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const useIsInRestore = (ref, num = 0) => {
     const [isIn, setIsIn] = useState(false);
     const [isOut, setIsOut] = useState(true);
+    const isOutMounted = useRef(false);
+    const isInMounted = useRef(false);
+    const [isOutListened, setIsOutListened] = useState(false);
+    const [isInListened, setIsInListened] = useState(false);
     useEffect(() => {
         if (ref.current) {
             if (
@@ -37,9 +41,14 @@ const useIsInRestore = (ref, num = 0) => {
                 setIsOut(true);
             }
         }
-        window.addEventListener("scroll", checkIsOut);
+        if (isOutMounted.current) {
+            window.addEventListener("scroll", checkIsOut);
+        } else {
+            isOutMounted.current = true;
+            setIsOutListened(!isOutListened);
+        }
         return () => window.removeEventListener("scroll", checkIsOut);
-    }, [ref, num]);
+    }, [ref, num, isOutListened]);
     useEffect(() => {
         function check() {
             if (ref.current) {
@@ -57,9 +66,14 @@ const useIsInRestore = (ref, num = 0) => {
                 }
             }
         }
-        window.addEventListener("scroll", check);
+        if (isInMounted.current) {
+            window.addEventListener("scroll", check);
+        } else {
+            isInMounted.current = true;
+            setIsInListened(!isInListened);
+        }
         return () => window.removeEventListener("scroll", check);
-    }, [ref, num, isOut]);
+    }, [ref, num, isOut, isInListened]);
     return isIn;
 };
 
