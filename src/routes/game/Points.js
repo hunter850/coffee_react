@@ -103,7 +103,6 @@ function Points() {
                     <p>可用積分</p>
                 </div>
                 <div>
-                    {/* <h2> */}
                     <Link
                         to={{
                             pathname: "/PointsToCoupon",
@@ -113,7 +112,6 @@ function Points() {
                     >
                         點擊轉優惠券
                     </Link>
-                    {/* </h2> */}
                 </div>
                 <div className="display_justify_content load m10">
                     <div className=" display_justify_content wrapper">
