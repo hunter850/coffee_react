@@ -22,7 +22,11 @@ function CourseAddListDetailed({
     getCourseDataFk,
     getCourseData,
     start,
-    sid
+    sid,
+    errorContent,
+    errorPeople,
+    errorMaterial,
+    inputOnFocus
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
@@ -207,46 +211,49 @@ function CourseAddListDetailed({
                     <p>課程內容 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-inp"
-                        value={course_content}
+                        className={`CourseAddListDetailed-inp  ${errorContent !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorContent === '' ? course_content : errorContent}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_content: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('content')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入課程內容</span>
+
                 </div>
                 <div>
                     <p>適合對象 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-object-inp"
-                        value={course_people}
+                        className={`CourseAddListDetailed-object-inp  ${errorPeople !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorPeople === '' ? course_people : errorPeople}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_people: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('people')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入適合對象</span>
+
                 </div>
                 <div>
                     <p>需求材料 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-material-inp"
-                        value={course_material}
+                        className={`CourseAddListDetailed-material-inp  ${errorMaterial !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorMaterial === '' ? course_material : errorMaterial}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_material: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('material')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入需求材料</span>
+
                 </div>
                 <div>
                     <p style={{ paddingBottom: 6 }}>報名資訊 :</p>

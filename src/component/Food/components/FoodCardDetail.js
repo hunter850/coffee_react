@@ -4,6 +4,7 @@ import { useState } from "react";
 import { icechoice, sugarchoice } from "../../../config/constant";
 // import useData from "../../../hooks/useData";
 
+
 function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const {
         menu_sid,
@@ -39,9 +40,9 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             />
                         </figure>
                         <div className="photoaside">
-                            <div className="menu_name">{menu_name}</div>
-                            <div>{menu_nutrition}</div>
-                            <div>NT$ {menu_price_m}</div>
+                            <h2 className="title-font">{menu_name}</h2>
+                            <p>{menu_nutrition}</p>
+                            <p className="menu_price_m">NT$ {menu_price_m}</p>
                         </div>
                         <div
                             onClick={() => {

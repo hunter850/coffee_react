@@ -50,6 +50,12 @@ const CourseAdd = () => {
         course_people: "",
         course_material: "",
     });
+    const [errorName, setErrorName] = useState("");
+    const [errorPrice, setErrorPrice] = useState("");
+    const [errorContent, setErrorContent] = useState("");
+    const [errorPeople, setErrorPeople] = useState("");
+    const [errorMaterial, setErrorMaterial] = useState("");
+    const [formCheck, setFormCheck] = useState(false);
     // 外鍵狀態
     const [formDataFk, setFormDataFk] = useState({
         course_sid: "",
@@ -108,40 +114,64 @@ const CourseAdd = () => {
                 course_price,
                 course_people,
             } = formData;
-            const test = [];
-            const newTest = test.push(formData);
-            test.map((v, i) => {
-                console.log(v);
-            });
 
             if (course_name === "") {
-                console.log("course_name");
-                setFormData({ ...formData, course_name: "請輸入名稱" });
+                setErrorName("請輸入名稱");
             }
-            // if (course_price === "") {
-            //     console.log("course_price");
-            //     setFormData({ ...formData, course_price: "請輸入價格" });
-            // }
-
-            // axios({
-            //     method: "post",
-            //     url: courseDataAdd,
-            //     data: formData,
-            //     "content-type": "application/x-www-form-urlencoded",
-            // }).then((response) => {
-            //     console.log(response.config.data);
-            //     console.log(response);
-            //     // 確定拿到sid後塞給外鍵的formData
-            //     setFormDataFk({ ...formDataFk, course_sid: response.data });
-            //     setMonitor(true);
-            // });
+            if (course_price === "") {
+                setErrorPrice("請輸入價格");
+            }
+            if (course_content === "") {
+                setErrorContent("請輸入課程內容");
+            }
+            if (course_people === "") {
+                setErrorPeople("請輸入適合對象");
+            }
+            if (course_material === "") {
+                setErrorMaterial("請輸入需求材料");
+            }
+            // 欄位都不是空值時才發送給後端
+            const keys = [];
+            for (let key in formData) {
+                if (formData[key] === "") {
+                    keys.push(key);
+                }
+            }
+            if (keys.length === 0) {
+                axios({
+                    method: "post",
+                    url: courseDataAdd,
+                    data: formData,
+                    "content-type": "application/x-www-form-urlencoded",
+                }).then((response) => {
+                    console.log(response.config.data);
+                    console.log(response);
+                    // 確定拿到sid後塞給外鍵的formData
+                    setFormDataFk({
+                        ...formDataFk,
+                        course_sid: response.data,
+                    });
+                    setMonitor(true);
+                    setFormCheck(false);
+                });
+            }
         }
     };
-    // input獲得焦點時
-    const inputNameOnFocus = () => {
-        setFormData({ ...formData, course_name: "" });
+    // input獲得焦點時取消error
+    const inputOnFocus = (e) => {
+        if (e === "name") {
+            setErrorName("");
+        } else if (e === "price") {
+            setErrorPrice("");
+        } else if (e === "content") {
+            setErrorContent("");
+        } else if (e === "people") {
+            setErrorPeople("");
+        } else if (e === "material") {
+            setErrorMaterial("");
+        }
     };
-    console.log(formData);
+
     useEffect(() => {
         // 發送請求前將資料整理成陣列
         const dataArr = [];
@@ -235,7 +265,9 @@ const CourseAdd = () => {
                             setPreview={setPreview}
                             imgName={imgName}
                             setImgName={setImgName}
-                            inputNameOnFocus={inputNameOnFocus}
+                            inputOnFocus={inputOnFocus}
+                            errorName={errorName}
+                            errorPrice={errorPrice}
                         />
                         <CourseAddListDetailed
                             formData={formData}
@@ -250,6 +282,10 @@ const CourseAdd = () => {
                             setIsFilePickeds={setIsFilePickeds}
                             imgNames={imgNames}
                             setImgNames={setImgNames}
+                            errorContent={errorContent}
+                            errorPeople={errorPeople}
+                            errorMaterial={errorMaterial}
+                            inputOnFocus={inputOnFocus}
                         />
                         <div
                             className="d-flex f-jcc"

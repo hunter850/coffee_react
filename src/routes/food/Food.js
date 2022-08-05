@@ -13,7 +13,6 @@ import FoodAsideSummary from "../../component/Food/components/FoodAsideSummary";
 import axios from "axios";
 import { foodDataGet } from "../../config/api-path";
 import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
-import DateTime from "../../component/Food/components/DateTime";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import ca from "../../images/food/carousel001.png";
 import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
@@ -160,15 +159,11 @@ function Food() {
                                 setShowMap={setShowMap}
                                 setShowDate={setShowDate}
                                 setSelectedAddress={setSelectedAddress}
-                            />
-                        )}
-                        {showDate && (
-                            <DateTime
-                                setShowDate={setShowDate}
                                 setDataFromDate={setDataFromDate}
                                 setDataFromDateTime={setDataFromDateTime}
                             />
                         )}
+
                         <div className="filterbtn-area">
                             {menuFiliter.map(({ id, name }) => {
                                 return (

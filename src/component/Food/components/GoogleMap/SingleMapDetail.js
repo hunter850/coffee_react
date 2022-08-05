@@ -85,17 +85,17 @@ const shops_dummy = [
 const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
 const SingleMapDetail = (props) => {
-    const [calDistance, setCalDistance] = useState([]);
-    console.log("calDistance", calDistance);
+    // const [calDistance, setCalDistance] = useState([]);
+    // console.log("calDistance", calDistance);
 
-    // 從SQL拿googlemap Key
+    const [shops, setShops] = useState(shops_dummy);
     const [myPosition, setMyPosition] = useState(props.center); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
     const { storeInfo, setStoreInfo } = props;
     const { store_name, store_block, store_road } = storeInfo;
     const initialState = { store_name: "", store_block: "", store_road: "" };
     // 預設位置
 
-    useEffect(() => {
+    const getMyPosition = () => {
         navigator.geolocation.getCurrentPosition(
             function (position) {
                 setMyPosition({
@@ -107,19 +107,17 @@ const SingleMapDetail = (props) => {
                 console.log("positionError ", positionError);
             }
         );
+    };
+
+    useEffect(() => {
+        getMyPosition();
     }, []);
 
-    // 找咖啡廳
-    const shops = shops_dummy;
-
-    const branchs = shops.map(({ center }) => {
-        return center;
-    });
-    console.log("branchs", shops_dummy.center);
+    const branchs = shops.map(({ center }) => center);
 
     const containerStyle = {
         width: "100%",
-        height: "400px",
+        height: "50vh",
     };
 
     const markerCoors = {
@@ -128,46 +126,120 @@ const SingleMapDetail = (props) => {
     };
 
     const getDistance = (response) => {
-        setCalDistance(
-            response.rows[0].elements.map(({ distance }) => {
-                return distance;
+        const shopsWithDistance = shops
+            .map((item, idx) => {
+                return {
+                    ...item,
+                    distance: response.rows[0].elements[idx].distance,
+                };
             })
-        );
-        console.log("e323423", response);
-        console.log(
-            "距離的陣列",
-            response.rows[0].elements.map(({ distance }) => {
-                return distance;
-            })
-        );
-
-        console.log("response", response);
+            .sort((x, y) => x.distance.value - y.distance.value);
+        setShops(shopsWithDistance);
     };
 
+    // const qQ = shops.sort((x, y) => x.distance.value - y.distance.value);
+    // console.log("qQ", qQ);
+
     return (
-        <div className="mapdetail">
-            <LoadScript googleMapsApiKey="AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM">
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={myPosition}
-                    zoom={14}
-                    clickableIcons={false}
+        <div className="mapSection">
+            <p
+                onClick={getMyPosition}
+
+            // onClick={() => {
+            //     setShowDate(true);
+            // }}
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                 >
+                    <g clipPath="url(#clip0_1711_8278)">
+                        <path
+                            d="M17.5 8.3335C17.5 14.1668 10 19.1668 10 19.1668C10 19.1668 2.5 14.1668 2.5 8.3335C2.5 6.34437 3.29018 4.43672 4.6967 3.0302C6.10322 1.62367 8.01088 0.833496 10 0.833496C11.9891 0.833496 13.8968 1.62367 15.3033 3.0302C16.7098 4.43672 17.5 6.34437 17.5 8.3335Z"
+                            stroke="#253945"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M10 10.8335C11.3807 10.8335 12.5 9.71421 12.5 8.3335C12.5 6.95278 11.3807 5.8335 10 5.8335C8.61929 5.8335 7.5 6.95278 7.5 8.3335C7.5 9.71421 8.61929 10.8335 10 10.8335Z"
+                            stroke="#253945"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_1711_8278">
+                            <rect width="20" height="20" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+                取得目前所在位置
+            </p>
+            <div className="mapdetail">
+                <LoadScript googleMapsApiKey="AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM">
+                    <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={myPosition}
+                        zoom={14}
+                        clickableIcons={false}
+                    >
+                        {shops.map(
+                            ({
+                                center,
+                                key,
+                                store_name,
+                                store_block,
+                                store_road,
+                                store_sid,
+                            }) => {
+                                return (
+                                    <Marker
+                                        key={key}
+                                        position={center}
+                                        icon="/food/coffee1.png"
+                                        animation={1}
+                                        onClick={() => {
+                                            setStoreInfo({
+                                                store_name,
+                                                store_block,
+                                                store_road,
+                                                store_sid,
+                                            });
+                                        }}
+                                    />
+                                );
+                            }
+                        )}
+                        <DistanceMatrixService
+                            options={{
+                                destinations: branchs,
+                                origins: [myPosition],
+                                travelMode: "WALKING",
+                            }}
+                            callback={getDistance}
+                        />
+                    </GoogleMap>
+                </LoadScript>
+
+                <div className="mapshowarea">
                     {shops.map(
                         ({
-                            center,
-                            key,
                             store_name,
                             store_block,
                             store_road,
+                            distance,
                             store_sid,
+                            key,
                         }) => {
                             return (
-                                <Marker
-                                    key={key}
-                                    position={center}
-                                    icon="/food/coffee1.png"
-                                    animation={1}
+                                <div
+                                    className="mapshow"
+                                    key={store_sid}
                                     onClick={() => {
                                         setStoreInfo({
                                             store_name,
@@ -176,37 +248,39 @@ const SingleMapDetail = (props) => {
                                             store_sid,
                                         });
                                     }}
-                                />
+                                >
+                                    <div className="branchInput">
+                                        {/* <input
+                                        type="radio"
+                                        className="radioBtn"
+                                        value={store_sid}
+                                        // checked={ === store_sid}
+                                        onChange={(e) => {
+                                            setStoreInfo(e.target.value);
+                                        }}
+                                    /> */}
+                                        <div className="maptxt">
+                                            <h6> {store_name}</h6>
+                                            <p className="txt">
+                                                <div className="txt1">
+                                                    {store_block}
+                                                    {store_road}
+                                                </div>
+                                                <div className="distance">
+                                                    {distance && distance.text}
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             );
                         }
                     )}
-                    <DistanceMatrixService
-                        options={{
-                            destinations: branchs,
-                            origins: [myPosition],
-                            travelMode: "WALKING",
-                        }}
-                        callback={getDistance}
-                    />
-                </GoogleMap>
-            </LoadScript>
-            {
-                <div className="mapshow">
-                    <div>
-                        <h6>{store_name}</h6>
-                        <p className="txt">
-                            <div className="txt1">
-                                {store_block}
-                                {store_road}
-                            </div>
-                            <div className="distance">200公尺</div>
-                        </p>
-                    </div>
                 </div>
-            }
 
-            {/* Child components, such as markers, info windows, etc. */}
-            <></>
+                {/* Child components, such as markers, info windows, etc. */}
+                <></>
+            </div>
         </div>
         // <div className="mapdetail">
         //     <GoogleMapReact
@@ -232,15 +306,6 @@ const SingleMapDetail = (props) => {
         //     </GoogleMapReact>
 
         //     {/* <input/> */}
-        // {store_name && (
-        //     <div className="mapshow">
-        //         <h6>{store_name}</h6>
-        //         <p className="txt">
-        //             {store_block}
-        //             {store_road}
-        //         </p>
-        //     </div>
-        // )}
         // </div>
     );
 };

@@ -30,7 +30,7 @@ function FoodCard({
                 </div>
                 <div className="food_card_down">
                     <div className="food_card_txt">
-                        <p className="menu_name">{menu_name}</p>
+                        <span className="menu_name">{menu_name}</span>
                         <p className="font-min1">{menu_nutrition}</p>
                         <div className="font-min2">
                             <p className="menu_price_m">NT${menu_price_m}</p>

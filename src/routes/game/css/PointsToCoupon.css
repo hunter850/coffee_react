@@ -20,6 +20,7 @@
     font-weight: 400;
     border: 1px solid #b1883a;
     margin-top: 10px;
+    
 }
 .filledLink{
     width: 365px;
@@ -27,6 +28,7 @@
     transition-delay: 1s;
     will-change: opacity;
     background-size: contain;
+    justify-content:center;
 }
 .filledLink:hover{
     color: #b1883a;
@@ -49,5 +51,15 @@
     background-color: transparent;
     margin: 10px;
     color: #b1883a;
+    cursor: pointer;
+}
+.textred{
+    color: rgb(195, 0, 0);
+}
+.cRedAlert{
+    background-color: rgba(192, 180, 180, 0.5);
+    border: 1px solid #ccc !important;
+    color: #fff !important;
+    justify-content:center;
     cursor: pointer;
 }

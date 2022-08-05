@@ -9,20 +9,17 @@
     right: 0;
     left: 0;
     z-index: 999;
-    padding-top: 60px;
     svg {
         cursor: pointer;
     }
     .detail {
-        width: 50%;
+        width: 100%;
         height: 100%;
         /* height: 100vh; */
         background: #fcfaf7;
         margin: 0 auto;
         /* overflow: scroll; */
         position: fixed;
-        right: 25%;
-        left: 25%;
         color: #3e3e3e;
 
         .top {
@@ -32,66 +29,136 @@
             justify-content: center;
             align-items: center;
             position: fixed;
-            width: 50%;
+            width: 100%;
         }
 
         .middle2 {
             width: 100%;
-            height: auto;
+            height: 60%;
             margin: 0 auto;
             padding: 20px;
-            margin-top: 40px;
-            .mapdetail {
-                height: 400px;
+            margin-top: 60px;
+            .mapSection {
                 width: 100%;
-                .mapshow {
+                .mapdetail {
                     width: 100%;
-                    height: auto;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 10px;
-                    background-color: #efefef;
-                    color: #3e3e3e;
-                    margin: 5px 0;
-
-                    .txt {
-                        color: #b79973;
-                        display: flex;
-                        align-items: center;
-                        .txt1 {
-                            flex-grow: 2;
-                        }
-                        .distance {
-                            width: 80px;
-                            height: 40px;
-                            background-color: #253945;
+                    display: flex;
+                    .mapshowarea {
+                        width: 50%;
+                        overflow: scroll;
+                        height: 400px;
+                        .mapshow {
+                            width: 95%;
+                            height: 95px;
+                            padding: 15px;
+                            border: 1px solid #ccc;
                             border-radius: 10px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            background-color: #efefef;
+                            color: #3e3e3e;
+                            margin: 5px 0;
+                            margin-left: 10px;
+                            .branchInput {
+                                display: flex;
+                                .radioBtn {
+                                    margin-right: 20px;
+                                    width: 20px;
+                                }
+                                .maptxt {
+                                    flex-grow: 1;
+                                    .txt {
+                                        color: #b79973;
+                                        display: flex;
+                                        align-items: center;
+
+                                        .txt1 {
+                                            flex-grow: 2;
+                                        }
+                                        .distance {
+                                            width: 80px;
+                                            height: 40px;
+                                            background-color: #253945;
+                                            border-radius: 10px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .mapshow:hover {
+                            background-color: #d9dfdf;
                         }
                     }
                 }
             }
         }
+        .selectTime {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            justify-content: space-around;
+            text-align: center;
 
+            select {
+                /* styling */
+                background-color: #253945;
+                border: thin solid #fff;
+                border-radius: 0 100px 100px 0;
+                display: inline-block;
+                font: inherit;
+                color: #fff;
+                line-height: 1.5em;
+                padding: 0.5em 3.5em 0.5em 1em;
+
+                /* reset */
+
+                margin: 0;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+            }
+
+            /* arrows */
+            select {
+                background-image: linear-gradient(
+                        45deg,
+                        transparent 50%,
+                        #253945 50%
+                    ),
+                    linear-gradient(135deg, #253945 50%, transparent 50%),
+                    radial-gradient(#fff 70%, transparent 72%);
+                background-position: calc(100% - 20px) calc(1em + 2px),
+                    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;
+                background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
+                background-repeat: no-repeat;
+            }
+        }
         .bottomarea {
-            width: 50%;
+            width: 100%;
             height: 82px;
             background-color: #d9dfdf;
             position: fixed;
             bottom: 0;
-            right: 25%;
-            left: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             .bottoms {
                 height: 42px;
+                width: 100px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin: 20px;
                 background-color: #253945;
                 border-radius: 3px;
                 color: #eee5dd;
+            }
+            .bottoms.disabled {
+                background-color: #eee5dd;
+                color: #253945;
             }
         }
     }

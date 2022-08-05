@@ -51,7 +51,7 @@
     width: 361px;
     height: 40px;
     background: #ffffff;
-    color: #d9d9d9;
+    color: #3e3e3e;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
     border-radius: 2px;
     border-style: none;
@@ -64,10 +64,6 @@
     background: url(/src/images/course/sort-img-01.png) no-repeat 92% 50%;
     padding-left: 17px;
     margin-bottom: 45px;
-}
-
-.courselevelinp:hover {
-    color: #3e3e3e;
 }
 
 .courseintroduceinp {
@@ -106,8 +102,5 @@
 }
 
 .course-add-error-txt {
-    position: absolute;
-    padding-left: 10px;
     color: #bd4949;
-    font-size: 0.825rem;
 }
