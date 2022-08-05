@@ -4,28 +4,27 @@ import "./StarCard.css";
 
 function Card({ cardData }) {
     const {
-        card_tag,
-        card_name,
-        card_content,
-        card_price,
-        card_img_s,
-        card_img_file,
+        star_tag,
+        star_name,
+        star_content,
+        star_price,
+        star_img_s,
+        star_img_file,
     } = cardData;
 
     return (
-        <div className="card_card">
+        <div className="star_card">
             <div
-                className="card_card_top"
+                className="star_card_top"
                 style={{
-                    // background: `url(http://localhost:3500/images/products/${card_img_file}/${card_img_s}) no-repeat center center`,
-                    background: `url(http://localhost:3500/images/frontpage/${card_img_file}/${card_img_s}) no-repeat center center`,
+                    background: `url(http://localhost:3500/images/frontpage/${star_img_file}/${star_img_s}) no-repeat center center`,
                     backgroundSize: "cover",
                 }}
             >
-                <div className="card_tag">{card_tag}</div>
+                <div className="star_tag">{star_tag}</div>
             </div>
-            <div className="card_card_down">
-                <div className="card_card_txt">
+            <div className="star_card_down">
+                <div className="star_card_txt">
                     <p
                         style={{
                             fontWeight: "bolder",
@@ -34,12 +33,12 @@ function Card({ cardData }) {
                             textOverflow: "ellipsis",
                         }}
                     >
-                        {card_name}
+                        {star_name}
                     </p>
                     <p className="font-min" style={{ color: "#898787" }}>
-                        {card_content}
+                        {star_content}
                     </p>
-                    <div className="d-flex card_card_price">
+                    <div className="d-flex star_card_price">
                         <p
                             style={{
                                 fontSize: "0.75rem",
@@ -54,7 +53,7 @@ function Card({ cardData }) {
                                 letterSpacing: "0.07rem",
                             }}
                         >
-                            {card_price}
+                            {star_price}
                         </p>
                     </div>
                 </div>

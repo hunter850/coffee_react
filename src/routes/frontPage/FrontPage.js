@@ -21,14 +21,14 @@ function FrontPage() {
             <NavBar />
             <Carousel
                 imgs={[
+                    // "http://localhost:3500/images/frontpage/banner/banner-home.png",
                     "http://localhost:3500/images/frontpage/banner/banner-product.png",
                     "http://localhost:3500/images/frontpage/banner/banner-food.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course1.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.png",
                 ]}
-                height={700}
+                height={600}
             />
-            {/* <Carousel /> */}
             <HotFoods />
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
             <StarProducts />

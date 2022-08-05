@@ -20,7 +20,6 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
     const navigate = useNavigate();
 
     const clickHandler = (e) => {
-        console.log(e.target);
         if (e.target.id === "detailCover") {
             goPrev();
         }
@@ -33,7 +32,6 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
 
     useEffect(() => {
         (async () => {
-            // console.log(getPosts, post_sid);
             const r = await axios(`${getPosts}/${post_sid}`);
 
             if (r.data.code !== 200) {

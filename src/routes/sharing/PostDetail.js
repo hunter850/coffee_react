@@ -12,24 +12,20 @@ function PostDetail() {
     const navigate = useNavigate();
 
     const clickHandler = (e) => {
-        // console.log(e.target.id);
         if (e.target.id === "goPrev") {
             goPrev();
         }
     };
 
     const goPrev = () => {
-        console.log("上");
         navigate(-1);
     };
 
     useEffect(() => {
         (async () => {
-            // console.log(getPosts, post_sid);
             const r = await axios(`${getPosts}/${post_sid}`);
 
             if (r.data.code !== 200) {
-                // console.log("first");
                 navigate("/sharing");
             }
             setData(r.data);
