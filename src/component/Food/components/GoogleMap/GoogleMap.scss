@@ -2,20 +2,23 @@
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-color: #4d4944;
+    background-color: rgba(77, 73, 68, 0.9);
     position: fixed;
+    /* opacity: 0.89; */
     top: 0;
     right: 0;
     left: 0;
-    z-index: 1;
-
+    z-index: 999;
+    padding-top: 60px;
+    svg {
+        cursor: pointer;
+    }
     .detail {
         width: 50%;
         height: 100%;
         /* height: 100vh; */
         background: #fcfaf7;
         margin: 0 auto;
-        padding: 60px 0;
         /* overflow: scroll; */
         position: fixed;
         right: 25%;
@@ -24,7 +27,7 @@
 
         .top {
             height: 60px;
-            background-color: #D9DFDF;
+            background-color: #d9dfdf;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,7 +52,25 @@
                     border-radius: 10px;
                     background-color: #efefef;
                     color: #3e3e3e;
-                    .txt{color: #B79973;}
+                    margin: 5px 0;
+
+                    .txt {
+                        color: #b79973;
+                        display: flex;
+                        align-items: center;
+                        .txt1 {
+                            flex-grow: 2;
+                        }
+                        .distance {
+                            width: 80px;
+                            height: 40px;
+                            background-color: #253945;
+                            border-radius: 10px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
                 }
             }
         }
@@ -57,7 +78,7 @@
         .bottomarea {
             width: 50%;
             height: 82px;
-            background-color: #D9DFDF;
+            background-color: #d9dfdf;
             position: fixed;
             bottom: 0;
             right: 25%;
@@ -87,7 +108,7 @@
             left: 0%;
             .top {
                 height: 40px;
-                
+
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -99,8 +120,7 @@
                 width: 375px;
                 height: auto;
                 padding: 0;
-              
-           
+
                 .mapdetail {
                     height: 400px;
                     width: 375px;
@@ -115,7 +135,7 @@
             .bottomarea {
                 width: 100%;
                 height: 52px;
-                background-color: #D9DFDF;
+                background-color: #d9dfdf;
                 bottom: 0;
                 right: 0%;
                 left: 0%;

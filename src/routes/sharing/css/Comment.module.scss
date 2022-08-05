@@ -1,19 +1,21 @@
-
+.wrap{
+    flex-wrap: wrap;
+}
 
 .comment_wrap{
     display: flex;
 
-
     >div{
         flex-shrink: 0;
-        margin-bottom: .5rem;
+        margin-bottom: .25rem;
     }
     .img_wrap{
-        width: 2rem;
-        height: 2rem;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-top: 4px;
         margin-right: .75rem;
 
-        border-radius: 2rem;
+        border-radius: 1.75rem;
         overflow: hidden;
       
 
@@ -25,11 +27,72 @@
         }
     }
 
-    .name_wrap{
-        margin-right: .5rem;
-    }
-
+    
     .content_wrap{
         flex: 0 1 auto;
     }
+}
+
+.name_wrap{
+    margin-right: .5rem;
+    .class_nickname{
+        font-weight: 500;
+        letter-spacing: .5px;
+        white-space: nowrap;
+    }
+
+}
+
+.grey_span{
+    color: #787878;
+    line-height: 1rem;
+    font-size: 12px;
+}
+
+.grey_span_a{
+    color: #787878;
+    line-height: 1rem;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.reply_input_wrap{
+    margin-left: 38px;
+    display: flex;
+    margin-right: .75rem;
+    margin-bottom: .5rem;
+
+    .reply_input{
+        height: 28px;
+        font-size: 14px;
+        margin-right: .25rem;
+        flex-grow: 1;
+        border: 1px solid #DAD8D6;
+        border-radius: 3px;
+        outline: none;
+    
+        &:focus{
+            border: 1.5px solid #c2bbb2;
+        }
+        &::placeholder{
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+    .reply_button{
+        cursor: pointer;
+        display: inline-block;
+        padding:2px 0;
+        margin: 0 4px;
+        font-size: 14px;
+        color: #324A59;
+    }
+}
+
+
+
+
+.time_wrap{
+    margin-left: 40px;
+    margin-bottom: .75rem;
 }

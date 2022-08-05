@@ -18,11 +18,18 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
     const orderclass = ice && sugar ? "order" : "order disabled";
-
+    const handleChildClick = (e) => {
+        e.stopPropagation();
+    };
     return (
         <>
-            <div className="food-lightbox">
-                <div className="detail">
+            <div
+                className="food-lightbox"
+                onClick={() => {
+                    setIsShow(false);
+                }}
+            >
+                <div className="detail" onClick={handleChildClick}>
                     <div className="detail-photoarea">
                         <figure>
                             <img

@@ -7,14 +7,13 @@ import "./css/Getpoint.css";
 // import SnakeGame from "./Components/SnakeGame";
 import AlertItem from "./AlertItem/AlertItem";
 import axios from "axios";
-// === 客服機器人 =====
 import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import "../../component/Bot/Bot.css";
-// =======================
+
 function Getpoint() {
     const { token } = useAuth();
     let navigate = useNavigate();

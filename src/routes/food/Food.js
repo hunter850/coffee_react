@@ -20,7 +20,7 @@ import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
 import Modal from "../../component/Modal/Modal";
 import { Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
-
+import "../course/Course.css";
 // 餐點篩選
 const menuFiliter = [
     { id: undefined, name: "全部餐點" },
@@ -31,11 +31,6 @@ const menuFiliter = [
 ];
 
 function Food() {
-    // 判斷是否為管理者用
-    // const { sid } = useContext(AuthContext);
-    // console.log(sid);
-    // =============================================
-
     // 從sql拿資料--------------------------------------------------------
     const [food, setFood] = useState([]);
 
@@ -55,6 +50,14 @@ function Food() {
         menu_sid: "",
         menu_categories: "",
     });
+
+    //預設第一頁
+    const [pageNow, setPageNow] = useState(1);
+    //預設一頁幾筆
+    const [perPage, setPerPage] = useState(8);
+    // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
+    const [pageTotal, setPageTotal] = useState(0);
+
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
     //拿自取時段的資料--------------------------------------------------
     const [dataFromDate, setDataFromDate] = useState("");
@@ -232,6 +235,29 @@ function Food() {
                         setIsOpen={setIsOpen}
                     />
                 </div>
+
+                {/* <div className="d-flex f-jcc">
+                    {Array(pageTotal)
+                        .fill(1)
+                        .map((v, i) => {
+                            return (
+                                <div
+                                    key={i}
+                                    onClick={() => {
+                                        setPageNow(i + 1);
+                                    }}
+                                    className={`course-page-btn ${
+                                        pageNow === i + 1
+                                            ? "course-page-btn-focus"
+                                            : ""
+                                    }`}
+                                >
+                                    {i + 1}
+                                </div>
+                            );
+                        })}
+                </div> */}
+
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Link
                         to="/member/login"
