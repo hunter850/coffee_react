@@ -11,6 +11,7 @@
     margin-top: 0px;
     padding-top: 99px;
     text-align: center;
+    user-select: none;
 }
 
 .CourseHeader-title > p > span {
