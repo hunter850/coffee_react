@@ -8,18 +8,17 @@
 .heart {
     display: inline-block;
     position: absolute;
-    left:-20px;
-    top:-85%;
+    left: -18px;
+    top: -75%;
     vertical-align: bottom;
-    width: 68px;
-    height: 68px;
-    
+    width: 60px;
+    height: 60px;
+
     background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
     background-size: cover;
     background-position: 0 0;
 
     // animation: fave-heart 1s steps(28);
-
     &>button{
         content: '';
         display: block;
@@ -39,11 +38,11 @@
 }
 
 .heart:hover {
-    background-position: -1904px 0;
+    background-position: -1680px 0;
     transition: background 1s steps(28);
 } 
 .liked {
-    background-position: -1904px 0;
+    background-position: -1680px 0;
     transition: background 1s steps(28);
 }
 
@@ -53,6 +52,6 @@
     }
 
     100% {
-        background-position: -1904px 0;
+        background-position: -1680px 0;
     }
 }

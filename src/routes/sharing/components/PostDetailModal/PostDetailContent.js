@@ -1,4 +1,4 @@
-import React from "react";
+import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { imgSrc } from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
@@ -21,7 +21,9 @@ function PostDetailContent({ data }) {
         tags,
         comment,
     } = data.rows;
+
     const topicName = ["未分類", "課程", "商品", "其它"];
+    const timeAbout = useTimeAbout();
 
     const {
         grid_top,
@@ -29,13 +31,33 @@ function PostDetailContent({ data }) {
         avatar_wrap,
         info,
         nickname,
+        topic,
         grey_span,
         post_content,
         content_title,
         msg_wrap,
         msg_bar,
         msg_submit,
+        edit,
     } = styles;
+
+    const svgIcon = (
+        <svg
+            aria-label="更多選項"
+            class="_ab6-"
+            color="#262626"
+            fill="#262626"
+            height="28"
+            role="img"
+            viewBox="0 0 24 24"
+            width="24"
+        >
+            <circle cx="12" cy="12" r="1.5"></circle>
+            <circle cx="6" cy="12" r="1.5"></circle>
+            <circle cx="18" cy="12" r="1.5"></circle>
+        </svg>
+    );
+
     return (
         <>
             <div className={grid_top}>
@@ -44,27 +66,25 @@ function PostDetailContent({ data }) {
                         <img src={`${imgSrc}/member/${avatar}`} alt="avatar" />
                     </div>
                     <div className={info}>
-                        <p className={nickname}>{member_nickname}</p>
+                        <span className={nickname}>{member_nickname}</span>
                         <span className={grey_span}>#{member_sid}</span>
                     </div>
+                    <div className={edit}>{svgIcon}</div>
                 </div>
                 <div className={post_content}>
                     <h5 className={`${content_title} mb-1`}>{title}</h5>
                     <div className="mb-3 d-flex align-items-center">
-                        <span className="me-3" style={{ color: "#324A59" }}>
-                            {topicName[topic_sid]}
-                        </span>
-                        <span
-                            className={grey_span}
-                            style={{ fontSize: "14px" }}
-                        >
+                        <span className={topic}>{topicName[topic_sid]}</span>
+                        <span className={grey_span}>
                             {updated_at
-                                ? `已編輯 ${updated_at.slice(0, 10)}`
-                                : { created_at }}
+                                ? `${timeAbout(updated_at)} 已編輯 `
+                                : timeAbout(created_at)}
                         </span>
                     </div>
                     {/* 內文 */}
-                    <p className="mb-5">{content}</p>
+                    <p className="mb-5" style={{ lineHeight: "1.5rem" }}>
+                        {content}
+                    </p>
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />
@@ -75,7 +95,7 @@ function PostDetailContent({ data }) {
                         <span>．留言 {comments}</span>
                     </div>
                     {comment.map((v, i) => {
-                        return <Comment key={i} data={v}/>;
+                        return <Comment key={i} data={v} />;
                     })}
                 </div>
             </div>

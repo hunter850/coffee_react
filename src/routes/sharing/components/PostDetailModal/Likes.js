@@ -2,7 +2,7 @@ import React from "react";
 // import { FaHeart } from "react-icons/fa";
 import styles from "../../css/Likes.module.scss";
 
-function Likes({ likes,likeHandler }) {
+function Likes({ likes, likeHandler }) {
     const { like_wrap, heart, liked } = styles;
 
     return (
@@ -12,9 +12,8 @@ function Likes({ likes,likeHandler }) {
             </div>
             <span
                 style={{
-                    marginLeft: "2rem",
+                    marginLeft: "1.75rem",
                     lineHeight: "1.5rem",
-                    verticalAlign: "text-top",
                 }}
             >
                 {likes}

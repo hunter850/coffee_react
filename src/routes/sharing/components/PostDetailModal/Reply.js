@@ -1,31 +1,47 @@
-import React from "react";
-import styles from "../../css/Comment.module.scss";
-
 import useTimeAbout from "../../../../hooks/useTimeAbout";
+import { useAuth } from "../../../../component/Member/AuthContextProvider";
+
+import styles from "../../css/Comment.module.scss";
+import { imgSrc } from "../../../../config/api-path";
 
 function Reply({ data }) {
-    const { member_sid, nickname, content } = data;
+    const { authorized, sid, account, token } = useAuth();
+    const { member_sid, nickname, avatar, content, created_at } = data;
 
-    const nowTime = useTimeAbout();
+    const {
+        comment_wrap,
+        img_wrap,
+        name_wrap,
+        class_nickname,
+        grey_span,
+        time_wrap,
+    } = styles;
+
+    const timeAbout = useTimeAbout();
 
     const { } = styles;
 
     return (
-        <div style={{ marginLeft: "3rem" }}>
-            <span>{nickname}</span>
-            <span> {content}</span>
-            <p>{nowTime("2022-08-04 15:50:00")}</p>
-            <p>{nowTime("2022-08-04 00:00:00")}</p>
-            <p>{nowTime("2022-08-03 12:00:00")}</p>
-            <p>{nowTime("2022-07-02")}</p>
-            <p>{nowTime("2022-01-05")}</p>
-            <p>{nowTime("2021-09-05")}</p>
-            <p>{nowTime("2021-08-30")}</p>
-            <p>{nowTime("2021-08-06")}</p>
-            <p>{nowTime("2021-08-05")}</p>
-            <p>{nowTime("2021-08-04")}</p>
-            <p>{nowTime("2021-07-05")}</p>
-            <p>{nowTime("2020-01-05")}</p>
+        <div style={{ marginLeft: "38px" }}>
+            <div className={comment_wrap}>
+                <div className={img_wrap}>
+                    <img src={`${imgSrc}/member/${avatar}`} alt="" />
+                </div>
+                <div className={name_wrap}>
+                    <spa className={class_nickname}>{nickname}</spa>
+                </div>
+                <p>{content}</p>
+            </div>
+            <div className={time_wrap}>
+                <span className={`${grey_span} me-3`}>
+                    {timeAbout(created_at)}
+                </span>
+                {member_sid === sid ? (
+                    <span className={grey_span}>刪除</span>
+                ) : (
+                    <span className={grey_span}>回覆</span>
+                )}
+            </div>
         </div>
     );
 }
