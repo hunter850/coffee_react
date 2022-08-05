@@ -1,4 +1,3 @@
-
 import NavBar from "../../component/NavBar/NavBar";
 import "./css/GetCoupon.css";
 import React from "react";
@@ -39,8 +38,7 @@ function Getcoupon() {
         <>
             <CouponHandle
                 segments={[
-                    "生日優惠券$100",
-                    "註冊優惠券$100",
+                    "焦糖瑪奇朵折30元",
                     "咖啡拿鐵5折",
                     "卡布奇諾5折",
                     "義式摩卡75折",
