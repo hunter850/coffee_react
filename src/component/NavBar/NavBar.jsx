@@ -44,7 +44,9 @@ function NavBar({ navPosition = 'fixed' }) {
     };
     // 登入後先要一次資料拿購物車商品數量
     useEffect(() => {
-        getCount();
+        if (sid !== "") {
+            getCount();
+        }
     }, []);
 
     // 未登錄顯示icon

@@ -47,18 +47,18 @@ function Points() {
                     <>
                         {result.data.rows.map((v, i) => {
                             return (
-                                <tr className=" load" key={i}>
-                                    <td>
+                                <tr key={i}>
+                                    <td className="loadc">
                                         {moment(v.create_at).format(
                                             "YYYY-MM-DD"
                                         )}
                                     </td>
-                                    <td>
+                                    <td className="loadc">
                                         {type === 1
                                             ? "每日簽到獎勵"
                                             : "咖啡拿鐵兌換券"}
                                     </td>
-                                    <td>{v.points_get}</td>
+                                    <td className="loadc">{v.points_get}</td>
                                 </tr>
                             );
                         })}
@@ -95,7 +95,7 @@ function Points() {
         <Fragment>
             <NavBar />
             <div className="PointContainer">
-                <div className="display_justify_content load m10">
+                <div className="display_justify_content m10">
                     <p>目前有</p>
                     <p style={{ color: "#B79973", fontWeight: "500" }}>
                         {TheTotalPoints}
@@ -113,7 +113,7 @@ function Points() {
                         點擊轉優惠券
                     </Link>
                 </div>
-                <div className="display_justify_content load m10">
+                <div className="display_justify_content  m10">
                     <div className=" display_justify_content wrapper">
                         <Link
                             to={{
@@ -146,7 +146,7 @@ function Points() {
                         id="points_record_table_a"
                         className="display_justify_content tableStyle"
                     >
-                        <table className="Ptable">
+                        <table className="Pstable">
                             <thead>
                                 <tr>
                                     <th scope="col" className="th1">
