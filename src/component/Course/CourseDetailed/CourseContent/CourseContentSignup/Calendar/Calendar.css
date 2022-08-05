@@ -73,6 +73,7 @@
 
 .courseDate-table {
     width: 459px !important;
+    user-select: none;
 }
 
 .courseDateBtn:hover {

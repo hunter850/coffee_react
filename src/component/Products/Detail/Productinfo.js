@@ -12,7 +12,6 @@ import AuthContext from "../../Member/AuthContext";
 import Modal from "../../Modal/Modal";
 import { Link } from "react-router-dom";
 // import "./ModalCss.scss";
-import CartCount from "../../../Contexts/CartCount";
 import { useNav } from "../../../Contexts/NavProvider";
 
 function Productinfo(props) {
@@ -24,10 +23,8 @@ function Productinfo(props) {
     const [checkLike, setCheckLike] = useState(false);
     const [btnContext, setBtnContext] = useState("未加入收藏");
     const [isOpen, setIsOpen] = useState(false);
-    const [modalIdOpen, setModalIdOpen] = useState("");
 
     const Auth = useContext(AuthContext);
-    const cartCount = useContext(CartCount);
     const { getCount } = useNav();
 
     // axios get

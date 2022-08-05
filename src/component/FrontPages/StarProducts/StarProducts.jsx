@@ -19,13 +19,13 @@ function StarProducts() {
                             <Link to={`/products/detail/${v.products_sid}`}>
                                 <StarCard
                                     cardData={{
-                                        card_tag: "純苦",
-                                        card_name: v.products_name,
-                                        card_content:v.products_content,
-                                        card_price: v.products_price,
-                                        card_sid: v.products_sid,
-                                        card_img_file: "product",
-                                        card_img_s: v.products_img,
+                                        star_tag: "純苦",
+                                        star_name: v.products_name,
+                                        star_content:v.products_content,
+                                        star_price: v.products_price,
+                                        star_sid: v.products_sid,
+                                        star_img_file: "product",
+                                        star_img_s: v.products_img,
                                     }}
                                 />
                             </Link>

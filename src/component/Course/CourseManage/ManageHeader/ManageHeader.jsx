@@ -1,12 +1,13 @@
 import "./ManageHeader.css";
 import { Link } from "react-router-dom";
-import { courseSearch } from "../../helper/courseSearch";
+
 function ManageHeader({
     courseManageSortData,
     setSearchInp,
     searchInp,
     setCourseManageSortData,
     setSearchSure,
+    courseSearch,
 }) {
     return (
         <div
@@ -29,14 +30,7 @@ function ManageHeader({
                         />
                         <div
                             className="ManageHeader-search-btn"
-                            onClick={() =>
-                                courseSearch(
-                                    searchInp,
-                                    courseManageSortData,
-                                    setCourseManageSortData,
-                                    setSearchSure
-                                )
-                            }
+                            onClick={() => courseSearch()}
                         >
                             <svg
                                 width="32"

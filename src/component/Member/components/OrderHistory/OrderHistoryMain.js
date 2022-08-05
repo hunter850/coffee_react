@@ -64,8 +64,11 @@ function OrderHistoryMain() {
 
     // 跳轉到商品頁
     const toProduct = () => {
-        navigate("/products", {replace: false});
-    }
+        setIsOpen(false);
+        setTimeout(() => {
+            navigate("/products", { replace: false });
+        },0)
+    };
 
     return (
         <>
