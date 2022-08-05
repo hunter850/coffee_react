@@ -7,6 +7,7 @@ import { foodData } from "../../../config/api-path";
 import AuthContext from "../../Member/AuthContext";
 import { useNavigate } from "react-router-dom";
 // import { useGetCart } from "../../../component/NavBar/NavWrap";
+import { useNav } from "../../../Contexts/NavProvider";
 
 // function FoodAsideSummary({ setIsShowAside, dataFromFoodDetail }) {
 function FoodAsideSummary({
@@ -32,6 +33,8 @@ function FoodAsideSummary({
             accumulator + menu_price_m * foodCount,
         0
     );
+    const { getCount } = useNav();
+
     const Auth = useContext(AuthContext);
     console.log("Auth", Auth);
     console.log("dataFromFoodDetail", dataFromFoodDetail);
@@ -60,6 +63,7 @@ function FoodAsideSummary({
             }).then((response) => {
                 // console.log(response);
                 navigate("/cart");
+                getCount();
             });
         else {
             setIsOpen(true);

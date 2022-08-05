@@ -71,8 +71,6 @@ function GoogleMap({ setShowMap, setShowDate, setSelectedAddress }) {
                             storeInfo={storeInfo}
                         />
                     </div>
-                    <div>123</div>
-
                     <div className="bottomarea">
                         <div
                             className="bottoms"
