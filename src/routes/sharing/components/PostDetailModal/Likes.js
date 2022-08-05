@@ -12,8 +12,10 @@ function Likes({ likes, likeHandler }) {
             </div>
             <span
                 style={{
-                    marginLeft: "1.75rem",
-                    lineHeight: "1.5rem",
+                    fontSize: "15px",
+                    color: "#787878",
+                    marginLeft: "1.7rem",
+                    marginRight: ".25rem",
                 }}
             >
                 {likes}

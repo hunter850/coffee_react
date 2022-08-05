@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useMemo } from "react";
+import { useAuth } from "../../../../component/Member/AuthContextProvider";
+import axios from "axios";
+
 import useTimeAbout from "../../../../hooks/useTimeAbout";
-import { imgSrc } from "../../../../config/api-path";
+import { imgSrc, commentAPI } from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
@@ -8,7 +11,16 @@ import Likes from "./Likes";
 import Comment from "./Comment";
 
 function PostDetailContent({ data, getPostDetailData }) {
+    const commentInput = useRef(null);
+    const [commentWrapToggle, setCommentWrapToggle] = useState(true);
+    const displayToggle = useMemo(() => {
+        return { display: commentWrapToggle ? "block" : "none" };
+    }, [commentWrapToggle]);
+
+    const { authorized, sid, account, token } = useAuth();
+
     const {
+        sid: post_sid,
         title,
         avatar,
         created_at,
@@ -40,6 +52,7 @@ function PostDetailContent({ data, getPostDetailData }) {
         topic,
         grey_span,
         post_content,
+        toggle_a,
         content_title,
         msg_wrap,
         msg_bar,
@@ -63,6 +76,21 @@ function PostDetailContent({ data, getPostDetailData }) {
             <circle cx="18" cy="12" r="1.5"></circle>
         </svg>
     );
+
+    const commentPost = async () => {
+        if (commentInput.current.value === "") {
+            commentInput.current.focus();
+            return;
+        }
+        const data = {
+            member_sid: sid,
+            content: commentInput.current.value,
+            post_sid,
+        };
+        const r = await axios.post(commentAPI, data);
+        commentInput.current.value = "";
+        if (r.data.success) getPostDetailData();
+    };
 
     return (
         <>
@@ -96,33 +124,39 @@ function PostDetailContent({ data, getPostDetailData }) {
                             <Tag key={i} tagName={v} />
                         ))}
                     </div>
-                    <div className="mb-1 d-flex">
+                    <div className="mb-2 d-flex">
                         <Likes likes={likes} />
-                        <span>．留言 {comments}</span>
+                        <span
+                            className={toggle_a}
+                            onClick={() =>
+                                setCommentWrapToggle(!commentWrapToggle)
+                            }
+                        >
+                            ．留言 {comments}
+                        </span>
                     </div>
-                    {comment.map((v, i) => {
-                        return (
-                            <Comment
-                                key={i}
-                                data={v}
-                                replyTo={replyTo}
-                                setReplyTo={setReplyTo}
-                                getPostDetailData={getPostDetailData}
-                            />
-                        );
-                    })}
+
+                    {commentWrapToggle &&
+                        comment.map((v, i) => {
+                            return (
+                                <Comment
+                                    key={i}
+                                    data={v}
+                                    post_sid={post_sid}
+                                    replyTo={replyTo}
+                                    setReplyTo={setReplyTo}
+                                    getPostDetailData={getPostDetailData}
+                                />
+                            );
+                        })}
                 </div>
             </div>
 
             <div className={msg_wrap}>
-                <input className={msg_bar}></input>
-
-                <span
-                    className={`${msg_submit} mx-auto`}
-                    style={{ width: "3rem" }}
-                >
+                <input className={msg_bar} ref={commentInput}></input>
+                <button className={msg_submit} onClick={commentPost}>
                     發佈
-                </span>
+                </button>
             </div>
         </>
     );

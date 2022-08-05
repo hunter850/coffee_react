@@ -93,6 +93,12 @@
     .grey_span{
         font-size: 14px;
     }
+
+    .toggle_a{
+        font-size: 15px;
+        color: #787878 ;
+        cursor: pointer;
+    }
 }
 
 .msg_wrap{
@@ -119,7 +125,11 @@
     }
 
     .msg_submit{
+        width: 3rem;
         cursor: pointer;
+        background: transparent;
+        border: none;
+        font-size: 14px;
         color: #324A59;
         text-align: center;
         line-height: 2rem;

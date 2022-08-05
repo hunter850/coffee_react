@@ -3,7 +3,7 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 
-import { imgSrc, replyAPI } from "../../../../config/api-path";
+import { imgSrc, replyAPI, commentAPI } from "../../../../config/api-path";
 import styles from "../../css/Comment.module.scss";
 import Reply from "./Reply";
 
@@ -13,7 +13,7 @@ const emptyObj = {
     who: "",
 };
 
-function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
+function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
     const { authorized, sid, account, token } = useAuth();
     const {
         member_sid,
@@ -67,7 +67,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
         }
     }, [replyTo.who]);
 
-    const replySubmit = async () => {
+    const replyPost = async () => {
         if (replyInput.current.value === "") {
             replyInput.current.focus();
             return;
@@ -85,7 +85,15 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
         setReplyTo(emptyObj);
     };
 
-    const deleteHandler = () => { };
+    const commentDelete = async () => {
+        const data = {
+            comment_sid,
+            post_sid,
+        };
+        const r = await axios.delete(commentAPI, { data });
+        
+        if (r.data.success) getPostDetailData();
+    };
 
     return (
         <div className={wrap}>
@@ -108,7 +116,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
                     <>
                         <span
                             className={`${grey_span_a} me-2`}
-                            onClick={deleteHandler}
+                            onClick={commentDelete}
                         >
                             刪除
                         </span>
@@ -133,10 +141,9 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
                     <Reply
                         key={i}
                         data={v}
-                        replyTo={replyTo}
-                        setReplyTo={setReplyTo}
                         replyHandler={replyHandler}
                         getPostDetailData={getPostDetailData}
+                        comment_sid={comment_sid}
                     />
                 ))}
             {/*replyTo state有值才出現input */}
@@ -157,7 +164,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo }) {
                     >
                         取消
                     </span>
-                    <span className={reply_button} onClick={replySubmit}>
+                    <span className={reply_button} onClick={replyPost}>
                         發送
                     </span>
                 </div>

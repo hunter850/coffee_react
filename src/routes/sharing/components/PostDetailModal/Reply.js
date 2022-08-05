@@ -6,7 +6,7 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 
 import styles from "../../css/Comment.module.scss";
 
-function Reply({ data, replyHandler, getPostDetailData }) {
+function Reply({ data, replyHandler, getPostDetailData, comment_sid }) {
     const { authorized, sid, account, token } = useAuth();
     const { reply_sid, member_sid, nickname, avatar, content, created_at } =
         data;
@@ -24,7 +24,8 @@ function Reply({ data, replyHandler, getPostDetailData }) {
     const timeAbout = useTimeAbout();
 
     const deleteReply = async (sid) => {
-        const r = await axios.delete(replyAPI, { data: { reply_sid: sid } });
+        const data = { reply_sid: sid, comment_sid: comment_sid };
+        const r = await axios.delete(replyAPI, { data });
         alert("刪除成功");
         getPostDetailData();
         console.log(r);
