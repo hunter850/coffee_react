@@ -37,6 +37,7 @@
     margin-right: .5rem;
     .class_nickname{
         font-weight: 500;
+        letter-spacing: .5px;
         white-space: nowrap;
     }
 
@@ -47,6 +48,49 @@
     line-height: 1rem;
     font-size: 12px;
 }
+
+.grey_span_a{
+    color: #787878;
+    line-height: 1rem;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.reply_input_wrap{
+    margin-left: 38px;
+    display: flex;
+    margin-right: .75rem;
+    margin-bottom: .5rem;
+
+    .reply_input{
+        height: 28px;
+        font-size: 14px;
+        margin-right: .25rem;
+        flex-grow: 1;
+        border: 1px solid #DAD8D6;
+        border-radius: 3px;
+        outline: none;
+    
+        &:focus{
+            border: 1.5px solid #c2bbb2;
+        }
+        &::placeholder{
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+    .reply_button{
+        cursor: pointer;
+        display: inline-block;
+        padding:2px 0;
+        margin: 0 4px;
+        font-size: 14px;
+        color: #324A59;
+    }
+}
+
+
+
 
 .time_wrap{
     margin-left: 40px;
