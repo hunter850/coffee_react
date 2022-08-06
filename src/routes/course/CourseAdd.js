@@ -337,6 +337,9 @@ const CourseAdd = () => {
                             setImgName={setImgName}
                             getCourseData={getCourseData}
                             start={start}
+                            inputOnFocus={inputOnFocus}
+                            errorName={errorName}
+                            errorPrice={errorPrice}
                         />
                         <CourseAddListDetailed
                             formData={formData}
@@ -355,6 +358,10 @@ const CourseAdd = () => {
                             getCourseData={getCourseData}
                             start={start}
                             sid={sid}
+                            errorContent={errorContent}
+                            errorPeople={errorPeople}
+                            errorMaterial={errorMaterial}
+                            inputOnFocus={inputOnFocus}
                         />
                         <div
                             className="d-flex f-jcc"
