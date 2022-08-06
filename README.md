@@ -141,3 +141,32 @@ function Game() {
 
 export default Game;
 ```
+
+### ScrollWrap 組件使用說明
+
+```js
+import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
+// 只要用ScrollWrap包起來 加上from跟to的class scrollbar捲動到那個位置就會自動加class做進場動畫
+// 最外層不要用Fragment
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass">
+    <div className="yourClass">box</div>
+</ScrollWrap>
+```
+```js
+import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
+// from 進場前的class
+// to 進場後的class (記得加transition)
+// offset 捲超過多少px才觸發動畫
+// backAgain 往回捲也觸發動畫
+// backOffset 往回捲多少px才觸發動畫
+// component 最外層的tag 預設是Fragment
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass" offset={100} backAgain={true} backOffset={-100} component="ul">
+    {myArray.map((item, index) => (<li className="yourClass">list</li>))}
+</ScrollWrap>
+// 寫在子層的class權重比ScrollWrap的from to還高(子層class優先)
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass" offset={100} backAgain={true} backOffset={-100} component="ul">
+    <li className="yourClass" from="class1" to="class2">list</li>
+    <li className="yourClass" from="class3" to="class4">list</li>
+    <li className="yourClass" from="class5" to="class6">list</li>
+</ScrollWrap>
+```
