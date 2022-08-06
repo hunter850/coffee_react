@@ -3,6 +3,8 @@
     position: relative;
     align-items: center;
     cursor: pointer;
+    margin-bottom: .75rem;
+    user-select: none;
 
 }
 
@@ -11,7 +13,7 @@
     position: absolute;
     left: -18px;
     top: 0;
-    transform: translateY(-29%);
+    transform: translateY(-31%);
     vertical-align: bottom;
     width: 60px;
     height: 60px;
@@ -39,10 +41,10 @@
     }
 }
 
-.like_wrap:hover .heart {
-    background-position: -1680px 0;
-    transition: background 1s steps(28);
-}
+// .like_wrap:hover .heart {
+//     background-position: -1680px 0;
+//     transition: background 1s steps(28);
+// }
 // .heart:hover {
 //     background-position: -1680px 0;
 //     transition: background 1s steps(28);

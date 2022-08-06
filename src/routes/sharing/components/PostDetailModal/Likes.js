@@ -1,15 +1,11 @@
-import React from "react";
-// import { FaHeart } from "react-icons/fa";
 import styles from "../../css/Likes.module.scss";
 
-function Likes({ likes, likeHandler }) {
+function Likes({ likes, memberLikePost, didLiked }) {
     const { like_wrap, heart, liked } = styles;
 
     return (
-        <div className={like_wrap}>
-            <div className={heart}>
-                <button onClick={likeHandler}></button>
-            </div>
+        <div className={like_wrap} onClick={memberLikePost}>
+            <div className={`${heart} ${didLiked && liked}`}></div>
             <span
                 style={{
                     fontSize: "15px",

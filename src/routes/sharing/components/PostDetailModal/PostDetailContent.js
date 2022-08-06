@@ -1,9 +1,9 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 
 import useTimeAbout from "../../../../hooks/useTimeAbout";
-import { imgSrc, commentAPI } from "../../../../config/api-path";
+import { imgSrc, commentAPI, memberLikeAPI } from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
@@ -13,6 +13,8 @@ import Comment from "./Comment";
 function PostDetailContent({ data, getPostDetailData }) {
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
+    const [didLiked, setDidLiked] = useState(false);
+
     const displayToggle = useMemo(() => {
         return { display: commentWrapToggle ? "block" : "none" };
     }, [commentWrapToggle]);
@@ -92,6 +94,42 @@ function PostDetailContent({ data, getPostDetailData }) {
         if (r.data.success) getPostDetailData();
     };
 
+    const memberLikePost = async () => {
+        if (!authorized) {
+            alert("請先登入");
+            return;
+        }
+
+        const res = await axios(`${memberLikeAPI}/${post_sid}`, {
+            params: { member_sid: sid },
+        });
+
+        console.log("data,like", res.data.liked);
+        if (res.data.liked > 0) {
+            const res2 = await axios.delete(`${memberLikeAPI}/${post_sid}`, {
+                data: { member_sid: sid },
+            });
+        } else {
+            const res2 = await axios.post(`${memberLikeAPI}/${post_sid}`, {
+                member_sid: sid,
+            });
+        }
+
+        setDidLiked(!didLiked);
+        getPostDetailData();
+    };
+
+    useEffect(() => {
+        if (authorized) {
+            axios(`${memberLikeAPI}/${post_sid}`, {
+                params: { member_sid: sid },
+            }).then((r) => {
+                console.log(r.data);
+                setDidLiked(!!r.data.liked);
+            });
+        }
+    }, []);
+
     return (
         <>
             <div className={grid_top}>
@@ -125,7 +163,11 @@ function PostDetailContent({ data, getPostDetailData }) {
                         ))}
                     </div>
                     <div className="mb-2 d-flex">
-                        <Likes likes={likes} />
+                        <Likes
+                            likes={likes}
+                            didLiked={didLiked}
+                            memberLikePost={memberLikePost}
+                        />
                         <span
                             className={toggle_a}
                             onClick={() =>
