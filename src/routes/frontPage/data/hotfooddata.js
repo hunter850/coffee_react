@@ -6,28 +6,28 @@ import redtea from "../../../images/frontpage/food/redtea.jpg";
 
 const hotfooddata = [
     {
-        menu_sid: 18,
-        menu_name: "義式巧克力",
-        menu_price_m: 95,
-        menu_photo: chocolate,
+        hotfood_sid: 18,
+        hotfood_name: "義式巧克力",
+        hotfood_price_m: 95,
+        hotfood_photo: chocolate,
     },
     {
-        menu_sid: 29,
-        menu_name: "金沙焦糖脆脆千層",
-        menu_price_m: 190,
-        menu_photo: goldcake,
+        hotfood_sid: 29,
+        hotfood_name: "金沙焦糖脆脆千層",
+        hotfood_price_m: 190,
+        hotfood_photo: goldcake,
     },
     {
-        menu_sid: 19,
-        menu_name: "愛丁堡女王紅茶",
-        menu_price_m: 70,
-        menu_photo: redtea,
+        hotfood_sid: 19,
+        hotfood_name: "愛丁堡女王紅茶",
+        hotfood_price_m: 70,
+        hotfood_photo: redtea,
     },
     {
-        menu_sid: 32,
-        menu_name: "芒果金萱貝果",
-        menu_price_m: 95,
-        menu_photo: mangobago,
+        hotfood_sid: 32,
+        hotfood_name: "芒果金萱貝果",
+        hotfood_price_m: 95,
+        hotfood_photo: mangobago,
     },
 ];
 

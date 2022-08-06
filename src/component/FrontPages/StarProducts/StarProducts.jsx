@@ -16,12 +16,15 @@ function StarProducts() {
                 <div className="d-flex starproduct-box">
                     {starproductdata.map((v, i) => {
                         return (
-                            <Link to={`/products/detail/${v.products_sid}`}>
+                            <Link
+                                key={v.products_sid}
+                                to={`/products/detail/${v.products_sid}`}
+                            >
                                 <StarCard
                                     cardData={{
                                         star_tag: "純苦",
                                         star_name: v.products_name,
-                                        star_content:v.products_content,
+                                        star_content: v.products_content,
                                         star_price: v.products_price,
                                         star_sid: v.products_sid,
                                         star_img_file: "product",
