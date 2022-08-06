@@ -54,9 +54,8 @@ const CourseDetailed = () => {
 
     // 開課的時間
     const [time, setTime] = useState([]);
-
+    // 輪播用的陣列
     const [carouselArr, setCarouselArr] = useState([]);
-    console.log(carouselArr);
 
     // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
