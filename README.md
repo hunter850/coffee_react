@@ -97,7 +97,7 @@ const [isOpen, setIsOpen] = useSate(false);
 // 1.輪播圖請傳入一個帶有圖片連結的陣列,沒限制輪播張數,如使用router屬性 "陣列請帶上檔名就好"
 // 2.height直接帶數字就好,預設為500
 // 3.width預設100%
-// 4.router可以不用輸入,初始路徑http://localhost:3500/images , 如不使用router可以不用輸入,請帶上完整路徑
+// 4.router可以不用輸入,初始路徑http://localhost:3500/images,如不使用router可以不用輸入,陣列請帶上完整路徑
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -107,6 +107,14 @@ const [isOpen, setIsOpen] = useSate(false);
         "https://picsum.photos/id/216/1440/500",
         "https://picsum.photos/id/227/1440/500",
     ]}
+    // 此範例為使用router屬性所要帶的陣列格式
+    // imgs={[
+    //     "43f80f6e4c0675fd0dde0def963a0f3b.jpg",
+    //     "38aecb3ddaaf82eb59cda7acde393780.jpg",
+    //     "73c9ba4ec7f6c5af179f5fc994057424.jpg",
+    //     "2421496a84b1b5134a89744e09a85c83.jpg",
+    //     "f83c89cb0f3f09a323f1e3fae18f9d6d.jpg",
+    // ]}
     height={300}
     width={100}
     router={"/course"}
