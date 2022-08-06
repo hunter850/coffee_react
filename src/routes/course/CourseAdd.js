@@ -16,8 +16,12 @@ import {
 import axios from "axios";
 import { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import ConfirmDeleteBox from "../../component/Item/ConfirmDeleteBox/ConfirmDeleteBox";
+import Modal from "../../component/Modal/Modal";
 
 const CourseAdd = () => {
+    // Modal控制器
+    const [isOpen, setIsOpen] = useState(false);
     // 取得資料庫資料
     const [getCourseData, setGetCourseData] = useState([]);
     const [getCourseDataFk, setGetCourseDataFk] = useState([]);
@@ -232,7 +236,11 @@ const CourseAdd = () => {
                 setMonitor(false);
                 // 確定新增完成後跳轉頁面
                 if (response.status === 200) {
-                    navigate("/course/manage", { replace: false });
+                    setIsOpen(true);
+                    setTimeout(() => {
+                        setIsOpen(false);
+                        navigate("/course/manage", { replace: false });
+                    }, 1800);
                 }
             });
         }
@@ -264,7 +272,11 @@ const CourseAdd = () => {
                 setMonitorFk(false);
                 // 確定修改完成後跳轉
                 if (res.status === 200) {
-                    navigate("/course/manage", { replace: false });
+                    setIsOpen(true);
+                    setTimeout(() => {
+                        setIsOpen(false);
+                        navigate("/course/manage", { replace: false });
+                    }, 1800);
                 }
             });
         }
@@ -272,6 +284,15 @@ const CourseAdd = () => {
 
     const add = (
         <Fragment>
+            <Modal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                style={{ overflow: "visible" }}
+            >
+                <Modal.Body style={{ padding: "0" }}>
+                    <ConfirmDeleteBox content={"新增成功"} />
+                </Modal.Body>
+            </Modal>
             <div style={{ backgroundColor: "#E3E7E7", minWidth: "1440px" }}>
                 <NavBar />
                 <Path
@@ -345,6 +366,15 @@ const CourseAdd = () => {
 
     const edit = (
         <Fragment>
+            <Modal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                style={{ overflow: "visible" }}
+            >
+                <Modal.Body style={{ padding: "0" }}>
+                    <ConfirmDeleteBox content={"修改成功"} />
+                </Modal.Body>
+            </Modal>
             <div style={{ backgroundColor: "#E3E7E7", minWidth: "1440px" }}>
                 <NavBar />
                 <Path
