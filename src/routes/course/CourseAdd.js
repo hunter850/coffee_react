@@ -80,14 +80,14 @@ const CourseAdd = () => {
     const { sid } = useParams();
     // 跳轉路由
     const navigate = useNavigate();
-
+    // 一鍵輸入資料
     const handleAutoForm = (e) => {
         e.preventDefault();
         setFormData({
             course_name: "自動化課程",
             course_price: "8700",
             course_level: "3",
-            course_img_s: "eb7f0382-3215-404d-a0fe-768c9eecfb68.jpg",
+            course_img_s: "2c0a2a3b5f7b841c9c2db4ad1b3f5e0d.jpg",
             course_content:
                 "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
             course_people:
@@ -106,8 +106,11 @@ const CourseAdd = () => {
                 time2: "PM 06:00",
             },
             course_img_l: [
-                "da5bb233-2d73-4a8c-a303-47feb640b2d1.jpg",
-                "da6fce62-2463-4f14-b5fa-51b98d406c29.jpg",
+                "06-bgimg.jpg",
+                "02-bgimg.jpg",
+                "03-bgimg.jpg",
+                "04-bgimg.jpg",
+                "05-bgimg.jpg",
             ],
         });
     };
