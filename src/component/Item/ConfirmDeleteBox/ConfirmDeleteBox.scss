@@ -4,6 +4,7 @@
     background-color: #fbfbfa;
     border-radius: 3px;
     box-shadow: 1px 1px 10px 1px #00000026;
+    overflow: hidden;
 }
 
 .ConfirmDeleteBox {
@@ -28,7 +29,7 @@
 
 @keyframes txtMove {
     0% {
-        transform: translateX(-102px);
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0px);
@@ -37,7 +38,7 @@
 
 @keyframes iconMove {
     0% {
-        transform: translateX(112px);
+        transform: translateX(100%);
     }
     100% {
         transform: translateX(0px);
