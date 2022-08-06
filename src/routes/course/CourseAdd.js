@@ -84,7 +84,7 @@ const CourseAdd = () => {
     const handleAutoForm = (e) => {
         e.preventDefault();
         setFormData({
-            course_name: "咖啡生豆認識及風味鑑嘗學",
+            course_name: "咖啡生豆認識及風味鑑嘗",
             course_price: "8700",
             course_level: "3",
             course_img_s: "2c0a2a3b5f7b841c9c2db4ad1b3f5e0d.jpg",
