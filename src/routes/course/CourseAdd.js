@@ -84,16 +84,26 @@ const CourseAdd = () => {
     const handleAutoForm = (e) => {
         e.preventDefault();
         setFormData({
-            course_name: "自動化課程",
+            course_name: "咖啡生豆認識及風味鑑嘗學",
             course_price: "8700",
             course_level: "3",
             course_img_s: "2c0a2a3b5f7b841c9c2db4ad1b3f5e0d.jpg",
-            course_content:
-                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
-            course_people:
-                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
-            course_material:
-                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
+            course_content: `認識不同咖啡產地及品種，加強自己品嚐咖啡思維
+                可以品嚐到不同產地咖啡豆
+                了解不同品種咖啡豆對風味影響
+                了解不同處理法對風味影響
+                如何區分咖啡生豆
+                咖啡生豆分類
+                了解咖啡瑕疵豆類型
+                教授cupping 方法去了解咖啡品種及產地
+                咖啡生豆生長過程`,
+            course_people: `年齡建議:適合年滿12歲以上對咖啡、拉花有興趣的各位!如未滿18歲則需家長陪同參加。`,
+            course_material: `1.磨豆機
+            2.手沖壺
+            3.濾杯
+            4.濾紙
+            5.溫度計
+            6.電子秤`,
         });
         setFormDataFk({
             course_sid: "",
