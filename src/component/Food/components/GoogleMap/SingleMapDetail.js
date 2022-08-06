@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import GoogleMapReact from "google-map-react";
-import axios from "axios";
-import { mapAPI } from "../../../../config/api-path";
 import "./GoogleMap.scss";
 import {
     GoogleMap,
     LoadScript,
-    // useJsApiLoader,
+    useJsApiLoader,
     DistanceMatrixService,
     Marker,
 } from "@react-google-maps/api";
@@ -18,7 +15,7 @@ const shops_dummy = [
         store_name: "0+B 光復店",
         store_road: "光復南路300號",
         store_block: "大安區, 台北市, 106台灣",
-        center: { lat: 25.03962792542701, lng: 121.55742720101652 },
+        center: { lat: 25.03962792142701, lng: 121.55742720101652 },
     },
     {
         store_sid: 2,
@@ -26,7 +23,7 @@ const shops_dummy = [
         store_name: "0+B 復興店",
         store_road: "復興南路一段323號",
         store_block: "大安區, 台北市, 106台灣",
-        center: { lat: 25.034320914178288, lng: 121.54372226899777 },
+        center: { lat: 25.034820954178888, lng: 121.54072221899777 },
     },
     {
         store_sid: 3,
@@ -82,11 +79,13 @@ const shops_dummy = [
 ];
 
 // 我的位置
-const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
 const SingleMapDetail = (props) => {
-    // const [calDistance, setCalDistance] = useState([]);
-    // console.log("calDistance", calDistance);
+    const containerStyle = {
+        width: "100%",
+        height: "400px",
+    };
+    const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
     const [shops, setShops] = useState(shops_dummy);
     const [myPosition, setMyPosition] = useState(props.center); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
@@ -115,16 +114,6 @@ const SingleMapDetail = (props) => {
 
     const branchs = shops.map(({ center }) => center);
 
-    const containerStyle = {
-        width: "100%",
-        height: "50vh",
-    };
-
-    const markerCoors = {
-        lat: 25.034320914178288,
-        lng: 121.54372226899777,
-    };
-
     const getDistance = (response) => {
         const shopsWithDistance = shops
             .map((item, idx) => {
@@ -137,18 +126,13 @@ const SingleMapDetail = (props) => {
         setShops(shopsWithDistance);
     };
 
-    // const qQ = shops.sort((x, y) => x.distance.value - y.distance.value);
-    // console.log("qQ", qQ);
-
+    const selectedMapItem =
+        storeInfo.store_sid === shops.store_sid
+            ? "mapshow selected"
+            : "mapshow";
     return (
         <div className="mapSection">
-            <p
-                onClick={getMyPosition}
-
-            // onClick={() => {
-            //     setShowDate(true);
-            // }}
-            >
+            <p onClick={getMyPosition}>
                 <svg
                     width="20"
                     height="20"
@@ -188,6 +172,11 @@ const SingleMapDetail = (props) => {
                         zoom={14}
                         clickableIcons={false}
                     >
+                        <Marker
+                            position={myPosition}
+                            icon="/food/happy.png"
+                            animation={1}
+                        />
                         {shops.map(
                             ({
                                 center,
@@ -202,7 +191,7 @@ const SingleMapDetail = (props) => {
                                         key={key}
                                         position={center}
                                         icon="/food/coffee1.png"
-                                        animation={1}
+                                        animation={4}
                                         onClick={() => {
                                             setStoreInfo({
                                                 store_name,
@@ -238,7 +227,7 @@ const SingleMapDetail = (props) => {
                         }) => {
                             return (
                                 <div
-                                    className="mapshow"
+                                    className={selectedMapItem}
                                     key={store_sid}
                                     onClick={() => {
                                         setStoreInfo({
@@ -250,18 +239,9 @@ const SingleMapDetail = (props) => {
                                     }}
                                 >
                                     <div className="branchInput">
-                                        {/* <input
-                                        type="radio"
-                                        className="radioBtn"
-                                        value={store_sid}
-                                        // checked={ === store_sid}
-                                        onChange={(e) => {
-                                            setStoreInfo(e.target.value);
-                                        }}
-                                    /> */}
                                         <div className="maptxt">
                                             <h6> {store_name}</h6>
-                                            <p className="txt">
+                                            <div className="txt">
                                                 <div className="txt1">
                                                     {store_block}
                                                     {store_road}
@@ -269,7 +249,7 @@ const SingleMapDetail = (props) => {
                                                 <div className="distance">
                                                     {distance && distance.text}
                                                 </div>
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -277,36 +257,8 @@ const SingleMapDetail = (props) => {
                         }
                     )}
                 </div>
-
-                {/* Child components, such as markers, info windows, etc. */}
-                <></>
             </div>
         </div>
-        // <div className="mapdetail">
-        //     <GoogleMapReact
-        //         bootstrapURLKeys={{
-        //             key: "AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM",
-        //             // 請輸入googlemap的key  ""
-        //             libraries: ["places"], // 要在這邊放入我們要使用的 API
-        //         }}
-        //         // onChange={handleCenterChange} // 移動地圖邊界時觸發 handleCenterChange
-        //         center={myPosition}
-        //         defaultZoom={props.zoom}
-        //         yesIWantToUseGoogleMapApiInternals
-        //         onGoogleApiLoaded={apiHasLoaded}
-        //     >
-        //         <MyPositionMarker
-        //             lat={myPosition.lat}
-        //             lng={myPosition.lng}
-        //             text="我在這"
-        //         />
-        //         {shops.map((shop) => (
-        //             <ShopMarker {...shop} icon="/food/coffee1.png" />
-        //         ))}
-        //     </GoogleMapReact>
-
-        //     {/* <input/> */}
-        // </div>
     );
 };
 // 由於改寫成 functional component，故另外設定 defaultProps

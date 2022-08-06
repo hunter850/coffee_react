@@ -29,17 +29,85 @@ const menuFiliter = [
     { id: "4", name: "輕食沙拉" },
 ];
 
+// chunk - 依size分成子陣列，ex. chunk([1, 2, 3, 4, 5], 2) -> [[1,2],[3,4],[5]]
+// https://stackoverflow.com/questions/8495687/split-array-into-chunks
+const chunk = (arr, size) =>
+    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+        arr.slice(i * size, i * size + size)
+    );
+
 function Food() {
     // 從sql拿資料--------------------------------------------------------
+    // 第一次記錄伺服器的原始資料用
+    const [usersRaw, setUsersRaw] = useState([]);
+    // 呈現資料用
     const [food, setFood] = useState([]);
 
+    // 分頁用
+    // pageNow 目前頁號
+    // perPage 每頁多少數量
+    // pageTotal 目前有多少頁
+    const [pageNow, setPageNow] = useState(1); // 預設第一頁
+    const [perPage, setPerPage] = useState(6); // 預設一頁6筆資料
+    const [pageTotal, setPageTotal] = useState(0); // 等伺服器抓完資料才知道多少(didMount時決定)
+    // 載入資料指示狀態
     useEffect(() => {
-        const foodData = async () => {
+        const getFoodData = async () => {
             const response = await axios.get(foodDataGet);
-            setFood(response.data);
+            setUsersRaw(response.data);
+            const pageArray = chunk(response.data, perPage);
+
+            if (pageArray.length > 0) {
+                setPageTotal(pageArray.length);
+                setFood(pageArray);
+                console.log("pageArray", pageArray);
+            }
         };
-        foodData();
+
+        // setFood(response.data);
+
+        getFoodData();
     }, []);
+
+    const paginationBar = (
+        <>
+            <div className="pagination">
+                <a
+                    href="#/"
+                    onClick={() => {
+                        setPageNow(1);
+                    }}
+                >
+                    &laquo;
+                </a>
+                {Array(pageTotal)
+                    .fill(1)
+                    .map((v, i) => {
+                        return (
+                            <a
+                                key={i}
+                                href="#/"
+                                className={i + 1 === pageNow ? "active" : ""}
+                                onClick={() => {
+                                    setPageNow(i + 1);
+                                }}
+                            >
+                                {i + 1}
+                            </a>
+                        );
+                    })}
+                <a
+                    href="#/"
+                    onClick={() => {
+                        setPageNow(pageTotal);
+                    }}
+                >
+                    &raquo;
+                </a>
+            </div>
+        </>
+    );
+
     // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
@@ -49,13 +117,6 @@ function Food() {
         menu_sid: "",
         menu_categories: "",
     });
-
-    //預設第一頁
-    const [pageNow, setPageNow] = useState(1);
-    //預設一頁幾筆
-    const [perPage, setPerPage] = useState(8);
-    // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
-    const [pageTotal, setPageTotal] = useState(0);
 
     const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
     //拿自取時段的資料--------------------------------------------------
@@ -161,6 +222,7 @@ function Food() {
                                 setSelectedAddress={setSelectedAddress}
                                 setDataFromDate={setDataFromDate}
                                 setDataFromDateTime={setDataFromDateTime}
+                                selectedAddress={selectedAddress}
                             />
                         )}
 
@@ -185,28 +247,31 @@ function Food() {
                         </div>
                         <div className="foodcard-session">
                             {/* 這裡很重要 */}
-                            {food
-                                .filter(
-                                    ({ menu_categories }) =>
-                                        !foodFilter ||
-                                        menu_categories === foodFilter
-                                )
-                                .map(({ ...allfood }, i) => {
-                                    return (
-                                        <FoodCard
-                                            key={`allfood${i}`}
-                                            allfood={allfood}
-                                            handleShowFoodDetailSelect={
-                                                setShowFoodDetail
-                                            }
-                                            setIsShow={setIsShow}
-                                            setDataFromFoodDetail={
-                                                setDataFromFoodDetail
-                                            }
-                                            handleCakeCount={handleCakeCount}
-                                        />
-                                    );
-                                })}
+                            {food.length > 0 &&
+                                food[pageNow - 1]
+                                    .filter(
+                                        ({ menu_categories }) =>
+                                            !foodFilter ||
+                                            menu_categories === foodFilter
+                                    )
+                                    .map(({ ...allfood }, i) => {
+                                        return (
+                                            <FoodCard
+                                                key={`allfood${i}`}
+                                                allfood={allfood}
+                                                handleShowFoodDetailSelect={
+                                                    setShowFoodDetail
+                                                }
+                                                setIsShow={setIsShow}
+                                                setDataFromFoodDetail={
+                                                    setDataFromFoodDetail
+                                                }
+                                                handleCakeCount={
+                                                    handleCakeCount
+                                                }
+                                            />
+                                        );
+                                    })}
                         </div>
                     </div>
                     {isShow && (
@@ -231,7 +296,7 @@ function Food() {
                     />
                 </div>
 
-                {/* <div className="d-flex f-jcc">
+                <div className="d-flex f-jcc">
                     {Array(pageTotal)
                         .fill(1)
                         .map((v, i) => {
@@ -241,17 +306,16 @@ function Food() {
                                     onClick={() => {
                                         setPageNow(i + 1);
                                     }}
-                                    className={`course-page-btn ${
-                                        pageNow === i + 1
+                                    className={`course-page-btn ${pageNow === i + 1
                                             ? "course-page-btn-focus"
                                             : ""
-                                    }`}
+                                        }`}
                                 >
                                     {i + 1}
                                 </div>
                             );
                         })}
-                </div> */}
+                </div>
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Link

@@ -41,7 +41,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         </figure>
                         <div className="photoaside">
                             <h2 className="title-font">{menu_name}</h2>
-                            <p>{menu_nutrition}</p>
+                            <p className="menu_nutrition">{menu_nutrition}</p>
                             <p className="menu_price_m">NT$ {menu_price_m}</p>
                         </div>
                         <div
