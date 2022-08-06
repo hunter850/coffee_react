@@ -19,16 +19,18 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
     // 刪除資料的請求
     useEffect(() => {
         // console.log(sid);
-        if (myBoolean === 1) {
-            setIsOpen(false);
-            setMyBoolean(-1);
-            axios.delete(`${courseDelete}/${sid}`)
-                .then(res => {
-                    console.log(res);
-                    // 確認刪除的狀態
-                    setConfirmDelete(true);
-                });
-        }
+        setIsOpen(false);
+        setTimeout(() => {
+            if (myBoolean === 1) {
+                setMyBoolean(-1);
+                axios.delete(`${courseDelete}/${sid}`)
+                    .then(res => {
+                        console.log(res);
+                        // 確認刪除的狀態
+                        setConfirmDelete(true);
+                    });
+            }
+        }, 1000);
         if (myBoolean === 0) {
             setIsOpen(false);
             setMyBoolean(-1);
@@ -36,7 +38,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
     }, [myBoolean]);
 
     return (
-        <div className="courseList d-flex f-aic">
+        <div className={`courseList d-flex f-aic ${sid === course_sid && myBoolean === 1 ? 'course-list-opacity' : ''}`}>
             <div
                 className="List-img"
                 style={{
@@ -59,7 +61,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
                 <div className="List-edit-icon"></div>
             </Link>
             <div className="List-delete-icon" onClick={() => deleteCourse()}></div>
-        </div>
+        </div >
     );
 }
 
