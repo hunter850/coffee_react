@@ -4,6 +4,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
+import Chatbot from "../../component/Bot/ChatBot";
 import Card from "../../component/Item/Card/Card";
 import Path from "../../component/Item/Path/Path";
 import Header from "../../component/Course/Header/Header";
@@ -222,6 +223,7 @@ const Course = () => {
                     </div>
                 </div>
             </div>
+            <Chatbot />
         </Fragment>
     );
     return el;
