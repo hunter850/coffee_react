@@ -8,11 +8,11 @@ const MessageParser = ({ children, actions }) => {
             message.includes("哈囉") ||
             message.includes("嗨") ||
             message.includes("Hi") ||
+            message.includes("hi") ||
             message.includes("你好")
         ) {
             actions.handleHello();
-        }
-        if (
+        } else if (
             message.includes("心情") ||
             message.includes("壓力") ||
             message.includes("難過") ||
@@ -20,9 +20,7 @@ const MessageParser = ({ children, actions }) => {
             message.includes("大專")
         ) {
             actions.handleChitchatting();
-        }
-
-        if (
+        } else if (
             message.includes("咖啡拿鐵") ||
             message.includes("焦糖瑪奇朵") ||
             message.includes("咖啡") ||
@@ -47,18 +45,14 @@ const MessageParser = ({ children, actions }) => {
             message.includes("烏龍海鹽芝芝奶蓋千層") ||
             message.includes("海鹽太妃開心果千層蛋糕") ||
             message.includes("金沙焦糖脆脆千層") ||
-            message.includes("餓") ||
             message.includes("餐點") ||
-            message.includes("推薦") ||
             message.includes("菜單") ||
             message.includes("價格") ||
             message.includes("蛋糕") ||
-            message.includes("飲料")
+            message.includes("飲料") 
         ) {
             actions.handleFoodMenu();
-        }
-
-        if (
+        } else if (
             message.includes("肯亞AA TOP") ||
             message.includes("模範生") ||
             message.includes("征服者") ||
@@ -85,6 +79,16 @@ const MessageParser = ({ children, actions }) => {
             message.includes("訂購")
         ) {
             actions.handleProductsMenu();
+        } else if (
+            message.includes("隨機") ||
+            message.includes("推薦") ||
+            message.includes("吃") ||
+            message.includes("餓") ||
+            message.includes("食物")
+        ) {
+            actions.handleRandomFoodMenu();
+        } else {
+            actions.handleTextError();
         }
     };
 

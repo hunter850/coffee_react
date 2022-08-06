@@ -2,9 +2,10 @@
 import "./Carousel.css";
 import { useState, useEffect } from "react";
 import { v4 } from "uuid";
+import { imgSrc } from "../../../../config/api-path";
 
 
-function Carousel({ imgs, height = 500, width = '100%' }) {
+function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     const delay = 'ease 1000ms';
     const imgsLength = imgs.length;
     // 控制輪播圖片顯示哪一張
@@ -65,8 +66,48 @@ function Carousel({ imgs, height = 500, width = '100%' }) {
         }
     }, [page, direction, imgsLength]);
 
+    const routerCarousel = (
+        <div className="course-Carousel">
+            <div
+                className="course-slideshow d-flex"
+                style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
+            >
 
-    return (
+                <div className="course-slideshowSlider" style={{ background: `url(${imgSrc}${router}/${imgs[imgsLength - 1]}) center center / cover no-repeat`, height: height, width: width }} >
+                </div>
+                {imgs.map((v, i) => {
+                    return (
+                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgSrc}${router}/${imgs[i]}) center center / cover no-repeat`, height: height, width: width }} >
+                        </div>
+                    );
+                })}
+                <div className="course-slideshowSlider" style={{ background: `url(${imgSrc}${router}/${imgs[0]}) center center / cover no-repeat`, height: height, width: width }} >
+                </div>
+
+            </div>
+            <ul className="Ellipse-wrap d-flex">
+                {imgs.map((v, i) => {
+                    return (
+                        <li
+                            className={`Ellipse ${page === i + 1 ? "course-Ellipse-focus" : ""}`}
+                            key={v4()}
+                            onClick={() => {
+                                setPage(i + 1);
+                            }}
+                        ></li>
+                    );
+                })}
+            </ul>
+            <div className="arror-left" onClick={leftPage}>
+                <div></div>
+            </div>
+            <div className="arror-right" onClick={rightPage}>
+                <div></div>
+            </div>
+        </div>
+    );
+
+    const myCarousel = (
         <div className="course-Carousel">
             <div
                 className="course-slideshow d-flex"
@@ -106,6 +147,8 @@ function Carousel({ imgs, height = 500, width = '100%' }) {
             </div>
         </div>
     );
+
+    return router !== '' ? routerCarousel : myCarousel;
 }
 
 export default Carousel;

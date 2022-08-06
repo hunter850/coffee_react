@@ -98,6 +98,10 @@
     cursor: pointer;
 }
 
+.List-edit-icon:hover {
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.45));
+}
+
 .List-delete-icon {
     background: url(/src/images/course/delete.png) center center no-repeat;
     width: 40px;
@@ -105,4 +109,21 @@
     border-radius: 2px;
     filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.25));
     cursor: pointer;
+}
+
+.List-delete-icon:hover {
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.45));
+}
+
+.course-list-opacity {
+    animation: courseListOpacity 1.2s linear;
+}
+
+@keyframes courseListOpacity {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

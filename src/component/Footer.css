@@ -1,7 +1,9 @@
-
-@media screen and (min-width: 1440px) {
     .footerlogo-wrap {
         padding: 40px 100px 0px 50px;
+    }
+    .footerlogo-wrap img{
+        width: 80px;
+        height: 80px;
     }
     
     .linkcolor-white {
@@ -26,6 +28,7 @@
     }
     .partition {
         border-bottom: 1px solid #FFFFFF;
+        
     }
     .Copyrighttext {
         color: #ffffff;
@@ -35,14 +38,48 @@
     .sociallink-wrap {
         display: flex;
         justify-content: space-between;
+        padding-top: 10px;
     }
-    .sociallink {
+    .sociallink img{
+        width: 48px;
+        height: 48px;
         margin-top: 20px;
     }
     .sociallink-icon{
         margin-left: 5px;
     }
-}
-@media screen and (max-width: 375px) {
-    
+
+@media screen and (max-width: 400px) {
+    .partition {
+        display: flex;
+        flex-direction: column;
+    }
+    .footerlogo-wrap img {
+        width: 100px;
+        height:100px;
+    }
+    .footertext-wrap {
+        margin: auto;
+    }
+    .footer-pdr-48 {
+        padding-right: 30px;
+    }
+    .footer-pdr-82 {
+        padding-right: 64px;
+    }
+    .sociallink-wrap {
+        position: relative;
+    }
+    .sociallink {
+        position: absolute;
+        top:-175px;
+        right:35px;
+    }
+    .footerlogo-wrap {
+        padding:40px 100px 10px 12px;
+    }
+    .sociallink img {
+        width: 24px;
+        height: 24px;
+    }
 }

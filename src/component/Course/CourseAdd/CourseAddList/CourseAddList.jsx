@@ -5,9 +5,8 @@ import "./CourseAddList.css";
 import { useRef, useEffect } from "react";
 import { courseImages, imgSrc } from "../../../../config/api-path";
 
-function CourseAddList({ start, setFormData, formData, selectedFile, setSelectedFile, isFilePicked, setIsFilePicked, preview, setPreview, imgName, setImgName, getCourseData, errorName, errorPrice, inputOnFocus }) {
+function CourseAddList({ start, setFormData, formData, selectedFile, setSelectedFile, setIsFilePicked, setPreview, setImgName, getCourseData, errorName, errorPrice, errorLevel, inputOnFocus }) {
     const { course_name, course_price, course_level, course_img_s } = formData;
-
 
     useEffect(() => {
         // 有取得資料才渲染
@@ -30,7 +29,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
             return;
         }
         const objectUrl = URL.createObjectURL(selectedFile);
-        // console.log(objectUrl);
         setPreview(objectUrl);
 
         // 當元件unmounted時清除記憶體
@@ -50,7 +48,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
             setImgName("");
         }
     };
-
     useEffect(() => {
         if (selectedFile) {
             const fd = new FormData();
@@ -69,7 +66,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                 });
         }
     }, [selectedFile]);
-
     const add = (
         <div className="CourseAddList">
             <div className="d-flex CourseAddList-wrap">
@@ -137,7 +133,7 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                     <div>
                         <p>課程難度 :</p>
                         <select
-                            className="courselevelinp"
+                            className={`courselevelinp  ${errorLevel !== '選擇課程難度' ? 'course-add-error-txt' : ''}`}
                             value={course_level}
                             onChange={(e) =>
                                 setFormData({
@@ -145,8 +141,9 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
                                     course_level: e.target.value,
                                 })
                             }
+                            onFocus={() => inputOnFocus('level')}
                         >
-                            <option value={""}>選擇課程難度</option>
+                            <option value={""}>{errorLevel === '' ? '選擇課程難度' : errorLevel}</option>
                             <option value={1}>初級</option>
                             <option value={2}>中級</option>
                             <option value={3}>高級</option>

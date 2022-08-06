@@ -79,7 +79,7 @@ function GoogleMap({
                     </div>
                     <div className="selectTime">
                         <div className="middle">
-                            <p className="select">請選擇一個自取日期</p>
+                            <h6 className="select">自取日期</h6>
                             <select
                                 className="datetime"
                                 value={inputDate}
@@ -102,7 +102,7 @@ function GoogleMap({
                             </select>
                         </div>
                         <div className="middle1">
-                            <p className="select">請選擇一個自取時間</p>
+                            <h6 className="select">自取時間</h6>
                             <select
                                 className="datetime"
                                 value={inputTime}

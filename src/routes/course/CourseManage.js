@@ -20,6 +20,7 @@ import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
 
+
 const CourseManage = () => {
     // 取得點擊的sid
     const [sid, setSid] = useState(0);

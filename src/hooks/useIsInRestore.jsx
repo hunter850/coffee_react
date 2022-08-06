@@ -10,7 +10,8 @@ const useIsInRestore = (ref, num = 0) => {
     useEffect(() => {
         if (ref.current) {
             if (
-                ref.current.getBoundingClientRect().top -
+                ref.current.offsetTop -
+                    window.pageYOffset -
                     window.innerHeight +
                     num <=
                 0
@@ -20,7 +21,9 @@ const useIsInRestore = (ref, num = 0) => {
                 setIsIn(false);
             }
             if (
-                ref.current.getBoundingClientRect().top - window.innerHeight <=
+                ref.current.offsetTop -
+                    window.pageYOffset -
+                    window.innerHeight <=
                 0
             ) {
                 setIsOut(false);
@@ -33,7 +36,9 @@ const useIsInRestore = (ref, num = 0) => {
     useEffect(() => {
         function checkIsOut() {
             if (
-                ref.current.getBoundingClientRect().top - window.innerHeight <=
+                ref.current.offsetTop -
+                    window.pageYOffset -
+                    window.innerHeight <=
                 0
             ) {
                 setIsOut(false);
@@ -53,7 +58,8 @@ const useIsInRestore = (ref, num = 0) => {
         function check() {
             if (ref.current) {
                 if (
-                    ref.current.getBoundingClientRect().top -
+                    ref.current.offsetTop -
+                        window.pageYOffset -
                         window.innerHeight +
                         num <=
                     0
