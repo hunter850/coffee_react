@@ -61,7 +61,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
                 <div className="List-edit-icon"></div>
             </Link>
             <div className="List-delete-icon" onClick={() => deleteCourse()}></div>
-        </div >
+        </div>
     );
 }
 

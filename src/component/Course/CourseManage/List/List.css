@@ -116,7 +116,7 @@
 }
 
 .course-list-opacity {
-    animation: courseListOpacity 1.5s linear;
+    animation: courseListOpacity 1.2s linear;
 }
 
 @keyframes courseListOpacity {

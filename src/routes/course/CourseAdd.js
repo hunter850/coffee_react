@@ -22,8 +22,6 @@ const CourseAdd = () => {
     const [getCourseData, setGetCourseData] = useState([]);
     const [getCourseDataFk, setGetCourseDataFk] = useState([]);
     const [start, setStart] = useState(false);
-    // console.log(getCourseData);
-    // console.log(getCourseDataFk);
     // 選擇的檔案 - s是給外鍵用的
     const [selectedFile, setSelectedFile] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -50,12 +48,16 @@ const CourseAdd = () => {
         course_people: "",
         course_material: "",
     });
+    // 表單驗證
     const [errorName, setErrorName] = useState("");
     const [errorPrice, setErrorPrice] = useState("");
     const [errorContent, setErrorContent] = useState("");
     const [errorPeople, setErrorPeople] = useState("");
     const [errorMaterial, setErrorMaterial] = useState("");
-    const [formCheck, setFormCheck] = useState(false);
+    const [errorLevel, setErrorLevel] = useState("選擇課程難度");
+    const [errorDate, setErrorDate] = useState("");
+    const [errorTime, setErrorTime] = useState("");
+
     // 外鍵狀態
     const [formDataFk, setFormDataFk] = useState({
         course_sid: "",
@@ -72,6 +74,114 @@ const CourseAdd = () => {
 
     // 取得網址sid
     const { sid } = useParams();
+
+    // input獲得焦點時取消error
+    const inputOnFocus = (e) => {
+        if (e === "name") {
+            setErrorName("");
+        } else if (e === "price") {
+            setErrorPrice("");
+        } else if (e === "content") {
+            setErrorContent("");
+        } else if (e === "people") {
+            setErrorPeople("");
+        } else if (e === "material") {
+            setErrorMaterial("");
+        } else if (e === "level") {
+            setErrorLevel("選擇課程難度");
+        } else if (e === "date") {
+            setErrorDate("");
+        } else if (e === "time") {
+            setErrorTime("");
+        }
+    };
+
+    // 新增資料的請求,如果有取得sid會進行資料修改(編輯功能)
+    const handleSubmission = (e) => {
+        e.preventDefault();
+        if (sid) {
+            axios({
+                method: "put",
+                url: courseDataEdit,
+                data: { ...formData, course_sid: sid },
+                "content-type": "application/x-www-form-urlencoded",
+            }).then((res) => {
+                console.log(res);
+                setMonitorFk(true);
+            });
+        } else {
+            const {
+                course_content,
+                course_level,
+                course_material,
+                course_name,
+                course_price,
+                course_people,
+            } = formData;
+
+            const {
+                course_date: { date1, date2 },
+                course_time: { time1, time2 },
+            } = formDataFk;
+
+            if (course_name === "") {
+                setErrorName("請輸入名稱");
+            }
+            if (course_price === "") {
+                setErrorPrice("請輸入價格");
+            }
+            if (course_content === "") {
+                setErrorContent("請輸入課程內容");
+            }
+            if (course_people === "") {
+                setErrorPeople("請輸入適合對象");
+            }
+            if (course_material === "") {
+                setErrorMaterial("請輸入需求材料");
+            }
+            if (course_level === "") {
+                setErrorLevel("請選擇課程難度");
+            }
+            if (date1 === "") {
+                setErrorDate("至少輸入一個日期");
+            }
+            if (time1 === "") {
+                setErrorTime("至少輸入一個時段");
+            }
+
+            // 欄位都不是空值時才發送給後端
+            const keys = [];
+            if (date1 === "") {
+                keys.push("date");
+            }
+            if (date1 === "") {
+                keys.push("time");
+            }
+            for (let key in formData) {
+                if (formData[key] === "") {
+                    keys.push(key);
+                }
+            }
+            console.log(keys);
+            if (keys.length === 0) {
+                axios({
+                    method: "post",
+                    url: courseDataAdd,
+                    data: formData,
+                    "content-type": "application/x-www-form-urlencoded",
+                }).then((response) => {
+                    console.log(response.config.data);
+                    console.log(response);
+                    // 確定拿到sid後塞給外鍵的formData
+                    setFormDataFk({
+                        ...formDataFk,
+                        course_sid: response.data,
+                    });
+                    setMonitor(true);
+                });
+            }
+        }
+    };
 
     useEffect(() => {
         // 取得當前要修改的資料
@@ -90,87 +200,6 @@ const CourseAdd = () => {
             });
         }
     }, []);
-    // 新增資料的請求,如果有取得sid會進行資料修改(編輯功能)
-    const handleSubmission = (e) => {
-        e.preventDefault();
-        if (sid) {
-            axios({
-                method: "put",
-                url: courseDataEdit,
-                data: { ...formData, course_sid: sid },
-                "content-type": "application/x-www-form-urlencoded",
-            }).then((res) => {
-                console.log(res);
-                setMonitorFk(true);
-            });
-        } else {
-            // console.log(formData);
-            // 這裡需要檢查欄位 (還沒做)
-            const {
-                course_content,
-                course_level,
-                course_material,
-                course_name,
-                course_price,
-                course_people,
-            } = formData;
-
-            if (course_name === "") {
-                setErrorName("請輸入名稱");
-            }
-            if (course_price === "") {
-                setErrorPrice("請輸入價格");
-            }
-            if (course_content === "") {
-                setErrorContent("請輸入課程內容");
-            }
-            if (course_people === "") {
-                setErrorPeople("請輸入適合對象");
-            }
-            if (course_material === "") {
-                setErrorMaterial("請輸入需求材料");
-            }
-            // 欄位都不是空值時才發送給後端
-            const keys = [];
-            for (let key in formData) {
-                if (formData[key] === "") {
-                    keys.push(key);
-                }
-            }
-            if (keys.length === 0) {
-                axios({
-                    method: "post",
-                    url: courseDataAdd,
-                    data: formData,
-                    "content-type": "application/x-www-form-urlencoded",
-                }).then((response) => {
-                    console.log(response.config.data);
-                    console.log(response);
-                    // 確定拿到sid後塞給外鍵的formData
-                    setFormDataFk({
-                        ...formDataFk,
-                        course_sid: response.data,
-                    });
-                    setMonitor(true);
-                    setFormCheck(false);
-                });
-            }
-        }
-    };
-    // input獲得焦點時取消error
-    const inputOnFocus = (e) => {
-        if (e === "name") {
-            setErrorName("");
-        } else if (e === "price") {
-            setErrorPrice("");
-        } else if (e === "content") {
-            setErrorContent("");
-        } else if (e === "people") {
-            setErrorPeople("");
-        } else if (e === "material") {
-            setErrorMaterial("");
-        }
-    };
 
     useEffect(() => {
         // 發送請求前將資料整理成陣列
@@ -268,6 +297,7 @@ const CourseAdd = () => {
                             inputOnFocus={inputOnFocus}
                             errorName={errorName}
                             errorPrice={errorPrice}
+                            errorLevel={errorLevel}
                         />
                         <CourseAddListDetailed
                             formData={formData}
@@ -286,6 +316,8 @@ const CourseAdd = () => {
                             errorPeople={errorPeople}
                             errorMaterial={errorMaterial}
                             inputOnFocus={inputOnFocus}
+                            errorDate={errorDate}
+                            errorTime={errorTime}
                         />
                         <div
                             className="d-flex f-jcc"
@@ -340,6 +372,7 @@ const CourseAdd = () => {
                             inputOnFocus={inputOnFocus}
                             errorName={errorName}
                             errorPrice={errorPrice}
+                            errorLevel={errorLevel}
                         />
                         <CourseAddListDetailed
                             formData={formData}
@@ -362,6 +395,8 @@ const CourseAdd = () => {
                             errorPeople={errorPeople}
                             errorMaterial={errorMaterial}
                             inputOnFocus={inputOnFocus}
+                            errorDate={errorDate}
+                            errorTime={errorTime}
                         />
                         <div
                             className="d-flex f-jcc"
