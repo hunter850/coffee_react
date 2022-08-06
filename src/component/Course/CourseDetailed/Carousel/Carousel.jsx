@@ -66,8 +66,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
         }
     }, [page, direction, imgsLength]);
 
-
-    return (
+    const routerCarousel = (
         <div className="course-Carousel">
             <div
                 className="course-slideshow d-flex"
@@ -107,6 +106,49 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
             </div>
         </div>
     );
+
+    const myCarousel = (
+        <div className="course-Carousel">
+            <div
+                className="course-slideshow d-flex"
+                style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
+            >
+
+                <div className="course-slideshowSlider" style={{ background: `url(${imgs[imgsLength - 1]}) center center / cover no-repeat`, height: height, width: width }} >
+                </div>
+                {imgs.map((v, i) => {
+                    return (
+                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgs[i]}) center center / cover no-repeat`, height: height, width: width }} >
+                        </div>
+                    );
+                })}
+                <div className="course-slideshowSlider" style={{ background: `url(${imgs[0]}) center center / cover no-repeat`, height: height, width: width }} >
+                </div>
+
+            </div>
+            <ul className="Ellipse-wrap d-flex">
+                {imgs.map((v, i) => {
+                    return (
+                        <li
+                            className={`Ellipse ${page === i + 1 ? "course-Ellipse-focus" : ""}`}
+                            key={v4()}
+                            onClick={() => {
+                                setPage(i + 1);
+                            }}
+                        ></li>
+                    );
+                })}
+            </ul>
+            <div className="arror-left" onClick={leftPage}>
+                <div></div>
+            </div>
+            <div className="arror-right" onClick={rightPage}>
+                <div></div>
+            </div>
+        </div>
+    );
+
+    return router !== '' ? routerCarousel : myCarousel;
 }
 
 export default Carousel;
