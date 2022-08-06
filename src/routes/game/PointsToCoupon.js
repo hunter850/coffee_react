@@ -9,7 +9,7 @@ import {
     ScrollMotionItem,
 } from "../game/Components/ScrollMotion";
 //import PointsToCouponItem from "../game/Components/PointsToCouponItem";
-
+import ChatBot from "../../component/Bot/ChatBot";
 function PointsToCoupon() {
     const { token } = useAuth();
     const [points, setPoints] = useState(null);
@@ -64,18 +64,12 @@ function PointsToCoupon() {
             <NavBar />
             <div className="PointsToCouponContainer">
                 <div className="PointsToCouponContainerInner">
-                    {/* <div className="textred">
-                        目前積分: {points - count * 300}
-                    </div> */}
                     <ScrollMotionContainer element="div" className="textred">
                         <ScrollMotionItem element="p" type="up">
                             目前積分: {points - count * 300}
                         </ScrollMotionItem>
                     </ScrollMotionContainer>
-                    {/* <div>
-                        兌換優惠券張數:
-                        <span className="textred">{count}</span>
-                    </div> */}
+
                     <ScrollMotionContainer element="div">
                         <ScrollMotionItem
                             element="p"
@@ -85,12 +79,7 @@ function PointsToCoupon() {
                             兌換優惠券張數:{count}
                         </ScrollMotionItem>
                     </ScrollMotionContainer>
-                    {/* <div>
-                        剩餘積分:
-                        {points - count * 300 < 0
-                            ? "積分不足"
-                            : points - count * 300}
-                    </div> */}
+
                     <ScrollMotionContainer element="div">
                         <ScrollMotionItem element="p" type="up">
                             剩餘積分:
@@ -101,7 +90,6 @@ function PointsToCoupon() {
                     </ScrollMotionContainer>
                     <div className="filledLinkBox">
                         <div
-                            //className="filledLink"
                             className={`${
                                 points - count * 300 < 300
                                     ? "cRedAlert"
@@ -112,23 +100,6 @@ function PointsToCoupon() {
                             {points - count * 300 < 300 ? "已兌換完畢" : "兌換"}
                         </div>
                     </div>
-                    {/* <ScrollMotionContainer
-                        element="div"
-                        className="filledLinkBox"
-                    >
-                        <ScrollMotionItem
-                            element="p"
-                            type="up"
-                            className={`${
-                                points - count * 300 < 300
-                                    ? "cRedAlert"
-                                    : "filledLink"
-                            } cardstyle`}
-                            onClick={handlePointsToCoupon}
-                        >
-                            {points - count * 300 < 300 ? "已兌換完畢" : "兌換"}
-                        </ScrollMotionItem>
-                    </ScrollMotionContainer> */}
                 </div>
                 <div>
                     <img
@@ -136,6 +107,7 @@ function PointsToCoupon() {
                         alt=""
                     />
                 </div>
+                <ChatBot />
             </div>
         </Fragment>
     );
