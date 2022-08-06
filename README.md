@@ -94,9 +94,10 @@ const [isOpen, setIsOpen] = useSate(false);
 ### Carousel 組件使用說明
 
 ```js
-// 1.輪播圖請傳入一個帶有圖片路徑的陣列,沒限制輪播張數
+// 1.輪播圖請傳入一個帶有圖片路徑的陣列,沒限制輪播張數 "陣列請給檔名就好/後端那邊的"
 // 2.height直接帶數字就好,預設為500
 // 3.width預設100%
+// 4.router可以不用輸入初始路徑http://localhost:3500/images
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -108,6 +109,7 @@ const [isOpen, setIsOpen] = useSate(false);
     ]}
     height={300}
     width={100}
+    <Carousel imgs={carouselArr} router={'/course'} />
 />
 ```
 
@@ -123,7 +125,7 @@ const [isOpen, setIsOpen] = useSate(false);
 
 ### 放置客服教學(有空再放就好了，不放應該也沒關係(?))
 
-++步驟:引入ChatBot，再加入到return內，如下
+++步驟:引入 ChatBot，再加入到 return 內，如下
 
 ```js
 import { Fragment } from "react";
@@ -150,8 +152,9 @@ import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
 // 最外層不要用Fragment
 <ScrollWrap from="beforeEnterClass" to="afterEnterClass">
     <div className="yourClass">box</div>
-</ScrollWrap>
+</ScrollWrap>;
 ```
+
 ```js
 import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
 // from 進場前的class
