@@ -15,7 +15,7 @@ import {
 } from "../../config/api-path";
 import axios from "axios";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const CourseAdd = () => {
     // 取得資料庫資料
@@ -74,6 +74,8 @@ const CourseAdd = () => {
 
     // 取得網址sid
     const { sid } = useParams();
+    // 跳轉路由
+    const navigate = useNavigate();
 
     // input獲得焦點時取消error
     const inputOnFocus = (e) => {
@@ -230,9 +232,7 @@ const CourseAdd = () => {
                 setMonitor(false);
                 // 確定新增完成後跳轉頁面
                 if (response.status === 200) {
-                    // 這樣localhost是多少都沒關係
-                    const localhost = window.location.origin;
-                    window.location.href = `${localhost}/course/manage`;
+                    navigate("/course/manage", { replace: false });
                 }
             });
         }
@@ -264,9 +264,7 @@ const CourseAdd = () => {
                 setMonitorFk(false);
                 // 確定修改完成後跳轉
                 if (res.status === 200) {
-                    // 這樣localhost是多少都沒關係
-                    const localhost = window.location.origin;
-                    window.location.href = `${localhost}/course/manage`;
+                    navigate("/course/manage", { replace: false });
                 }
             });
         }
