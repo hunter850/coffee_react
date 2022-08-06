@@ -94,9 +94,10 @@ const [isOpen, setIsOpen] = useSate(false);
 ### Carousel 組件使用說明
 
 ```js
-// 1.輪播圖請傳入一個帶有圖片路徑的陣列,沒限制輪播張數
+// 1.輪播圖請傳入一個帶有圖片連結的陣列,沒限制輪播張數,如使用router屬性 "陣列請帶上檔名就好"
 // 2.height直接帶數字就好,預設為500
 // 3.width預設100%
+// 4.router可以不用輸入,初始路徑http://localhost:3500/images,如不使用router可以不用輸入,陣列請帶上完整路徑
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -106,8 +107,17 @@ const [isOpen, setIsOpen] = useSate(false);
         "https://picsum.photos/id/216/1440/500",
         "https://picsum.photos/id/227/1440/500",
     ]}
+    // 此範例為使用router屬性所要帶的陣列格式
+    // imgs={[
+    //     "43f80f6e4c0675fd0dde0def963a0f3b.jpg",
+    //     "38aecb3ddaaf82eb59cda7acde393780.jpg",
+    //     "73c9ba4ec7f6c5af179f5fc994057424.jpg",
+    //     "2421496a84b1b5134a89744e09a85c83.jpg",
+    //     "f83c89cb0f3f09a323f1e3fae18f9d6d.jpg",
+    // ]}
     height={300}
     width={100}
+    router={"/course"}
 />
 ```
 
@@ -123,7 +133,7 @@ const [isOpen, setIsOpen] = useSate(false);
 
 ### 放置客服教學(有空再放就好了，不放應該也沒關係(?))
 
-++步驟:引入ChatBot，再加入到return內，如下
+++步驟:引入 ChatBot，再加入到 return 內，如下
 
 ```js
 import { Fragment } from "react";
@@ -140,4 +150,34 @@ function Game() {
 }
 
 export default Game;
+```
+
+### ScrollWrap 組件使用說明
+
+```js
+import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
+// 只要用ScrollWrap包起來 加上from跟to的class scrollbar捲動到那個位置就會自動加class做進場動畫
+// 最外層不要用Fragment
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass">
+    <div className="yourClass">box</div>
+</ScrollWrap>;
+```
+
+```js
+import ScrollWrap from "./component/Item/ScrollWrap/ScrollWrap";
+// from 進場前的class
+// to 進場後的class (記得加transition)
+// offset 捲超過多少px才觸發動畫
+// backAgain 往回捲也觸發動畫
+// backOffset 往回捲多少px才觸發動畫
+// component 最外層的tag 預設是Fragment
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass" offset={100} backAgain={true} backOffset={-100} component="ul">
+    {myArray.map((item, index) => (<li className="yourClass">list</li>))}
+</ScrollWrap>
+// 寫在子層的class權重比ScrollWrap的from to還高(子層class優先)
+<ScrollWrap from="beforeEnterClass" to="afterEnterClass" offset={100} backAgain={true} backOffset={-100} component="ul">
+    <li className="yourClass" from="class1" to="class2">list</li>
+    <li className="yourClass" from="class3" to="class4">list</li>
+    <li className="yourClass" from="class5" to="class6">list</li>
+</ScrollWrap>
 ```

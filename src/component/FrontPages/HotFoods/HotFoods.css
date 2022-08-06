@@ -2,6 +2,13 @@
     /* margin: auto; */
     justify-content: center;
 }
+.hotfoodcard-desktop {
+    display: flex;
+}
+.hotfoodcard-phone {
+    display: flex;
+    display: none;
+}
 
 .hotfoodcard-place .hotfood-container:nth-child(2), .hotfood-container:nth-child(4) {
     padding-top: 100px;
@@ -16,7 +23,11 @@
     .hotfoodcard-place .hotfood-container:nth-child(2), .hotfood-container:nth-child(4) {
         padding-top: 0;
     }
-    .hotfoodcard-place .hotfood-container:nth-child(2), .hotfood-container:nth-child(3) .hotfood-container:nth-child(4) {
+    .hotfoodcard-desktop {
+        display: flex;
         display: none;
+    }
+    .hotfoodcard-phone {
+        display: flex;
     }
 }

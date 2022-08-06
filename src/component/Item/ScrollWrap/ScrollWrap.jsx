@@ -11,9 +11,10 @@ const ScrollWrap = (props) => {
         backAgain = false,
         offset = 0,
         backOffset = 0,
+        ...others
     } = props;
     return (
-        <ElementWrap component={component}>
+        <ElementWrap component={component} {...others}>
             {React.Children.map(children, (child) => (
                 <ListenScroll
                     from={from}

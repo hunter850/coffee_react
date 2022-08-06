@@ -7,6 +7,7 @@ export const getCartCount = `${SERVER}/cart/cart_count/api`;
 // MEMBER
 export const login = `${SERVER}/member/api/login`;
 export const signUp = `${SERVER}/member/api/sign-up`;
+export const doVerification = `${SERVER}/member/api/user-verify`;
 export const getUserData = `${SERVER}/member/api/user-list`;
 export const editUserData = `${SERVER}/member/api/edit-user-list`;
 export const editPasswordAPI = `${SERVER}/member/api/edit-password`;

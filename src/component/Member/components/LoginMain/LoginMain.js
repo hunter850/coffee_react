@@ -6,7 +6,7 @@ import { useState, useEffect, useRef,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useNav } from "../../../../Contexts/NavProvider";
 import Modal from "../../../Modal/Modal";
-import { login,signUp } from "../../../../config/api-path";
+import { login,signUp,doVerification } from "../../../../config/api-path";
 import "./LoginMain.css";
 
 import { FaUser } from "react-icons/fa";
@@ -29,10 +29,11 @@ function LoginMain() {
     const [loginSuccess,setLoginSuccess] = useState(false);
     const [signSuccess,setSignSuccess] = useState(false);
     const [isverify,setIsVerify] = useState(false);
+    const [canStart,setCanStart] = useState(false);
+    const [verifySuccess,setVerifySuccess] = useState(false);
 
     const [welWidth, setWelWidth] = useState(0);
     const [fmWidth, setFmWidth] = useState(0);
-
 
     const welcomeWidth = useRef(null);
     const formWidth = useRef(null);
@@ -42,7 +43,6 @@ function LoginMain() {
 
     // 掛載到頁面上執行一次
     useEffect(() => {
-        // setIsVerify(true)
         function resizehandler (){
             setWelWidth(welcomeWidth.current.clientWidth)
             setFmWidth(formWidth.current.clientWidth)
@@ -88,7 +88,8 @@ function LoginMain() {
     });
 
     const [myVerify, setMyVerify] = useState({
-        verification: ""
+        verification: "",
+        member_account: "",
     });
 
     // input的值
@@ -100,10 +101,10 @@ function LoginMain() {
     };
 
     const getVerify = (event) => {
-        const id = event.target.id;
+        const name = event.target.name;
         const val = event.target.value;
-        console.log({ id, val });
-        setMyVerify({ ...myVerify, [id]: val });
+        console.log({ name, val });
+        setMyVerify({ ...myVerify, [name]: val });
     };
 
     // 錯誤訊息提示
@@ -147,7 +148,20 @@ function LoginMain() {
             
             console.log(result);
 
+            if(!result.success){
+                setLoginSuccess(false);
+                setIsOpen(true);
+                return;
+            }
+
+            if(result.verify === ""){
+                setVerifySuccess(false);
+                setCanStart(true);
+                return;
+            }
+
             if(result.success){
+
                 localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
                 setAuth({...result.data, authorized: true});
                 setTimeout(() => {
@@ -241,7 +255,30 @@ function LoginMain() {
     };
 
 // --------------------- 處理驗證 ---------------------
-    const handleVerify = ()=>{
+    const handleVerify = (e)=>{
+        e.preventDefault();
+
+        fetch(doVerification,{
+            method: "POST",
+            body: JSON.stringify(myVerify),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((r) => r.json())
+        .then((result) => {
+            console.log(result);
+            if(!result.success){
+                setVerifyError("錯誤！請重新再試！")
+            }else{
+                setVerifySuccess(true);
+                setIsVerify(false);
+                setCanStart(true);
+                setTimeout(() => {
+                    setCanStart(false);
+                }, 1500);
+            }
+        });
 
     }
 
@@ -324,23 +361,33 @@ function LoginMain() {
 
                 <Modal isOpen={isverify} setIsOpen={setIsVerify}>
                     <Modal.Body>
-                    <form name="verification" className="verify">
+                    <form name="form2" className="verify">
                         <div className="verify-h1">驗證碼已寄至您的信箱！</div>
                         <div className="verify-wrap">
                             <div className="verify-check">
+                                <div className="verify-info-check">
+                                    <label className="verify-account-title">請輸入帳號</label>
+                                    <input
+                                        type="text"
+                                        className="verify-field"
+                                        name="member_account"
+                                        value={myVerify.member_account}
+                                        onChange={getVerify}
+                                        autoComplete="off"
+                                    />
+                                </div>
                                 <div className="verify-info-check">
                                     <label className="verify-title">請輸入驗證碼</label>
                                     <input
                                         type="text"
                                         className="verify-field"
-                                        id="verification"
                                         name="verification"
                                         value={myVerify.verification}
                                         onChange={getVerify}
                                         autoComplete="off"
                                     />
                                 </div>
-                                <p className="verify-field-err">{""}</p>
+                                <p className="verify-field-err">{verifyError}</p>
                             </div>
                             <button type="submit" className="verify-btn" onClick={handleVerify}>送出確認</button>
                         </div>
@@ -348,6 +395,16 @@ function LoginMain() {
                     </Modal.Body>
                 </Modal>
             </div>
+
+            <Modal isOpen={canStart} setIsOpen={setCanStart}>
+                <Modal.Body className="lg-msg-wrap">
+                        <div className="lg-msg">
+                            {verifySuccess ? <FaCheckCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> : <FaTimesCircle size={'1.4rem'} style={{"marginRight":"15px","marginTop":"5px"}}/> }
+                            {verifySuccess ? "帳號開通！" : "帳號未開通"}
+                        </div>
+                </Modal.Body>
+            </Modal>
+
         </>
     );
 }

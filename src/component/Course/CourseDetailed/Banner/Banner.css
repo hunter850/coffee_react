@@ -16,6 +16,7 @@
 .courseBannerBtn-wrap {
     position: absolute;
     bottom: 27px;
+    user-select: none;
 }
 
 .banner-Btn-Hover:hover {

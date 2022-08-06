@@ -24,7 +24,9 @@
         justify-items: start;
     }
     .latestnew-day {
+        width: 100%;
         padding-right: 0px;
-        justify-items: start;
+        justify-content: start;
+        padding-bottom: 10px;
     }
 }

@@ -54,6 +54,8 @@ const CourseDetailed = () => {
 
     // 開課的時間
     const [time, setTime] = useState([]);
+    // 輪播用的陣列
+    const [carouselArr, setCarouselArr] = useState([]);
 
     // 取得點擊哪一張卡片進來詳細頁的sid
     const { sid } = useParams();
@@ -102,7 +104,6 @@ const CourseDetailed = () => {
             setIsOpen(true);
         }
     };
-
     // 外鍵資料獲取
     const getCourseDataFk = () => {
         axios.get(courseDataFkGet)
@@ -111,9 +112,9 @@ const CourseDetailed = () => {
                     return Number(v.course_sid) === Number(sid);
                 });
                 setCourseDataFk(newCourseDataFk);
-
                 // 判斷有拿到資料才做切割 (將日期切割成需要的格式)
                 if (newCourseDataFk.length > 0) {
+                    setCarouselArr(newCourseDataFk[0].course_img_l.split(','));
                     const Date = newCourseDataFk[0].course_date.split(',');
                     const Time = newCourseDataFk[0].course_time.split(',');
                     setTime(Time);
@@ -163,7 +164,6 @@ const CourseDetailed = () => {
     useEffect(() => {
         getCourseDetailedData();
     }, [sid, start]);
-
     const el = (
         <Fragment>
             <div className="CourseDetailed-container">
@@ -179,7 +179,7 @@ const CourseDetailed = () => {
                     backgroundColor={"#fff"}
                     url={["/course"]}
                 />
-                <Carousel imgs={["https://picsum.photos/id/249/1440/500", "https://picsum.photos/id/1014/1440/500", "https://picsum.photos/id/120/1440/500", "https://picsum.photos/id/216/1440/500", "https://picsum.photos/id/227/1440/500"]} />
+                <Carousel imgs={carouselArr} router={'/course'} />
                 <Banner courseDetailedData={courseDetailedData} start={start} courseClickMove={courseClickMove} />
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>

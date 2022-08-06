@@ -20,6 +20,7 @@ import ConfirmDeleteBox from "../../component/Item/ConfirmDeleteBox/ConfirmDelet
 import Modal from "../../component/Modal/Modal";
 
 const CourseAdd = () => {
+    const [banContinuous, setBanContinuous] = useState(false);
     // Modal控制器
     const [isOpen, setIsOpen] = useState(false);
     // 取得資料庫資料
@@ -38,7 +39,6 @@ const CourseAdd = () => {
     // 要發給資料庫的照片檔名
     const [imgName, setImgName] = useState("");
     const [imgNames, setImgNames] = useState("");
-    // console.log("要給資料庫的檔名: " + imgName);
     // 監聽後端是否回傳sid
     const [monitor, setMonitor] = useState(false);
     const [monitorFk, setMonitorFk] = useState(false);
@@ -80,6 +80,52 @@ const CourseAdd = () => {
     const { sid } = useParams();
     // 跳轉路由
     const navigate = useNavigate();
+    // 一鍵輸入資料
+    const handleAutoForm = (e) => {
+        e.preventDefault();
+        if (!sid) {
+            setFormData({
+                course_name: "咖啡生豆認識及風味鑑嘗",
+                course_price: "8700",
+                course_level: "3",
+                course_img_s: "2c0a2a3b5f7b841c9c2db4ad1b3f5e0d.jpg",
+                course_content: `‧認識不同咖啡產地及品種，加強自己品嚐咖啡思維
+    ‧可以品嚐到不同產地咖啡豆
+    ‧了解不同品種咖啡豆對風味影響
+    ‧了解不同處理法對風味影響
+    ‧如何區分咖啡生豆
+    ‧咖啡生豆分類
+    ‧了解咖啡瑕疵豆類型
+    ‧教授cupping 方法去了解咖啡品種及產地
+    ‧咖啡生豆生長過程`,
+                course_people: `年齡建議:適合年滿12歲以上對咖啡、拉花有興趣的各位!如未滿18歲則需家長陪同參加。`,
+                course_material: `1.磨豆機
+    2.手沖壺
+    3.濾杯
+    4.濾紙
+    5.溫度計
+    6.電子秤`,
+            });
+            setFormDataFk({
+                course_sid: "",
+                course_date: {
+                    date1: "2022-08-07",
+                    date2: "2022-08-22",
+                },
+                course_time: {
+                    time1: "AM 03:00",
+                    time2: "PM 06:00",
+                },
+                course_img_l: [
+                    "43f80f6e4c0675fd0dde0def963a0f3b.jpg",
+                    "38aecb3ddaaf82eb59cda7acde393780.jpg",
+                    "73c9ba4ec7f6c5af179f5fc994057424.jpg",
+                    "2421496a84b1b5134a89744e09a85c83.jpg",
+                    "f83c89cb0f3f09a323f1e3fae18f9d6d.jpg",
+                ],
+            });
+        }
+    };
 
     // input獲得焦點時取消error
     const inputOnFocus = (e) => {
@@ -105,7 +151,8 @@ const CourseAdd = () => {
     // 新增資料的請求,如果有取得sid會進行資料修改(編輯功能)
     const handleSubmission = (e) => {
         e.preventDefault();
-        if (sid) {
+        if (sid && banContinuous === false) {
+            setBanContinuous(true);
             axios({
                 method: "put",
                 url: courseDataEdit,
@@ -168,8 +215,8 @@ const CourseAdd = () => {
                     keys.push(key);
                 }
             }
-            console.log(keys);
-            if (keys.length === 0) {
+            if (keys.length === 0 && banContinuous === false) {
+                setBanContinuous(true);
                 axios({
                     method: "post",
                     url: courseDataAdd,
@@ -337,6 +384,7 @@ const CourseAdd = () => {
                             inputOnFocus={inputOnFocus}
                             errorDate={errorDate}
                             errorTime={errorTime}
+                            handleAutoForm={handleAutoForm}
                         />
                         <div
                             className="d-flex f-jcc"
@@ -425,6 +473,7 @@ const CourseAdd = () => {
                             inputOnFocus={inputOnFocus}
                             errorDate={errorDate}
                             errorTime={errorTime}
+                            handleAutoForm={handleAutoForm}
                         />
                         <div
                             className="d-flex f-jcc"
