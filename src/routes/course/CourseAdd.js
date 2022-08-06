@@ -21,7 +21,7 @@ import Modal from "../../component/Modal/Modal";
 
 const CourseAdd = () => {
     // Modal控制器
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     // 取得資料庫資料
     const [getCourseData, setGetCourseData] = useState([]);
     const [getCourseDataFk, setGetCourseDataFk] = useState([]);
