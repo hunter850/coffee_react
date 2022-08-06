@@ -15,8 +15,6 @@ function NavBar({ navPosition = 'fixed' }) {
 
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
-    // 判斷RWD
-    const [mediaS, setMediaS] = useState(false);
 
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
@@ -108,7 +106,7 @@ function NavBar({ navPosition = 'fixed' }) {
                     </div>
                     <div className="nav-logo">
                         <Link to="/">
-                            <Logo mediaS={mediaS} />
+                            <Logo />
                         </Link>
                     </div>
                     <ul className="nav-ul nav-media-display-none">

@@ -1,9 +1,9 @@
-function Logo({ mediaS }) {
+function Logo() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            width={`${mediaS === true ? 56 : 76}`}
+            width="76"
             height="32"
             fill="none"
             viewBox="0 0 76 32"
