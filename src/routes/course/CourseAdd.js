@@ -81,6 +81,37 @@ const CourseAdd = () => {
     // 跳轉路由
     const navigate = useNavigate();
 
+    const handleAutoForm = (e) => {
+        e.preventDefault();
+        setFormData({
+            course_name: "自動化課程",
+            course_price: "8700",
+            course_level: "3",
+            course_img_s: "eb7f0382-3215-404d-a0fe-768c9eecfb68.jpg",
+            course_content:
+                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
+            course_people:
+                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
+            course_material:
+                "自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化自動化",
+        });
+        setFormDataFk({
+            course_sid: "",
+            course_date: {
+                date1: "2022-08-07",
+                date2: "2022-08-22",
+            },
+            course_time: {
+                time1: "AM 03:00",
+                time2: "PM 06:00",
+            },
+            course_img_l: [
+                "da5bb233-2d73-4a8c-a303-47feb640b2d1.jpg",
+                "da6fce62-2463-4f14-b5fa-51b98d406c29.jpg",
+            ],
+        });
+    };
+
     // input獲得焦點時取消error
     const inputOnFocus = (e) => {
         if (e === "name") {
@@ -337,6 +368,7 @@ const CourseAdd = () => {
                             inputOnFocus={inputOnFocus}
                             errorDate={errorDate}
                             errorTime={errorTime}
+                            handleAutoForm={handleAutoForm}
                         />
                         <div
                             className="d-flex f-jcc"

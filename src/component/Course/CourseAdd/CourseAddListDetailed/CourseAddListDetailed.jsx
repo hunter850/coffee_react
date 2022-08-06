@@ -25,7 +25,8 @@ function CourseAddListDetailed({
     errorMaterial,
     inputOnFocus,
     errorTime,
-    errorDate
+    errorDate,
+    handleAutoForm
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
@@ -321,6 +322,7 @@ function CourseAddListDetailed({
                     <button
                         className="CourseAddListDetailed-btn"
                         style={{ marginBottom: 92 }}
+                        onClick={(e) => handleAutoForm(e)}
                     >
                         自動填表
                     </button>
