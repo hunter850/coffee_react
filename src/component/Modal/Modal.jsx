@@ -74,6 +74,7 @@ function Modal(props) {
                 opacity: 0,
             }));
         }
+        return () => showScrollbar();
     }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
     return (
         <div
