@@ -4,6 +4,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
+import Chatbot from "../../component/Bot/ChatBot";
 import Path from "../../component/Item/Path/Path";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import Banner from "../../component/Course/CourseDetailed/Banner/Banner";
@@ -199,6 +200,7 @@ const CourseDetailed = () => {
                     <h4>請先登入</h4>
                 </Link>
             </Modal>;
+            <Chatbot />
         </Fragment>
     );
 

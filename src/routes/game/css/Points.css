@@ -138,16 +138,28 @@
     height: 500px; width:1200px;
 }
 .th1{
-    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius: 20px 0 0 0;
+    /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius: 20px 0 0 0; */
+    /* background-color: rgba(175, 175, 175, 0.59); */
+    font-weight: 200;
+    border-bottom: 0.8px solid #B79973;
+    padding: 10px;
 }
 .th2{
-    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);
+    /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE); */
+    font-weight: 200;
+    border-bottom: 0.8px solid #B79973;
+    padding: 10px;
 }
 .th3{
-    background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius:0 20px 0 0 ;
+    /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius:0 20px 0 0 ; */
+    font-weight: 200;
+    border-bottom: 0.8px solid #B79973;
+    padding: 10px;
 }
-.Ptable{
+.Pstable{
     width: 1040px;
+    padding: 30px 40px 45px 40px;
+    background-color: #fff;
 }
 .PointsToCouponLink{
     font-weight: 500;
@@ -174,4 +186,12 @@
     background-size: contain;
     width: 32px;
     height: 32px;
+}
+.loadc{
+    font-weight: 200;
+    border-bottom: 0.8px solid #B79973;
+    padding: 10px;
+}
+.loaded{
+    border-bottom: 0.8px solid #B79973;
 }

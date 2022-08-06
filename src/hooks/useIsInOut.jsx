@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const useIsInRestore = (ref, num = 0) => {
+const useIsInOut = (ref, num = 0, backNum = 0) => {
     const [isIn, setIsIn] = useState(false);
     const [isOut, setIsOut] = useState(true);
     const isOutMounted = useRef(false);
@@ -26,7 +26,16 @@ const useIsInRestore = (ref, num = 0) => {
                     window.innerHeight <=
                 0
             ) {
-                setIsOut(false);
+                if (
+                    ref.current.offsetTop +
+                        parseFloat(getComputedStyle(ref.current).height) -
+                        window.pageYOffset <=
+                    0
+                ) {
+                    setIsOut(true);
+                } else {
+                    setIsOut(false);
+                }
             } else {
                 setIsOut(true);
             }
@@ -41,7 +50,16 @@ const useIsInRestore = (ref, num = 0) => {
                     window.innerHeight <=
                 0
             ) {
-                setIsOut(false);
+                if (
+                    ref.current.offsetTop +
+                        parseFloat(getComputedStyle(ref.current).height) -
+                        window.pageYOffset <=
+                    0
+                ) {
+                    setIsOut(true);
+                } else {
+                    setIsOut(false);
+                }
             } else {
                 setIsOut(true);
             }
@@ -64,7 +82,25 @@ const useIsInRestore = (ref, num = 0) => {
                         num <=
                     0
                 ) {
-                    setIsIn(true);
+                    if (isOut) {
+                        setIsIn(false);
+                    } else {
+                        if (
+                            ref.current.offsetTop +
+                                parseFloat(
+                                    getComputedStyle(ref.current).height
+                                ) -
+                                window.pageYOffset +
+                                backNum >=
+                            0
+                        ) {
+                            setIsIn(true);
+                        } else {
+                            if (isOut) {
+                                setIsIn(false);
+                            }
+                        }
+                    }
                 } else {
                     if (isOut) {
                         setIsIn(false);
@@ -79,8 +115,8 @@ const useIsInRestore = (ref, num = 0) => {
             setIsInListened(!isInListened);
         }
         return () => window.removeEventListener("scroll", check);
-    }, [ref, num, isOut, isInListened]);
+    }, [ref, num, backNum, isOut, isInListened]);
     return isIn;
 };
 
-export default useIsInRestore;
+export default useIsInOut;

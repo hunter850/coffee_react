@@ -15,20 +15,21 @@ function CourseAddListDetailed({
     setSelectedFiles,
     previews,
     setPreviews,
-    isFilePickeds,
     setIsFilePickeds,
-    imgNames,
     setImgNames,
-    getCourseDataFk,
     getCourseData,
     start,
-    sid
+    sid,
+    errorContent,
+    errorPeople,
+    errorMaterial,
+    inputOnFocus,
+    errorTime,
+    errorDate
 }) {
     const { course_content, course_people, course_material } = formData;
     const { course_date, course_time } = formDataFk;
-    // console.log(formDataFk);
-    // console.log(formData);
-    // console.log(sid);
+
     useEffect(() => {
         if (sid) {
             axios.get(courseDataFkGet)
@@ -36,7 +37,6 @@ function CourseAddListDetailed({
                     const newDataFk = res.data.filter((v, i) => {
                         return Number(v.course_sid) === Number(sid);
                     });
-                    // console.log(newDataFk);
                     // 將資料庫的資料整理成物件格式,塞回儲存資料的狀態
                     const dateArr = newDataFk[0].course_date.split(',');
                     const timeArr = newDataFk[0].course_time.split(',');
@@ -72,7 +72,6 @@ function CourseAddListDetailed({
         event.preventDefault();
         files.current.click();
     };
-    // console.log(selectedFiles);
     // 當選擇檔案更動時建立預覽圖
     useEffect(() => {
         if (!selectedFiles) {
@@ -80,8 +79,7 @@ function CourseAddListDetailed({
             return;
         }
         const objectUrl = URL.createObjectURL(selectedFiles);
-        // console.log(objectUrl);
-        const newPreviews = previews.length < 5 ? previews.push(objectUrl) : setPreviews(previews);
+        previews.length < 5 ? previews.push(objectUrl) : setPreviews(previews);
 
         // 當元件unmounted時清除記憶體
         return () => URL.revokeObjectURL(objectUrl);
@@ -130,7 +128,7 @@ function CourseAddListDetailed({
     // 刪除輪播圖片
     const deleteImg = (e) => {
         e.preventDefault();
-        const newPreviews = previews.length > 0 ? previews.pop() : setPreviews(previews);
+        previews.length > 0 ? previews.pop() : setPreviews(previews);
         if (formDataFk.course_img_l.length > 0) {
             formDataFk.course_img_l.pop();
         }
@@ -172,7 +170,6 @@ function CourseAddListDetailed({
                                 >
                                     圖片 {i + 1} :
                                 </p>
-
                                 <div
                                     className="CourseAddListDetailed-img"
                                     style={{
@@ -181,11 +178,9 @@ function CourseAddListDetailed({
                                         marginBottom: 19,
                                     }}
                                 ></div>
-
                             </div>
                         );
                     })}
-
                     <input
                         type="file"
                         name="file"
@@ -207,46 +202,46 @@ function CourseAddListDetailed({
                     <p>課程內容 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-inp"
-                        value={course_content}
+                        className={`CourseAddListDetailed-inp  ${errorContent !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorContent === '' ? course_content : errorContent}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_content: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('content')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入課程內容</span>
                 </div>
                 <div>
                     <p>適合對象 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-object-inp"
-                        value={course_people}
+                        className={`CourseAddListDetailed-object-inp  ${errorPeople !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorPeople === '' ? course_people : errorPeople}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_people: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('people')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入適合對象</span>
                 </div>
                 <div>
                     <p>需求材料 :</p>
                     <textarea
                         type="text"
-                        className="CourseAddListDetailed-material-inp"
-                        value={course_material}
+                        className={`CourseAddListDetailed-material-inp  ${errorMaterial !== '' ? 'course-add-error-txt' : ''}`}
+                        value={errorMaterial === '' ? course_material : errorMaterial}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
                                 course_material: e.target.value,
                             })
                         }
+                        onFocus={() => inputOnFocus('material')}
                     ></textarea>
-                    <span className="course-add-error-txt">請輸入需求材料</span>
                 </div>
                 <div>
                     <p style={{ paddingBottom: 6 }}>報名資訊 :</p>
@@ -255,9 +250,9 @@ function CourseAddListDetailed({
                         <div className="CourseAddListDetailed-select-inp ">
                             <input
                                 type="text"
-                                className="CourseAddListDetailed-date-inp"
+                                className={`CourseAddListDetailed-date-inp  ${errorDate !== '' ? 'course-add-error-txt' : ''}`}
                                 placeholder="選擇日期"
-                                value={course_date.date1}
+                                value={errorDate === '' ? course_date.date1 : errorDate}
                                 onChange={(e) =>
                                     setFormDataFk({
                                         ...formDataFk,
@@ -267,12 +262,13 @@ function CourseAddListDetailed({
                                         },
                                     })
                                 }
+                                onFocus={() => inputOnFocus('date')}
                             />
                             <input
                                 type="text"
-                                className="CourseAddListDetailed-time-inp"
+                                className={`CourseAddListDetailed-time-inp ${errorTime !== '' ? 'course-add-error-txt' : ''}`}
                                 placeholder="選擇時段"
-                                value={course_time.time1}
+                                value={errorTime === '' ? course_time.time1 : errorTime}
                                 onChange={(e) => {
                                     setFormDataFk({
                                         ...formDataFk,
@@ -282,10 +278,9 @@ function CourseAddListDetailed({
                                         },
                                     });
                                 }}
+                                onFocus={() => inputOnFocus('time')}
                             />
-
                         </div>
-
                     </div>
                     <div style={{ paddingBottom: 21 }}>
                         <p style={{ fontWeight: 400 }}>報名時間 2 :</p>

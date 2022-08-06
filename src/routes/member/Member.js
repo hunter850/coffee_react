@@ -127,10 +127,12 @@ function Member() {
                                     <p>歷史訂單</p>
                                 </div>
                             </Link>
-                            <div className="mc-menu">
-                                <FaPen size={'1.5em'} />
-                                <p>分享記錄</p>
-                            </div>
+                            <Link to={authorized ? "/member/likes" : "/member/login"}>
+                                <div className="mc-menu">
+                                    <FaHeart size={'1.5em'} />
+                                    <p>我的收藏</p>
+                                </div>
+                            </Link>
                             <Link
                                 to={authorized ? "/points" : "/member/login"}>
                                 <div className="mc-menu">

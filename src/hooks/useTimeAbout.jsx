@@ -4,6 +4,7 @@ function useTimeAbout() {
     return useCallback((timeString = "") => {
         const now = Date.now();
         const inputTime = Date.parse(timeString);
+        if (isNaN(inputTime)) return;
 
         const timeDiff = now - inputTime;
         let aboutTime = "";
@@ -30,7 +31,7 @@ function useTimeAbout() {
                 break;
             }
             default:
-                aboutTime = timeString;
+                aboutTime = timeString.slice(0, 10);
                 break;
         }
         return aboutTime;

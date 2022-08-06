@@ -35,6 +35,8 @@ export const foodData = `${SERVER}/food/addfooddata`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/post`;
+export const replyAPI = `${SERVER}/sharing/reply`;
+export const commentAPI = `${SERVER}/sharing/comment`;
 
 // Products
 

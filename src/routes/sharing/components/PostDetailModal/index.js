@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCallback } from "react";
 
 import styles from "../../css/postdetailmodal.module.scss";
 import PostDeatailCarousel from "./PostDetailCarousel";
@@ -30,16 +31,27 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
         window.history.pushState({}, null, `/sharing/`);
     };
 
-    useEffect(() => {
-        (async () => {
-            const r = await axios(`${getPosts}/${post_sid}`);
-
+    const getPostDetailData = () => {
+        axios(`${getPosts}/${post_sid}`).then((r) => {
             if (r.data.code !== 200) {
                 setPost_sid(0);
                 navigate("/sharing");
             }
             setData(r.data);
-        })();
+        });
+    };
+
+    useEffect(() => {
+        // (async () => {
+        //     const r = await axios(`${getPosts}/${post_sid}`);
+
+        //     if (r.data.code !== 200) {
+        //         setPost_sid(0);
+        //         navigate("/sharing");
+        //     }
+        //     setData(r.data);
+        // })();
+        getPostDetailData();
     }, []);
 
     return (
@@ -57,7 +69,12 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
                 </div>
 
                 <div className={post_detail_content}>
-                    {data.rows && <PostDetailContent data={data} />}
+                    {data.rows && (
+                        <PostDetailContent
+                            data={data}
+                            getPostDetailData={getPostDetailData}
+                        />
+                    )}
                 </div>
 
                 <CancelBtn goPrev={goPrev} />

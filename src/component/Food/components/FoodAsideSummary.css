@@ -12,7 +12,7 @@
     color: #3e3e3e;
     flex-direction: column;
 }
-.aside svg{
+.aside svg {
     cursor: pointer;
 }
 .aside .wrapper {
@@ -54,9 +54,11 @@
     flex: 6;
 }
 .aside .txt {
-    margin: 10px 0;
+    margin: 5px 0;
 }
-
+.aside .txt:nth-child(2) {
+    border-bottom: 1px solid rgb(221, 208, 208);
+}
 .aside .takeout {
     display: flex;
 }
@@ -65,8 +67,8 @@
 }
 .aside .bottom {
     padding-bottom: 10px;
-    border-bottom: 1.5px solid #e4d5c9;
 }
+
 .aside .edit {
     color: #bda382;
 }

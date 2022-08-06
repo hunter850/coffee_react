@@ -17,7 +17,7 @@ function Header({
             const newSearchData = DataRows.filter((v, i) => {
                 return v.products_name.includes(searchInp);
             });
-            console.log("newSearchData", newSearchData);
+            // console.log("newSearchData", newSearchData);
 
             if (newSearchData.length > 0) {
                 console.log("newSearchData1", newSearchData);

@@ -1,12 +1,15 @@
+import axios from "axios";
+import { imgSrc, replyAPI } from "../../../../config/api-path";
+
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 
 import styles from "../../css/Comment.module.scss";
-import { imgSrc } from "../../../../config/api-path";
 
-function Reply({ data }) {
+function Reply({ data, replyHandler, getPostDetailData, comment_sid }) {
     const { authorized, sid, account, token } = useAuth();
-    const { member_sid, nickname, avatar, content, created_at } = data;
+    const { reply_sid, member_sid, nickname, avatar, content, created_at } =
+        data;
 
     const {
         comment_wrap,
@@ -19,6 +22,14 @@ function Reply({ data }) {
     } = styles;
 
     const timeAbout = useTimeAbout();
+
+    const deleteReply = async (sid) => {
+        const data = { reply_sid: sid, comment_sid: comment_sid };
+        const r = await axios.delete(replyAPI, { data });
+        alert("刪除成功");
+        getPostDetailData();
+        console.log(r);
+    };
 
     return (
         <div style={{ marginLeft: "38px" }}>
@@ -36,9 +47,33 @@ function Reply({ data }) {
                     {timeAbout(created_at)}
                 </span>
                 {member_sid === sid ? (
-                    <span className={grey_span_a}>刪除</span>
+                    <>
+                        <span
+                            className={`${grey_span_a} me-2`}
+                            onClick={() => {
+                                deleteReply(reply_sid);
+                            }}
+                        >
+                            刪除
+                        </span>
+                        <span
+                            className={grey_span_a}
+                            onClick={() => {
+                                replyHandler(nickname);
+                            }}
+                        >
+                            回覆
+                        </span>
+                    </>
                 ) : (
-                    <span className={grey_span_a}>回覆</span>
+                    <span
+                        className={grey_span_a}
+                        onClick={() => {
+                            replyHandler(nickname);
+                        }}
+                    >
+                        回覆
+                    </span>
                 )}
             </div>
         </div>

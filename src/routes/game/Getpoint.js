@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 import "./css/Getpoint.css";
@@ -25,9 +25,7 @@ function Getpoint() {
         await axios
             .get("http://localhost:3500/GetPoint/Api-check-point-result")
             .then((result) => {
-                console.log(result);
                 let alreadyTaken = result.data.error;
-                console.log(alreadyTaken);
                 if (alreadyTaken) {
                     setIsOpen(true);
                     return;

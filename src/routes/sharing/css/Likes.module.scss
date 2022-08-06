@@ -2,14 +2,16 @@
     display: flex;
     position: relative;
     align-items: center;
-    margin-bottom: .75rem;
+    cursor: pointer;
+
 }
 
 .heart {
     display: inline-block;
     position: absolute;
     left: -18px;
-    top: -75%;
+    top: 0;
+    transform: translateY(-29%);
     vertical-align: bottom;
     width: 60px;
     height: 60px;
@@ -37,10 +39,15 @@
     }
 }
 
-.heart:hover {
+.like_wrap:hover .heart {
     background-position: -1680px 0;
     transition: background 1s steps(28);
-} 
+}
+// .heart:hover {
+//     background-position: -1680px 0;
+//     transition: background 1s steps(28);
+// }
+
 .liked {
     background-position: -1680px 0;
     transition: background 1s steps(28);
