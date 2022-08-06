@@ -116,11 +116,11 @@ const CourseAdd = () => {
                 time2: "PM 06:00",
             },
             course_img_l: [
-                "06-bgimg.jpg",
-                "02-bgimg.jpg",
-                "03-bgimg.jpg",
-                "04-bgimg.jpg",
-                "05-bgimg.jpg",
+                "43f80f6e4c0675fd0dde0def963a0f3b.jpg",
+                "38aecb3ddaaf82eb59cda7acde393780.jpg",
+                "73c9ba4ec7f6c5af179f5fc994057424.jpg",
+                "2421496a84b1b5134a89744e09a85c83.jpg",
+                "f83c89cb0f3f09a323f1e3fae18f9d6d.jpg",
             ],
         });
     };

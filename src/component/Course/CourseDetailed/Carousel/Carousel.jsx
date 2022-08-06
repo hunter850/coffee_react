@@ -2,9 +2,10 @@
 import "./Carousel.css";
 import { useState, useEffect } from "react";
 import { v4 } from "uuid";
+import { imgSrc } from "../../../../config/api-path";
 
 
-function Carousel({ imgs, height = 500, width = '100%' }) {
+function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     const delay = 'ease 1000ms';
     const imgsLength = imgs.length;
     // 控制輪播圖片顯示哪一張
@@ -73,15 +74,15 @@ function Carousel({ imgs, height = 500, width = '100%' }) {
                 style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
             >
 
-                <div className="course-slideshowSlider" style={{ background: `url(${imgs[imgsLength - 1]}) center center / cover no-repeat`, height: height, width: width }} >
+                <div className="course-slideshowSlider" style={{ background: `url(${imgSrc}${router}/${imgs[imgsLength - 1]}) center center / cover no-repeat`, height: height, width: width }} >
                 </div>
                 {imgs.map((v, i) => {
                     return (
-                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgs[i]}) center center / cover no-repeat`, height: height, width: width }} >
+                        <div className="course-slideshowSlider" key={v4()} style={{ background: `url(${imgSrc}${router}/${imgs[i]}) center center / cover no-repeat`, height: height, width: width }} >
                         </div>
                     );
                 })}
-                <div className="course-slideshowSlider" style={{ background: `url(${imgs[0]}) center center / cover no-repeat`, height: height, width: width }} >
+                <div className="course-slideshowSlider" style={{ background: `url(${imgSrc}${router}/${imgs[0]}) center center / cover no-repeat`, height: height, width: width }} >
                 </div>
 
             </div>
