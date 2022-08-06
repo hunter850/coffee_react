@@ -94,10 +94,10 @@ const [isOpen, setIsOpen] = useSate(false);
 ### Carousel 組件使用說明
 
 ```js
-// 1.輪播圖請傳入一個帶有圖片檔名的陣列,沒限制輪播張數 "陣列請給檔名就好/後端那邊的"
+// 1.輪播圖請傳入一個帶有圖片連結的陣列,沒限制輪播張數,如使用router屬性 "陣列請帶上檔名就好"
 // 2.height直接帶數字就好,預設為500
 // 3.width預設100%
-// 4.router可以不用輸入,初始路徑http://localhost:3500/images
+// 4.router可以不用輸入,初始路徑http://localhost:3500/images , 如不使用router可以不用輸入,請帶上完整路徑
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
