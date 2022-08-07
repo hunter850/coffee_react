@@ -67,3 +67,46 @@
 .home-box {
     /* width: 1100px; */
 }
+@media screen and (max-width:400px) {
+    .goodcourseimg-scale img{
+        width: 327px;
+        height: 196px;
+    }
+    .goodcourse-img {
+        width: 327px;
+        height: 196px;
+    }
+    .goodcourse-paragraph {
+        width: 341px;
+        height: 230px;
+    }
+    .goodcourse-text {
+        line-height: 1.5rem;
+    }
+    .container-relative {
+        position: relative;
+    }
+    .right-brewedcoffee {
+        position: absolute;
+        top:170px;
+        left:20px
+    }
+    .left-barista {
+        position: absolute;
+        /* top: */
+    }
+    .right-barista-img {
+        position: absolute;
+        top:80px;
+        left: 0px;
+    }
+    .left-barista {
+        position: absolute;
+        top:250px;
+        left: 20px;
+        
+    }
+    .goodcourse-wrap {
+        margin-bottom: 150px;
+    }
+}

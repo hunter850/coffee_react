@@ -5,8 +5,13 @@
 }
 
 .latestnew-title {
+    width: 100%;
     color: #ffffff;
     font-size: 24px;
+    display: -webkit-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .titleitem-layout {
     width: 100%;

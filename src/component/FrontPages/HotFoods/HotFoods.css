@@ -10,7 +10,7 @@
     display: none;
 }
 
-.hotfoodcard-place .hotfood-container:nth-child(2), .hotfood-container:nth-child(4) {
+.hotfoodcard-desktop .hotfood-container:nth-child(2), .hotfood-container:nth-child(4) {
     padding-top: 100px;
 }
 

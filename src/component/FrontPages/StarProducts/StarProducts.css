@@ -39,4 +39,7 @@
     .starproduct-box {
         flex-direction: column;
     }
+    .starproduct-box {
+        padding-left: 70px;
+    }
 }

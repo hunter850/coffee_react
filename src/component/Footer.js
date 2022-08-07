@@ -20,7 +20,7 @@ export default function Footer({ bagcolorblue }) {
                         </div>
                         <div className="footertext-wrap">
                             <ul className="d-flex footertext">
-                                <Link to="/">
+                                <Link to="/store">
                                     <li className="footer-pdr-48 linkcolor-white">
                                         店家資訊
                                     </li>
@@ -30,7 +30,7 @@ export default function Footer({ bagcolorblue }) {
                                         關於我們
                                     </li>
                                 </Link>
-                                <Link to="/">
+                                <Link to="/LatestnewsDetail">
                                     <li className="footer-pdr-48 linkcolor-white">
                                         最新活動
                                     </li>
