@@ -26,7 +26,20 @@
         display: flex;
         align-items: center;
     
+        .title_wrap{
+            width: 25%;
 
+            a{
+                color:rgb(50, 74, 89) ;
+            }
+
+            h4{
+                margin-left: .5rem;
+                display: inline-block;
+                white-space: nowrap;
+                font-weight: 500;
+            }
+        }
     }
 
     &.collapse{
@@ -80,7 +93,7 @@
         margin-right: auto;
     }
 
-    .post_nav h4{
+    .post_nav .title_wrap{
         display: none;
     }
     .post_nav .icon_wrap > li{
