@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { imgSrc } from "./../../../config/api-path";
-import { useAuth } from "../../../component/Member/AuthContextProvider";
+import { useState, useEffect } from "react";
+
+import Seachbar from "./Seachbar";
+import { imgSrc } from "../../../../config/api-path";
+import { useAuth } from "../../../../component/Member/AuthContextProvider";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import styles from "./../css/postnav.module.scss";
-
+import styles from "../../css/postnav.module.scss";
 
 function PostNav({ scrollDir = "up" }) {
     const { authorized, sid, account, token, avatar } = useAuth();
@@ -19,14 +20,12 @@ function PostNav({ scrollDir = "up" }) {
         avatar_wrap,
     } = styles;
 
-    const [memberAvatar, setMemberAvatar] = useState("lao_pi.png");
-
     return (
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
                 <h4 style={{ width: "25%" }}>分享牆</h4>
                 <div className={search_wrap}>
-                    <div className={search_bar}>search</div>
+                    <Seachbar />
                 </div>
                 <ul
                     className={icon_wrap}

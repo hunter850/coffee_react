@@ -9,7 +9,7 @@ import NavBar from "../../component/NavBar/NavBar";
 
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
-import PostNav from "./components/PostNav.js";
+import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 
 const breakpointColumnsObj = {

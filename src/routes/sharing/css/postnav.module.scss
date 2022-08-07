@@ -10,6 +10,10 @@
     top:60px;
     left: 0;
 
+    svg{
+        vertical-align: bottom;
+    }
+
     .container{
         margin: 0 auto;
         padding: 0 8px;
@@ -30,12 +34,9 @@
     }
 
     .search_wrap{
-        background-color: rgba(187, 188, 199, 0.8);
-        padding: 0 8px;
-        line-height: 32px;
-        height: 32px;
-        margin: 0 auto;
+        height: 100%;
         flex-grow: 1;
+        position: relative;
     }
 
     .icon_wrap{
