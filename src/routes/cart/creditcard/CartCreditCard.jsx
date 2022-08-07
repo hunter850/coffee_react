@@ -1,7 +1,7 @@
 import { Fragment, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../../component/NavBar/NavBar";
-import Creditcard from "../../component/Creditcard/Creditcard";
+import NavBar from "../../../component/NavBar/NavBar";
+import Creditcard from "../../../component/Creditcard/Creditcard";
 
 function CartCreditCard() {
     const [cardNumber, setCardNumber] = useState("");

@@ -29,6 +29,7 @@
         "react-geocode": "^0.2.3",
         "react-icons": "^4.4.0",
         "react-input-mask": "^2.0.4",
+        "react-items-carousel": "^2.8.0",
         "react-magnifier": "^3.0.4",
         "react-masonry-css": "^1.0.16",
         "react-redux": "^8.0.2",

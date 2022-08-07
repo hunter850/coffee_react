@@ -10,6 +10,7 @@ import Footer from "../../component/Footer";
 // import Modal from "../../../src/component/Modal/Modal";
 // import adimg from "../../images/frontpage/ad.png";
 import "./FrontPage.css";
+import { Link } from "react-router-dom";
 
 function FrontPage() {
     // const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +22,13 @@ function FrontPage() {
             <NavBar />
             <Carousel
                 imgs={[
-                    // "http://localhost:3500/images/frontpage/banner/banner-home.png",
+                    "http://localhost:3500/images/frontpage/banner/banner-home.png",
                     "http://localhost:3500/images/frontpage/banner/banner-product.png",
                     "http://localhost:3500/images/frontpage/banner/banner-food.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course1.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.png",
                 ]}
-                height={600}
+                height={650}
             />
             <HotFoods />
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />

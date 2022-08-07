@@ -20,6 +20,7 @@ import ConfirmDeleteBox from "../../component/Item/ConfirmDeleteBox/ConfirmDelet
 import Modal from "../../component/Modal/Modal";
 
 const CourseAdd = () => {
+    // 防止連續送出表單
     const [banContinuous, setBanContinuous] = useState(false);
     // Modal控制器
     const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,6 @@ const CourseAdd = () => {
     const [errorLevel, setErrorLevel] = useState("選擇課程難度");
     const [errorDate, setErrorDate] = useState("");
     const [errorTime, setErrorTime] = useState("");
-
     // 外鍵狀態
     const [formDataFk, setFormDataFk] = useState({
         course_sid: "",
@@ -75,7 +75,6 @@ const CourseAdd = () => {
         },
         course_img_l: [],
     });
-
     // 取得網址sid
     const { sid } = useParams();
     // 跳轉路由
@@ -83,6 +82,15 @@ const CourseAdd = () => {
     // 一鍵輸入資料
     const handleAutoForm = (e) => {
         e.preventDefault();
+        // 表單檢查初始化
+        setErrorName("");
+        setErrorPrice("");
+        setErrorContent("");
+        setErrorPeople("");
+        setErrorMaterial("");
+        setErrorLevel("選擇課程難度");
+        setErrorDate("");
+        setErrorTime("");
         if (!sid) {
             setFormData({
                 course_name: "咖啡生豆認識及風味鑑嘗",
@@ -126,7 +134,6 @@ const CourseAdd = () => {
             });
         }
     };
-
     // input獲得焦點時取消error
     const inputOnFocus = (e) => {
         if (e === "name") {
@@ -149,6 +156,7 @@ const CourseAdd = () => {
     };
 
     // 新增資料的請求,如果有取得sid會進行資料修改(編輯功能)
+
     const handleSubmission = (e) => {
         e.preventDefault();
         if (sid && banContinuous === false) {
@@ -171,12 +179,11 @@ const CourseAdd = () => {
                 course_price,
                 course_people,
             } = formData;
-
             const {
                 course_date: { date1, date2 },
                 course_time: { time1, time2 },
             } = formDataFk;
-
+            // 表單驗證
             if (course_name === "") {
                 setErrorName("請輸入名稱");
             }

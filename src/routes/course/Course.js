@@ -21,6 +21,7 @@ import {
 } from "../../component/Course/helper/sort";
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
+import MyMouse from "../../component/Item/MyMouse/MyMouse";
 
 const Course = () => {
     // 排序下拉選單的狀態 - 狀態提升放這邊
@@ -148,6 +149,7 @@ const Course = () => {
     const el = (
         <Fragment>
             <div className="Course-container">
+                <MyMouse />
                 <NavBar />
                 <Path pathObj={{ path: ["．課程資訊"] }} />
                 <Header
