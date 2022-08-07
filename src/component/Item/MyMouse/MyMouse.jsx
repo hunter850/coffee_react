@@ -4,8 +4,13 @@ function MyMouse() {
     const [myTop, setMyTop] = useState(0);
     const [myLeft, setMyLeft] = useState(0);
     window.addEventListener("mousemove", (e) => {
-        setMyTop(e.pageY);
-        setMyLeft(e.pageX);
+        if (e.pageX < e.view.outerWidth - 100) {
+            setMyTop(e.pageY);
+            setMyLeft(e.pageX);
+        } else {
+            setMyTop(e.pageY);
+            setMyLeft(e.pageX - 100);
+        }
     });
     return (
         <div className="mouse-container" style={{ top: myTop, left: myLeft }}>
