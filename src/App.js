@@ -8,6 +8,7 @@ import FrontPage from "./routes/frontPage/FrontPage";
 // import CartContextWrap from "./routes/cart/CartContextWrap";
 import Cart from "./routes/cart/cart/Cart";
 import CartCreditCard from "./routes/cart/creditcard/CartCreditCard";
+import CartForm from "./routes/cart/cartForm/CartForm";
 import Products from "./routes/Products/Products";
 import Food from "./routes/food/Food";
 import Reserve from "./routes/reserve/Reserve";
@@ -57,6 +58,7 @@ const App = () => {
                                 path="/cart/creditcard"
                                 element={<CartCreditCard />}
                             />
+                            <Route path="/cart/form" element={<CartForm />} />
                             <Route path="/products" element={<Products />} />
                             <Route
                                 path="/products/detail/:products_sid"
