@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setMyBoolean, setSid, sid }) {
+function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setMyBoolean, setSid, sid, confirmDelete }) {
     const { course_name, course_level, course_price, course_img_s, course_sid } =
         courseData;
 
@@ -35,7 +35,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
             setIsOpen(false);
             setMyBoolean(-1);
         }
-    }, [myBoolean]);
+    }, [myBoolean, confirmDelete]);
 
     return (
         <div className={`courseList d-flex f-aic ${sid === course_sid && myBoolean === 1 ? 'course-list-opacity' : ''}`}>

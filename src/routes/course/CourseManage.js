@@ -89,7 +89,7 @@ const CourseManage = () => {
         courseManageDataGet();
         // 將確認刪除資料的狀態初始化
         setConfirmDelete(false);
-    }, [sortData, confirmDelete]);
+    }, [sortData, confirmDelete, myBoolean]);
 
     // 一般搜尋框搜尋的渲染
     const courseSearch = () => {
@@ -161,6 +161,7 @@ const CourseManage = () => {
                                         myBoolean={myBoolean}
                                         setSid={setSid}
                                         sid={sid}
+                                        confirmDelete={confirmDelete}
                                     />
                                 );
                             })}
