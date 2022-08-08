@@ -11,7 +11,7 @@ function BookMark(props) {
     // const setRenderData = () => {};
     // console.log("BM", DataRows);
     const sortBycate = (cateNum) => {
-        console.log("BM", DataRows);
+        // console.log("BM", DataRows);
         if (DataRows.length > 0) {
             const newRender = DataRows.filter((v, i) => {
                 return (
@@ -21,10 +21,10 @@ function BookMark(props) {
             });
             console.log(newRender);
             const resetPage = chunk(newRender, 8);
-            console.log(resetPage);
-            setRenderData(resetPage[0]);
+            console.log("resetPage", resetPage);
+            setRenderData(resetPage);
             setPageTotal(resetPage.length);
-            setPageNow(1);
+            setPageNow(0);
         }
     };
 
@@ -41,8 +41,8 @@ function BookMark(props) {
                         onClick={() => {
                             const resetPage = chunk(DataRows, 8);
                             setPageTotal(resetPage.length);
-                            setPageNow(1);
-                            setRenderData(resetPage[0]);
+                            setPageNow(0);
+                            setRenderData(resetPage);
                         }}
                     />
                 </li>
@@ -66,19 +66,10 @@ function BookMark(props) {
                 </li>
                 <li>
                     <Btn
-                        children={"咖啡用具"}
-                        width={"112px"}
-                        onClick={() => {
-                            sortBycate(3);
-                        }}
-                    />
-                </li>
-                <li>
-                    <Btn
                         children={"周邊及器具"}
                         width={"130px"}
                         onClick={() => {
-                            sortBycate(4);
+                            sortBycate(3);
                         }}
                     />
                 </li>
@@ -87,7 +78,7 @@ function BookMark(props) {
                         children={"禮盒"}
                         width={"76px"}
                         onClick={() => {
-                            sortBycate(5);
+                            sortBycate(4);
                         }}
                     />
                 </li>
@@ -96,7 +87,7 @@ function BookMark(props) {
                         children={"電子禮物卡"}
                         width={"130px"}
                         onClick={() => {
-                            sortBycate(6);
+                            sortBycate(5);
                         }}
                     />
                 </li>

@@ -1,10 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
 
 function List(props) {
-    const { renderData, dataLoaded, cardStyle, setCardStyle } = props;
+    const { renderData, dataLoaded, cardStyle, setCardStyle, pageNow } = props;
+    // const nowPageNum = renderData[`${pageNow}`];
 
+    let pageNum = Number(pageNow);
+    useEffect(() => {
+        // console.log("renderData", renderData);
+        // console.log("renderData[+pageNow]", renderData[pageNum]);
+        // console.log("pageNow", pageNow);
+    }, [dataLoaded]);
     return (
         <>
             <div className="products_list">
@@ -48,7 +56,7 @@ function List(props) {
                 </div>
                 <div className="card_regin">
                     {dataLoaded
-                        ? renderData.map((v, i) => {
+                        ? renderData[pageNum].map((v, i) => {
                               return (
                                   <Link
                                       to={`/products/detail/${v.products_sid}`}
