@@ -25,9 +25,6 @@ function FoodAsideSummary({
     const asideClass = show ? "aside" : "aside hide";
 
     const navigate = useNavigate();
-    // const { getCount,count } = useGetCart();
-    // console.log("useGetCart", count);
-
     const totalPrice = dataFromFoodDetail.reduce(
         (accumulator, { menu_price_m, foodCount }) =>
             accumulator + menu_price_m * foodCount,
@@ -36,8 +33,6 @@ function FoodAsideSummary({
     const { getCount } = useNav();
 
     const Auth = useContext(AuthContext);
-    console.log("Auth", Auth);
-    console.log("dataFromFoodDetail", dataFromFoodDetail);
     const { store_name, store_block, store_road, store_sid } = selectedAddress;
 
     const standardTime = dataFromDate + " " + dataFromDateTime + ":00";
@@ -177,8 +172,8 @@ function FoodAsideSummary({
 
                 <div className="payarea">
                     <div className="payarea1">
-                        <p className="finaltotal">合計</p>
-                        <p>${totalPrice}</p>
+                        <h6 className="finaltotal">合計</h6>
+                        <h6>${totalPrice}</h6>
                     </div>
                     <div className={checkOut} onClick={handleSubmission}>
                         去結帳

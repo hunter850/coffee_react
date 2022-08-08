@@ -125,6 +125,12 @@
                 color: #fff;
                 height: 100%;
                 line-height: 60px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                white-space: normal;
+                width: 145px;
                 span {
                     font-size: 0.9rem;
                     color: #b79973;

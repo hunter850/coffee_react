@@ -7,7 +7,6 @@ function DetailBtm(props) {
             <div className="productsSpec">
                 <h3 className="title-font">商品規格</h3>
                 <div
-                    contentEditable="true"
                     dangerouslySetInnerHTML={{
                         __html: dataLoaded ? renderData[0].products_spec : "",
                     }}

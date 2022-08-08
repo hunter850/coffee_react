@@ -28,6 +28,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
                         console.log(res);
                         // 確認刪除的狀態
                         setConfirmDelete(true);
+                        setSid(0);
                     });
             }
         }, 1000);

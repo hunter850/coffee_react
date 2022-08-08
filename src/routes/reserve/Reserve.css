@@ -7,6 +7,7 @@
     background-color: #253945;
     overflow: scroll;
     border-radius: 10px;
+    color: #253945;
 }
 
 .left {
@@ -54,6 +55,7 @@
     align-items: center;
     border-radius: 3px;
     margin: 10px 43px;
+    cursor: pointer;
 }
 
 .reserve-txt {
@@ -71,5 +73,73 @@
     justify-content: center;
     margin: 0 auto;
     border-radius: 3px;
+    background-color: rgb(207, 173, 128);
+    cursor: pointer;
+}
+.submit.disabled {
     background-color: #d9dfdf;
+    pointer-events: none;
+}
+.reserve select {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .Food-container {
+        min-width: 768px;
+    }
+}
+
+@media (max-width: 375px) {
+    .Food-container {
+        min-width: 375px;
+    }
+    .Food-container .foodcard-session {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    .Food-container .foodcard-session .filterbtn-area {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: 0 0;
+        overflow-x: scroll;
+    }
+
+    .reserve {
+        width: 300px;
+    }
+    .reserve .a {
+        width: 300px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .reserve .store {
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .reserve .submit {
+        width: 100px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .reserve h6 {
+        font-size: 12px;
+    }
+    .reserve .infor {
+        width: 80px;
+        height: 30px;
+        margin: 20px 13px;
+        font-size: 10px;
+    }
+    .reserve-txt {
+        padding: 10px 10px;
+        font-size: 10px;
+        font-weight: lighter;
+        line-height: 1.3rem;
+    }
 }

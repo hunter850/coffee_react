@@ -21,8 +21,10 @@ import {
 } from "../../component/Course/helper/sort";
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
+import Modal from "../../component/Modal/Modal";
 
 const Course = () => {
+    const [isOpen, setIsOpen] = useState(false);
     // 排序下拉選單的狀態 - 狀態提升放這邊
     const [sortData, setSortData] = useState("");
     // Header搜尋框的狀態 - 狀態提升放這邊
@@ -138,9 +140,12 @@ const Course = () => {
                 return v.course_name.includes(searchInp);
             });
             const pageArray = chunk(newCourseData, perPage);
+            console.log(pageArray.length);
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseData(pageArray);
+            } else {
+                setIsOpen(true);
             }
         }
     };
@@ -223,6 +228,17 @@ const Course = () => {
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Modal.Body
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
+                </Modal.Body>
+            </Modal>;
             <Chatbot />
         </Fragment>
     );

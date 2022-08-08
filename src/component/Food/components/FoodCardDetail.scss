@@ -19,6 +19,7 @@
         padding: 20px 27px 20px 27px;
         overflow: scroll;
         color: #3e3e3e;
+        border-radius: 10px;
         svg {
             cursor: pointer;
         }
@@ -102,7 +103,7 @@
 
             .order {
                 width: 100%;
-                background-color: #c5ad8f;
+                background-color: #b9966a;
                 color: #fff;
                 border: none;
                 text-align: center;

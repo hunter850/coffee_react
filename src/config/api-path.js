@@ -33,12 +33,14 @@ export const linePayApi = `${SERVER}/course/createOrder`;
 export const foodDataGet = `${SERVER}/food`;
 export const mapAPI = `${SERVER}/mapapi`;
 export const foodData = `${SERVER}/food/addfooddata`;
+export const mail = `${SERVER}/food/send_mail`;
 
 // SHARING
 export const getPosts = `${SERVER}/sharing/post`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
 export const memberLikeAPI = `${SERVER}/sharing/memberlike`;
+export const previewAPI = `${SERVER}/sharing/previewAPI`;
 
 // Products
 
@@ -46,6 +48,7 @@ export const productsDataGet = `${SERVER}/products/api`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
 export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
+export const sharingIMGS = `${SERVER}/images/sharing`;
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;
