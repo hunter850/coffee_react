@@ -27,7 +27,7 @@
         align-items: center;
     
         .title_wrap{
-            width: 25%;
+            width: 27.5%;
 
             a{
                 color:rgb(50, 74, 89) ;
@@ -58,6 +58,8 @@
         align-items: center;
         justify-content: flex-end;
         flex-shrink: 0;
+        width: 27.5%;
+        text-align: end;
 
         >li{
             margin-right: 2rem;
