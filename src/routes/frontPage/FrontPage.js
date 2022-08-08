@@ -11,6 +11,7 @@ import Footer from "../../component/Footer";
 // import adimg from "../../images/frontpage/ad.png";
 import "./FrontPage.css";
 import { Link } from "react-router-dom";
+import ChatBot from "../../component/Bot/ChatBot";
 
 function FrontPage() {
     // const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,8 @@ function FrontPage() {
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
             <StarProducts />
             <GoodCourse />
-            <Footer bagcolorblue={"#324A59"} />
+            <ChatBot />
+            <Footer />
             {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <Modal.Header component={null} className="hello"></Modal.Header>
                 <Modal.Body component="div">

@@ -5,15 +5,13 @@ import fblogo from "../../src/images/frontpage/fblogo.png";
 import iglogo from "../../src/images/frontpage/iglogo.png";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import coffeeshop from "../images/frontpage/coffee-shop.jpg";
 
-export default function Footer({ bagcolorblue }) {
+export default function Footer() {
     return (
         <Fragment>
-            <div className="home-box-color">
-                <div
-                    className="home-container"
-                    style={{ backgroundColor: bagcolorblue }}
-                >
+            <div className="home-box">
+                <div className="home-container home-box-color">
                     <div className="d-flex partition">
                         <div className="footerlogo-wrap">
                             <img src={coffeeLogo} alt="coffeeLogo" />
@@ -83,6 +81,11 @@ export default function Footer({ bagcolorblue }) {
                                 />
                             </Link>
                         </div>
+                    </div>
+                </div>
+                <div className="home-box-color">
+                    <div className="scroll-img">
+                        {/* <img src={coffeeshop} alt="無法顯示照片" /> */}
                     </div>
                 </div>
             </div>
