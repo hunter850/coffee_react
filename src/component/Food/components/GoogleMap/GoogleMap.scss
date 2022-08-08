@@ -59,6 +59,7 @@
                     width: 50%;
                     overflow: scroll;
                     height: 600px;
+                 
                     .mapshow {
                         width: 98%;
                         height: 95px;
@@ -98,7 +99,13 @@
                                 }
                             }
                         }
+                        
+                        
                     }
+                    .mapshow.selected {
+                        background-color: #f3df70;
+                    }
+               
                 }
             }
         }
