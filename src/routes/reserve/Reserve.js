@@ -8,6 +8,8 @@ import axios from "axios";
 import { mail } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
 import { Link } from "react-router-dom";
+import Chatbot from "../../component/Bot/ChatBot";
+
 const places = [
     {
         key: "shop_1",
@@ -198,6 +200,7 @@ function Reserve() {
                     </Link>
                 </Modal>
             </div>
+            <Chatbot />
         </Fragment>
     );
 }
