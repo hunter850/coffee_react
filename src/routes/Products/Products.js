@@ -8,6 +8,9 @@ import List from "../../component/Products/List";
 import axios from "axios";
 import { productsDataGet } from "../../config/api-path";
 import { chunk } from "../../component/Course/helper/chunk";
+import "./Products.scss";
+
+import ChatBot from "../../component/Bot/ChatBot";
 
 function Products() {
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
@@ -17,9 +20,10 @@ function Products() {
     const [renderData, setRenderData] = useState([]);
     const [DataRows, setDataRows] = useState({});
     const [fetchData, setFetchData] = useState({});
-    const [pageNow, setPageNow] = useState(1);
+    const [pageNow, setPageNow] = useState(0);
     const [dataLoaded, setDataLoaded] = useState(false);
     const [cardStyle, setCardStyle] = useState("card_card");
+    const [isOpen, setIsOpen] = useState(false);
 
     let saveTotalData = [];
     let fetchingData = [];
@@ -48,12 +52,12 @@ function Products() {
         async function fetchFunc() {
             await getProductsData();
             await setDataRows(saveTotalData);
-            await setRenderData(pageData);
             await setFetchData(fetchingData);
-            await setDataLoaded(true);
             const pagechunk = await chunk(saveTotalData, 8);
-            await console.log([pagechunk]);
+            await console.log("pagechunk", pagechunk);
+            await setRenderData(pagechunk);
             await setPageTotal(pagechunk.length);
+            await setDataLoaded(true);
         }
         fetchFunc();
     }, [setDataLoaded]);
@@ -65,13 +69,14 @@ function Products() {
     // fetchData 來自後端的全部資料
     //
     useEffect(() => {
-        const pagechunk = chunk(DataRows, 8);
-        setRenderData(pagechunk[+pageNow - 1]);
+        // const pagechunk = chunk(DataRows, 8);
+        // console.log("renderData", renderData);
+        // setRenderData(pagechunk[+pageNow - 1]);
     }, [pageNow]);
 
     const el = (
         <Fragment>
-            <div className="Course-container">
+            <div className="Course-container products_page">
                 <NavBar />
                 <Path pathObj={{ path: ["．商品列表"] }} />
                 <Header
@@ -82,6 +87,8 @@ function Products() {
                     setRenderData={setRenderData}
                     setPageNow={setPageNow}
                     setPageTotal={setPageTotal}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
                 />
                 <BookMark
                     DataRows={DataRows}
@@ -99,6 +106,7 @@ function Products() {
                             renderData={renderData}
                             cardStyle={cardStyle}
                             setCardStyle={setCardStyle}
+                            pageNow={pageNow}
                         />
                     </div>
 
@@ -110,10 +118,10 @@ function Products() {
                                     <div
                                         key={i}
                                         onClick={() => {
-                                            setPageNow(i + 1);
+                                            setPageNow(i);
                                         }}
                                         className={`course-page-btn ${
-                                            pageNow === i + 1
+                                            pageNow === i
                                                 ? "course-page-btn-focus"
                                                 : ""
                                         }`}
@@ -125,6 +133,7 @@ function Products() {
                     </div>
                 </div>
             </div>
+            <ChatBot />
         </Fragment>
     );
     return el;
