@@ -86,7 +86,7 @@ function Seachbar({ rows, setRows, getData }) {
             console.log(val.replace(pattern, ""));
 
             axios(previewAPI, {
-                params: { title: val },
+                params: { queryString: val },
             }).then((r) => {
                 console.log(r.data);
             });
