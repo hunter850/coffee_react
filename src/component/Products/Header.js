@@ -1,6 +1,7 @@
 import "./Header.css";
 import { chunk } from "../Course/helper/chunk";
 import { useEffect } from "react";
+import Modal from "../Modal/Modal";
 
 function Header({
     searchInp,
@@ -10,27 +11,30 @@ function Header({
     setRenderData,
     setPageNow,
     setPageTotal,
+    setIsOpen,
+    isOpen,
 }) {
     const headerSearch = () => {
         if (searchInp !== "") {
-            console.log("DataRows", DataRows);
+            // console.log("DataRows", DataRows);
             const newSearchData = DataRows.filter((v, i) => {
                 return v.products_name.includes(searchInp);
             });
             // console.log("newSearchData", newSearchData);
 
             if (newSearchData.length > 0) {
-                console.log("newSearchData1", newSearchData);
+                // console.log("newSearchData1", newSearchData);
                 const pagechunk = chunk(newSearchData, 8);
-                setRenderData(pagechunk[0]);
-                setPageNow(1);
+                setRenderData(pagechunk);
+                setPageNow(0);
                 setPageTotal(pagechunk.length);
             } else {
-                console.log("newSearchData2", newSearchData);
+                // console.log("newSearchData2", newSearchData);
                 const pagechunk2 = chunk(DataRows, 8);
-                setRenderData(pagechunk2[0]);
-                setPageNow(1);
+                setRenderData(pagechunk2);
+                setPageNow(0);
                 setPageTotal(pagechunk2.length);
+                setIsOpen(true);
                 // alert("為0");
             }
         }
@@ -39,8 +43,8 @@ function Header({
     useEffect(() => {
         if (!searchInp) {
             const pagechunk2 = chunk(DataRows, 8);
-            setRenderData(pagechunk2[0]);
-            setPageNow(1);
+            setRenderData(pagechunk2);
+            setPageNow(0);
             setPageTotal(pagechunk2.length);
         }
     }, [searchInp]);
@@ -138,6 +142,16 @@ function Header({
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <h4
+                    style={{
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    沒有名稱為"{searchInp}"的商品
+                </h4>
+            </Modal>
         </>
     );
 }
