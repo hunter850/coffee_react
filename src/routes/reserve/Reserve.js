@@ -3,6 +3,11 @@ import { Fragment, useState } from "react";
 import Path from "../../component/Item/Path/Path";
 import "./Reserve.css";
 import NavBar from "../../component/NavBar/NavBar";
+import Calendar from "./Calendar";
+import axios from "axios";
+import { mail } from "../../config/api-path";
+import Modal from "../../component/Modal/Modal";
+import { Link } from "react-router-dom";
 const places = [
     {
         key: "shop_1",
@@ -79,117 +84,119 @@ const places = [
 ];
 
 const peoples = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const openhours = [
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-];
-
 function Reserve() {
     const [branch, setBranch] = useState("");
     const [people, setPeople] = useState("");
     const [hour, setHour] = useState("");
+    const [mail, setMail] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleSendMail = async () => {
+        setMail(true);
+
+        try {
+            await axios.post(
+                mail,
+                {
+                    branch,
+                    people,
+                    hour,
+                },
+                console.log("true")
+            );
+        } catch (error) {
+            console.log("error");
+        }
+    };
+    const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
     return (
         <Fragment>
             <NavBar />
-            <Path pathObj={{ path: ["．訂位"] }} />
-            <div className="container">
-                <div className="reserve">
-                    <div className="branchchoice">
-                        <div className="store">分店</div>
+            <div className="Food-container">
+                <Path pathObj={{ path: ["．訂位"] }} />
+                <div className="container">
+                    <div className="reserve">
+                        <div className="branchchoice">
+                            <h6 className="store">分店</h6>
 
-                        <select
-                            className="a"
-                            value={branch}
-                            onChange={(e) => {
-                                setBranch(e.target.value);
-                            }}
-                        >
-                            <option value="" disabled>
-                                請選擇分店
-                            </option>
-                            {places.map((v, i) => {
-                                return <option key={i}>{v.storeName}</option>;
-                            })}
-                        </select>
-                    </div>
-                    <div className="branchchoice">
-                        <div className="store">人數</div>
+                            <select
+                                className="a"
+                                value={branch}
+                                onChange={(e) => {
+                                    setBranch(e.target.value);
+                                }}
+                            >
+                                <option value="" disabled>
+                                    請選擇分店
+                                </option>
+                                {places.map((v, i) => {
+                                    return (
+                                        <option key={i}>{v.storeName}</option>
+                                    );
+                                })}
+                            </select>
+                        </div>
+                        <div className="branchchoice">
+                            <h6 className="store">人數</h6>
 
-                        <select
-                            className="a"
-                            value={people}
-                            onChange={(e) => {
-                                setPeople(e.target.value);
-                            }}
-                        >
-                            <option value="" disabled></option>
-                            {peoples.map((v, i) => {
-                                return <option key={i}>{v}</option>;
-                            })}
-                        </select>
-                    </div>
-                    <div className="branchchoice">
-                        <div className="store">日期</div>
+                            <select
+                                className="a"
+                                value={people}
+                                onChange={(e) => {
+                                    setPeople(e.target.value);
+                                }}
+                            >
+                                <option value="" disabled></option>
+                                {peoples.map((v, i) => {
+                                    return <option key={i}>{v}</option>;
+                                })}
+                            </select>
+                        </div>
+                        <div className="branchchoice">
+                            <h6 className="store">日期</h6>
+                            <Calendar setHour={setHour} />
+                        </div>
 
-                        <select
-                            className="a"
-                            value={branch}
-                            onChange={(e) => {
-                                setBranch(e.target.value);
-                            }}
+                        <div
+                            className={reserveBtn}
+                            onClick={(handleSendMail, setIsOpen)}
                         >
-                            <option value="-1">請選擇</option>
-                            {places.map((v, i) => {
-                                return <option key={i}>{v.storeName}</option>;
-                            })}
-                        </select>
+                            <h6>送出</h6>
+                        </div>
+                        <div className="price">
+                            <p className="infor">價目表</p>
+                            <div className="infor">分店資訊</div>
+                        </div>
+                        <p className="reserve-txt">
+                            【線上訂位說明】
+                            網路預約訂位以十人以內為限，訂位隔日起 ~
+                            一個月內；十人以上訂位或包場需求，僅接受電話預約。
+                            <br /> <br />
+                            ★用餐當日訂位保留時間為10分鐘，請準時入席，逾時將取消訂位。座位將依餐廳當日訂位排定且無法指定座位，亦不接受現場臨時增加人數；若要變更人數，請於用餐前一日18:00前與餐廳聯繫，若需增加人數，視現場訂位狀況決定，敬請見諒。
+                            <br />
+                            ★若需取消或更改訂位，請提前告知。
+                            <br />
+                            ★如逾時取消訂位欲候補座位，再視現場訂位狀況而定。
+                            <br />
+                            ★網路訂位是否成功，可至「訂位紀錄」進行查詢。
+                            <br />
+                            ★網路訂位成功者，如未到場且未於線上或電話通知取消訂位，視同「訂位未到且未提前通知取消」，「訂位未到且未提前通知取消」次數達到三次，系統將取消您的網路訂位資格，造成不便敬請見諒。
+                            【為提供最好的用餐經驗與品質，請詳閱上述訂位說明，感謝您的配合並期待您的光臨！】
+                        </p>
                     </div>
-                    <div className="branchchoice">
-                        <div className="store">時段</div>
-
-                        <select
-                            className="a"
-                            value={hour}
-                            onChange={(e) => {
-                                setHour(e.target.value);
-                            }}
-                        >
-                            <option value="-1" disabled></option>
-                            {openhours.map((v, i) => {
-                                return <option key={i}>{v}</option>;
-                            })}
-                        </select>
-                    </div>
-                    <div className="submit">
-                        <h6>送出</h6>
-                    </div>
-                    <div className="price">
-                        <div className="infor">價目表</div>
-                        <div className="infor">分店資訊</div>
-                    </div>
-                    <p className="reserve-txt">
-                        【線上訂位說明】 網路預約訂位以十人以內為限，訂位隔日起
-                        ~ 一個月內；十人以上訂位或包場需求，僅接受電話預約。
-                        <br /> <br />
-                        ★用餐當日訂位保留時間為10分鐘，請準時入席，逾時將取消訂位。座位將依餐廳當日訂位排定且無法指定座位，亦不接受現場臨時增加人數；若要變更人數，請於用餐前一日21:30前與餐廳聯繫，若需增加人數，視現場訂位狀況決定，敬請見諒。
-                        <br />
-                        ★若需取消或更改訂位，請提前告知。
-                        <br />
-                        ★如逾時取消訂位欲候補座位，再視現場訂位狀況而定。
-                        <br />
-                        ★網路訂位是否成功，可至「訂位紀錄」進行查詢。
-                        <br />
-                        ★網路訂位成功者，如未到場且未於線上或電話通知取消訂位，視同「訂位未到且未提前通知取消」，「訂位未到且未提前通知取消」次數達到三次，系統將取消您的網路訂位資格，造成不便敬請見諒。
-                        【為提供最好的用餐經驗與品質，請詳閱上述訂位說明，感謝您的配合並期待您的光臨！】
-                    </p>
                 </div>
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <Link
+                        to="/"
+                        style={{
+                            textDecoration: "none",
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        <h4>訂位成功</h4>
+                    </Link>
+                </Modal>
             </div>
         </Fragment>
     );
