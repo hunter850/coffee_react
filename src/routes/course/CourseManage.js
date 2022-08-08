@@ -125,7 +125,6 @@ const CourseManage = () => {
     const returnBoolean = (boolean) => {
         if (boolean === true) {
             setMyBoolean(1);
-            setSid(0);
         } else {
             setMyBoolean(0);
             setSid(0);
