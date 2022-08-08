@@ -8,10 +8,12 @@ import React, { useState, useEffect } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import { useNav } from "../../Contexts/NavProvider";
 import { replace } from "lodash";
+import axios from "axios";
+import { getUserData } from "../../config/api-path";
 
 
 function NavBar({ navPosition = 'fixed' }) {
-    const { sid, name, setAuth } = useAuth();
+    const { sid, name, token, setAuth } = useAuth();
     const { count, getCount, handleLogout } = useNav();
     const navigate = useNavigate();
 
@@ -67,14 +69,32 @@ function NavBar({ navPosition = 'fixed' }) {
             </svg>
         </Link>
     </div>);
+
     // 登入顯示打招呼
+
+    const [user, setUser] = useState({
+        member_name:"",
+    });
+
+    useEffect(() => {
+        axios
+            .get(getUserData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                setUser({...user,member_name:response.data[0].member_name})
+            });
+    }, [token]);
+
     const memberName = (
         <li
             style={{ cursor: "pointer" }}
             className="nav-member-li"
         >
             <div className="member-name" onClick={(e) => handleDropDown(e, "signout")}>
-                您好! <span >{name}</span>
+                您好! <span >{user.member_name}</span>
             </div>
             <ul
                 className="nav-sign-out-ul"

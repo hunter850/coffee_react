@@ -9,6 +9,7 @@ import useLog from "../../../hooks/useLog";
 
 function HotFoods() {
     useLog(hotfooddata);
+    console.log(hotfooddata);
     return (
         <Fragment>
             <div className="home-container">
@@ -38,10 +39,10 @@ function HotFoods() {
                     <Link to="/food/" className="hotfoodcard-phone">
                         <HotfoodCard
                             hotfooddata={{
-                                hotfood_sid: hotfooddata.hotfood_sid,
-                                hotfood_img: hotfooddata.hotfood_photo,
-                                hootfood_name: hotfooddata.hotfood_name,
-                                hootfood_price: hotfooddata.hotfood_price_m,
+                                hotfood_sid: hotfooddata[0].hotfood_sid,
+                                hotfood_img: hotfooddata[0].hotfood_photo,
+                                hootfood_name: hotfooddata[0].hotfood_name,
+                                hootfood_price: hotfooddata[0].hotfood_price_m,
                             }}
                         />
                     </Link>
@@ -56,7 +57,7 @@ function HotFoods() {
                     </Link> */}
                 </div>
                 <Link to="/food">
-                    <ViewmoreBtn />
+                    <ViewmoreBtn Vbpaddingtop={100} />
                 </Link>
             </div>
         </Fragment>

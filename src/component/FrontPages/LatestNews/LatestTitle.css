@@ -8,10 +8,11 @@
     width: 100%;
     color: #ffffff;
     font-size: 24px;
-    display: -webkit-box;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 .titleitem-layout {
     width: 100%;
