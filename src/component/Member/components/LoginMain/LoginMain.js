@@ -300,7 +300,7 @@ function LoginMain() {
                                     <FaUser/>
                                 </div>
                             </div>
-                            <p className="lg-field-err">{nameErrors.name}</p>
+                            <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{nameErrors.name}</p>
                         </div>
 
                         <div className="lg-field-wrap">
@@ -330,7 +330,7 @@ function LoginMain() {
                                     <MdEmail size={"1.05rem"}/>
                                 </div>
                             </div>
-                            <p className="lg-field-err">{mailError.mail}</p>
+                            <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{mailError.mail}</p>
                         </div>
                     </div>
                     <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>

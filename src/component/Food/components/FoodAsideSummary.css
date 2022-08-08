@@ -5,7 +5,7 @@
     transition: 0.3s transform;
     top: 60px;
     right: 0;
-    transform: translateX(70%);
+    /* transform: translateX(70%); */
     background-color: #d4d0f1;
     position: fixed;
     border: 1px solid #eee5dd;

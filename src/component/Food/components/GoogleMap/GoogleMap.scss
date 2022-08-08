@@ -9,18 +9,24 @@
     right: 0;
     left: 0;
     z-index: 999;
+    
     svg {
         cursor: pointer;
     }
     .detail {
-        width: 100%;
+
+        width: 80%;
         height: 100%;
         /* height: 100vh; */
         background: #fcfaf7;
-        margin: 0 auto;
+        margin: 60px auto;
         /* overflow: scroll; */
         position: fixed;
         color: #3e3e3e;
+        border-radius: 10px;
+    
+        left: 10%;
+        right: 10%;
 
         .top {
             height: 60px;
@@ -29,11 +35,21 @@
             justify-content: center;
             align-items: center;
             position: fixed;
-            width: 100%;
+            width: 80%;
+            border-radius: 10px;
+            .topTxt{
+                flex-grow: 1;
+                text-align: center;
+            }
+            svg{
+                cursor: pointer;
+                margin-right: 20px;
+          
+            }
         }
 
         .middle2 {
-            height: 400px;
+            height: 600px;
             margin: 0 auto;
             padding: 20px;
             margin-top: 60px;
@@ -42,7 +58,7 @@
                 .mapshowarea {
                     width: 50%;
                     overflow: scroll;
-                    height: 400px;
+                    height: 600px;
                     .mapshow {
                         width: 98%;
                         height: 95px;
@@ -149,7 +165,7 @@
             }
         }
         .bottomarea {
-            width: 100%;
+            width: 80%;
             height: 82px;
             background-color: #eee5dd99;
             position: fixed;
@@ -157,7 +173,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
+            border-radius: 10px;
             .bottoms {
                 height: 42px;
                 width: 100px;
