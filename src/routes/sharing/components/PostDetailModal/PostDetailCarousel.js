@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { imgSrc } from "../../../../config/api-path";
+import { sharingIMGS } from "../../../../config/api-path";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -33,7 +33,7 @@ function PostDeatailCarousel({ imgs }) {
                                 <SwiperSlide key={i}>
                                     <div className={img_wrap}>
                                         <img
-                                            src={`${imgSrc}/sharing/${v["img_name"]}`}
+                                            src={`${sharingIMGS}/${v["img_name"]}`}
                                             alt=""
                                             className={carousel_img}
                                         />
@@ -45,7 +45,7 @@ function PostDeatailCarousel({ imgs }) {
                 ) : (
                     <div className={img_wrap}>
                         <img
-                            src={`${imgSrc}/sharing/${imgs[0]["img_name"]}`}
+                            src={`${sharingIMGS}/${imgs[0]["img_name"]}`}
                             alt=""
                             className={carousel_img}
                         />

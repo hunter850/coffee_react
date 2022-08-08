@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useCallback } from "react";
 
 import styles from "../../css/postdetailmodal.module.scss";
 import PostDeatailCarousel from "./PostDetailCarousel";

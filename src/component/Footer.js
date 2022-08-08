@@ -16,68 +16,70 @@ export default function Footer({ bagcolorblue }) {
                 >
                     <div className="d-flex partition">
                         <div className="footerlogo-wrap">
-                            <img
-                                src={coffeeLogo}
-                                width="80px"
-                                height="80px"
-                                alt=""
-                            />
+                            <img src={coffeeLogo} alt="coffeeLogo" />
                         </div>
                         <div className="footertext-wrap">
                             <ul className="d-flex footertext">
-                                <Link to="/">
-                                    <li className="footer-pdr-48 linkcolor-white">店家資訊</li>
+                                <Link to="/store">
+                                    <li className="footer-pdr-48 linkcolor-white">
+                                        店家資訊
+                                    </li>
                                 </Link>
                                 <Link to="/">
-                                    <li className="footer-pdr-82 linkcolor-white">關於我們</li>
+                                    <li className="footer-pdr-82 linkcolor-white">
+                                        關於我們
+                                    </li>
                                 </Link>
-                                <Link to="/">
-                                    <li className="footer-pdr-48 linkcolor-white">最新活動</li>
+                                <Link to="/LatestnewsDetail">
+                                    <li className="footer-pdr-48 linkcolor-white">
+                                        最新活動
+                                    </li>
                                 </Link>
                             </ul>
                             <ul className="d-flex footertext">
                                 <Link to="/">
-                                    <li className="footer-pdr-48 linkcolor-white">夥伴招募</li>
+                                    <li className="footer-pdr-48 linkcolor-white">
+                                        夥伴招募
+                                    </li>
                                 </Link>
                                 <Link to="/">
-                                    <li className="footer-pdr-48 linkcolor-white">會員權益聲明</li>
+                                    <li className="footer-pdr-48 linkcolor-white">
+                                        會員權益聲明
+                                    </li>
                                 </Link>
                                 <Link to="/">
-                                    <li className="footer-pdr-48 linkcolor-white">企業服務</li>
+                                    <li className="footer-pdr-48 linkcolor-white">
+                                        企業服務
+                                    </li>
                                 </Link>
                             </ul>
                         </div>
                     </div>
                     <div className="sociallink-wrap">
                         <p className="Copyrighttext">
-                            © 2022 Copyright 0+B Coffee Shop All Rights Reserved.
+                            © 2022 Copyright 0+B Coffee Shop All Rights
+                            Reserved.
                         </p>
                         <div className="sociallink">
                             <Link to="/">
                                 <img
                                     className="sociallink-icon"
                                     src={ttlogo}
-                                    width="48px"
-                                    height="48px"
-                                    alt=""
+                                    alt="linklogo"
                                 />
                             </Link>
                             <Link to="/">
                                 <img
                                     className="sociallink-icon"
                                     src={fblogo}
-                                    width="48px"
-                                    height="48px"
-                                    alt=""
+                                    alt="linklogo"
                                 />
                             </Link>
                             <Link to="/">
                                 <img
                                     className="sociallink-icon"
                                     src={iglogo}
-                                    width="48px"
-                                    height="48px"
-                                    alt=""
+                                    alt="linklogo"
                                 />
                             </Link>
                         </div>

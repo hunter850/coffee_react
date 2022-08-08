@@ -1,4 +1,5 @@
 import styles from "./../css/postCard.module.scss";
+import { sharingIMGS } from "../../../config/api-path";
 import { FaHeart } from "react-icons/fa";
 
 function PostCard({ cardData }) {
@@ -28,10 +29,7 @@ function PostCard({ cardData }) {
     return (
         <>
             <div className={post_card}>
-                <img
-                    src={`http://localhost:3500/images/sharing/${img_name}`}
-                    alt={title}
-                />
+                <img src={`${sharingIMGS}/${img_name}`} alt={title} />
                 <ul>
                     <li className={like_wrap}>
                         <FaHeart color="#fff" fontSize="1.25rem" />

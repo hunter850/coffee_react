@@ -19,18 +19,33 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         const botMessage = createChatBotMessage("查看最新餐點選單", {
             widget: "FoodMenu",
         });
-
         setState((prev) => ({
             ...prev,
             messages: [...prev.messages, botMessage],
         }));
     };
-
     const handleProductsMenu = () => {
         const botMessage = createChatBotMessage("查看最新商品選單", {
             widget: "ProductsMenu",
         });
-
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleTextError = () => {
+        const botMessage = createChatBotMessage(
+            "你可以描述得更完整一些，我會比較容易理解喔！"
+        );
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleRandomFoodMenu = () => {
+        const botMessage = createChatBotMessage("推薦你最近很受客人歡迎的", {
+            widget: "RandomFoodMenu",
+        });
         setState((prev) => ({
             ...prev,
             messages: [...prev.messages, botMessage],
@@ -46,6 +61,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                         handleFoodMenu,
                         handleProductsMenu,
                         handleChitchatting,
+                        handleTextError,
+                        handleRandomFoodMenu,
                     },
                 });
             })}

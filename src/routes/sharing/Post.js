@@ -4,12 +4,12 @@ import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
 
-import { getPosts, imgSrc } from "../../config/api-path";
+import { getPosts } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
-import PostNav from "./components/PostNav.js";
+import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 
 const breakpointColumnsObj = {
@@ -38,9 +38,12 @@ function Post() {
     const [scrollY, setScrollY] = useState([0, 0]);
     const [scrollDirect, setScrollDirect] = useState("");
 
-    const getData = async () => {
+    const getData = async (times = 0, searchObj = {}) => {
+        const { title, meber_sid, tag } = searchObj;
+        const paramsData = { times, title, meber_sid, tag };
+
         const r = await axios(getPosts, {
-            params: { times: getDataTimes },
+            params: { ...paramsData },
         });
 
         return r.data;
@@ -81,7 +84,7 @@ function Post() {
 
     useEffect(() => {
         (async () => {
-            const r = await getData();
+            const r = await getData(getDataTimes);
             setRows((pre) => {
                 return [...pre, ...r.rows];
             });
@@ -112,7 +115,12 @@ function Post() {
         <Fragment>
             <NavBar />
             {/* <FakeNav /> */}
-            <PostNav scrollDir={scrollDir} />
+            <PostNav
+                scrollDir={scrollDir}
+                rows={rows}
+                setRows={setRows}
+                getData={getData}
+            />
 
             <div className={container} ref={wrap}>
                 <Masonry

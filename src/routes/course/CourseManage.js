@@ -19,6 +19,8 @@ import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
+import MyMouse from "../../component/Item/MyMouse/MyMouse";
+
 
 const CourseManage = () => {
     // 取得點擊的sid
@@ -88,7 +90,7 @@ const CourseManage = () => {
         courseManageDataGet();
         // 將確認刪除資料的狀態初始化
         setConfirmDelete(false);
-    }, [sortData, confirmDelete]);
+    }, [sortData, confirmDelete, myBoolean]);
 
     // 一般搜尋框搜尋的渲染
     const courseSearch = () => {
@@ -101,6 +103,8 @@ const CourseManage = () => {
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseManageData(pageArray);
+            } else {
+                setIsOpen(true);
             }
         }
     };
@@ -121,21 +125,39 @@ const CourseManage = () => {
     const returnBoolean = (boolean) => {
         if (boolean === true) {
             setMyBoolean(1);
+            setSid(0);
         } else {
             setMyBoolean(0);
+            setSid(0);
         }
     };
 
+    const searchError = <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Modal.Body
+            style={{
+                textDecoration: "none",
+                color: "var(--BLUE)",
+                padding: "40px",
+            }}
+        >
+            <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
+        </Modal.Body>
+    </Modal>;
+
+
+    const detailedModal = <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} style={{ overflow: "visible" }}>
+        <Modal.Body style={{ padding: '0' }}>
+            <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
+        </Modal.Body>
+    </Modal>;
+    console.log(sid);
     const el = (
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
+                    <MyMouse />
                     <NavBar />
-                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} style={{ overflow: "visible" }}>
-                        <Modal.Body style={{ padding: '0' }}>
-                            <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
-                        </Modal.Body>
-                    </Modal>
+                    {sid !== 0 && isOpen === true ? detailedModal : ''}
                     <div className="ManageHeader">
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} courseSearch={courseSearch} />
                     </div>
@@ -160,6 +182,7 @@ const CourseManage = () => {
                                         myBoolean={myBoolean}
                                         setSid={setSid}
                                         sid={sid}
+                                        confirmDelete={confirmDelete}
                                     />
                                 );
                             })}
@@ -186,6 +209,7 @@ const CourseManage = () => {
                     </div>
                 </div>
             </div>
+            {searchInp !== "" && sid === 0 ? searchError : ''}
         </Fragment>
     );
 

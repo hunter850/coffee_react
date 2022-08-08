@@ -5,8 +5,13 @@
 }
 
 .latestnew-title {
+    width: 100%;
     color: #ffffff;
     font-size: 24px;
+    display: -webkit-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .titleitem-layout {
     width: 100%;
@@ -24,7 +29,9 @@
         justify-items: start;
     }
     .latestnew-day {
+        width: 100%;
         padding-right: 0px;
-        justify-items: start;
+        justify-content: start;
+        padding-bottom: 10px;
     }
 }

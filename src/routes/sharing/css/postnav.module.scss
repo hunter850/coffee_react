@@ -10,6 +10,10 @@
     top:60px;
     left: 0;
 
+    svg{
+        vertical-align: bottom;
+    }
+
     .container{
         margin: 0 auto;
         padding: 0 8px;
@@ -22,7 +26,20 @@
         display: flex;
         align-items: center;
     
+        .title_wrap{
+            width: 25%;
 
+            a{
+                color:rgb(50, 74, 89) ;
+            }
+
+            h4{
+                margin-left: .5rem;
+                display: inline-block;
+                white-space: nowrap;
+                font-weight: 500;
+            }
+        }
     }
 
     &.collapse{
@@ -30,12 +47,9 @@
     }
 
     .search_wrap{
-        background-color: rgba(187, 188, 199, 0.8);
-        padding: 0 8px;
-        line-height: 32px;
-        height: 32px;
-        margin: 0 auto;
+        height: 100%;
         flex-grow: 1;
+        position: relative;
     }
 
     .icon_wrap{
@@ -79,7 +93,7 @@
         margin-right: auto;
     }
 
-    .post_nav h4{
+    .post_nav .title_wrap{
         display: none;
     }
     .post_nav .icon_wrap > li{

@@ -3,6 +3,7 @@
     height: 500px;
     padding-top: 48px;
     padding-left: 10px;
+    user-select: none;
 }
 .CoursePath {
     width: 128px;

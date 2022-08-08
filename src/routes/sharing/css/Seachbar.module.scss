@@ -1,0 +1,135 @@
+.container{
+    display: flex;
+    background-color: #fff;
+    top: 5px;
+    width: calc(100% - 2.5rem);
+    right: 0;
+    // padding: .5rem;
+
+    position: absolute;
+    flex-direction: column;
+    // background-color: #ffa;
+    // border: 1px solid #DAD8D6;
+    border-radius: 8px;
+    border: 1px solid #d28232;
+
+    .magnifier_wrap{
+        padding-left: .25rem;
+        width: 2.5rem;
+        text-align: center;
+
+    }
+
+    .search_wrap{
+        display: flex;
+        align-items: center;
+    }
+
+    input{
+        margin-left: auto;
+        background-color: transparent;
+        width: 80px;
+        padding-left: .75rem;
+        flex:1 1 auto;
+        border: none;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .clearInput{
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        text-align: center;
+        width: 2rem;
+        height: 2rem;
+        // padding: 0 8px;
+        // height: 2rem;
+        margin-right: .25rem;
+    }
+
+    .divider{
+       
+        &::after{
+            content: "|";
+            color: transparent;
+            display: block;
+            border-left: 1px solid #dadce0;
+            height: 65%;
+        }
+    }
+
+    .submit{
+        cursor: pointer;
+        width: 2.25rem;
+        padding-right: .25rem;
+        height: 2rem;
+        background-color: transparent;
+        border: none;
+    }
+
+    .result_wrap{
+        position: relative;
+    
+        &::before{
+            border-top: 1px solid #dadce0;
+            content: '';
+            width: calc(100% - 16px);
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            position: absolute;
+        }
+
+        .result_content{
+            display: flex;
+            padding: 6px 4px;
+            align-items: center;
+            cursor:default;
+            &:hover{
+                background: rgba(175, 175, 175, 0.25);
+            }
+
+            .rect_wrap{
+                width: 100%;
+                height: 2.25rem;
+
+                >img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center center;
+                }
+            }
+
+            .img_wrap{
+                width: 100%;
+                height: 2.25rem;
+                border-radius: 2.25rem;
+                border: 1px solid rgb(183, 197, 211);
+                overflow: hidden;
+            }
+            .member_wrap{
+                display: flex;
+                flex-direction: column;
+                margin-left: .75rem;
+                justify-content: space-around;
+
+                >span{
+                    display:inline-block;
+                    line-height: 1rem;
+                }
+            }
+
+            .result_name{
+                margin-left: .75rem;
+            }
+
+            .member_small{
+                font-size: 12px;
+                color: #787878;
+            }
+    
+        }
+    }
+}

@@ -98,6 +98,7 @@
     margin: 0;
     line-height: 35px;
     width: 459px;
+    user-select: none;
 }
 
 @media (max-width: 768px) {

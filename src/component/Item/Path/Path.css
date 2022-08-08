@@ -1,3 +1,6 @@
+.Path {
+    user-select: none;
+}
 .Path-font {
     line-height: 32px;
 }

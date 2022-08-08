@@ -7,6 +7,7 @@ export const getCartCount = `${SERVER}/cart/cart_count/api`;
 // MEMBER
 export const login = `${SERVER}/member/api/login`;
 export const signUp = `${SERVER}/member/api/sign-up`;
+export const doVerification = `${SERVER}/member/api/user-verify`;
 export const getUserData = `${SERVER}/member/api/user-list`;
 export const editUserData = `${SERVER}/member/api/edit-user-list`;
 export const editPasswordAPI = `${SERVER}/member/api/edit-password`;
@@ -38,6 +39,8 @@ export const mail = `${SERVER}/food/send_mail`;
 export const getPosts = `${SERVER}/sharing/post`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
+export const memberLikeAPI = `${SERVER}/sharing/memberlike`;
+export const previewAPI = `${SERVER}/sharing/previewAPI`;
 
 // Products
 
@@ -45,6 +48,7 @@ export const productsDataGet = `${SERVER}/products/api`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
 export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
+export const sharingIMGS = `${SERVER}/images/sharing`;
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;

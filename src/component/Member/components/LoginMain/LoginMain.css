@@ -239,7 +239,14 @@ body {
     margin: 50px 0;
 }
 .verify-wrap{
-    height: 150px;
+    height: 220px;
+}
+.verify-account-title{
+    flex-grow: 50%;
+    margin-right: 54px;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 1.15rem;
 }
 .verify-title{
     flex-grow: 50%;
@@ -281,7 +288,7 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    top: 37px;
+    top: 115px;
     color: red;
     font-size: .8rem;
 }
