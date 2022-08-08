@@ -106,8 +106,20 @@ input[type="number"]::-webkit-outer-spin-button {
     flex-wrap: wrap;
 }
 
-.align-items-center{
+.align-items-center {
     align-items: center;
+}
+
+/* scale */
+.w100 {
+    width: 100%;
+}
+.w50 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
 }
 
 /* spacing */
