@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useState, useEffect, useContext } from "react";
+import { Fragment, useState, useEffect, useCallback } from "react";
 // import NavBar from "../../component/NavBar";
 // import AuthContext from "../../component/Member/AuthContext";
 import React from "react";
@@ -43,15 +43,12 @@ const chunk = (arr, size) =>
 function Food() {
     // 從sql拿資料--------------------------------------------------------
     const [foodFromApi, setFoodFromApi] = useState([]);
-    // 呈現資料用
-    const [food, setFood] = useState([]);
-
     // 分頁用
     // pageNow 目前頁號
     // perPage 每頁多少數量
     // pageTotal 目前有多少頁
     const [pageNow, setPageNow] = useState(1); // 預設第一頁
-    const [pageTotal, setPageTotal] = useState(0); // 等伺服器抓完資料才知道多少(didMount時決定)
+    const [pageTotal, setPageTotal] = useState(1); // 等伺服器抓完資料才知道多少(didMount時決定)
 
     // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
@@ -67,57 +64,41 @@ function Food() {
     //拿自取時段的資料--------------------------------------------------
     const [dataFromDate, setDataFromDate] = useState("");
     const [dataFromDateTime, setDataFromDateTime] = useState("");
-    // 顯示的開關
-    const [showDate, setShowDate] = useState(false);
+
     const [isShow, setIsShow] = useState(false);
     const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState({});
     const [isOpen, setIsOpen] = useState(false);
 
+    const getCurrentFilterFood = useCallback(() => {
+        return foodFromApi.filter(
+            ({ menu_categories }) =>
+                !foodFilter || menu_categories === foodFilter
+        );
+    }, [foodFilter, foodFromApi]);
+
     // 載入資料指示狀態
     useEffect(() => {
         const getFoodData = async () => {
             const response = await axios.get(foodDataGet);
             setFoodFromApi(response.data);
-
-            // 取出篩選種類的資料
-            setFood(response.data);
-            // 設定總筆數該分成幾頁
-            setPageTotal(Math.ceil(response.data.length / perPage));
-            // 重置到第一頁
-            setPageNow(1);
         };
         getFoodData();
     }, []);
 
     // 載入資料指示狀態
     useEffect(() => {
-        const newFood = foodFromApi.filter(
-            ({ menu_categories }) =>
-                !foodFilter || menu_categories === foodFilter
-        );
-
-        // 取出篩選種類的資料
-        setFood(newFood);
+        const filterFood = getCurrentFilterFood();
         // 設定總筆數該分成幾頁
-        setPageTotal(Math.ceil(newFood.length / perPage));
+        setPageTotal(Math.ceil(filterFood.length / perPage));
         // 重置到第一頁
         setPageNow(1);
-    }, [foodFilter]);
+    }, [foodFilter, foodFromApi]);
 
-    useEffect(() => {
-        const newFood = food.filter(
-            (f, idx) =>
-                idx >= perPage * (pageNow - 1) && idx < perPage * pageNow
-        );
-
-        // 取出篩選種類的資料
-        setFood(newFood);
-        // if pageNow === 1   0 <= idx < 6
-        // if pageNow === 2   6 <= idx < 12
-        // perPage * (pageNow -1) ~ perPage * pageNow - 1
-    }, [pageNow]);
+    const food = getCurrentFilterFood().filter(
+        (f, idx) => idx >= perPage * (pageNow - 1) && idx < perPage * pageNow
+    );
 
     //食物累加到側邊欄-----------------------------------------------------
     const isSameItem = (item1, item2) => {
@@ -167,16 +148,19 @@ function Food() {
     //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複--------------
     const handleCakeCount = (allfood) => {
         const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
+        console.log("allfood ", allfood);
         let newData;
         const compareItems = (item1, item2) =>
             item1.menu_sid === item2.menu_sid;
-        const isSameFood = dataFromFoodDetail.some((existedItem) => {
-            return compareItems(existedItem, allfood);
-        });
+        const isSameFood = dataFromFoodDetail.some((existedItem) =>
+            compareItems(existedItem, allfood)
+        );
         if (isSameFood) {
             newData = dataFromFoodDetail.map((item) => {
-                console.log("item", item);
-                return { ...item, foodCount: item.foodCount + 1 };
+                if (compareItems(item, allfood)) {
+                    return { ...item, foodCount: item.foodCount + 1 };
+                }
+                return item;
             });
         } else {
             newData = [
@@ -196,8 +180,6 @@ function Food() {
         setDataFromFoodDetail(newData);
     };
 
-    console.log("pageTotal ", pageTotal);
-
     return (
         <Fragment>
             {/* <NavBar /> */}
@@ -210,7 +192,6 @@ function Food() {
                         {showMap && (
                             <GoogleMap
                                 setShowMap={setShowMap}
-                                setShowDate={setShowDate}
                                 setSelectedAddress={setSelectedAddress}
                                 setDataFromDate={setDataFromDate}
                                 setDataFromDateTime={setDataFromDateTime}
@@ -272,7 +253,6 @@ function Food() {
                         setDataFromSummary={setDataFromSummary}
                         dataFromDate={dataFromDate}
                         dataFromDateTime={dataFromDateTime}
-                        setShowDate={setShowDate}
                         setShowMap={setShowMap}
                         selectedAddress={selectedAddress}
                         setDataFromFoodDetail={setDataFromFoodDetail}

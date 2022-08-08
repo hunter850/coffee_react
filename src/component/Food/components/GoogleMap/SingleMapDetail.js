@@ -93,8 +93,7 @@ const SingleMapDetail = (props) => {
     const initialState = { store_name: "", store_block: "", store_road: "" };
     // 預設位置
 
-    const [icon, setIcon] = useState();
-    console.log("icon", icon);
+    const [icon, setIcon] = useState({});
 
     const getMyPosition = () => {
         navigator.geolocation.getCurrentPosition(
@@ -128,14 +127,6 @@ const SingleMapDetail = (props) => {
         setShops(shopsWithDistance);
     };
 
-    const handleSameBranch = (item1, item2) => {
-        return item1.store_sid === item2.store_sid;
-    };
-
-    const selectedMapItem =
-        storeInfo.store_sid === shops.store_sid
-            ? "mapshow selected"
-            : "mapshow";
     return (
         <div className="mapSection">
             <p onClick={getMyPosition}>
@@ -171,7 +162,7 @@ const SingleMapDetail = (props) => {
                 取得目前所在位置
             </p>
             <div className="mapdetail">
-                <LoadScript googleMapsApiKey="AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM">
+                <LoadScript googleMapsApiKey="AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ">
                     <GoogleMap
                         mapContainerStyle={containerStyle}
                         center={myPosition}
@@ -198,7 +189,7 @@ const SingleMapDetail = (props) => {
                                     <Marker
                                         key={key}
                                         position={center}
-                                        icon="/food/coffee1.png"
+                                        icon="/food/hot-coffee.png"
                                         animation={center === icon ? 1 : 4}
                                         value={store_sid}
                                         onClick={() => {
@@ -214,11 +205,6 @@ const SingleMapDetail = (props) => {
                             }
                         )}
 
-                        {/* <Marker
-                            position={icon}
-                            icon="/food/coffee1.png"
-                            animation={1}
-                        /> */}
                         <DistanceMatrixService
                             options={{
                                 destinations: branchs,
@@ -243,7 +229,12 @@ const SingleMapDetail = (props) => {
                         }) => {
                             return (
                                 <div
-                                    className={selectedMapItem}
+                                    className={
+                                        center.lat === icon.lat &&
+                                        center.lng === icon.lng
+                                            ? "mapshow selected"
+                                            : "mapshow"
+                                    }
                                     key={store_sid}
                                     value={store_sid}
                                     onClick={() => {
@@ -253,6 +244,7 @@ const SingleMapDetail = (props) => {
                                             store_block,
                                             store_road,
                                             store_sid,
+                                            center,
                                         });
                                     }}
                                 >
