@@ -23,6 +23,7 @@ function Productinfo(props) {
     const [checkLike, setCheckLike] = useState(false);
     const [btnContext, setBtnContext] = useState("未加入收藏");
     const [isOpen, setIsOpen] = useState(false);
+    const [modalCase, setModalCase] = useState(false);
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
@@ -78,6 +79,9 @@ function Productinfo(props) {
                 console.log(fetchCartData);
                 // cartCount.setCartCountNum(cartCount.cartCountNum + 1);
                 getCount();
+
+                setModalCase(true);
+                setIsOpen(true);
             });
     };
 
@@ -130,7 +134,6 @@ function Productinfo(props) {
             </h2>
             <p
                 className="productIntro"
-                contentEditable="true"
                 dangerouslySetInnerHTML={{
                     __html: dataLoaded ? renderData[0].products_intro : "錯誤",
                 }}
@@ -226,18 +229,31 @@ function Productinfo(props) {
             ) : (
                 ""
             )}
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                <Link
-                    to="/member/login"
-                    style={{
-                        textDecoration: "none",
-                        color: "var(--BLUE)",
-                        padding: "40px",
-                    }}
-                >
-                    <h4>請先登入</h4>
-                </Link>
-            </Modal>
+            {modalCase ? (
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <h4
+                        style={{
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        成功加入購物車
+                    </h4>
+                </Modal>
+            ) : (
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <Link
+                        to="/member/login"
+                        style={{
+                            textDecoration: "none",
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        <h4>請先登入</h4>
+                    </Link>
+                </Modal>
+            )}
         </div>
     );
     return el;

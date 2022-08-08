@@ -5,6 +5,7 @@ import DetailPage from "../../component/Products/Detail/DetailPage";
 import axios from "axios";
 import { productsDataGet } from "../../config/api-path";
 import { useParams } from "react-router-dom";
+import ChatBot from "../../component/Bot/ChatBot";
 
 function ProductsDetail() {
     const { products_sid } = useParams();
@@ -14,6 +15,7 @@ function ProductsDetail() {
     const [dataRows, setDataRows] = useState({});
     const [dataLoaded, setDataLoaded] = useState(false);
     const [productsCount, setProductsCount] = useState(1);
+    const [infoLimit, setInfoLimit] = useState("");
 
     const getProductsData = () => {
         return axios.get(productsDataGet).then((res) => {
@@ -64,7 +66,7 @@ function ProductsDetail() {
 
     const el = (
         <Fragment>
-            <div className="Course-container">
+            <div className="Course-container products_page">
                 <NavBar />
 
                 <Path
@@ -87,6 +89,7 @@ function ProductsDetail() {
                     />
                 </div>
             </div>
+            <ChatBot />
         </Fragment>
     );
     return el;
