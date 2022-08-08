@@ -19,7 +19,6 @@ import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
-import MyMouse from "../../component/Item/MyMouse/MyMouse";
 
 
 const CourseManage = () => {
@@ -154,7 +153,6 @@ const CourseManage = () => {
         <Fragment>
             <div className="CourseManage-wrap">
                 <div className="CourseManage-container">
-                    <MyMouse />
                     <NavBar />
                     {sid !== 0 && isOpen === true ? detailedModal : ''}
                     <div className="ManageHeader">
