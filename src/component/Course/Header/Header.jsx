@@ -1,6 +1,5 @@
 import { React } from "react";
 import "./Header.css";
-// import { courseSearch } from "../helper/courseSearch";
 
 function Header({ searchInp, setSearchInp, courseSearch }) {
     return (

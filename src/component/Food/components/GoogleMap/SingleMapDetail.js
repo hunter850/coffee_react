@@ -79,11 +79,10 @@ const shops_dummy = [
 ];
 
 // 我的位置
-
 const SingleMapDetail = (props) => {
     const containerStyle = {
         width: "100%",
-        height: "400px",
+        height: "600px",
     };
     const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
@@ -93,6 +92,8 @@ const SingleMapDetail = (props) => {
     const { store_name, store_block, store_road } = storeInfo;
     const initialState = { store_name: "", store_block: "", store_road: "" };
     // 預設位置
+    const [icon, setIcon] = useState();
+    console.log("icon", icon);
 
     const getMyPosition = () => {
         navigator.geolocation.getCurrentPosition(
@@ -124,6 +125,10 @@ const SingleMapDetail = (props) => {
             })
             .sort((x, y) => x.distance.value - y.distance.value);
         setShops(shopsWithDistance);
+    };
+
+    const handleSameBranch = (item1, item2) => {
+        return item1.store_sid === item2.store_sid;
     };
 
     const selectedMapItem =
@@ -176,7 +181,15 @@ const SingleMapDetail = (props) => {
                             position={myPosition}
                             icon="/food/happy.png"
                             animation={1}
+                            radius={1000}
                         />
+                        <Marker
+                            position={icon}
+                            icon="/food/happy.png"
+                            animation={1}
+                            radius={1000}
+                        />
+
                         {shops.map(
                             ({
                                 center,
@@ -192,6 +205,7 @@ const SingleMapDetail = (props) => {
                                         position={center}
                                         icon="/food/coffee1.png"
                                         animation={4}
+                                        value={store_sid}
                                         onClick={() => {
                                             setStoreInfo({
                                                 store_name,
@@ -223,12 +237,14 @@ const SingleMapDetail = (props) => {
                             store_road,
                             distance,
                             store_sid,
+                            center,
                             key,
                         }) => {
                             return (
                                 <div
                                     className={selectedMapItem}
                                     key={store_sid}
+                                    value={store_sid}
                                     onClick={() => {
                                         setStoreInfo({
                                             store_name,
