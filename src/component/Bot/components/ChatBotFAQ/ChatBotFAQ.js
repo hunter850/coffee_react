@@ -14,7 +14,7 @@ const ChatBotFAQ = () => {
         return setQ1(
             <>
                 <div
-                    className="react-chatbot-kit-chat-bot-message FAQquestion"
+                    className="react-chatbot-kit-chat-bot-message FAQquestion EesyM"
                     style={{ backgroundColor: "rgb(55, 107, 126)" }}
                 >
                     <img

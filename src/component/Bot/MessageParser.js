@@ -51,7 +51,10 @@ const MessageParser = ({ children, actions }) => {
             message.includes("菜單") ||
             message.includes("價格") ||
             message.includes("蛋糕") ||
-            message.includes("飲料")
+            message.includes("飲料") ||
+            message.includes("黑咖啡") ||
+            message.includes("美式") ||
+            message.includes("濃縮")
         ) {
             actions.handleFoodMenu();
         } else if (
@@ -134,7 +137,7 @@ const MessageParser = ({ children, actions }) => {
             message.includes("修改") ||
             message.includes("申請") ||
             message.includes("登") ||
-            message.includes("帳密")||
+            message.includes("帳密") ||
             message.includes("VIP")
         ) {
             actions.handleMemberFAQ();
@@ -146,12 +149,12 @@ const MessageParser = ({ children, actions }) => {
             message.includes("券")
         ) {
             actions.handleCouponFAQ();
-        }else if (
+        } else if (
             message.includes("積分") ||
             message.includes("兌換") ||
             message.includes("轉換") ||
             message.includes("分") ||
-            message.includes("換")||
+            message.includes("換") ||
             message.includes("點數")
         ) {
             actions.handlePointsFAQ();
