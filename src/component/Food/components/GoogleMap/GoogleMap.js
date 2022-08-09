@@ -128,8 +128,7 @@ function GoogleMap({
                                     return (
                                         <option
                                             key={`dateGet${id}`}
-                                            value={`2022-0${month}-0${date + i
-                                                }`}
+                                            value={`2022-0${month}-${date + i}`}
                                         >
                                             {/* {timeperiod} */}
                                             {`${month}月${date + i}日`}
