@@ -1,3 +1,9 @@
+.home-flex-container {
+    width: 1440px;
+    padding: 20px 200px;
+    margin: auto;
+    text-align: center;
+}
 .home-title-white {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     /* font-family: 'Rubik', sans-serif; */
@@ -13,8 +19,14 @@
     padding-bottom: 20px;
 }
 
-.p-20 {
-    padding: 20px 0px;
+.link_from {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+.link_to {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: all 1s;
 }
 .home-box-color {
     background-color: #324A59;

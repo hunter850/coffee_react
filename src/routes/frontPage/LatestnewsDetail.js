@@ -29,14 +29,26 @@ export default function LatestnewsDetail() {
                         alt=""
                     />
                 </div>
-                <p className="latestnewdetailcontent1">
-                    當與家有更長的相處，就需要讓更多新鮮事為生活加分<br/>來拎+B
-                    全台門市提供新鮮烘焙咖啡豆採購方案！ 最低3包就能享有多包優惠<br/>
-                    還有寄豆服務，每次取貨都新鮮滿分😋<br/>Home café
-                    就選 來拎+B ☕️ <br/>大宗採購優惠方案<br/> ♦3~5包 95折 <br/> ♦6~9包 93折<br/>
-                    ♦10~20包 9折<br/> ♦21包以上88折<br/>咖啡日常好好享受，精品現折15元，
-                    為讓您的日常沖煮新模樣，多點講究更多點享受，即日起開始優惠!!
-                </p>
+                <div>
+                    <p className="latestnewdetailcontent1">
+                        當與家有更長的相處，就需要讓更多新鮮事為生活加分
+                        <br />
+                        來拎+B 全台門市提供新鮮烘焙咖啡豆採購方案！
+                        最低3包就能享有多包優惠
+                        <br />
+                        還有寄豆服務，每次取貨都新鮮滿分😋
+                        <br />
+                        Home café 就選 來拎+B ☕️ <br />
+                        大宗採購優惠方案
+                        <br /> ♦3~5包 95折 <br /> ♦6~9包 93折
+                        <br />
+                        ♦10~20包 9折
+                        <br /> ♦21包以上88折
+                        <br />
+                        咖啡日常好好享受，精品現折15元，
+                        為讓您的日常沖煮新模樣，多點講究更多點享受，即日起開始優惠!!
+                    </p>
+                </div>
                 <div className="newslinedeco">
                     <img src={linedeco} alt="" />
                 </div>

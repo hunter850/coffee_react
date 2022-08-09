@@ -9,7 +9,15 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import styles from "../../css/postnav.module.scss";
 
-function PostNav({ scrollDir = "up", rows, setRows, getData }) {
+function PostNav({
+    scrollDir = "up",
+    rows,
+    setRows,
+    getData,
+    setSearchMode,
+    keyWord,
+    setKeyWord,
+}) {
     const { authorized, sid, account, token, avatar } = useAuth();
     const {
         post_nav,
@@ -30,12 +38,16 @@ function PostNav({ scrollDir = "up", rows, setRows, getData }) {
                     </a>
                 </div>
                 <div className={search_wrap}>
-                    <Seachbar rows={rows} setRows={setRows} getData={getData} />
+                    <Seachbar
+                        rows={rows}
+                        setRows={setRows}
+                        getData={getData}
+                        setSearchMode={setSearchMode}
+                        keyWord={keyWord}
+                        setKeyWord={setKeyWord}
+                    />
                 </div>
-                <ul
-                    className={icon_wrap}
-                    style={{ width: "25%", textAlign: "end" }}
-                >
+                <ul className={icon_wrap}>
                     <li>
                         <BsFillPlusSquareFill color="#324A59" fontSize="24" />
                     </li>

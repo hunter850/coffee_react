@@ -107,6 +107,11 @@ function LoginMain() {
         setMyVerify({ ...myVerify, [name]: val });
     };
 
+    // 自動填表
+    const autoSignUp = ()=>{
+        setMyform({...myform,member_name:"123",member_account:"123",member_password:"123",member_mail:"chia87616@gmail.com"})
+    };
+
     // 錯誤訊息提示
     const [nameErrors, setNameErrors] = useState('')
     const [accountErrors, setAccountErrors] = useState('')
@@ -335,6 +340,7 @@ function LoginMain() {
                     </div>
                     <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
                     <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
+                    <button type="submit" onClick={autoSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>自動</button>
                 </form>
                 <div className="particle"></div>
 

@@ -25,7 +25,7 @@ function Cart() {
     const productRef = useRef([]);
     const foodRef = useRef([]);
     const c = useClass();
-    const [, setNowList] = useData("nowList");
+    const [nowList, setNowList] = useData("nowList");
     const [productList, setProductList, resetProduct] = useData("productList");
     const [foodList, setFoodList, resetFood] = useData("foodList");
     const [, setProductCoupons, resetProductCoupon] = useData("productCoupons");
@@ -136,6 +136,8 @@ function Cart() {
             alert("請先登入");
             return;
         }
+        // 設定localStorage
+        localStorage.setItem("nowList", nowList);
         // fetch 商品
         axios
             .get(getProduct, {
@@ -194,15 +196,21 @@ function Cart() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    const productClicked = () => {
+        localStorage.setItem("nowList", "productList");
+        setNowList("productList");
+    };
+    const foodClicked = () => {
+        localStorage.setItem("nowList", "foodList");
+        setNowList("foodList");
+    };
     return (
         <Fragment>
             <div className={fake_body}>
                 <NavBar />
                 <div className={c(container, px_200)}>
-                    <button onClick={() => setNowList("productList")}>
-                        商品
-                    </button>
-                    <button onClick={() => setNowList("foodList")}>餐點</button>
+                    <button onClick={productClicked}>商品</button>
+                    <button onClick={foodClicked}>餐點</button>
                     <CartTab />
                 </div>
             </div>

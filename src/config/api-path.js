@@ -15,6 +15,7 @@ export const getOrderHistory = `${SERVER}/member/api/order-history`;
 export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
 export const getUserLikes = `${SERVER}/member/api/member-likes`;
 export const delUserLikes = `${SERVER}/member/api/member-delete-likes`;
+export const getUserPosts = `${SERVER}/member/api/posts-history`;
 
 // COURSE
 
@@ -36,11 +37,15 @@ export const foodData = `${SERVER}/food/addfooddata`;
 export const sendMail = `${SERVER}/food/send_mail`;
 
 // SHARING
+export const sharingIMGS = `${SERVER}/images/sharing`;
 export const getPosts = `${SERVER}/sharing/post`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
 export const memberLikeAPI = `${SERVER}/sharing/memberlike`;
-export const previewAPI = `${SERVER}/sharing/previewAPI`;
+// SHARING/serach
+export const previewAPI = `${SERVER}/sharing/search/previewAPI`;
+export const popTagAPI = `${SERVER}/sharing/search/popTag`;
+export const searchPost = `${SERVER}/sharing/search/searchPost`;
 
 // Products
 
@@ -48,7 +53,6 @@ export const productsDataGet = `${SERVER}/products/api`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
 export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
-export const sharingIMGS = `${SERVER}/images/sharing`;
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;

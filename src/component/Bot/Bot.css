@@ -141,13 +141,16 @@
     background-color: rgba(230, 226, 226, 0.632);
 }
 .ChatBotFAQBox{
+    display: flex;
+    flex-wrap: wrap;
 
 }
 .ChatBotFAQBoxBtn{
     background-color: rgba(255, 255, 255, 0.592);
-    margin-top: 5px;
-    padding: 10px;
-    width: 100px;
+    /* margin-top: 5px; */
+    margin: 2px 2px;
+    padding: 5px;
+    /* width: 100px; */
     font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
@@ -158,9 +161,112 @@
 .FAQquestion{
     margin-top: 5px;
     font-size: 12px;
+    
 }
 .FAQqR{
     margin-top: 5px;
     right: -140.5px;
     width: 100px;
+}
+.FAQquestion img{
+    width: 100%;
+}
+.personalityQuizBox{
+width: 240px;
+min-height: 160px;
+margin-top: 2px;
+background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(240, 189, 114, 0.7) 100%);
+padding-bottom: 5px;
+
+}
+.personalityQuizImg{
+
+}
+.personalityQuizInner{
+
+}
+.question-text{}
+.personalityQuizStart{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.personalityQuizStart p{
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+    padding: auto;
+    color: #5c3d14;
+}
+.personalityQuizStartBtn{
+    margin: auto;
+    font-size: 16px;
+    line-height: 32px;
+    align-items:center;
+    margin-top: 5px;
+    width: 70%;
+    border: none;
+    cursor: pointer;
+}
+.personalityQuizStartBtn:hover{
+    background-color: #e3e2e2b0;
+}
+.personalityQuizInner1 .question-text1{
+    text-align: center;
+    font-size: 12px;
+    line-height: 32px;
+    padding: auto;
+    color: #000;
+
+} 
+.question-text1 p{
+    font-size: 12px;
+}
+.personalityQuizInner1 .question-text2{
+    text-align: center;
+    font-size: 12px;
+    line-height: 24px;
+    padding: auto;
+    color: #000;
+} 
+.question-text-btn{
+    margin: auto;
+    font-size: 12px;
+    line-height: 32px;
+    align-items:center;
+    margin-top: 5px;
+    width: 90%;
+    border: none;
+    cursor: pointer;
+}
+.question-text-btn:hover{
+    background-color: #e3e2e2b0;
+}
+.personalityQuizInner2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.personalityQuizImg{
+    /* background: rgba(255, 255, 255, 0.932); */
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.personalityQuizImg img{
+    width: 60px;
+}
+.personalityQuizImgInner p:nth-child(2){
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+.EesyM{
+    width: 240px !important;
+    margin-top: -162px !important;
 }

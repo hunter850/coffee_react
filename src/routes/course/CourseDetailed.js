@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
 import Chatbot from "../../component/Bot/ChatBot";
@@ -13,17 +13,23 @@ import CourseContent from "../../component/Course/CourseDetailed/CourseContent/C
 import axios from "axios";
 import { courseDataGet, linePayApi, courseDataFkGet } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
+import Footer from '../../component/Footer';
 
 
 const CourseDetailed = () => {
+    // path Fixed區域的限制
+    const coursePathFixed = useRef();
+    const [pathFixed, setPathFixed] = useState(0);
+    // Modal控制
     const [isOpen, setIsOpen] = useState(false);
-
     // 每一個區塊離top多遠的狀態
     const [object, setObject] = useState(0);
     const [material, setMaterial] = useState(0);
     const [signup, setSignup] = useState(0);
     const [notice, setNotice] = useState(0);
     const [item, setItem] = useState(0);
+    // 判斷path是否被點擊
+    const [clickPaths, setClickPaths] = useState(false);
 
     // 儲存Line Pay跳轉url
     const [url, setUrl] = useState('');
@@ -62,8 +68,12 @@ const CourseDetailed = () => {
 
     // 點擊後引到報名課程的區塊
     const courseClickMove = () => {
+        setClickPaths(true);
         setIndex(2);
-        window.scrollTo({ top: signup + 200, behavior: "smooth" });
+        window.scrollTo({ top: signup, behavior: "smooth" });
+        setTimeout(() => {
+            setClickPaths(false);
+        }, 0);
     };
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
@@ -142,6 +152,13 @@ const CourseDetailed = () => {
             });
     };
 
+    useEffect(() => {
+        if (start === true) {
+            // 250是麵包屑的高度
+            setPathFixed(coursePathFixed.current.getBoundingClientRect().top - 250);
+        }
+    }, [start]);
+
     // 外鍵 - 取得當前sid外鍵資料
     useEffect(() => {
         getCourseDataFk();
@@ -184,8 +201,8 @@ const CourseDetailed = () => {
             </div>
             <div style={{ backgroundColor: "#FBFBFA" }}>
                 <div className="container d-flex CourseContent-wrap">
-                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} index={index} setIndex={setIndex} />
-                    <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} date={date} time={time} />
+                    <CoursePath object={object} material={material} signup={signup} notice={notice} item={item} topZeroSure={topZeroSure} index={index} setIndex={setIndex} setClickPaths={setClickPaths} clickPaths={clickPaths} pathFixed={pathFixed} />
+                    <CourseContent count={count} setCount={setCount} courseDataPrice={courseDataPrice} object={object} material={material} signup={signup} notice={notice} item={item} setObject={setObject} setMaterial={setMaterial} setSignup={setSignup} setNotice={setNotice} setItem={setItem} topZeroSure={topZeroSure} sendOrder={sendOrder} date={date} time={time} courseDetailedData={courseDetailedData} start={start} />
                 </div>
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -199,8 +216,10 @@ const CourseDetailed = () => {
                 >
                     <h4>請先登入</h4>
                 </Link>
-            </Modal>;
+            </Modal>
             <Chatbot />
+            <div className="course-path-fixed" ref={coursePathFixed}></div>
+            <Footer />
         </Fragment>
     );
 

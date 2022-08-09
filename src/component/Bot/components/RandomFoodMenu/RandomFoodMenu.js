@@ -13,13 +13,10 @@ const RandomFoodMenu = () => {
                 },
             })
             .then((result) => {
-                //console.log(result);
                 setRandomFoodMenuName(result.data.RandomResult.menu_name);
                 setRandomFoodMenuPhoto(result.data.RandomResult.menu_photo);
             });
     };
-    // console.log(randomFoodMenuName);
-    // console.log(randomFoodMenuPhoto);
     useEffect(() => {
         RandomFoodMenuPhotos();
     }, []);
@@ -29,6 +26,8 @@ const RandomFoodMenu = () => {
                 <div className="RandomFoodMenuTitle">{randomFoodMenuName}</div>
                 <div className="RandomFoodMenuIMG">
                     <img
+                        // src={`http://localhost:3500/images/food/${randomFoodMenuPhoto}`}
+                        // src={require("../../images/Coupon/store_img1.png")}
                         src={`http://localhost:3500/images/food/${randomFoodMenuPhoto}`}
                         alt=""
                     />

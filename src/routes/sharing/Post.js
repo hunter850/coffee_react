@@ -4,7 +4,7 @@ import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
 
-import { getPosts } from "../../config/api-path";
+import { getPosts, searchPost } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
 import styles from "./css/post.module.scss";
@@ -28,25 +28,33 @@ function Post() {
         fake_a,
     } = styles;
     const wrap = useRef(null);
-    const setParams = useParams();
+    const mounted = useRef(false);
 
+    const [searchMode, setSearchMode] = useState(false);
     const [post_sid, setPost_sid] = useState(0);
     const [getDataTimes, setGetDataTimes] = useState(0);
+    const [keyWord, setKeyWord] = useState("");
 
     const [rows, setRows] = useState([]);
 
     const [scrollY, setScrollY] = useState([0, 0]);
     const [scrollDirect, setScrollDirect] = useState("");
 
-    const getData = async (times = 0, searchObj = {}) => {
-        const { title, meber_sid, tag } = searchObj;
-        const paramsData = { times, title, meber_sid, tag };
-
-        const r = await axios(getPosts, {
-            params: { ...paramsData },
-        });
-
-        return r.data;
+    // TODO:isEnd不發ajax
+    const getData = async (times = 0) => {
+        if (!searchMode) {
+            const r = await axios(getPosts, {
+                params: { times },
+            });
+            console.log("getByDefault");
+            return r.data;
+        } else {
+            const r = await axios(searchPost, {
+                params: { times, q: keyWord },
+            });
+            console.log("getBySearch");
+            return r.data;
+        }
     };
 
     const scrollHandler = throttle((e) => {
@@ -68,6 +76,20 @@ function Post() {
     }, 100);
 
     useEffect(() => {
+        if (mounted.current) {
+            (async () => {
+                setRows([]);
+                setGetDataTimes(0);
+                const r = await getData(getDataTimes);
+                console.log(r);
+                setRows(r.rows);
+            })();
+        } else {
+            mounted.current = true;
+        }
+    }, [searchMode]);
+
+    useEffect(() => {
         const pathname = window.location.pathname.replace("/sharing", "");
         if (pathname === "" || pathname === "/") {
             setPost_sid(0);
@@ -85,6 +107,7 @@ function Post() {
     useEffect(() => {
         (async () => {
             const r = await getData(getDataTimes);
+
             setRows((pre) => {
                 return [...pre, ...r.rows];
             });
@@ -114,15 +137,18 @@ function Post() {
     return (
         <Fragment>
             <NavBar />
-            {/* <FakeNav /> */}
             <PostNav
                 scrollDir={scrollDir}
                 rows={rows}
                 setRows={setRows}
                 getData={getData}
+                setSearchMode={setSearchMode}
+                keyWord={keyWord}
+                setKeyWord={setKeyWord}
             />
 
             <div className={container} ref={wrap}>
+                <h1 className="mt-5"> searchMode:{searchMode + ""}</h1>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}

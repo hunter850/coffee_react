@@ -51,6 +51,60 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             messages: [...prev.messages, botMessage],
         }));
     };
+    const handleProductFAQ = () => {
+        const botMessage = createChatBotMessage("關於商品問題", {
+            widget: "ProductFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleCartFAQ = () => {
+        const botMessage = createChatBotMessage("關於購物問題", {
+            widget: "CartFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleCourseFAQ = () => {
+        const botMessage = createChatBotMessage("關於課程問題", {
+            widget: "CourseFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleMemberFAQ = () => {
+        const botMessage = createChatBotMessage("關於會員問題", {
+            widget: "MemberFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleCouponFAQ = () => {
+        const botMessage = createChatBotMessage("關於優惠券問題", {
+            widget: "CouponFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handlePointsFAQ = () => {
+        const botMessage = createChatBotMessage("關於積分問題", {
+            widget: "PointsFAQ",
+        });
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
 
     return (
         <div>
@@ -63,6 +117,12 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                         handleChitchatting,
                         handleTextError,
                         handleRandomFoodMenu,
+                        handleProductFAQ,
+                        handleCartFAQ,
+                        handleCourseFAQ,
+                        handleMemberFAQ,
+                        handleCouponFAQ,
+                        handlePointsFAQ,
                     },
                 });
             })}

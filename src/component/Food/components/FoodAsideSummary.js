@@ -42,28 +42,33 @@ function FoodAsideSummary({
             ? "pay "
             : "pay disabled";
     const handleSubmission = (e) => {
-        if (Auth.sid)
-            axios({
-                method: "post",
-                url: foodData,
-                data: {
-                    dataFromFoodDetail,
-                    standardTime,
-                    store_sid,
-                    member: Auth ? Auth : "沒東西",
-                },
+        try {
+            if (Auth.sid)
+                axios({
+                    method: "post",
+                    url: foodData,
+                    data: {
+                        dataFromFoodDetail,
+                        standardTime,
+                        store_sid,
+                        member: Auth ? Auth : "沒東西",
+                    },
 
-                "content-type": "application/json",
-            }).then((response) => {
-                // console.log(response);
-                navigate("/cart");
-                getCount();
-            });
-        else {
-            setIsOpen(true);
-            console.log("QQ");
+                    "content-type": "application/json",
+                }).then((response) => {
+                    // console.log(response);
+                    navigate("/cart");
+                    getCount();
+                });
+            else {
+                setIsOpen(true);
+                console.log("QQ");
+            }
+        } catch (error) {
+            console.log("error");
         }
     };
+
     // "content-type": "application/json",
     return (
         <>

@@ -3,7 +3,7 @@ import axios from "axios";
 
 import styles from "../../css/postdetailmodal.module.scss";
 import PostDeatailCarousel from "./PostDetailCarousel";
-import { getPosts } from "../../../../config/api-path";
+import { getPosts, searchPost } from "../../../../config/api-path";
 import { useNavigate } from "react-router-dom";
 import CancelBtn from "./CancelBtn";
 import PostDetailContent from "./PostDetailContent";

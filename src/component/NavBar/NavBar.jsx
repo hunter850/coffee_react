@@ -73,19 +73,21 @@ function NavBar({ navPosition = 'fixed' }) {
     // 登入顯示打招呼
 
     const [user, setUser] = useState({
-        member_name:"",
+        member_name: "",
     });
 
     useEffect(() => {
-        axios
-            .get(getUserData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                setUser({...user,member_name:response.data[0].member_name})
-            });
+        if (token !== '') {
+            axios
+                .get(getUserData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    setUser({ ...user, member_name: response.data[0].member_name });
+                });
+        }
     }, [token]);
 
     const memberName = (
