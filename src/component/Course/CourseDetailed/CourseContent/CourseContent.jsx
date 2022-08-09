@@ -23,6 +23,8 @@ function CourseContent({
     sendOrder,
     date,
     time,
+    courseDetailedData,
+    start,
 }) {
     return (
         <div className="CourseContent">
@@ -30,6 +32,8 @@ function CourseContent({
                 setItem={setItem}
                 item={item}
                 topZeroSure={topZeroSure}
+                courseDetailedData={courseDetailedData}
+                start={start}
             >
                 課程內容
             </CourseContentItem>
@@ -37,6 +41,7 @@ function CourseContent({
                 materia={materia}
                 setMaterial={setMaterial}
                 topZeroSure={topZeroSure}
+                start={start}
             />
             <CourseContentSignup
                 courseDataPrice={courseDataPrice}
@@ -48,16 +53,19 @@ function CourseContent({
                 sendOrder={sendOrder}
                 date={date}
                 time={time}
+                start={start}
             />
             <CourseContentNotice
                 notice={notice}
                 setNotice={setNotice}
                 topZeroSure={topZeroSure}
+                start={start}
             />
             <CourseComtentObject
                 object={object}
                 setObject={setObject}
                 topZeroSure={topZeroSure}
+                start={start}
             />
         </div>
     );

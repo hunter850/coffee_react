@@ -11,7 +11,6 @@ function DetailBtm(props) {
                         __html: dataLoaded ? renderData[0].products_spec : "",
                     }}
                 >
-                    {}
                     {/* 成分：100% 阿拉比卡咖啡豆 <br />
                     商品規格：10g x 10包 <br />
                     製造地：台灣 保存期限：18個月，製造日期如包裝標示 <br />
