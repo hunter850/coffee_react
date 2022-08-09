@@ -16,10 +16,14 @@ function CartTab() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [nowList] = useData("nowList");
     const [list] = useData(nowList);
+    const [selectedProductCouponId] = useData("selectedProductCouponId");
+    const [selectedFoodCouponId] = useData("selectedFoodCouponId");
     const navigate = useNavigate();
     const confirmHandler = useCallback(() => {
+        localStorage.setItem("nowList", nowList);
+        localStorage.setItem("selectedCouponId", nowList);
         navigate("/cart/form", { replace: false });
-    }, [navigate]);
+    }, [navigate, nowList]);
     return (
         <Fragment>
             <div className={cart_container}>
