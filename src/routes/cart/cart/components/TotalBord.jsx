@@ -57,8 +57,8 @@ function TotalBord(props) {
         // 折%
         return Math.ceil(
             discountObject.price *
-                discountObject.quantity *
-                (1 - selectedCoupon.discount)
+            discountObject.quantity *
+            (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
 
@@ -81,7 +81,13 @@ function TotalBord(props) {
                 <div>
                     <p>結算金額</p>
                     <p>{totalPrice - discount} 元</p>
-                    <p>tween: {parseInt(tween.total)} 元</p>
+                    <p>
+                        tween:{" "}
+                        {Number.isNaN(parseInt(tween.total))
+                            ? 0
+                            : parseInt(tween.total)}{" "}
+                        元
+                    </p>
                     <button onClick={confirmHandler}>確認</button>
                 </div>
             </div>
