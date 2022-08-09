@@ -13,6 +13,10 @@
     position: fixed;
     top: 0;
 }
+
+.course-path-fixed {
+    border: 1px solid transparent;
+}
 .CoursePaths > a {
     display: block;
     padding-bottom: 23px;
