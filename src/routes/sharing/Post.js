@@ -29,18 +29,19 @@ function Post() {
     } = styles;
     const wrap = useRef(null);
     const mounted = useRef(false);
+    const mounted_K = useRef(false);
 
     const [searchMode, setSearchMode] = useState(false);
     const [post_sid, setPost_sid] = useState(0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
+    const [isEnd, setIsEnd] = useState(false);
 
     const [rows, setRows] = useState([]);
 
     const [scrollY, setScrollY] = useState([0, 0]);
     const [scrollDirect, setScrollDirect] = useState("");
 
-    // TODO:isEnd不發ajax
     const getData = async (times = 0) => {
         if (!searchMode) {
             const r = await axios(getPosts, {
@@ -49,10 +50,15 @@ function Post() {
             console.log("getByDefault");
             return r.data;
         } else {
+            // if (isEnd) return;
+            const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
+            const replaced = keyWord.replace(pattern, "").trim();
+
             const r = await axios(searchPost, {
-                params: { times, q: keyWord },
+                params: { times, q: replaced },
             });
             console.log("getBySearch");
+            if (r.data.isEnd) setIsEnd(true);
             return r.data;
         }
     };
@@ -76,13 +82,15 @@ function Post() {
     }, 100);
 
     useEffect(() => {
+        // DidUpdate轉換狀態才清rows
         if (mounted.current) {
             (async () => {
                 setRows([]);
-                setGetDataTimes(0);
-                const r = await getData(getDataTimes);
-                console.log(r);
-                setRows(r.rows);
+                // setGetDataTimes(0);
+                if (!searchMode) {
+                    const r = await getData(getDataTimes);
+                    setRows(r.rows);
+                }
             })();
         } else {
             mounted.current = true;
@@ -95,6 +103,15 @@ function Post() {
             setPost_sid(0);
         }
     }, [window.location.pathname]);
+
+    useEffect(() => {
+        if (mounted_K.current) {
+            setGetDataTimes(0);
+            setIsEnd(false);
+        } else {
+            mounted_K.current = true;
+        }
+    }, [keyWord]);
 
     useEffect(() => {
         if (post_sid) {
@@ -145,10 +162,11 @@ function Post() {
                 setSearchMode={setSearchMode}
                 keyWord={keyWord}
                 setKeyWord={setKeyWord}
+                setIsEnd={setIsEnd}
             />
 
             <div className={container} ref={wrap}>
-                <h1 className="mt-5"> searchMode:{searchMode + ""}</h1>
+                <h1 className="mt-5">isend:{isEnd + ""}</h1>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}

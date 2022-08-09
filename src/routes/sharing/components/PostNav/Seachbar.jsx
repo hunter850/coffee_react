@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import _ from "lodash";
 import axios from "axios";
-import { previewAPI, popTagAPI } from "../../../../config/api-path";
+import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
 
 import Magnifier from "./Magnifier";
 import styles from "../../css/Seachbar.module.scss";
 import ResultRow from "./ResultRow";
 
 function Seachbar({
-    rows,
     setRows,
     getData,
     setSearchMode,
     keyWord,
     setKeyWord,
+    setIsEnd,
 }) {
     const {
         container,
@@ -67,19 +67,20 @@ function Seachbar({
         }
     };
 
-    const keyWordSubmit = (bySubmit = true) => {
+    const keyWordSubmit = () => {
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
 
         replaced ? setSearchMode(true) : setSearchMode(false);
-        // if (bySubmit) {
-        //     if (!keyWord.trim()) return;
-        // }
 
-        // clearPreview();
-        // getData(null, { title: keyWord }).then((r) => {
-        //     setRows(r.rows);
-        // });
+        if (replaced) {
+            clearPreview();
+            axios(searchPost, { params: { q: keyWord } }).then((r) => {
+                setRows(r.data.rows);
+                console.log(r.data);
+                if (r.data.isEnd) setIsEnd(true);
+            });
+        }
     };
 
     const chooseResult = (name) => {
@@ -100,9 +101,7 @@ function Seachbar({
             axios(previewAPI, {
                 params: { queryString: replaced },
             }).then((r) => {
-                // const rows = r.data.rows.reverse();
                 const rows = r.data.rows;
-
                 setPreviewData(rows);
             });
         }, 150),
