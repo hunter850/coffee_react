@@ -5,7 +5,7 @@ import fblogo from "../../src/images/frontpage/fblogo.png";
 import iglogo from "../../src/images/frontpage/iglogo.png";
 import "./Footer.css";
 import { Link } from "react-router-dom";
-import coffeeshop from "../images/frontpage/coffee-shop.jpg";
+// import coffeeshop from "../images/frontpage/coffee-shop.jpg";
 
 export default function Footer() {
     return (
