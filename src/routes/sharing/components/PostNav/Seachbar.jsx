@@ -7,7 +7,14 @@ import Magnifier from "./Magnifier";
 import styles from "../../css/Seachbar.module.scss";
 import ResultRow from "./ResultRow";
 
-function Seachbar({ rows, setRows, getData }) {
+function Seachbar({
+    rows,
+    setRows,
+    getData,
+    setSearchMode,
+    keyWord,
+    setKeyWord,
+}) {
     const {
         container,
         magnifier_wrap,
@@ -20,7 +27,6 @@ function Seachbar({ rows, setRows, getData }) {
     } = styles;
     const containerRef = useRef(null);
     const mag_wrap = useRef(null);
-    const [keyWord, setKeyWord] = useState("");
     const [previewData, setPreviewData] = useState([]);
     const [defaultData, setDefaultData] = useState([]);
 
@@ -28,7 +34,7 @@ function Seachbar({ rows, setRows, getData }) {
         window.addEventListener("click", unFocusSearchbar);
         window.addEventListener("scroll", scrollHandler);
         axios(popTagAPI).then((r) => {
-            const rows = r.data.reverse();
+            const rows = r.data;
 
             setDefaultData(rows);
         });
@@ -61,10 +67,11 @@ function Seachbar({ rows, setRows, getData }) {
         }
     };
 
-    const keyWordPost = (bySubmit = true) => {
+    const keyWordSubmit = (bySubmit = true) => {
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
 
+        replaced ? setSearchMode(true) : setSearchMode(false);
         // if (bySubmit) {
         //     if (!keyWord.trim()) return;
         // }
@@ -77,7 +84,7 @@ function Seachbar({ rows, setRows, getData }) {
 
     const chooseResult = (name) => {
         setKeyWord(name);
-        keyWordPost(false);
+        keyWordSubmit(false);
     };
 
     const sendDataDebounce = useCallback(
@@ -93,8 +100,9 @@ function Seachbar({ rows, setRows, getData }) {
             axios(previewAPI, {
                 params: { queryString: replaced },
             }).then((r) => {
-                const rows = r.data.rows.reverse();
-                console.log(r.data);
+                // const rows = r.data.rows.reverse();
+                const rows = r.data.rows;
+
                 setPreviewData(rows);
             });
         }, 150),
@@ -150,7 +158,7 @@ function Seachbar({ rows, setRows, getData }) {
                 )}
 
                 <span className={divider}></span>
-                <button className={submit} onClick={keyWordPost}>
+                <button className={submit} onClick={keyWordSubmit}>
                     <Magnifier color="#4285f4" />
                 </button>
             </div>
