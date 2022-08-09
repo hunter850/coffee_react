@@ -84,7 +84,7 @@ function BookMark(props) {
                 </li>
                 <li>
                     <Btn
-                        children={"電子禮物卡"}
+                        children={"禮券及餐券"}
                         width={"130px"}
                         onClick={() => {
                             sortBycate(5);

@@ -2,7 +2,8 @@ import { Fragment, useMemo, useState, useEffect } from "react";
 import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
 
-function TotalBord() {
+function TotalBord(props) {
+    const { confirmHandler } = props;
     // 現在是商品或餐點
     const [nowList] = useData("nowList");
     // 取得產品列表
@@ -56,8 +57,8 @@ function TotalBord() {
         // 折%
         return Math.ceil(
             discountObject.price *
-                discountObject.quantity *
-                (1 - selectedCoupon.discount)
+            discountObject.quantity *
+            (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
 
@@ -80,8 +81,14 @@ function TotalBord() {
                 <div>
                     <p>結算金額</p>
                     <p>{totalPrice - discount} 元</p>
-                    <p>tween: {parseInt(tween.total)} 元</p>
-                    <button>確認</button>
+                    <p>
+                        tween:{" "}
+                        {Number.isNaN(parseInt(tween.total))
+                            ? 0
+                            : parseInt(tween.total)}{" "}
+                        元
+                    </p>
+                    <button onClick={confirmHandler}>確認</button>
                 </div>
             </div>
         </Fragment>

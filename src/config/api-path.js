@@ -15,6 +15,7 @@ export const getOrderHistory = `${SERVER}/member/api/order-history`;
 export const uploadAvatar = `${SERVER}/member/api/avatar-upload`;
 export const getUserLikes = `${SERVER}/member/api/member-likes`;
 export const delUserLikes = `${SERVER}/member/api/member-delete-likes`;
+export const getUserPosts = `${SERVER}/member/api/posts-history`;
 
 // COURSE
 
