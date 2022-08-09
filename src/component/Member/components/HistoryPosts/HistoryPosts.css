@@ -28,6 +28,29 @@ body {
     min-height: 800px;
     height: 100%;
 }
+.hp-sort-section{
+    margin-left: 489px;
+}
+.hp-sort{
+    position: relative;
+    width: 200px;
+    height: 36px;
+    border: none;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--blue);
+    border-radius: 3px;
+}
+.hp-arr{
+    position: absolute;
+    top: 6px;
+    margin-left: 170px;
+    z-index: 3;
+    color: var(--blue);
+
+}
 .hp-wrap {
     display: block;
 }
@@ -103,34 +126,34 @@ body {
 }
 
 /* 動態 */
-.like-enter {
+.hPost-enter {
     opacity: 0;
     transform: translateX(-80px) translateY(10px) scale(70%);
 }
 
-.like-enter-active {
+.hPost-enter-active {
     opacity: 1;
     transform: translateX(0px) translateY(0px) scale(100%);
     transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
-.like-enter-done {
+.hPost-enter-done {
     opacity: 1;
     transform: translateX(0px) translateY(0px) scale(100%);
 }
 
-.like-exit {
+.hPost-exit {
     opacity: 1;
     transform: translateX(0px) translateY(0px) scale(100%);
 }
 
-.like-exit-active {
+.hPost-exit-active {
     opacity: 0;
     transform: translateX(-80px) translateY(10px) scale(70%);
     transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
-.like-exit-done {
+.hPost-exit-done {
     transform: translateX(-80px) translateY(10px) scale(700%);
     opacity: 0;
 }
