@@ -34,7 +34,7 @@ export const linePayApi = `${SERVER}/course/createOrder`;
 export const foodDataGet = `${SERVER}/food`;
 export const mapAPI = `${SERVER}/mapapi`;
 export const foodData = `${SERVER}/food/addfooddata`;
-export const mail = `${SERVER}/food/send_mail`;
+export const sendMail = `${SERVER}/food/send_mail`;
 
 // SHARING
 export const sharingIMGS = `${SERVER}/images/sharing`;

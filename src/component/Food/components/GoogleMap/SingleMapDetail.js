@@ -87,12 +87,12 @@ const SingleMapDetail = (props) => {
     const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
     const [shops, setShops] = useState(shops_dummy);
+    const [initial, setInitial] = useState(false);
     const [myPosition, setMyPosition] = useState(props.center); // 讀取後會呈現 {lat: 25.042061, lng: 121.5414114}
     const { storeInfo, setStoreInfo } = props;
     const { store_name, store_block, store_road } = storeInfo;
     const initialState = { store_name: "", store_block: "", store_road: "" };
     // 預設位置
-
     const [icon, setIcon] = useState({});
 
     const getMyPosition = () => {
@@ -102,9 +102,11 @@ const SingleMapDetail = (props) => {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
+                setInitial(true);
             },
             function (positionError) {
                 console.log("positionError ", positionError);
+                setInitial(true);
             }
         );
     };
@@ -127,6 +129,12 @@ const SingleMapDetail = (props) => {
         setShops(shopsWithDistance);
     };
 
+    // if (!initial) return null;
+    console.log(
+        "SingleMapDetail.defaultProps",
+        SingleMapDetail.defaultProps.center.lat
+    );
+    console.log("my", myPosition.lat);
     return (
         <div className="mapSection">
             <p onClick={getMyPosition}>
@@ -169,12 +177,13 @@ const SingleMapDetail = (props) => {
                         zoom={14}
                         clickableIcons={false}
                     >
-                        <Marker
-                            position={myPosition}
-                            icon="/food/happy.png"
-                            animation={1}
-                            radius={1000}
-                        />
+                        {myPosition.lat !== 25.034320914178288 && (
+                            <Marker
+                                position={myPosition}
+                                icon="/food/happy.png"
+                                animation={1}
+                            />
+                        )}
 
                         {shops.map(
                             ({
@@ -231,7 +240,7 @@ const SingleMapDetail = (props) => {
                                 <div
                                     className={
                                         center.lat === icon.lat &&
-                                        center.lng === icon.lng
+                                            center.lng === icon.lng
                                             ? "mapshow selected"
                                             : "mapshow"
                                     }
@@ -256,7 +265,15 @@ const SingleMapDetail = (props) => {
                                                     {store_block}
                                                     {store_road}
                                                 </div>
-                                                <div className="distance">
+
+                                                <div
+                                                    className={
+                                                        myPosition.lat ===
+                                                            25.034320914178288
+                                                            ? "distance disabled"
+                                                            : "distance"
+                                                    }
+                                                >
                                                     {distance && distance.text}
                                                 </div>
                                             </div>

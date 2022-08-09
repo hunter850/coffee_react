@@ -17,8 +17,10 @@ import Footer from '../../component/Footer';
 
 
 const CourseDetailed = () => {
+    // path Fixed區域的限制
     const coursePathFixed = useRef();
     const [pathFixed, setPathFixed] = useState(0);
+    // Modal控制
     const [isOpen, setIsOpen] = useState(false);
     // 每一個區塊離top多遠的狀態
     const [object, setObject] = useState(0);
