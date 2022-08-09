@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import MemberMenu from "../MemberMenu/MemberMenu";
@@ -12,8 +13,8 @@ import Modal from "../../../Modal/Modal";
 import axios from "axios";
 import AuthContext from "../../AuthContext";
 
-import { RiHeartAddFill } from "react-icons/ri";
-import { FaHeart } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { FaPen } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -23,10 +24,9 @@ function HistoryPostsMain() {
 
     // --------------------- 拿到收藏的資料 ---------------------
 
-    const [myPosts, setMyPosts] = useState([]);
-    const [sortPosts, setSortPosts] = useState([]);
-    // const [monthSortPosts, setMonthSortPosts] = useState([]);
-    const [sortData, setSortData] = useState("");
+    const [myPosts, setMyPosts] = useState([]);         // 原始資料
+    const [sortPosts, setSortPosts] = useState([]);     // 要做事的資料
+    const [sortData, setSortData] = useState("");       // 下拉選單的值
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -38,10 +38,10 @@ function HistoryPostsMain() {
                 },
             })
             .then((response) => {
-                // if (!response.data) {
-                //     setIsOpen(true);
-                //     return;
-                // }
+                if (response.data.length<=0) {
+                    setIsOpen(true);
+                    return;
+                }
                 console.log(response.data);
                 setMyPosts(response.data);
                 setSortPosts(response.data);
@@ -51,10 +51,6 @@ function HistoryPostsMain() {
     // 拿到下拉選單的值
     const sortPost = (e) => {
         // --------------------- 下拉選單排序 ---------------------
-
-        // myPosts.forEach((item)=>{
-        //     console.log(item.created_at);
-        // });
 
         const dateAsc = (a, b) => {
             const date = new Date(a.created_at);
@@ -68,69 +64,37 @@ function HistoryPostsMain() {
         };
 
         setSortData(e.target.value);
+
         if (e.target.value === "") {
             console.log(1);
             setSortPosts([...myPosts]);
+        
         } else if (e.target.value === "dateAsc") {
             console.log(2);
-            setSortPosts([...myPosts].sort(dateAsc));
+            setSortPosts([...myPosts].sort(dateAsc));               // sort方法為原陣列排序，不會產生新的陣列，因此先對原資料myPosts進行複製之後再sort，才不會動到原資料
+
         } else if (e.target.value === "dateDesc") {
             console.log(3);
             setSortPosts([...myPosts].sort(dateDesc));
+
         } else if (e.target.value === "threeMonths") {
             const newMyPosts = myPosts.filter((v) => {
-                const now = new Date();
-                const dataDate = new Date(v.created_at).getTime();
-                return now.getTime() - dataDate <= 7776000000;
+                const now = new Date();                             // 現在
+                const dataDate = new Date(v.created_at).getTime();  // 撈到的資料
+                return now.getTime() - dataDate <= 7776000000;      // 1000*60*60*24*90
             });
             console.log(newMyPosts);
             setSortPosts(newMyPosts);
         }
     };
 
-    // console.log(sortPosts);
-
-    // useEffect(() => {
-    //     if (sortData === "dateAsc") {
-    //         const renderAsc = myPosts.sort(dateAsc);
-    //         setMyPosts(renderAsc);
-    //     }
-    //     if (sortData === "dateDesc") {
-    //         const renderDesc = myPosts.sort(dateDesc);
-    //         setMyPosts(renderDesc);
-    //     }
-
-    //     if (sortData === "threeMonths") {
-    //         const newArray = [];
-
-    //         const date1 = new Date().getMonth() + 1;
-    //         for (let i = 0; i < myPosts.length; i++) {
-    //             const date2 = new Date(myPosts[i].created_at).getMonth() + 1;
-    //             const threeMonthsResult = date1 - date2;
-
-    //             if (threeMonthsResult <= 3) {
-    //                 newArray.push(myPosts[i]);
-    //                 // console.log(myPosts[i]);
-    //                 // const threeMonthsData = myPosts[i];
-    //                 setMyPosts(newArray);
-    //             }
-    //         }
-    //     }
-    // }, [sortData]);
-
-    // useEffect(() => {
-    //     console.log(sortPosts);
-    // }, [sortData]);
-
-    // console.log(myPosts.sort(dateAsc));
-
-    // 跳轉到商品頁
-    // const toProduct = () => {
-    //     setIsOpen(false);
-    //     setTimeout(() => {
-    //         navigate("/products", { replace: false });
-    //     },0)
-    // };
+    // 跳轉到分享牆
+    const toShare = () => {
+        setIsOpen(false);
+        setTimeout(() => {
+            navigate("/sharing", { replace: false });
+        },0)
+    };
 
     return (
         <>
@@ -147,14 +111,14 @@ function HistoryPostsMain() {
                                 value={sortData}
                                 onChange={(e) => sortPost(e)}
                             >
-                                <option value="">排序方式</option>
+                                <option value="">查詢排序</option>
                                 <option value="dateAsc">
-                                    由近&nbsp;&gt;&nbsp;到遠
-                                </option>
-                                <option value="dateDesc">
                                     由遠&nbsp;&gt;&nbsp;到近
                                 </option>
-                                <option value="threeMonths">三個月內</option>
+                                <option value="dateDesc">
+                                    由近&nbsp;&gt;&nbsp;到遠
+                                </option>
+                                <option value="threeMonths">過去三個月</option>
                                 <option value="priceDesc">
                                     價錢高&nbsp;&gt;&nbsp;低
                                 </option>
@@ -186,6 +150,36 @@ function HistoryPostsMain() {
                     </div>
                 </div>
             </div>
+
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Modal.Body style={{ padding: "0" }}>
+                    <div className="li-wrap">
+                        <div className="li-msg-wrap">
+                            <div className="li-msg">
+                                <FaPen
+                                    size={"2.5rem"}
+                                    style={{
+                                        display: "block",
+                                        marginBottom: "40px",
+                                    }}
+                                />
+                                還沒有分享
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            className="li-btn"
+                            onClick={toShare}
+                        >
+                            <FaEdit
+                                size={".9rem"}
+                                style={{ marginRight: "10px" }}
+                            />
+                            去發文！
+                        </button>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </>
     );
 }
