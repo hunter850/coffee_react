@@ -67,6 +67,29 @@
 .home-box {
     /* width: 1100px; */
 }
+
+/* 淡出淡入效果 */
+.textfrom {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+.textto {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: all 1s;
+}
+.photofrom {
+    transform: translateX(100px);
+    opacity: 0;
+}
+.phototo {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: all 1s;
+}
+
+
+
 @media screen and (max-width:400px) {
     .goodcourseimg-scale img{
         width: 327px;
