@@ -1,15 +1,15 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 // import NavBar from "../../component/NavBar";
 import Path from "../../component/Item/Path/Path";
 import "./Reserve.css";
 import NavBar from "../../component/NavBar/NavBar";
 import Calendar from "./Calendar";
 import axios from "axios";
-import { mail } from "../../config/api-path";
+import { sendMail } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Chatbot from "../../component/Bot/ChatBot";
-
+import AuthContext from "../../component/Member/AuthContext";
 const places = [
     {
         key: "shop_1",
@@ -90,26 +90,56 @@ function Reserve() {
     const [branch, setBranch] = useState("");
     const [people, setPeople] = useState("");
     const [hour, setHour] = useState("");
-    const [mail, setMail] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const Auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const handleSendMail = async () => {
-        setMail(true);
-
+    const { mail, name } = Auth;
+    console.log("sendMail", mail);
+    const handleSubmission = (e) => {
         try {
-            await axios.post(
-                mail,
-                {
-                    branch,
-                    people,
-                    hour,
-                },
-                console.log("true")
-            );
+            if (Auth.sid)
+                axios({
+                    method: "post",
+                    url: sendMail,
+                    data: {
+                        branch,
+                        people,
+                        hour,
+                        mail,
+                        name,
+                        member: Auth ? Auth : "沒東西",
+                    },
+
+                    "content-type": "application/json",
+                }).then((response) => {
+                    console.log(response);
+                    setIsOpen(true);
+                    // navigate("/");
+                    // getCount();
+                });
         } catch (error) {
             console.log("error");
         }
     };
+
+    // const handleSendMail = async () => {
+    //     setMail(true);
+
+    //     try {
+    //         await axios.post(
+    //             mail,
+    //             {
+    //                 branch,
+    //                 people,
+    //                 hour,
+    //             },
+    //             console.log("true")
+    //         );
+    //     } catch (error) {
+    //         console.log("error");
+    //     }
+    // };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
     return (
         <Fragment>
@@ -156,13 +186,10 @@ function Reserve() {
                         </div>
                         <div className="branchchoice">
                             <h6 className="store">日期</h6>
-                            <Calendar setHour={setHour} />
+                            <Calendar hour={hour} setHour={setHour} />
                         </div>
 
-                        <div
-                            className={reserveBtn}
-                            onClick={(handleSendMail, setIsOpen)}
-                        >
+                        <div className={reserveBtn} onClick={handleSubmission}>
                             <h6>送出</h6>
                         </div>
                         <div className="price">
