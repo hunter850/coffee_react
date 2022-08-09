@@ -1,19 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import _ from "lodash";
 import axios from "axios";
-import { previewAPI } from "../../../../config/api-path";
+import { previewAPI, popTagAPI } from "../../../../config/api-path";
 
 import Magnifier from "./Magnifier";
 import styles from "../../css/Seachbar.module.scss";
 import ResultRow from "./ResultRow";
-
-const data = [
-    { name: "拿鐵", type: "tag" },
-    { name: "好有趣阿", type: "tag" },
-    { name: "有趣課程", type: "tag" },
-    { name: "課程", type: "title", src: "sss.jpg" },
-    { name: "老皮", m_sid: "886", type: "member", src: `lao_pi.png` },
-];
 
 function Seachbar({ rows, setRows, getData }) {
     const {
@@ -27,52 +19,60 @@ function Seachbar({ rows, setRows, getData }) {
         result_content,
     } = styles;
     const containerRef = useRef(null);
+    const mag_wrap = useRef(null);
     const [keyWord, setKeyWord] = useState("");
-    const [result, setResult] = useState([]);
+    const [previewData, setPreviewData] = useState([]);
+    const [defaultData, setDefaultData] = useState([]);
 
     useEffect(() => {
         window.addEventListener("click", unFocusSearchbar);
+        window.addEventListener("scroll", scrollHandler);
+        axios(popTagAPI).then((r) => {
+            const rows = r.data.reverse();
+
+            setDefaultData(rows);
+        });
 
         return () => {
             window.removeEventListener("click", unFocusSearchbar);
+            window.removeEventListener("scroll", scrollHandler);
         };
     }, []);
 
-    const focusSearchbar = () => {
-        setResult(data);
+    const scrollHandler = () => {
+        setPreviewData([]);
+    };
+
+    const focusSearchbar = (e) => {
+        sendDataDebounce(e.target.value);
         containerRef.current.style.width = "100%";
+        mag_wrap.current.style.display = "block";
+    };
+
+    const clearPreview = () => {
+        setPreviewData([]);
+        containerRef.current.style.width = "calc(100% - 2.5rem)";
     };
 
     const unFocusSearchbar = (e) => {
         if (!e.target.closest("#seach_wrap")) {
-            clearResult();
+            clearPreview();
+            mag_wrap.current.style.display = "none";
         }
-    };
-
-    const clearResult = () => {
-        setResult([]);
-        containerRef.current.style.width = "calc(100% - 2.5rem)";
-    };
-
-    const clearAll = () => {
-        clearResult();
-        setKeyWord("");
     };
 
     const keyWordPost = (bySubmit = true) => {
-        if (bySubmit) {
-            if (!keyWord.trim()) {
-                console.log("無效");
-                return;
-            }
-        }
+        const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
+        const replaced = keyWord.replace(pattern, "").trim();
 
-        clearResult();
-        console.log(keyWord);
-        getData(null, { title: keyWord }).then((r) => {
-            console.log(r.rows);
-            setRows(r.rows);
-        });
+        // if (bySubmit) {
+        //     if (!keyWord.trim()) return;
+        // }
+
+        // clearPreview();
+        // getData(null, { title: keyWord }).then((r) => {
+        //     setRows(r.rows);
+        // });
     };
 
     const chooseResult = (name) => {
@@ -80,40 +80,50 @@ function Seachbar({ rows, setRows, getData }) {
         keyWordPost(false);
     };
 
-    const debounce = useCallback(
+    const sendDataDebounce = useCallback(
         _.debounce((val) => {
             const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
-            console.log(val.replace(pattern, ""));
+            const replaced = val.replace(pattern, "").trim();
+
+            if (replaced.length === 0) {
+                setPreviewData(defaultData);
+                return;
+            }
 
             axios(previewAPI, {
-                params: { title: val },
+                params: { queryString: replaced },
             }).then((r) => {
+                const rows = r.data.rows.reverse();
                 console.log(r.data);
+                setPreviewData(rows);
             });
-        }, 200),
-        []
+        }, 150),
+        [defaultData]
     );
 
     const handleChange = async (e) => {
-        // setKeyWord(e.target.value);
         setKeyWord(e.target.value);
-        debounce(e.target.value);
 
-        // 注音
+        sendDataDebounce(e.target.value);
     };
 
     return (
         <div className={container} ref={containerRef}>
             <div className={search_wrap} id="seach_wrap">
-                {result.length > 0 && (
-                    <div className={magnifier_wrap}>
-                        <Magnifier />
-                    </div>
-                )}
+                <div
+                    className={magnifier_wrap}
+                    ref={mag_wrap}
+                    style={{ display: "none", transform: "translateX(4px)" }}
+                >
+                    <Magnifier />
+                </div>
+
                 <input
                     type="text"
                     value={keyWord}
-                    onClick={focusSearchbar}
+                    onClick={(e) => {
+                        focusSearchbar(e);
+                    }}
                     onChange={(e) => {
                         handleChange(e);
                     }}
@@ -122,7 +132,10 @@ function Seachbar({ rows, setRows, getData }) {
                     <div
                         className={clearInput}
                         aria-label="清除"
-                        onClick={clearAll}
+                        onClick={() => {
+                            clearPreview();
+                            setKeyWord("");
+                        }}
                     >
                         <svg
                             focusable="false"
@@ -141,9 +154,9 @@ function Seachbar({ rows, setRows, getData }) {
                     <Magnifier color="#4285f4" />
                 </button>
             </div>
-            {result.length > 0 && (
+            {previewData.length > 0 && (
                 <div className={result_wrap}>
-                    {result.map((v, i) => {
+                    {previewData.map((v, i) => {
                         return (
                             <div
                                 key={i}

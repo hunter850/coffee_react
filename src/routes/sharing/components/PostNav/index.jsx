@@ -32,10 +32,7 @@ function PostNav({ scrollDir = "up", rows, setRows, getData }) {
                 <div className={search_wrap}>
                     <Seachbar rows={rows} setRows={setRows} getData={getData} />
                 </div>
-                <ul
-                    className={icon_wrap}
-                    style={{ width: "25%", textAlign: "end" }}
-                >
+                <ul className={icon_wrap}>
                     <li>
                         <BsFillPlusSquareFill color="#324A59" fontSize="24" />
                     </li>
