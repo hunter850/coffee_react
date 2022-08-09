@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState,useContext } from "react";
-import "./Likes.css";
+import "./HistoryPosts.css";
 
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
@@ -11,12 +11,10 @@ import { delUserLikes,getUserLikes } from "../../../../config/api-path";
 import { useNavigate } from "react-router-dom";
 
 
-function HistoryPostsCard() {
+function HistoryPostsCard({sortPosts}) {
 
-    // const { products_name, products_pic, products_price, products_with_products_categories_sid, products_sid } = myLikes;
+    const { sid, title, content, likes, created_at } = sortPosts;
     const { token } = useContext(AuthContext);
-
-    const [heartIsClick,setHeartIsClick] = useState(false);
 
     const navigate = useNavigate();
 
@@ -26,7 +24,15 @@ function HistoryPostsCard() {
     // };
 
     return (
-        <></>
+        <div className="hp-info">
+            <div className="hp-info-wrap">
+                <div className="hp-title">{title}<span>{created_at.split("T")[0]}</span></div>
+                <div className="hp-content">
+                    <div className="hp-text" dangerouslySetInnerHTML={{__html: content}}></div>
+                    <div className="hp-heart"><FaHeart size={'0.75rem'} style={{marginRight:"8px"}}/>{likes}</div>
+                </div>
+            </div>
+        </div>
     );
 }
 

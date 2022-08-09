@@ -2,20 +2,20 @@
 /* eslint-disable prettier/prettier */
 import { useRef, useEffect } from "react";
 import { useState } from "react";
-function CourseContentMaterial({ materia, setMaterial, topZeroSure }) {
+function CourseContentMaterial({ materia, setMaterial, topZeroSure, start }) {
 
     const materialScrollTop = useRef();
     useEffect(() => {
-        if (topZeroSure === true) {
+        if (topZeroSure === true && start === true) {
             setMaterial(materialScrollTop.current.getBoundingClientRect().top);
         }
 
-    }, [topZeroSure]);
+    }, [topZeroSure, start]);
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div ref={materialScrollTop}>
+        <div >
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentMaterial'>
-                <div className="d-flex f-aic CourseContentItem-wrap">
+                <div className="d-flex f-aic CourseContentItem-wrap" ref={materialScrollTop}>
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="24"
