@@ -41,8 +41,10 @@ export const getPosts = `${SERVER}/sharing/post`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
 export const memberLikeAPI = `${SERVER}/sharing/memberlike`;
-export const previewAPI = `${SERVER}/sharing/previewAPI`;
-export const popTagAPI = `${SERVER}/sharing/popTag`;
+// SHARING/serach
+export const previewAPI = `${SERVER}/sharing/search/previewAPI`;
+export const popTagAPI = `${SERVER}/sharing/search/popTag`;
+export const searchPost = `${SERVER}/sharing/search/searchPost`;
 
 // Products
 
