@@ -140,7 +140,6 @@ const Course = () => {
                 return v.course_name.includes(searchInp);
             });
             const pageArray = chunk(newCourseData, perPage);
-            console.log(pageArray.length);
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseData(pageArray);
@@ -238,7 +237,7 @@ const Course = () => {
                 >
                     <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
                 </Modal.Body>
-            </Modal>;
+            </Modal>
             <Chatbot />
         </Fragment>
     );
