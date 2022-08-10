@@ -5,6 +5,7 @@ import NavBar from "../../component/NavBar/NavBar";
 import axios from "axios";
 import { courseDataGet } from "../../config/api-path";
 import { useEffect, useState } from "react";
+import Footer from "../../component/Footer";
 
 function OrderCompleted() {
     // 存當筆訂單的資料
@@ -136,6 +137,7 @@ function OrderCompleted() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }
