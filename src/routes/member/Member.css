@@ -50,7 +50,7 @@ body{
     border-radius: 10px;
     background-color: var(--gray);
     backface-visibility: hidden; 
-    /* background: url(/src/images/member/silver-front.jpg) ; */
+    background: url(/src/images/member/silver-front.jpg) ;
 }
 .cardF-wrap{
     display: flex;
@@ -76,7 +76,7 @@ body{
     background-color: var(--gray);
     transform: rotateY(180deg);
     backface-visibility: hidden; 
-    /* background: url(/src/images/member/silver-back.jpg) ; */
+    background: url(/src/images/member/silver-back.jpg) ;
 }
 .cardB-desc{
     font-size: .8rem;
