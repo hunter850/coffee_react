@@ -51,7 +51,7 @@
 .p_name {
     font-size: 16px;
     color: var(--BLUE);
-    flex-grow: 1;
+    flex: 2 0 0;
     text-align: center;
 }
 
@@ -60,6 +60,7 @@
     color: var(--BLUE);
     width: 40px;
     text-align: center;
+    flex: 1 0 0;
 }
 
 .p_multiply {
@@ -67,5 +68,5 @@
     color: var(--BLUE);
     width: 60px;
     text-align: center;
-    flex-shrink: 0;
+    flex: 1 0 0;
 }
