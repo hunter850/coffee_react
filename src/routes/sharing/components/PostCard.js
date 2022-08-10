@@ -5,13 +5,11 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 import styles from "./../css/postCard.module.scss";
 import { sharingIMGS } from "../../../config/api-path";
 import { FaHeart } from "react-icons/fa";
-import { set } from "lodash";
 
-function PostCard({ cardData, modalMode }) {
+function PostCard({ cardData, modalMode, chooseToSearch }) {
     const { authorized, sid: login_sid, account, token } = useAuth();
     const {
         post_card,
-        post_card_fig,
         like_wrap,
         like_str,
         content_wrap,
@@ -19,7 +17,6 @@ function PostCard({ cardData, modalMode }) {
         nickname_span,
         title_span,
         tags_wrap,
-        hi,
     } = styles;
 
     const {
@@ -38,7 +35,7 @@ function PostCard({ cardData, modalMode }) {
 
     useEffect(() => {
         axios(`${memberLikeAPI}/${sid}`, {
-            params: { member_sid: sid },
+            params: { member_sid: login_sid },
         }).then((r) => {
             setDidLike(Boolean(r.data.liked));
             setLikeQ(r.data.total);
@@ -80,7 +77,17 @@ function PostCard({ cardData, modalMode }) {
                         <span className={like_str}>{likeQ}</span>
                     </li>
                     <li className={content_wrap}>
-                        <div className={title_nickname}>
+                        <div
+                            className={title_nickname}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                chooseToSearch({
+                                    type: "nickname",
+                                    sid: member_sid,
+                                });
+                            }}
+                        >
                             <span className={nickname_span}>
                                 {member_nickname}
                             </span>

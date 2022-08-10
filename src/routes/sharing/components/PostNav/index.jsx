@@ -14,12 +14,12 @@ function PostNav(props) {
         scrollDir = "up",
         rows,
         setRows,
-        getData,
         setSearchMode,
         keyWord,
         setKeyWord,
         setIsEnd,
         setGetDataTimes,
+        chooseToSearch,
     } = props;
     const { authorized, sid, account, token, avatar } = useAuth();
     const {
@@ -43,12 +43,12 @@ function PostNav(props) {
                 <div className={search_wrap}>
                     <Seachbar
                         setRows={setRows}
-                        getData={getData}
                         setSearchMode={setSearchMode}
                         keyWord={keyWord}
                         setKeyWord={setKeyWord}
                         setIsEnd={setIsEnd}
                         setGetDataTimes={setGetDataTimes}
+                        chooseToSearch={chooseToSearch}
                     />
                 </div>
                 <ul className={icon_wrap}>
@@ -58,7 +58,12 @@ function PostNav(props) {
                     <li>
                         <FaHeart color="#324A59" fontSize="24" />
                     </li>
-                    <li className={avatar_wrap}>
+                    <li
+                        className={avatar_wrap}
+                        onClick={() =>
+                            chooseToSearch({ type: "nickname", sid })
+                        }
+                    >
                         <img
                             src={`${imgSrc}/member/${avatar || "missing-image.jpg"
                                 }`}

@@ -22,20 +22,14 @@ const breakpointColumnsObj = {
 
 function Post() {
     const { authorized, sid, account, token } = useAuth();
-    const {
-        container,
-        sharing_wrap,
-        post_img,
-        my_masonry_grid,
-        my_masonry_grid_column,
-        fake_a,
-    } = styles;
+    const { container, my_masonry_grid, my_masonry_grid_column } = styles;
     const wrap = useRef(null);
     const mounted = useRef(false);
     const mounted_K = useRef(false);
+    const param = useParams();
 
-    const [searchMode, setSearchMode] = useState(false);
-    const [post_sid, setPost_sid] = useState(0);
+    const [searchMode, setSearchMode] = useState("");
+    const [post_sid, setPost_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
     const [isEnd, setIsEnd] = useState(false);
@@ -43,7 +37,6 @@ function Post() {
     const [rows, setRows] = useState([]);
 
     const [scrollY, setScrollY] = useState([0, 0]);
-    const [scrollDirect, setScrollDirect] = useState("");
 
     const getData = async (times = 0) => {
         if (!searchMode) {
@@ -100,12 +93,12 @@ function Post() {
         }
     }, [searchMode]);
 
-    useEffect(() => {
-        const pathname = window.location.pathname.replace("/sharing", "");
-        if (pathname === "" || pathname === "/") {
-            setPost_sid(0);
-        }
-    }, [window.location.pathname]);
+    // useEffect(() => {
+    //     const pathname = window.location.pathname.replace("/sharing", "");
+    //     if (pathname === "" || pathname === "/") {
+    //         setPost_sid(0);
+    //     }
+    // }, [window.location.pathname]);
 
     useEffect(() => {
         if (mounted_K.current) {
@@ -155,6 +148,24 @@ function Post() {
         setPost_sid(v.sid);
     };
 
+    const chooseToSearch = (v) => {
+        const { name, sid, type, member_sid } = v;
+        const params = { q: sid || member_sid, type };
+
+        if (name) {
+            setKeyWord(name);
+        }
+        setIsEnd(false);
+        setSearchMode("choose");
+
+        axios(searchPost, { params }).then((r) => {
+            if (r.data.success) {
+                setRows(r.data.rows);
+                if (r.data.isEnd) setIsEnd(true);
+            }
+        });
+    };
+
     return (
         <Fragment>
             <NavBar />
@@ -162,15 +173,16 @@ function Post() {
                 scrollDir={scrollDir}
                 rows={rows}
                 setRows={setRows}
-                getData={getData}
                 setSearchMode={setSearchMode}
                 keyWord={keyWord}
                 setKeyWord={setKeyWord}
                 setIsEnd={setIsEnd}
                 setGetDataTimes={setGetDataTimes}
+                chooseToSearch={chooseToSearch}
             />
 
             <div className={container} ref={wrap}>
+                <h1 className="mt-5">mode:{searchMode}</h1>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
@@ -185,7 +197,11 @@ function Post() {
                                     modalHandler(e, v);
                                 }}
                             >
-                                <PostCard cardData={v} modalMode={post_sid} />
+                                <PostCard
+                                    cardData={v}
+                                    modalMode={post_sid}
+                                    chooseToSearch={chooseToSearch}
+                                />
                             </a>
                         );
                     })}

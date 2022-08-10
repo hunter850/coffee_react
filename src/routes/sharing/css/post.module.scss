@@ -19,7 +19,6 @@
 
 .post_img{
     width: 100%;
-    // height: auto;
 }
 
 // Masonry
@@ -44,7 +43,7 @@
     a>div {
         /* change div to reference your elements you put in <Masonry> */
         background: grey;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         border-radius: 10px;
         overflow: hidden;
         position: relative;
