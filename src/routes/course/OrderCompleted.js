@@ -55,7 +55,6 @@ function OrderCompleted() {
                                         <h6>您購買的課程為</h6>
                                         <br />
                                         <h6 style={{ color: "#253945" }}>
-                                            {" "}
                                             {courseData.course_name}
                                         </h6>
                                         <br />
