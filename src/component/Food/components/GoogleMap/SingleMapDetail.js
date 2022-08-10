@@ -127,13 +127,7 @@ const SingleMapDetail = (props) => {
             .sort((x, y) => x.distance.value - y.distance.value);
         setShops(shopsWithDistance);
     };
-
-    // if (!initial) return null;
-    console.log(
-        "SingleMapDetail.defaultProps",
-        SingleMapDetail.defaultProps.center.lat
-    );
-    console.log("my", myPosition.lat);
+    console.log("myPosition", myPosition);
     return (
         <div className="mapSection">
             <div className="mapdetail">
