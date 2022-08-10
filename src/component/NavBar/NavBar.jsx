@@ -16,7 +16,6 @@ function NavBar({ navPosition = 'fixed' }) {
     const { sid, name, token, setAuth } = useAuth();
     const { count, getCount, handleLogout } = useNav();
     const navigate = useNavigate();
-
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
 

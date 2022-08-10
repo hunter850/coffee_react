@@ -54,7 +54,8 @@ const MessageParser = ({ children, actions }) => {
             message.includes("飲料") ||
             message.includes("黑咖啡") ||
             message.includes("美式") ||
-            message.includes("濃縮")
+            message.includes("濃縮") ||
+            message.includes("咖啡")
         ) {
             actions.handleFoodMenu();
         } else if (

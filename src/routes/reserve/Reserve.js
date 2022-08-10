@@ -10,6 +10,8 @@ import Modal from "../../component/Modal/Modal";
 import { Link, useNavigate } from "react-router-dom";
 import Chatbot from "../../component/Bot/ChatBot";
 import AuthContext from "../../component/Member/AuthContext";
+import Footer from "../../component/Footer";
+
 const places = [
     {
         key: "shop_1",
@@ -18,7 +20,7 @@ const places = [
         text: "Cafe 1",
         storeName: "0+B 光復店",
         storeRoad: "光復南路300號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_2",
@@ -27,7 +29,7 @@ const places = [
         text: "Cafe 2",
         storeName: "0+B 光復店",
         storeRoad: "復興南路一段323號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_3",
@@ -36,7 +38,7 @@ const places = [
         text: "Cafe 3",
         storeName: "0+B 龍門店",
         storeRoad: "忠孝東路四段134號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_4",
@@ -45,7 +47,7 @@ const places = [
         text: "Cafe 4",
         storeName: "0+B 永康店",
         storeRoad: "永康街2號2樓",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_5",
@@ -54,7 +56,7 @@ const places = [
         text: "Cafe 5",
         storeName: "0+B 敦和店",
         storeRoad: "敦化南路二段263號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_6",
@@ -63,7 +65,7 @@ const places = [
         text: "Cafe 6",
         storeName: "0+B 微風南京店",
         storeRoad: "南京東路三段337號",
-        storeBlock: "松山區, 台北市, 106台灣",
+        storeBlock: "台北市松山區",
     },
     {
         key: "shop_7",
@@ -72,7 +74,7 @@ const places = [
         text: "Cafe 7",
         storeName: "0+B 南京建國店",
         storeRoad: "南京東路三段1號",
-        storeBlock: "中山區, 台北市, 106台灣",
+        storeBlock: "台北市中山區",
     },
     {
         key: "shop_8",
@@ -81,7 +83,7 @@ const places = [
         text: "Cafe 8",
         storeName: "0+B 南京三民店",
         storeRoad: "南京東路五段171號",
-        storeBlock: "松山區, 台北市, 106台灣",
+        storeBlock: "台北市松山區 ",
     },
 ];
 
@@ -92,10 +94,9 @@ function Reserve() {
     const [hour, setHour] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const Auth = useContext(AuthContext);
-    const navigate = useNavigate();
-
+    const checkedDate = hour.toLocaleString();
     const { mail, name } = Auth;
-    console.log("sendMail", mail);
+
     const handleSubmission = (e) => {
         try {
             if (Auth.sid)
@@ -105,7 +106,7 @@ function Reserve() {
                     data: {
                         branch,
                         people,
-                        hour,
+                        checkedDate,
                         mail,
                         name,
                         member: Auth ? Auth : "沒東西",
@@ -141,6 +142,7 @@ function Reserve() {
     //     }
     // };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
+
     return (
         <Fragment>
             <NavBar />
@@ -228,6 +230,8 @@ function Reserve() {
                 </Modal>
             </div>
             <Chatbot />
+            <br />
+            <Footer />
         </Fragment>
     );
 }

@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 import { useRef, useEffect } from "react";
 import { useState } from "react";
-function CourseContentMaterial({ materia, setMaterial, topZeroSure, start }) {
+function CourseContentMaterial({ materia, setMaterial, topZeroSure, start, courseDetailedData }) {
 
     const materialScrollTop = useRef();
     useEffect(() => {
@@ -74,20 +74,12 @@ function CourseContentMaterial({ materia, setMaterial, topZeroSure, start }) {
                         onClick={() => setdisplayNone(!displayNone)}
                     ></div>
                 </div>
-                <div
+                <pre
                     className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""
                         }`}
                 >
-                    <ul>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                    </ul>
-                </div>
+                    {start ? courseDetailedData[0].course_material : ''}
+                </pre>
             </div>
         </div>
     );
