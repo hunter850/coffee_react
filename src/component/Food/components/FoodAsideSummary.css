@@ -56,8 +56,6 @@
     flex: 6;
 }
 
-
-
 .aside .txt {
     margin: 5px 0;
 }
@@ -128,9 +126,8 @@
     color: #eee5dd;
 }
 .aside .pay.disabled {
-    background-color: #d1cfcf;
-    color: #253945;
-    pointer-events: none;
+    background-color: #ccc;
+    color: #fff;
 }
 
 .payarea {
