@@ -12,8 +12,8 @@
 /* 左右箭頭的樣式在這裡定義 */
 .swiper-button-prev::after {
     /* font-size: 12px; */
-    /* content: "prev"; */
-    /* background-image: ; */
+    content: "prev";
+    background-image:url(../../../images/frontpage/material/star-left-arrow.svg) ;
 }
 
 .swiper-button-next::after {

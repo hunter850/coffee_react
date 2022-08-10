@@ -11,16 +11,20 @@
 }
 .goodcourse-box {
     width: 1100px;
-    position: relative;
 }
 
-.goodcourse-img {
+.goodcourse_img {
     width: 594px;
     height: 424px;
 }
-/* .goodcourseimg-scale img:hover {
+/* .goodcourseimg_scale img:hover {
     transform: scale(1.1);
 } */
+
+.right-barista-width {
+    width: 10px;
+    height: 10px;
+}
 
 .goodcourse-text {
     line-height: 2.5rem;
@@ -28,25 +32,19 @@
 }
 
 .container-relative {
-    position: relative;
     background-color: #fcfaf7;
 }
 
 .right-brewedcoffee {
-    position: absolute;
-    left: 554px;
-    bottom: -20px;
+    transform: translateX(550px) translateY(-350px);
 }
 .right-barista-img {
-    position: absolute;
-    top: 50px;
-    left: 460px;
+    transform: translateX(500px) translateY(-500px);
+    z-index: 88;
 }
 .left-barista {
-    position: absolute;
-    top: 150px;
-    /* left: 0px; */
-    z-index: 99;
+    transform: translateX(20px) translateY(-150px);
+    z-index: 999 !important;
 }
 
 .foodCourse-btn {
@@ -76,7 +74,7 @@
 .textto {
     transform: translateX(0px);
     opacity: 1;
-    transition: all 1s;
+    transition: all 2s;
 }
 .photofrom {
     transform: translateX(100px);
@@ -85,13 +83,26 @@
 .phototo {
     transform: translateX(0px);
     opacity: 1;
-    transition: all 1s;
+    transition: all 2s;
+}
+
+.testbox {
+    width: 200px;
+    height: 200px;
+    background-color: aquamarine;
+    position: absolute;
+    top:50px;
+    left: 50px;
+}
+.box1 {
+    width: 300px;
+    height: 300px;
+    position: relative;
 }
 
 
-
 @media screen and (max-width:400px) {
-    .goodcourseimg-scale img{
+    .goodcourseimg_scale img{
         width: 327px;
         height: 196px;
     }

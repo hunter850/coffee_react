@@ -17,7 +17,9 @@
     width: 100%;
 }
 .newslinedeco img{
-    /* background: url(src/images/frontpage/line_deco.png); */
+    width: 1000px;
+    height: 20px;
+    background: url(../../images/frontpage/line_deco.png) ;
 }
 .latestnewdetailcontent1 { 
     padding-top: 80px;
