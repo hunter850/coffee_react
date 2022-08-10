@@ -8,12 +8,10 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
 import ChatBot from "../../component/Bot/ChatBot";
 
-
 function Getcoupon() {
     const { token } = useAuth();
     // ========
     let navigate = useNavigate();
-
 
     const segColors = [
         "#CCA375",
@@ -163,7 +161,6 @@ function Getcoupon() {
     );
 
     useEffect(() => {
-        
         if (!token) {
             alert("請先登入");
             navigate("/member/login");

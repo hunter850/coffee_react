@@ -14,6 +14,10 @@ function CartTab() {
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [priceInfo, setPriceInfo] = useState({
+        total: 0,
+        discount: 0,
+    });
     const [nowList] = useData("nowList");
     const [list] = useData(nowList);
     const [selectedProductCouponId] = useData("selectedProductCouponId");
@@ -54,7 +58,10 @@ function CartTab() {
                 </div>
                 <div className={total_wrap}>
                     <TotalHeader />
-                    <TotalBord confirmHandler={confirmHandler} />
+                    <TotalBord
+                        confirmHandler={confirmHandler}
+                        setPriceInfo={setPriceInfo}
+                    />
                 </div>
             </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>
