@@ -38,14 +38,14 @@ function Productinfo(props) {
                 const fetchUserLike = JSON.parse(JSON.stringify(res.data));
                 userLikeData = fetchUserLike;
                 setUserLike(userLikeData);
-                console.log("userLikeData", userLikeData);
+                // console.log("userLikeData", userLikeData);
                 setInfoLoaded(true);
             });
     };
 
     useEffect(() => {
         getUserLike();
-        console.log("renderData", renderData);
+        // console.log("renderData", renderData);
     }, [dataLoaded]);
 
     useEffect(() => {
@@ -76,7 +76,7 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log(fetchCartData);
+                // console.log(fetchCartData);
                 // cartCount.setCartCountNum(cartCount.cartCountNum + 1);
                 getCount();
 
@@ -94,7 +94,7 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log("fetchCartData", fetchCartData);
+                // console.log("fetchCartData", fetchCartData);
             });
     };
 
@@ -108,7 +108,7 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log("fetchCartData", fetchCartData);
+                // console.log("fetchCartData", fetchCartData);
             });
     };
 
@@ -213,15 +213,15 @@ function Productinfo(props) {
                     onClick={() => {
                         if (Auth.authorized) {
                             if (checkLike) {
-                                console.log("要刪除");
+                                // console.log("要刪除");
                                 delUserLike();
                             } else {
-                                console.log("要加入");
+                                // console.log("要加入");
                                 sendUserLike();
                             }
                         } else {
                             // alert("請先登入會員");
-                            console.log(Auth);
+                            // console.log(Auth);
                             setIsOpen(true);
                         }
                     }}

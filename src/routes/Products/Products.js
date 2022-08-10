@@ -54,7 +54,7 @@ function Products() {
             await setDataRows(saveTotalData);
             await setFetchData(fetchingData);
             const pagechunk = await chunk(saveTotalData, 8);
-            await console.log("pagechunk", pagechunk);
+            // await console.log("pagechunk", pagechunk);
             await setRenderData(pagechunk);
             await setPageTotal(pagechunk.length);
             await setDataLoaded(true);
@@ -107,10 +107,11 @@ function Products() {
                             cardStyle={cardStyle}
                             setCardStyle={setCardStyle}
                             pageNow={pageNow}
+                            pageTotal={pageTotal}
                         />
                     </div>
 
-                    <div className="d-flex f-jcc">
+                    {/* <div className="d-flex f-jcc">
                         {Array(pageTotal)
                             .fill(1)
                             .map((v, i) => {
@@ -130,7 +131,7 @@ function Products() {
                                     </div>
                                 );
                             })}
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <ChatBot />

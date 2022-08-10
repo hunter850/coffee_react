@@ -24,16 +24,21 @@
 @media (max-width: 375px) {
     .Food-container {
         min-width: 375px;
-        .foodcard-session {
-            justify-content: center;
+    
 
             .filterbtn-area {
-                // display: flex;
-                width: auto;
-                width: 100%;
+                display: flex;
+                width: 375px;
+                justify-content: center;
                 margin: 0 0;
-            overflow-x: scroll;
+                transform: translateX(-17px);
+                .filterbutton{
+                    margin:10px 5px;
+                    width: 60px;
+                    padding: 3px;
+                }
+
             }
-        }
+
     }
 }

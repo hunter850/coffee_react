@@ -19,6 +19,7 @@ import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
+import Footer from "../../component/Footer";
 
 const CourseManage = () => {
     // 取得點擊的sid
@@ -83,6 +84,10 @@ const CourseManage = () => {
         // 排序 - 難度高級到初級
         sortDataFun('levelDesc', levelDesc, courseManageDataCopy, perPage, sortData, setPageTotal, setCourseManageData, chunk, numberConvertString);
     };
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, [pageNow]);
 
     useEffect(() => {
         courseManageDataGet();
@@ -158,7 +163,7 @@ const CourseManage = () => {
                         <ManageHeader courseManageSortData={courseManageSortData} searchInp={searchInp} setSearchInp={setSearchInp} setCourseManageSortData={setCourseManageSortData} setSearchSure={setSearchSure} courseSearch={courseSearch} />
                     </div>
                     <Sort sortclass={"sortGrey"} courseData={courseManageData} setSortData={setSortData} sortData={sortData} />
-                    <div className="container" style={{ paddingBottom: 104 }}>
+                    <div className="container" style={{ paddingBottom: 60 }}>
                         {courseManageData.length > 0 &&
                             courseManageData[pageNow - 1].map((v, i) => {
                                 return (
@@ -206,6 +211,7 @@ const CourseManage = () => {
                 </div>
             </div>
             {searchInp !== "" && sid === 0 ? searchError : ''}
+            <Footer />
         </Fragment>
     );
 
