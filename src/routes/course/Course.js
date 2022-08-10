@@ -22,6 +22,7 @@ import {
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import Modal from "../../component/Modal/Modal";
+import Footer from '../../component/Footer';
 
 const Course = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -205,7 +206,7 @@ const Course = () => {
                                 );
                             })}
                     </div>
-                    <div className="d-flex f-jcc">
+                    <div className="d-flex f-jcc course-pages">
                         {Array(pageTotal)
                             .fill(1)
                             .map((v, i) => {
@@ -239,6 +240,7 @@ const Course = () => {
                 </Modal.Body>
             </Modal>
             <Chatbot />
+            <Footer />
         </Fragment>
     );
     return el;

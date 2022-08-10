@@ -19,9 +19,9 @@ function BookMark(props) {
                     cateNum
                 );
             });
-            console.log(newRender);
+            // console.log(newRender);
             const resetPage = chunk(newRender, 8);
-            console.log("resetPage", resetPage);
+            // console.log("resetPage", resetPage);
             setRenderData(resetPage);
             setPageTotal(resetPage.length);
             setPageNow(0);

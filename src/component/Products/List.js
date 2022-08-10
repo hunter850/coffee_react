@@ -2,9 +2,17 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
+import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 
 function List(props) {
-    const { renderData, dataLoaded, cardStyle, setCardStyle, pageNow } = props;
+    const {
+        renderData,
+        dataLoaded,
+        cardStyle,
+        setCardStyle,
+        pageNow,
+        pageTotal,
+    } = props;
     // const nowPageNum = renderData[`${pageNow}`];
 
     let pageNum = Number(pageNow);
@@ -55,30 +63,54 @@ function List(props) {
                     </div>
                 </div>
                 <div className="card_regin">
-                    {dataLoaded
-                        ? renderData[pageNum].map((v, i) => {
-                              return (
-                                  <Link
-                                      to={`/products/detail/${v.products_sid}`}
-                                      key={v.products_sid}
-                                  >
-                                      <Card
-                                          cardData={{
-                                              card_tag: "純苦",
-                                              card_name: v.products_name,
-                                              card_content: v.products_info,
-                                              card_price: v.products_price,
-                                              card_sid: v.products_sid,
-                                              card_img_s: v.products_pic,
-                                              card_img_file:
-                                                  v.products_with_products_categories_sid,
-                                              card_className: cardStyle,
-                                          }}
-                                      />
-                                  </Link>
-                              );
-                          })
-                        : ""}
+                    <ul>
+                        {dataLoaded
+                            ? renderData.map((va, ia) => {
+                                  return renderData[ia].map((v, i) => {
+                                      return (
+                                          <ScrollWrap
+                                              start="cardaniwrapbf"
+                                              end="cardaniwrapat"
+                                              offset={375}
+                                              //   backAgain={true}
+                                              //   backOffset={-5}
+                                              component="li"
+                                              key={v.products_sid}
+                                          >
+                                              <Link
+                                                  className=""
+                                                  to={`/products/detail/${v.products_sid}`}
+                                                  key={v.products_sid}
+                                                  style={{
+                                                      marginBottom: "50px",
+                                                  }}
+                                              >
+                                                  <Card
+                                                      cardData={{
+                                                          card_tag: "純苦",
+                                                          card_name:
+                                                              v.products_name,
+                                                          card_content:
+                                                              v.products_info,
+                                                          card_price:
+                                                              v.products_price,
+                                                          card_sid:
+                                                              v.products_sid,
+                                                          card_img_s:
+                                                              v.products_pic,
+                                                          card_img_file:
+                                                              v.products_with_products_categories_sid,
+                                                          card_className:
+                                                              cardStyle,
+                                                      }}
+                                                  />
+                                              </Link>
+                                          </ScrollWrap>
+                                      );
+                                  });
+                              })
+                            : ""}
+                    </ul>
                 </div>
             </div>
         </>
