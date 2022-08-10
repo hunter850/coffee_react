@@ -9,6 +9,8 @@ import axios from "axios";
 import { productsDataGet } from "../../config/api-path";
 import { chunk } from "../../component/Course/helper/chunk";
 import "./Products.scss";
+import Footer from "../../component/Footer";
+import { useLocation } from "react-router-dom";
 
 import ChatBot from "../../component/Bot/ChatBot";
 
@@ -24,6 +26,7 @@ function Products() {
     const [dataLoaded, setDataLoaded] = useState(false);
     const [cardStyle, setCardStyle] = useState("card_card");
     const [isOpen, setIsOpen] = useState(false);
+    const [productsScroll, setProductsScroll] = useState(false);
 
     let saveTotalData = [];
     let fetchingData = [];
@@ -46,6 +49,11 @@ function Products() {
             .then((res) => {});
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setProductsScroll(false);
+    }, [productsScroll]);
+
     // ---------- AXIOS ----------------------------
 
     useEffect(() => {
@@ -54,25 +62,13 @@ function Products() {
             await setDataRows(saveTotalData);
             await setFetchData(fetchingData);
             const pagechunk = await chunk(saveTotalData, 8);
-            await console.log("pagechunk", pagechunk);
+            // await console.log("pagechunk", pagechunk);
             await setRenderData(pagechunk);
             await setPageTotal(pagechunk.length);
             await setDataLoaded(true);
         }
         fetchFunc();
     }, [setDataLoaded]);
-
-    // DataRows 全部產品資料
-    // (62) [{...},{...},{...},{...},{...}...]
-    // renderData 一頁內的內容
-    // (8) [{...},{...},{...},{...},{...},{...},{...},{...},]
-    // fetchData 來自後端的全部資料
-    //
-    useEffect(() => {
-        // const pagechunk = chunk(DataRows, 8);
-        // console.log("renderData", renderData);
-        // setRenderData(pagechunk[+pageNow - 1]);
-    }, [pageNow]);
 
     const el = (
         <Fragment>
@@ -97,6 +93,7 @@ function Products() {
                     dataLoaded={dataLoaded}
                     setPageTotal={setPageTotal}
                     setPageNow={setPageNow}
+                    setProductsScroll={setProductsScroll}
                 />
                 <div className="container">
                     <div className="d-flex f-w card-wrap">
@@ -107,10 +104,11 @@ function Products() {
                             cardStyle={cardStyle}
                             setCardStyle={setCardStyle}
                             pageNow={pageNow}
+                            pageTotal={pageTotal}
                         />
                     </div>
 
-                    <div className="d-flex f-jcc">
+                    {/* <div className="d-flex f-jcc">
                         {Array(pageTotal)
                             .fill(1)
                             .map((v, i) => {
@@ -130,10 +128,31 @@ function Products() {
                                     </div>
                                 );
                             })}
-                    </div>
+                    </div> */}
                 </div>
             </div>
+            <button
+                className={"producstsScrolltop"}
+                onClick={() => {
+                    setProductsScroll(true);
+                }}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-up-circle"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                    />
+                </svg>
+            </button>
             <ChatBot />
+            <Footer />
         </Fragment>
     );
     return el;

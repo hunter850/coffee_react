@@ -136,7 +136,6 @@ const CourseDetailed = () => {
                 }
             });
     };
-
     const getCourseDetailedData = () => {
         axios.get(courseDataGet)
             .then((res) => {

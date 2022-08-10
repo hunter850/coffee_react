@@ -43,7 +43,8 @@
                     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
                 }
                 .nav-game-ul,
-                .nav-member-ul {
+                .nav-member-ul,
+                .nav-course-ul {
                     text-align: center;
                     position: absolute;
                     z-index: 9999;
@@ -64,10 +65,12 @@
                 }
             }
             .nav-game-li,
-            .nav-member-li {
+            .nav-member-li,
+            .nav-course-li {
                 position: relative;
                 .member-a,
-                .game-a {
+                .game-a,
+                .course-a {
                     pointer-events: none;
                 }
             }

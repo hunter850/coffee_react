@@ -22,21 +22,32 @@ body {
     display: flex;
     justify-content: space-between;
 }
-/* 收藏預覽 */
-.hp-wrap-right {
-    width: 688px;
-    min-height: 800px;
-    height: 100%;
+/* 搜尋框和下拉選單 */
+.hp-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hp-search-section>input{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 50px;
+    padding: 0 15px;
+    box-shadow: 3px 3px 8px rgb(223, 223, 223);
+    margin-bottom: 30px;
 }
 .hp-sort-section{
-    margin-left: 489px;
+    width: 200px;
+    height: 36px;
+    margin-bottom: 30px;
 }
 .hp-sort{
     position: relative;
     width: 200px;
     height: 36px;
     border: none;
-    margin-bottom: 30px;
     padding: 0 10px;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -49,7 +60,19 @@ body {
     margin-left: 170px;
     z-index: 3;
     color: var(--blue);
-
+}
+.hp-search{
+    position: absolute;
+    top: 6px;
+    margin-left: 260px;
+    z-index: 3;
+    color: var(--dark-gray);
+}
+/* 收藏預覽 */
+.hp-wrap-right {
+    width: 688px;
+    min-height: 800px;
+    height: 100%;
 }
 .hp-wrap {
     display: block;

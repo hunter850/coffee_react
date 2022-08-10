@@ -7,6 +7,7 @@ function GoogleMap({
     setSelectedAddress,
     setDataFromDate,
     setDataFromDateTime,
+    selectedAddress,
 }) {
     const [storeInfo, setStoreInfo] = useState({});
 
@@ -60,8 +61,10 @@ function GoogleMap({
         },
     ];
     const [inputTime, setInputTime] = useState(store_time[0].time);
-    const [inputDate, setInputDate] = useState(`2022-0${month}-0${date}`);
-    const submitBtn = storeInfo && inputDate ? "bottoms" : "bottoms disabled";
+    const [inputDate, setInputDate] = useState(`2022-0${month}-${date}`);
+    const submitBtn =
+        storeInfo.store_sid && inputDate ? "bottoms" : "bottoms disabled";
+
     return (
         <>
             <div
@@ -156,7 +159,7 @@ function GoogleMap({
                             </select>
                         </div>
                     </div>
-                    <div className="bottomarea disabled">
+                    <div className="bottomarea">
                         <div
                             className={submitBtn}
                             onClick={() => {

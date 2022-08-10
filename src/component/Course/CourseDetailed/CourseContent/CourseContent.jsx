@@ -41,6 +41,7 @@ function CourseContent({
                 materia={materia}
                 setMaterial={setMaterial}
                 topZeroSure={topZeroSure}
+                courseDetailedData={courseDetailedData}
                 start={start}
             />
             <CourseContentSignup
@@ -66,6 +67,7 @@ function CourseContent({
                 setObject={setObject}
                 topZeroSure={topZeroSure}
                 start={start}
+                courseDetailedData={courseDetailedData}
             />
         </div>
     );
