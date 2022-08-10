@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import useData from "../../../../hooks/useData";
+// import useData from "../../../../hooks/useData";
 import styles from "./css/personalInfoForm.module.scss";
 
 function PersonalInfoForm(props) {
@@ -14,17 +14,13 @@ function PersonalInfoForm(props) {
         address_id,
         card_id,
     } = styles;
-    const [nowList] = useData("nowList");
-    const submitHandler = (event) => {
-        event.preventDefault();
-        console.log(formData);
-    };
+    // const [nowList] = useData("nowList");
     const changeHandler = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
     return (
         <Fragment>
-            <form onSubmit={submitHandler} className={cart_form}>
+            <form className={cart_form}>
                 <label htmlFor={name_id}>姓名</label>
                 <input
                     value={formData.name}
@@ -79,10 +75,6 @@ function PersonalInfoForm(props) {
                     <option value="ATM轉帳">郵寄</option>
                     <option value="門市取貨">門市取貨</option>
                 </select>
-                {/* {nowList === "productList" && (
-                    <>
-                    </>
-                )} */}
                 <label htmlFor={address_id}>地址</label>
                 <input
                     value={formData.address}
