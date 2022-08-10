@@ -60,7 +60,7 @@ function GoogleMap({
         },
     ];
     const [inputTime, setInputTime] = useState(store_time[0].time);
-    const [inputDate, setInputDate] = useState(`2022-0${month}-0${date}`);
+    const [inputDate, setInputDate] = useState(`2022-0${month}-${date}`);
     const submitBtn = storeInfo && inputDate ? "bottoms" : "bottoms disabled";
     return (
         <>
