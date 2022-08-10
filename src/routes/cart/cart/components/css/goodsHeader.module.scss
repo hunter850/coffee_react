@@ -4,9 +4,32 @@
     align-items: center;
     width: 100%;
     padding: 0px 23px;
+    background-color: var(--GRAY);
+    border-radius: 3px 3px 0px 0px;
+    > li {
+        flex: 1 0 0;
+    }
+    .header_name {
+        flex: 2 0 0;
+    }
+    .header_trash {
+        flex: none;
+        width: 36px;
+        text-align: center;
+    }
 }
 
 .header_text {
+    text-align: center;
     font-size: 16px;
     color: var(--BLUE);
+}
+
+.text_start {
+    text-align: left;
+}
+
+.button_group {
+    width: 122px;
+    flex: 0 0 1;
 }
