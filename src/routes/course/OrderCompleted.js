@@ -55,7 +55,6 @@ function OrderCompleted() {
                                         <h6>您購買的課程為</h6>
                                         <br />
                                         <h6 style={{ color: "#253945" }}>
-                                            {" "}
                                             {courseData.course_name}
                                         </h6>
                                         <br />
@@ -83,7 +82,6 @@ function OrderCompleted() {
                                     ‧如遇颱風、自然天災等不可抗拒之因素，依台北市政府任一單位公告停課即延期，本單位將通知擇日補課。
                                     <br />
                                     <br />
-                                    ‧繳費報名後，如因「招生不足」無法上課：於開課日3天前通知學員，並退還所繳費用100%（或經學員同意採延期辦理）。
                                 </div>
                             </div>
                             <div className="order-details">

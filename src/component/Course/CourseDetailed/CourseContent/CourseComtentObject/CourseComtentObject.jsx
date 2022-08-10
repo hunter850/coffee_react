@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./CourseComtentObject.css";
 import { useRef, useEffect } from "react";
-function CourseComtentObject({ object, setObject, topZeroSure, start }) {
+function CourseComtentObject({ object, setObject, topZeroSure, start, courseDetailedData }) {
     const objectScrollTop = useRef();
 
     useEffect(() => {
@@ -54,12 +55,13 @@ function CourseComtentObject({ object, setObject, topZeroSure, start }) {
                         </svg>
 
                         <div style={{ paddingLeft: 17 }}>適合對象</div>
+
                     </div>
+
                 </div>
-                <div className="CourseContent-text CourseContent-text-color">
-                    適合年滿12歲以上對拉花有興趣的各位!
-                    如未滿18歲則需家長陪同參加
-                </div>
+                <pre className="CourseContent-text CourseContent-text-color">
+                    {start ? courseDetailedData[0].course_people : ''}
+                </pre>
             </div>
         </div>
     );

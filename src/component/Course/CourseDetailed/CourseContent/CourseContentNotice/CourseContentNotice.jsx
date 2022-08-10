@@ -82,27 +82,19 @@ function CourseContentNotice({ notice, setNotice, topZeroSure, start }) {
                 <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
                     為防範新型冠狀病毒及配合政府防疫，講師與工作人員已完成疫苗三劑施打，主辦單位課程措施如下，請學員務必配合：
                     <br />
-                    <br />
                     ‧授課期間，請學員自備口罩，除飲食外需全程配戴。
-                    <br />
                     <br />
                     ‧入場前，請先進行額溫量測。若體溫超過37.5度，不予入場，並辦理全額退費。
                     <br />
-                    <br />
                     ‧請使用主辦單位提供之酒精清潔手部。
-                    <br />
                     <br />
                     ‧課程人數不超過10位，課程地點寬敞，並開設多處窗戶以保持環境通風。
                     <br />
-                    <br />
                     ‧杯測教學時，每位學員備有獨立杯測桌、杯測勺等相關器材，不會與其他學員交叉杯測。
-                    <br />
                     <br />
                     ‧務必提早十分鐘抵達指定地點，逾時不候。
                     <br />
-                    <br />
                     ‧若有陪同者，需額外滿足店內低消。
-                    <br />
                     <br />
                     ‧若遇不可預期之天災，如颱風、地震，主辦單位保有改期、改變體驗內容等權利。
                 </div>

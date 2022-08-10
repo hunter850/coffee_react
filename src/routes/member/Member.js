@@ -63,6 +63,7 @@ function Member() {
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
                             <div className="cardF">
+                                <p className="cardB-desc">{nickname}</p>
                                 <div className="cardF-wrap">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +91,8 @@ function Member() {
 
                             </div>
                             <div className="cardB">
-                                <div className="cardF-wrap">
-                                    <p className="cardB-level">{level}<span>points</span></p>
-                                    <p className="cardB-desc">{nickname}</p>
-                                </div>
+                                <p className="cardB-level">{level}<span>points</span></p>
+                                {/* <div className="cardB-wrap"></div> */}
                             </div>
                         </div>
                         <div className="mc-like">

@@ -29,7 +29,7 @@
 
         .top {
             height: 60px;
-            background-color: #eee5dd99;
+            background-color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -102,7 +102,7 @@
                         }
                     }
                     .mapshow.selected {
-                        background-color:#EEE5DD;
+                        background-color:#E9C5B7;
                     }
                     .mapshow:hover {
                         background-color:#EEE5DD;
@@ -176,8 +176,8 @@
         }
         .bottomarea {
             width: 80%;
-            height: 82px;
-            background-color: #eee5dd;
+            height: 60px;
+            background-color: #fff;
             position: fixed;
             bottom: 0;
             display: flex;
@@ -199,6 +199,7 @@
                 background-color: #eee5dd;
                 color: #253945;
                 cursor: pointer;
+                pointer-events: none;
             }
         }
     }
