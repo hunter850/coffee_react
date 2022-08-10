@@ -3,7 +3,7 @@ import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
 
 function TotalBord(props) {
-    const { confirmHandler } = props;
+    const { confirmHandler, setPriceInfo } = props;
     // 現在是商品或餐點
     const [nowList] = useData("nowList");
     // 取得產品列表
@@ -57,10 +57,16 @@ function TotalBord(props) {
         // 折%
         return Math.ceil(
             discountObject.price *
-            discountObject.quantity *
-            (1 - selectedCoupon.discount)
+                discountObject.quantity *
+                (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
+
+    useEffect(() => {
+        setPriceInfo((pre) => {
+            return { ...pre, total: totalPrice, discount: discount };
+        });
+    }, [totalPrice, discount, setPriceInfo]);
 
     const compute = useGSAPCompute();
     useEffect(() => {
