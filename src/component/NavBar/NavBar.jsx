@@ -124,7 +124,7 @@ function NavBar({ navPosition = 'fixed' }) {
                 <Link to="/course">課程主頁</Link>
             </li>
             <li >
-                <Link to="/course/manage">管理課程</Link>
+                <Link to="/course/manage">課程管理</Link>
             </li>
         </ul>
     </li>);
