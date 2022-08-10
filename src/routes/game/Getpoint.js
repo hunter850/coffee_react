@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 import "./css/Getpoint.css";
-// import SnakeGame from "./Components/SnakeGame";
+import SnakeGame from "./Components/SnakeGame";
 import AlertItem from "./AlertItem/AlertItem";
 import axios from "axios";
 import ChatBot from "../../component/Bot/ChatBot";
@@ -15,9 +15,15 @@ function Getpoint() {
     const [isOpen, setIsOpen] = useState(false);
     const CheckPoint = async () => {
         await axios
-            .get("http://localhost:3500/GetPoint/Api-check-point-result")
+            .get("http://localhost:3500/GetPoint/Api-check-point-result", {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             .then((result) => {
                 let alreadyTaken = result.data.error;
+                console.log(alreadyTaken);
                 if (alreadyTaken) {
                     setIsOpen(true);
                     return;
@@ -36,7 +42,9 @@ function Getpoint() {
     return (
         <Fragment>
             <NavBar />
-            <div className="GetpointContainer">{/* <SnakeGame /> */}</div>
+            <div className="GetpointContainer">
+                <SnakeGame />
+            </div>
             <AlertItem
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
