@@ -21,6 +21,8 @@ import { Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
 import "../course/Course.css";
 import Chatbot from "../../component/Bot/ChatBot";
+import Footer from "../../component/Footer";
+
 // 餐點篩選
 const menuFiliter = [
     { id: undefined, name: "全部餐點" },
@@ -295,6 +297,8 @@ function Food() {
                 </Modal>
             </div>
             <Chatbot />
+            <br/>
+            <Footer />
         </Fragment>
     );
 }

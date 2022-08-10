@@ -10,6 +10,8 @@ import Modal from "../../component/Modal/Modal";
 import { Link, useNavigate } from "react-router-dom";
 import Chatbot from "../../component/Bot/ChatBot";
 import AuthContext from "../../component/Member/AuthContext";
+import Footer from "../../component/Footer";
+
 const places = [
     {
         key: "shop_1",
@@ -228,6 +230,8 @@ function Reserve() {
                 </Modal>
             </div>
             <Chatbot />
+            <br />
+            <Footer />
         </Fragment>
     );
 }
