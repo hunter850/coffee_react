@@ -2,16 +2,26 @@
     background-color: #fcfaf7;
     min-width: 1440px;
     letter-spacing: 0.07rem;
+    user-select: none;
 }
 .CourseDetailed-container {
     background-color: #fff;
     min-width: 1440px;
+    letter-spacing: 0.07rem;
+    user-select: none;
+}
+
+.CourseAdd-container {
+    min-width: 1440px;
+    user-select: none;
+    background-color: #e3e7e7;
     letter-spacing: 0.07rem;
 }
 
 .CourseManage-wrap {
     height: 100%;
     background-color: #e3e7e7;
+    user-select: none;
 }
 
 .CourseManage-container {
