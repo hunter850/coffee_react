@@ -17,7 +17,8 @@
     cursor: pointer;
 }
 .aside .wrapper {
-    overflow-y: scroll;
+    overflow: hidden;
+ 
 }
 
 .aside:hover {
