@@ -106,13 +106,13 @@ const CourseAdd = () => {
 ‧了解咖啡瑕疵豆類型
 ‧教授cupping 方法去了解咖啡品種及產地
 ‧咖啡生豆生長過程`,
-                course_people: `對咖啡有興趣者，無須任何品飲、沖煮經驗，
-想增加第二專長進修者，
-企業專業進修增加工作職能者，
-欲從事咖啡相關工作者必學證照，
-已經從業或是已在教授咖啡課程者，
-適合年滿12歲以上對拉花有興趣的各位!
-如未滿18歲則需家長陪同參加。`,
+                course_people: `‧適合年滿12歲以上對拉花有興趣的各位!如未滿18歲則需家長陪同參加。
+‧對咖啡有興趣者，無須任何品飲、沖煮經驗。
+‧想增加第二專長進修者。
+‧企業專業進修增加工作職能者。
+‧欲從事咖啡相關工作者必學證照。
+‧已經從業或是已在教授咖啡課程者。
+`,
                 course_material: `‧磨豆機
 ‧手沖壺
 ‧濾杯
@@ -353,7 +353,7 @@ const CourseAdd = () => {
                     <ConfirmDeleteBox content={"新增成功"} />
                 </Modal.Body>
             </Modal>
-            <div style={{ backgroundColor: "#E3E7E7", minWidth: "1440px" }}>
+            <div className="CourseAdd-container">
                 <NavBar />
                 <Path
                     pathObj={{ path: ["．課程資訊管理", "．新增課程"] }}
@@ -436,7 +436,7 @@ const CourseAdd = () => {
                     <ConfirmDeleteBox content={"修改成功"} />
                 </Modal.Body>
             </Modal>
-            <div style={{ backgroundColor: "#E3E7E7", minWidth: "1440px" }}>
+            <div className="CourseAdd-container">
                 <NavBar />
                 <Path
                     pathObj={{ path: ["．課程資訊管理", "．編輯課程"] }}
