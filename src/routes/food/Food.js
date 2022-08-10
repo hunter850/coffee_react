@@ -33,14 +33,7 @@ const menuFiliter = [
 ];
 
 // 設定一頁筆數
-const perPage = 6;
-
-// chunk - 依size分成子陣列，ex. chunk([1, 2, 3, 4, 5], 2) -> [[1,2],[3,4],[5]]
-// https://stackoverflow.com/questions/8495687/split-array-into-chunks
-const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-        arr.slice(i * size, i * size + size)
-    );
+const perPage = 9;
 
 function Food() {
     // 從sql拿資料--------------------------------------------------------
@@ -150,7 +143,6 @@ function Food() {
     //如果餐點為沙拉或蛋糕，直接加數量到aside，且判斷商品是否重複--------------
     const handleCakeCount = (allfood) => {
         const { menu_sid, menu_price_m, menu_photo, menu_name } = allfood;
-        console.log("allfood ", allfood);
         let newData;
         const compareItems = (item1, item2) =>
             item1.menu_sid === item2.menu_sid;
@@ -297,7 +289,7 @@ function Food() {
                 </Modal>
             </div>
             <Chatbot />
-            <br/>
+            <br />
             <Footer />
         </Fragment>
     );
