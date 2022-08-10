@@ -8,6 +8,7 @@
     margin-top: 48px;
     border-radius: 10px;
     box-shadow: 1px 1px 10px 1px #00000026;
+    user-select: none;
 }
 .CourseContent-title {
     padding-top: 39px;

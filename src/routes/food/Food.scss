@@ -2,6 +2,10 @@
     position: relative;
 } */
 
+.Food-container{
+    user-select: none;
+}
+
 .filterbtn-area {
     display: flex;
 
@@ -13,6 +17,7 @@
     /* justify-content: center; */
     flex-wrap: wrap;
     padding: 0 calc(100% / 50);
+    user-select: none;
 }
 
 @media (max-width: 768px) {
@@ -24,16 +29,21 @@
 @media (max-width: 375px) {
     .Food-container {
         min-width: 375px;
-        .foodcard-session {
-            justify-content: center;
+    
 
             .filterbtn-area {
-                // display: flex;
-                width: auto;
-                width: 100%;
+                display: flex;
+                width: 375px;
+                justify-content: center;
                 margin: 0 0;
-            overflow-x: scroll;
+                transform: translateX(-17px);
+                .filterbutton{
+                    margin:10px 5px;
+                    width: 60px;
+                    padding: 3px;
+                }
+
             }
-        }
+
     }
 }

@@ -84,7 +84,6 @@ function CourseContentSignup({ start, courseDataPrice, signup, setSignup, topZer
                         <div style={{ paddingLeft: 17 }}>報名資訊</div>
                     </div>
                     <div className={` ${displayNone ? "arrow-icon-down" : 'arrow-icon'}`} onClick={() => setdisplayNone(!displayNone)}>
-
                     </div>
                 </div>
                 <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
@@ -114,7 +113,6 @@ function CourseContentSignup({ start, courseDataPrice, signup, setSignup, topZer
                                     -
                                 </button>
                                 <input type="number" value={count === 0 ? setCount(1) : count} className="people-number" onChange={(e) => numberInput(e)} />
-                                {/* <div className="people-number">{count}</div> */}
                                 <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={() => numberPeople()}>
                                     +
                                 </button>
