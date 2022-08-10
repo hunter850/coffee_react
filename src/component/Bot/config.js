@@ -13,8 +13,7 @@ import PointsFAQ from "../Bot/components/PointsFAQ/PointsFAQ";
 const botName = "嘎B";
 const config = {
     initialMessages: [
-        createChatBotMessage(`Hi!我是0+B客服機器人 ${botName}`),
-        createChatBotMessage(`主要任務是處理問題分流、簡單答覆`, {
+        createChatBotMessage(`Hi!我是0+B客服機器人 嘎B`, {
             widget: "ChatBotFAQ",
         }),
     ],
