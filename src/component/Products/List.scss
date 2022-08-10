@@ -1,23 +1,39 @@
-.products_list{
+.products_list {
     width: 100%;
     margin-top: 66px;
-    h3{
+    h3 {
         margin-bottom: 54px;
     }
-    .list_title{
+    .list_title {
         display: flex;
         justify-content: space-between;
-        svg{
+        svg {
             width: 36px;
             margin-left: 8px;
         }
     }
-    .card_regin{
-        display: flex;
-        flex-wrap: wrap;
+    .card_regin {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            .cardaniwrapbf {
+                position: absolute;
+                // display: none;
+                left: -300px;
+                opacity: 0;
+            }
+            .cardaniwrapat {
+                position: relative;
+                left: 0px;
+                // display: block;
+                transition: 2.5s;
+                opacity: 1;
+            }
+        }
     }
-    .products_cardstyle_svg{
-        svg{
+    .products_cardstyle_svg {
+        svg {
             cursor: pointer;
         }
     }
