@@ -118,7 +118,9 @@ const CourseAdd = () => {
 ‧濾杯
 ‧濾紙
 ‧溫度計
-‧電子秤`,
+‧電子秤
+(以上材料由主辦者提供,不需額外付費。)
+`,
             });
             setFormDataFk({
                 course_sid: "",
