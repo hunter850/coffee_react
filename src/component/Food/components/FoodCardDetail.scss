@@ -42,9 +42,8 @@
             .title-font {
                 font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
                 font-size: 30px;
-            
             }
-            .menu_price_m{
+            .menu_price_m {
                 font-size: 24px;
             }
         }
@@ -59,6 +58,7 @@
             padding-left: 10px;
             font-size: 20px;
             margin: 20px 0;
+            flex-grow: 2;
         }
         .inputarea {
             display: flex;
@@ -72,7 +72,7 @@
         .inputla {
             font-size: 20px;
         }
-        
+
         .cal {
             display: flex;
             margin-top: 20px;
@@ -118,7 +118,7 @@
             }
             .order.disabled {
                 width: 100%;
-                background-color: #c5ad8f;
+                background-color: #ccc;
                 color: #fff;
                 border: none;
                 text-align: center;
@@ -129,7 +129,6 @@
                 white-space: nowrap;
                 cursor: pointer;
                 margin-left: 20px;
-                pointer-events: none;
             }
         }
     }
@@ -166,10 +165,10 @@
                 .title-font {
                     font-size: 16px;
                 }
-                .menu_price_m{
+                .menu_price_m {
                     font-size: 16px;
                 }
-                .menu_nutrition{
+                .menu_nutrition {
                     font-size: 12px;
                 }
                 .photo {
@@ -201,11 +200,13 @@
             .inputarea {
                 display: flex;
             }
+
             .inputdetail {
                 width: 40px;
                 height: 12.15px;
                 margin: 4px 0;
             }
+
             .inputla {
                 font-size: 12px;
             }

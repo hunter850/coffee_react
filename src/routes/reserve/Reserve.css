@@ -8,12 +8,9 @@
     overflow: scroll;
     border-radius: 10px;
     color: #253945;
-    
 }
 .reserve::-webkit-scrollbar {
     display: none;
-  
-    
 }
 
 .left {
@@ -82,9 +79,10 @@
     background-color: rgb(207, 173, 128);
     cursor: pointer;
 }
+
 .submit.disabled {
-    background-color: #d9dfdf;
-    pointer-events: none;
+    background-color: #ccc;
+    color: #fff;
     cursor: pointer;
 }
 .reserve select {

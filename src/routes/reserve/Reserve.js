@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useMemo, useContext } from "react";
 // import NavBar from "../../component/NavBar";
 import Path from "../../component/Item/Path/Path";
 import "./Reserve.css";
@@ -96,15 +96,22 @@ function Reserve() {
     const Auth = useContext(AuthContext);
     const checkedDate = hour.toLocaleString();
     const { mail, name } = Auth;
+    const selectItem = useMemo(
+        () => places.find((item) => item.storeName === branch),
+        [places, branch]
+    );
+    console.log("selectItem", selectItem);
+
 
     const handleSubmission = (e) => {
+        if (!branch || !checkedDate || !people) return false;
         try {
             if (Auth.sid)
                 axios({
                     method: "post",
                     url: sendMail,
                     data: {
-                        branch,
+                        selectItem,
                         people,
                         checkedDate,
                         mail,
@@ -124,23 +131,6 @@ function Reserve() {
         }
     };
 
-    // const handleSendMail = async () => {
-    //     setMail(true);
-
-    //     try {
-    //         await axios.post(
-    //             mail,
-    //             {
-    //                 branch,
-    //                 people,
-    //                 hour,
-    //             },
-    //             console.log("true")
-    //         );
-    //     } catch (error) {
-    //         console.log("error");
-    //     }
-    // };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
 
     return (
@@ -156,16 +146,16 @@ function Reserve() {
                             <select
                                 className="a"
                                 value={branch}
-                                onChange={(e) => {
-                                    setBranch(e.target.value);
-                                }}
+                                onChange={(e) => setBranch(e.target.value)}
                             >
                                 <option value="" disabled>
                                     請選擇分店
                                 </option>
-                                {places.map((v, i) => {
+                                {places.map((v) => {
                                     return (
-                                        <option key={i}>{v.storeName}</option>
+                                        <option key={v.key}>
+                                            {v.storeName}
+                                        </option>
                                     );
                                 })}
                             </select>

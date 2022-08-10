@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { Fragment, useState, useEffect, useCallback } from "react";
-// import NavBar from "../../component/NavBar";
-// import AuthContext from "../../component/Member/AuthContext";
 import React from "react";
 import "./Food.scss";
 import Filterbutton from "../../component/Food/components/FilterButton";
-// import Slideshow from "../../component/Food/components/SlideShow";
 import FoodCard from "../../component/Food/components/FoodCard";
 import Path from "../../component/Item/Path/Path";
 import FoodCardDetail from "../../component/Food/components/FoodCardDetail";
@@ -38,13 +34,8 @@ const perPage = 9;
 function Food() {
     // 從sql拿資料--------------------------------------------------------
     const [foodFromApi, setFoodFromApi] = useState([]);
-    // 分頁用
-    // pageNow 目前頁號
-    // perPage 每頁多少數量
-    // pageTotal 目前有多少頁
     const [pageNow, setPageNow] = useState(1); // 預設第一頁
     const [pageTotal, setPageTotal] = useState(1); // 等伺服器抓完資料才知道多少(didMount時決定)
-
     // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
