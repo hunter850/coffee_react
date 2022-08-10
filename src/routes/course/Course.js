@@ -39,7 +39,7 @@ const Course = () => {
     //預設第一頁
     const [pageNow, setPageNow] = useState(1);
     //預設一頁幾筆
-    const [perPage, setPerPage] = useState(7);
+    const [perPage, setPerPage] = useState(8);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
 
@@ -171,19 +171,6 @@ const Course = () => {
                 />
                 <div className="container">
                     <div className="d-flex f-w card-wrap">
-                        <Link to="/course/manage">
-                            <Card
-                                courseData={{
-                                    course_level: "初級",
-                                    course_name: "愛心拉花",
-                                    course_content:
-                                        "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.456464545",
-                                    course_price: "1000",
-                                    course_sid: 3,
-                                }}
-                            />
-                        </Link>
-
                         {courseData.length > 0 &&
                             courseData[pageNow - 1].map((v, i) => {
                                 return (
