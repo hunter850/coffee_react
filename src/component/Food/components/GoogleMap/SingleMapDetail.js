@@ -83,7 +83,6 @@ const SingleMapDetail = (props) => {
         width: "100%",
         height: "600px",
     };
-    // const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
     const [shops, setShops] = useState(shops_dummy);
     const [initial, setInitial] = useState(false);
