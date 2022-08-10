@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
 import useClass from "../../../hooks/useClass";
 import useData from "../../../hooks/useData";
+import { useNav } from "../../../Contexts/NavProvider";
 import NavBar from "../../../component/NavBar/NavBar";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import TotalHeader from "../cart/components/TotalHeader";
@@ -15,6 +16,7 @@ import {
     getFood,
     getProductCoupon,
     getFoodCoupon,
+    cartCheck,
 } from "../../../config/api-path";
 
 function CartForm() {
@@ -28,15 +30,24 @@ function CartForm() {
         payWay: "",
         deliverWay: "",
         address: "",
+        card: "",
     });
-    const confirmHandler = useCallback(() => {
-        console.log(formData);
-    }, [formData]);
-    const [, setnowList] = useData("nowList");
+    const [priceInfo, setPriceInfo] = useState({
+        total: 0,
+        discount: 0,
+    });
+    const { getCount } = useNav();
+    const [nowList, setnowList] = useData("nowList");
     const [, setProductList, resetProduct] = useData("productList");
     const [, setFoodList, resetFood] = useData("foodList");
     const [, setProductCoupons, resetProductCoupon] = useData("productCoupons");
     const [, setFoodCoupons, resetFoodCoupon] = useData("foodCoupons");
+    const [selectedProductCouponId] = useData("selectedProductCouponId");
+    const [selectedFoodCouponId] = useData("selectedFoodCouponId");
+    const couponId =
+        nowList === "productList"
+            ? selectedProductCouponId
+            : selectedFoodCouponId;
     const { token } = useAuth();
     const navigate = useNavigate();
     useEffect(() => {
@@ -114,6 +125,42 @@ function CartForm() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    const confirmHandler = useCallback(() => {
+        console.log(formData);
+        axios
+            .post(
+                cartCheck,
+                {
+                    ...formData,
+                    card: +formData.card,
+                    finalPrice: priceInfo.total - priceInfo.discount,
+                    discount: priceInfo.discount,
+                    couponId: couponId,
+                    nowList: nowList,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then((result) => {
+                console.log(result.data);
+                if (result.data.affectedRows >= 1) {
+                    getCount();
+                    navigate("/products", { replace: false });
+                }
+            });
+    }, [
+        formData,
+        token,
+        priceInfo.total,
+        priceInfo.discount,
+        couponId,
+        nowList,
+        getCount,
+        navigate,
+    ]);
     return (
         <Fragment>
             <NavBar />
@@ -125,7 +172,10 @@ function CartForm() {
                     />
                     <div className={total_wrap}>
                         <TotalHeader />
-                        <TotalBord confirmHandler={confirmHandler} />
+                        <TotalBord
+                            confirmHandler={confirmHandler}
+                            setPriceInfo={setPriceInfo}
+                        />
                     </div>
                 </div>
             </div>
