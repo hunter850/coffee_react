@@ -42,8 +42,12 @@ function CartForm() {
     const [, setFoodList, resetFood] = useData("foodList");
     const [, setProductCoupons, resetProductCoupon] = useData("productCoupons");
     const [, setFoodCoupons, resetFoodCoupon] = useData("foodCoupons");
-    const [selectedProductCouponId] = useData("selectedProductCouponId");
-    const [selectedFoodCouponId] = useData("selectedFoodCouponId");
+    const [selectedProductCouponId, , resetSelectedProductCouponId] = useData(
+        "selectedProductCouponId"
+    );
+    const [selectedFoodCouponId, , resetSelectedFoodCouponId] = useData(
+        "selectedFoodCouponId"
+    );
     const couponId =
         nowList === "productList"
             ? selectedProductCouponId
@@ -126,7 +130,6 @@ function CartForm() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const confirmHandler = useCallback(() => {
-        console.log(formData);
         axios
             .post(
                 cartCheck,
@@ -145,9 +148,15 @@ function CartForm() {
                 }
             )
             .then((result) => {
-                console.log(result.data);
+                // console.log(result.data);
                 if (result.data.affectedRows >= 1) {
                     getCount();
+                    resetProduct();
+                    resetFood();
+                    resetProductCoupon();
+                    resetFoodCoupon();
+                    resetSelectedProductCouponId();
+                    resetSelectedFoodCouponId();
                     navigate("/products", { replace: false });
                 }
             });
@@ -159,6 +168,12 @@ function CartForm() {
         couponId,
         nowList,
         getCount,
+        resetProduct,
+        resetFood,
+        resetProductCoupon,
+        resetFoodCoupon,
+        resetSelectedProductCouponId,
+        resetSelectedFoodCouponId,
         navigate,
     ]);
     return (

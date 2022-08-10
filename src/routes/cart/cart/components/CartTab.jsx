@@ -14,14 +14,12 @@ function CartTab() {
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [priceInfo, setPriceInfo] = useState({
+    const [, setPriceInfo] = useState({
         total: 0,
         discount: 0,
     });
     const [nowList] = useData("nowList");
     const [list] = useData(nowList);
-    const [selectedProductCouponId] = useData("selectedProductCouponId");
-    const [selectedFoodCouponId] = useData("selectedFoodCouponId");
     const navigate = useNavigate();
     const confirmHandler = useCallback(() => {
         localStorage.setItem("nowList", nowList);

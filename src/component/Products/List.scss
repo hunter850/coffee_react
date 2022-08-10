@@ -16,9 +16,9 @@
         ul {
             display: flex;
             flex-wrap: wrap;
-            position: relative;
+            // position: relative;
             .cardaniwrapbf {
-                position: absolute;
+                position: relative;
                 // display: none;
                 left: -300px;
                 opacity: 0;
@@ -27,7 +27,7 @@
                 position: relative;
                 left: 0px;
                 // display: block;
-                transition: 2.5s;
+                transition: 1.5s;
                 opacity: 1;
             }
         }

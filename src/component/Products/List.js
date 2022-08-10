@@ -71,7 +71,7 @@ function List(props) {
                                           <ScrollWrap
                                               start="cardaniwrapbf"
                                               end="cardaniwrapat"
-                                              offset={375}
+                                              offset={150}
                                               //   backAgain={true}
                                               //   backOffset={-5}
                                               component="li"
@@ -86,6 +86,7 @@ function List(props) {
                                                   }}
                                               >
                                                   <Card
+                                                      className=""
                                                       cardData={{
                                                           card_tag: "純苦",
                                                           card_name:

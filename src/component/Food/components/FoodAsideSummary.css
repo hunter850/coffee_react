@@ -18,7 +18,6 @@
 }
 .aside .wrapper {
     overflow: hidden;
- 
 }
 
 .aside:hover {
@@ -127,6 +126,7 @@
 .aside .pay.disabled {
     background-color: #d1cfcf;
     color: #253945;
+    pointer-events: none;
 }
 
 .payarea {

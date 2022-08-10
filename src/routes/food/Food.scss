@@ -2,6 +2,10 @@
     position: relative;
 } */
 
+.Food-container{
+    user-select: none;
+}
+
 .filterbtn-area {
     display: flex;
 
@@ -13,6 +17,7 @@
     /* justify-content: center; */
     flex-wrap: wrap;
     padding: 0 calc(100% / 50);
+    user-select: none;
 }
 
 @media (max-width: 768px) {

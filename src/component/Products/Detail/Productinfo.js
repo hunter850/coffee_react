@@ -24,6 +24,7 @@ function Productinfo(props) {
     const [btnContext, setBtnContext] = useState("未加入收藏");
     const [isOpen, setIsOpen] = useState(false);
     const [modalCase, setModalCase] = useState(false);
+    const [modalContent, setModalContent] = useState("");
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
@@ -76,11 +77,12 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                // console.log(fetchCartData);
+                console.log(fetchCartData);
                 // cartCount.setCartCountNum(cartCount.cartCountNum + 1);
                 getCount();
 
                 setModalCase(true);
+                setModalContent("成功加入購物車");
                 setIsOpen(true);
             });
     };
@@ -114,8 +116,15 @@ function Productinfo(props) {
 
     // function
     useEffect(() => {
-        if (productsCount < 1) {
-            setProductsCount(1);
+        if (dataLoaded) {
+            if (productsCount < 1) {
+                setProductsCount(1);
+            }
+            if (productsCount > renderData[0].products_stack) {
+                setProductsCount(renderData[0].products_stack);
+                // set
+                setIsOpen(true);
+            }
         }
     }, [productsCount]);
 
@@ -160,7 +169,11 @@ function Productinfo(props) {
                     </Link>
                 </li>
             </ul>
-            <h5>${dataLoaded ? renderData[0].products_price : ""}元</h5>
+            <h5>
+                $
+                {dataLoaded ? renderData[0].products_price * productsCount : ""}
+                元
+            </h5>
             <div className="productsCount">
                 <h6>購入數</h6>
                 <div className="buttonWrap">
@@ -198,6 +211,7 @@ function Productinfo(props) {
                     if (Auth.authorized) {
                         sendCart();
                     } else {
+                        setModalContent("請先登入");
                         setIsOpen(true);
                         // alert("請先登入會員");
                     }
@@ -215,13 +229,18 @@ function Productinfo(props) {
                             if (checkLike) {
                                 // console.log("要刪除");
                                 delUserLike();
+                                setModalContent("取消收藏");
+                                setIsOpen(true);
                             } else {
                                 // console.log("要加入");
+                                setModalContent("加入收藏");
+                                setIsOpen(true);
                                 sendUserLike();
                             }
                         } else {
                             // alert("請先登入會員");
                             // console.log(Auth);
+                            setModalContent("請先登入");
                             setIsOpen(true);
                         }
                     }}
@@ -237,7 +256,7 @@ function Productinfo(props) {
                             padding: "40px",
                         }}
                     >
-                        成功加入購物車
+                        {modalContent}
                     </h4>
                 </Modal>
             ) : (
@@ -250,7 +269,7 @@ function Productinfo(props) {
                             padding: "40px",
                         }}
                     >
-                        <h4>請先登入</h4>
+                        <h4>{modalContent}</h4>
                     </Link>
                 </Modal>
             )}

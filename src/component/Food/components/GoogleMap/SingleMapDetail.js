@@ -83,7 +83,6 @@ const SingleMapDetail = (props) => {
         width: "100%",
         height: "600px",
     };
-    // const MyPositionMarker = ({ text }) => <div>{text}</div>;
 
     const [shops, setShops] = useState(shops_dummy);
     const [initial, setInitial] = useState(false);
@@ -127,13 +126,7 @@ const SingleMapDetail = (props) => {
             .sort((x, y) => x.distance.value - y.distance.value);
         setShops(shopsWithDistance);
     };
-
-    // if (!initial) return null;
-    console.log(
-        "SingleMapDetail.defaultProps",
-        SingleMapDetail.defaultProps.center.lat
-    );
-    console.log("my", myPosition.lat);
+    console.log("myPosition", myPosition);
     return (
         <div className="mapSection">
             <div className="mapdetail">
