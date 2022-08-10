@@ -7,6 +7,7 @@
     background-color: #fff;
     min-width: 1440px;
     letter-spacing: 0.07rem;
+    user-select: none;
 }
 
 .CourseManage-wrap {
