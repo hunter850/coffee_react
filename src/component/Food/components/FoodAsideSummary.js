@@ -42,6 +42,8 @@ function FoodAsideSummary({
             ? "pay "
             : "pay disabled";
     const handleSubmission = (e) => {
+        if (!store_sid || !standardTime) return false;
+
         try {
             if (Auth.sid)
                 axios({
