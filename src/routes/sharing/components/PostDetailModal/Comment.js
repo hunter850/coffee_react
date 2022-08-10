@@ -68,21 +68,25 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
     }, [replyTo.who]);
 
     const replyPost = async () => {
-        if (replyInput.current.value === "") {
-            replyInput.current.focus();
-            return;
+        if (authorized) {
+            if (replyInput.current.value === "") {
+                replyInput.current.focus();
+                return;
+            }
+
+            const data = {
+                member_sid: replyTo.member_sid,
+                comment_sid: replyTo.cmt_sid,
+                content: replyInput.current.value,
+            };
+            const r = await axios.post(replyAPI, data);
+            alert("回覆成功");
+            getPostDetailData();
+
+            setReplyTo(emptyObj);
+        } else {
+            alert("請先登入");
         }
-
-        const data = {
-            member_sid: replyTo.member_sid,
-            comment_sid: replyTo.cmt_sid,
-            content: replyInput.current.value,
-        };
-        const r = await axios.post(replyAPI, data);
-        alert("回覆成功");
-        getPostDetailData();
-
-        setReplyTo(emptyObj);
     };
 
     const commentDelete = async () => {
@@ -91,7 +95,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
             post_sid,
         };
         const r = await axios.delete(commentAPI, { data });
-        
+
         if (r.data.success) getPostDetailData();
     };
 

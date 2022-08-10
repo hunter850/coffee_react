@@ -19,6 +19,7 @@ function PostNav(props) {
         keyWord,
         setKeyWord,
         setIsEnd,
+        setGetDataTimes,
     } = props;
     const { authorized, sid, account, token, avatar } = useAuth();
     const {
@@ -35,7 +36,7 @@ function PostNav(props) {
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
                 <div className={title_wrap}>
-                    <a href="./sharing">
+                    <a href="./">
                         <h4>分享牆</h4>
                     </a>
                 </div>
@@ -47,6 +48,7 @@ function PostNav(props) {
                         keyWord={keyWord}
                         setKeyWord={setKeyWord}
                         setIsEnd={setIsEnd}
+                        setGetDataTimes={setGetDataTimes}
                     />
                 </div>
                 <ul className={icon_wrap}>

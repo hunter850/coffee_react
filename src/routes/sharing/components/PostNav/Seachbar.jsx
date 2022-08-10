@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import _ from "lodash";
 import axios from "axios";
-import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
 
+import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
+import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import Magnifier from "./Magnifier";
 import styles from "../../css/Seachbar.module.scss";
 import ResultRow from "./ResultRow";
@@ -14,7 +15,9 @@ function Seachbar({
     keyWord,
     setKeyWord,
     setIsEnd,
+    setGetDataTimes,
 }) {
+    const { sid } = useAuth();
     const {
         container,
         magnifier_wrap,
@@ -67,7 +70,9 @@ function Seachbar({
         }
     };
 
-    const keyWordSubmit = () => {
+    const keyWordSubmit = (q, type) => {
+        setIsEnd(false);
+        setGetDataTimes(0);
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
 
@@ -75,17 +80,16 @@ function Seachbar({
 
         if (replaced) {
             clearPreview();
-            axios(searchPost, { params: { q: keyWord } }).then((r) => {
-                setRows(r.data.rows);
-                console.log(r.data);
-                if (r.data.isEnd) setIsEnd(true);
-            });
+            axios(searchPost, { params: { q: replaced, auth: sid } }).then(
+                (r) => {
+                    if (r.data.success) {
+                        setRows(r.data.rows);
+                        console.log(r.data);
+                        if (r.data.isEnd) setIsEnd(true);
+                    }
+                }
+            );
         }
-    };
-
-    const chooseResult = (name) => {
-        setKeyWord(name);
-        keyWordSubmit(false);
     };
 
     const sendDataDebounce = useCallback(
@@ -110,8 +114,23 @@ function Seachbar({
 
     const handleChange = async (e) => {
         setKeyWord(e.target.value);
-
         sendDataDebounce(e.target.value);
+    };
+
+    const chooseToSearch = (v) => {
+        const { name, sid, type, member_sid } = v;
+        const params = { q: sid || member_sid, type, auth: sid };
+        setKeyWord(name);
+        setIsEnd(false);
+        setSearchMode(true);
+
+        console.log(params);
+        axios(searchPost, { params }).then((r) => {
+            if (r.data.success) {
+                setRows(r.data.rows);
+                if (r.data.isEnd) setIsEnd(true);
+            }
+        });
     };
 
     return (
@@ -168,7 +187,7 @@ function Seachbar({
                             <div
                                 key={i}
                                 className={result_content}
-                                onClick={() => chooseResult(v.name)}
+                                onClick={() => chooseToSearch(v)}
                             >
                                 <ResultRow data={v} />
                             </div>

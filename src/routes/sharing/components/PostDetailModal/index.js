@@ -32,9 +32,10 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
 
     const getPostDetailData = () => {
         axios(`${getPosts}/${post_sid}`).then((r) => {
+            console.log(r.data);
             if (r.data.code !== 200) {
                 setPost_sid(0);
-                navigate("/sharing");
+                // navigate("/sharing");
             }
             setData(r.data);
         });

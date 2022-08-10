@@ -4,6 +4,7 @@ import axios from "axios";
 import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
 
+import { useAuth } from "../../component/Member/AuthContextProvider";
 import { getPosts, searchPost } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
@@ -11,6 +12,7 @@ import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
+import Footer from "../../component/Footer";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -19,6 +21,7 @@ const breakpointColumnsObj = {
 };
 
 function Post() {
+    const { authorized, sid, account, token } = useAuth();
     const {
         container,
         sharing_wrap,
@@ -45,19 +48,17 @@ function Post() {
     const getData = async (times = 0) => {
         if (!searchMode) {
             const r = await axios(getPosts, {
-                params: { times },
+                params: { times, auth: sid },
             });
-            console.log("getByDefault");
             return r.data;
         } else {
-            // if (isEnd) return;
+            if (isEnd) return { row: [] };
             const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
             const replaced = keyWord.replace(pattern, "").trim();
 
             const r = await axios(searchPost, {
-                params: { times, q: replaced },
+                params: { times, q: replaced, auth: sid },
             });
-            console.log("getBySearch");
             if (r.data.isEnd) setIsEnd(true);
             return r.data;
         }
@@ -89,7 +90,9 @@ function Post() {
                 // setGetDataTimes(0);
                 if (!searchMode) {
                     const r = await getData(getDataTimes);
-                    setRows(r.rows);
+                    if (r.success) {
+                        setRows(r.rows);
+                    }
                 }
             })();
         } else {
@@ -107,7 +110,6 @@ function Post() {
     useEffect(() => {
         if (mounted_K.current) {
             setGetDataTimes(0);
-            setIsEnd(false);
         } else {
             mounted_K.current = true;
         }
@@ -125,9 +127,11 @@ function Post() {
         (async () => {
             const r = await getData(getDataTimes);
 
-            setRows((pre) => {
-                return [...pre, ...r.rows];
-            });
+            if (r.success) {
+                setRows((pre) => {
+                    return [...pre, ...r.rows];
+                });
+            }
 
             window.addEventListener("scroll", scrollHandler);
         })();
@@ -163,10 +167,10 @@ function Post() {
                 keyWord={keyWord}
                 setKeyWord={setKeyWord}
                 setIsEnd={setIsEnd}
+                setGetDataTimes={setGetDataTimes}
             />
 
             <div className={container} ref={wrap}>
-                <h1 className="mt-5">isend:{isEnd + ""}</h1>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
@@ -181,7 +185,7 @@ function Post() {
                                     modalHandler(e, v);
                                 }}
                             >
-                                <PostCard cardData={v} />
+                                <PostCard cardData={v} modalMode={post_sid} />
                             </a>
                         );
                     })}
@@ -194,6 +198,7 @@ function Post() {
                     />
                 )}
             </div>
+            <Footer />
         </Fragment>
     );
 }

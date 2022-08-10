@@ -80,18 +80,22 @@ function PostDetailContent({ data, getPostDetailData }) {
     );
 
     const commentPost = async () => {
-        if (commentInput.current.value === "") {
-            commentInput.current.focus();
-            return;
+        if (authorized) {
+            if (commentInput.current.value === "") {
+                commentInput.current.focus();
+                return;
+            }
+            const data = {
+                member_sid: sid,
+                content: commentInput.current.value,
+                post_sid,
+            };
+            const r = await axios.post(commentAPI, data);
+            commentInput.current.value = "";
+            if (r.data.success) getPostDetailData();
+        } else {
+            alert("請先登入");
         }
-        const data = {
-            member_sid: sid,
-            content: commentInput.current.value,
-            post_sid,
-        };
-        const r = await axios.post(commentAPI, data);
-        commentInput.current.value = "";
-        if (r.data.success) getPostDetailData();
     };
 
     const memberLikePost = async () => {
@@ -129,6 +133,10 @@ function PostDetailContent({ data, getPostDetailData }) {
             });
         }
     }, []);
+
+    const keyUpHandler = (e) => {
+        console.log(e.target.selectionStart);
+    };
 
     return (
         <>
@@ -195,7 +203,11 @@ function PostDetailContent({ data, getPostDetailData }) {
             </div>
 
             <div className={msg_wrap}>
-                <input className={msg_bar} ref={commentInput}></input>
+                <input
+                    className={msg_bar}
+                    ref={commentInput}
+                    onKeyUp={(e) => keyUpHandler(e)}
+                />
                 <button className={msg_submit} onClick={commentPost}>
                     發佈
                 </button>
