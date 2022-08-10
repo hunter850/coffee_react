@@ -16,6 +16,7 @@ import AuthContext from "../../AuthContext";
 import { FaEdit } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -96,33 +97,74 @@ function HistoryPostsMain() {
         },0)
     };
 
+// --------------------- 拿到搜尋框的值 ---------------------
+
+    const [mySearch, setMySearch] = useState({
+        keyword:"",
+    });  
+
+    const searchFields = (e) => {
+        const id = e.target.id;
+        const val = e.target.value;
+        setMySearch({ ...mySearch, [id]: val });
+    }
+
+// --------------------- 關鍵字搜尋拿到資料後重新渲染畫面 ---------------------
+    const handleSearch = () => {
+        if(mySearch.keyword !== ""){
+            const newPostData = myPosts.filter((v) => {
+            return v.title.includes(mySearch.keyword);
+        })
+            setSortPosts(newPostData);
+        }
+    }
+    useEffect(()=>{
+        if(mySearch.keyword === ""){
+            setSortPosts([...myPosts]);
+        }
+    },[mySearch])
+    
     return (
         <>
             <div className="hp-wrap-main">
                 <div className="hp-container">
                     <MemberMenu />
                     <div className="hp-wrap-right">
-                        <div className="hp-sort-section">
-                            <div className="hp-arr">
-                                <FaCaretDown />
+                        <div className="hp-header">
+                            <div className="hp-search-section">
+                                <input
+                                    type="text"
+                                    placeholder="搜尋文章標題"
+                                    id="keyword"
+                                    value={mySearch.keyword}
+                                    onChange={searchFields}
+                                />
+                                <div className="hp-search">
+                                    <FaSearch size={'0.9rem'} style={{cursor:"pointer"}} onClick={handleSearch}/>
+                                </div>
                             </div>
-                            <select
-                                className="hp-sort"
-                                value={sortData}
-                                onChange={(e) => sortPost(e)}
-                            >
-                                <option value="">查詢排序</option>
-                                <option value="dateAsc">
-                                    由遠&nbsp;&gt;&nbsp;到近
-                                </option>
-                                <option value="dateDesc">
-                                    由近&nbsp;&gt;&nbsp;到遠
-                                </option>
-                                <option value="threeMonths">過去三個月</option>
-                                <option value="priceDesc">
-                                    價錢高&nbsp;&gt;&nbsp;低
-                                </option>
-                            </select>
+                            <div className="hp-sort-section">
+                                <div className="hp-arr">
+                                    <FaCaretDown />
+                                </div>
+                                <select
+                                    className="hp-sort"
+                                    value={sortData}
+                                    onChange={(e) => sortPost(e)}
+                                >
+                                    <option value="">查詢排序</option>
+                                    <option value="dateAsc">
+                                        由遠&nbsp;&gt;&nbsp;到近
+                                    </option>
+                                    <option value="dateDesc">
+                                        由近&nbsp;&gt;&nbsp;到遠
+                                    </option>
+                                    <option value="threeMonths">過去三個月</option>
+                                    <option value="priceDesc">
+                                        價錢高&nbsp;&gt;&nbsp;低
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                         <div className="hp-wrap">
                             <TransitionGroup component={null}>

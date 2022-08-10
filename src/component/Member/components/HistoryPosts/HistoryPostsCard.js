@@ -19,12 +19,12 @@ function HistoryPostsCard({sortPosts}) {
     const navigate = useNavigate();
 
     
-    // const gotoProduct = (id) => {
-    //     navigate(`/products/detail/${id}`);
-    // };
+    const gotoPosts = (id) => {
+        navigate(`/sharing/${id}`);
+    };
 
     return (
-        <div className="hp-info">
+        <div className="hp-info" onClick={() =>gotoPosts(sid)}>
             <div className="hp-info-wrap">
                 <div className="hp-title">{title}<span>{created_at.split("T")[0]}</span></div>
                 <div className="hp-content">

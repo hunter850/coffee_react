@@ -1,9 +1,32 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import "./OrderHistoryDetailMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OrderHistoryDetailList from "../OrderHistoryDetail/OrderHistoryDetailList";
+import OrderHistoryDetailPrice from "../OrderHistoryDetail/OrderHistoryDetailPrice";
+
+import { getOrderHistoryDetail } from "../../../../config/api-path";
+
+import axios from "axios";
+import AuthContext from "../../AuthContext";
 
 function OrderHistoryDetailMain() {
+
+    const { token } = useContext(AuthContext);
+    const [myOrder, setMyOrder] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(getOrderHistoryDetail, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setMyOrder(response.data);
+            });
+    }, [token]);
+
     return (
         <>
             <div className="odd-wrap-main">
@@ -19,39 +42,14 @@ function OrderHistoryDetailMain() {
                             <div className="odd-state">訂單狀態<span>取貨完成</span></div>
                             <div className="odd-line"></div>
                             <div className="odd-list-wrap">
-                                <OrderHistoryDetailList />
-                                {/* <div className="odd-list">
-                                    <div className="odd-list-header">
-                                        <span>
-                                            <i className="fa-solid fa-pen"></i>評論
-                                        </span>
-                                        <div className="odd-str-line"></div>
-                                        <span>價格</span>
-                                        <div className="odd-str-line"></div>
-                                        <span>數量</span>
-                                        <div className="odd-str-line"></div>
-                                        <span>小計</span>
-                                    </div>
-                                    <div className="odd-body">
-                                        <div className="odd-product">
-                                            <div className="odd-pic"></div>
-                                            <span>曼巴咖啡(半磅)</span>
-                                        </div>
-                                        <div className="odd-str-line"></div>
-                                        <div className="odd-price">280元</div>
-                                        <div className="odd-str-line"></div>
-                                        <div className="odd-quantity">3</div>
-                                        <div className="odd-str-line"></div>
-                                        <div className="odd-subtotal">840元</div>
-                                    </div>
-                                </div> */}
-                                <div className="odd-total-wrap">
-                                    <div className="odd-total">商品合計<span>1680</span></div>
-                                    <div className="odd-total-line"></div>
-                                    <div className="odd-discount">折價<span>0</span></div>
-                                    <div className="odd-total-line"></div>
-                                    <div className="odd-pay">付款金額<span>1680元</span></div>
-                                </div>
+                                {myOrder.map((v, i) => {
+                                    return (
+                                        <Fragment key={v.cart_sid}>
+                                            <OrderHistoryDetailList />
+                                        </Fragment>
+                                    );
+                                })}
+                                <OrderHistoryDetailPrice/>
                             </div>
                         </div>
                     </div>

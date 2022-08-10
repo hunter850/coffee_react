@@ -50,6 +50,7 @@ body{
     border-radius: 10px;
     background-color: var(--gray);
     backface-visibility: hidden; 
+    background: url(/src/images/member/silver-front.jpg) ;
 }
 .cardF-wrap{
     display: flex;
@@ -57,7 +58,7 @@ body{
     justify-content: center;
     align-items: center;
     padding: 20px;
-    padding-top: 220px;
+    padding-top: 180px;
     text-align: center;
 }
 .cardF-desc{
@@ -75,25 +76,38 @@ body{
     background-color: var(--gray);
     transform: rotateY(180deg);
     backface-visibility: hidden; 
+    background: url(/src/images/member/silver-back.jpg) ;
 }
 .cardB-desc{
     font-size: .8rem;
     color: var(--blue);
-    margin-top: 15px;
+    /* margin-top: 10px; */
+    padding: 30px 0 0 20px;
 }
-.cardB-desc::before{
+/* .cardB-desc::before{
     content:" ";
     display:block; 
     width: 180px;
     border-bottom: 1px solid white;
     margin-bottom: 15px;
-}
+} */
+/* .cardB-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    padding-left: 50px;
+    padding-top: 243px;
+} */
 .cardB-level{
-    color: var(--blue);
+    color: rgb(156, 131, 95);
     font-size: 1.5rem;
     font-weight: 500;
+    padding: 50px 0 0 25px;
 }
 .cardB-level>span{
+    color: rgb(156, 131, 95);
     margin-left: 10px;
     letter-spacing: normal;
 }
