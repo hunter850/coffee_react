@@ -35,7 +35,6 @@ import PointsToCoupon from "./routes/game/PointsToCoupon";
 import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
 import ProductsDetail from "./routes/Products/ProductsDetail";
-import PostDetail from "./routes/sharing/PostDetail";
 import LatestnewsDetail from "./routes/frontPage/LatestnewsDetail";
 
 const App = () => {
@@ -86,7 +85,7 @@ const App = () => {
                             />
                             <Route
                                 path="/sharing/:post_sid"
-                                element={<PostDetail />}
+                                element={<Post />}
                             />
                             <Route path="/sharing" element={<Post />} />
 
