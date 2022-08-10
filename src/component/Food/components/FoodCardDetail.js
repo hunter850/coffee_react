@@ -4,7 +4,6 @@ import { useState } from "react";
 import { icechoice, sugarchoice } from "../../../config/constant";
 // import useData from "../../../hooks/useData";
 
-
 function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const {
         menu_sid,
@@ -22,6 +21,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
+
     return (
         <>
             <div
@@ -148,6 +148,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         <button
                             className={orderclass}
                             onClick={() => {
+                                if (!sugar || !ice) return false;
                                 setIsShow(false);
                                 setDataFromFoodDetail({
                                     menu_name,
