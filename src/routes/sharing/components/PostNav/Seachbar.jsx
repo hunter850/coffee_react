@@ -10,7 +10,7 @@ import ResultRow from "./ResultRow";
 
 function Seachbar({
     setRows,
-    getData,
+    chooseToSearch,
     setSearchMode,
     keyWord,
     setKeyWord,
@@ -71,14 +71,15 @@ function Seachbar({
     };
 
     const keyWordSubmit = (q, type) => {
-        setIsEnd(false);
-        setGetDataTimes(0);
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
-
-        replaced ? setSearchMode(true) : setSearchMode(false);
+        console.log("q:", replaced);
 
         if (replaced) {
+            console.log("submit");
+            setIsEnd(false);
+            setGetDataTimes(0);
+            setSearchMode("submit");
             clearPreview();
             axios(searchPost, { params: { q: replaced, auth: sid } }).then(
                 (r) => {
@@ -117,29 +118,38 @@ function Seachbar({
         sendDataDebounce(e.target.value);
     };
 
-    const chooseToSearch = (v) => {
-        const { name, sid, type, member_sid } = v;
-        const params = { q: sid || member_sid, type, auth: sid };
-        setKeyWord(name);
-        setIsEnd(false);
-        setSearchMode(true);
+    // const chooseToSearch = (v) => {
+    //     const { name, sid, type, member_sid } = v;
+    //     const params = { q: sid || member_sid, type, auth: sid };
+    //     setKeyWord(name);
+    //     setIsEnd(false);
+    //     setSearchMode("choose");
 
-        console.log(params);
-        axios(searchPost, { params }).then((r) => {
-            if (r.data.success) {
-                setRows(r.data.rows);
-                if (r.data.isEnd) setIsEnd(true);
-            }
-        });
-    };
+    //     console.log(params);
+    //     axios(searchPost, { params }).then((r) => {
+    //         if (r.data.success) {
+    //             setRows(r.data.rows);
+    //             if (r.data.isEnd) setIsEnd(true);
+    //         }
+    //     });
+    // };
 
     return (
         <div className={container} ref={containerRef}>
-            <div className={search_wrap} id="seach_wrap">
+            <form
+                className={search_wrap}
+                id="seach_wrap"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                }}
+            >
                 <div
                     className={magnifier_wrap}
                     ref={mag_wrap}
-                    style={{ display: "none", transform: "translateX(4px)" }}
+                    style={{
+                        display: "none",
+                        transform: "translateX(4px)",
+                    }}
                 >
                     <Magnifier />
                 </div>
@@ -179,7 +189,8 @@ function Seachbar({
                 <button className={submit} onClick={keyWordSubmit}>
                     <Magnifier color="#4285f4" />
                 </button>
-            </div>
+            </form>
+
             {previewData.length > 0 && (
                 <div className={result_wrap}>
                     {previewData.map((v, i) => {

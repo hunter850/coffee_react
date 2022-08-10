@@ -1,28 +1,37 @@
 import { Fragment } from "react";
 import useData from "../../../../hooks/useData";
+import useClass from "../../../../hooks/useClass";
 import styles from "./css/goodsHeader.module.scss";
 
 function GoodsHeader() {
-    const { list_wrap, header_text } = styles;
+    const {
+        list_wrap,
+        header_text,
+        header_name,
+        header_trash,
+        text_start,
+        button_group,
+    } = styles;
     const [nowList] = useData("nowList");
+    const c = useClass();
     return (
         <Fragment>
             <ul className={list_wrap}>
-                <li>
-                    <p className={header_text}>
+                <li className={header_name}>
+                    <p className={c(header_text, text_start)}>
                         {nowList === "productList" ? "商品" : "餐點"}
                     </p>
                 </li>
                 <li>
                     <p className={header_text}>價格</p>
                 </li>
-                <li>
+                <li className={button_group}>
                     <p className={header_text}>數量</p>
                 </li>
                 <li>
                     <p className={header_text}>小記</p>
                 </li>
-                <li>
+                <li className={header_trash}>
                     <svg
                         width="16"
                         height="19"
