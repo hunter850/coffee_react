@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import Seachbar from "./Seachbar";
 import { avatarDIR } from "../../../../config/api-path";
@@ -44,9 +44,9 @@ function PostNav(props) {
                     <a
                         href="./#"
                         onClick={(e) => {
+                            navigate(0);
                             e.preventDefault();
                             setTabs("home");
-                            navigate(0);
                         }}
                     >
                         <h4>分享牆</h4>
@@ -72,20 +72,26 @@ function PostNav(props) {
                             resetState();
                         }}
                     >
-                        <AiFillHome
-                            color={tabs === "home" ? "#b79973" : "324A59"}
-                            fontSize="26"
-                        />
+                        <Link to="/sharing">
+                            <AiFillHome
+                                color={tabs === "home" ? "#b79973" : "324A59"}
+                                fontSize="26"
+                            />
+                        </Link>
                     </li>
                     <li
                         onClick={() => {
                             setTabs("newPost");
                         }}
                     >
-                        <BsFillPlusSquareFill
-                            color={tabs === "newPost" ? "#b79973" : "324A59"}
-                            fontSize="24"
-                        />
+                        <Link to="/sharing/newpost">
+                            <BsFillPlusSquareFill
+                                color={
+                                    tabs === "newPost" ? "#b79973" : "324A59"
+                                }
+                                fontSize="24"
+                            />
+                        </Link>
                     </li>
                     <li
                         onClick={() => {
@@ -94,10 +100,12 @@ function PostNav(props) {
                             setTabs("heart");
                         }}
                     >
-                        <FaHeart
-                            color={tabs === "heart" ? "#b79973" : "324A59"}
-                            fontSize="24"
-                        />
+                        <Link to="/sharing">
+                            <FaHeart
+                                color={tabs === "heart" ? "#b79973" : "324A59"}
+                                fontSize="24"
+                            />
+                        </Link>
                     </li>
                     <li
                         className={avatar_wrap}
@@ -106,12 +114,14 @@ function PostNav(props) {
                             window.scrollTo(0, 0);
                         }}
                     >
-                        <img
-                            src={`${avatarDIR}/${avatar || "missing-image.jpg"
-                                }`}
-                            alt="avatar"
-                            width="36px"
-                        />
+                        <Link to="/sharing">
+                            <img
+                                src={`${avatarDIR}/${avatar || "missing-image.jpg"
+                                    }`}
+                                alt="avatar"
+                                width="36px"
+                            />
+                        </Link>
                     </li>
                 </ul>
             </div>

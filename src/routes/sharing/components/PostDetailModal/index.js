@@ -5,7 +5,7 @@ import styles from "../../css/postdetailmodal.module.scss";
 import PostDeatailCarousel from "./PostDetailCarousel";
 import { getPosts, searchPost } from "../../../../config/api-path";
 import { useNavigate } from "react-router-dom";
-import CancelBtn from "./CancelBtn";
+import CancelBtn from "../CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 
 function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {

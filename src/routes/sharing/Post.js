@@ -20,6 +20,7 @@ import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 import Footer from "../../component/Footer";
+import NewPost from "./NewPost";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -27,16 +28,17 @@ const breakpointColumnsObj = {
     700: 2,
 };
 
-function Post(props) {
+function Post({ newPost }) {
     const { authorized, sid, account, token } = useAuth();
-    const { container, my_masonry_grid, my_masonry_grid_column } = styles;
+    const { container, my_masonry_grid, my_masonry_grid_column, loader } =
+        styles;
     const wrap = useRef(null);
     const mounted = useRef(false);
     const mounted_K = useRef(false);
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
-    const [tabs, setTabs] = useState("home");
+    const [tabs, setTabs] = useState(newPost ? "newPost" : "home");
     const [post_sid, setPost_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
@@ -77,12 +79,13 @@ function Post(props) {
         setChooseValue("");
         setSearchMode("");
         setIsEnd(false);
+        setTabs("home");
 
         (async () => {
             const r = await getData();
             setRows(r.rows);
         })();
-    }, [getData]);
+    }, []);
 
     const scrollHandler = throttle((e) => {
         setScrollY((pre) => {
@@ -92,24 +95,28 @@ function Post(props) {
             return [...newPre, window.scrollY];
         });
 
-        const tempEl =
-            wrap.current.lastElementChild?.lastElementChild?.lastElementChild;
+        const masonry = wrap.current.lastElementChild;
+        const gridArr = [
+            masonry.children[0]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[1]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[2]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[3]?.lastElementChild.getBoundingClientRect().top,
+        ];
 
-        if (tempEl) {
-            // const lastImg =
-            //     wrap.current.lastElementChild.lastElementChild.lastElementChild;
-            if (tempEl.getBoundingClientRect().top < 1000) {
-                setGetDataTimes((pre) => pre + 1);
-            }
-        }
-        // }
-
-        if (window.pageYOffset / document.body.clientHeight > 0.5) {
+        const closest = gridArr.sort((a, b) => a - b)[0];
+        if (closest < 800) {
+            setGetDataTimes((pre) => pre + 1);
         }
 
-        // if (lastImg) {
-        // }
-    }, 100);
+        const scrollPercent =
+            window.pageYOffset /
+            (document.body.clientHeight - window.innerHeight);
+        const fiftyPercent =
+            document.body.clientHeight / 2 - window.innerHeight;
+        if (scrollPercent > 0.99 && !isEnd) {
+            window.scrollTo(0, fiftyPercent);
+        }
+    }, 200);
 
     useEffect(() => {
         // DidUpdate轉換狀態才清rows
@@ -119,7 +126,8 @@ function Post(props) {
                 // setGetDataTimes(0);
                 if (!searchMode) {
                     const r = await getData(getDataTimes);
-                    if (r.success) {
+
+                    if (r?.success) {
                         setRows(r.rows);
                     }
                 }
@@ -149,7 +157,7 @@ function Post(props) {
         (async () => {
             const r = await getData(getDataTimes);
 
-            if (r.success) {
+            if (r?.success) {
                 setRows((pre) => {
                     if (pre === undefined) {
                         return [...r.rows];
@@ -195,20 +203,26 @@ function Post(props) {
 
         if (!rt) {
             axios(searchPost, { params }).then((r) => {
-                if (r.data.success) {
+                if (r.data?.success) {
                     setRows(r.data.rows);
                     if (r.data.isEnd) setIsEnd(true);
                 }
             });
         } else {
             axios(searchPost, { params }).then((r) => {
-                if (r.data.success) {
+                if (r.data?.success) {
                     if (r.data.isEnd) setIsEnd(true);
                     return r.data;
                 }
             });
         }
     };
+
+    useEffect(() => {
+        if (window.history.scrollRestoration) {
+            window.history.scrollRestoration = "manual";
+        }
+    }, []);
 
     return (
         <Fragment>
@@ -228,6 +242,7 @@ function Post(props) {
             />
 
             <div className={container} ref={wrap}>
+                <h1 className="mt-1">{tabs}</h1>
                 {rows && (
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
@@ -260,6 +275,7 @@ function Post(props) {
                         windowScrollY={scrollY[1]}
                     />
                 )}
+                {tabs === "newPost" && <NewPost setTabs={setTabs} />}
             </div>
 
             <Footer />

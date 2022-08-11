@@ -182,7 +182,10 @@ function Seachbar({
                             <div
                                 key={i}
                                 className={result_content}
-                                onClick={() => chooseToSearch(v)}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    chooseToSearch(v);
+                                }}
                             >
                                 <ResultRow data={v} />
                             </div>
