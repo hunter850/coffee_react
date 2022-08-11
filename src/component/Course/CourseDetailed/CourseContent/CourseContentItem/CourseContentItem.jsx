@@ -72,11 +72,6 @@ function CourseContentItem({ marginTop, children, item, setItem, topZeroSure, co
             >
 
             </div>
-            {/* <pre
-                className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}
-            >
-                {start ? courseDetailedData[0].course_content : ''}
-            </pre> */}
         </div>
     );
 }
