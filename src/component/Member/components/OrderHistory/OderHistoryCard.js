@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./OrderHistoryMain.css";
 
 function OderHistoryCard({cards}) {
-    const { order_sid, order_time, order_member_id, order_price, order_id } = cards;
+    const { order_sid, order_time, order_member_id, order_price, order_id, order_status } = cards;
 
     return (
         <>
@@ -25,7 +25,7 @@ function OderHistoryCard({cards}) {
                             </div>
                             <div className="odh-state">
                                 <span>訂單狀態</span>
-                                <span>取貨完成</span>
+                                <span>{order_status}</span>
                             </div>
                         </div>
                         <button className="odh-btn">訂單詳細</button>

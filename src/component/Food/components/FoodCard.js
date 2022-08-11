@@ -1,13 +1,14 @@
 import "./FoodCard.scss";
 import "./FoodAdd.scss";
 import { useEffect } from "react";
+import ScrollWrap from "../../Item/ScrollWrap/ScrollWrap";
 function FoodCard({
-    handleShowFoodDetailSelect,
+    setShowFoodDetail,
     setIsShow,
     allfood,
     handleCakeCount,
 
-    // foodCount,
+    foodCount,
 }) {
     const {
         menu_name,
@@ -18,7 +19,13 @@ function FoodCard({
         menu_photo,
     } = allfood;
     return (
-        <>
+        <ScrollWrap
+            start="cardaniwrapbf"
+            end="cardaniwrapat"
+            offset={150}
+            //   backAgain={true}
+            //   backOffset={-5}
+        >
             <div className="food_card" key={menu_sid}>
                 <div className="food_card_top">
                     <img
@@ -41,7 +48,7 @@ function FoodCard({
                                         menu_categories === "1" ||
                                         menu_categories === "2"
                                     ) {
-                                        handleShowFoodDetailSelect(allfood);
+                                        setShowFoodDetail(allfood);
                                         setIsShow(true);
                                     }
                                     if (
@@ -58,7 +65,7 @@ function FoodCard({
                     </div>
                 </div>
             </div>
-        </>
+        </ScrollWrap>
     );
 }
 
