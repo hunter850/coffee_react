@@ -102,7 +102,6 @@ function Reserve() {
     );
     console.log("selectItem", selectItem);
 
-
     const handleSubmission = (e) => {
         if (!branch || !checkedDate || !people) return false;
         try {
@@ -123,16 +122,45 @@ function Reserve() {
                 }).then((response) => {
                     console.log(response);
                     setIsOpen(true);
-                    // navigate("/");
-                    // getCount();
                 });
+            else {
+                setIsOpen(true);
+            }
         } catch (error) {
             console.log("error");
         }
     };
-
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
 
+    const memberLogin = (
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Link
+                to="/"
+                style={{
+                    textDecoration: "none",
+                    color: "var(--BLUE)",
+                    padding: "40px",
+                }}
+            >
+                <h4>訂位成功</h4>
+            </Link>
+        </Modal>
+    );
+
+    const memberLogout = (
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Link
+                to="/"
+                style={{
+                    textDecoration: "none",
+                    color: "var(--BLUE)",
+                    padding: "40px",
+                }}
+            >
+                <h4>請先登入</h4>
+            </Link>
+        </Modal>
+    );
     return (
         <Fragment>
             <NavBar />
@@ -206,19 +234,8 @@ function Reserve() {
                         </p>
                     </div>
                 </div>
-                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                    <Link
-                        to="/"
-                        style={{
-                            textDecoration: "none",
-                            color: "var(--BLUE)",
-                            padding: "40px",
-                        }}
-                    >
-                        <h4>訂位成功</h4>
-                    </Link>
-                </Modal>
             </div>
+            {Auth.sid ? memberLogin : memberLogout}
             <Chatbot />
             <br />
             <Footer />
