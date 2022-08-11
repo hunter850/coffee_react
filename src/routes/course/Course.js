@@ -205,26 +205,6 @@ const Course = () => {
                 />
                 <div className="container">
                     {courseData.length > 0 ? CourseData : ''}
-                    {/* <div className="d-flex f-jcc course-pages">
-                        {Array(pageTotal)
-                            .fill(1)
-                            .map((v, i) => {
-                                return (
-                                    <div
-                                        key={i}
-                                        onClick={() => {
-                                            setPageNow(i + 1);
-                                        }}
-                                        className={`course-page-btn ${pageNow === i + 1
-                                            ? "course-page-btn-focus"
-                                            : ""
-                                            }`}
-                                    >
-                                        {i + 1}
-                                    </div>
-                                );
-                            })}
-                    </div> */}
                 </div>
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
