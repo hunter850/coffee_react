@@ -1,9 +1,25 @@
 import { Fragment, useMemo, useState, useEffect } from "react";
 import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
+import useClass from "../../../../hooks/useClass";
+import Btn from "../../../../component/Item/Btn/Btn";
+import styles from "./css/totalBord.module.scss";
+import public_style from "../../css/public_style.module.scss";
 
 function TotalBord(props) {
     const { confirmHandler, setPriceInfo } = props;
+    const {
+        bord_wrap,
+        count_wrap,
+        final_price,
+        button_wrap,
+        confirm_button,
+        count_title,
+        text_mb,
+        bottom_line,
+    } = styles;
+    const { btn } = public_style;
+    const c = useClass();
     // 現在是商品或餐點
     const [nowList] = useData("nowList");
     // 取得產品列表
@@ -57,8 +73,8 @@ function TotalBord(props) {
         // 折%
         return Math.ceil(
             discountObject.price *
-                discountObject.quantity *
-                (1 - selectedCoupon.discount)
+            discountObject.quantity *
+            (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
 
@@ -75,26 +91,32 @@ function TotalBord(props) {
     }, [totalPrice, discount]);
     return (
         <Fragment>
-            <div>
-                <div>
-                    <span>總計</span>
+            <div className={bord_wrap}>
+                <div className={c(count_wrap, text_mb, bottom_line)}>
+                    <span className={count_title}>總計</span>
                     <span>{totalPrice}</span>
                 </div>
-                <div>
-                    <span>折價</span>
+                <div className={c(count_wrap, text_mb, bottom_line)}>
+                    <span className={count_title}>折價</span>
                     <span>{discount}</span>
                 </div>
                 <div>
-                    <p>結算金額</p>
-                    <p>{totalPrice - discount} 元</p>
-                    <p>
-                        tween:{" "}
+                    <p className={count_title}>結算金額</p>
+                    {/* <p>{totalPrice - discount} 元</p> */}
+                    <h3 className={c(final_price, text_mb)}>
                         {Number.isNaN(parseInt(tween.total))
                             ? 0
                             : parseInt(tween.total)}{" "}
                         元
-                    </p>
-                    <button onClick={confirmHandler}>確認</button>
+                    </h3>
+                    <div className={button_wrap}>
+                        <button
+                            className={c(btn, confirm_button)}
+                            onClick={confirmHandler}
+                        >
+                            確認
+                        </button>
+                    </div>
                 </div>
             </div>
         </Fragment>
