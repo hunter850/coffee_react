@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
@@ -22,6 +22,7 @@ import {
 function Cart() {
     const { container, px_200 } = bs_flex;
     const { fake_body, cart_tab_wrap, tab_button_group, tab_button } = styles;
+    const [inlineStyles, setInlineStyles] = useState({});
     const productRef = useRef([]);
     const foodRef = useRef([]);
     const buttonGroupRef = useRef(null);
@@ -205,6 +206,18 @@ function Cart() {
         localStorage.setItem("nowList", "foodList");
         setNowList("foodList");
     };
+    useEffect(() => {
+        function adjustButtonPosition() {
+            const buttonHeight = getComputedStyle(buttonGroupRef.current).height;
+            setInlineStyles({
+                ...inlineStyles,
+                tab: { top: "-" + buttonHeight },
+            });
+        }
+        adjustButtonPosition();
+        window.addEventListener("resize", adjustButtonPosition);
+        return window.removeEventListener("resize", adjustButtonPosition);
+    }, []);
     return (
         <Fragment>
             <div className={fake_body}>
@@ -214,12 +227,7 @@ function Cart() {
                         <div
                             className={tab_button_group}
                             ref={buttonGroupRef}
-                            style={{
-                                top: `${
-                                    buttonGroupRef.current.getBoundingClientRect()
-                                        .height
-                                }`,
-                            }}
+                            style={inlineStyles.tab}
                         >
                             <button
                                 onClick={productClicked}
