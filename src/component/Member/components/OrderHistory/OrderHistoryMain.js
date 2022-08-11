@@ -2,7 +2,7 @@ import { useState, useEffect,useContext } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OderHistoryCard from "./OderHistoryCard";
 import { getOrderHistory } from "../../../../config/api-path";
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useNavigate,useParams } from "react-router-dom";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
