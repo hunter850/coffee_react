@@ -1,6 +1,7 @@
 .home-flex-container {
     width: 1440px;
-    padding: 20px 200px;
+    height: 550px;
+    padding: 10px 200px;
     margin: auto;
     text-align: center;
 }
@@ -17,6 +18,7 @@
     text-align: center;
     border-bottom: 1px solid #FFFFFF;
     padding-bottom: 20px;
+    padding-top: 10px;
 }
 
 .link_from {
@@ -34,5 +36,11 @@
 @media screen and (max-width:400px) {
     .home-box-color {
         padding: 0px;
+    }
+    .home-flex-container {
+        width: 100%;
+        margin: auto;
+        padding: 0;
+        text-align: start;
     }
 }
