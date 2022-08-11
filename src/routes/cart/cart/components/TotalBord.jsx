@@ -2,7 +2,6 @@ import { Fragment, useMemo, useState, useEffect } from "react";
 import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
 import useClass from "../../../../hooks/useClass";
-import Btn from "../../../../component/Item/Btn/Btn";
 import styles from "./css/totalBord.module.scss";
 import public_style from "../../css/public_style.module.scss";
 
@@ -73,8 +72,8 @@ function TotalBord(props) {
         // 折%
         return Math.ceil(
             discountObject.price *
-            discountObject.quantity *
-            (1 - selectedCoupon.discount)
+                discountObject.quantity *
+                (1 - selectedCoupon.discount)
         );
     }, [selectedCoupon, totalPrice, list, nowList]);
 
