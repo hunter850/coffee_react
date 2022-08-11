@@ -1,8 +1,20 @@
+@mixin productsMob {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
 .products_list {
     width: 100%;
     margin-top: 66px;
+    @include productsMob{
+        margin-top: 32px;
+    }
     h3 {
         margin-bottom: 54px;
+        @include productsMob{
+            margin-bottom: 32px;
+        }
     }
     .list_title {
         display: flex;
@@ -16,17 +28,14 @@
         ul {
             display: flex;
             flex-wrap: wrap;
-            // position: relative;
             .cardaniwrapbf {
                 position: relative;
-                // display: none;
                 left: -300px;
                 opacity: 0;
             }
             .cardaniwrapat {
                 position: relative;
                 left: 0px;
-                // display: block;
                 transition: 1.5s;
                 opacity: 1;
             }

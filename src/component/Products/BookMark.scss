@@ -1,10 +1,26 @@
+@mixin productsMob {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
+
 .products_Bookmark {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 54px;
+    @include productsMob{
+        margin-top: 0px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
     li {
         margin-right: 40px;
+        @include productsMob{
+            margin-right: 0px;
+            margin: 0px 10px 10px 0px;
+        }
     }
 }
