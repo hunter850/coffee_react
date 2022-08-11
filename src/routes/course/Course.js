@@ -23,6 +23,7 @@ import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
+import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 
 const Course = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -149,6 +150,39 @@ const Course = () => {
             }
         }
     };
+    // 動態渲染資料
+    const CourseData = (<div className="d-flex f-w card-wrap">
+        {
+            courseData.map((value, index) => {
+                return courseData[index].map((v, i) => {
+                    return (
+                        <ScrollWrap
+                            start={sortData === '' ? `course-cardaniwrapbf` : ''}
+                            end={sortData === '' ? `course-cardaniwrapat` : ''}
+                            offset={150}
+                            component="li"
+                            key={v.course_sid}
+                        >
+                            <Link
+                                to={`/course/detailed/${v.course_sid}`}
+                            >
+                                <Card
+                                    courseData={{
+                                        course_level: v.course_level,
+                                        course_name: v.course_name,
+                                        course_content:
+                                            v.course_content,
+                                        course_price: v.course_price,
+                                        course_sid: v.course_sid,
+                                        course_img_s: v.course_img_s,
+                                    }}
+                                />
+                            </Link>
+                        </ScrollWrap>
+                    );
+                });
+            })}
+    </div>);
 
     const el = (
         <Fragment>
@@ -170,49 +204,7 @@ const Course = () => {
                     setSortData={setSortData}
                 />
                 <div className="container">
-                    <div className="d-flex f-w card-wrap">
-                        {courseData.length > 0 &&
-                            courseData[pageNow - 1].map((v, i) => {
-                                return (
-                                    <Link
-                                        to={`/course/detailed/${v.course_sid}`}
-                                        key={v.course_sid}
-                                    >
-                                        <Card
-                                            courseData={{
-                                                course_level: v.course_level,
-                                                course_name: v.course_name,
-                                                course_content:
-                                                    v.course_content,
-                                                course_price: v.course_price,
-                                                course_sid: v.course_sid,
-                                                course_img_s: v.course_img_s,
-                                            }}
-                                        />
-                                    </Link>
-                                );
-                            })}
-                    </div>
-                    <div className="d-flex f-jcc course-pages">
-                        {Array(pageTotal)
-                            .fill(1)
-                            .map((v, i) => {
-                                return (
-                                    <div
-                                        key={i}
-                                        onClick={() => {
-                                            setPageNow(i + 1);
-                                        }}
-                                        className={`course-page-btn ${pageNow === i + 1
-                                            ? "course-page-btn-focus"
-                                            : ""
-                                            }`}
-                                    >
-                                        {i + 1}
-                                    </div>
-                                );
-                            })}
-                    </div>
+                    {courseData.length > 0 ? CourseData : ''}
                 </div>
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>

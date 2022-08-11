@@ -29,13 +29,13 @@ const menuFiliter = [
 ];
 
 // 設定一頁筆數
-// const perPage = 9;
+const perPage = 9;
 
 function Food() {
     // 從sql拿資料--------------------------------------------------------
     const [foodFromApi, setFoodFromApi] = useState([]);
-    // const [pageNow, setPageNow] = useState(1); // 預設第一頁
-    // const [pageTotal, setPageTotal] = useState(1); // 等伺服器抓完資料才知道多少(didMount時決定)
+    const [pageNow, setPageNow] = useState(1); // 預設第一頁
+    const [pageTotal, setPageTotal] = useState(1); // 等伺服器抓完資料才知道多少(didMount時決定)
     // ------------------------------------------------------------------
     const [foodFilter, setFoodFilter] = useState(menuFiliter[0].id);
     const [showFoodDetail, setShowFoodDetail] = useState({
@@ -50,7 +50,6 @@ function Food() {
     //拿自取時段的資料--------------------------------------------------
     const [dataFromDate, setDataFromDate] = useState("");
     const [dataFromDateTime, setDataFromDateTime] = useState("");
-    const [productsScroll, setProductsScroll] = useState(false);
 
     const [isShow, setIsShow] = useState(false);
     const [showMap, setShowMap] = useState(false);
@@ -73,23 +72,19 @@ function Food() {
         };
         getFoodData();
     }, []);
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        setProductsScroll(false);
-    }, [productsScroll]);
 
     // 載入資料指示狀態
     useEffect(() => {
-        // const filterFood = getCurrentFilterFood();
-        // // 設定總筆數該分成幾頁
-        // setPageTotal(Math.ceil(filterFood.length / perPage));
-        // // 重置到第一頁
-        // setPageNow(1);
+        const filterFood = getCurrentFilterFood();
+        // 設定總筆數該分成幾頁
+        setPageTotal(Math.ceil(filterFood.length / perPage));
+        // 重置到第一頁
+        setPageNow(1);
     }, [foodFilter, foodFromApi]);
 
-    // const food = getCurrentFilterFood().filter(
-    //     (f, idx) => idx >= perPage * (pageNow - 1) && idx < perPage * pageNow
-    // );
+    const food = getCurrentFilterFood().filter(
+        (f, idx) => idx >= perPage * (pageNow - 1) && idx < perPage * pageNow
+    );
 
     //食物累加到側邊欄-----------------------------------------------------
     const isSameItem = (item1, item2) => {
@@ -169,7 +164,7 @@ function Food() {
         }
         setDataFromFoodDetail(newData);
     };
-    console.log("foodFromApi", foodFromApi);
+
     return (
         <Fragment>
             {/* <NavBar /> */}
@@ -210,31 +205,21 @@ function Food() {
                         </div>
                         <div className="foodcard-session">
                             {/* 這裡很重要 */}
-
-                            {foodFromApi
-                                .filter(
-                                    ({ menu_categories }) =>
-                                        !foodFilter ||
-                                        menu_categories === foodFilter
-                                )
-                                .map(({ ...allfood }, i) => {
+                            {food &&
+                                food.map(({ ...allfood }, i) => {
                                     return (
-                                        <>
-                                            <FoodCard
-                                                key={`allfood${i}`}
-                                                allfood={allfood}
-                                                setShowFoodDetail={
-                                                    setShowFoodDetail
-                                                }
-                                                setIsShow={setIsShow}
-                                                setDataFromFoodDetail={
-                                                    setDataFromFoodDetail
-                                                }
-                                                handleCakeCount={
-                                                    handleCakeCount
-                                                }
-                                            />
-                                        </>
+                                        <FoodCard
+                                            key={`allfood${i}`}
+                                            allfood={allfood}
+                                            handleShowFoodDetailSelect={
+                                                setShowFoodDetail
+                                            }
+                                            setIsShow={setIsShow}
+                                            setDataFromFoodDetail={
+                                                setDataFromFoodDetail
+                                            }
+                                            handleCakeCount={handleCakeCount}
+                                        />
                                     );
                                 })}
                         </div>
@@ -260,7 +245,7 @@ function Food() {
                     />
                 </div>
 
-                {/* <div className="d-flex f-jcc">
+                <div className="d-flex f-jcc">
                     {Array(pageTotal)
                         .fill(1)
                         .map((v, i) => {
@@ -279,7 +264,7 @@ function Food() {
                                 </div>
                             );
                         })}
-                </div> */}
+                </div>
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Link
@@ -294,26 +279,6 @@ function Food() {
                     </Link>
                 </Modal>
             </div>
-            <button
-                className={"producstsScrolltop"}
-                onClick={() => {
-                    setProductsScroll(true);
-                }}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-arrow-up-circle"
-                    viewBox="0 0 16 16"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
-                    />
-                </svg>
-            </button>
             <Chatbot />
             <br />
             <Footer />

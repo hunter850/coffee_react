@@ -71,7 +71,7 @@ function List(props) {
                                           <ScrollWrap
                                               start="cardaniwrapbf"
                                               end="cardaniwrapat"
-                                              offset={150}
+                                              offset={50}
                                               //   backAgain={true}
                                               //   backOffset={-5}
                                               component="li"

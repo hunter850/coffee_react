@@ -11,7 +11,7 @@ import axios from "axios";
 import { getUserData } from "../../config/api-path";
 
 
-function NavBar({ navPosition = 'fixed' }) {
+function NavBar({ navPosition = 'sticky' }) {
     const { sid, name, token, setAuth } = useAuth();
     const { count, getCount, handleLogout } = useNav();
     const navigate = useNavigate();
@@ -235,7 +235,6 @@ function NavBar({ navPosition = 'fixed' }) {
                     </div>
                 </nav>
             </header>
-            <div className="nav-solid-border-bottom"></div>
         </>
     );
 }

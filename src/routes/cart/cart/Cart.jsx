@@ -21,9 +21,10 @@ import {
 
 function Cart() {
     const { container, px_200 } = bs_flex;
-    const { fake_body } = styles;
+    const { fake_body, cart_tab_wrap, tab_button_group, tab_button } = styles;
     const productRef = useRef([]);
     const foodRef = useRef([]);
+    const buttonGroupRef = useRef(null);
     const c = useClass();
     const [nowList, setNowList] = useData("nowList");
     const [productList, setProductList, resetProduct] = useData("productList");
@@ -209,9 +210,32 @@ function Cart() {
             <div className={fake_body}>
                 <NavBar />
                 <div className={c(container, px_200)}>
-                    <button onClick={productClicked}>商品</button>
-                    <button onClick={foodClicked}>餐點</button>
-                    <CartTab />
+                    <div className={cart_tab_wrap}>
+                        <div
+                            className={tab_button_group}
+                            ref={buttonGroupRef}
+                            style={{
+                                top: `${
+                                    buttonGroupRef.current.getBoundingClientRect()
+                                        .height
+                                }`,
+                            }}
+                        >
+                            <button
+                                onClick={productClicked}
+                                className={tab_button}
+                            >
+                                商品
+                            </button>
+                            <button
+                                onClick={foodClicked}
+                                className={tab_button}
+                            >
+                                餐點
+                            </button>
+                        </div>
+                        <CartTab />
+                    </div>
                 </div>
             </div>
             <Link to="/cart/creditcard">信用卡</Link>
