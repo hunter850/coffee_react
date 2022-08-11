@@ -2,18 +2,19 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Seachbar from "./Seachbar";
-import { imgSrc } from "../../../../config/api-path";
+import { avatarDIR } from "../../../../config/api-path";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 import styles from "../../css/postnav.module.scss";
 
 function PostNav(props) {
     const navigate = useNavigate();
+
     const {
         scrollDir = "up",
-        rows,
         setRows,
         setSearchMode,
         keyWord,
@@ -21,6 +22,9 @@ function PostNav(props) {
         setIsEnd,
         setGetDataTimes,
         chooseToSearch,
+        tabs,
+        setTabs,
+        resetState,
     } = props;
     const { authorized, sid, account, token, avatar } = useAuth();
     const {
@@ -38,9 +42,10 @@ function PostNav(props) {
             <div className={container}>
                 <div className={title_wrap}>
                     <a
-                        href="/sharing"
+                        href="./#"
                         onClick={(e) => {
                             e.preventDefault();
+                            setTabs("home");
                             navigate(0);
                         }}
                     >
@@ -56,27 +61,53 @@ function PostNav(props) {
                         setIsEnd={setIsEnd}
                         setGetDataTimes={setGetDataTimes}
                         chooseToSearch={chooseToSearch}
+                        setTabs={setTabs}
                     />
                 </div>
                 <ul className={icon_wrap}>
-                    <li>
-                        <BsFillPlusSquareFill color="#324A59" fontSize="24" />
+                    <li
+                        onClick={() => {
+                            setTabs("home");
+                            window.scrollTo(0, 0);
+                            resetState();
+                        }}
+                    >
+                        <AiFillHome
+                            color={tabs === "home" ? "#b79973" : "324A59"}
+                            fontSize="26"
+                        />
+                    </li>
+                    <li
+                        onClick={() => {
+                            setTabs("newPost");
+                        }}
+                    >
+                        <BsFillPlusSquareFill
+                            color={tabs === "newPost" ? "#b79973" : "324A59"}
+                            fontSize="24"
+                        />
                     </li>
                     <li
                         onClick={() => {
                             chooseToSearch({ type: "member_like", sid });
+                            window.scrollTo(0, 0);
+                            setTabs("heart");
                         }}
                     >
-                        <FaHeart color="#324A59" fontSize="24" />
+                        <FaHeart
+                            color={tabs === "heart" ? "#b79973" : "324A59"}
+                            fontSize="24"
+                        />
                     </li>
                     <li
                         className={avatar_wrap}
-                        onClick={() =>
-                            chooseToSearch({ type: "nickname", sid })
-                        }
+                        onClick={() => {
+                            chooseToSearch({ type: "nickname", sid });
+                            window.scrollTo(0, 0);
+                        }}
                     >
                         <img
-                            src={`${imgSrc}/member/${avatar || "missing-image.jpg"
+                            src={`${avatarDIR}/${avatar || "missing-image.jpg"
                                 }`}
                             alt="avatar"
                             width="36px"

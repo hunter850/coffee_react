@@ -86,6 +86,7 @@ function PostCard({ cardData, modalMode, chooseToSearch }) {
                                     type: "nickname",
                                     sid: member_sid,
                                 });
+                                window.scrollTo(0, 0);
                             }}
                         >
                             <span className={nickname_span}>

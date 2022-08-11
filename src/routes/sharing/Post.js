@@ -1,8 +1,15 @@
-import { Fragment, useEffect, useState, useRef, useMemo } from "react";
+import {
+    Fragment,
+    useEffect,
+    useState,
+    useRef,
+    useMemo,
+    useCallback,
+} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
-import { throttle } from "lodash";
+import { set, throttle } from "lodash";
 
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import { getPosts, searchPost } from "../../config/api-path";
@@ -20,7 +27,7 @@ const breakpointColumnsObj = {
     700: 2,
 };
 
-function Post() {
+function Post(props) {
     const { authorized, sid, account, token } = useAuth();
     const { container, my_masonry_grid, my_masonry_grid_column } = styles;
     const wrap = useRef(null);
@@ -29,6 +36,7 @@ function Post() {
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
+    const [tabs, setTabs] = useState("home");
     const [post_sid, setPost_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
@@ -61,6 +69,21 @@ function Post() {
         }
     };
 
+    const resetState = useCallback(() => {
+        mounted.current = false;
+        mounted_K.current = false;
+        setGetDataTimes(0);
+        setScrollY([0, 0]);
+        setChooseValue("");
+        setSearchMode("");
+        setIsEnd(false);
+
+        (async () => {
+            const r = await getData();
+            setRows(r.rows);
+        })();
+    }, [getData]);
+
     const scrollHandler = throttle((e) => {
         setScrollY((pre) => {
             const newPre = [...pre];
@@ -69,14 +92,23 @@ function Post() {
             return [...newPre, window.scrollY];
         });
 
-        const lastImg =
-            wrap.current.lastElementChild.lastElementChild.lastElementChild;
+        const tempEl =
+            wrap.current.lastElementChild?.lastElementChild?.lastElementChild;
 
-        if (lastImg) {
-            if (lastImg.getBoundingClientRect().top < 1000) {
+        if (tempEl) {
+            // const lastImg =
+            //     wrap.current.lastElementChild.lastElementChild.lastElementChild;
+            if (tempEl.getBoundingClientRect().top < 1000) {
                 setGetDataTimes((pre) => pre + 1);
             }
         }
+        // }
+
+        if (window.pageYOffset / document.body.clientHeight > 0.5) {
+        }
+
+        // if (lastImg) {
+        // }
     }, 100);
 
     useEffect(() => {
@@ -119,6 +151,10 @@ function Post() {
 
             if (r.success) {
                 setRows((pre) => {
+                    if (pre === undefined) {
+                        return [...r.rows];
+                    }
+
                     return [...pre, ...r.rows];
                 });
             }
@@ -147,6 +183,7 @@ function Post() {
 
     const chooseToSearch = (v, times = 0, rt = false) => {
         setChooseValue(v);
+        setTabs("");
         const { name, sid, type, member_sid } = v;
         const params = { q: sid || member_sid, type, times };
 
@@ -178,7 +215,6 @@ function Post() {
             <NavBar />
             <PostNav
                 scrollDir={scrollDir}
-                rows={rows}
                 setRows={setRows}
                 setSearchMode={setSearchMode}
                 keyWord={keyWord}
@@ -186,32 +222,37 @@ function Post() {
                 setIsEnd={setIsEnd}
                 setGetDataTimes={setGetDataTimes}
                 chooseToSearch={chooseToSearch}
+                tabs={tabs}
+                setTabs={setTabs}
+                resetState={resetState}
             />
 
             <div className={container} ref={wrap}>
-                <Masonry
-                    breakpointCols={breakpointColumnsObj}
-                    className={my_masonry_grid}
-                    columnClassName={my_masonry_grid_column}
-                >
-                    {rows.map((v, i) => {
-                        return (
-                            <a
-                                key={i}
-                                href={`/sharing/${v.sid}`}
-                                onClick={(e) => {
-                                    modalHandler(e, v);
-                                }}
-                            >
-                                <PostCard
-                                    cardData={v}
-                                    modalMode={post_sid}
-                                    chooseToSearch={chooseToSearch}
-                                />
-                            </a>
-                        );
-                    })}
-                </Masonry>
+                {rows && (
+                    <Masonry
+                        breakpointCols={breakpointColumnsObj}
+                        className={my_masonry_grid}
+                        columnClassName={my_masonry_grid_column}
+                    >
+                        {rows.map((v, i) => {
+                            return (
+                                <a
+                                    key={i}
+                                    href={`/sharing/${v.sid}`}
+                                    onClick={(e) => {
+                                        modalHandler(e, v);
+                                    }}
+                                >
+                                    <PostCard
+                                        cardData={v}
+                                        modalMode={post_sid}
+                                        chooseToSearch={chooseToSearch}
+                                    />
+                                </a>
+                            );
+                        })}
+                    </Masonry>
+                )}
                 {post_sid !== 0 && (
                     <PostDetailModel
                         post_sid={post_sid}
@@ -220,6 +261,7 @@ function Post() {
                     />
                 )}
             </div>
+
             <Footer />
         </Fragment>
     );
