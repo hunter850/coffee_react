@@ -64,23 +64,19 @@ function CourseContentItem({ marginTop, children, item, setItem, topZeroSure, co
 
                 </div>
             </div>
-            {/* <div
+            <div
                 className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}
+                dangerouslySetInnerHTML={{
+                    __html: start ? courseDetailedData[0].course_content : '',
+                }}
             >
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範
-            </div> */}
-            <pre
+
+            </div>
+            {/* <pre
                 className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}
             >
                 {start ? courseDetailedData[0].course_content : ''}
-            </pre>
+            </pre> */}
         </div>
     );
 }
