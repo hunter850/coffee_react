@@ -100,7 +100,7 @@ const App = () => {
                                 element={<OrderHistory />}
                             />
                             <Route
-                                path="/member/orderhistory/detail/:sid"
+                                path="/member/orderhistory/detail/:order_sid"
                                 element={<OrderHistoryDetail />}
                             />
                             <Route path="/member/likes" element={<Likes />} />

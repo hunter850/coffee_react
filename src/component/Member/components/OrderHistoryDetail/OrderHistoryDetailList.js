@@ -1,4 +1,7 @@
 function OrderHistoryDetailList() {
+
+    
+
     return (
         <>
             <div className="odd-list">
