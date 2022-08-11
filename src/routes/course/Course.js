@@ -150,7 +150,7 @@ const Course = () => {
             }
         }
     };
-
+    // 動態渲染資料
     const CourseData = (<div className="d-flex f-w card-wrap">
         {
             courseData.map((value, index) => {
