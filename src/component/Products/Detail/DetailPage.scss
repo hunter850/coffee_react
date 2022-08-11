@@ -1,8 +1,20 @@
+@mixin productsMob {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
 .DetailPage {
     background-color: #fefefd;
     padding: 34px 59px;
     border-radius: 10px;
+    @include productsMob{
+        padding: 0px 0px;
+    }
     .DetailTop {
         display: flex;
+        @include productsMob{
+            display: block;
+        }
     }
 }

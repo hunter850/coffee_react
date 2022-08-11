@@ -118,21 +118,6 @@ function Seachbar({
         sendDataDebounce(e.target.value);
     };
 
-    // const chooseToSearch = (v) => {
-    //     const { name, sid, type, member_sid } = v;
-    //     const params = { q: sid || member_sid, type, auth: sid };
-    //     setKeyWord(name);
-    //     setIsEnd(false);
-    //     setSearchMode("choose");
-
-    //     console.log(params);
-    //     axios(searchPost, { params }).then((r) => {
-    //         if (r.data.success) {
-    //             setRows(r.data.rows);
-    //             if (r.data.isEnd) setIsEnd(true);
-    //         }
-    //     });
-    // };
 
     return (
         <div className={container} ref={containerRef}>

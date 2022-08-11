@@ -32,6 +32,7 @@ function Post() {
     const [post_sid, setPost_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
+    const [chooseValue, setChooseValue] = useState({});
     const [isEnd, setIsEnd] = useState(false);
 
     const [rows, setRows] = useState([]);
@@ -39,13 +40,9 @@ function Post() {
     const [scrollY, setScrollY] = useState([0, 0]);
 
     const getData = async (times = 0) => {
-        if (!searchMode) {
-            const r = await axios(getPosts, {
-                params: { times, auth: sid },
-            });
-            return r.data;
-        } else {
-            if (isEnd) return { row: [] };
+        if (isEnd) return { row: [] };
+
+        if (searchMode === "submit") {
             const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
             const replaced = keyWord.replace(pattern, "").trim();
 
@@ -53,6 +50,13 @@ function Post() {
                 params: { times, q: replaced, auth: sid },
             });
             if (r.data.isEnd) setIsEnd(true);
+            return r.data;
+        } else if (searchMode === "choose") {
+            return chooseToSearch(chooseValue, times, true);
+        } else {
+            const r = await axios(getPosts, {
+                params: { times, auth: sid },
+            });
             return r.data;
         }
     };
@@ -92,13 +96,6 @@ function Post() {
             mounted.current = true;
         }
     }, [searchMode]);
-
-    // useEffect(() => {
-    //     const pathname = window.location.pathname.replace("/sharing", "");
-    //     if (pathname === "" || pathname === "/") {
-    //         setPost_sid(0);
-    //     }
-    // }, [window.location.pathname]);
 
     useEffect(() => {
         if (mounted_K.current) {
@@ -148,9 +145,10 @@ function Post() {
         setPost_sid(v.sid);
     };
 
-    const chooseToSearch = (v) => {
+    const chooseToSearch = (v, times = 0, rt = false) => {
+        setChooseValue(v);
         const { name, sid, type, member_sid } = v;
-        const params = { q: sid || member_sid, type };
+        const params = { q: sid || member_sid, type, times };
 
         if (name) {
             setKeyWord(name);
@@ -158,12 +156,21 @@ function Post() {
         setIsEnd(false);
         setSearchMode("choose");
 
-        axios(searchPost, { params }).then((r) => {
-            if (r.data.success) {
-                setRows(r.data.rows);
-                if (r.data.isEnd) setIsEnd(true);
-            }
-        });
+        if (!rt) {
+            axios(searchPost, { params }).then((r) => {
+                if (r.data.success) {
+                    setRows(r.data.rows);
+                    if (r.data.isEnd) setIsEnd(true);
+                }
+            });
+        } else {
+            axios(searchPost, { params }).then((r) => {
+                if (r.data.success) {
+                    if (r.data.isEnd) setIsEnd(true);
+                    return r.data;
+                }
+            });
+        }
     };
 
     return (
@@ -182,7 +189,6 @@ function Post() {
             />
 
             <div className={container} ref={wrap}>
-                <h1 className="mt-5">mode:{searchMode}</h1>
                 <Masonry
                     breakpointCols={breakpointColumnsObj}
                     className={my_masonry_grid}
