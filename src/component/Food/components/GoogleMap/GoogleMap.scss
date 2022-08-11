@@ -47,7 +47,6 @@
         }
 
         .middle2 {
-            height: 575px;
             margin: 0 auto;
             padding: 20px;
             margin-top: 60px;
@@ -103,13 +102,12 @@
                         }
                     }
                     .mapshow.selected {
-                        background-color:#E9C5B7;
+                        background-color: #e9c5b7;
                     }
                     .mapshow:hover {
-                        background-color:#EEE5DD;
+                        background-color: #eee5dd;
                     }
                 }
-           
             }
         }
         .selectTime {
@@ -118,7 +116,6 @@
             height: 10vh;
             justify-content: space-around;
             text-align: center;
-            margin-top: 15px;
 
             .middle {
                 display: flex;
