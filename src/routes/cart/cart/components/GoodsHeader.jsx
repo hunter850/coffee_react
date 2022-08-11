@@ -11,6 +11,7 @@ function GoodsHeader() {
         header_trash,
         text_start,
         button_group,
+        trashcan,
     } = styles;
     const [nowList] = useData("nowList");
     const c = useClass();
@@ -33,6 +34,7 @@ function GoodsHeader() {
                 </li>
                 <li className={header_trash}>
                     <svg
+                        className={trashcan}
                         width="16"
                         height="19"
                         viewBox="0 0 16 19"

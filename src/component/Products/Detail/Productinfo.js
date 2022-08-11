@@ -138,7 +138,7 @@ function Productinfo(props) {
 
     const el = (
         <div className="productInfo">
-            <h2 className="title-font">
+            <h2 className="title-font productsTitle">
                 {dataLoaded ? renderData[0].products_name : ""}
             </h2>
             <p
@@ -169,40 +169,43 @@ function Productinfo(props) {
                     </Link>
                 </li>
             </ul>
-            <h5>
-                $
-                {dataLoaded ? renderData[0].products_price * productsCount : ""}
-                元
-            </h5>
-            <div className="productsCount">
-                <h6>購入數</h6>
-                <div className="buttonWrap">
-                    <button
-                        className="minusButtonStyle"
-                        value={productsCount}
-                        onClick={(e) => {
-                            setProductsCount(productsCount - 1);
-                        }}
-                    ></button>
-                    <input
-                        type="number"
-                        className="inputStyle"
-                        value={productsCount}
-                        onChange={(e) => {
-                            setProductsCount(e.target.value);
-                        }}
-                    />
-                    <button
-                        className="plusButtonStyle"
-                        value={productsCount}
-                        onClick={(e) => {
-                            setProductsCount(productsCount + 1);
-                        }}
-                    ></button>
+            <div className="productsPrice">
+                <h5>
+                    $
+                    {dataLoaded ? renderData[0].products_price * productsCount : ""}
+                    元
+                </h5>
+                <div className="productsCount">
+                    <h6>購入數</h6>
+                    <div className="buttonWrap">
+                        <button
+                            className="minusButtonStyle"
+                            value={productsCount}
+                            onClick={(e) => {
+                                setProductsCount(productsCount - 1);
+                            }}
+                        ></button>
+                        <input
+                            type="number"
+                            className="inputStyle"
+                            value={productsCount}
+                            onChange={(e) => {
+                                setProductsCount(e.target.value);
+                            }}
+                        />
+                        <button
+                            className="plusButtonStyle"
+                            value={productsCount}
+                            onClick={(e) => {
+                                setProductsCount(productsCount + 1);
+                            }}
+                        ></button>
+                    </div>
                 </div>
             </div>
             <Btn
-                width={"375px"}
+                className="productsBtn"
+                // width={"375px"}
                 backgroundColor={"var(--BLUE)"}
                 color={"#FFF"}
                 children={"加入購物車"}
@@ -219,7 +222,8 @@ function Productinfo(props) {
             />
             {infoLoaded ? (
                 <Btn
-                    width={"375px"}
+                    className="productsBtn"
+                    // width={"375px"}
                     backgroundColor={"#FCFAF7"}
                     color={"var(--BLUE)"}
                     children={btnContext}

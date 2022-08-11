@@ -1,7 +1,21 @@
+@mixin productsMob {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
 .productInfo {
+    .productsTitle {
+        @include productsMob {
+            font-size: 23px;
+        }
+    }
     .productIntro {
         margin-top: 40px;
         margin-bottom: 14px;
+        @include productsMob {
+            font-size: 15px;
+        }
     }
     .tagArea {
         display: flex;
@@ -31,53 +45,67 @@
             }
         }
     }
-    h5 {
-        margin-top: 25px;
-    }
-    .productsCount {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        .buttonWrap {
+    .productsPrice {
+        @include productsMob{
             display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        h5 {
+            margin-top: 25px;
+        }
+        .productsCount {
+            display: flex;
+            justify-content: flex-start;
             align-items: center;
-            .minusButtonStyle {
-                width: 36px;
-                height: 36px;
-                background-color: transparet;
-                border: none;
-                outline: none;
-                color: var(--BLUE);
-                cursor: pointer;
-                background: center center / 16px 16px no-repeat;
-                flex-shrink: 0;
-                background: url(../../../images/cart/minus.svg) center center /
-                    16px 16px no-repeat;
+            .buttonWrap {
+                display: flex;
+                align-items: center;
+                .minusButtonStyle {
+                    width: 36px;
+                    height: 36px;
+                    background-color: transparet;
+                    border: none;
+                    outline: none;
+                    color: var(--BLUE);
+                    cursor: pointer;
+                    background: center center / 16px 16px no-repeat;
+                    flex-shrink: 0;
+                    background: url(../../../images/cart/minus.svg) center
+                        center / 16px 16px no-repeat;
+                }
+                .inputStyle {
+                    padding: 0px;
+                    height: 36px;
+                    font-size: 16px;
+                    border: none;
+                    outline: none;
+                    border-bottom: 1px solid var(--BLUE);
+                    text-align: center;
+                    width: 50px;
+                    flex-shrink: 0;
+                    background-color: #fefefd;
+                }
+                .plusButtonStyle {
+                    width: 36px;
+                    height: 36px;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    color: var(--BLUE);
+                    cursor: pointer;
+                    flex-shrink: 0;
+                    background: url(../../../images/cart/plus.svg) center center /
+                        16px 16px no-repeat;
+                }
             }
-            .inputStyle {
-                padding: 0px;
-                height: 36px;
-                font-size: 16px;
-                border: none;
-                outline: none;
-                border-bottom: 1px solid var(--BLUE);
-                text-align: center;
-                width: 50px;
-                flex-shrink: 0;
-                background-color: #fefefd;
-            }
-            .plusButtonStyle {
-                width: 36px;
-                height: 36px;
-                background-color: transparent;
-                border: none;
-                outline: none;
-                color: var(--BLUE);
-                cursor: pointer;
-                flex-shrink: 0;
-                background: url(../../../images/cart/plus.svg) center center /
-                    16px 16px no-repeat;
-            }
+        }
+    }
+    .productsBtn{
+        width: 375px;
+        @include productsMob{
+            width: 343px;
         }
     }
 }

@@ -4,6 +4,8 @@
     background-color: #253945;
     height: 60px;
     user-select: none;
+    top: 0px;
+    left: 0px;
     .nav-header-wrap {
         height: 100%;
         display: flex;
@@ -144,17 +146,6 @@
     }
 }
 
-@media (max-width: 768px) {
-    .nav-header {
-        width: 768px;
-    }
-}
-@media (max-width: 375px) {
-    .nav-header {
-        width: 375px;
-    }
-}
-
 .nav-sign-out-ul {
     position: relative;
     li {
@@ -184,13 +175,6 @@
     to {
         opacity: 1;
     }
-}
-
-.nav-solid-border-bottom {
-    border-bottom: 1px solid transparent;
-    width: 100%;
-    display: block;
-    margin-bottom: 59px;
 }
 
 @media (max-width: 768px) {

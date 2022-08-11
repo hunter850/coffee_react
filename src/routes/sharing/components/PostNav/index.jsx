@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Seachbar from "./Seachbar";
 import { imgSrc } from "../../../../config/api-path";
@@ -10,6 +10,7 @@ import { FaHeart } from "react-icons/fa";
 import styles from "../../css/postnav.module.scss";
 
 function PostNav(props) {
+    const navigate = useNavigate();
     const {
         scrollDir = "up",
         rows,
@@ -36,7 +37,13 @@ function PostNav(props) {
         <div className={`${post_nav} ${scrollDir === "down" && collapse}`}>
             <div className={container}>
                 <div className={title_wrap}>
-                    <a href="./">
+                    <a
+                        href="/sharing"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate(0);
+                        }}
+                    >
                         <h4>分享牆</h4>
                     </a>
                 </div>
@@ -55,7 +62,11 @@ function PostNav(props) {
                     <li>
                         <BsFillPlusSquareFill color="#324A59" fontSize="24" />
                     </li>
-                    <li>
+                    <li
+                        onClick={() => {
+                            chooseToSearch({ type: "member_like", sid });
+                        }}
+                    >
                         <FaHeart color="#324A59" fontSize="24" />
                     </li>
                     <li

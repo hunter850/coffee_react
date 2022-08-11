@@ -1,3 +1,10 @@
+@mixin productsMob {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+
 .productPic {
     width: 509px;
     margin-right: 27px;
@@ -5,23 +12,33 @@
     // height: 380px;
     // border: 1px solid var(--BLUE);
     // object-fit: cover;
+        @include productsMob{
+            width: 343px;
+        }
     .magnifier-image {
         width: 100%;
         border: 1px solid var(--BLUE);
         border-radius: 10px;
         height: 100%;
         object-fit: cover;
+        @include productsMob{
+            border: 0;
+        }
     }
 }
 .littlePic {
     width: 86px;
     display: flex;
     border-radius: 3px;
+    @include productsMob(){
+        display: none;
+    }
     img {
         width: 100%;
         margin-right: 15px;
         border: 1px solid var(--BLUE);
         border-radius: 3px;
         cursor: pointer;
+          
     }
 }
