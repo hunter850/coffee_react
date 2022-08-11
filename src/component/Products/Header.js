@@ -1,4 +1,4 @@
-import "./Header.css";
+import "./Header.scss";
 import { chunk } from "../Course/helper/chunk";
 import { useEffect } from "react";
 import Modal from "../Modal/Modal";

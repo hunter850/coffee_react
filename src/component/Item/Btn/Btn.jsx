@@ -5,9 +5,9 @@ export default function Btn({
     style = {},
     children,
     type = "button",
-    width = "120px",
-    backgroundColor = "#253945",
-    color = "#fff",
+    width = "",
+    backgroundColor = "",
+    color = "",
     className = "",
     ...allEvent
 }) {

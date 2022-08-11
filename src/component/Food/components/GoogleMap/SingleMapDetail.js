@@ -13,7 +13,7 @@ const shops_dummy = [
         key: 1,
         store_name: "0+B 光復店",
         store_road: "光復南路300號",
-        store_block: "大安區, 台北市, 106台灣",
+        store_block: "台北市大安區",
         center: { lat: 25.03962792142701, lng: 121.55742720101652 },
     },
     {
@@ -21,7 +21,7 @@ const shops_dummy = [
         key: 2,
         store_name: "0+B 復興店",
         store_road: "復興南路一段323號",
-        store_block: "大安區, 台北市, 106台灣",
+        store_block: "台北市大安區",
         center: { lat: 25.034820954178888, lng: 121.54072221899777 },
     },
     {
@@ -29,7 +29,7 @@ const shops_dummy = [
         key: 3,
         store_name: "0+B 龍門店",
         store_road: "忠孝東路四段134號",
-        store_block: "大安區, 台北市, 106台灣",
+        store_block: "台北市大安區",
         center: { lat: 25.041947238558986, lng: 121.54824003860637 },
     },
     {
@@ -37,7 +37,7 @@ const shops_dummy = [
         key: 4,
         store_name: "0+B 永康店",
         store_road: "永康街2號2樓",
-        store_block: "大安區, 台北市, 106台灣",
+        store_block: "台北市大安區",
         center: {
             lat: 25.03475717724878,
             lng: 121.52959140047166,
@@ -48,7 +48,7 @@ const shops_dummy = [
         key: 5,
         store_name: "0+B 敦和店",
         store_road: "敦化南路二段263號",
-        store_block: "大安區, 台北市, 106台灣",
+        store_block: "台北市大安區",
         center: { lat: 25.027059214520953, lng: 121.54864470715766 },
     },
     {
@@ -56,7 +56,7 @@ const shops_dummy = [
         key: 6,
         store_name: "0+B 微風南京店",
         store_road: "南京東路三段337號",
-        store_block: "松山區, 台北市, 106台灣",
+        store_block: "台北市松山區",
         center: { lat: 25.05377904290978, lng: 121.54832427510259 },
     },
     {
@@ -64,7 +64,7 @@ const shops_dummy = [
         key: 7,
         store_name: "0+B 南京建國店",
         store_road: "南京東路三段1號",
-        store_block: "中山區, 台北市, 106台灣",
+        store_block: "台北市中山區",
         center: { lat: 25.054012307531703, lng: 121.53708045485325 },
     },
     {
@@ -72,7 +72,7 @@ const shops_dummy = [
         key: 8,
         store_name: "0+B 南京三民店",
         store_road: "南京東路五段171號",
-        store_block: "松山區, 台北市, 106台灣",
+        store_block: "台北市松山區",
         center: { lat: 25.05323475716153, lng: 121.56325881561968 },
     },
 ];
@@ -81,7 +81,7 @@ const shops_dummy = [
 const SingleMapDetail = (props) => {
     const containerStyle = {
         width: "100%",
-        height: "600px",
+        height: "70vh",
     };
 
     const [shops, setShops] = useState(shops_dummy);

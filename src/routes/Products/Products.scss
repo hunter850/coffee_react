@@ -1,3 +1,9 @@
+@mixin mobile {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
 .products_page {
     user-select: none;
 }

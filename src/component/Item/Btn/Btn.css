@@ -7,4 +7,7 @@
     padding: 8px 0px;
     white-space: nowrap;
     cursor: pointer;
+    width: 120px;
+    background-color: var(--BLUE);
+    color: #fff;
 }
