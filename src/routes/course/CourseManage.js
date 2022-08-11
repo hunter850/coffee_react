@@ -86,10 +86,6 @@ const CourseManage = () => {
     };
 
     useEffect(() => {
-        window.scroll(0, 0);
-    }, [pageNow]);
-
-    useEffect(() => {
         courseManageDataGet();
         // 將確認刪除資料的狀態初始化
         setConfirmDelete(false);

@@ -21,7 +21,13 @@ import {
 
 function Cart() {
     const { container, px_200 } = bs_flex;
-    const { fake_body, cart_tab_wrap, tab_button_group, tab_button } = styles;
+    const {
+        fake_body,
+        cart_tab_wrap,
+        tab_button_group,
+        tab_button_basic,
+        tab_active,
+    } = styles;
     const [inlineStyles, setInlineStyles] = useState({});
     const productRef = useRef([]);
     const foodRef = useRef([]);
@@ -208,7 +214,9 @@ function Cart() {
     };
     useEffect(() => {
         function adjustButtonPosition() {
-            const buttonHeight = getComputedStyle(buttonGroupRef.current).height;
+            const buttonHeight = getComputedStyle(
+                buttonGroupRef.current
+            ).height;
             setInlineStyles({
                 ...inlineStyles,
                 tab: { top: "-" + buttonHeight },
@@ -217,6 +225,7 @@ function Cart() {
         adjustButtonPosition();
         window.addEventListener("resize", adjustButtonPosition);
         return window.removeEventListener("resize", adjustButtonPosition);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <Fragment>
@@ -231,13 +240,17 @@ function Cart() {
                         >
                             <button
                                 onClick={productClicked}
-                                className={tab_button}
+                                className={c(tab_button_basic, {
+                                    [tab_active]: nowList === "productList",
+                                })}
                             >
                                 商品
                             </button>
                             <button
                                 onClick={foodClicked}
-                                className={tab_button}
+                                className={c(tab_button_basic, {
+                                    [tab_active]: nowList === "foodList",
+                                })}
                             >
                                 餐點
                             </button>

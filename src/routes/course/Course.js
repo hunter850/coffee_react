@@ -160,7 +160,6 @@ const Course = () => {
                             start={sortData === '' ? `course-cardaniwrapbf` : ''}
                             end={sortData === '' ? `course-cardaniwrapat` : ''}
                             offset={150}
-                            component="li"
                             key={v.course_sid}
                         >
                             <Link
