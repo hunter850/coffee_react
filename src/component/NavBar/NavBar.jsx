@@ -172,7 +172,7 @@ function NavBar({ navPosition = 'fixed' }) {
                         <li>
                             <Link to="/reserve">訂位</Link>
                         </li>
-                        {Number(sid) === 1 ? courseManage : course}
+                        {Number(sid) === 2 ? courseManage : course}
                         <li>
                             <Link to="/sharing">分享牆</Link>
                         </li>
