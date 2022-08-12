@@ -16,6 +16,7 @@ function OrderHistoryDetailMain() {
     const { token } = useContext(AuthContext);
     const [myOrder, setMyOrder] = useState([]);
     const [dataIsLoad,setDataIsLoad] = useState(false);
+    const [isProduct,setIsProduct] = useState(0); // 不是product就是food
 
     // console.log(typeof order_sid) ，路由的sid為字串要用Number做型別轉換
     const { order_sid } = useParams();
@@ -35,8 +36,12 @@ function OrderHistoryDetailMain() {
                 });
                 setMyOrder(getOrderSid);
                 setDataIsLoad(true);
+
             });
     }, [token, order_sid]);
+
+    const orderList = Object.values(myOrder).map((v, i) => v.order_list);
+    console.log(orderList[0]);
 
 
     return (
@@ -76,7 +81,9 @@ function OrderHistoryDetailMain() {
                                                 pic: v.pic,
                                                 price: v.price,
                                                 products_with_products_categories_sid: v.products_with_products_categories_sid,
-                                            }}/>
+                                            }}
+                                            orderList={orderList}
+                                            />
                                         </Fragment>
                                     );
                                 })}

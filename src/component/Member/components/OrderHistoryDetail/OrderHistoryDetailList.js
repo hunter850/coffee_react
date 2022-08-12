@@ -1,6 +1,6 @@
 import { FaPen } from "react-icons/fa";
 
-function OrderHistoryDetailList({ list }) {
+function OrderHistoryDetailList({ list, orderList }) {
     const {
         cartPrice,
         quantity,
@@ -18,13 +18,15 @@ function OrderHistoryDetailList({ list }) {
         products_with_products_categories_sid,
     } = list;
 
+    console.log(orderList);
 
     return (
         <>
             <div className="odd-list">
                 <div className="odd-list-header">
-                    <span>
-                        評論 <FaPen size={'0.8rem'} style={{marginLeft:"10px"}}/>
+                    <span className="odd-list-header-title">
+                        評論{" "}
+                        <FaPen size={"0.8rem"} style={{ marginLeft: "10px" }} />
                     </span>
                     <div className="odd-str-line"></div>
                     <span>價格</span>
@@ -35,7 +37,29 @@ function OrderHistoryDetailList({ list }) {
                 </div>
                 <div className="odd-body">
                     <div className="odd-product">
-                        <div className="odd-pic"></div>
+                        {/* <div className="odd-pic"></div> */}
+                        {orderList[0] ==0 ? (
+                            <div
+                                className="odd-pic"
+                                style={{
+                                    backgroundImage: `url(http://localhost:3500/images/products/${products_with_products_categories_sid}/${pic})`,
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center",
+                                    backgroundSize: "cover",
+                                }}
+                            ></div>
+                        ) : (
+                            <div
+                                className="odd-pic"
+                                style={{
+                                    backgroundImage: `url(http://localhost:3500/images/food/${pic})`,
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center",
+                                    backgroundSize: "cover",
+                                }}
+                            ></div>
+                        )}
+
                         <span>{name}</span>
                     </div>
                     <div className="odd-str-line"></div>
@@ -43,7 +67,9 @@ function OrderHistoryDetailList({ list }) {
                     <div className="odd-str-line"></div>
                     <div className="odd-quantity">{quantity}</div>
                     <div className="odd-str-line"></div>
-                    <div className="odd-subtotal">{Number(price)*Number(quantity)}元</div>
+                    <div className="odd-subtotal">
+                        {Number(price) * Number(quantity)}元
+                    </div>
                 </div>
             </div>
         </>

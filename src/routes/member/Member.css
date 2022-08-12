@@ -216,3 +216,278 @@ body{
 .dark-bg{
     background-color: #000000e0;
 }
+/* 等級 */
+.mc-level-wrap{
+    width: 350px;
+    height: 530px;
+    padding: 100px 0;
+}
+.mc-level-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--blue);
+}
+
+/* 杯子動畫 */
+.box{
+    display: flex;
+    align-items: center;
+    width: 700px;
+    height: 530px;
+    background-color: rgb(212, 187, 156);
+}
+.box-wrap{
+    display: flex;
+    width: 650px;
+    height: 530px;
+}
+.cup{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    left: 50px;
+}
+.cup-main{
+    position: absolute;
+    width: 230px;
+    margin-top: 50px;
+    animation: 1.58s both cup_drop ease-in;
+}
+.cup-lid{
+    position: absolute;
+    width: 230px;
+    margin-top: 10px;
+    animation: 0.7s both fadein cubic-bezier(.5,.31,.64,.85);
+    animation-delay: 1.2s;
+}
+.cup-star-a{
+    position: absolute;
+    width: 50px;
+    animation: 0.8s forwards star_drop_a linear;
+}
+.cup-star-b{
+    position: absolute;
+    width: 50px;
+    margin-left: 30px;
+    animation: 0.8s forwards star_drop_b linear;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+.cup-star-c{
+    position: absolute;
+    width: 50px;
+    margin-left: 70px;
+    animation: 0.8s forwards star_drop_c linear;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+.cup-star-d{
+    position: absolute;
+    width: 50px;
+    margin-left: 117px;
+    animation: 0.85s forwards star_drop_d linear;
+    animation-delay: 0.65s;
+    opacity: 0;
+}
+.cup-star-e{
+    position: absolute;
+    width: 50px;
+    margin-left: 117px;
+    animation: 0.85s forwards star_drop_e linear;
+    animation-delay: 0.65s;
+    opacity: 0;
+}
+.cup-star-f{
+    position: absolute;
+    width: 50px;
+    margin-left: 80px;
+    animation: 0.8s forwards star_drop_f linear;
+    animation-delay: 0.75s;
+    opacity: 0;
+}
+.cup-star-g{
+    position: absolute;
+    width: 50px;
+    margin-left: 60px;
+    animation: 0.8s forwards star_drop_g linear;
+    animation-delay: 0.9s;
+    opacity: 0;
+}
+.cup-star-h{
+    position: absolute;
+    width: 50px;
+    margin-left: 60px;
+    animation: 0.7s forwards star_drop_h linear;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+@keyframes cup_drop {
+0% {
+    transform: translateY(0);
+    filter: blur(3px);
+    opacity: 0;
+}
+40% {
+    transform: translateY(50px);
+}
+70% {
+    transform: translateY(90px);
+}
+85% {
+    transform: translateY(80px);
+}
+100% {
+    transform: translateY(95px);
+    filter: blur(0);
+    opacity: 1;
+}
+}
+
+@keyframes fadein {
+0% {
+    filter: blur(10px);
+    opacity: 0;
+    transform: translate(0px,-50px) rotate(-10deg);
+}
+50% {
+    transform: translate(2.5px,40px) rotate(0deg);
+}
+100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translate(5.5px,70px) rotate(20deg);
+}
+}
+
+@keyframes star_drop_a {
+0% {
+    opacity: 0;
+    transform: translateY(0px) rotate(-15deg);
+}
+40% {
+    opacity: 1;
+    transform: translate(20px,50px) rotate(0deg);
+}
+70% {
+    transform: translate(30px,150px) rotate(30deg);
+}
+85% {
+    transform: translate(40px,280px) rotate(60deg);
+}
+100% {
+    transform: translate(50px,395px) rotate(150deg);
+}
+}
+@keyframes star_drop_b {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    opacity: 1;
+    transform: translate(20px,100px) rotate(30deg);
+}
+80% {
+    transform: translate(40px,250px) rotate(60deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(50px,380px) rotate(180deg);
+}
+}
+@keyframes star_drop_c {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    opacity: 1;
+    transform: translate(20px,160px) rotate(30deg);
+}
+80% {
+    transform: translate(30px,320px) rotate(60deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(40px,400px) rotate(180deg);
+}
+}
+@keyframes star_drop_d {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    opacity: 1;
+    transform: translate(20px,150px) rotate(40deg);
+}
+80% {
+    transform: translate(30px,300px) rotate(70deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(32px,380px) rotate(200deg);
+}
+}
+@keyframes star_drop_e {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    opacity: 1;
+    transform: translate(10px,100px) rotate(20deg);
+}
+80% {
+    transform: translate(20px,250px) rotate(80deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(35px,347px) rotate(160deg);
+}
+}
+@keyframes star_drop_f {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    transform: translate(15px,150px) rotate(30deg);
+}
+80% {
+    opacity: 1;
+    transform: translate(28px,250px) rotate(60deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(30px,355px) rotate(180deg);
+}
+}
+@keyframes star_drop_g {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    transform: translate(0px,150px) rotate(130deg);
+}
+80% {
+    opacity: 1;
+    transform: translate(0px,375px) rotate(0deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(-15px,360px) rotate(-150deg);
+}
+}
+@keyframes star_drop_h {
+0% {
+    transform: translateY(0px) rotate(-15deg);
+}
+50% {
+    transform: translate(0px,150px) rotate(60deg);
+}
+80% {
+    opacity: 1;
+    transform: translate(0px,280px) rotate(130deg);
+}
+100% {
+    opacity: 1;
+    transform: translate(8px,340px) rotate(150deg);
+}
+}
