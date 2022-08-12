@@ -172,7 +172,9 @@ function Productinfo(props) {
             <div className="productsPrice">
                 <h5>
                     $
-                    {dataLoaded ? renderData[0].products_price * productsCount : ""}
+                    {dataLoaded
+                        ? renderData[0].products_price * productsCount
+                        : ""}
                     元
                 </h5>
                 <div className="productsCount">
