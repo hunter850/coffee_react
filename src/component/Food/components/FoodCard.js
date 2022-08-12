@@ -1,15 +1,7 @@
 import "./FoodCard.scss";
 import "./FoodAdd.scss";
-import { useEffect } from "react";
 import ScrollWrap from "../../Item/ScrollWrap/ScrollWrap";
-function FoodCard({
-    setShowFoodDetail,
-    setIsShow,
-    allfood,
-    handleCakeCount,
-
-    foodCount,
-}) {
+function FoodCard({ setShowFoodDetail, setIsShow, allfood, handleCakeCount }) {
     const {
         menu_name,
         menu_nutrition,

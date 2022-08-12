@@ -9,6 +9,7 @@ import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import { useNav } from "../../Contexts/NavProvider";
 import axios from "axios";
 import { getUserData } from "../../config/api-path";
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 
 function NavBar({ navPosition = 'sticky' }) {
@@ -21,6 +22,12 @@ function NavBar({ navPosition = 'sticky' }) {
     const [user, setUser] = useState({
         member_name: "",
     });
+    // rwd下拉選單
+    const [hamburgerMenuDisplay, setHamburgerMenuDisplay] = useState(false);
+    // rwd下拉選單 顯示開關
+    const openHamburgerMenu = () => {
+        setHamburgerMenuDisplay(!hamburgerMenuDisplay);
+    };
 
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
@@ -135,9 +142,11 @@ function NavBar({ navPosition = 'sticky' }) {
 
     return (
         <>
+
             <header className="nav-header" style={{ position: navPosition }}>
+                {hamburgerMenuDisplay === true ? <HamburgerMenu /> : ''}
                 <nav className="container  nav-header-wrap" >
-                    <div className="nav-menu">
+                    <div className="nav-menu" onClick={() => openHamburgerMenu()}>
                         <svg
                             width="20"
                             height="18"

@@ -1,5 +1,4 @@
-import { Fragment, useState, useEffect, useCallback } from "react";
-import React from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./Food.scss";
 import Filterbutton from "../../component/Food/components/FilterButton";
 import FoodCard from "../../component/Food/components/FoodCard";
@@ -28,6 +27,28 @@ const menuFiliter = [
     { id: "4", name: "輕食沙拉" },
 ];
 
+// state 集中管理，把function帶入useState， 物件取值
+const defaultState = {
+    dataFromFoodDetail: [],
+    dataFromDate: "",
+    dataFromDateTime: "",
+    selectedAddress: {},
+};
+
+const getFoodStorageByKey = (key) => {
+    try {
+        const foodData = JSON.parse(localStorage.getItem("foodData"));
+
+        if (foodData[key]) {
+            return foodData[key];
+        }
+    } catch (e) {
+        console.log("error");
+    }
+
+    return defaultState[key];
+};
+
 // 設定一頁筆數
 // const perPage = 9;
 
@@ -45,25 +66,39 @@ function Food() {
         menu_sid: "",
         menu_categories: "",
     });
+    // const localFood = JSON.parse(localStorage.getItem("myOrder"));
+    // console.log("localFood");
 
-    const [dataFromFoodDetail, setDataFromFoodDetail] = useState([]);
+    const [dataFromFoodDetail, setDataFromFoodDetail] = useState(
+        getFoodStorageByKey("dataFromFoodDetail")
+    );
+
+    // const Auth = useContext(AuthContext);
+    // console.log("Auth", Auth.sid);
+
     //拿自取時段的資料--------------------------------------------------
-    const [dataFromDate, setDataFromDate] = useState("");
-    const [dataFromDateTime, setDataFromDateTime] = useState("");
+    const [dataFromDate, setDataFromDate] = useState(
+        getFoodStorageByKey("dataFromDate")
+    );
+    const [dataFromDateTime, setDataFromDateTime] = useState(
+        getFoodStorageByKey("dataFromDateTime")
+    );
     const [productsScroll, setProductsScroll] = useState(false);
 
     const [isShow, setIsShow] = useState(false);
     const [showMap, setShowMap] = useState(false);
     // const [isShowAside, setIsShowAside] = useState(false);
-    const [selectedAddress, setSelectedAddress] = useState({});
+    const [selectedAddress, setSelectedAddress] = useState(
+        getFoodStorageByKey("selectedAddress")
+    );
     const [isOpen, setIsOpen] = useState(false);
 
-    const getCurrentFilterFood = useCallback(() => {
-        return foodFromApi.filter(
-            ({ menu_categories }) =>
-                !foodFilter || menu_categories === foodFilter
-        );
-    }, [foodFilter, foodFromApi]);
+    // const getCurrentFilterFood = useCallback(() => {
+    //     return foodFromApi.filter(
+    //         ({ menu_categories }) =>
+    //             !foodFilter || menu_categories === foodFilter
+    //     );
+    // }, [foodFilter, foodFromApi]);
 
     // 載入資料指示狀態
     useEffect(() => {
@@ -73,11 +108,23 @@ function Food() {
         };
         getFoodData();
     }, []);
+
     useEffect(() => {
         window.scrollTo(0, 0);
         setProductsScroll(false);
     }, [productsScroll]);
 
+    useEffect(() => {
+        localStorage.setItem(
+            "foodData",
+            JSON.stringify({
+                dataFromFoodDetail,
+                dataFromDate,
+                dataFromDateTime,
+                selectedAddress,
+            })
+        );
+    }, [dataFromFoodDetail, dataFromDate, dataFromDateTime, selectedAddress]);
     // 載入資料指示狀態
     useEffect(() => {
         // const filterFood = getCurrentFilterFood();
@@ -121,6 +168,7 @@ function Food() {
             newData = [...dataFromFoodDetail, item];
             // [{}, {}, {}, {}]
         }
+
         setDataFromFoodDetail(newData);
         // new state dataFromFoodDetail = [...dataFromFoodDetail, item]
     };
@@ -169,7 +217,7 @@ function Food() {
         }
         setDataFromFoodDetail(newData);
     };
-    console.log("foodFromApi", foodFromApi);
+
     return (
         <Fragment>
             {/* <NavBar /> */}
@@ -217,24 +265,20 @@ function Food() {
                                         !foodFilter ||
                                         menu_categories === foodFilter
                                 )
-                                .map(({ ...allfood }, i) => {
+                                .map((allfood, i) => {
                                     return (
-                                        <>
-                                            <FoodCard
-                                                key={`allfood${i}`}
-                                                allfood={allfood}
-                                                setShowFoodDetail={
-                                                    setShowFoodDetail
-                                                }
-                                                setIsShow={setIsShow}
-                                                setDataFromFoodDetail={
-                                                    setDataFromFoodDetail
-                                                }
-                                                handleCakeCount={
-                                                    handleCakeCount
-                                                }
-                                            />
-                                        </>
+                                        <FoodCard
+                                            key={`menu_sid_${i}`}
+                                            allfood={allfood}
+                                            setShowFoodDetail={
+                                                setShowFoodDetail
+                                            }
+                                            setIsShow={setIsShow}
+                                            setDataFromFoodDetail={
+                                                setDataFromFoodDetail
+                                            }
+                                            handleCakeCount={handleCakeCount}
+                                        />
                                     );
                                 })}
                         </div>
@@ -259,7 +303,6 @@ function Food() {
                         setIsOpen={setIsOpen}
                     />
                 </div>
-
                 {/* <div className="d-flex f-jcc">
                     {Array(pageTotal)
                         .fill(1)
@@ -305,17 +348,18 @@ function Food() {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-arrow-up-circle"
+                    className="bi bi-arrow-up-circle"
                     viewBox="0 0 16 16"
                 >
                     <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
                     />
                 </svg>
             </button>
             <Chatbot />
             <br />
+
             <Footer />
         </Fragment>
     );

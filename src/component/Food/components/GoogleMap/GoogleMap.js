@@ -10,15 +10,18 @@ function GoogleMap({
     selectedAddress,
 }) {
     const [storeInfo, setStoreInfo] = useState({});
-
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 4500);
         console.log("did update");
     }, [storeInfo]);
 
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-
+    console.log("isLoading", isLoading);
     // 以下是時間------------------
     const store_time = [
         { store_time_sid: "1", time: "08:00" },
@@ -74,6 +77,16 @@ function GoogleMap({
                 }}
             >
                 <div className="detail" onClick={handleChildClick}>
+                    {!isLoading && (
+                        <div className="coffeeLoading">
+                            <img
+                                src="/food/animation_300_l6q63a6h.gif"
+                                alt=""
+                                className="coffeeAnimation"
+                            />
+                            <h4>Loading...</h4>
+                        </div>
+                    )}
                     <div className="top">
                         <h6 className="topTxt">選擇自取門市 & 時間</h6>
                         <div
