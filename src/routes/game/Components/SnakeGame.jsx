@@ -5,9 +5,7 @@ import GameOver from "./GameOver.jsx";
 class SnakeGame extends React.Component {
     constructor(props) {
         super(props);
-
         this.handleKeyDown = this.handleKeyDown.bind(this);
-
         this.state = {
             width: 0,
             height: 0,
@@ -22,12 +20,11 @@ class SnakeGame extends React.Component {
             directionChanged: false,
             isGameOver: false,
             snakeColor: "#FFA83F",
-            BeansColor: this.props.BeansColor || this.getRandomColor(),
+            BeansColor: this.props.BeansColor,
             score: 0,
             highScore: Number(localStorage.getItem("snakeHighScore")) || 0,
         };
     }
-
     componentDidMount() {
         this.initGame();
         window.addEventListener("keydown", this.handleKeyDown);
@@ -44,8 +41,8 @@ class SnakeGame extends React.Component {
         let blockHeight = height / 20;
         let startSnakeSize = this.props.startSnakeSize || 6;
         let snake = [];
-        let Xpos = width ;
-        let Ypos = height;
+        let Xpos = width;
+        let Ypos = height / 2;
         let snakeHead = { Xpos: width / 2, Ypos: height / 2 };
         snake.push(snakeHead);
         for (let i = 1; i < startSnakeSize; i++) {
@@ -94,18 +91,15 @@ class SnakeGame extends React.Component {
         clearTimeout(this.state.timeoutId);
         window.removeEventListener("keydown", this.handleKeyDown);
     }
-
     resetGame() {
         let width = this.state.width;
         let height = this.state.height;
         let blockWidth = this.state.blockWidth;
         let blockHeight = this.state.blockHeight;
         let Beans = this.state.Beans;
-
-
         let snake = [];
-        let Xpos = width ;
-        let Ypos = height ;
+        let Xpos = width;
+        let Ypos = height;
         let snakeHead = { Xpos: width / 2, Ypos: height / 2 };
         snake.push(snakeHead);
         for (let i = 1; i < this.state.startSnakeSize; i++) {
@@ -113,7 +107,6 @@ class SnakeGame extends React.Component {
             let snakePart = { Xpos: Xpos, Ypos: Ypos };
             snake.push(snakePart);
         }
-
         Beans.Xpos =
             Math.floor(
                 Math.random() * ((width - blockWidth) / blockWidth + 1)
@@ -141,17 +134,9 @@ class SnakeGame extends React.Component {
             isGameOver: false,
             gameLoopTimeout: 50,
             snakeColor: "#FFA83F",
-            BeansColor: this.getRandomColor(),
+            BeansColor: "#FFA83F",
             score: 0,
         });
-    }
-
-    getRandomColor() {
-        let hexa = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++)
-            color += hexa[Math.floor(Math.random() * 16)];
-        return color;
     }
 
     moveSnake() {
@@ -231,7 +216,6 @@ class SnakeGame extends React.Component {
                 this.setState({ isGameOver: true });
         }
     }
-
     isBeansOnSnake(BeansXpos, BeansYpos) {
         let snake = this.state.snake;
         for (let i = 0; i < snake.length; i++) {
@@ -240,7 +224,6 @@ class SnakeGame extends React.Component {
         }
         return false;
     }
-
     moveHead() {
         switch (this.state.direction) {
             case "left":
@@ -347,7 +330,6 @@ class SnakeGame extends React.Component {
     }
 
     render() {
-
         if (this.state.isGameOver) {
             return (
                 <GameOver
@@ -385,8 +367,8 @@ class SnakeGame extends React.Component {
                 <div
                     className="Block CoffeeBean"
                     style={{
-                        width: this.state.blockWidth + 5,
-                        height: this.state.blockHeight + 5,
+                        width: this.state.blockWidth + 3,
+                        height: this.state.blockHeight + 3,
                         left: this.state.Beans.Xpos,
                         top: this.state.Beans.Ypos,
                     }}

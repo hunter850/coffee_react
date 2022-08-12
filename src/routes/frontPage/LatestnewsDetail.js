@@ -18,7 +18,7 @@ export default function LatestnewsDetail() {
                         tagPaddingX="20px"
                     />
                     <div className="d-flex">
-                        <p>活動時間:</p>
+                        <p>活動時間&nbsp:&nbsp</p>
                         <p>2022-06-08&nbsp;~&nbsp;2022-07-07</p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@ export default function LatestnewsDetail() {
                     />
                 </div>
                 <div>
-                    <p className="latestnewdetailcontent1">
+                    <p className="leastnews_detail_content1">
                         當與家有更長的相處，就需要讓更多新鮮事為生活加分
                         <br />
                         來拎+B 全台門市提供新鮮烘焙咖啡豆採購方案！
@@ -49,11 +49,8 @@ export default function LatestnewsDetail() {
                         為讓您的日常沖煮新模樣，多點講究更多點享受，即日起開始優惠!!
                     </p>
                 </div>
-                <div className="newslinedeco">
-                    {/* <img src={linedeco} alt="" /> */}
-                    <img src="" alt="" />
-                </div>
-                <p>
+                <div className="newslinedeco"></div>
+                <p className="leastnews_detail_content2">
                     cama café 歡慶50萬會員 推出週週50元咖啡金和寄杯寄豆超值方案
                     <br />
                     新會員再送黑咖啡 最懂咖啡的行家都在cama café！

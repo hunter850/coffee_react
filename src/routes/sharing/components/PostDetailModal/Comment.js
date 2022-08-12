@@ -3,7 +3,7 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 
-import { imgSrc, replyAPI, commentAPI } from "../../../../config/api-path";
+import { avatarDIR, replyAPI, commentAPI } from "../../../../config/api-path";
 import styles from "../../css/Comment.module.scss";
 import Reply from "./Reply";
 
@@ -103,7 +103,10 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
         <div className={wrap}>
             <div className={comment_wrap}>
                 <div className={img_wrap}>
-                    <img src={`${imgSrc}/member/${avatar}`} alt="avatar" />
+                    <img
+                        src={`${avatarDIR}/${avatar || "missing-image.jpg"}`}
+                        alt="avatar"
+                    />
                 </div>
                 <div className={name_wrap}>
                     <span className={class_nickname}>{nickname}</span>

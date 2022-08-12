@@ -1,5 +1,5 @@
 import React from "react";
-import { imgSrc, sharingIMGS } from "../../../../config/api-path";
+import { avatarDIR, sharingIMGS } from "../../../../config/api-path";
 import { BsTagFill } from "react-icons/bs";
 
 import Magnifier from "./Magnifier";
@@ -33,7 +33,7 @@ function ResultRow({ data }) {
             return (
                 <div className={img_wrap}>
                     <img
-                        src={`${imgSrc}/member/${src}`}
+                        src={`${avatarDIR}/${src}`}
                         alt="avatar"
                         width="100%"
                     />

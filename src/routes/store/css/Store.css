@@ -516,3 +516,16 @@
 .styles_row-title__1YiiY:hover{
     color: #D2A36C !important;
 }
+/* .theShopPhoto{
+    position: relative;
+    right: -330px;
+    z-index: 9999;
+} */
+.theShopPhoto img{
+position: relative;
+right: 120px;
+width: 200px;
+top: -335px;
+z-index: 999;
+}
+

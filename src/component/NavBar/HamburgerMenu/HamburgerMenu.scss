@@ -1,0 +1,21 @@
+.HamburgerMenu {
+    width: 250px;
+    height: 400px;
+    background-color: #253945;
+    position: absolute;
+    top: 60px;
+    color: #fff;
+    border-radius: 0 0 3px 3px;
+    animation: opacity 0.5s linear;
+    .HamburgerMenu-wrap {
+        width: 100%;
+        padding: 0 0 0 16px;
+        div {
+            padding-top: 13px;
+            a {
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+    }
+}

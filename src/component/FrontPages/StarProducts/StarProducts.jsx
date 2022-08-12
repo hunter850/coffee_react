@@ -17,6 +17,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { useStyleChange } from "../../../Contexts/SuperProvider";
+import "../Carousel/starcarousel.css";
 
 function StarProducts() {
     const styleChange = useStyleChange();

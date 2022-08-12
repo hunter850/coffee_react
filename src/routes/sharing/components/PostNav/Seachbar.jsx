@@ -16,6 +16,7 @@ function Seachbar({
     setKeyWord,
     setIsEnd,
     setGetDataTimes,
+    setTabs,
 }) {
     const { sid } = useAuth();
     const {
@@ -73,11 +74,10 @@ function Seachbar({
     const keyWordSubmit = (q, type) => {
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
-        console.log("q:", replaced);
 
         if (replaced) {
-            console.log("submit");
             setIsEnd(false);
+            setTabs("");
             setGetDataTimes(0);
             setSearchMode("submit");
             clearPreview();
@@ -117,7 +117,6 @@ function Seachbar({
         setKeyWord(e.target.value);
         sendDataDebounce(e.target.value);
     };
-
 
     return (
         <div className={container} ref={containerRef}>
@@ -183,7 +182,10 @@ function Seachbar({
                             <div
                                 key={i}
                                 className={result_content}
-                                onClick={() => chooseToSearch(v)}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    chooseToSearch(v);
+                                }}
                             >
                                 <ResultRow data={v} />
                             </div>

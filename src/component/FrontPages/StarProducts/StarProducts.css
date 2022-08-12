@@ -16,10 +16,9 @@
 }
 .home-title {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
-    /* font-family: 'Rubik', sans-serif; */
     color:rgba(10, 10, 10, 0.73); 
     align-items: center;
-    text-shadow: 1px 1px rgb(231, 231, 231), 2px 2px rgb(231, 231, 231), 3px 3px rgb(231, 231, 231);
+    /* text-shadow: 1px 1px rgb(231, 231, 231), 1px 1px rgb(231, 231, 231), 1px 1px rgb(231, 231, 231); */
 
 }
 .m-auto {

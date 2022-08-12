@@ -3,7 +3,11 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 
 import useTimeAbout from "../../../../hooks/useTimeAbout";
-import { imgSrc, commentAPI, memberLikeAPI } from "../../../../config/api-path";
+import {
+    avatarDIR,
+    commentAPI,
+    memberLikeAPI,
+} from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
@@ -108,7 +112,6 @@ function PostDetailContent({ data, getPostDetailData }) {
             params: { member_sid: sid },
         });
 
-        console.log("data,like", res.data.liked);
         if (res.data.liked > 0) {
             const res2 = await axios.delete(`${memberLikeAPI}/${post_sid}`, {
                 data: { member_sid: sid },
@@ -143,7 +146,11 @@ function PostDetailContent({ data, getPostDetailData }) {
             <div className={grid_top}>
                 <div className={author}>
                     <div className={avatar_wrap}>
-                        <img src={`${imgSrc}/member/${avatar}`} alt="avatar" />
+                        <img
+                            src={`${avatarDIR}/${avatar || "missing-image.jpg"
+                                }`}
+                            alt="avatar"
+                        />
                     </div>
                     <div className={info}>
                         <span className={nickname}>{member_nickname}</span>

@@ -1,5 +1,6 @@
 export const SERVER = "http://localhost:3500";
 export const imgSrc = `${SERVER}/images`;
+export const avatarDIR = `${SERVER}/avatar`;
 // NAV
 
 export const getCartCount = `${SERVER}/cart/cart_count/api`;

@@ -62,7 +62,17 @@ const starproductdata = [
         products_content:
             "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
         products_img: "bag2-1.jpg",
-    }
+    },
+    {
+        products_sid: 55,
+        products_tag:"純苦",
+        products_name: "模範生(五包一入)",
+        products_price: 170,
+        products_content:
+            "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
+        products_img: "bag2-1.jpg",
+    },
+
 ];
 
 export default starproductdata;

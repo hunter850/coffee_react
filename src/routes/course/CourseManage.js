@@ -86,10 +86,6 @@ const CourseManage = () => {
     };
 
     useEffect(() => {
-        window.scroll(0, 0);
-    }, [pageNow]);
-
-    useEffect(() => {
         courseManageDataGet();
         // 將確認刪除資料的狀態初始化
         setConfirmDelete(false);
@@ -152,7 +148,7 @@ const CourseManage = () => {
             <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
         </Modal.Body>
     </Modal>;
-    console.log(sid);
+
     const el = (
         <Fragment>
             <div className="CourseManage-wrap">

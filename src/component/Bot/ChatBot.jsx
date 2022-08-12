@@ -47,7 +47,6 @@ function ChatBot() {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 66 66"
                 >
-                    {" "}
                     <image
                         id="image0"
                         width="66"

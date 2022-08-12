@@ -5,7 +5,7 @@ import styles from "../../css/postdetailmodal.module.scss";
 import PostDeatailCarousel from "./PostDetailCarousel";
 import { getPosts, searchPost } from "../../../../config/api-path";
 import { useNavigate } from "react-router-dom";
-import CancelBtn from "./CancelBtn";
+import CancelBtn from "../CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 
 function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
@@ -35,22 +35,13 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
             console.log(r.data);
             if (r.data.code !== 200) {
                 setPost_sid(0);
-                // navigate("/sharing");
+                navigate("/sharing");
             }
             setData(r.data);
         });
     };
 
     useEffect(() => {
-        // (async () => {
-        //     const r = await axios(`${getPosts}/${post_sid}`);
-
-        //     if (r.data.code !== 200) {
-        //         setPost_sid(0);
-        //         navigate("/sharing");
-        //     }
-        //     setData(r.data);
-        // })();
         getPostDetailData();
     }, []);
 
