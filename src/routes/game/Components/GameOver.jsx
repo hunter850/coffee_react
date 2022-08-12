@@ -1,29 +1,12 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
-
+// import GameBGM from "../../../images/Coupon/GameBGM.mp3";
+// import useSound from "use-sound";
 function GameOver(props) {
     const { token } = useAuth();
-    // const [points, setPoints] = useState(null);
-
     const ScoreResult = props.score;
 
-    // const currentPoints = () => {
-    //     axios
-    //         .get("http://localhost:3500/PointsToCoupon/API", {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         })
-    //         .then((result) => {
-    //             setPoints(result.data.rows[0].total_points);
-    //         });
-    // };
-    // let theNewTotalPoints = ScoreResult + points;
-    // console.log(ScoreResult);
-    // console.log(points);
-    // console.log(theNewTotalPoints);
     const SendPointResult = async () => {
         const headers = {
             "Content-Type": "application/json",
@@ -44,10 +27,7 @@ function GameOver(props) {
             .catch((error) => console.log(error));
     };
     useEffect(() => {
-        // currentPoints();
-        // setTimeout(() => {
         SendPointResult();
-        // }, 2000);
     }, []);
 
     return (

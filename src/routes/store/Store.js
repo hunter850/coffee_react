@@ -18,6 +18,7 @@ import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
 import "../../component/Bot/Bot.css";
+import Footer from "../../component/Footer";
 
 function Store() {
     const [botOpen, setBotOpen] = useState(false);
@@ -493,6 +494,7 @@ function Store() {
                     </svg>
                 </button>
             </div>
+            <Footer />
         </Fragment>
     );
 }
