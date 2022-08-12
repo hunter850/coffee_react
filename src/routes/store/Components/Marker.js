@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 const Wrapper = styled.div`
     position: absolute;
@@ -20,10 +21,40 @@ const Wrapper = styled.div`
 `;
 
 //const Marker = ({ text, onClick }) => <Wrapper alt={text} onClick={onClick} />;
-const Marker = ({ text, onClick, storeName, storeRoad, storeBlock }) => {
+const Marker = ({
+    text,
+    onClick,
+    storeName,
+    storeRoad,
+    storeBlock,
+    storePhoto,
+}) => {
+    const [ShopPhotoOpen, setShopPhotoOpen] = useState(false);
+    const [theShopPhotoImg, setTheShopPhotoImg] = useState(null);
+
+    useEffect(() => {
+        if (ShopPhotoOpen) {
+            setTheShopPhotoImg(
+                <>
+                    <div className="theShopPhoto">
+                        <img
+                            src={require(`../../../images/Coupon/${storePhoto}`)}
+                            alt=""
+                        />
+                    </div>
+                </>
+            );
+        } else {
+            setTheShopPhotoImg(null);
+        }
+    }, [ShopPhotoOpen]);
     return (
         <>
-            <div className="commentTip">
+            {theShopPhotoImg}
+            <div
+                className="commentTip"
+                onClick={() => setShopPhotoOpen(!ShopPhotoOpen)}
+            >
                 <div>{storeName}</div>
                 <div>{storeRoad}</div>
                 <div>{storeBlock}</div>

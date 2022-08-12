@@ -385,8 +385,8 @@ class SnakeGame extends React.Component {
                 <div
                     className="Block CoffeeBean"
                     style={{
-                        width: this.state.blockWidth + 5,
-                        height: this.state.blockHeight + 5,
+                        width: this.state.blockWidth + 3,
+                        height: this.state.blockHeight + 3,
                         left: this.state.Beans.Xpos,
                         top: this.state.Beans.Ypos,
                     }}
