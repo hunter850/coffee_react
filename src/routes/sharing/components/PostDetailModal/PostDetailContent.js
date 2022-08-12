@@ -169,9 +169,12 @@ function PostDetailContent({ data, getPostDetailData }) {
                         </span>
                     </div>
                     {/* 內文 */}
-                    <p className="mb-5" style={{ lineHeight: "1.5rem" }}>
-                        {content}
-                    </p>
+                    <p
+                        className="mb-5"
+                        style={{ lineHeight: "1.5rem" }}
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    ></p>
+
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />

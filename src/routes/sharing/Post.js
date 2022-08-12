@@ -152,6 +152,13 @@ function Post({ newPost }) {
             document.querySelector("body").style.overflow = "visible";
         }
     }, [post_sid]);
+    useEffect(() => {
+        if (tabs === "newPost") {
+            document.querySelector("body").style.overflow = "hidden";
+        } else {
+            document.querySelector("body").style.overflow = "visible";
+        }
+    }, [tabs]);
 
     useEffect(() => {
         (async () => {
@@ -242,7 +249,6 @@ function Post({ newPost }) {
             />
 
             <div className={container} ref={wrap}>
-                <h1 className="mt-1">{tabs}</h1>
                 {rows && (
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
