@@ -121,8 +121,12 @@ body{
     display: flex;
     align-items: center;
 }
+.odd-list-header-title{
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
 .odd-list-header>span{
-    margin-left: 10px;
     display: flex;
     align-items: center;
 }
