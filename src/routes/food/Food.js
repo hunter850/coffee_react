@@ -1,4 +1,4 @@
-import React,{ Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./Food.scss";
 import Filterbutton from "../../component/Food/components/FilterButton";
 import FoodCard from "../../component/Food/components/FoodCard";
