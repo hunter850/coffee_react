@@ -5,7 +5,6 @@ import styles from "./css/NewPost.module.scss";
 import EditPhoto from "./components/NewPost/EditPhoto";
 import CancelBtn from "./components/CancelBtn";
 import NewNav from "./components/NewPost/NewNav";
-import ShowArea from "./components/NewPost/ShowArea";
 import Upload from "./components/NewPost/Upload";
 
 function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
@@ -84,6 +83,8 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
                         onChangeHandler={onChangeHandler}
                         nameList={nameList}
                         blobList={blobList}
+                        setBlobList={setBlobList}
+                        setStep={setStep}
                     />
                 )}
                 {step === 1 && <EditPhoto blobList={blobList} />}
