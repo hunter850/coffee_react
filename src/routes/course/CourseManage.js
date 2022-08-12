@@ -148,7 +148,7 @@ const CourseManage = () => {
             <MessageBox returnBoolean={returnBoolean} courseManageDataCopy={courseManageDataCopy} sid={sid} isOpen={isOpen} />
         </Modal.Body>
     </Modal>;
-    console.log(sid);
+
     const el = (
         <Fragment>
             <div className="CourseManage-wrap">
