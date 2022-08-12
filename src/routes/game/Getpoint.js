@@ -8,8 +8,11 @@ import SnakeGame from "./Components/SnakeGame";
 import AlertItem from "./AlertItem/AlertItem";
 import axios from "axios";
 import ChatBot from "../../component/Bot/ChatBot";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 function Getpoint() {
+    const [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#B79973");
     const { token } = useAuth();
     let navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +39,23 @@ function Getpoint() {
             navigate("/member/login");
             return;
         }
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
         CheckPoint();
     }, []);
+    if (loading) {
+        return (
+            <>
+                <NavBar />
+                <div className="PacmanLoaderContainer">
+                    <div className="GameLoading">Game Loading</div>
+                    <PacmanLoader color={color} />;
+                </div>
+            </>
+        );
+    }
 
     return (
         <Fragment>

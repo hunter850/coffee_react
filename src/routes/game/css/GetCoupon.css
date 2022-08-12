@@ -43,3 +43,15 @@
     background-color: #000;
     background: url(../../../images/Coupon/LunchLogo.png) no-repeat center center;
 }
+.PacmanLoaderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 300px;
+}
+.GameLoading{
+    color: #b1873adb;
+    text-align: center;
+    font-size: 56px;
+}
