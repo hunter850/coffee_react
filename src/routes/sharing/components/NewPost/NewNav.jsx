@@ -11,7 +11,13 @@ function NewNav(props) {
                     </span>
                 )}
             </div>
-            <div style={{ textAlign: "center", color: "black" }}>
+            <div
+                style={{
+                    textAlign: "center",
+                    color: "black",
+                    whiteSpace: "nowrap",
+                }}
+            >
                 <span className="mx-auto">
                     {step === 0 && "建立新分享"}
                     {step === 1 && "編輯相片"}

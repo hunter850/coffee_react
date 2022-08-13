@@ -69,7 +69,7 @@ function ShowArea(props) {
                 <MdOutlineAddCircle
                     onClick={(e) => uploadInput.current.click(e)}
                     className={upload_btn}
-                    size="42px"
+                    size="48px"
                     fill="#fff"
                 />
             </div>

@@ -8,11 +8,13 @@ import NewNav from "./components/NewPost/NewNav";
 import Upload from "./components/NewPost/Upload";
 
 function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
-    const { wrap, new_post, nav } = styles;
+    const { wrap, new_post, nav, new_edit } = styles;
     const uploadInput = useRef(null);
     const [step, setStep] = useState(0);
+    const [rawBlob, setRawBlob] = useState([]);
     const [nameList, setNameList] = useState([]);
     const [blobList, setBlobList] = useState([]);
+    const [photoSize, setPhotoSize] = useState([]);
 
     const goPrev = () => {
         setTabs("home");
@@ -40,6 +42,10 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
 
         const blobURL = window.URL.createObjectURL(f);
 
+        setRawBlob((pre) => {
+            return [...pre, blobURL];
+        });
+
         setNameList((pre) => {
             return [...pre, f.name];
         });
@@ -56,6 +62,9 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
                 const f = e.target.files[i];
 
                 const blobURL = window.URL.createObjectURL(f);
+                setRawBlob((pre) => {
+                    return [...pre, blobURL];
+                });
                 setNameList((pre) => {
                     return [...pre, f.name];
                 });
@@ -66,9 +75,17 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
         }
     };
 
+    useEffect(() => {
+        return () => {
+            rawBlob.forEach((v) => {
+                URL.revokeObjectURL(v);
+            });
+        };
+    }, []);
+
     return (
         <div className={wrap} style={{ top: windowScrollY }}>
-            <div className={new_post}>
+            <div className={step >= 1 ? new_edit : new_post}>
                 <nav className={nav}>
                     <NewNav step={step} setStep={setStep} blobList={blobList} />
                 </nav>
@@ -85,6 +102,8 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
                         blobList={blobList}
                         setBlobList={setBlobList}
                         setStep={setStep}
+                        photoSize={photoSize}
+                        setPhotoSize={setPhotoSize}
                     />
                 )}
                 {step === 1 && <EditPhoto blobList={blobList} />}

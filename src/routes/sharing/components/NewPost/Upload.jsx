@@ -18,7 +18,7 @@ function Upload(props) {
         setStep,
     } = props;
 
-    const { upload_area, show_area, btn } = styles;
+    const { upload_area, show_area, btn, icon } = styles;
     return (
         <>
             {blobList.length <= 0 ? (
@@ -31,7 +31,7 @@ function Upload(props) {
                 >
                     <div>
                         <div>
-                            <img src={icon_photo} alt="icon" />
+                            <img src={icon_photo} alt="icon" className={icon} />
                         </div>
                         <p>將相片和影片拖曳到這裡</p>
                         <button

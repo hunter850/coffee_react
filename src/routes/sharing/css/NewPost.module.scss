@@ -11,13 +11,13 @@
     height: 100vh;
     background-color: rgba(25, 25, 25, 0.8);
 
-    .new_post{
+    .new_post,.new_edit{
         display: flex;
         position: relative;
         flex-direction: column;
         border-radius: 10px;
         width: 680px;
-        height: 800px;
+        height: 808px;
         overflow: hidden;
         background-color: #fcfaf7;
 
@@ -48,6 +48,13 @@
     }
 }
 
+.wrap{
+    .new_edit{
+        width: 1015px;
+        height: 808px;
+    }
+}
+
 @media (max-width:1200px) {
     .wrap{
         .new_post{
@@ -55,14 +62,28 @@
             height: auto;
             aspect-ratio: 0.85;
         }
+        .new_edit{
+            width: 70%;
+            height: auto;
+            aspect-ratio: 10/8;
+    
+        }
     }
+    
 }
 @media (max-width:768px) {
     .wrap{
+        font-size: 14px;
         .new_post{
             width: 80%;
             height: auto;
             aspect-ratio: 0.85;
+        }
+        .new_edit{
+            width: 80%;
+            height: auto;
+            aspect-ratio: 10/8;
+    
         }
     }
 }

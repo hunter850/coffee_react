@@ -35,14 +35,14 @@
                 cursor: pointer;
 
                 &:hover{
-                    fill: rgb(0, 0, 0);
+                    fill: rgba(59, 59, 59, 0.816);
                 }
             }
            
         }
         .upload_btn{
-           
-                
+            cursor: pointer;
+            line-height: 100px;
         }
     }
 }
