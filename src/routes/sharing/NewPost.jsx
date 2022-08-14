@@ -106,7 +106,7 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
                         setPhotoSize={setPhotoSize}
                     />
                 )}
-                {step === 1 && <EditPhoto blobList={blobList} />}
+                {step > 0 && <EditPhoto blobList={blobList} step={step} />}
             </div>
 
             <CancelBtn goPrev={goPrev} />
