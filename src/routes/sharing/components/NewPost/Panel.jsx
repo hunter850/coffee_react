@@ -5,9 +5,11 @@ import moon from "../../../../images/sharing/Moon.jpg";
 import yellowed from "../../../../images/sharing/Yellow.jpg";
 
 const filterArr = [
-    { name: "原始", src: normal },
-    { name: "灰階", src: moon },
-    { name: "泛黃", src: yellowed },
+    { name: "原始", src: normal, mode: "" },
+    { name: "灰階", src: moon, mode: "greyed" },
+    { name: "泛黃", src: yellowed, mode: "yellowed" },
+    { name: "棕色", src: yellowed, mode: "sepia" },
+    { name: "模糊", src: yellowed, mode: "blur" },
 ];
 
 const silderArr = [
@@ -16,12 +18,18 @@ const silderArr = [
     { name: "飽和度", type: "saturate" },
 ];
 
-function Panel() {
+function Panel(props) {
+    const {
+        filter,
+        brightness,
+        setBrightness,
+        contrast,
+        setFilter,
+        setContrast,
+        saturate,
+        setSaturate,
+    } = props;
     const { filter_wrap, f, slider_wrap } = styles;
-
-    const [brightness, setBrightness] = useState(100);
-    const [contrast, setContrast] = useState(100);
-    const [saturate, setSaturate] = useState(100);
 
     const getState = (val) => {
         if (val === "brightness") return brightness;
@@ -40,8 +48,9 @@ function Panel() {
                                 alt=""
                                 width="100%"
                                 height="auto"
+                                onClick={() => setFilter(v.mode)}
                             />
-                            <p>{v.name}</p>
+                            <p onClick={() => setFilter(v.mode)}>{v.name}</p>
                         </div>
                     );
                 })}
@@ -65,7 +74,7 @@ function Panel() {
                                     } else if (v.type === "contrast")
                                         setContrast(val);
                                     else if (v.type === "saturate")
-                                        setContrast(val);
+                                        setSaturate(val);
                                 }}
                             />
                             <label htmlFor={v.name}>{getState(v.type)}</label>
