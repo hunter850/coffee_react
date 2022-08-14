@@ -50,7 +50,7 @@ body{
     border-radius: 10px;
     background-color: var(--gray);
     backface-visibility: hidden; 
-    background: url(/src/images/member/silver-front.jpg) ;
+    /* background: url(/src/images/member/silver-front.jpg) ; */
 }
 .cardF-wrap{
     display: flex;
@@ -76,7 +76,7 @@ body{
     background-color: var(--gray);
     transform: rotateY(180deg);
     backface-visibility: hidden; 
-    background: url(/src/images/member/silver-back.jpg) ;
+    /* background: url(/src/images/member/silver-back.jpg) ; */
 }
 .cardB-desc{
     font-size: .8rem;
@@ -218,14 +218,57 @@ body{
 }
 /* 等級 */
 .mc-level-wrap{
-    width: 350px;
-    height: 530px;
+    width: 50%;
+    height: 100%;
     padding: 100px 0;
 }
 .mc-level-title{
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: center;
+}
+.mc-level-point{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: center;
+    margin-top: 70px;
+}
+.mc-level-ownPoint{
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: center;
+    margin-top: 5px;
+}
+.mc-level-canUse>span{
+    font-size: 1.7rem;
     font-weight: 500;
     color: var(--blue);
+    text-align: center;
+    margin: 0 5px;
+}
+.mc-level-canUse{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: center;
+    margin-top: 50px;
+}
+.mc-level-next{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-align: center;
+    margin-top: 10px;
+}
+.mc-level-next>span{
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--blue);
+    text-align: center;
+    margin: 0 5px;
 }
 
 /* 杯子動畫 */
@@ -239,7 +282,7 @@ body{
 .box-wrap{
     display: flex;
     width: 650px;
-    height: 530px;
+    height: 100%;
 }
 .cup{
     width: 50%;
