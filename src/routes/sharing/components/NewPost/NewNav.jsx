@@ -21,12 +21,13 @@ function NewNav(props) {
                 <span className="mx-auto">
                     {step === 0 && "建立新分享"}
                     {step === 1 && "編輯相片"}
+                    {step === 2 && "發佈分享"}
                 </span>
             </div>
             <div style={{ textAlign: "end" }}>
                 {blobList.length > 0 && (
                     <span onClick={() => setStep((pre) => pre + 1)}>
-                        下一步
+                        {step < 2 ? "下一步" : "分享"}
                     </span>
                 )}
             </div>

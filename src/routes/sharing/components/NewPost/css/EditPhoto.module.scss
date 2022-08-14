@@ -5,13 +5,55 @@
 
     .carousel{
         height: 100%;
-        width: auto;
-        background-color: #ccc;
+        // width: 576px;
+        background-color: #EFEBE5;
         aspect-ratio: 4/5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        canvas{
+            width: 50%;
+            height: 50%;
+        }
     }
     .panel_wrap{
-
-        flex: 1 1 0;
+        flex: 1 1 auto;
         height: 100%;
+        overflow-y: auto;
+        
+        &::-webkit-scrollbar {
+            width: 6px;
+          }
+          
+        &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+    
+        &::-webkit-scrollbar-thumb {
+            background: #c5c0ba;
+            border-radius: 2.5px;
+          }
+    }    
+}
+
+@media (max-width:1200px) {
+    .wrap{
+        .carousel{
+            height: auto;
+            width: 100%;
+        }
+    }
+}
+@media (max-width:768px) {
+    .wrap{
+        display: block;
+        height: auto;
+        overflow: auto;
+        .carousel{
+            height: auto;
+            width: 100%;
+        }
+
     }
 }

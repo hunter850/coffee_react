@@ -28,8 +28,9 @@ function Panel(props) {
         setContrast,
         saturate,
         setSaturate,
+        index: ind,
     } = props;
-    const { filter_wrap, f, slider_wrap } = styles;
+    const { filter_wrap, f, slider_wrap, info, selected } = styles;
 
     const getState = (val) => {
         if (val === "brightness") return brightness;
@@ -48,9 +49,26 @@ function Panel(props) {
                                 alt=""
                                 width="100%"
                                 height="auto"
-                                onClick={() => setFilter(v.mode)}
+                                onClick={() =>
+                                    setFilter((pre) => {
+                                        const ar = [...pre];
+                                        ar[ind] = v.mode;
+                                        return ar;
+                                    })
+                                }
+                                className={filter === v.mode ? selected : ""}
                             />
-                            <p onClick={() => setFilter(v.mode)}>{v.name}</p>
+                            <p
+                                onClick={() =>
+                                    setFilter((pre) => {
+                                        const ar = [...pre];
+                                        ar[ind] = v.mode;
+                                        return ar;
+                                    })
+                                }
+                            >
+                                {v.name}
+                            </p>
                         </div>
                     );
                 })}
@@ -59,7 +77,12 @@ function Panel(props) {
                 {silderArr.map((v, i) => {
                     return (
                         <div key={i}>
-                            <p>{v.name}</p>
+                            <div className={info}>
+                                <span>{v.name}</span>{" "}
+                                <label htmlFor={v.name}>
+                                    {getState(v.type) - 100}
+                                </label>
+                            </div>
                             <input
                                 type="range"
                                 name={v.type}
@@ -70,14 +93,25 @@ function Panel(props) {
                                 onChange={(e) => {
                                     const val = e.target.value;
                                     if (v.type === "brightness") {
-                                        setBrightness(val);
+                                        setBrightness((pre) => {
+                                            const ar = [...pre];
+                                            ar[ind] = val;
+                                            return ar;
+                                        });
                                     } else if (v.type === "contrast")
-                                        setContrast(val);
+                                        setContrast((pre) => {
+                                            const ar = [...pre];
+                                            ar[ind] = val;
+                                            return ar;
+                                        });
                                     else if (v.type === "saturate")
-                                        setSaturate(val);
+                                        setSaturate((pre) => {
+                                            const ar = [...pre];
+                                            ar[ind] = val;
+                                            return ar;
+                                        });
                                 }}
                             />
-                            <label htmlFor={v.name}>{getState(v.type)}</label>
                         </div>
                     );
                 })}
