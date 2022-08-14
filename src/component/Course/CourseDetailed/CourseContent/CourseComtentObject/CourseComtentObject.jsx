@@ -59,9 +59,13 @@ function CourseComtentObject({ object, setObject, topZeroSure, start, courseDeta
                     </div>
 
                 </div>
-                <pre className="CourseContent-text CourseContent-text-color">
-                    {start ? courseDetailedData[0].course_people : ''}
-                </pre>
+                <div
+                    className="CourseContent-text CourseContent-text-color"
+                    dangerouslySetInnerHTML={{
+                        __html: start ? courseDetailedData[0].course_people : '',
+                    }}
+                >
+                </div>
             </div>
         </div>
     );

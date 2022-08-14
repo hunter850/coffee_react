@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
-import { getUserData,getUserCoupons } from "../../config/api-path";
+import { getUserData,getUserCoupons,getUserLikes,getUserTotalPoints } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
@@ -23,6 +23,11 @@ import { get } from "lodash";
 import cupLid from "../../images/member/cup-lid.png";
 import cupMain from "../../images/member/cup-main.png";
 import cupStar from "../../images/member/star.png";
+import silverF from "../../images/member/silver-front.jpg"
+import silverB from "../../images/member/silver-back.jpg"
+import goldF from "../../images/member/gold-front.jpg"
+import goldB from "../../images/member/gold-back.jpg"
+
 
 function Member() {
     const navigate = useNavigate();
@@ -37,7 +42,10 @@ function Member() {
     }
 
     const [getData, setGetData] = useState([]);
-    const [getCoupons, setGetCopons] = useState(0);
+    const [getCoupons, setGetCoupons] = useState(0);
+    const [getLikes,setGetLikes] = useState(0);
+    const [getTotalPoints,setGetTotalPoints] = useState(0);
+    const [getAmount,setGetAmount] = useState(0);
 
     useEffect(() => {
 
@@ -57,7 +65,7 @@ function Member() {
             });
     }, [token]);
 
-
+// --------------------- 擁有幾張優惠券 ---------------------
     useEffect(() => {
         axios
             .get(getUserCoupons, {
@@ -67,13 +75,50 @@ function Member() {
             })
             .then((response) => {
                 const couponLength = response.data.length;
-                setGetCopons(couponLength);
+                if(couponLength>0){
+                    setGetCoupons(couponLength);
+                }else{
+                    setGetCoupons(0);
+                }
             });
     }, [token,getCoupons]);
 
     const showAnimate = () => {
         setShowCoupon(true);
     }
+
+// --------------------- 擁有多少收藏 ---------------------
+    useEffect(() => {
+        axios
+            .get(getUserLikes, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                const LikesLength = response.data.length;
+                if(LikesLength>0){
+                    setGetLikes(LikesLength);
+                }else{
+                    setGetLikes(0);
+                }
+            });
+    }, [token,getLikes]);
+
+// --------------------- 擁有多少點數 ---------------------
+    useEffect(() => {
+        axios
+            .get(getUserTotalPoints, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                setGetTotalPoints(response.data[0].total_points);
+                setGetAmount(response.data[0].voucher_amount)
+            });
+    }, [token,getTotalPoints]);
 
 
 
@@ -89,7 +134,7 @@ function Member() {
                 <div className="mc-container">
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
-                            <div className="cardF">
+                            <div className="cardF" style={{ background: (Number(getAmount)*300+Number(getTotalPoints))>30000 ? `url(${goldF})` :`url(${silverF})`}}>
                                 <p className="cardB-desc">{nickname}</p>
                                 <div className="cardF-wrap">
                                     <svg
@@ -117,17 +162,19 @@ function Member() {
                                 </div>
 
                             </div>
-                            <div className="cardB">
-                                <p className="cardB-level">{level}<span>points</span></p>
+                            <div className="cardB" style={{background: (Number(getAmount)*300+Number(getTotalPoints))>30000 ? `url(${goldB})` :`url(${silverB})`}}>
+                                <p className="cardB-level">{getTotalPoints}<span>points</span></p>
                                 {/* <div className="cardB-wrap"></div> */}
                             </div>
                         </div>
-                        <div className="mc-like">
-                            <FaHeart size={'0.8rem'} style={{ "color": "rgb(183, 153, 115)" }} />
-                            <p>收藏<span>0</span>項</p>
-                            {/* 差多少點升等，3000 10000 30000 */}
-                            <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
-                        </div>
+                        <Link to={authorized ? "/member/likes" : "/member/login"}>
+                            <div className="mc-like">
+                                <FaHeart size={'0.8rem'} style={{ "color": "rgb(183, 153, 115)" }} />
+                                <p>收藏<span style={{ marginLeft:"8px", marginRight:"8px", fontWeight:"700"}}>{getLikes}</span>項</p>
+                                {/* 差多少點升等，3000 10000 30000 */}
+                                <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
+                            </div>
+                        </Link>
                         <Link to={authorized ? "" : "/member/login"}>
                             <div className="mc-coupon" onClick={showAnimate}>
                                 <RiCoupon2Fill size={'0.95rem'} style={{ "color": "rgb(183, 153, 115)" }} />
@@ -195,7 +242,15 @@ function Member() {
                             <img src={cupStar} alt="" className="cup-star-h"/>
                         </div>
                         <div className="mc-level-wrap">
-                            <p className="mc-level-title">銀卡會員</p>
+                            <p className="mc-level-title">{
+                                (Number(getAmount)*300+Number(getTotalPoints))>30000 ? "金卡會員":"銀卡會員"
+                            }</p>
+                            <p className="mc-level-point">目前累積點數</p>
+                            <p className="mc-level-ownPoint">{Number(getAmount)*300+Number(getTotalPoints)}</p>
+                            <p className="mc-level-canUse">可用的點數<span>{getTotalPoints}</span>點</p>
+                            {
+                                (30000-(Number(getAmount)*300+Number(getTotalPoints)))<=0 ? <p className="mc-level-next">已為最高等級</p> : <p className="mc-level-next">距離下一等級尚差<span>{30000-(Number(getAmount)*300+Number(getTotalPoints))}</span>點</p>
+                            }
                         </div>
                     </div>
                 </Modal.Body>

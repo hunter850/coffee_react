@@ -18,7 +18,6 @@ function PostDeatailCarousel({ imgs }) {
             <div style={{ height: "100%", width: "100%" }}>
                 {imgs.length > 1 ? (
                     <Swiper
-                        // cssMode={true}
                         loop={true}
                         navigation={true}
                         pagination={{
