@@ -1,13 +1,22 @@
 import React, { useRef } from "react";
-import useIsInRestore from "../../../../hooks/useIsInRestore";
-import useIsInOut from "../../../../hooks/useIsInOut";
+// import useIsInRestore from "../../../../hooks/useIsInRestore";
+// import useIsInOut from "../../../../hooks/useIsInOut";
+import useShouldEnter from "../../../../hooks/useShouldEnter";
+import useShouldEnterBothSides from "../../../../hooks/useShouldEnterBothSides";
 
 function ListenScroll(props) {
-    const { children, start, end, backAgain, offset, backOffset } = props;
+    const { children, start, end, backAgain, offset, backOffset, mode } = props;
     const childRef = useRef(null);
-    const isInRestore = useIsInRestore(childRef, offset);
-    const isInOut = useIsInOut(childRef, offset, backOffset);
-    const isIn = backAgain ? isInOut : isInRestore;
+    // const isInRestore = useShouldEnter(childRef, offset);
+    // const isInOut = useIsInOut(childRef, offset, backOffset);
+    const shouldEnter = useShouldEnter(childRef, offset, mode);
+    const shouldEnterBothSides = useShouldEnterBothSides(
+        childRef,
+        offset,
+        backOffset,
+        mode
+    );
+    const isIn = backAgain ? shouldEnterBothSides : shouldEnter;
 
     // 子層的start end 優先級高於 ScrollWrap的start end
     // ref因為要給childRef用所以被覆蓋了 需要用function讓childRef和props的ref都接到node
