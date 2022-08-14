@@ -51,7 +51,6 @@ function GoodCourse() {
                         </ScrollWrap>
                     </div>
                 </div>
-
                 <div className="d-flex goodcourse-wrap">
                     <div className="goodcourse-box">
                         <ScrollWrap start="textfrom" end="textto">
