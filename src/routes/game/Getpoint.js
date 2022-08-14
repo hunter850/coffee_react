@@ -31,7 +31,7 @@ function Getpoint() {
             .then((result) => {
                 let alreadyTaken = result.data.error;
                 if (alreadyTaken) {
-                    setIsOpen(true);
+                    setIsOpen(false);
                     return;
                 }
             });

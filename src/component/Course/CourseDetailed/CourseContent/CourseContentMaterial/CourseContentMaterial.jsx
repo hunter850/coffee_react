@@ -74,12 +74,14 @@ function CourseContentMaterial({ materia, setMaterial, topZeroSure, start, cours
                         onClick={() => setdisplayNone(!displayNone)}
                     ></div>
                 </div>
-                <pre
+                <div
                     className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""
                         }`}
+                    dangerouslySetInnerHTML={{
+                        __html: start ? courseDetailedData[0].course_material : '',
+                    }}
                 >
-                    {start ? courseDetailedData[0].course_material : ''}
-                </pre>
+                </div>
             </div>
         </div>
     );
