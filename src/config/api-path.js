@@ -19,6 +19,7 @@ export const getUserLikes = `${SERVER}/member/api/member-likes`;
 export const delUserLikes = `${SERVER}/member/api/member-delete-likes`;
 export const getUserPosts = `${SERVER}/member/api/posts-history`;
 export const getUserCoupons = `${SERVER}/member/api/coupons`;
+export const getUserTotalPoints = `${SERVER}/member/api/total-points`;
 
 // COURSE
 
