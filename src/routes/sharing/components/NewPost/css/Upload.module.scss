@@ -19,11 +19,15 @@
             margin-top: .5rem;
         }
     }
+    .icon{
+        width: 128px;
+    }
 }
 
 .btn{
     border: none;
     cursor: pointer;
+    margin-top:2rem;
     border-radius: 3px;
     padding: 0 1.75rem;
     text-align: center;
@@ -32,8 +36,22 @@
     line-height: 2rem;
     background-color: #324A59;
     font-weight: 300;
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+  
+}
+
+@media (max-width:768px) {
+    .upload_area{
+        >div{
+            margin-top: 0rem;
+        }
+        .icon{
+            width: 64px;
+        }
+    }
+
+    .btn{
+        margin-top:.5rem;
+        font-size: 12px;
+
+    }
 }

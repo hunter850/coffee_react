@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./css/EditPhoto.module.scss";
 
+import Panel from "./Panel";
+
 function EditPhoto(props) {
     const { blobList } = props;
 
-    const { wrap } = styles;
+    const { wrap, carousel, panel_wrap } = styles;
 
     const wrapRef = useRef(null);
     const shadowRef = useRef(null);
@@ -13,6 +15,7 @@ function EditPhoto(props) {
     const [canvasWidth, setCanvasWidth] = useState(0);
     const [canvasHeight, setCanvasHeight] = useState(0);
     const [imgList, setImgList] = useState([]);
+
 
     const getImageFromPath = (path) => {
         return new Promise((resolve, reject) => {
@@ -38,8 +41,7 @@ function EditPhoto(props) {
             shadowRef.current.width,
             shadowRef.current.height
         );
-        // imgRef.current.onload(() => {
-        // });
+
         const img = await getImageFromPath(blobList[0]);
         shadowCtx.drawImage(img, 0, 0);
         console.log(img);
@@ -50,20 +52,24 @@ function EditPhoto(props) {
     }, []);
 
     return (
-        <div className={wrap} ref={wrapRef}>
-            <img
-                src="https://pbs.twimg.com/media/FG9WnM5WUAEu7H_.jpg"
-                alt=""
-                style={{ display: "none" }}
-            />
-            <canvas
-                ref={shadowRef}
-                width={canvasWidth}
-                height={canvasHeight}
-            ></canvas>
-
-            <br />
-            {canvasHeight}
+        <div className={wrap}>
+            <div className={carousel} ref={wrapRef}>
+                <img
+                    src="https://pbs.twimg.com/media/FG9WnM5WUAEu7H_.jpg"
+                    alt=""
+                    style={{ display: "none" }}
+                />
+                <canvas
+                    ref={shadowRef}
+                    width={canvasWidth}
+                    height={canvasHeight}
+                ></canvas>
+                <br />
+                {canvasHeight}
+            </div>
+            <div className={panel_wrap}>
+                <Panel />
+            </div>
         </div>
     );
 }

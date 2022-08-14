@@ -14,9 +14,11 @@ function Upload(props) {
         onChangeHandler,
         nameList,
         blobList,
+        setBlobList,
+        setStep,
     } = props;
 
-    const { upload_area, show_area, btn } = styles;
+    const { upload_area, show_area, btn, icon } = styles;
     return (
         <>
             {blobList.length <= 0 ? (
@@ -29,14 +31,27 @@ function Upload(props) {
                 >
                     <div>
                         <div>
-                            <img src={icon_photo} alt="icon" />
+                            <img src={icon_photo} alt="icon" className={icon} />
                         </div>
                         <p>將相片和影片拖曳到這裡</p>
+                        <button
+                            className={btn}
+                            onClick={() => {
+                                uploadInput.current.click();
+                            }}
+                        >
+                            從電腦上傳
+                        </button>
                     </div>
                 </div>
             ) : (
                 <div className={show_area}>
-                    <ShowArea blobList={blobList} />
+                    <ShowArea
+                        blobList={blobList}
+                        setBlobList={setBlobList}
+                        uploadInput={uploadInput}
+                        setStep={setStep}
+                    />
                 </div>
             )}
             <input
@@ -48,14 +63,6 @@ function Upload(props) {
                 onChange={(e) => onChangeHandler(e)}
                 accept="image/*"
             />
-            <button
-                className={btn}
-                onClick={() => {
-                    uploadInput.current.click();
-                }}
-            >
-                從電腦上傳
-            </button>
         </>
     );
 }
