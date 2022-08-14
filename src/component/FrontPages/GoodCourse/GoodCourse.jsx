@@ -36,7 +36,6 @@ function GoodCourse() {
                         </Link>
                     </div>
                 </div>
-
                 <div className="d-flex goodcourse-wrap">
                     <div className=" goodcourse-box">
                         <Link to="./course">
