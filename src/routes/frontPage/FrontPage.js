@@ -29,7 +29,7 @@ function FrontPage() {
                     "http://localhost:3500/images/frontpage/banner/banner-course1.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.png",
                 ]}
-                height={650}
+                height={800}
             />
             <HotFoods />
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />

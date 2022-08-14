@@ -1,5 +1,5 @@
 import axios from "axios";
-import { imgSrc, replyAPI } from "../../../../config/api-path";
+import { avatarDIR, replyAPI } from "../../../../config/api-path";
 
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
@@ -35,7 +35,10 @@ function Reply({ data, replyHandler, getPostDetailData, comment_sid }) {
         <div style={{ marginLeft: "38px" }}>
             <div className={comment_wrap}>
                 <div className={img_wrap}>
-                    <img src={`${imgSrc}/member/${avatar}`} alt="" />
+                    <img
+                        src={`${avatarDIR}/${avatar || "missing-image.jpg"}`}
+                        alt=""
+                    />
                 </div>
                 <div className={name_wrap}>
                     <span className={class_nickname}>{nickname}</span>

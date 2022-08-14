@@ -24,6 +24,7 @@ function Productinfo(props) {
     const [btnContext, setBtnContext] = useState("未加入收藏");
     const [isOpen, setIsOpen] = useState(false);
     const [modalCase, setModalCase] = useState(false);
+    const [modalContent, setModalContent] = useState("");
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
@@ -38,14 +39,14 @@ function Productinfo(props) {
                 const fetchUserLike = JSON.parse(JSON.stringify(res.data));
                 userLikeData = fetchUserLike;
                 setUserLike(userLikeData);
-                console.log("userLikeData", userLikeData);
+                // console.log("userLikeData", userLikeData);
                 setInfoLoaded(true);
             });
     };
 
     useEffect(() => {
         getUserLike();
-        console.log("renderData", renderData);
+        // console.log("renderData", renderData);
     }, [dataLoaded]);
 
     useEffect(() => {
@@ -81,6 +82,7 @@ function Productinfo(props) {
                 getCount();
 
                 setModalCase(true);
+                setModalContent("成功加入購物車");
                 setIsOpen(true);
             });
     };
@@ -94,7 +96,7 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log("fetchCartData", fetchCartData);
+                // console.log("fetchCartData", fetchCartData);
             });
     };
 
@@ -108,14 +110,21 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log("fetchCartData", fetchCartData);
+                // console.log("fetchCartData", fetchCartData);
             });
     };
 
     // function
     useEffect(() => {
-        if (productsCount < 1) {
-            setProductsCount(1);
+        if (dataLoaded) {
+            if (productsCount < 1) {
+                setProductsCount(1);
+            }
+            if (productsCount > renderData[0].products_stack) {
+                setProductsCount(renderData[0].products_stack);
+                // set
+                setIsOpen(true);
+            }
         }
     }, [productsCount]);
 
@@ -129,7 +138,7 @@ function Productinfo(props) {
 
     const el = (
         <div className="productInfo">
-            <h2 className="title-font">
+            <h2 className="title-font productsTitle">
                 {dataLoaded ? renderData[0].products_name : ""}
             </h2>
             <p
@@ -160,36 +169,45 @@ function Productinfo(props) {
                     </Link>
                 </li>
             </ul>
-            <h5>${dataLoaded ? renderData[0].products_price : ""}元</h5>
-            <div className="productsCount">
-                <h6>購入數</h6>
-                <div className="buttonWrap">
-                    <button
-                        className="minusButtonStyle"
-                        value={productsCount}
-                        onClick={(e) => {
-                            setProductsCount(productsCount - 1);
-                        }}
-                    ></button>
-                    <input
-                        type="number"
-                        className="inputStyle"
-                        value={productsCount}
-                        onChange={(e) => {
-                            setProductsCount(e.target.value);
-                        }}
-                    />
-                    <button
-                        className="plusButtonStyle"
-                        value={productsCount}
-                        onClick={(e) => {
-                            setProductsCount(productsCount + 1);
-                        }}
-                    ></button>
+            <div className="productsPrice">
+                <h5>
+                    $
+                    {dataLoaded
+                        ? renderData[0].products_price * productsCount
+                        : ""}
+                    元
+                </h5>
+                <div className="productsCount">
+                    <h6>購入數</h6>
+                    <div className="buttonWrap">
+                        <button
+                            className="minusButtonStyle"
+                            value={productsCount}
+                            onClick={(e) => {
+                                setProductsCount(productsCount - 1);
+                            }}
+                        ></button>
+                        <input
+                            type="number"
+                            className="inputStyle"
+                            value={productsCount}
+                            onChange={(e) => {
+                                setProductsCount(e.target.value);
+                            }}
+                        />
+                        <button
+                            className="plusButtonStyle"
+                            value={productsCount}
+                            onClick={(e) => {
+                                setProductsCount(productsCount + 1);
+                            }}
+                        ></button>
+                    </div>
                 </div>
             </div>
             <Btn
-                width={"375px"}
+                className="productsBtn"
+                // width={"375px"}
                 backgroundColor={"var(--BLUE)"}
                 color={"#FFF"}
                 children={"加入購物車"}
@@ -198,6 +216,7 @@ function Productinfo(props) {
                     if (Auth.authorized) {
                         sendCart();
                     } else {
+                        setModalContent("請先登入");
                         setIsOpen(true);
                         // alert("請先登入會員");
                     }
@@ -205,7 +224,8 @@ function Productinfo(props) {
             />
             {infoLoaded ? (
                 <Btn
-                    width={"375px"}
+                    className="productsBtn"
+                    // width={"375px"}
                     backgroundColor={"#FCFAF7"}
                     color={"var(--BLUE)"}
                     children={btnContext}
@@ -213,15 +233,20 @@ function Productinfo(props) {
                     onClick={() => {
                         if (Auth.authorized) {
                             if (checkLike) {
-                                console.log("要刪除");
+                                // console.log("要刪除");
                                 delUserLike();
+                                setModalContent("取消收藏");
+                                setIsOpen(true);
                             } else {
-                                console.log("要加入");
+                                // console.log("要加入");
+                                setModalContent("加入收藏");
+                                setIsOpen(true);
                                 sendUserLike();
                             }
                         } else {
                             // alert("請先登入會員");
-                            console.log(Auth);
+                            // console.log(Auth);
+                            setModalContent("請先登入");
                             setIsOpen(true);
                         }
                     }}
@@ -237,7 +262,7 @@ function Productinfo(props) {
                             padding: "40px",
                         }}
                     >
-                        成功加入購物車
+                        {modalContent}
                     </h4>
                 </Modal>
             ) : (
@@ -250,7 +275,7 @@ function Productinfo(props) {
                             padding: "40px",
                         }}
                     >
-                        <h4>請先登入</h4>
+                        <h4>{modalContent}</h4>
                     </Link>
                 </Modal>
             )}

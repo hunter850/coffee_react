@@ -1,0 +1,75 @@
+.wrap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .selector{
+        z-index: 5;
+        background-color: rgba(23, 23, 23, 0.7);
+        position: absolute;
+        right:  20px;
+        bottom: 50px;
+        display: flex;
+        padding: .5rem .75rem;
+        border-radius: 4px;
+
+        .img_wrap{
+            background-color: rgb(226, 245, 210);
+            width: 100px;
+            height: 100px;
+            margin-right: .75rem;
+            position: relative;
+
+            &:last-child{
+                margin-right: 0;
+            }
+            >img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;   
+            }
+            .cancel_btn{
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                cursor: pointer;
+
+                &:hover{
+                    fill: rgba(59, 59, 59, 0.816);
+                }
+            }
+           
+        }
+        .upload_btn{
+            cursor: pointer;
+            line-height: 100px;
+        }
+    }
+}
+
+@media (max-width:1080px){
+    .wrap{
+        .selector{
+            .img_wrap{
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+}
+@media (max-width:400px){
+    .wrap{
+        .selector{
+            padding: .25rem .5rem;
+            .img_wrap{
+                width: 45px;
+                height: 45px;
+                margin-right: .25rem;
+                
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

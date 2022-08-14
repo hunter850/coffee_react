@@ -350,4 +350,7 @@ p.photographer:after {
     margin-top: 0px;
     margin-bottom: 16px;
 }
-
+.TheInfinite::-webkit-scrollbar{
+    /* display: none !important; */
+    width: 1px;
+}

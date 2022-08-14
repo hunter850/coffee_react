@@ -1,0 +1,17 @@
+.wrap{
+    width: 100%;
+    display: flex;
+    height: calc(100% - 40px);
+
+    .carousel{
+        height: 100%;
+        width: auto;
+        background-color: #ccc;
+        aspect-ratio: 4/5;
+    }
+    .panel_wrap{
+
+        flex: 1 1 0;
+        height: 100%;
+    }
+}

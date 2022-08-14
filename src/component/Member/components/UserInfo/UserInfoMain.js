@@ -14,6 +14,8 @@ import AuthContext from "../../AuthContext";
 import { AiFillPicture } from "react-icons/ai";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 import { useAuth } from "../../AuthContextProvider";
 import { set } from "lodash";
@@ -26,6 +28,9 @@ function UserInfo() {
     const [isOpen, setIsOpen] = useState(false);
     const [editSuccess,setEditSuccess] = useState(false);
     const [avatarFaild,setAvatarFaild] = useState(false);
+    const [eyeIsOpen,setEyeIsOpen] = useState(false);
+    const [eyeIsOpenS,setEyeIsOpenS] = useState(false);
+    const [eyeIsOpenT,setEyeIsOpenT] = useState(false);
 
     // 欄位輸入的值(把onChange事件的狀態提升到這層)
     const [userList, setUserList] = useState({
@@ -36,20 +41,6 @@ function UserInfo() {
         member_address: address ? address:"",
         member_mail: mail ? mail:"",
     });
-    // const getUserData = () => {
-    //     axios
-    //         .get("http://localhost:3500/member/api/user-list", {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         })
-    //         .then((response) => {
-    //             setList(response.data);
-    //         });
-
-    //     // const response = await axios.get("http://localhost:3500/member/api/user-list");
-    //     // setList(response.data);
-    // };
 
     const [ avatarField,setAvatarField ] = useState("");
 
@@ -297,6 +288,24 @@ function UserInfo() {
         }
     }, [selectedFile]);
 
+    // --------------------- 看不看得到密碼 ---------------------
+    const eyeOpen = ()=>{
+        setEyeIsOpen(!eyeIsOpen);
+    }
+    const eyeOpenS = ()=>{
+        setEyeIsOpenS(!eyeIsOpenS);
+    }
+    const eyeOpenT = ()=>{
+        setEyeIsOpenT(!eyeIsOpenT);
+    }
+
+
+    // 自動填表
+    const autoSignUp = (e)=>{
+        e.preventDefault();
+        setUserList({...userList,member_nickname:"嘎逼成癮的+B",member_mobile:"0911222333",member_address:"台北市信義區信義路五段55號"})
+    };
+
     return (
         <>
             <div className="ui-wrap-main">
@@ -333,6 +342,7 @@ function UserInfo() {
                                 );
                             })}
                             <div className="ui-btn-wrap">
+                                <button type="button" onClick={autoSignUp} style={{border:"none",padding:"15px",cursor:"pointer",backgroundColor:"transparent"}}></button>
                                 <button type="submit" className="ui-btn" onClick={cancel}>取消</button>
                                 <button type="submit" className="ui-btn ui-btn-active" onClick={handleEditUserList}>保存</button>
                             </div>
@@ -350,12 +360,15 @@ function UserInfo() {
                                 <div className="ed-Pass">
                                     <label className="ed-Pass-title">請輸入舊密碼</label>
                                     <input
-                                        type="text"
+                                        type={eyeIsOpen ? "text" : "password"}
                                         className="ed-Pass-field"
                                         name="member_password"
                                         value={editPass.member_password}
                                         onChange={editPassword}
                                     />
+                                    <div className="ed-icon-eye" onClick={eyeOpen}>
+                                    { eyeIsOpen ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
+                                    </div>
                                 </div>
                                 <p className="ed-Pass-field-err">{passErrors.member_password}</p>
                             </div>
@@ -364,12 +377,15 @@ function UserInfo() {
                                 <div className="ed-Pass">
                                     <label className="ed-Pass-title">請輸入新密碼</label>
                                     <input
-                                        type="text"
+                                        type={eyeIsOpenS ? "text" : "password"}
                                         className="ed-Pass-field"
                                         name="new_password"
                                         value={editPass.new_password}
                                         onChange={editPassword}
                                     />
+                                    <div className="ed-icon-eye" onClick={eyeOpenS}>
+                                    { eyeIsOpenS ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
+                                    </div>
                                 </div>
                                 <p className="ed-Pass-field-err">{newPassErrors.new_password}</p>
                             </div>
@@ -378,12 +394,15 @@ function UserInfo() {
                                 <div className="ed-Pass">
                                     <label className="ed-Pass-title">請確認新密碼</label>
                                     <input
-                                        type="text"
+                                        type={eyeIsOpenT ? "text" : "password"}
                                         className="ed-Pass-field"
                                         name="confirm_password"
                                         value={editPass.confirm_password}
                                         onChange={editPassword}
                                     />
+                                    <div className="ed-icon-eye" onClick={eyeOpenT}>
+                                    { eyeIsOpenT ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
+                                    </div>
                                 </div>
                                 <p className="ed-Pass-field-err">{confirmErrors.confirm_password}</p>
                             </div>

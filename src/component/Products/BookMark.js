@@ -5,8 +5,14 @@ import "../../component/Course/helper/chunk";
 import { chunk } from "lodash";
 
 function BookMark(props) {
-    const { DataRows, dataLoaded, setRenderData, setPageTotal, setPageNow } =
-        props;
+    const {
+        DataRows,
+        dataLoaded,
+        setRenderData,
+        setPageTotal,
+        setPageNow,
+        setProductsScroll,
+    } = props;
 
     // const setRenderData = () => {};
     // console.log("BM", DataRows);
@@ -19,9 +25,9 @@ function BookMark(props) {
                     cateNum
                 );
             });
-            console.log(newRender);
+            // console.log(newRender);
             const resetPage = chunk(newRender, 8);
-            console.log("resetPage", resetPage);
+            // console.log("resetPage", resetPage);
             setRenderData(resetPage);
             setPageTotal(resetPage.length);
             setPageNow(0);
@@ -43,6 +49,7 @@ function BookMark(props) {
                             setPageTotal(resetPage.length);
                             setPageNow(0);
                             setRenderData(resetPage);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>
@@ -52,6 +59,7 @@ function BookMark(props) {
                         width={"130px"}
                         onClick={() => {
                             sortBycate(1);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>
@@ -61,6 +69,7 @@ function BookMark(props) {
                         width={"94px"}
                         onClick={() => {
                             sortBycate(2);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>
@@ -70,6 +79,7 @@ function BookMark(props) {
                         width={"130px"}
                         onClick={() => {
                             sortBycate(3);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>
@@ -79,15 +89,17 @@ function BookMark(props) {
                         width={"76px"}
                         onClick={() => {
                             sortBycate(4);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>
                 <li>
                     <Btn
-                        children={"電子禮物卡"}
+                        children={"禮券及餐券"}
                         width={"130px"}
                         onClick={() => {
                             sortBycate(5);
+                            setProductsScroll(true);
                         }}
                     />
                 </li>

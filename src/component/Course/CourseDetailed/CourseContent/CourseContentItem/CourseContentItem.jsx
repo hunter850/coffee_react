@@ -3,20 +3,20 @@
 import "./CourseContentItem.css";
 import { useState, useRef, useEffect } from "react";
 
-function CourseContentItem({ marginTop, children, item, setItem, topZeroSure }) {
+function CourseContentItem({ marginTop, children, item, setItem, topZeroSure, courseDetailedData, start }) {
     const [displayNone, setdisplayNone] = useState(false);
 
     const itemScrollTop = useRef();
     useEffect(() => {
-        if (topZeroSure === true) {
+        if (topZeroSure === true && start === true) {
             setItem(itemScrollTop.current.getBoundingClientRect().top);
         }
-    }, [topZeroSure]);
+    }, [topZeroSure, start]);
     return (
-        <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem' ref={itemScrollTop}>
+        <div className="CourseContentItem" style={{ marginTop: marginTop }} id='CourseContentItem' >
             <div
                 className="d-flex f-aic CourseContentItem-wrap"
-
+                ref={itemScrollTop}
             >
                 <div className="d-flex CourseContent-title">
                     <svg
@@ -66,15 +66,11 @@ function CourseContentItem({ marginTop, children, item, setItem, topZeroSure }) 
             </div>
             <div
                 className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}
+                dangerouslySetInnerHTML={{
+                    __html: start ? courseDetailedData[0].course_content : '',
+                }}
             >
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,
-                課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範
+
             </div>
         </div>
     );

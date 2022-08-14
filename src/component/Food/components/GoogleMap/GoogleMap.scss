@@ -2,54 +2,88 @@
     position: absolute;
     width: 100%;
     height: 100vh;
-    background-color: rgba(77, 73, 68, 0.9);
+    background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
     /* opacity: 0.89; */
     top: 0;
     right: 0;
     left: 0;
     z-index: 999;
-    
+
     svg {
         cursor: pointer;
     }
     .detail {
-
         width: 80%;
         height: 100%;
         /* height: 100vh; */
         background: #fcfaf7;
-        margin: 60px auto;
+        // margin: 60px auto;
         /* overflow: scroll; */
-        position: fixed;
+        position: relative;
         color: #3e3e3e;
         border-radius: 10px;
-    
         left: 10%;
         right: 10%;
 
+        .coffeeLoading {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 30%;
+            z-index: 999;
+            animation: fadeout 4.5s linear;
+            .coffeeAnimation {
+                width: 200px;
+                height: 180px;
+            }
+            @keyframes fadeout {
+                0% {
+                    opacity: 1;
+                }
+                20% {
+                    opacity: 0.99;
+                }
+                50% {
+                    opacity: 0.95;
+                }
+                75% {
+                    opacity: 0.85;
+                }
+                90% {
+                    opacity: 0.8;
+                }
+                100% {
+                    opacity: 0.25;
+                }
+            }
+        }
+
         .top {
             height: 60px;
-            background-color: #eee5dd99;
+            background-color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             position: fixed;
             width: 80%;
             border-radius: 10px;
-            .topTxt{
+            .topTxt {
                 flex-grow: 1;
                 text-align: center;
             }
-            svg{
+            svg {
                 cursor: pointer;
                 margin-right: 20px;
-          
             }
         }
 
         .middle2 {
-            height: 600px;
             margin: 0 auto;
             padding: 20px;
             margin-top: 60px;
@@ -58,14 +92,15 @@
                 .mapshowarea {
                     width: 50%;
                     overflow: scroll;
-                    height: 600px;
+                    height: 70vh;
+                    overflow-x: hidden;
                     .mapshow {
-                        width: 98%;
+                        width: 95%;
                         height: 95px;
                         padding: 15px;
                         border: 1px solid #ccc;
                         border-radius: 10px;
-                        background-color: #efefef;
+                        background-color: #fff;
                         color: #3e3e3e;
                         margin: 5px 0 0 10px;
                         box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 15%);
@@ -94,10 +129,20 @@
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
+                                        font-size: 14px;
+                                    }
+                                    .distance.disabled {
+                                        visibility: hidden;
                                     }
                                 }
                             }
                         }
+                    }
+                    .mapshow.selected {
+                        background-color: #e9c5b7;
+                    }
+                    .mapshow:hover {
+                        background-color: #eee5dd;
                     }
                 }
             }
@@ -105,15 +150,14 @@
         .selectTime {
             display: flex;
             width: 100%;
-            height: 45px;
+            height: 10vh;
             justify-content: space-around;
             text-align: center;
-            margin-top: 90px;
-            padding: 0 400px;
 
             .middle {
                 display: flex;
                 align-items: center;
+                margin-left: 275px;
                 .select {
                     font-size: 700;
                     margin-right: 10px;
@@ -122,6 +166,7 @@
             .middle1 {
                 display: flex;
                 align-items: center;
+                margin-right: 300px;
                 .select {
                     font-size: 700;
                     margin-right: 10px;
@@ -166,8 +211,8 @@
         }
         .bottomarea {
             width: 80%;
-            height: 82px;
-            background-color: #eee5dd99;
+            height: 60px;
+            background-color: #fff;
             position: fixed;
             bottom: 0;
             display: flex;
@@ -189,6 +234,7 @@
                 background-color: #eee5dd;
                 color: #253945;
                 cursor: pointer;
+                pointer-events: none;
             }
         }
     }

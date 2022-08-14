@@ -14,7 +14,9 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 // 注意自己的css引入在下面才能後蓋前
 import "swiper/css/bundle";
-import "./Carousel.css";
+import "./carousel_test.css";
+import "./swiper_style.css";
+
 // 圖片
 import slide1 from "../../../images/frontpage/banner/banner-course1.png";
 import slide2 from "../../../images/frontpage/banner/banner-course2.png";

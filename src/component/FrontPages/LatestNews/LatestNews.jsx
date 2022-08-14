@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import LatestTitle from "./LatestTitle";
+import ScrollWrap from "../../Item/ScrollWrap/ScrollWrap";
 import "./LatestNews.css";
 
 function LatestNews({ bagcolorblue, latesttitlecolor }) {
@@ -8,7 +9,7 @@ function LatestNews({ bagcolorblue, latesttitlecolor }) {
         <Fragment>
             <div className="home-box-color">
                 <div
-                    className="home-container p-20"
+                    className="home-flex-container"
                     style={{ backgroundColor: bagcolorblue }}
                 >
                     <div className="bottom-line-white m-auto">
@@ -19,19 +20,21 @@ function LatestNews({ bagcolorblue, latesttitlecolor }) {
                             最新消息
                         </h2>
                     </div>
-                    <div>
-                        <Link to="/LatestnewsDetail">
-                            <LatestTitle />
-                        </Link>
-                        <Link to="#/">
-                            <LatestTitle />
-                        </Link>
-                        <Link to="#/">
-                            <LatestTitle />
-                        </Link>
-                        <Link to="#/">
-                            <LatestTitle />
-                        </Link>
+                    <div className="leastnews-title-layout">
+                        <ScrollWrap start="textfrom" end="textto">
+                            <Link to="/LatestnewsDetail">
+                                <LatestTitle />
+                            </Link>
+                            <Link to="#/">
+                                <LatestTitle />
+                            </Link>
+                            <Link to="#/">
+                                <LatestTitle />
+                            </Link>
+                            <Link to="#/">
+                                <LatestTitle />
+                            </Link>
+                        </ScrollWrap>
                     </div>
                 </div>
             </div>

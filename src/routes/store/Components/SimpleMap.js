@@ -15,6 +15,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 光復店",
             storeRoad: "光復南路300號",
             storeBlock: "大安區, 台北市, 106台灣",
+            storePhoto: "Shop01Photo.png",
         },
         {
             key: "shop_2",
@@ -24,6 +25,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 光復店",
             storeRoad: "復興南路一段323號",
             storeBlock: "大安區, 台北市, 106台灣",
+            storePhoto: "Shop02Photo.png",
         },
         {
             key: "shop_3",
@@ -33,6 +35,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 龍門店",
             storeRoad: "忠孝東路四段134號",
             storeBlock: "大安區, 台北市, 106台灣",
+            storePhoto: "Shop03Photo.png",
         },
         {
             key: "shop_4",
@@ -42,6 +45,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 永康店",
             storeRoad: "永康街2號2樓",
             storeBlock: "大安區, 台北市, 106台灣",
+            storePhoto: "Shop04Photo.png",
         },
         {
             key: "shop_5",
@@ -51,6 +55,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 敦和店",
             storeRoad: "敦化南路二段263號",
             storeBlock: "大安區, 台北市, 106台灣",
+            storePhoto: "Shop05Photo.png",
         },
         {
             key: "shop_6",
@@ -60,6 +65,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 微風南京店",
             storeRoad: "南京東路三段337號",
             storeBlock: "松山區, 台北市, 106台灣",
+            storePhoto: "Shop06Photo.png",
         },
         {
             key: "shop_7",
@@ -69,6 +75,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 南京建國店",
             storeRoad: "南京東路三段1號",
             storeBlock: "中山區, 台北市, 106台灣",
+            storePhoto: "Shop07Photo.png",
         },
         {
             key: "shop_8",
@@ -78,6 +85,7 @@ export default function SimpleMap(props) {
             storeName: "0+B 南京三民店",
             storeRoad: "南京東路五段171號",
             storeBlock: "松山區, 台北市, 106台灣",
+            storePhoto: "Shop08Photo.png",
         },
     ];
     const defaultProps = {
@@ -107,6 +115,7 @@ export default function SimpleMap(props) {
                         storeName={place.storeName}
                         storeRoad={place.storeRoad}
                         storeBlock={place.storeBlock}
+                        storePhoto={place.storePhoto}
                     />
                 ))}
             </GoogleMapReact>

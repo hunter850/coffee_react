@@ -1,14 +1,16 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useMemo, useContext } from "react";
 // import NavBar from "../../component/NavBar";
 import Path from "../../component/Item/Path/Path";
 import "./Reserve.css";
 import NavBar from "../../component/NavBar/NavBar";
 import Calendar from "./Calendar";
 import axios from "axios";
-import { mail } from "../../config/api-path";
+import { sendMail } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Chatbot from "../../component/Bot/ChatBot";
+import AuthContext from "../../component/Member/AuthContext";
+import Footer from "../../component/Footer";
 
 const places = [
     {
@@ -18,7 +20,7 @@ const places = [
         text: "Cafe 1",
         storeName: "0+B 光復店",
         storeRoad: "光復南路300號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_2",
@@ -27,7 +29,7 @@ const places = [
         text: "Cafe 2",
         storeName: "0+B 光復店",
         storeRoad: "復興南路一段323號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_3",
@@ -36,7 +38,7 @@ const places = [
         text: "Cafe 3",
         storeName: "0+B 龍門店",
         storeRoad: "忠孝東路四段134號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_4",
@@ -45,7 +47,7 @@ const places = [
         text: "Cafe 4",
         storeName: "0+B 永康店",
         storeRoad: "永康街2號2樓",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_5",
@@ -54,7 +56,7 @@ const places = [
         text: "Cafe 5",
         storeName: "0+B 敦和店",
         storeRoad: "敦化南路二段263號",
-        storeBlock: "大安區, 台北市, 106台灣",
+        storeBlock: "台北市大安區",
     },
     {
         key: "shop_6",
@@ -63,7 +65,7 @@ const places = [
         text: "Cafe 6",
         storeName: "0+B 微風南京店",
         storeRoad: "南京東路三段337號",
-        storeBlock: "松山區, 台北市, 106台灣",
+        storeBlock: "台北市松山區",
     },
     {
         key: "shop_7",
@@ -72,7 +74,7 @@ const places = [
         text: "Cafe 7",
         storeName: "0+B 南京建國店",
         storeRoad: "南京東路三段1號",
-        storeBlock: "中山區, 台北市, 106台灣",
+        storeBlock: "台北市中山區",
     },
     {
         key: "shop_8",
@@ -81,7 +83,7 @@ const places = [
         text: "Cafe 8",
         storeName: "0+B 南京三民店",
         storeRoad: "南京東路五段171號",
-        storeBlock: "松山區, 台北市, 106台灣",
+        storeBlock: "台北市松山區 ",
     },
 ];
 
@@ -90,27 +92,75 @@ function Reserve() {
     const [branch, setBranch] = useState("");
     const [people, setPeople] = useState("");
     const [hour, setHour] = useState("");
-    const [mail, setMail] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const Auth = useContext(AuthContext);
+    const checkedDate = hour.toLocaleString();
+    const { mail, name } = Auth;
+    const selectItem = useMemo(
+        () => places.find((item) => item.storeName === branch),
+        [places, branch]
+    );
+    console.log("selectItem", selectItem);
 
-    const handleSendMail = async () => {
-        setMail(true);
-
+    const handleSubmission = (e) => {
+        if (!branch || !checkedDate || !people) return false;
         try {
-            await axios.post(
-                mail,
-                {
-                    branch,
-                    people,
-                    hour,
-                },
-                console.log("true")
-            );
+            if (Auth.sid)
+                axios({
+                    method: "post",
+                    url: sendMail,
+                    data: {
+                        selectItem,
+                        people,
+                        checkedDate,
+                        mail,
+                        name,
+                        member: Auth ? Auth : "沒東西",
+                    },
+
+                    "content-type": "application/json",
+                }).then((response) => {
+                    console.log(response);
+                    setIsOpen(true);
+                });
+            else {
+                setIsOpen(true);
+            }
         } catch (error) {
             console.log("error");
         }
     };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
+
+    const memberLogin = (
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Link
+                to="/"
+                style={{
+                    textDecoration: "none",
+                    color: "var(--BLUE)",
+                    padding: "40px",
+                }}
+            >
+                <h4>訂位成功</h4>
+            </Link>
+        </Modal>
+    );
+
+    const memberLogout = (
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Link
+                to="/"
+                style={{
+                    textDecoration: "none",
+                    color: "var(--BLUE)",
+                    padding: "40px",
+                }}
+            >
+                <h4>請先登入</h4>
+            </Link>
+        </Modal>
+    );
     return (
         <Fragment>
             <NavBar />
@@ -124,16 +174,16 @@ function Reserve() {
                             <select
                                 className="a"
                                 value={branch}
-                                onChange={(e) => {
-                                    setBranch(e.target.value);
-                                }}
+                                onChange={(e) => setBranch(e.target.value)}
                             >
                                 <option value="" disabled>
                                     請選擇分店
                                 </option>
-                                {places.map((v, i) => {
+                                {places.map((v) => {
                                     return (
-                                        <option key={i}>{v.storeName}</option>
+                                        <option key={v.key}>
+                                            {v.storeName}
+                                        </option>
                                     );
                                 })}
                             </select>
@@ -156,13 +206,10 @@ function Reserve() {
                         </div>
                         <div className="branchchoice">
                             <h6 className="store">日期</h6>
-                            <Calendar setHour={setHour} />
+                            <Calendar hour={hour} setHour={setHour} />
                         </div>
 
-                        <div
-                            className={reserveBtn}
-                            onClick={(handleSendMail, setIsOpen)}
-                        >
+                        <div className={reserveBtn} onClick={handleSubmission}>
                             <h6>送出</h6>
                         </div>
                         <div className="price">
@@ -187,20 +234,11 @@ function Reserve() {
                         </p>
                     </div>
                 </div>
-                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                    <Link
-                        to="/"
-                        style={{
-                            textDecoration: "none",
-                            color: "var(--BLUE)",
-                            padding: "40px",
-                        }}
-                    >
-                        <h4>訂位成功</h4>
-                    </Link>
-                </Modal>
             </div>
+            {Auth.sid ? memberLogin : memberLogout}
             <Chatbot />
+            <br />
+            <Footer />
         </Fragment>
     );
 }

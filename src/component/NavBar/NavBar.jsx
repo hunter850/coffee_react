@@ -7,18 +7,27 @@ import Logo from "./Logo/Logo";
 import React, { useState, useEffect } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import { useNav } from "../../Contexts/NavProvider";
-import { replace } from "lodash";
 import axios from "axios";
 import { getUserData } from "../../config/api-path";
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 
-function NavBar({ navPosition = 'fixed' }) {
+function NavBar({ navPosition = 'sticky' }) {
     const { sid, name, token, setAuth } = useAuth();
     const { count, getCount, handleLogout } = useNav();
     const navigate = useNavigate();
-
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
+    // 登入者姓名
+    const [user, setUser] = useState({
+        member_name: "",
+    });
+    // rwd下拉選單
+    const [hamburgerMenuDisplay, setHamburgerMenuDisplay] = useState(false);
+    // rwd下拉選單 顯示開關
+    const openHamburgerMenu = () => {
+        setHamburgerMenuDisplay(!hamburgerMenuDisplay);
+    };
 
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
@@ -52,6 +61,21 @@ function NavBar({ navPosition = 'fixed' }) {
         }
     }, []);
 
+    // 獲取nav顯示登入名字
+    useEffect(() => {
+        if (token !== '') {
+            axios
+                .get(getUserData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    setUser({ ...user, member_name: response.data[0].member_name });
+                });
+        }
+    }, [token]);
+
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
         <Link to="/member/login">
@@ -71,23 +95,6 @@ function NavBar({ navPosition = 'fixed' }) {
     </div>);
 
     // 登入顯示打招呼
-
-    const [user, setUser] = useState({
-        member_name:"",
-    });
-
-    useEffect(() => {
-        axios
-            .get(getUserData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                setUser({...user,member_name:response.data[0].member_name})
-            });
-    }, [token]);
-
     const memberName = (
         <li
             style={{ cursor: "pointer" }}
@@ -109,11 +116,37 @@ function NavBar({ navPosition = 'fixed' }) {
         </li>
     );
 
+    // 登入管理者帳號,出現課程後台選項
+    const courseManage = (<li
+        style={{ cursor: "pointer" }}
+        className="nav-course-li"
+        onClick={(e) => handleDropDown(e, "course")}
+    >
+        <a href="/#" className="course-a">課程</a>
+        <ul
+            className={`nav-course-ul ${navDropDown === "course" ? "" : "nav-display-none"
+                }`}
+        >
+            <li >
+                <Link to="/course">課程主頁</Link>
+            </li>
+            <li >
+                <Link to="/course/manage">課程管理</Link>
+            </li>
+        </ul>
+    </li>);
+    // 不是管理者時顯示這個
+    const course = (<li>
+        <Link to="/course">課程</Link>
+    </li>);
+
     return (
         <>
+
             <header className="nav-header" style={{ position: navPosition }}>
+                {hamburgerMenuDisplay === true ? <HamburgerMenu /> : ''}
                 <nav className="container  nav-header-wrap" >
-                    <div className="nav-menu">
+                    <div className="nav-menu" onClick={() => openHamburgerMenu()}>
                         <svg
                             width="20"
                             height="18"
@@ -148,22 +181,7 @@ function NavBar({ navPosition = 'fixed' }) {
                         <li>
                             <Link to="/reserve">訂位</Link>
                         </li>
-                        {/* 後台權限預製 */}
-                        {/* <li>
-                        <Link
-                            to={
-                                Number(sid) === 43
-                                    ? "/course/manage"
-                                    : `/course`
-                            }
-                            style={{ color: "white" }}
-                        >
-                            課程
-                        </Link>
-                    </li> */}
-                        <li>
-                            <Link to="/course">課程</Link>
-                        </li>
+                        {Number(sid) === 2 ? courseManage : course}
                         <li>
                             <Link to="/sharing">分享牆</Link>
                         </li>
@@ -226,7 +244,6 @@ function NavBar({ navPosition = 'fixed' }) {
                     </div>
                 </nav>
             </header>
-            <div className="nav-solid-border-bottom"></div>
         </>
     );
 }

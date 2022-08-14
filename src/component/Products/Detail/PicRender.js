@@ -28,6 +28,8 @@ function PicRender(props) {
                     }}
                     mgShowOverflow={false}
                     zoomFactor={2}
+                    width={"100%"}
+                    height={"380px"}
                     mgWidth={100}
                     mgHeight={100}
                 />

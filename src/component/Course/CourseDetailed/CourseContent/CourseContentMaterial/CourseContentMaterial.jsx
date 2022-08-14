@@ -2,20 +2,20 @@
 /* eslint-disable prettier/prettier */
 import { useRef, useEffect } from "react";
 import { useState } from "react";
-function CourseContentMaterial({ materia, setMaterial, topZeroSure }) {
+function CourseContentMaterial({ materia, setMaterial, topZeroSure, start, courseDetailedData }) {
 
     const materialScrollTop = useRef();
     useEffect(() => {
-        if (topZeroSure === true) {
+        if (topZeroSure === true && start === true) {
             setMaterial(materialScrollTop.current.getBoundingClientRect().top);
         }
 
-    }, [topZeroSure]);
+    }, [topZeroSure, start]);
     const [displayNone, setdisplayNone] = useState(false);
     return (
-        <div ref={materialScrollTop}>
+        <div >
             <div className="CourseContentItem" style={{ marginTop: 30 }} id='CourseContentMaterial'>
-                <div className="d-flex f-aic CourseContentItem-wrap">
+                <div className="d-flex f-aic CourseContentItem-wrap" ref={materialScrollTop}>
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="24"
@@ -74,20 +74,12 @@ function CourseContentMaterial({ materia, setMaterial, topZeroSure }) {
                         onClick={() => setdisplayNone(!displayNone)}
                     ></div>
                 </div>
-                <div
+                <pre
                     className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""
                         }`}
                 >
-                    <ul>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                        <li>需求完料範例文字需求完料範例文字</li>
-                    </ul>
-                </div>
+                    {start ? courseDetailedData[0].course_material : ''}
+                </pre>
             </div>
         </div>
     );

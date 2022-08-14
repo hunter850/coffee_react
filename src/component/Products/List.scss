@@ -1,23 +1,49 @@
-.products_list{
+@mixin productsMob {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+.products_list {
     width: 100%;
     margin-top: 66px;
-    h3{
-        margin-bottom: 54px;
+    @include productsMob{
+        margin-top: 32px;
     }
-    .list_title{
+    h3 {
+        margin-bottom: 54px;
+        @include productsMob{
+            margin-bottom: 32px;
+            font-size: 23px;
+        }
+    }
+    .list_title {
         display: flex;
         justify-content: space-between;
-        svg{
+        svg {
             width: 36px;
             margin-left: 8px;
         }
     }
-    .card_regin{
-        display: flex;
-        flex-wrap: wrap;
+    .card_regin {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            .cardaniwrapbf {
+                position: relative;
+                left: -300px;
+                opacity: 0;
+            }
+            .cardaniwrapat {
+                position: relative;
+                left: 0px;
+                transition: 1.5s;
+                opacity: 1;
+            }
+        }
     }
-    .products_cardstyle_svg{
-        svg{
+    .products_cardstyle_svg {
+        svg {
             cursor: pointer;
         }
     }

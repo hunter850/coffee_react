@@ -1,4 +1,5 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import useData from "../../../../hooks/useData";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Modal from "../../../../component/Modal/Modal";
@@ -8,12 +9,23 @@ import GoodsList from "./GoodsList";
 import TotalHeader from "./TotalHeader";
 import TotalBord from "./TotalBord";
 import styles from "./css/cartTab.module.scss";
+
 function CartTab() {
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [, setPriceInfo] = useState({
+        total: 0,
+        discount: 0,
+    });
     const [nowList] = useData("nowList");
     const [list] = useData(nowList);
+    const navigate = useNavigate();
+    const confirmHandler = useCallback(() => {
+        localStorage.setItem("nowList", nowList);
+        localStorage.setItem("selectedCouponId", nowList);
+        navigate("/cart/form", { replace: false });
+    }, [navigate, nowList]);
     return (
         <Fragment>
             <div className={cart_container}>
@@ -44,7 +56,10 @@ function CartTab() {
                 </div>
                 <div className={total_wrap}>
                     <TotalHeader />
-                    <TotalBord />
+                    <TotalBord
+                        confirmHandler={confirmHandler}
+                        setPriceInfo={setPriceInfo}
+                    />
                 </div>
             </div>
             <Modal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}>

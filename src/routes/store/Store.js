@@ -18,6 +18,7 @@ import config from "../../component/Bot/config";
 import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
 import "../../component/Bot/Bot.css";
+import Footer from "../../component/Footer";
 
 function Store() {
     const [botOpen, setBotOpen] = useState(false);
@@ -128,6 +129,7 @@ function Store() {
             setChatBot(null);
         }
     }, [botOpen]);
+
     return (
         <Fragment>
             <NavBar />
@@ -493,6 +495,8 @@ function Store() {
                     </svg>
                 </button>
             </div>
+            <div></div>
+            <Footer />
         </Fragment>
     );
 }

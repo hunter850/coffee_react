@@ -5,13 +5,11 @@ import setMinutes from "date-fns/setMinutes";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Calendar.css";
 
-function Calendar({ setHour }) {
-    const [startDate, setStartDate] = useState("");
-    setHour(startDate);
+function Calendar({ setHour, hour }) {
     return (
         <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            selected={hour}
+            onChange={setHour}
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={60}

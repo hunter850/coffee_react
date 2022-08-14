@@ -7,14 +7,13 @@ import { useAuth } from "../../component/Member/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
 import ChatBot from "../../component/Bot/ChatBot";
-
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 function Getcoupon() {
     const { token } = useAuth();
-    // ========
     let navigate = useNavigate();
-
-
+    const [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#B79973");
     const segColors = [
         "#CCA375",
         "#FCFAF7",
@@ -163,13 +162,28 @@ function Getcoupon() {
     );
 
     useEffect(() => {
-        
         if (!token) {
             alert("請先登入");
             navigate("/member/login");
             return;
         }
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
     }, []);
+
+    if (loading) {
+        return (
+            <>
+                <NavBar />
+                <div className="PacmanLoaderContainer">
+                    <div className="GameLoading">Game Loading</div>
+                    <PacmanLoader color={color} />;
+                </div>
+            </>
+        );
+    }
     return (
         <>
             <NavBar />

@@ -7,18 +7,17 @@ import Calendar from './Calendar/Calendar';
 import AuthContext from "../../../../Member/AuthContext";
 
 
-function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder, date, time }) {
+function CourseContentSignup({ start, courseDataPrice, signup, setSignup, topZeroSure, setCount, count, sendOrder, date, time }) {
     const signupScrollTop = useRef();
     useEffect(() => {
-        if (topZeroSure === true) {
+        if (topZeroSure === true && start === true) {
             setSignup(
                 signupScrollTop.current.getBoundingClientRect().top
             );
         }
-    }, [topZeroSure]);
+    }, [topZeroSure, start]);
 
     const { sid } = useContext(AuthContext);
-    console.log(sid);
     // 控制選單收合
     const [displayNone, setdisplayNone] = useState(false);
     // 時段按鈕高亮控制
@@ -49,9 +48,9 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
     }, [count]);
 
     return (
-        <div ref={signupScrollTop}>
+        <div >
             <div className="CourseContentItem" id='CourseContentSignup'>
-                <div className="d-flex f-aic CourseContentItem-wrap">
+                <div className="d-flex f-aic CourseContentItem-wrap" ref={signupScrollTop}>
                     <div className="d-flex CourseContent-title">
                         <svg
                             width="31"
@@ -85,7 +84,6 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                         <div style={{ paddingLeft: 17 }}>報名資訊</div>
                     </div>
                     <div className={` ${displayNone ? "arrow-icon-down" : 'arrow-icon'}`} onClick={() => setdisplayNone(!displayNone)}>
-
                     </div>
                 </div>
                 <div className={`CourseContent-text CourseContent-text-color ${displayNone ? "CourseContentItem-text" : ""}`}>
@@ -115,7 +113,6 @@ function CourseContentSignup({ courseDataPrice, signup, setSignup, topZeroSure, 
                                     -
                                 </button>
                                 <input type="number" value={count === 0 ? setCount(1) : count} className="people-number" onChange={(e) => numberInput(e)} />
-                                {/* <div className="people-number">{count}</div> */}
                                 <button className={`banner-Btn-Hover courseSignUpMinBtn `} onClick={() => numberPeople()}>
                                     +
                                 </button>

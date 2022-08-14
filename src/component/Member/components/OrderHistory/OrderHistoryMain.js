@@ -2,7 +2,7 @@ import { useState, useEffect,useContext } from "react";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import OderHistoryCard from "./OderHistoryCard";
 import { getOrderHistory } from "../../../../config/api-path";
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useNavigate,useParams } from "react-router-dom";
 
 import axios from "axios";
 import AuthContext from "../../AuthContext";
@@ -17,30 +17,6 @@ function OrderHistoryMain() {
     const { token } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-
-    // const [cards, setCards] = useState({
-    //     order_sid: "",
-    //     order_time: "",
-    //     order_member_id: "",
-    //     order_price: 0,
-    //     order_id: "",
-    // });
-
-    // const [cards, setCards] = useState([]);
-
-    // useEffect(() => {
-
-    //     fetch("http://localhost:3500/member-order", {
-    //     method: "GET",
-    // })
-    //     .then((r) => r.json())
-    //     .then((r) => {
-    //         setCards(r);
-    //         console.log(setCards(r));
-
-    //     });
-
-    // }, []);
 
     const [cards, setCards] = useState([]);
 
@@ -85,6 +61,7 @@ function OrderHistoryMain() {
                                         order_member_id: v.order_member_id,
                                         order_price: v.order_price,
                                         order_id: v.order_id,
+                                        order_status: v.order_status,
                                     }}/>
                                 </div>
                             );
@@ -95,7 +72,6 @@ function OrderHistoryMain() {
 
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <Modal.Body style={{ padding : "0"}}>
-                {/* <IoMdClose size={'2rem'}/> */}
                     <div className="or-wrap">
                         <div className="or-msg-wrap">
                             <div className="or-msg"><RiFilePaper2Fill size={'2.5rem'} style={{display:"block",marginBottom:"40px"}}/>您尚未建立歷史訂單</div>

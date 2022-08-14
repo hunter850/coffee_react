@@ -7,17 +7,21 @@ function GoogleMap({
     setSelectedAddress,
     setDataFromDate,
     setDataFromDateTime,
+    selectedAddress,
 }) {
     const [storeInfo, setStoreInfo] = useState({});
-
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 4500);
         console.log("did update");
     }, [storeInfo]);
 
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-
+    console.log("isLoading", isLoading);
     // 以下是時間------------------
     const store_time = [
         { store_time_sid: "1", time: "08:00" },
@@ -60,8 +64,10 @@ function GoogleMap({
         },
     ];
     const [inputTime, setInputTime] = useState(store_time[0].time);
-    const [inputDate, setInputDate] = useState(`2022-0${month}-0${date}`);
-    const submitBtn = storeInfo && inputDate ? "bottoms" : "bottoms disabled";
+    const [inputDate, setInputDate] = useState(`2022-0${month}-${date}`);
+    const submitBtn =
+        storeInfo.store_sid && inputDate ? "bottoms" : "bottoms disabled";
+
     return (
         <>
             <div
@@ -71,6 +77,16 @@ function GoogleMap({
                 }}
             >
                 <div className="detail" onClick={handleChildClick}>
+                    {!isLoading && (
+                        <div className="coffeeLoading">
+                            <img
+                                src="/food/animation_300_l6q63a6h.gif"
+                                alt=""
+                                className="coffeeAnimation"
+                            />
+                            <h4>Loading...</h4>
+                        </div>
+                    )}
                     <div className="top">
                         <h6 className="topTxt">選擇自取門市 & 時間</h6>
                         <div
@@ -128,8 +144,7 @@ function GoogleMap({
                                     return (
                                         <option
                                             key={`dateGet${id}`}
-                                            value={`2022-0${month}-0${date + i
-                                                }`}
+                                            value={`2022-0${month}-${date + i}`}
                                         >
                                             {/* {timeperiod} */}
                                             {`${month}月${date + i}日`}
@@ -157,7 +172,7 @@ function GoogleMap({
                             </select>
                         </div>
                     </div>
-                    <div className="bottomarea disabled">
+                    <div className="bottomarea">
                         <div
                             className={submitBtn}
                             onClick={() => {

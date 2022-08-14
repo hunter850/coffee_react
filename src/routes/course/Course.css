@@ -2,22 +2,32 @@
     background-color: #fcfaf7;
     min-width: 1440px;
     letter-spacing: 0.07rem;
+    user-select: none;
 }
 .CourseDetailed-container {
     background-color: #fff;
     min-width: 1440px;
+    letter-spacing: 0.07rem;
+    user-select: none;
+}
+
+.CourseAdd-container {
+    min-width: 1440px;
+    user-select: none;
+    background-color: #e3e7e7;
     letter-spacing: 0.07rem;
 }
 
 .CourseManage-wrap {
     height: 100%;
     background-color: #e3e7e7;
+    user-select: none;
 }
 
 .CourseManage-container {
-    min-height: 1200px;
     background-color: #e3e7e7;
     min-width: 1440px;
+    padding-bottom: 30px;
 }
 
 .course-page-btn {
@@ -79,6 +89,10 @@
     width: 290px;
 }
 
+.course-pages {
+    margin: 60px 0 30px;
+}
+
 @media (max-width: 768px) {
     .Course-container {
         min-width: 768px;
@@ -95,4 +109,16 @@
     .CourseDetailed-container {
         min-width: 375px;
     }
+}
+
+.course-cardaniwrapbf {
+    position: relative;
+    left: -300px;
+    opacity: 0;
+}
+.course-cardaniwrapat {
+    position: relative;
+    left: 0px;
+    transition: 1.5s;
+    opacity: 1;
 }

@@ -1,17 +1,35 @@
+@mixin productsMob {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
 .detailBtm{
     background: url(../../../images/products/line_deco.png) repeat-x left top;
     background-size: 30px auto;
     padding-top: 80px;
     .productsSpec{
-        display: flex;        
+        display: flex;
+        @include productsMob{
+            flex-direction: column;
+            // justify-content: center;
+            align-items: center;
+        }
         h3{
             margin-right: 30px;
+            @include productsMob{
+                margin-right: 0px;
+                margin-bottom: 36px;
+            }
         }
         div{
             flex-grow: 1;
             border: 1px solid var(--BLUE);
             border-radius: 10px;
             padding: 27px 22px;
+            @include productsMob{
+                border: 1px solid var(--GOLD);
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ import UserInfo from "./routes/member/UserInfo";
 import OrderHistory from "./routes/member/OrderHistory";
 import OrderHistoryDetail from "./routes/member/OrderHistoryDetail";
 import Likes from "./routes/member/Likes";
+import HistoryPosts from "./routes/member/HistoryPosts";
 import AuthContextProvider from "./component/Member/AuthContextProvider";
 import Game from "./routes/game/Game";
 import Points from "./routes/game/Points";
@@ -34,7 +35,6 @@ import PointsToCoupon from "./routes/game/PointsToCoupon";
 import Store from "./routes/store/Store";
 import AllProvider from "./Contexts/AllProvider";
 import ProductsDetail from "./routes/Products/ProductsDetail";
-import PostDetail from "./routes/sharing/PostDetail";
 import LatestnewsDetail from "./routes/frontPage/LatestnewsDetail";
 
 const App = () => {
@@ -85,7 +85,11 @@ const App = () => {
                             />
                             <Route
                                 path="/sharing/:post_sid"
-                                element={<PostDetail />}
+                                element={<Post />}
+                            />
+                            <Route
+                                path="/sharing/newpost"
+                                element={<Post newPost={true} />}
                             />
                             <Route path="/sharing" element={<Post />} />
 
@@ -100,10 +104,14 @@ const App = () => {
                                 element={<OrderHistory />}
                             />
                             <Route
-                                path="/member/orderhistory/detail/:sid"
+                                path="/member/orderhistory/detail/:order_sid"
                                 element={<OrderHistoryDetail />}
                             />
                             <Route path="/member/likes" element={<Likes />} />
+                            <Route
+                                path="/member/posts"
+                                element={<HistoryPosts />}
+                            />
                             <Route path="/points" element={<Points />} />
                             <Route path="/coupon" element={<Coupon />} />
                             <Route path="/game" element={<Game />} />

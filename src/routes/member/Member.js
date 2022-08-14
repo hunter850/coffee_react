@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
-import { getUserData } from "../../config/api-path";
+import { getUserData,getUserCoupons } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
@@ -18,11 +18,17 @@ import { FaCoffee } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { FaAngleRight } from "react-icons/fa";
+import { get } from "lodash";
+
+import cupLid from "../../images/member/cup-lid.png";
+import cupMain from "../../images/member/cup-main.png";
+import cupStar from "../../images/member/star.png";
 
 function Member() {
     const navigate = useNavigate();
     const { authorized, token } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
+    const [showCoupon, setShowCoupon] = useState(false);
 
     const myCard = useRef();
 
@@ -31,6 +37,7 @@ function Member() {
     }
 
     const [getData, setGetData] = useState([]);
+    const [getCoupons, setGetCopons] = useState(0);
 
     useEffect(() => {
 
@@ -50,6 +57,26 @@ function Member() {
             });
     }, [token]);
 
+
+    useEffect(() => {
+        axios
+            .get(getUserCoupons, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                const couponLength = response.data.length;
+                setGetCopons(couponLength);
+            });
+    }, [token,getCoupons]);
+
+    const showAnimate = () => {
+        setShowCoupon(true);
+    }
+
+
+
     const name = getData[0] ? getData[0].member_name : "";
     // const name = Object.values(getData).map((v, i) => v.member_name);
     const level = Object.values(getData).map((v, i) => v.member_level);
@@ -63,6 +90,7 @@ function Member() {
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
                             <div className="cardF">
+                                <p className="cardB-desc">{nickname}</p>
                                 <div className="cardF-wrap">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +118,8 @@ function Member() {
 
                             </div>
                             <div className="cardB">
-                                <div className="cardF-wrap">
-                                    <p className="cardB-level">{level}<span>points</span></p>
-                                    <p className="cardB-desc">{nickname}</p>
-                                </div>
+                                <p className="cardB-level">{level}<span>points</span></p>
+                                {/* <div className="cardB-wrap"></div> */}
                             </div>
                         </div>
                         <div className="mc-like">
@@ -102,10 +128,10 @@ function Member() {
                             {/* 差多少點升等，3000 10000 30000 */}
                             <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                         </div>
-                        <Link to={authorized ? "/coupon" : "/member/login"}>
-                            <div className="mc-coupon">
+                        <Link to={authorized ? "" : "/member/login"}>
+                            <div className="mc-coupon" onClick={showAnimate}>
                                 <RiCoupon2Fill size={'0.95rem'} style={{ "color": "rgb(183, 153, 115)" }} />
-                                <p>優惠券<span>0</span>張</p>
+                                <p>優惠券<span style={{ marginLeft:"8px", marginRight:"8px", fontWeight:"700"}}>{getCoupons}</span>張</p>
                                 <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                             </div>
                         </Link>
@@ -151,7 +177,30 @@ function Member() {
                             <div className="mr-msg" onClick={()=>{navigate("/member/login", {replace: false})}}>請先登入</div>
                         </div>
                     </Modal.Body>
-                </Modal>
+            </Modal>
+
+            <Modal isOpen={showCoupon} setIsOpen={setShowCoupon}>
+                <Modal.Body className="box">
+                    <div className="box-wrap">
+                        <div className="cup">
+                            <img src={cupLid} alt="" className="cup-lid" />
+                            <img src={cupMain} alt="" className="cup-main"/>
+                            <img src={cupStar} alt="" className="cup-star-a"/>
+                            <img src={cupStar} alt="" className="cup-star-b"/>
+                            <img src={cupStar} alt="" className="cup-star-c"/>
+                            <img src={cupStar} alt="" className="cup-star-d"/>
+                            <img src={cupStar} alt="" className="cup-star-e"/>
+                            <img src={cupStar} alt="" className="cup-star-f"/>
+                            <img src={cupStar} alt="" className="cup-star-g"/>
+                            <img src={cupStar} alt="" className="cup-star-h"/>
+                        </div>
+                        <div className="mc-level-wrap">
+                            <p className="mc-level-title">銀卡會員</p>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
         </Fragment>
     );
 }

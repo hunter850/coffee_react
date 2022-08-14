@@ -16,13 +16,19 @@
 .leastnewdetailImg {
     width: 100%;
 }
-.newslinedeco img{
-    /* background: url(src/images/frontpage/line_deco.png); */
+.newslinedeco {
+    width: 100%;
+    height: 20px;
+    background: url(../../images/frontpage/line_deco.png) ;
 }
-.latestnewdetailcontent1 { 
+.leastnews_detail_content1 { 
     padding-top: 80px;
     padding-bottom: 80px;
     font-size: 20px;
-    /* line-height: 1.5rem; */
+    line-height: 2.5rem;
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
+}
+.leastnews_detail_content2 {
+    margin-top: 50px;
+    justify-content: start;
 }

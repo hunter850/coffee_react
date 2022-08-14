@@ -121,6 +121,15 @@ body{
     display: flex;
     align-items: center;
 }
+.odd-list-header-title{
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+.odd-list-header>span{
+    display: flex;
+    align-items: center;
+}
 .fa-solid{
     display: flex;
     align-items: center;

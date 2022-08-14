@@ -22,6 +22,8 @@ import {
 import { chunk } from "../../component/Course/helper/chunk";
 import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import Modal from "../../component/Modal/Modal";
+import Footer from '../../component/Footer';
+import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 
 const Course = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +40,7 @@ const Course = () => {
     //預設第一頁
     const [pageNow, setPageNow] = useState(1);
     //預設一頁幾筆
-    const [perPage, setPerPage] = useState(7);
+    const [perPage, setPerPage] = useState(8);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
 
@@ -140,7 +142,6 @@ const Course = () => {
                 return v.course_name.includes(searchInp);
             });
             const pageArray = chunk(newCourseData, perPage);
-            console.log(pageArray.length);
             if (pageArray.length > 0) {
                 setPageTotal(pageArray.length);
                 setCourseData(pageArray);
@@ -149,6 +150,38 @@ const Course = () => {
             }
         }
     };
+    // 動態渲染資料
+    const CourseData = (<div className="d-flex f-w card-wrap">
+        {
+            courseData.map((value, index) => {
+                return courseData[index].map((v, i) => {
+                    return (
+                        <ScrollWrap
+                            start={sortData === '' ? `course-cardaniwrapbf` : ''}
+                            end={sortData === '' ? `course-cardaniwrapat` : ''}
+                            offset={150}
+                            key={v.course_sid}
+                        >
+                            <Link
+                                to={`/course/detailed/${v.course_sid}`}
+                            >
+                                <Card
+                                    courseData={{
+                                        course_level: v.course_level,
+                                        course_name: v.course_name,
+                                        course_content:
+                                            v.course_content,
+                                        course_price: v.course_price,
+                                        course_sid: v.course_sid,
+                                        course_img_s: v.course_img_s,
+                                    }}
+                                />
+                            </Link>
+                        </ScrollWrap>
+                    );
+                });
+            })}
+    </div>);
 
     const el = (
         <Fragment>
@@ -170,62 +203,7 @@ const Course = () => {
                     setSortData={setSortData}
                 />
                 <div className="container">
-                    <div className="d-flex f-w card-wrap">
-                        <Link to="/course/manage">
-                            <Card
-                                courseData={{
-                                    course_level: "初級",
-                                    course_name: "愛心拉花",
-                                    course_content:
-                                        "課程介紹範例文字與範圍,課程介紹範例文字與範圍,課程介紹範例文字與範圍.456464545",
-                                    course_price: "1000",
-                                    course_sid: 3,
-                                }}
-                            />
-                        </Link>
-
-                        {courseData.length > 0 &&
-                            courseData[pageNow - 1].map((v, i) => {
-                                return (
-                                    <Link
-                                        to={`/course/detailed/${v.course_sid}`}
-                                        key={v.course_sid}
-                                    >
-                                        <Card
-                                            courseData={{
-                                                course_level: v.course_level,
-                                                course_name: v.course_name,
-                                                course_content:
-                                                    v.course_content,
-                                                course_price: v.course_price,
-                                                course_sid: v.course_sid,
-                                                course_img_s: v.course_img_s,
-                                            }}
-                                        />
-                                    </Link>
-                                );
-                            })}
-                    </div>
-                    <div className="d-flex f-jcc">
-                        {Array(pageTotal)
-                            .fill(1)
-                            .map((v, i) => {
-                                return (
-                                    <div
-                                        key={i}
-                                        onClick={() => {
-                                            setPageNow(i + 1);
-                                        }}
-                                        className={`course-page-btn ${pageNow === i + 1
-                                            ? "course-page-btn-focus"
-                                            : ""
-                                            }`}
-                                    >
-                                        {i + 1}
-                                    </div>
-                                );
-                            })}
-                    </div>
+                    {courseData.length > 0 ? CourseData : ''}
                 </div>
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -238,8 +216,9 @@ const Course = () => {
                 >
                     <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
                 </Modal.Body>
-            </Modal>;
+            </Modal>
             <Chatbot />
+            <Footer />
         </Fragment>
     );
     return el;

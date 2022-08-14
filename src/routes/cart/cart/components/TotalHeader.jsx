@@ -21,7 +21,14 @@ function TotalHeader() {
     // totalHeader的標題
     const selectedCouponName = useMemo(() => {
         if (selectedCouponId === -1) return "";
-        return coupons.find((coupon) => coupon.id === selectedCouponId).name;
+        const selectedCoupon = coupons.find(
+            (coupon) => coupon.id === selectedCouponId
+        );
+        if (selectedCoupon) {
+            return selectedCoupon.name;
+        } else {
+            return "";
+        }
     }, [selectedCouponId, coupons]);
     // radio再點一次取消選取
     const cancelCouponSelectHandler = useCallback(

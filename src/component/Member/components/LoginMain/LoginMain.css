@@ -116,13 +116,22 @@ body {
     margin-bottom: 30px;
 }
 
-.icon{
+.lg-icon{
     color: var(--blue);
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.9rem;
+}
+.lg-icon-eye{
+    color: var(--dark-gray);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
 .lg-welcome {

@@ -29,8 +29,8 @@ function ProductsDetail() {
             });
             setRenderData(nowData);
             setDataLoaded(true);
-            console.log("data_check", res.data);
-            console.log("renderData", nowData);
+            // console.log("data_check", res.data);
+            // console.log("renderData", nowData);
         });
     };
 
@@ -61,7 +61,7 @@ function ProductsDetail() {
             await getProductsData();
         }
         fetchFunc();
-        console.log("data", renderData);
+        // console.log("data", renderData);
     }, [dataLoaded]);
 
     const el = (

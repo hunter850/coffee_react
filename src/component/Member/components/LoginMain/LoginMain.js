@@ -15,6 +15,8 @@ import { FaLock } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaTimesCircle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 import { MdMarkEmailRead } from "react-icons/md";
 
 import AuthContext from "../../AuthContext";
@@ -31,6 +33,7 @@ function LoginMain() {
     const [isverify,setIsVerify] = useState(false);
     const [canStart,setCanStart] = useState(false);
     const [verifySuccess,setVerifySuccess] = useState(false);
+    const [eyeIsOpen,setEyeIsOpen] = useState(false);
 
     const [welWidth, setWelWidth] = useState(0);
     const [fmWidth, setFmWidth] = useState(0);
@@ -107,6 +110,12 @@ function LoginMain() {
         setMyVerify({ ...myVerify, [name]: val });
     };
 
+    // 自動填表
+    const autoSignUp = (e)=>{
+        e.preventDefault();
+        setMyform({...myform,member_name:"123",member_account:"123",member_password:"123",member_mail:"chia87616@gmail.com"})
+    };
+
     // 錯誤訊息提示
     const [nameErrors, setNameErrors] = useState('')
     const [accountErrors, setAccountErrors] = useState('')
@@ -179,27 +188,6 @@ function LoginMain() {
 
     const handleSignUp = (event) => {
         event.preventDefault();
-
-        // if(!myform.member_name){
-        //     setNameErrors({...nameErrors, name:"請輸入正確格式"})
-        //     return;
-        // }else{
-        //     setNameErrors({...nameErrors,name:""});
-        // }
-
-        // if(!myform.member_account){
-        //     setAccountErrors({...accountErrors,account:"請輸入正確帳號"})
-        //     return;
-        // }else{
-        //     setAccountErrors({...accountErrors,account:""});
-        // }
-
-        // if(!myform.member_password){
-        //     setPasswordErrors({...passwordErrors,password:"請輸入正確密碼"})
-        //     return;
-        // }else{
-        //     setPasswordErrors({...passwordErrors,password:""});
-        // }
 
         // 欄位檢查
         let isPass = true;
@@ -282,6 +270,11 @@ function LoginMain() {
 
     }
 
+// --------------------- 看不看得到密碼 ---------------------
+    const eyeOpen = ()=>{
+        setEyeIsOpen(!eyeIsOpen);
+    }
+
 
     return (
         <>
@@ -296,7 +289,7 @@ function LoginMain() {
                         <div className="lg-field-wrap">
                             <div className= {`${notLog ? "name-open":"name-close"}`}>
                                 <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className={`lg-field ${notLog ? "name-open":"name-close"}`} placeholder="姓名" autoComplete="off"/>
-                                <div className={`icon ${notLog ? "icon-open":"icon-close"}`}>
+                                <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
                                     <FaUser/>
                                 </div>
                             </div>
@@ -306,7 +299,7 @@ function LoginMain() {
                         <div className="lg-field-wrap">
                             <div className="account lg-field-cont">
                                 <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
-                                <div className="icon">
+                                <div className="lg-icon">
                                     <FaUserPlus size={'1.15rem'}/>
                                 </div>
                             </div>
@@ -315,8 +308,11 @@ function LoginMain() {
 
                         <div className="lg-field-wrap">
                             <div className="password lg-field-cont">
-                                <input type="password" name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
-                                <div className="icon">
+                                <input type={eyeIsOpen ? "text" : "password"} name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
+                                <div className="lg-icon-eye" onClick={eyeOpen}>
+                                { eyeIsOpen ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
+                                </div>
+                                <div className="lg-icon">
                                     <FaLock/>
                                 </div>
                             </div>
@@ -326,7 +322,7 @@ function LoginMain() {
                         <div className="lg-field-wrap">
                             <div className= {`${notLog ? "mail-open":"mail-close"}`}>
                                 <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className={`lg-field ${notLog ? "mail-open":"mail-close"}`} placeholder="請輸入信箱" autoComplete="off"/>
-                                <div className={`icon ${notLog ? "icon-open":"icon-close"}`}>
+                                <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
                                     <MdEmail size={"1.05rem"}/>
                                 </div>
                             </div>
@@ -335,6 +331,7 @@ function LoginMain() {
                     </div>
                     <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
                     <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
+                    <button type="button" onClick={autoSignUp} style={{border:"none",padding:"15px",cursor:"pointer",backgroundColor:"transparent"}}></button>
                 </form>
                 <div className="particle"></div>
 

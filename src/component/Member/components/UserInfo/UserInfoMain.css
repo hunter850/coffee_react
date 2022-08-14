@@ -186,6 +186,15 @@ body{
     color: red;
     font-size: .8rem;
 }
+.ed-icon-eye{
+    color: var(--dark-gray);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
 /* 提示訊息 */
 .edit-msg-wrap{
     width: 300px;

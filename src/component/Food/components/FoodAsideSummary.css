@@ -16,8 +16,8 @@
 .aside svg {
     cursor: pointer;
 }
-.aside .wrapper {
-    overflow-y: scroll;
+.aside .wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .aside:hover {
@@ -46,14 +46,16 @@
     /* bottom: 0; */
     display: flex;
     /* top: 132px; */
+    height: auto;
     background-color: #fff;
     padding: 0px 10px 10px 10px;
     overflow-y: scroll;
     width: 383px;
-    /* height: auto; */
+
     flex-direction: column;
     flex: 6;
 }
+
 .aside .txt {
     margin: 5px 0;
 }
@@ -124,8 +126,8 @@
     color: #eee5dd;
 }
 .aside .pay.disabled {
-    background-color: #d1cfcf;
-    color: #253945;
+    background-color: #ccc;
+    color: #fff;
 }
 
 .payarea {

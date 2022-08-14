@@ -2,9 +2,10 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-
-    padding: 1rem 12px 0;
+    
+    padding: 1rem 12px 5rem;
     background-color:#fcfaf7;
+
 }
 
 .sharing_wrap{
@@ -19,7 +20,6 @@
 
 .post_img{
     width: 100%;
-    // height: auto;
 }
 
 // Masonry
@@ -44,7 +44,7 @@
     a>div {
         /* change div to reference your elements you put in <Masonry> */
         background: grey;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         border-radius: 10px;
         overflow: hidden;
         position: relative;

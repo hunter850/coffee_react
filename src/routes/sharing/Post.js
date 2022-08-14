@@ -1,16 +1,26 @@
-import { Fragment, useEffect, useState, useRef, useMemo } from "react";
+import {
+    Fragment,
+    useEffect,
+    useState,
+    useRef,
+    useMemo,
+    useCallback,
+} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
-import { throttle } from "lodash";
+import { set, throttle } from "lodash";
 
-import { getPosts } from "../../config/api-path";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import { getPosts, searchPost } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
 import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
+import Footer from "../../component/Footer";
+import NewPost from "./NewPost";
 
 const breakpointColumnsObj = {
     default: 4,
@@ -18,36 +28,64 @@ const breakpointColumnsObj = {
     700: 2,
 };
 
-function Post() {
-    const {
-        container,
-        sharing_wrap,
-        post_img,
-        my_masonry_grid,
-        my_masonry_grid_column,
-        fake_a,
-    } = styles;
+function Post({ newPost }) {
+    const { authorized, sid, account, token } = useAuth();
+    const { container, my_masonry_grid, my_masonry_grid_column, loader } =
+        styles;
     const wrap = useRef(null);
-    const setParams = useParams();
+    const mounted = useRef(false);
+    const mounted_K = useRef(false);
+    const param = useParams();
 
-    const [post_sid, setPost_sid] = useState(0);
+    const [searchMode, setSearchMode] = useState("");
+    const [tabs, setTabs] = useState(newPost ? "newPost" : "home");
+    const [post_sid, setPost_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
+    const [keyWord, setKeyWord] = useState("");
+    const [chooseValue, setChooseValue] = useState({});
+    const [isEnd, setIsEnd] = useState(false);
 
     const [rows, setRows] = useState([]);
 
     const [scrollY, setScrollY] = useState([0, 0]);
-    const [scrollDirect, setScrollDirect] = useState("");
 
-    const getData = async (times = 0, searchObj = {}) => {
-        const { title, meber_sid, tag } = searchObj;
-        const paramsData = { times, title, meber_sid, tag };
+    const getData = async (times = 0) => {
+        if (isEnd) return { row: [] };
 
-        const r = await axios(getPosts, {
-            params: { ...paramsData },
-        });
+        if (searchMode === "submit") {
+            const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
+            const replaced = keyWord.replace(pattern, "").trim();
 
-        return r.data;
+            const r = await axios(searchPost, {
+                params: { times, q: replaced, auth: sid },
+            });
+            if (r.data.isEnd) setIsEnd(true);
+            return r.data;
+        } else if (searchMode === "choose") {
+            return chooseToSearch(chooseValue, times, true);
+        } else {
+            const r = await axios(getPosts, {
+                params: { times, auth: sid },
+            });
+            return r.data;
+        }
     };
+
+    const resetState = useCallback(() => {
+        mounted.current = false;
+        mounted_K.current = false;
+        setGetDataTimes(0);
+        setScrollY([0, 0]);
+        setChooseValue("");
+        setSearchMode("");
+        setIsEnd(false);
+        setTabs("home");
+
+        (async () => {
+            const r = await getData();
+            setRows(r.rows);
+        })();
+    }, []);
 
     const scrollHandler = throttle((e) => {
         setScrollY((pre) => {
@@ -57,22 +95,55 @@ function Post() {
             return [...newPre, window.scrollY];
         });
 
-        const lastImg =
-            wrap.current.lastElementChild.lastElementChild.lastElementChild;
+        const masonry = wrap.current.lastElementChild;
+        const gridArr = [
+            masonry.children[0]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[1]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[2]?.lastElementChild.getBoundingClientRect().top,
+            masonry.children[3]?.lastElementChild.getBoundingClientRect().top,
+        ];
 
-        if (lastImg) {
-            if (lastImg.getBoundingClientRect().top < 1000) {
-                setGetDataTimes((pre) => pre + 1);
-            }
+        const closest = gridArr.sort((a, b) => a - b)[0];
+        if (closest < 800) {
+            setGetDataTimes((pre) => pre + 1);
         }
-    }, 100);
+
+        const scrollPercent =
+            window.pageYOffset /
+            (document.body.clientHeight - window.innerHeight);
+        const fiftyPercent =
+            document.body.clientHeight / 2 - window.innerHeight;
+        if (scrollPercent > 0.99 && !isEnd) {
+            window.scrollTo(0, fiftyPercent);
+        }
+    }, 200);
 
     useEffect(() => {
-        const pathname = window.location.pathname.replace("/sharing", "");
-        if (pathname === "" || pathname === "/") {
-            setPost_sid(0);
+        // DidUpdate轉換狀態才清rows
+        if (mounted.current) {
+            (async () => {
+                setRows([]);
+                // setGetDataTimes(0);
+                if (!searchMode) {
+                    const r = await getData(getDataTimes);
+
+                    if (r?.success) {
+                        setRows(r.rows);
+                    }
+                }
+            })();
+        } else {
+            mounted.current = true;
         }
-    }, [window.location.pathname]);
+    }, [searchMode]);
+
+    useEffect(() => {
+        if (mounted_K.current) {
+            setGetDataTimes(0);
+        } else {
+            mounted_K.current = true;
+        }
+    }, [keyWord]);
 
     useEffect(() => {
         if (post_sid) {
@@ -81,13 +152,27 @@ function Post() {
             document.querySelector("body").style.overflow = "visible";
         }
     }, [post_sid]);
+    useEffect(() => {
+        if (tabs === "newPost") {
+            document.querySelector("body").style.overflow = "hidden";
+        } else {
+            document.querySelector("body").style.overflow = "visible";
+        }
+    }, [tabs]);
 
     useEffect(() => {
         (async () => {
             const r = await getData(getDataTimes);
-            setRows((pre) => {
-                return [...pre, ...r.rows];
-            });
+
+            if (r?.success) {
+                setRows((pre) => {
+                    if (pre === undefined) {
+                        return [...r.rows];
+                    }
+
+                    return [...pre, ...r.rows];
+                });
+            }
 
             window.addEventListener("scroll", scrollHandler);
         })();
@@ -111,37 +196,84 @@ function Post() {
         setPost_sid(v.sid);
     };
 
+    const chooseToSearch = (v, times = 0, rt = false) => {
+        setChooseValue(v);
+        setTabs("");
+        const { name, sid, type, member_sid } = v;
+        const params = { q: sid || member_sid, type, times };
+
+        if (name) {
+            setKeyWord(name);
+        }
+        setIsEnd(false);
+        setSearchMode("choose");
+
+        if (!rt) {
+            axios(searchPost, { params }).then((r) => {
+                if (r.data?.success) {
+                    setRows(r.data.rows);
+                    if (r.data.isEnd) setIsEnd(true);
+                }
+            });
+        } else {
+            axios(searchPost, { params }).then((r) => {
+                if (r.data?.success) {
+                    if (r.data.isEnd) setIsEnd(true);
+                    return r.data;
+                }
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (window.history.scrollRestoration) {
+            window.history.scrollRestoration = "manual";
+        }
+    }, []);
+
     return (
         <Fragment>
             <NavBar />
-            {/* <FakeNav /> */}
             <PostNav
                 scrollDir={scrollDir}
-                rows={rows}
                 setRows={setRows}
-                getData={getData}
+                setSearchMode={setSearchMode}
+                keyWord={keyWord}
+                setKeyWord={setKeyWord}
+                setIsEnd={setIsEnd}
+                setGetDataTimes={setGetDataTimes}
+                chooseToSearch={chooseToSearch}
+                tabs={tabs}
+                setTabs={setTabs}
+                resetState={resetState}
             />
 
             <div className={container} ref={wrap}>
-                <Masonry
-                    breakpointCols={breakpointColumnsObj}
-                    className={my_masonry_grid}
-                    columnClassName={my_masonry_grid_column}
-                >
-                    {rows.map((v, i) => {
-                        return (
-                            <a
-                                key={i}
-                                href={`/sharing/${v.sid}`}
-                                onClick={(e) => {
-                                    modalHandler(e, v);
-                                }}
-                            >
-                                <PostCard cardData={v} />
-                            </a>
-                        );
-                    })}
-                </Masonry>
+                {rows && (
+                    <Masonry
+                        breakpointCols={breakpointColumnsObj}
+                        className={my_masonry_grid}
+                        columnClassName={my_masonry_grid_column}
+                    >
+                        {rows.map((v, i) => {
+                            return (
+                                <a
+                                    key={i}
+                                    href={`/sharing/${v.sid}`}
+                                    onClick={(e) => {
+                                        modalHandler(e, v);
+                                    }}
+                                >
+                                    <PostCard
+                                        cardData={v}
+                                        modalMode={post_sid}
+                                        chooseToSearch={chooseToSearch}
+                                    />
+                                </a>
+                            );
+                        })}
+                    </Masonry>
+                )}
                 {post_sid !== 0 && (
                     <PostDetailModel
                         post_sid={post_sid}
@@ -149,7 +281,10 @@ function Post() {
                         windowScrollY={scrollY[1]}
                     />
                 )}
+                {tabs === "newPost" && <NewPost setTabs={setTabs} />}
             </div>
+
+            <Footer />
         </Fragment>
     );
 }

@@ -1,11 +1,15 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { memberLikeAPI } from "../../../config/api-path";
+import { useAuth } from "../../../component/Member/AuthContextProvider";
 import styles from "./../css/postCard.module.scss";
 import { sharingIMGS } from "../../../config/api-path";
 import { FaHeart } from "react-icons/fa";
 
-function PostCard({ cardData }) {
+function PostCard({ cardData, modalMode, chooseToSearch }) {
+    const { authorized, sid: login_sid, account, token } = useAuth();
     const {
         post_card,
-        post_card_fig,
         like_wrap,
         like_str,
         content_wrap,
@@ -13,7 +17,6 @@ function PostCard({ cardData }) {
         nickname_span,
         title_span,
         tags_wrap,
-        hi,
     } = styles;
 
     const {
@@ -26,17 +29,66 @@ function PostCard({ cardData }) {
         tags,
         topic_sid,
     } = cardData;
+
+    const [didLike, setDidLike] = useState(false);
+    const [likeQ, setLikeQ] = useState(0);
+
+    useEffect(() => {
+        axios(`${memberLikeAPI}/${sid}`, {
+            params: { member_sid: login_sid },
+        }).then((r) => {
+            setDidLike(Boolean(r.data.liked));
+            setLikeQ(r.data.total);
+        });
+    }, [modalMode]);
+
+    const likeHandler = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (authorized) {
+            setDidLike(!didLike);
+            if (didLike) {
+                await axios.delete(memberLikeAPI + "/" + sid, {
+                    data: { member_sid: sid },
+                });
+                setLikeQ((pre) => pre - 1);
+            } else {
+                await axios.post(memberLikeAPI + "/" + sid, {
+                    member_sid: login_sid,
+                });
+                setLikeQ((pre) => pre + 1);
+            }
+        } else {
+            alert("請登入");
+        }
+    };
+
     return (
         <>
             <div className={post_card}>
                 <img src={`${sharingIMGS}/${img_name}`} alt={title} />
                 <ul>
-                    <li className={like_wrap}>
-                        <FaHeart color="#fff" fontSize="1.25rem" />
-                        <span className={like_str}>{likes}</span>
+                    <li className={like_wrap} onClick={(e) => likeHandler(e)}>
+                        <FaHeart
+                            color={didLike ? "#faa" : "#fff"}
+                            fontSize="1.25rem"
+                        />
+                        <span className={like_str}>{likeQ}</span>
                     </li>
                     <li className={content_wrap}>
-                        <div className={title_nickname}>
+                        <div
+                            className={title_nickname}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                chooseToSearch({
+                                    type: "nickname",
+                                    sid: member_sid,
+                                });
+                                window.scrollTo(0, 0);
+                            }}
+                        >
                             <span className={nickname_span}>
                                 {member_nickname}
                             </span>

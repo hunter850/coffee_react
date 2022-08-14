@@ -1,0 +1,31 @@
+.dot {
+    background-color: rgb(40, 39, 39);
+    width: 20px;
+    height: 20px;
+}
+
+.dot_active {
+    background-color: rgb(254, 254, 254);
+}
+
+
+/* 左右箭頭的樣式在這裡定義 */
+.swiper-button-prev:after {
+    content: "n" !important;
+    display: block;
+    width: 100px !important;
+    height: 100px;
+    background:url('../../../images/frontpage/material/star-left-arrow.svg') center center / contain no-repeat;
+}
+
+.swiper-button-next::after {
+    content: "n" !important;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background:url('../../../images/frontpage/material/star-right-arrow.svg') center center /contain no-repeat;
+}
+
+.drag_bar {
+    height: 5px;
+}

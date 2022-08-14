@@ -3,7 +3,11 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 
 import useTimeAbout from "../../../../hooks/useTimeAbout";
-import { imgSrc, commentAPI, memberLikeAPI } from "../../../../config/api-path";
+import {
+    avatarDIR,
+    commentAPI,
+    memberLikeAPI,
+} from "../../../../config/api-path";
 import styles from "../../css/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
@@ -80,18 +84,22 @@ function PostDetailContent({ data, getPostDetailData }) {
     );
 
     const commentPost = async () => {
-        if (commentInput.current.value === "") {
-            commentInput.current.focus();
-            return;
+        if (authorized) {
+            if (commentInput.current.value === "") {
+                commentInput.current.focus();
+                return;
+            }
+            const data = {
+                member_sid: sid,
+                content: commentInput.current.value,
+                post_sid,
+            };
+            const r = await axios.post(commentAPI, data);
+            commentInput.current.value = "";
+            if (r.data.success) getPostDetailData();
+        } else {
+            alert("請先登入");
         }
-        const data = {
-            member_sid: sid,
-            content: commentInput.current.value,
-            post_sid,
-        };
-        const r = await axios.post(commentAPI, data);
-        commentInput.current.value = "";
-        if (r.data.success) getPostDetailData();
     };
 
     const memberLikePost = async () => {
@@ -104,7 +112,6 @@ function PostDetailContent({ data, getPostDetailData }) {
             params: { member_sid: sid },
         });
 
-        console.log("data,like", res.data.liked);
         if (res.data.liked > 0) {
             const res2 = await axios.delete(`${memberLikeAPI}/${post_sid}`, {
                 data: { member_sid: sid },
@@ -130,12 +137,20 @@ function PostDetailContent({ data, getPostDetailData }) {
         }
     }, []);
 
+    const keyUpHandler = (e) => {
+        console.log(e.target.selectionStart);
+    };
+
     return (
         <>
             <div className={grid_top}>
                 <div className={author}>
                     <div className={avatar_wrap}>
-                        <img src={`${imgSrc}/member/${avatar}`} alt="avatar" />
+                        <img
+                            src={`${avatarDIR}/${avatar || "missing-image.jpg"
+                                }`}
+                            alt="avatar"
+                        />
                     </div>
                     <div className={info}>
                         <span className={nickname}>{member_nickname}</span>
@@ -154,9 +169,12 @@ function PostDetailContent({ data, getPostDetailData }) {
                         </span>
                     </div>
                     {/* 內文 */}
-                    <p className="mb-5" style={{ lineHeight: "1.5rem" }}>
-                        {content}
-                    </p>
+                    <p
+                        className="mb-5"
+                        style={{ lineHeight: "1.5rem" }}
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    ></p>
+
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
                             <Tag key={i} tagName={v} />
@@ -195,7 +213,11 @@ function PostDetailContent({ data, getPostDetailData }) {
             </div>
 
             <div className={msg_wrap}>
-                <input className={msg_bar} ref={commentInput}></input>
+                <input
+                    className={msg_bar}
+                    ref={commentInput}
+                    onKeyUp={(e) => keyUpHandler(e)}
+                />
                 <button className={msg_submit} onClick={commentPost}>
                     發佈
                 </button>

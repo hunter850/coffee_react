@@ -6,8 +6,8 @@ const ScrollWrap = (props) => {
     const {
         children,
         component = null,
-        from = "",
-        to = "",
+        start = "",
+        end = "",
         backAgain = false,
         offset = 0,
         backOffset = 0,
@@ -17,8 +17,8 @@ const ScrollWrap = (props) => {
         <ElementWrap component={component} {...others}>
             {React.Children.map(children, (child) => (
                 <ListenScroll
-                    from={from}
-                    to={to}
+                    start={start}
+                    end={end}
                     backAgain={backAgain}
                     offset={offset}
                     backOffset={backOffset}
