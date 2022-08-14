@@ -11,6 +11,7 @@ const ScrollWrap = (props) => {
         backAgain = false,
         offset = 0,
         backOffset = 0,
+        mode = "DOMPosition",
         ...others
     } = props;
     return (
@@ -22,6 +23,7 @@ const ScrollWrap = (props) => {
                     backAgain={backAgain}
                     offset={offset}
                     backOffset={backOffset}
+                    mode={mode}
                 >
                     {child}
                 </ListenScroll>
