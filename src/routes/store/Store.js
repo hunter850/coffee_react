@@ -129,6 +129,7 @@ function Store() {
             setChatBot(null);
         }
     }, [botOpen]);
+
     return (
         <Fragment>
             <NavBar />
@@ -494,6 +495,7 @@ function Store() {
                     </svg>
                 </button>
             </div>
+            <div></div>
             <Footer />
         </Fragment>
     );

@@ -166,7 +166,7 @@
 
 #map-container a {
     text-decoration: none;
-    color: #1967d2;
+    color: #f4f7fa;
 }
 
 #map-container button {
@@ -528,4 +528,5 @@ width: 200px;
 top: -335px;
 z-index: 999;
 }
+
 

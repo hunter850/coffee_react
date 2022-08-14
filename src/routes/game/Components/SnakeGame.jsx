@@ -1,6 +1,8 @@
 import React from "react";
 import "../css/SnakeGame.css";
 import GameOver from "./GameOver.jsx";
+// import useSound from "use-sound";
+// import sounds from "../../../images/Coupon/yisell_sound_201404102304403674_88366.mp3";
 
 class SnakeGame extends React.Component {
     constructor(props) {
@@ -161,6 +163,7 @@ class SnakeGame extends React.Component {
         let snake = this.state.snake;
         let Beans = this.state.Beans;
         if (snake[0].Xpos === Beans.Xpos && snake[0].Ypos === Beans.Ypos) {
+
             let width = this.state.width;
             let height = this.state.height;
             let blockWidth = this.state.blockWidth;
@@ -339,7 +342,6 @@ class SnakeGame extends React.Component {
                 />
             );
         }
-
         return (
             <div
                 id="GameBoard"

@@ -1,12 +1,12 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-
 import NavBar from "../../component/NavBar/NavBar";
 import "./css/Coupon.css";
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";
 import ChatBot from "../../component/Bot/ChatBot";
+import Infinite from "react-infinite";
 
 function Coupon() {
     const { token } = useAuth();
@@ -196,7 +196,9 @@ function Coupon() {
                 </div>
                 <div className="w100">
                     <div className="display_justify_content coupon_style load inner-box">
-                        {CouponList}
+                        <Infinite containerHeight={925} elementHeight={10000} className="TheInfinite">
+                            {CouponList}
+                        </Infinite>
                     </div>
                 </div>
             </div>
