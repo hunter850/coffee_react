@@ -153,7 +153,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     );
 
     const myCarousel = (
-        <div className="course-Carousel">
+        <div className="course-Carousel" ref={autoCarousel}>
             <div
                 className="course-slideshow d-flex"
                 style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
