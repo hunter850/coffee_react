@@ -1,0 +1,489 @@
+.display_justify_content {
+display: flex;
+justify-content: center;
+}
+
+.wrapper {
+display: block;
+}
+
+.Cbutton {
+width: 124px;
+height: 54px;
+padding: 10px 25px;
+text-align: center;
+text-decoration: none;
+color: rgb(213, 211, 211) !important;
+border: 1px solid #B79973;
+font-size: 16px;
+display: inline-block;
+border-radius: 0.3em;
+transition: all 0.2s ease-in-out;
+position: relative;
+overflow: hidden;
+
+&:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+}
+
+&:hover {
+    background-color: #b8a58d;
+    color: #fff;
+
+    /* border-bottom: 4px solid #893429; */
+
+    &:before {
+    transform: skewX(-45deg) translateX(13.5em);
+    transition: all 0.5s ease-in-out;
+    }
+}
+}
+
+.active {
+background-color: #B79973;
+color: #fff;
+}
+
+.coupon_style {
+background: rgba(226, 216, 196, 0.623);
+border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.page-item.active .page-link {
+z-index: 3;
+color: #fff;
+background-color: #B79973;
+border-color: #B79973;
+}
+
+.page-link {
+color: #B79973;
+}
+
+.c_p_disabled {
+filter: contrast(50%);
+}
+
+/* ====================== */
+
+p.photographer:after {
+content: "View on Upsplash";
+font-size: 16px;
+margin-top: 6px;
+letter-spacing: 0;
+display: block;
+color: #000;
+z-index: 1000;
+}
+
+/* ============== */
+
+.card {
+z-index: 1;
+
+/* margin: 12px 12px; */
+position: relative;
+height: 185px;
+width: 285px;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+background: url(../../../images/Coupon/41_Card_01.JPG);
+background-size: 100%;
+background-repeat: no-repeat;
+
+p {
+    width: 100%;
+    top: 184px;
+    text-align: center;
+    position: absolute;
+    font-size: 30px;
+    font-weight: 100;
+    letter-spacing: 4px;
+}
+
+&:hover > .social {
+    opacity: 1;
+}
+
+.social {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    ul {
+    z-index: 5;
+    padding-left: 0;
+    list-style: none;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+
+    a {
+        color: #fff;
+        position: relative;
+    }
+
+    .f, .t, .m, .g {
+        font-size: 12px;
+        height: 20px;
+        width: 20px;
+        position: relative;
+    }
+
+    .star {
+        font-size: 12px;
+        height: 20px;
+        width: 20px;
+        position: relative;
+
+        a {
+        color: #444;
+        }
+
+        background-color: #ddd;
+        margin-bottom: 8px;
+        color: #444;
+    }
+
+    .f {
+        background-color: #1565c0;
+    }
+
+    .t {
+        background-color: #29b6f6;
+    }
+
+    .m {
+        background-color: #00e676;
+    }
+
+    .g {
+        background-color: #212121;
+    }
+    }
+}
+}
+
+/* .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+} */
+
+/* ============= */
+
+.card2 {
+z-index: 1;
+
+/* margin: 12px 12px; */
+position: relative;
+height: 185px;
+width: 285px;
+background-color: #BFBFB5;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+background-size: 100%;
+background-repeat: no-repeat;
+background: url(../../../images/Coupon/kv_right_01.jpg);
+
+p {
+    width: 100%;
+    top: 184px;
+    text-align: center;
+    position: absolute;
+    font-size: 30px;
+    font-weight: 100;
+    letter-spacing: 4px;
+}
+
+&:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    > .social {
+    opacity: 1;
+    }
+}
+
+.social {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    ul {
+    z-index: 5;
+    padding-left: 0;
+    list-style: none;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+
+    a {
+        color: #fff;
+        position: relative;
+    }
+
+    .f, .t, .m, .g {
+        font-size: 12px;
+        height: 20px;
+        width: 20px;
+        position: relative;
+    }
+
+    .star {
+        font-size: 12px;
+        height: 20px;
+        width: 20px;
+        position: relative;
+
+        a {
+        color: #444;
+        }
+
+        background-color: #ddd;
+        margin-bottom: 8px;
+        color: #444;
+    }
+
+    .f {
+        background-color: #1565c0;
+    }
+
+    .t {
+        background-color: #29b6f6;
+    }
+
+    .m {
+        background-color: #00e676;
+    }
+
+    .g {
+        background-color: #212121;
+    }
+    }
+}
+}
+
+#myVideo {
+position: fixed;
+right: 0;
+bottom: 0;
+min-width: 100%;
+min-height: 100%;
+z-index: -1;
+}
+
+.displaynone {
+display: none;
+}
+
+.CouponContainer {
+width: 100%;
+display: flex;
+flex-direction: column;
+text-align: center;
+justify-content: center;
+background-color: #FCFAF7;
+position: relative;
+
+/* background-size: cover;
+opacity: 0.9; */
+}
+
+/* body{
+    background: url(../../copon_img/copon_img/bg_1.png) 50% 100% / cover #000 fixed;
+} */
+
+.m23 {
+margin-top: 23px;
+}
+
+.w100 {
+width: 100%;
+}
+
+.inner-box {
+margin: 20px auto;
+width: 60%;
+flex-direction: column;
+padding-bottom: 20px;
+}
+
+.btn {
+margin: 20px auto;
+width: 300px;
+}
+
+.main-sec {
+width: 50%;
+margin: 5px auto;
+flex-direction: row;
+position: relative;
+}
+
+.w250p {
+width: 250px;
+}
+
+.cardstyle {
+width: 100%;
+display: flex;
+flex-direction: row;
+}
+
+.w4 {
+width: 4%;
+}
+
+.coupon-style {
+width: 46%;
+margin-top: 25px;
+text-align: left;
+}
+
+.coupon-inner-style {
+flex-direction: row;
+margin-top: 25px;
+}
+
+.px14 {
+font-size: 14px;
+}
+
+.type-sec {
+width: 50px;
+font-size: 14px;
+}
+
+.link1 {
+text-decoration: none;
+margin-top: 0px;
+margin-right: 10px;
+margin-bottom: 20px;
+}
+
+.link2 {
+text-decoration: none;
+margin-top: 0px;
+}
+
+/* Link, Link:visited {
+    color: #fff;
+    text-decoration: none;
+} */
+
+.hoverStyle {
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: #fff;
+display: flex;
+justify-content: center;
+vertical-align: middle;
+align-items: center;
+}
+
+.text-inner {
+color: #2b2927;
+font-family: 'Josefin Sans', sans-serif;
+font-size: 24px;
+line-height: 26px;
+font-weight: 100;
+letter-spacing: 2.88px;
+
+&:hover {
+    z-index: 999;
+    height: 26px;
+}
+}
+
+.card:hover {
+opacity: 0.3;
+}
+
+.hoverStyle:hover {
+position: absolute;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 0.9);
+z-index: 999;
+}
+
+.CouponName {
+border-color: #e1e1e1;
+border-width: 1px;
+border-style: solid;
+border-top: none;
+border-left: none;
+border-right: none;
+color: #3a3333;
+font-family: EB Garamond;
+font-size: 17px;
+line-height: 22px;
+font-style: italic;
+letter-spacing: 0px;
+padding-bottom: 5px;
+margin-top: 0px;
+margin-bottom: 16px;
+}
+
+.TheInfinite::-webkit-scrollbar {
+/* display: none !important; */
+width: 1px;
+}
+
+@media screen and (max-width: 376px) {
+.TheInfinite {
+    .card {
+    height: 92px;
+    }
+
+    height: 300px !important;
+}
+
+.inner-box {
+    width: 80%;
+}
+
+.TheInfinite .card p {
+    font-size: 10px;
+}
+
+.CouponName {
+    font-size: 10px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    padding-bottom: 2px;
+    margin-top: 0px;
+    margin-bottom: 6px;
+}
+
+.px14 {
+    font-size: 9px;
+}
+
+.type-sec {
+    width: 60px;
+    font-size: 6px;
+}
+
+.coupon-inner-style {
+    margin-top: 7px;
+}
+
+.coupon-style {
+    margin-top: 5px;
+    width: 70%;
+    padding: 5px;
+}
+
+.card2 {
+    height: auto;
+}
+}

@@ -1,0 +1,38 @@
+    .GetpointContainer {
+        width: 1040px;
+        height: 500px;
+        margin: auto;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    
+        /* background-color: #FCFAF7; */
+        position: relative;
+        background: url(../../../images/Coupon/GameBG.png) no-repeat center center;
+        background-size: cover;
+    }
+    
+    .subTitle {
+        font-size: 12px;
+        font-size: max(12px, 1.2vw);
+    }
+    
+    .GetpointContainerOutside {
+        display: block;
+    }
+    
+    #instructions {
+        color: rgb(172, 172, 172);
+        font-size: 10px;
+        font-size: max(10px, 1vw);
+    }
+    
+    @media screen and (max-width: 376px) {
+        .GetpointContainer {
+        width: 300px;
+        }
+    
+        .GetpointContainerOutside {
+        display: none;
+        }
+    }

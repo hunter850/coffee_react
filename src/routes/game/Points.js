@@ -2,7 +2,9 @@ import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
 
 import NavBar from "../../component/NavBar/NavBar";
-import "./css/Points.css";
+// import "./css/Points.css";
+import "./css/Points.scss";
+
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";

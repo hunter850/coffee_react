@@ -1,5 +1,7 @@
 import NavBar from "../../component/NavBar/NavBar";
-import "./css/GetCoupon.css";
+// import "./css/GetCoupon.css";
+import "./css/GetCoupon.scss";
+
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";
 import { useState, useRef, useEffect, useContext } from "react";

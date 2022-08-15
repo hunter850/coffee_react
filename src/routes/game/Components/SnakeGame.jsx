@@ -1,5 +1,7 @@
 import React from "react";
-import "../css/SnakeGame.css";
+// import "../css/SnakeGame.css";
+import "../css/SnakeGame.scss";
+
 import GameOver from "./GameOver.jsx";
 // import useSound from "use-sound";
 // import sounds from "../../../images/Coupon/yisell_sound_201404102304403674_88366.mp3";
