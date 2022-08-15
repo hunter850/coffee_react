@@ -15,12 +15,12 @@ import { useAuth } from "../../component/Member/AuthContextProvider";
 import { getPosts, searchPost } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
-import styles from "./css/post.module.scss";
 import PostCard from "./components/PostCard";
 import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 import Footer from "../../component/Footer";
 import NewPost from "./NewPost";
+import styles from "./scss/Post.module.scss";
 
 const breakpointColumnsObj = {
     default: 4,

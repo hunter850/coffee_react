@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { memberLikeAPI } from "../../../config/api-path";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
-import styles from "./../css/postCard.module.scss";
 import { sharingIMGS } from "../../../config/api-path";
 import { FaHeart } from "react-icons/fa";
+import styles from "./scss/PostCard.module.scss";
 
 function PostCard({ cardData, modalMode, chooseToSearch }) {
     const { authorized, sid: login_sid, account, token } = useAuth();

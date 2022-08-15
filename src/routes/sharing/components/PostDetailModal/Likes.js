@@ -1,4 +1,4 @@
-import styles from "../../css/Likes.module.scss";
+import styles from "./scss/Likes.module.scss";
 
 function Likes({ likes, memberLikePost, didLiked }) {
     const { like_wrap, heart, liked } = styles;

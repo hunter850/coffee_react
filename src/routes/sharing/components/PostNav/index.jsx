@@ -8,7 +8,7 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
-import styles from "../../css/postnav.module.scss";
+import styles from "./scss/PostNav.module.scss";
 
 function PostNav(props) {
     const navigate = useNavigate();

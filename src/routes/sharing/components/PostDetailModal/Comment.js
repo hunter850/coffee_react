@@ -4,7 +4,7 @@ import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 
 import { avatarDIR, replyAPI, commentAPI } from "../../../../config/api-path";
-import styles from "../../css/Comment.module.scss";
+import styles from "./scss/Comment.module.scss";
 import Reply from "./Reply";
 
 const emptyObj = {

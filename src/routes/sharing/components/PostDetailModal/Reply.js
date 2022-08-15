@@ -4,7 +4,7 @@ import { avatarDIR, replyAPI } from "../../../../config/api-path";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 
-import styles from "../../css/Comment.module.scss";
+import styles from "./scss/Comment.module.scss";
 
 function Reply({ data, replyHandler, getPostDetailData, comment_sid }) {
     const { authorized, sid, account, token } = useAuth();

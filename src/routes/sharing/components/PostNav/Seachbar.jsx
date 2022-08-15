@@ -5,7 +5,7 @@ import axios from "axios";
 import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import Magnifier from "./Magnifier";
-import styles from "../../css/Seachbar.module.scss";
+import styles from "./scss/PostNav.module.scss";
 import ResultRow from "./ResultRow";
 
 function Seachbar({

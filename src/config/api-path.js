@@ -43,8 +43,7 @@ export const sendMail = `${SERVER}/food/send_mail`;
 // SHARING
 export const sharingIMGS = `${SERVER}/images/sharing`;
 export const getPosts = `${SERVER}/sharing/post`;
-export const newPosts = `${SERVER}/sharing/post/new`;
-// export const newPosts = `http://192.168.24.190:3300/cart/try/api`;
+export const newPostAPI = `${SERVER}/sharing/post/new`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
 export const memberLikeAPI = `${SERVER}/sharing/memberlike`;

@@ -3,7 +3,7 @@ import { avatarDIR, sharingIMGS } from "../../../../config/api-path";
 import { BsTagFill } from "react-icons/bs";
 
 import Magnifier from "./Magnifier";
-import styles from "../../css/Seachbar.module.scss";
+import styles from "./scss/PostNav.module.scss";
 
 function ResultRow({ data }) {
     const { name, type, save_at, member_sid, post_sid, author, src } = data;

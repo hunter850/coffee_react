@@ -8,7 +8,7 @@ import {
     commentAPI,
     memberLikeAPI,
 } from "../../../../config/api-path";
-import styles from "../../css/PostDetailContent.module.scss";
+import styles from "./scss/PostDetailContent.module.scss";
 
 import Tag from "./Tag";
 import Likes from "./Likes";

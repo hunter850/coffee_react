@@ -4,7 +4,7 @@ import { sharingIMGS } from "../../../../config/api-path";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import styles from "../../css/PostDeatailCarousel.module.scss";
+import styles from "./scss/PostDeatailCarousel.module.scss";
 
 // import "./styles/styles.css";
 import { Navigation, Pagination } from "swiper";
