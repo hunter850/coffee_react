@@ -2,10 +2,19 @@ import { Fragment, useMemo, useState, useCallback } from "react";
 import useData from "../../../../hooks/useData";
 import Modal from "../../../../component/Modal/Modal";
 import CouponTicket from "./CouponTicket";
+import Btn from "../../../../component/Item/Btn/Btn";
 import cssStyle from "./css/totalHeader.module.scss";
+import debounce from "lodash/debounce";
 
 function TotalHeader() {
-    const { header_button, ticket_svg, coupon_label } = cssStyle;
+    const {
+        header_button,
+        ticket_svg,
+        coupon_label,
+        modal_bord,
+        modal_footer,
+        confirm_btn,
+    } = cssStyle;
     const [isOpen, setIsOpen] = useState(false);
     const [nowList] = useData("nowList");
     const nowCouponList = useMemo(() => {
@@ -92,7 +101,7 @@ function TotalHeader() {
                     </svg>
                 </span>
             </button>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} className={modal_bord}>
                 <Modal.Header>
                     <h6 style={styles.headerTextStyle}>選擇優惠卷</h6>
                 </Modal.Header>
@@ -122,8 +131,13 @@ function TotalHeader() {
                         ))}
                     </form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <h1>Footer</h1>
+                <Modal.Footer className={modal_footer}>
+                    <Btn
+                        className={confirm_btn}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        確認
+                    </Btn>
                 </Modal.Footer>
             </Modal>
         </Fragment>

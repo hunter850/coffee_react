@@ -1,14 +1,10 @@
 import React, { useRef } from "react";
-// import useIsInRestore from "../../../../hooks/useIsInRestore";
-// import useIsInOut from "../../../../hooks/useIsInOut";
 import useShouldEnter from "../../../../hooks/useShouldEnter";
 import useShouldEnterBothSides from "../../../../hooks/useShouldEnterBothSides";
 
 function ListenScroll(props) {
     const { children, start, end, backAgain, offset, backOffset, mode } = props;
     const childRef = useRef(null);
-    // const isInRestore = useShouldEnter(childRef, offset);
-    // const isInOut = useIsInOut(childRef, offset, backOffset);
     const shouldEnter = useShouldEnter(childRef, offset, mode);
     const shouldEnterBothSides = useShouldEnterBothSides(
         childRef,

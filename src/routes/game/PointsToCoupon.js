@@ -3,7 +3,9 @@ import { useAuth } from "../../component/Member/AuthContextProvider";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../component/NavBar/NavBar";
-import "./css/PointsToCoupon.css";
+// import "./css/PointsToCoupon.css";
+import "./css/PointsToCoupon.scss";
+
 import {
     ScrollMotionContainer,
     ScrollMotionItem,

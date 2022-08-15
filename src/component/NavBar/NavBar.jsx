@@ -24,7 +24,6 @@ function NavBar({ navPosition = 'sticky' }) {
     });
     // nav會員名字用
     const [getUserName, setGetUserName] = useState(auth.name);
-    console.log('getUserName:', getUserName);
     // rwd下拉選單
     const [hamburgerMenuDisplay, setHamburgerMenuDisplay] = useState(false);
     // rwd下拉選單 顯示開關

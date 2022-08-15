@@ -45,7 +45,7 @@ function Member() {
     const [getCoupons, setGetCoupons] = useState(0);
     const [getLikes,setGetLikes] = useState(0);
     const [getTotalPoints,setGetTotalPoints] = useState(0);
-    const [getAmount,setGetAmount] = useState(0);
+    const [getCanUse,setCanUse] = useState(0);
 
     useEffect(() => {
 
@@ -115,10 +115,10 @@ function Member() {
             })
             .then((response) => {
                 console.log(response.data);
-                setGetTotalPoints(response.data[0].total_points);
-                setGetAmount(response.data[0].voucher_amount)
+                setCanUse(response.data[0].total_points);
+                setGetTotalPoints(response.data[1].member_level);
             });
-    }, [token,getTotalPoints]);
+    }, [token,getTotalPoints,getCanUse]);
 
 
 
@@ -134,7 +134,7 @@ function Member() {
                 <div className="mc-container">
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
-                            <div className="cardF" style={{ background: (Number(getAmount)*300+Number(getTotalPoints))>30000 ? `url(${goldF})` :`url(${silverF})`}}>
+                            <div className="cardF" style={{ background: Number(getTotalPoints)>30000 ? `url(${goldF})` :`url(${silverF})`}}>
                                 <p className="cardB-desc">{nickname}</p>
                                 <div className="cardF-wrap">
                                     <svg
@@ -162,7 +162,7 @@ function Member() {
                                 </div>
 
                             </div>
-                            <div className="cardB" style={{background: (Number(getAmount)*300+Number(getTotalPoints))>30000 ? `url(${goldB})` :`url(${silverB})`}}>
+                            <div className="cardB" style={{background: Number(getTotalPoints)>30000 ? `url(${goldB})` :`url(${silverB})`}}>
                                 <p className="cardB-level">{getTotalPoints}<span>points</span></p>
                                 {/* <div className="cardB-wrap"></div> */}
                             </div>
@@ -243,13 +243,13 @@ function Member() {
                         </div>
                         <div className="mc-level-wrap">
                             <p className="mc-level-title">{
-                                (Number(getAmount)*300+Number(getTotalPoints))>30000 ? "金卡會員":"銀卡會員"
+                                Number(getTotalPoints)>30000 ? "金卡會員":"銀卡會員"
                             }</p>
                             <p className="mc-level-point">目前累積點數</p>
-                            <p className="mc-level-ownPoint">{Number(getAmount)*300+Number(getTotalPoints)}</p>
-                            <p className="mc-level-canUse">可用的點數<span>{getTotalPoints}</span>點</p>
+                            <p className="mc-level-ownPoint">{Number(getTotalPoints)}</p>
+                            <p className="mc-level-canUse">可用的點數<span>{getCanUse}</span>點</p>
                             {
-                                (30000-(Number(getAmount)*300+Number(getTotalPoints)))<=0 ? <p className="mc-level-next">已為最高等級</p> : <p className="mc-level-next">距離下一等級尚差<span>{30000-(Number(getAmount)*300+Number(getTotalPoints))}</span>點</p>
+                                (30000-Number(getTotalPoints))<=0 ? <p className="mc-level-next">已為最高等級</p> : <p className="mc-level-next">距離下一等級尚差<span>{30000-Number(getTotalPoints)}</span>點</p>
                             }
                         </div>
                     </div>

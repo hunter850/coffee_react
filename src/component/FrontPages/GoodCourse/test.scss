@@ -1,0 +1,31 @@
+.start {
+    transform: translateX(-25px);
+    opacity: 0;
+}
+.start2 {
+    opacity: 0;
+}
+
+.goodcourse-upper-wrap {
+    margin-bottom: 50px;
+}
+
+.f-reverse {
+    flex-direction: row-reverse;
+}
+
+.text_basic {
+    width: 290px;
+}
+
+.end {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 1s ease;
+}
+
+.end2 {
+    opacity: 1;
+    transform: translateX(-25px);
+    transition: all 1s ease;
+}

@@ -154,3 +154,68 @@ body{
     margin: 0 20px 50px 20px;
     cursor: pointer;
 }
+
+/* 手機 */
+@media (max-width: 375px){
+    .odh-container{ 
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .odh-wrap-main{
+        width: 375px;
+        display: flex;
+        flex-direction: column;
+        top: 150px;
+    }
+    .odh-wrap-right{
+        width: 319px;
+    }
+    .odh-info{
+        width: 319px;
+        height: 280px;
+        margin: 0;
+        margin-bottom: 40px;
+    }
+    .odh-header{
+        height: 73px;
+        border-radius: 10px 10px 0px 0px;
+        border-bottom: 1px solid var(--dark-gray);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 20px;
+    }
+    .odh-date-wrap{
+        display: flex;
+        align-items: center;
+        padding: 0px;
+        margin-right: 0px;
+    }
+    .odh-date-title{
+        font-size: 0.8rem;
+        color: var(--blue);
+        margin-bottom: 0px;
+        margin-right: 15px;
+    }
+    .odh-info-wrap{
+        flex-wrap: wrap;
+        padding: 25px 0;
+    }
+    .odh-header>span{
+        margin: 0px;
+    }
+    .odh-id-wrap{
+        display: flex;
+        align-items: center;
+    }
+    .odh-id{
+        margin-right: 15px;
+    }
+    .odh-id-wrap>span{
+        font-size: 0.8rem;
+        color: var(--blue);
+    }
+
+}

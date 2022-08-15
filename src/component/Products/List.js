@@ -130,7 +130,7 @@ function List(props) {
                                               //   mode="renderPosition"
                                           >
                                               <Link
-                                                  className=""
+                                                  className={cardStyle}
                                                   to={`/products/detail/${v.products_sid}`}
                                                   key={v.products_sid}
                                                   style={{
@@ -153,8 +153,8 @@ function List(props) {
                                                               v.products_pic,
                                                           card_img_file:
                                                               v.products_with_products_categories_sid,
-                                                          card_className:
-                                                              cardStyle,
+                                                            // card_className:
+                                                            //     cardStyle,
                                                       }}
                                                   />
                                                   <div
