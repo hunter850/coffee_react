@@ -49,7 +49,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
                     setTransitionDelay(true);
                     setPage(1);
                 }
-            }, 0);
+            }, 20);
         }
         // 往左的無限輪播
         if (direction === 'left') {
