@@ -1,0 +1,81 @@
+    .PointsToCouponContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        background-color: #FCFAF7;
+        position: relative;
+    }
+    
+    .PointsToCouponContainerInner {
+        width: 500px;
+        margin: auto;
+        padding: 30px 40px 45px 30px;
+        margin-top: 30px;
+        border: 1px solid #ebe9e9;
+    
+        div {
+        padding: 30px;
+        color: #b79973;
+        font-weight: 400;
+        border: 1px solid #b1883a;
+        margin-top: 10px;
+        }
+    }
+    
+    .filledLink {
+        width: 365px;
+        transition: opacity 3s linear;
+        transition-delay: 1s;
+        will-change: opacity;
+        background-size: contain;
+        justify-content: center;
+    
+        &:hover {
+        color: #b1883a;
+        background-image: linear-gradient(to right, #b1883a 50%, transparent 50%);
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-size: 200% 100%;
+        transition: background-position 2s cubic-bezier(0.22, 1, 0.36, 1);
+        cursor: pointer;
+        }
+    
+        &:active {
+        background-color: #b1883a;
+        color: #FCFAF7;
+        }
+    }
+    
+    .PointsToCouponbtn {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #b1883a;
+        background-color: transparent;
+        margin: 10px;
+        color: #b1883a;
+        cursor: pointer;
+    }
+    
+    .textred {
+        color: rgb(195, 0, 0);
+    }
+    
+    .cRedAlert {
+        background-color: rgba(192, 180, 180, 0.5);
+        border: 1px solid #ccc !important;
+        color: #fff !important;
+        justify-content: center;
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width: 376px) {
+        .PointsToCouponContainerInner {
+        width: 360px;
+        }
+    
+        .filledLink {
+        width: auto;
+        }
+    }

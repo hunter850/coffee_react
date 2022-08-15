@@ -1,0 +1,231 @@
+    .PointContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        background-color: #FCFAF7;
+        position: relative;
+    
+        /* background-size: cover;
+        opacity: 0.9; */
+    }
+    
+    .display_justify_content {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .px24 {
+        font-size: 24px;
+    }
+    
+    .display_flex_wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .display_none {
+        display: none;
+    }
+    
+    .border_collapse {
+        border-collapse: collapse;
+    }
+    
+    @keyframes sheen {
+        0% {
+        transform: skewY(-45deg) translateX(0);
+        }
+    
+        100% {
+        transform: skewY(-45deg) translateX(12.5em);
+        }
+    }
+    
+    .wrapper {
+        display: block;
+    
+        /* transform: translate(-50%, -50%); */
+    }
+    
+    .Pbutton {
+        width: 124px;
+        height: 54px;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        color: rgb(213, 211, 211) !important;
+        border: 1px solid #B79973;
+        font-size: 16px;
+        display: inline-block;
+        border-radius: 0.3em;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    
+        &:before {
+        content: "";
+        background-color: rgba(255, 255, 255, 0.5);
+        height: 100%;
+        width: 3em;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -4.5em;
+        transform: skewX(-45deg) translateX(0);
+        transition: none;
+        }
+    
+        &:hover {
+        background-color: #b8a58d;
+        color: #fff;
+    
+        /* border-bottom: 4px solid #893429; */
+    
+        &:before {
+            transform: skewX(-45deg) translateX(13.5em);
+            transition: all 0.5s ease-in-out;
+        }
+        }
+    }
+    
+    .active {
+        background-color: #B79973;
+        color: #fff;
+    }
+    
+    .bg {
+        background-color: #fff;
+        opacity: 0.9;
+    }
+    
+    table {
+        border-collapse: separate;
+    }
+    
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #B79973;
+        border-color: #B79973;
+    }
+    
+    .page-link {
+        color: #B79973;
+    }
+    
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+    }
+    
+    .totalpoints {
+        color: #893429;
+        font-weight: bold;
+    }
+    
+    .m10 {
+        margin-top: 10px;
+    }
+    
+    .mt5 {
+        margin-top: 5px;
+    }
+    
+    .recordstyle {
+        text-decoration: none;
+        margin-top: 0px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .theUse {
+        text-decoration: none;
+        margin-top: 0px;
+    }
+    
+    .tableStyle {
+        height: 500px;
+        width: 1200px;
+    }
+    
+    .th1 {
+        /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius: 20px 0 0 0; */
+        /* background-color: rgba(175, 175, 175, 0.59); */
+        font-weight: 200;
+        border-bottom: 0.8px solid #B79973;
+        padding: 10px;
+    }
+    
+    .th2 {
+        /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE); */
+        font-weight: 200;
+        border-bottom: 0.8px solid #B79973;
+        padding: 10px;
+    }
+    
+    .th3 {
+        /* background:linear-gradient(#F4F2EE, #F4EBDE, #F4F2EE);border-radius:0 20px 0 0 ; */
+        font-weight: 200;
+        border-bottom: 0.8px solid #B79973;
+        padding: 10px;
+    }
+    
+    .Pstable {
+        width: 1040px;
+        padding: 30px 40px 45px 40px;
+        background-color: #fff;
+    }
+    
+    .PointsToCouponLink {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 3.3;
+        position: relative;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        padding-right: 35px;
+        color: rgb(71, 68, 68);
+    
+        &:hover {
+        color: #B79973;
+        }
+    
+        &:after {
+        background: url(https://owls-cr.co.jp/common/images/icon/icon_arrow_a.svg) left top no-repeat;
+        content: "";
+        transition-duration: 0.4s;
+        display: block;
+        position: absolute;
+        top: -0.27778vw;
+        right: 0;
+        background-size: contain;
+        width: 32px;
+        height: 32px;
+        }
+    }
+    
+    .loadc {
+        font-weight: 200;
+        border-bottom: 0.8px solid #B79973;
+        padding: 10px;
+    }
+    
+    .loaded {
+        border-bottom: 0.8px solid #B79973;
+    }
+    
+    @media screen and (max-width: 376px) {
+        .tableStyle {
+        width: 360px;
+        }
+    
+        .Pstable {
+        font-size: 9px;
+        }
+    }

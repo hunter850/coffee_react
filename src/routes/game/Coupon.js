@@ -1,7 +1,9 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import NavBar from "../../component/NavBar/NavBar";
-import "./css/Coupon.css";
+// import "./css/Coupon.css";
+import "./css/Coupon.scss";
+
 import axios from "axios";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import moment from "moment";
