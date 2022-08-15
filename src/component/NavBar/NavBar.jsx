@@ -24,13 +24,13 @@ function NavBar({ navPosition = 'sticky' }) {
     });
     // nav會員名字用
     const [getUserName, setGetUserName] = useState(auth.name);
+    console.log('getUserName:', getUserName);
     // rwd下拉選單
     const [hamburgerMenuDisplay, setHamburgerMenuDisplay] = useState(false);
     // rwd下拉選單 顯示開關
     const openHamburgerMenu = () => {
         setHamburgerMenuDisplay(!hamburgerMenuDisplay);
     };
-
     // 控制下拉選單顯示
     const handleDropDown = (e, nav) => {
         e.stopPropagation();
@@ -73,13 +73,11 @@ function NavBar({ navPosition = 'sticky' }) {
                 })
                 .then((response) => {
                     setUser({ ...user, member_name: response.data[0].member_name });
-                    setAuth({ ...authOrigin, name: user.member_name });
+                    setAuth({ ...authOrigin, name: response.data[0].member_name });
                 });
         }
-        // 沒有改名字的時候不重複刷新
-        if (name !== user.member_name && user.member_name !== '') {
-            setGetUserName(user.member_name);
-        }
+        setGetUserName(auth.name);
+
     }, [token, getUserName, name, user.member_name]);
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
