@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import "./Carousel.css";
 import { useState, useEffect } from "react";
+import useSetNow from "../../../../hooks/useSetNow";
 import { v4 } from "uuid";
 import { imgSrc } from "../../../../config/api-path";
 
@@ -16,6 +17,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     const [direction, setDirection] = useState('');
     // 連按限制器
     const [remoteControl, setRemoteControl] = useState(true);
+    const setNow = useSetNow();
 
     const rightPage = () => {
         if (remoteControl === true) {
@@ -34,9 +36,14 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            setRemoteControl(true);
-        }, 1000);
+        if (remoteControl === false) {
+            setTimeout(() => {
+                setRemoteControl(true);
+            }, 1000);
+        }
+    }, [remoteControl]);
+
+    useEffect(() => {
 
         // 往右的無限輪播
         if (direction === 'right') {
@@ -44,12 +51,12 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
                 setTransitionDelay(false);
                 setPage(0);
             }
-            setTimeout(() => {
+            setNow(() => {
                 if (page === 0) {
                     setTransitionDelay(true);
                     setPage(1);
                 }
-            }, 20);
+            });
         }
         // 往左的無限輪播
         if (direction === 'left') {
@@ -57,12 +64,12 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
                 setTransitionDelay(false);
                 setPage(imgsLength + 1);
             }
-            setTimeout(() => {
+            setNow(() => {
                 if (page === imgsLength + 1) {
                     setTransitionDelay(true);
                     setPage(imgsLength);
                 }
-            }, 0);
+            });
         }
     }, [page, direction, imgsLength]);
 
