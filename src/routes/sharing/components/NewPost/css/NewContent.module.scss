@@ -19,6 +19,41 @@
         border-radius: 2.5px;
       }
 
+    .author{
+        display: flex;
+        margin-bottom: 1.5rem;
+
+        .avatar_wrap{
+            margin-right: .75rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 2rem;
+            overflow: hidden;
+        
+            >img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .info{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            line-height: 1rem;
+            height: 2.25rem;
+           
+            .nickname{
+                font-weight: 500;
+                // font-family: "Kosugi Maru","Noto Sans TC",sans-serif;
+            }
+        }
+        .grey_span{
+            font-size: 12px;
+            color: #787878;
+            line-height: 1rem;
+        }
+    }
+
 
     select,input{
         font-size: 16px;
@@ -26,7 +61,7 @@
         border-bottom: 1.5px solid rgb(206, 205, 203);
         background: transparent;
         height: 2.25rem;
-        padding-left: 3px;
+        padding-left: 5px;
 
         &::placeholder{
             font-size: 16px;
@@ -41,7 +76,7 @@
         width: 100%;
         border: none;
         background: transparent;
-        padding: 2px 4px;
+        padding: 2px 6px;
         margin-bottom: .25rem;
 
         &::placeholder{
