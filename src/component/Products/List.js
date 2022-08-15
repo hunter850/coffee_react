@@ -1,8 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
 import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
+import { sendCartPost } from "../../config/api-path";
+import axios from "axios";
+import Modal from "../Modal/Modal";
+
+import AuthContext from "../Member/AuthContext";
+import { useNav } from "../../Contexts/NavProvider";
 
 function List(props) {
     const {
@@ -12,8 +18,53 @@ function List(props) {
         setCardStyle,
         pageNow,
         pageTotal,
+        isOpen,
+        setIsOpen,
+        listModal,
+        setListModal,
     } = props;
     // const nowPageNum = renderData[`${pageNow}`];
+
+    const Auth = useContext(AuthContext);
+    const { getCount } = useNav();
+
+    const sendCart = (sid, renderArray, renderNum) => {
+        console.log(sid);
+        console.log({ ...renderData[renderArray][renderNum] });
+        return axios
+            .post(`${sendCartPost}/${sid}`, {
+                ...renderData[renderArray][renderNum],
+                quantity: 1,
+                member: Auth ? Auth : "沒東西",
+            })
+            .then((res) => {
+                const fetchCartData = JSON.parse(JSON.stringify(res.data));
+                console.log(fetchCartData);
+
+                getCount();
+            });
+    };
+
+    const listSendCart = (sid, renderArray, renderNum) => {
+        if (Auth.authorized) {
+            // console.log("sid", sid);
+            // console.log("sendCartPost", sendCartPost);
+            // console.log(`${sendCartPost}/${sid}`);
+            // console.log("renderArray", renderArray);
+            // console.log("renderNum", renderNum);
+            // console.log(
+            //     "renderData[renderArray][renderNum]",
+            //     renderData[renderArray][renderNum]
+            // );
+
+            sendCart(sid, renderArray, renderNum);
+            setListModal("已加入購物車");
+            setIsOpen(true);
+        } else {
+            setListModal("請先登入");
+            setIsOpen(true);
+        }
+    };
 
     let pageNum = Number(pageNow);
     useEffect(() => {
@@ -76,6 +127,7 @@ function List(props) {
                                               //   backOffset={-5}
                                               component="li"
                                               key={v.products_sid}
+                                              //   mode="renderPosition"
                                           >
                                               <Link
                                                   className=""
@@ -105,6 +157,30 @@ function List(props) {
                                                               cardStyle,
                                                       }}
                                                   />
+                                                  <div
+                                                      className="card_sendCart"
+                                                      onClick={(e) => {
+                                                          e.preventDefault();
+                                                          listSendCart(
+                                                              v.products_sid,
+                                                              ia,
+                                                              i
+                                                          );
+                                                      }}
+                                                  >
+                                                      <svg
+                                                          width="20"
+                                                          height="20"
+                                                          viewBox="0 0 20 18"
+                                                          fill="none"
+                                                          xmlns="http://www.w3.org/2000/svg"
+                                                      >
+                                                          <path
+                                                              d="M18.3375 10.5738L19.9789 3.35157C20.0974 2.83011 19.7011 2.33355 19.1663 2.33355H5.52806L5.20979 0.777648C5.13049 0.389835 4.78924 0.111328 4.39337 0.111328H0.833334C0.37309 0.111328 0 0.484419 0 0.944662V1.50022C0 1.96046 0.37309 2.33355 0.833334 2.33355H3.25983L5.69899 14.2584C5.11545 14.594 4.72222 15.2232 4.72222 15.9447C4.72222 17.0186 5.59278 17.8891 6.66667 17.8891C7.74056 17.8891 8.61111 17.0186 8.61111 15.9447C8.61111 15.4004 8.38726 14.9087 8.02695 14.5558H15.3064C14.9461 14.9087 14.7222 15.4004 14.7222 15.9447C14.7222 17.0186 15.5928 17.8891 16.6667 17.8891C17.7406 17.8891 18.6111 17.0186 18.6111 15.9447C18.6111 15.1748 18.1636 14.5095 17.5146 14.1945L17.7062 13.3516C17.8247 12.8301 17.4283 12.3336 16.8936 12.3336H7.57351L7.34625 11.2224H17.5249C17.914 11.2224 18.2513 10.9532 18.3375 10.5738Z"
+                                                              fill="#fff"
+                                                          />
+                                                      </svg>
+                                                  </div>
                                               </Link>
                                           </ScrollWrap>
                                       );
@@ -114,6 +190,31 @@ function List(props) {
                     </ul>
                 </div>
             </div>
+            {Auth.authorized ? (
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <h4
+                        style={{
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        {listModal}
+                    </h4>
+                </Modal>
+            ) : (
+                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                    <Link
+                        to="/member/login"
+                        style={{
+                            textDecoration: "none",
+                            color: "var(--BLUE)",
+                            padding: "40px",
+                        }}
+                    >
+                        <h4>{listModal}</h4>
+                    </Link>
+                </Modal>
+            )}
         </>
     );
 }

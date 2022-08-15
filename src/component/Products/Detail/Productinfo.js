@@ -68,10 +68,10 @@ function Productinfo(props) {
     // axios post
 
     const sendCart = () => {
-        // console.log("送資料~");
+        console.log("送資料~");
         return axios
             .post(`${sendCartPost}/${renderData[0].products_sid}`, {
-                ...renderData,
+                ...renderData[0],
                 quantity: productsCount,
                 member: Auth ? Auth : "沒東西",
             })
