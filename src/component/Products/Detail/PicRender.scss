@@ -20,7 +20,7 @@
         border: 1px solid var(--BLUE);
         border-radius: 10px;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         @include productsMob{
             border: 0;
         }
