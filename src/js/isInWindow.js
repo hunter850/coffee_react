@@ -1,9 +1,13 @@
+import cumulativeOffset from "./cumulativeOffset";
+
 function isInWindow(
     node,
     offsetStart = 0,
     offsetEnd = 0,
     mode = "DOMPosition"
 ) {
+    const offset_top =
+        node.offsetTop === 0 ? cumulativeOffset(node).top : node.offsetTop;
     if (mode === "renderPosition") {
         if (
             node.getBoundingClientRect().top -
@@ -19,9 +23,9 @@ function isInWindow(
     } else {
         if (
             window.pageYOffset >=
-                node.offsetTop + offsetStart - window.innerHeight &&
+                offset_top + offsetStart - window.innerHeight &&
             window.pageYOffset <=
-                node.getBoundingClientRect().height + node.offsetTop + offsetEnd
+                node.getBoundingClientRect().height + offset_top + offsetEnd
         ) {
             return true;
         } else {
