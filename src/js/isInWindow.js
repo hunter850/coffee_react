@@ -6,8 +6,6 @@ function isInWindow(
     offsetEnd = 0,
     mode = "DOMPosition"
 ) {
-    const offset_top =
-        node.offsetTop === 0 ? cumulativeOffset(node).top : node.offsetTop;
     if (mode === "renderPosition") {
         if (
             node.getBoundingClientRect().top -
@@ -23,9 +21,11 @@ function isInWindow(
     } else {
         if (
             window.pageYOffset >=
-                offset_top + offsetStart - window.innerHeight &&
+                cumulativeOffset(node).top + offsetStart - window.innerHeight &&
             window.pageYOffset <=
-                node.getBoundingClientRect().height + offset_top + offsetEnd
+                node.getBoundingClientRect().height +
+                    cumulativeOffset(node).top +
+                    offsetEnd
         ) {
             return true;
         } else {
