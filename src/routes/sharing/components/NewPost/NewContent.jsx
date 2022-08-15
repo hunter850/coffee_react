@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import { avatarDIR } from "../../../../config/api-path";
 import styles from "./css/NewContent.module.scss";
 
-function NewContent({ handleSubmit, fff, setFff }) {
-    const { sid, nickname: member_nickname, token, avatar } = useAuth();
+function NewContent(props) {
+    const { handleSubmit } = props;
     const myForm = useRef(null);
+    const { sid, nickname: member_nickname, avatar } = useAuth();
 
     const [content, setContent] = useState("");
     const {
@@ -46,9 +46,8 @@ function NewContent({ handleSubmit, fff, setFff }) {
                     }}
                     ref={myForm}
                 >
-                    {/* <input type="file" name="fff[]" multiple value="[]" /> */}
                     <div className={title_wrap}>
-                        <select name="" id="">
+                        <select name="topic_sid" id="">
                             <option value="1">課程</option>
                             <option value="2">商品</option>
                             <option value="3">其它</option>
@@ -61,7 +60,7 @@ function NewContent({ handleSubmit, fff, setFff }) {
                     </div>
                     <div className="mb-4">
                         <textarea
-                            name={content}
+                            name="content"
                             value={content}
                             aria-label="撰寫內容……"
                             placeholder="撰寫內容……"

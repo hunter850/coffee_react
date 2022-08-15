@@ -1,23 +1,20 @@
 import { useRef, useState, useEffect } from "react";
-import axios from "axios";
-import styles from "./css/EditPhoto.module.scss";
 
-import { newPosts } from "../../../../config/api-path";
 import EditCarousel from "./EditCarousel";
 import NewContent from "./NewContent";
 import Panel from "./Panel";
+import styles from "./css/EditPhoto.module.scss";
 
 function EditPhoto(props) {
-    const { blobList, step } = props;
-    const { wrap, panel_wrap, content_wrap } = styles;
+    const { blobList, step, handleSubmit, cvsRef, cvsRefArr } = props;
+    const { wrap, panel_wrap } = styles;
     const length = blobList.length;
 
     const rawCvs = useRef(null);
     const rawCvsArr = useRef([]);
     const wrapRef = useRef(null);
     const wrapRefMulti = useRef(null);
-    const cvsRefArr = useRef([]);
-    const cvsRef = useRef(null);
+
     const canvasDrew = useRef(false);
 
     const [canvasWidth, setCanvasWidth] = useState(0);
@@ -28,8 +25,6 @@ function EditPhoto(props) {
     const [contrast, setContrast] = useState(Array(length).fill(100));
     const [saturate, setSaturate] = useState(Array(length).fill(100));
     const [filter, setFilter] = useState(Array(length).fill(""));
-
-    const [fff, setFff] = useState(null);
 
     const getImageFromPath = (path) => {
         return new Promise((resolve, reject) => {
@@ -214,48 +209,6 @@ function EditPhoto(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter, brightness, contrast, saturate]);
 
-    const handleSubmit = async (e) => {
-        // console.log(e.target);
-        const fd = new FormData(e.target);
-
-        let url = [];
-        if (length === 1) {
-            url[0] = cvsRef.current.toDataURL("image/png");
-        } else {
-            url = cvsRefArr.current.map((v) => v.toDataURL("image/png"));
-        }
-        const dataURLtoFile = (dataurl, filename) => {
-            //將base64轉換為文件
-            let uint8 = getUint8Arr(dataurl);
-            return new File([uint8.u8arr], filename, { type: uint8.mime });
-        };
-        const getUint8Arr = (dataurl) => {
-            // 截取base64的数据内容
-            let arr = dataurl.split(","),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = window.atob(arr[1]),
-                // 获取解码后的二进制数据的长度，用于后面创建二进制数据容器
-                n = bstr.length,
-                // 创建一个Uint8Array类型的数组以存放二进制数据
-                u8arr = new Uint8Array(n);
-            // 将二进制数据存入Uint8Array类型的数组中
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return { u8arr, mime };
-        };
-
-        const fileArr = url.map((v, i) => dataURLtoFile(v, "photo" + i));
-        // console.log(fileArr);
-        console.log("fd", fd.get("fff"));
-
-        // fd.append("photos", fileArr);
-
-        // const r = await axios({ method: "post", url: newPosts, data: fd });
-
-        // console.log(r.data);
-    };
-
     return (
         <div className={wrap}>
             <EditCarousel
@@ -285,11 +238,7 @@ function EditPhoto(props) {
                     />
                 </div>
             ) : (
-                <NewContent
-                    handleSubmit={handleSubmit}
-                    fff={fff}
-                    setFff={setFff}
-                />
+                <NewContent handleSubmit={handleSubmit} />
             )}
         </div>
     );
