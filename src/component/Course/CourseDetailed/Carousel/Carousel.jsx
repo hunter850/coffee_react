@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import "./Carousel.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useSetNow from "../../../../hooks/useSetNow";
 import { v4 } from "uuid";
 import { imgSrc } from "../../../../config/api-path";
 
-
 function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
+    const autoCarousel = useRef();
     const delay = 'ease 1000ms';
     const imgsLength = imgs.length;
     // 控制輪播圖片顯示哪一張
@@ -34,6 +35,43 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
         }
         setRemoteControl(false);
     };
+
+    useEffect(() => {
+        console.log(page);
+        if (direction === '')
+            setNow(() => {
+                setDirection('auto');
+            });
+        if (direction === 'auto') {
+            const autoTimeOut = setTimeout(() => {
+                setPage(page < imgsLength + 1 ? page + 1 : 0);
+            }, 3000);
+            if (autoCarousel) {
+                autoCarousel.current.addEventListener('mouseleave', () => {
+                    setDirection('');
+                    clearTimeout(autoTimeOut);
+                });
+                autoCarousel.current.addEventListener('mouseenter', () => {
+                    setDirection('stop');
+                    clearTimeout(autoTimeOut);
+                });
+            }
+
+            if (direction === 'right' || direction === 'left') {
+                clearTimeout(autoTimeOut);
+            }
+            if (page === imgsLength + 1) {
+                setTransitionDelay(false);
+                setPage(0);
+            }
+            setNow(() => {
+                if (page === 0) {
+                    setTransitionDelay(true);
+                    setPage(1);
+                }
+            });
+        }
+    }, [page, direction]);
 
     useEffect(() => {
         if (remoteControl === false) {
@@ -74,7 +112,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     }, [page, direction, imgsLength]);
 
     const routerCarousel = (
-        <div className="course-Carousel">
+        <div className="course-Carousel" ref={autoCarousel} >
             <div
                 className="course-slideshow d-flex"
                 style={{ transform: `translateX(${page * -100}vw)`, transition: `${transitionDelay === true ? delay : ''}`, width: `${imgsLength + 2}00vw` }}
