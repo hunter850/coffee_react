@@ -1,9 +1,12 @@
+import { useStyleChange } from "../../../Contexts/SuperProvider";
+
 function Logo() {
+    const styleChange = useStyleChange();
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            width="76"
+            width={styleChange === 0 ? "76" : "56"}
             height="32"
             fill="none"
             viewBox="0 0 76 32"
