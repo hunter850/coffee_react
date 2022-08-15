@@ -287,7 +287,7 @@
 .form_number_input {
     @extend %input_basic;
     &:focus {
-        border: 1px solid var(--GOLD);
+        border: 2px solid var(--GOLD);
     }
 }
 
