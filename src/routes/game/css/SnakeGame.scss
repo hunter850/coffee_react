@@ -1,0 +1,54 @@
+    #GameBoard {
+        position: relative;
+    
+        /* margin: auto; */
+        margin-top: 100px;
+        border-style: solid;
+    
+        .Block {
+        position: absolute;
+        }
+    
+        #GameOver {
+        text-align: center;
+        height: 100%;
+        flex-direction: column;
+        display: flex;
+        justify-content: space-around;
+        }
+    
+        #Score {
+        position: relative;
+        top: 105%;
+        text-align: center;
+        font-weight: bold;
+        color: aliceblue;
+        }
+    
+        #GameOverText {
+        color: #ca0000;
+        font-weight: bold;
+        }
+    }
+    
+    .CoffeeBean {
+        background: url(../../../images/Coupon/CoffeeBean.png) no-repeat center center;
+        background-size: contain;
+        z-index: 999;
+        animation: twinkle 0.5s infinite alternate;
+    }
+    
+    @keyframes twinkle {
+        0% {
+        opacity: 0 0.8;
+        }
+    
+        100% {
+        opacity: 0;
+        }
+    }
+    
+    #TotalScore {
+        color: #ffffff;
+        font-weight: bold;
+    }

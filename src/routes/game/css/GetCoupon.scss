@@ -1,0 +1,101 @@
+.wheel-box {
+border: 1px solid green;
+display: flex;
+width: 300px;
+height: 300px;
+}
+
+.CouponHandleContainer {
+width: 100%;
+height: 905px;
+display: flex;
+text-align: center;
+justify-content: center;
+background-color: #FCFAF7;
+position: relative;
+}
+
+#wheel {
+text-align: center;
+justify-content: center;
+display: flex;
+background: #1F1C1D url(../../../images/Coupon/couponBgc.png) no-repeat center center;
+background-size: cover;
+width: 1234px;
+}
+
+#canvas {
+margin: auto;
+}
+
+.GetResultBtn {
+position: absolute;
+width: 1040px;
+height: 905px;
+background-color: transparent;
+border: none;
+margin: auto;
+
+/* z-index: 999; */
+}
+
+.HideLunchLogo {
+position: absolute;
+width: 100px;
+height: 50px;
+top: 330px;
+color: #FCFAF7;
+background-color: #000;
+background: url(../../../images/Coupon/LunchLogo.png) no-repeat center center;
+}
+
+.PacmanLoaderContainer {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+margin-top: 300px;
+cursor: pointer;
+width: 100%;
+height: 100%;
+flex-direction: column;
+}
+
+.GameLoading {
+color: #b1873adb;
+text-align: center;
+font-size: 56px;
+}
+
+.PacmanLoaderContainerInner {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.GetpointContainerOutside {
+width: 100%;
+height: 100%;
+}
+
+@media screen and (max-width: 376px) {
+.PacmanLoaderContainer {
+    margin-top: 150px;
+}
+
+.GameLoading {
+    font-size: 28px;
+}
+
+.PacmanLoaderContainerInner {
+    flex-direction: column;
+}
+
+.GameLoading {
+    margin-top: 23px;
+}
+
+.CouponHandleContainer {
+    display: none;
+}
+}
