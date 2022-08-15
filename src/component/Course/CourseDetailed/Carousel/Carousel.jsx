@@ -37,15 +37,18 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
     };
     // 自動輪播
     useEffect(() => {
+        console.log(direction);
         console.log(page);
-        if (direction === '')
+
+        if (direction === '') {
             setNow(() => {
                 setDirection('auto');
             });
+        }
+
         if (direction === 'auto') {
             const autoNextPage = setTimeout(() => {
                 setPage(page < imgsLength + 1 ? page + 1 : 0);
-                clearTimeout(autoNextPage);
             }, 3000);
             if (autoCarousel) {
                 // 滑鼠移出
