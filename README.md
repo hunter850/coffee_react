@@ -98,6 +98,7 @@ const [isOpen, setIsOpen] = useSate(false);
 // 2.height直接帶數字就好,預設為500
 // 3.width預設100%
 // 4.router可以不用輸入,初始路徑http://localhost:3500/images,如不使用router可以不用輸入,陣列請帶上完整路徑
+// 5.isAuto={false} , 關閉自動輪播 , 如果沒設定預設為開啟
 // 此組件路徑在 coffee_react\src\component\Course\CourseDetailed\Carousel\Carousel.jsx
 <Carousel
     imgs={[
@@ -118,6 +119,7 @@ const [isOpen, setIsOpen] = useSate(false);
     height={300}
     width={100}
     router={"/course"}
+    isAuto={false}
 />
 ```
 
