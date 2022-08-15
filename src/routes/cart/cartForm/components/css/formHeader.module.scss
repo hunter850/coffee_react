@@ -1,0 +1,13 @@
+.form_header {
+    background-color: var(--GRAY);
+    color: var(--BLUE);
+    padding: 0px 26px;
+    height: 46px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 20px;
+    font-weight:500;
+    border-radius: 3px 3px 0px 0px;
+    border: 1px solid var(--GRAY);
+}

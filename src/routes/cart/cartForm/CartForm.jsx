@@ -5,6 +5,7 @@ import useClass from "../../../hooks/useClass";
 import useData from "../../../hooks/useData";
 import { useNav } from "../../../Contexts/NavProvider";
 import NavBar from "../../../component/NavBar/NavBar";
+import FormHeader from "./components/FormHeader";
 import PersonalInfoForm from "./components/PersonalInfoForm";
 import TotalHeader from "../cart/components/TotalHeader";
 import TotalBord from "../cart/components/TotalBord";
@@ -20,7 +21,7 @@ import {
 } from "../../../config/api-path";
 
 function CartForm() {
-    const { form_container, total_wrap } = styles;
+    const { form_container, form_wrap, total_wrap } = styles;
     const { container, px_200 } = bs_flex;
     const c = useClass();
     const [formData, setFormData] = useState({
@@ -181,10 +182,13 @@ function CartForm() {
             <NavBar />
             <div className={c(container, px_200)}>
                 <div className={form_container}>
-                    <PersonalInfoForm
-                        formData={formData}
-                        setFormData={setFormData}
-                    />
+                    <div className={form_wrap}>
+                        <FormHeader>聯絡資料</FormHeader>
+                        <PersonalInfoForm
+                            formData={formData}
+                            setFormData={setFormData}
+                        />
+                    </div>
                     <div className={total_wrap}>
                         <TotalHeader />
                         <TotalBord
