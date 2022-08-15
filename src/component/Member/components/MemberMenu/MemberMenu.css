@@ -52,3 +52,18 @@
     cursor: pointer;
     border: none;
 }
+
+/* 手機 */
+@media (max-width: 375px){
+    .member-menu-wrap{
+        width: 319px;
+        height: 108px;
+        margin: 0;
+    }
+    .member-menu{
+        width: 150px;
+        height: 30px;
+        margin-bottom: 15px;
+        display: flex;
+    }
+}
