@@ -52,7 +52,9 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
 
             if (direction === 'auto') {
                 const autoNextPage = setTimeout(() => {
-                    setPage(page + 1);
+                    if (page < imgsLength + 1 && page !== 0) {
+                        setPage(page + 1);
+                    }
                     clearTimeout(autoNextPage);
                 }, 3000);
                 if (autoCarousel) {
