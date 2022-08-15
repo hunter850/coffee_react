@@ -66,7 +66,7 @@ function AuthContextProvider({ children }) {
 
     return (
         <>
-            <AuthContext.Provider value={{ ...localAuth, setAuth }}>
+            <AuthContext.Provider value={{ ...localAuth, setAuth, auth }}>
                 {children}
             </AuthContext.Provider>
         </>

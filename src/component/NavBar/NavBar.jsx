@@ -13,7 +13,7 @@ import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 
 function NavBar({ navPosition = 'sticky' }) {
-    const { sid, name, token, setAuth } = useAuth();
+    const { sid, name, token, setAuth, auth } = useAuth();
     const { count, getCount, handleLogout } = useNav();
     const navigate = useNavigate();
     // 下拉選單顯示的狀態
@@ -22,7 +22,8 @@ function NavBar({ navPosition = 'sticky' }) {
     const [user, setUser] = useState({
         member_name: "",
     });
-    const [getUserName, setGetUserName] = useState(name);
+    // nav會員名字用
+    const [getUserName, setGetUserName] = useState(auth.name);
     // rwd下拉選單
     const [hamburgerMenuDisplay, setHamburgerMenuDisplay] = useState(false);
     // rwd下拉選單 顯示開關
@@ -72,6 +73,7 @@ function NavBar({ navPosition = 'sticky' }) {
                 })
                 .then((response) => {
                     setUser({ ...user, member_name: response.data[0].member_name });
+                    setAuth({ ...authOrigin, name: user.member_name });
                 });
         }
         // 沒有改名字的時候不重複刷新
@@ -79,7 +81,6 @@ function NavBar({ navPosition = 'sticky' }) {
             setGetUserName(user.member_name);
         }
     }, [token, getUserName, name, user.member_name]);
-
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
         <Link to="/member/login">
