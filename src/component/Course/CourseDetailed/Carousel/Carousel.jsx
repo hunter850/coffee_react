@@ -53,6 +53,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
             if (direction === 'auto') {
                 const autoNextPage = setTimeout(() => {
                     setPage(page < imgsLength + 1 ? page + 1 : 0);
+                    clearTimeout(autoNextPage);
                 }, 3000);
                 if (autoCarousel) {
                     // 滑鼠移出
