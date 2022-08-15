@@ -38,8 +38,10 @@
                 cursor: pointer;
             }
             li {
-                padding: 0 17.5px 0 17.5px;
                 a {
+                    display: inline-block;
+                    line-height: 60px;
+                    padding: 0 17.5px 0 17.5px;
                     color: #ffffff;
                     text-decoration: none;
                     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
@@ -52,14 +54,18 @@
                     z-index: 9999;
                     background-color: #253945;
                     left: -20px;
-                    top: 42px;
+                    top: 60px;
                     white-space: nowrap;
                     border-radius: 0 0 3px 3px;
                     min-width: 105px;
                     animation: opacity 0.5s linear;
                     li {
                         font-size: 0.625rem;
-                        padding: 12px 0;
+                        a {
+                            padding: 13.5px 0;
+                            width: 100%;
+                            line-height: 25px;
+                        }
                     }
                 }
                 .nav-display-none {
