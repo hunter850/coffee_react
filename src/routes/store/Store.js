@@ -1,9 +1,8 @@
 import { Fragment, useState, useEffect, useRef } from "react";
 import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
-// import "./css/Store.css";
-import "./scss/Store.scss";
-
+import "./scss/Store.css";
+// import "./scss/Store.scss";
 import StoreVideo from "../../images/Coupon/store_video.mp4";
 import { StoreLoopVideo } from "../store/Components/StoreLoopVideo";
 import GoogleMapReact from "google-map-react";
@@ -21,8 +20,23 @@ import MessageParser from "../../component/Bot/MessageParser.js";
 import ActionProvider from "../../component/Bot/ActionProvider.js";
 import "../../component/Bot/Bot.css";
 import Footer from "../../component/Footer";
+import {
+    GameLoadingWrapLeft,
+    Box1,
+    Box2,
+    Box3,
+} from "../store/Components/GameLoadingWrapLeft";
+import {
+    GameLoadingWrapRight,
+    Box4,
+    Box5,
+    Box6,
+} from "../store/Components/GameLoadingWrapRight";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Store() {
+    const [loading, setLoading] = useState(false);
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
     const Stores = [
@@ -108,6 +122,10 @@ function Store() {
         },
     ];
     useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
         if (botOpen) {
             setChatBot(
                 <>
@@ -131,11 +149,73 @@ function Store() {
             setChatBot(null);
         }
     }, [botOpen]);
+    if (loading) {
+        return (
+            <>
+                <NavBar />
+                <div className="storeLoadingBox">
+                    <div className="GameLoading">
+                        <div className="GameLoadingWrap00">
+                            <img
+                                src={require("../../images/Coupon/0Bicon.png")}
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        pauseOnHover: true,
+    };
 
     return (
         <Fragment>
             <NavBar />
             <div className="StoreContainer">
+                <div className="storeLoadingBox">
+                    <div className="GameLoading">
+                        <div className="GameLoadingWrap00">
+                            <img
+                                src={require("../../images/Coupon/0+B(白).png")}
+                                alt=""
+                            />
+                        </div>
+                        <div className="GameLoadingWrap01">
+                            <GameLoadingWrapLeft {...settings}>
+                                <Box1>
+                                    <div className="LeftIMG01"></div>
+                                </Box1>
+                                <Box2>
+                                    <div className="LeftIMG02"></div>
+                                </Box2>
+                                <Box3>
+                                    <div className="LeftIMG03"></div>
+                                </Box3>
+                            </GameLoadingWrapLeft>
+                        </div>
+                        <div className="GameLoadingWrap02">
+                            <GameLoadingWrapRight {...settings}>
+                                <Box4>
+                                    <div className="LeftIMG04"></div>
+                                </Box4>
+                                <Box5>
+                                    <div className="LeftIMG05"></div>
+                                </Box5>
+                                <Box6>
+                                    <div className="LeftIMG06"></div>
+                                </Box6>
+                            </GameLoadingWrapRight>
+                        </div>
+                    </div>
+                </div>
                 <div className="myStoreVideo">
                     <StoreLoopVideo
                         src={StoreVideo}
