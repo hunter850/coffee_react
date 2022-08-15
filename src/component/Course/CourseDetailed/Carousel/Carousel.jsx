@@ -35,7 +35,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
         }
         setRemoteControl(false);
     };
-
+    // 自動輪播
     useEffect(() => {
         console.log(page);
         if (direction === '')
@@ -43,22 +43,25 @@ function Carousel({ imgs, height = 500, width = '100%', router = '' }) {
                 setDirection('auto');
             });
         if (direction === 'auto') {
-            const autoTimeOut = setTimeout(() => {
+            const autoNextPage = setTimeout(() => {
                 setPage(page < imgsLength + 1 ? page + 1 : 0);
+                clearTimeout(autoNextPage);
             }, 3000);
             if (autoCarousel) {
+                // 滑鼠移出
                 autoCarousel.current.addEventListener('mouseleave', () => {
                     setDirection('');
-                    clearTimeout(autoTimeOut);
+                    clearTimeout(autoNextPage);
                 });
+                // 滑鼠移入
                 autoCarousel.current.addEventListener('mouseenter', () => {
                     setDirection('stop');
-                    clearTimeout(autoTimeOut);
+                    clearTimeout(autoNextPage);
                 });
             }
 
             if (direction === 'right' || direction === 'left') {
-                clearTimeout(autoTimeOut);
+                clearTimeout(autoNextPage);
             }
             if (page === imgsLength + 1) {
                 setTransitionDelay(false);
