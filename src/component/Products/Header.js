@@ -1,7 +1,6 @@
 import "./Header.scss";
 import { chunk } from "../Course/helper/chunk";
 import { useEffect } from "react";
-import Modal from "../Modal/Modal";
 
 function Header({
     searchInp,
@@ -13,6 +12,8 @@ function Header({
     setPageTotal,
     setIsOpen,
     isOpen,
+    setListModal,
+    listModal,
 }) {
     const headerSearch = () => {
         if (searchInp !== "") {
@@ -34,7 +35,10 @@ function Header({
                 setRenderData(pagechunk2);
                 setPageNow(0);
                 setPageTotal(pagechunk2.length);
+                setListModal(`
+                沒有名稱為${searchInp}的商品`);
                 setIsOpen(true);
+
                 // alert("為0");
             }
         }
@@ -142,16 +146,6 @@ function Header({
                     </div>
                 </div>
             </div>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                <h4
-                    style={{
-                        color: "var(--BLUE)",
-                        padding: "40px",
-                    }}
-                >
-                    沒有名稱為"{searchInp}"的商品
-                </h4>
-            </Modal>
         </>
     );
 }
