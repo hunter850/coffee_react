@@ -21,6 +21,7 @@
         overflow: scroll;
         color: #3e3e3e;
         border-radius: 10px;
+
         svg {
             cursor: pointer;
         }
@@ -64,17 +65,26 @@
                 padding-left: 10px;
             }
         }
-        .inputarea {
+        .inputArea {
             display: flex;
-        }
-        .inputdetail {
-            width: 40px;
-            height: 20.15px;
-            margin: 6px 0;
+            align-items: center;
             cursor: pointer;
-        }
-        .inputla {
-            font-size: 20px;
+            .inner {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                border: 1px solid #e4d5c9;
+                margin-right: 10px;
+            }
+            .inner.checked {
+                background-color: #e4d5c9;
+                width: 18px;
+                width: 18px;
+            }
+            .inputla {
+                font-size: 20px;
+            }
         }
 
         .cal {
@@ -108,7 +118,7 @@
 
             .order {
                 width: 100%;
-                background-color: #b9966a;
+                background-color: #c5ad8f;
                 color: #fff;
                 border: none;
                 text-align: center;
@@ -201,19 +211,18 @@
                 font-size: 14px;
                 margin: 5px 0;
             }
-            .inputarea {
+            .inputArea {
                 display: flex;
+                .inputdetail {
+                    width: 40px;
+                    height: 12.15px;
+                    margin: 4px 0;
+                }
+                .inputla {
+                    font-size: 12px;
+                }
             }
 
-            .inputdetail {
-                width: 40px;
-                height: 12.15px;
-                margin: 4px 0;
-            }
-
-            .inputla {
-                font-size: 12px;
-            }
             .cal {
                 display: flex;
                 margin-top: 5px;
@@ -247,7 +256,7 @@
                 }
                 .order {
                     width: 100%;
-                    background-color: #b79973;
+                    background-color: #b5ad8f;
                     color: #fff;
                     display: flex;
                     justify-content: center;

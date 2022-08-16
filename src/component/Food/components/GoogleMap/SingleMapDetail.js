@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./GoogleMap.scss";
+import LoadScriptOnlyIfNeeded from "./LoadScriptOnlyIfNeeded";
 import {
     GoogleMap,
-    LoadScript,
     DistanceMatrixService,
     Marker,
 } from "@react-google-maps/api";
@@ -129,7 +129,7 @@ const SingleMapDetail = (props) => {
     return (
         <div className="mapSection">
             <div className="mapdetail">
-                <LoadScript googleMapsApiKey="AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ">
+                <LoadScriptOnlyIfNeeded googleMapsApiKey="AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ">
                     <GoogleMap
                         mapContainerStyle={containerStyle}
                         center={myPosition}
@@ -182,7 +182,7 @@ const SingleMapDetail = (props) => {
                             callback={getDistance}
                         />
                     </GoogleMap>
-                </LoadScript>
+                </LoadScriptOnlyIfNeeded>
 
                 <div className="mapshowarea">
                     {shops.map(

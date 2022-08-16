@@ -85,8 +85,8 @@
 
         .middle2 {
             margin: 0 auto;
-            padding: 20px;
-            margin-top: 60px;
+            padding: 60px 20px 0 20px;
+         
             .mapdetail {
                 display: flex;
                 .mapshowarea {
@@ -102,8 +102,7 @@
                         border-radius: 10px;
                         background-color: #fff;
                         color: #3e3e3e;
-                        margin: 5px 0 0 10px;
-                        box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 15%);
+                        margin: 10px 0 0 10px;
                         cursor: pointer;
                         .branchInput {
                             display: flex;
@@ -139,7 +138,9 @@
                         }
                     }
                     .mapshow.selected {
-                        background-color: #e9c5b7;
+                        background-color: #e9c5b7b6;
+                        box-shadow: 4px 4px 2px 0px rgb(0 0 0 / 15%);
+
                     }
                     .mapshow:hover {
                         background-color: #eee5dd;
