@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import EditCarousel from "./EditCarousel";
 import NewContent from "./NewContent";
 import Panel from "./Panel";
-import styles from "./css/EditPhoto.module.scss";
+import styles from "./scss/EditPhoto.module.scss";
 
 function EditPhoto(props) {
     const { blobList, step, handleSubmit, cvsRef, cvsRefArr } = props;

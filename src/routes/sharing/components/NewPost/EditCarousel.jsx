@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
-import styles from "./css/EditPhoto.module.scss";
+import styles from "./scss/EditPhoto.module.scss";
 
 function EditCarousel(props) {
     const {
