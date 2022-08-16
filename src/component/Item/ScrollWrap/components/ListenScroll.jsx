@@ -61,8 +61,8 @@ function ListenScroll(props) {
                             ? childClass + Child.props.children.props.end
                             : childClass + end;
                     } else {
-                        return Child.props.children.props.start
-                            ? childClass + Child.props.children.props.start
+                        return Child.props.children.props?.start
+                            ? childClass + Child.props.children.props?.start
                             : childClass + start;
                     }
                 })(),

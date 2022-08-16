@@ -12,7 +12,7 @@ function isInWindow(
                 window.innerHeight +
                 offsetStart <=
                 0 &&
-            node.getBoundingClientRect().bottom + offsetEnd <= 0
+            node.getBoundingClientRect().bottom + offsetEnd >= 0
         ) {
             return true;
         } else {

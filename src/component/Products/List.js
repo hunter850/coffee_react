@@ -29,8 +29,8 @@ function List(props) {
     const { getCount } = useNav();
 
     const sendCart = (sid, renderArray, renderNum) => {
-        console.log(sid);
-        console.log({ ...renderData[renderArray][renderNum] });
+        // console.log(sid);
+        // console.log({ ...renderData[renderArray][renderNum] });
         return axios
             .post(`${sendCartPost}/${sid}`, {
                 ...renderData[renderArray][renderNum],
@@ -39,7 +39,7 @@ function List(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log(fetchCartData);
+                // console.log(fetchCartData);
 
                 getCount();
             });
