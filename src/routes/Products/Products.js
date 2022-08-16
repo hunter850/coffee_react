@@ -11,6 +11,7 @@ import { chunk } from "../../component/Course/helper/chunk";
 import "./Products.scss";
 import Footer from "../../component/Footer";
 import { useLocation } from "react-router-dom";
+import SpinnerWrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 
 import ChatBot from "../../component/Bot/ChatBot";
 
@@ -28,7 +29,7 @@ function Products() {
     const [isOpen, setIsOpen] = useState(false);
     const [productsScroll, setProductsScroll] = useState(false);
     const [listModal, setListModal] = useState("");
-
+    const [loading, setLoading] = useState(false);
 
     let saveTotalData = [];
     let fetchingData = [];
@@ -73,50 +74,51 @@ function Products() {
     }, [setDataLoaded]);
 
     const el = (
-        <Fragment>
-            <div className="Course-container products_page">
-                <NavBar />
-                <Path pathObj={{ path: ["．商品列表"] }} />
-                <Header
-                    searchInp={searchInp}
-                    setSearchInp={setSearchInp}
-                    DataRows={DataRows}
-                    setDataRows={setDataRows}
-                    setRenderData={setRenderData}
-                    setPageNow={setPageNow}
-                    setPageTotal={setPageTotal}
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                    listModal={listModal}
-                    setListModal={setListModal}
-                />
-                <BookMark
-                    DataRows={DataRows}
-                    renderData={renderData}
-                    setRenderData={setRenderData}
-                    dataLoaded={dataLoaded}
-                    setPageTotal={setPageTotal}
-                    setPageNow={setPageNow}
-                    setProductsScroll={setProductsScroll}
-                />
-                <div className="container">
-                    <div className="d-flex f-w card-wrap">
-                        <List
-                            dataLoaded={dataLoaded}
-                            DataRows={DataRows}
-                            renderData={renderData}
-                            cardStyle={cardStyle}
-                            setCardStyle={setCardStyle}
-                            pageNow={pageNow}
-                            pageTotal={pageTotal}
-                            isOpen={isOpen}
-                            setIsOpen={setIsOpen}
-                            listModal={listModal}
-                            setListModal={setListModal}
-                        />
-                    </div>
+        <SpinnerWrap>
+            <Fragment>
+                <div className="Course-container products_page">
+                    <NavBar />
+                    <Path pathObj={{ path: ["．商品列表"] }} />
+                    <Header
+                        searchInp={searchInp}
+                        setSearchInp={setSearchInp}
+                        DataRows={DataRows}
+                        setDataRows={setDataRows}
+                        setRenderData={setRenderData}
+                        setPageNow={setPageNow}
+                        setPageTotal={setPageTotal}
+                        isOpen={isOpen}
+                        setIsOpen={setIsOpen}
+                        listModal={listModal}
+                        setListModal={setListModal}
+                    />
+                    <BookMark
+                        DataRows={DataRows}
+                        renderData={renderData}
+                        setRenderData={setRenderData}
+                        dataLoaded={dataLoaded}
+                        setPageTotal={setPageTotal}
+                        setPageNow={setPageNow}
+                        setProductsScroll={setProductsScroll}
+                    />
+                    <div className="container">
+                        <div className="d-flex f-w card-wrap">
+                            <List
+                                dataLoaded={dataLoaded}
+                                DataRows={DataRows}
+                                renderData={renderData}
+                                cardStyle={cardStyle}
+                                setCardStyle={setCardStyle}
+                                pageNow={pageNow}
+                                pageTotal={pageTotal}
+                                isOpen={isOpen}
+                                setIsOpen={setIsOpen}
+                                listModal={listModal}
+                                setListModal={setListModal}
+                            />
+                        </div>
 
-                    {/* <div className="d-flex f-jcc">
+                        {/* <div className="d-flex f-jcc">
                         {Array(pageTotal)
                             .fill(1)
                             .map((v, i) => {
@@ -137,31 +139,32 @@ function Products() {
                                 );
                             })}
                     </div> */}
+                    </div>
                 </div>
-            </div>
-            <button
-                className={"producstsScrolltop"}
-                onClick={() => {
-                    setProductsScroll(true);
-                }}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-arrow-up-circle"
-                    viewBox="0 0 16 16"
+                <button
+                    className={"producstsScrolltop"}
+                    onClick={() => {
+                        setProductsScroll(true);
+                    }}
                 >
-                    <path
-                        fillRule="evenodd"
-                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
-                    />
-                </svg>
-            </button>
-            <ChatBot />
-            <Footer />
-        </Fragment>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-arrow-up-circle"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                        />
+                    </svg>
+                </button>
+                <ChatBot />
+                <Footer />
+            </Fragment>
+        </SpinnerWrap>
     );
     return el;
 }
