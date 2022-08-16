@@ -46,15 +46,14 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
 
         if (myIsAuto === true) {
             if (direction === '') {
-                setNow(() => {
+                setTimeout(() => {
                     setDirection('auto');
-                });
+                }, 3000);
             }
 
             if (direction === 'auto') {
                 const autoNextPage = setTimeout(() => {
                     if (page < imgsLength + 1 && page !== 0) {
-
                         setPage(page + 1);
                     }
                 }, 3000);
