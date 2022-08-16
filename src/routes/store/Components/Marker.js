@@ -28,6 +28,7 @@ const Marker = ({
     storeRoad,
     storeBlock,
     storePhoto,
+    storeBus,
 }) => {
     const [ShopPhotoOpen, setShopPhotoOpen] = useState(false);
     const [theShopPhotoImg, setTheShopPhotoImg] = useState(null);
@@ -36,12 +37,17 @@ const Marker = ({
         if (ShopPhotoOpen) {
             setTheShopPhotoImg(
                 <>
-                    <div className="theShopPhoto">
+                    <a
+                        href={`https://ebus.gov.taipei/Stop/RoutesOfStop?Stopid=${storeBus}`}
+                        className="theShopPhoto"
+                    >
                         <img
                             src={require(`../../../images/Coupon/${storePhoto}`)}
                             alt=""
                         />
-                    </div>
+                        <div className="busTitle"><p>查看分店最近公車動態?</p></div>
+                    </a>
+                    
                 </>
             );
         } else {

@@ -5,17 +5,17 @@ import Marker from "../Components/Marker";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default function SimpleMap(props) {
-
     const places = [
         {
             key: "shop_1",
             lat: 25.03962792542701,
             lng: 121.55742720101652,
             text: "Cafe 1",
-            storeName: "0+B 光復店",
+            storeName: "0+B 大安店",
             storeRoad: "光復南路300號",
             storeBlock: "大安區, 台北市, 106台灣",
             storePhoto: "Shop01Photo.png",
+            storeBus: 1066500200,
         },
         {
             key: "shop_2",
@@ -26,6 +26,7 @@ export default function SimpleMap(props) {
             storeRoad: "復興南路一段323號",
             storeBlock: "大安區, 台北市, 106台灣",
             storePhoto: "Shop02Photo.png",
+            storeBus: 1069400000,
         },
         {
             key: "shop_3",
@@ -36,6 +37,7 @@ export default function SimpleMap(props) {
             storeRoad: "忠孝東路四段134號",
             storeBlock: "大安區, 台北市, 106台灣",
             storePhoto: "Shop03Photo.png",
+            storeBus: 1069000140,
         },
         {
             key: "shop_4",
@@ -46,6 +48,7 @@ export default function SimpleMap(props) {
             storeRoad: "永康街2號2樓",
             storeBlock: "大安區, 台北市, 106台灣",
             storePhoto: "Shop04Photo.png",
+            storeBus: 1065000320,
         },
         {
             key: "shop_5",
@@ -56,6 +59,7 @@ export default function SimpleMap(props) {
             storeRoad: "敦化南路二段263號",
             storeBlock: "大安區, 台北市, 106台灣",
             storePhoto: "Shop05Photo.png",
+            storeBus: 1067900100,
         },
         {
             key: "shop_6",
@@ -66,6 +70,7 @@ export default function SimpleMap(props) {
             storeRoad: "南京東路三段337號",
             storeBlock: "松山區, 台北市, 106台灣",
             storePhoto: "Shop06Photo.png",
+            storeBus: 1055000000,
         },
         {
             key: "shop_7",
@@ -76,6 +81,7 @@ export default function SimpleMap(props) {
             storeRoad: "南京東路三段1號",
             storeBlock: "中山區, 台北市, 106台灣",
             storePhoto: "Shop07Photo.png",
+            storeBus: 1048700200,
         },
         {
             key: "shop_8",
@@ -86,6 +92,7 @@ export default function SimpleMap(props) {
             storeRoad: "南京東路五段171號",
             storeBlock: "松山區, 台北市, 106台灣",
             storePhoto: "Shop08Photo.png",
+            storeBus: 1058200240,
         },
     ];
     const defaultProps = {
@@ -102,6 +109,8 @@ export default function SimpleMap(props) {
             <GoogleMapReact
                 bootstrapURLKeys={{
                     key: "AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ",
+                    // key: "AIzaSyC1zUkWfPtmhWMab1laufpZDktUDtQBv2E",
+                    // AIzaSyC1zUkWfPtmhWMab1laufpZDktUDtQBv2E 
                 }}
                 defaultCenter={defaultProps.center}
                 defaultZoom={defaultProps.zoom}
@@ -116,6 +125,7 @@ export default function SimpleMap(props) {
                         storeRoad={place.storeRoad}
                         storeBlock={place.storeBlock}
                         storePhoto={place.storePhoto}
+                        storeBus={place.storeBus}
                     />
                 ))}
             </GoogleMapReact>
