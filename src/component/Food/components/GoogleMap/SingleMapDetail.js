@@ -130,6 +130,8 @@ const SingleMapDetail = (props) => {
         <div className="mapSection">
             <div className="mapdetail">
                 <LoadScript googleMapsApiKey="AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ">
+                {/* AIzaSyC1zUkWfPtmhWMab1laufpZDktUDtQBv2E */}
+                {/* AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ */}
                     <GoogleMap
                         mapContainerStyle={containerStyle}
                         center={myPosition}
