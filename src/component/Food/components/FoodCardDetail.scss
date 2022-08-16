@@ -58,7 +58,11 @@
             padding-left: 10px;
             font-size: 20px;
             margin: 20px 0;
-            flex-grow: 2;
+
+            .lg-field-err {
+                margin: 5px 0;
+                padding-left: 10px;
+            }
         }
         .inputarea {
             display: flex;

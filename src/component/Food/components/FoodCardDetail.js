@@ -21,7 +21,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-
+    const [remind, setRemind] = useState(false);
     return (
         <>
             <div
@@ -78,7 +78,12 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             </svg>
                         </div>
                     </div>
-                    <div className="choice">冰熱選擇</div>
+                    <div className="choice">
+                        <h6 className="choice-txt">冰熱選擇</h6>
+                        {!ice && remind && (
+                            <p className="lg-field-err">請選擇冰量</p>
+                        )}
+                    </div>
                     {icechoice.map(({ name, id }) => {
                         return (
                             <div key={`icechoice${id}`} className="inputarea">
@@ -102,7 +107,12 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         );
                     })}
 
-                    <div className="choice">甜度選擇</div>
+                    <div className="choice">
+                        <h6 className="choice-txt"> 甜度選擇</h6>
+                        {!sugar && remind && (
+                            <p className="lg-field-err">請選擇甜度</p>
+                        )}
+                    </div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
                             <div key={`sugarchoice${id}`} className="inputarea">
@@ -148,7 +158,8 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         <button
                             className={orderclass}
                             onClick={() => {
-                                if (!sugar || !ice) return false;
+                                if (!sugar || !ice)
+                                    return false, setRemind(true);
                                 setIsShow(false);
                                 setDataFromFoodDetail({
                                     menu_name,
