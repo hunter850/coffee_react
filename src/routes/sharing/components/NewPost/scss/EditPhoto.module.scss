@@ -7,6 +7,7 @@
     .carousel{
         height: 100%;
         // width: 576px;
+        flex-shrink: 0;
         background-color: #EFEBE5;
         aspect-ratio: 4/5;
         display: flex;

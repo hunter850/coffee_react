@@ -6,7 +6,10 @@ function NewNav(props) {
         <>
             <div>
                 {step > 0 && (
-                    <span onClick={() => setStep((pre) => pre - 1)}>
+                    <span
+                        onClick={() => setStep((pre) => pre - 1)}
+                        style={{ padding: "0 .75rem" }}
+                    >
                         上一步
                     </span>
                 )}
@@ -25,9 +28,12 @@ function NewNav(props) {
                 </span>
             </div>
             <div style={{ textAlign: "end" }}>
-                {blobList.length > 0 && (
-                    <span onClick={() => setStep((pre) => pre + 1)}>
-                        {step < 2 ? "下一步" : "分享"}
+                {step < 2 && blobList.length > 0 && (
+                    <span
+                        onClick={() => setStep((pre) => pre + 1)}
+                        style={{ padding: "0 .75rem" }}
+                    >
+                        下一步
                     </span>
                 )}
             </div>

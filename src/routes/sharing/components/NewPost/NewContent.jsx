@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useMemo } from "react";
 import axios from "axios";
 import { debounce, difference } from "lodash";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -11,7 +11,6 @@ import trans from "./scss/PreviewTransition.module.scss";
 
 function NewContent(props) {
     const { handleSubmit } = props;
-    const myForm = useRef(null);
     const { sid, nickname: member_nickname, avatar } = useAuth();
     const { tag_transition } = trans;
     const {
@@ -24,12 +23,16 @@ function NewContent(props) {
         title_wrap,
         tag_wrap,
         limit,
+        form_wrap,
+        dis_btn,
+        btn,
+        plus,
     } = styles;
 
     const [content, setContent] = useState("");
     const [preview, setPreview] = useState("");
     const [previewData, setPreviewData] = useState([]);
-    const [uploadTag, setUploadTag] = useState([]);
+    const [title, setTitle] = useState("");
     const [myTag, setMyTag] = useState([]);
 
     const sendDataDebounce = useCallback(
@@ -59,7 +62,9 @@ function NewContent(props) {
         sendDataDebounce(e.target.value);
     };
 
-    const selectTag = (v) => {
+    const selectTag = (val) => {
+        const v = val.trim();
+        if (myTag.length > 5 || myTag.indexOf(val) > -1 || v === "") return;
         setPreviewData((pre) => {
             return pre.filter((el) => el !== v);
         });
@@ -77,6 +82,14 @@ function NewContent(props) {
         });
     };
 
+    const beDisable = useMemo(() => {
+        if (content.trim() === "" || title.trim() === "") {
+            return true;
+        } else {
+            return false;
+        }
+    }, [content]);
+
     return (
         <div className={wrap}>
             <div className={author}>
@@ -92,16 +105,16 @@ function NewContent(props) {
                 </div>
             </div>
 
-            <div>
-                <form
-                    name="myForm"
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        handleSubmit(e);
-                        return false;
-                    }}
-                    ref={myForm}
-                >
+            <form
+                name="myForm"
+                className={form_wrap}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit(e);
+                    return false;
+                }}
+            >
+                <div>
                     <div className={title_wrap}>
                         <select name="topic_sid" id="">
                             <option value="1">課程</option>
@@ -111,7 +124,9 @@ function NewContent(props) {
                         <input
                             type="text"
                             name="title"
+                            value={title}
                             placeholder="請輸入標題"
+                            onChange={(e) => setTitle(e.target.value)}
                             onKeyPress={(e) => {
                                 e.key === "Enter" && e.preventDefault();
                             }}
@@ -124,13 +139,19 @@ function NewContent(props) {
                             value={content}
                             aria-label="撰寫內容……"
                             placeholder="撰寫內容……"
-                            onChange={(e) => setContent(e.target.value)}
+                            onChange={(e) => {
+                                if (e.target.value.length <= 500)
+                                    setContent(e.target.value);
+                            }}
                         />
                         <div className={tag_wrap} style={{ minHeight: "60px" }}>
                             {myTag.map((v, i) => {
                                 return (
                                     <div key={i} onClick={() => removeTag(v)}>
-                                        <Tag className="myTag">{v}</Tag>
+                                        <Tag className="myTag">
+                                            {v}
+                                            <span className={plus}>×</span>
+                                        </Tag>
                                     </div>
                                 );
                             })}
@@ -149,6 +170,7 @@ function NewContent(props) {
                             if (e.key === "Enter") {
                                 e.preventDefault();
                                 selectTag(e.target.value);
+                                setPreview("");
                             }
                         }}
                         autoComplete="off"
@@ -160,7 +182,6 @@ function NewContent(props) {
                         value={myTag}
                         onChange={() => { }}
                     />
-                    <button>Submit</button>
                     <TransitionGroup component="div" className={tag_wrap}>
                         {previewData.map((v) => {
                             return (
@@ -170,14 +191,23 @@ function NewContent(props) {
                                     key={v}
                                 >
                                     <div onClick={() => selectTag(v)}>
-                                        <Tag className="prevTag">{v}</Tag>
+                                        <Tag className="prevTag">
+                                            {v}
+                                            <span className={plus}>＋</span>
+                                        </Tag>
                                     </div>
                                 </CSSTransition>
                             );
                         })}
                     </TransitionGroup>
-                </form>
-            </div>
+                </div>
+                <button
+                    disabled={beDisable}
+                    className={beDisable ? dis_btn : btn}
+                >
+                    發布文章
+                </button>
+            </form>
         </div>
     );
 }
