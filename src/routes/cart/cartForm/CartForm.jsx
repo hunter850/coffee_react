@@ -12,6 +12,7 @@ import TotalBord from "../cart/components/TotalBord";
 import styles from "./css/cartForm.module.scss";
 import bs_flex from "../css/bs_flex.module.scss";
 import axios from "axios";
+// import SpinnerWrap from "../../../component/Item/SpinnerWrap/SpinnerWrap";
 import {
     getProduct,
     getFood,
@@ -151,6 +152,8 @@ function CartForm() {
             .then((result) => {
                 // console.log(result.data);
                 if (result.data.affectedRows >= 1) {
+                    console.log("success");
+                    return;
                     getCount();
                     resetProduct();
                     resetFood();
@@ -178,6 +181,7 @@ function CartForm() {
         navigate,
     ]);
     return (
+        // <SpinnerWrap>
         <Fragment>
             <NavBar />
             <div className={c(container, px_200)}>
@@ -199,6 +203,7 @@ function CartForm() {
                 </div>
             </div>
         </Fragment>
+        // </SpinnerWrap>
     );
 }
 

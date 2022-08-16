@@ -15,7 +15,9 @@ import GameBGM from "../../images/Coupon/GameBGM.mp3";
 import useSound from "use-sound";
 // import sounds from "../../images/Coupon/yisell_sound_201404102304403674_88366.mp3";
 function Getpoint() {
-    const [play, { stop }] = useSound(GameBGM);
+    const [play, { stop }] = useSound(GameBGM, {
+        volume: 0.5,
+    });
     const [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#B79973");
     const { token } = useAuth();
@@ -33,7 +35,7 @@ function Getpoint() {
             .then((result) => {
                 let alreadyTaken = result.data.error;
                 if (alreadyTaken) {
-                    setIsOpen(false);
+                    setIsOpen(true);
                     return;
                 }
             });

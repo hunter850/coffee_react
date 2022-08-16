@@ -4,13 +4,13 @@ import Modal from "../../../../component/Modal/Modal";
 import CouponTicket from "./CouponTicket";
 import Btn from "../../../../component/Item/Btn/Btn";
 import cssStyle from "./css/totalHeader.module.scss";
-import debounce from "lodash/debounce";
 
 function TotalHeader() {
     const {
         header_button,
         ticket_svg,
         coupon_label,
+        modal_header,
         modal_bord,
         modal_footer,
         confirm_btn,
@@ -102,7 +102,7 @@ function TotalHeader() {
                 </span>
             </button>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} className={modal_bord}>
-                <Modal.Header>
+                <Modal.Header className={modal_header}>
                     <h6 style={styles.headerTextStyle}>選擇優惠卷</h6>
                 </Modal.Header>
                 <Modal.Body style={styles.modalBodyStyle}>

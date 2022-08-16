@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { MdCancel, MdOutlineAddCircle } from "react-icons/md";
-import styles from "./css/ShowArea.module.scss";
+import styles from "./scss/ShowArea.module.scss";
 
 function ShowArea(props) {
     const { blobList, uploadInput, setStep, setBlobList } = props;
@@ -12,14 +12,12 @@ function ShowArea(props) {
 
     const cancelPhoto = useCallback(
         (i) => {
-            console.log(i, selected);
             if (i === selected) {
                 setSelected(0);
             }
             setBlobList((pre) => {
                 const arr = [...pre];
                 arr.splice(i, 1);
-                console.log("splice:", arr);
                 return arr;
             });
         },

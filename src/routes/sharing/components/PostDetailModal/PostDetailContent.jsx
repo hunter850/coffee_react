@@ -10,7 +10,7 @@ import {
 } from "../../../../config/api-path";
 import styles from "./scss/PostDetailContent.module.scss";
 
-import Tag from "./Tag";
+import Tag from "../Tag";
 import Likes from "./Likes";
 import Comment from "./Comment";
 
@@ -177,7 +177,7 @@ function PostDetailContent({ data, getPostDetailData }) {
 
                     <div className="mb-2 d-flex f-w">
                         {tags.map((v, i) => (
-                            <Tag key={i} tagName={v} />
+                            <Tag key={i}>{v}</Tag>
                         ))}
                     </div>
                     <div className="mb-2 d-flex">

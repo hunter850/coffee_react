@@ -41,13 +41,14 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     };
     // 自動輪播
     useEffect(() => {
-        console.log(direction);
-        console.log(page);
+        // 除錯用
+        // console.log(direction);
+        // console.log(page);
         if (myIsAuto === true) {
             if (direction === '') {
-                setNow(() => {
+                setTimeout(() => {
                     setDirection('auto');
-                });
+                }, 3000);
             }
 
             if (direction === 'auto') {
@@ -55,8 +56,12 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     if (page < imgsLength + 1 && page !== 0) {
                         setPage(page + 1);
                     }
-                    clearTimeout(autoNextPage);
                 }, 3000);
+
+                if (remoteControl === false) {
+                    clearTimeout(autoNextPage);
+                }
+
                 if (autoCarousel) {
                     // 滑鼠移出
                     autoCarousel.current.addEventListener('mouseleave', () => {
@@ -70,9 +75,6 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     });
                 }
 
-                if (direction === 'right' || direction === 'left') {
-                    clearTimeout(autoNextPage);
-                }
                 if (page === imgsLength + 1) {
                     setTransitionDelay(false);
                     setPage(0);
