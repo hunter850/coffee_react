@@ -16,7 +16,7 @@ function OderHistoryCard({cards}) {
                         </div>
                         <div className="odh-id-wrap">
                             <span className="odh-id">訂單編號</span>
-                            <span>{order_id}</span>
+                            <span className="odh-id-s">{order_id}</span>
                         </div>
                     </div>
                     <div className="odh-info-wrap">

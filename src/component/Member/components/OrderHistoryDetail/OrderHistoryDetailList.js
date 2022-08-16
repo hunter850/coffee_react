@@ -59,16 +59,22 @@ function OrderHistoryDetailList({ list, orderList }) {
                                 }}
                             ></div>
                         )}
-
                         <span>{name}</span>
                     </div>
-                    <div className="odd-str-line"></div>
-                    <div className="odd-price">{price}元</div>
-                    <div className="odd-str-line"></div>
-                    <div className="odd-quantity">{quantity}</div>
-                    <div className="odd-str-line"></div>
-                    <div className="odd-subtotal">
-                        {Number(price) * Number(quantity)}元
+                    <div className="odd-price-wrap">
+                        <span>價格</span>
+                        <div className="odd-str-line"></div>
+                        <span>數量</span>
+                        <div className="odd-str-line"></div>
+                        <span>小計</span>
+                    </div>
+                    <div className="odd-price-body">
+                        <div className="odd-line-one"></div>
+                        <div className="odd-price">{price}元</div>
+                        <div className="odd-line-two"></div>
+                        <div className="odd-quantity">{quantity}</div>
+                        <div className="odd-line-two"></div>
+                        <div className="odd-subtotal">{Number(price) * Number(quantity)}元</div>
                     </div>
                 </div>
             </div>

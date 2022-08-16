@@ -56,14 +56,28 @@
 /* 手機 */
 @media (max-width: 375px){
     .member-menu-wrap{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         width: 319px;
         height: 108px;
-        margin: 0;
+        margin-bottom: 120px;
     }
     .member-menu{
         width: 150px;
-        height: 30px;
+        height: 35px;
         margin-bottom: 15px;
+    }
+    .member-menu:nth-child(1){
+        width: 319px;
+        height: 35px;
+        margin: 0;
+        margin-bottom: 15px;
+    }
+    .nav-link-active{
+        width: 150px;
+        height: 35px;
         display: flex;
+        flex-direction: row;
     }
 }
