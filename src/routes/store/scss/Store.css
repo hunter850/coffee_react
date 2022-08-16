@@ -594,7 +594,26 @@ z-index: 999;
 }
 .videoContainer{
     margin-top: 150px;
+    height: 780px;
 }
+
+.popStore{
+    animation-name: animate-pop;        
+    animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+    animation-duration: 2s;
+}
+@keyframes animate-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5, 0.5);
+        }
+    
+        100% {
+        opacity: 1;
+        transform: scale(1, 1);
+        }
+}
+
 @media screen and (max-width: 376px){
     .video_session{
         height: 617px;
