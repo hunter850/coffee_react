@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import EditCarousel from "./EditCarousel";
 import NewContent from "./NewContent";
 import Panel from "./Panel";
-import styles from "./css/EditPhoto.module.scss";
+import styles from "./scss/EditPhoto.module.scss";
 
 function EditPhoto(props) {
     const { blobList, step, handleSubmit, cvsRef, cvsRefArr } = props;
@@ -53,8 +53,8 @@ function EditPhoto(props) {
         const rawImg = rawCvs.current;
 
         if (!canvasDrew.current) {
+            // frist draw
             const img = await getImageFromPath(blobList[0]);
-            console.log("draw 1st");
 
             shadowCtx.drawImage(
                 img,
@@ -129,10 +129,10 @@ function EditPhoto(props) {
         const f = filter[index];
 
         if (!canvasDrew.current) {
+            // first draw
             const imgArr = await Promise.all(
                 blobList.map(async (v) => await getImageFromPath(v))
             );
-            console.log("multi 1st");
             ctxArr.forEach((v, i) => {
                 v.drawImage(
                     imgArr[i],
