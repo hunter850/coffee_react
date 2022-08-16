@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import axios from "axios";
-import { debounce } from "lodash";
+import { debounce, difference } from "lodash";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
@@ -29,13 +29,13 @@ function NewContent(props) {
     const [content, setContent] = useState("");
     const [preview, setPreview] = useState("");
     const [previewData, setPreviewData] = useState([]);
-    const [tagsValue, setTagsValue] = useState([]);
+    const [uploadTag, setUploadTag] = useState([]);
+    const [myTag, setMyTag] = useState([]);
 
     const sendDataDebounce = useCallback(
         debounce((val) => {
             const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
             const replaced = val.replace(pattern, "").trim();
-            console.log(val);
             if (replaced.length === 0) {
                 setPreviewData([]);
                 return;
@@ -45,15 +45,36 @@ function NewContent(props) {
                 params: { queryString: replaced, type: "tag" },
             }).then((r) => {
                 const rows = r.data.rows;
-                const name = rows.map((v) => v.name);
-                setPreviewData(name);
+                const nameArray = rows.map((v) => v.name);
+                // nameArray篩掉myTag裡已有的value
+                const diff = difference(nameArray, myTag);
+
+                setPreviewData(diff);
             });
         }, 150),
-        [preview]
+        [preview, myTag]
     );
     const handlePreview = (e) => {
         setPreview(e.target.value);
         sendDataDebounce(e.target.value);
+    };
+
+    const selectTag = (v) => {
+        setPreviewData((pre) => {
+            return pre.filter((el) => el !== v);
+        });
+        setMyTag((pre) => {
+            return [...pre, v];
+        });
+    };
+
+    const removeTag = (v) => {
+        setMyTag((pre) => {
+            return pre.filter((el) => el !== v);
+        });
+        setPreviewData((pre) => {
+            return [...pre, v];
+        });
     };
 
     return (
@@ -77,6 +98,7 @@ function NewContent(props) {
                     onSubmit={(e) => {
                         e.preventDefault();
                         handleSubmit(e);
+                        return false;
                     }}
                     ref={myForm}
                 >
@@ -90,6 +112,10 @@ function NewContent(props) {
                             type="text"
                             name="title"
                             placeholder="請輸入標題"
+                            onKeyPress={(e) => {
+                                e.key === "Enter" && e.preventDefault();
+                            }}
+                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -98,10 +124,17 @@ function NewContent(props) {
                             value={content}
                             aria-label="撰寫內容……"
                             placeholder="撰寫內容……"
-                            // cols="30"
-                            // rows="8"
                             onChange={(e) => setContent(e.target.value)}
                         />
+                        <div className={tag_wrap} style={{ minHeight: "60px" }}>
+                            {myTag.map((v, i) => {
+                                return (
+                                    <div key={i} onClick={() => removeTag(v)}>
+                                        <Tag className="myTag">{v}</Tag>
+                                    </div>
+                                );
+                            })}
+                        </div>
                         <div className={limit}>
                             <span>{content.length} /500</span>
                         </div>
@@ -112,25 +145,33 @@ function NewContent(props) {
                         placeholder="標籤名稱"
                         value={preview}
                         onChange={(e) => handlePreview(e)}
+                        onKeyPress={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault();
+                                selectTag(e.target.value);
+                            }
+                        }}
                         autoComplete="off"
                     />
                     <input
                         type="text"
                         hidden
-                        name="tagsValue"
-                        value={tagsValue}
+                        name="myTag"
+                        value={myTag}
                         onChange={() => { }}
                     />
                     <button>Submit</button>
                     <TransitionGroup component="div" className={tag_wrap}>
-                        {previewData.map((v, i) => {
+                        {previewData.map((v) => {
                             return (
                                 <CSSTransition
                                     timeout={500}
                                     classNames={tag_transition}
-                                    key={i}
+                                    key={v}
                                 >
-                                    <Tag>{v}</Tag>
+                                    <div onClick={() => selectTag(v)}>
+                                        <Tag className="prevTag">{v}</Tag>
+                                    </div>
                                 </CSSTransition>
                             );
                         })}

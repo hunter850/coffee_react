@@ -9,7 +9,7 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
-import { set, throttle } from "lodash";
+import { throttle } from "lodash";
 
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import { getPosts, searchPost } from "../../config/api-path";
@@ -67,6 +67,7 @@ function Post({ newPost }) {
             const r = await axios(getPosts, {
                 params: { times, auth: sid },
             });
+
             return r.data;
         }
     };
@@ -126,7 +127,6 @@ function Post({ newPost }) {
                 // setGetDataTimes(0);
                 if (!searchMode) {
                     const r = await getData(getDataTimes);
-
                     if (r?.success) {
                         setRows(r.rows);
                     }
