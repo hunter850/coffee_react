@@ -17,11 +17,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
+    const [remind, setRemind] = useState(false);
     const orderclass = ice && sugar ? "order" : "order disabled";
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-    const [remind, setRemind] = useState(false);
     return (
         <>
             <div
@@ -86,17 +86,16 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     </div>
                     {icechoice.map(({ name, id }) => {
                         return (
-                            <div key={`icechoice${id}`} className="inputarea">
-                                <input
-                                    type="radio"
-                                    checked={ice === id}
-                                    value={id}
-                                    onChange={(e) => {
-                                        setIce(e.target.value);
-                                    }}
-                                    id={`icechoice${id}`}
-                                    className="inputdetail"
-                                />
+                            <div
+                                key={`icechoice${id}`}
+                                className="inputArea"
+                                onClick={() => setIce(id)}
+                            >
+                                <div
+                                    className={`inner ${ice === id ? "checked" : ""
+                                        }`}
+                                ></div>
+
                                 <label
                                     htmlFor={`icechoice${id}`}
                                     className="inputla"
@@ -115,17 +114,16 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     </div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
-                            <div key={`sugarchoice${id}`} className="inputarea">
-                                <input
-                                    type="radio"
-                                    checked={sugar === id}
-                                    value={id}
-                                    onChange={(e) => {
-                                        setSugar(e.target.value);
-                                    }}
-                                    id={`sugarchoice${id}`}
-                                    className="inputdetail"
-                                />
+                            <div
+                                key={`sugarchoice${id}`}
+                                className="inputArea"
+                                onClick={() => setSugar(id)}
+                            >
+                                <div
+                                    className={`inner ${sugar === id ? "checked" : ""
+                                        }`}
+                                ></div>
+
                                 <label
                                     htmlFor={`sugarchoice${id}`}
                                     className="inputla"

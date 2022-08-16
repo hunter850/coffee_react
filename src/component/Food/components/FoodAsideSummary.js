@@ -101,7 +101,7 @@ function FoodAsideSummary({
                         <div className="edit">
                             <p>{store_name}</p>
                             <p className="bottom">
-                                {store_road} {store_block}
+                                {store_block} {store_road}
                             </p>
                         </div>
                     </div>

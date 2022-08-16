@@ -103,7 +103,9 @@ function Reserve() {
     console.log("selectItem", selectItem);
 
     const handleSubmission = (e) => {
-        if (!branch || !checkedDate || !people) return false;
+        if (!branch || !checkedDate || !people) {
+            return false;
+        }
         try {
             if (Auth.sid)
                 axios({
