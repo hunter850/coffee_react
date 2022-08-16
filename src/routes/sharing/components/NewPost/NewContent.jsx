@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import { avatarDIR } from "../../../../config/api-path";
-import styles from "./css/NewContent.module.scss";
+import styles from "./scss/NewContent.module.scss";
 
 function NewContent(props) {
     const { handleSubmit } = props;

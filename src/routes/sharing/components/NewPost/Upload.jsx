@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./css/Upload.module.scss";
+import styles from "./scss/Upload.module.scss";
 import ShowArea from "./ShowArea";
 import icon_photo from "../../../../images/sharing/icon-photo.png";
 
