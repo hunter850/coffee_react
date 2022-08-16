@@ -12,14 +12,12 @@ function ShowArea(props) {
 
     const cancelPhoto = useCallback(
         (i) => {
-            console.log(i, selected);
             if (i === selected) {
                 setSelected(0);
             }
             setBlobList((pre) => {
                 const arr = [...pre];
                 arr.splice(i, 1);
-                console.log("splice:", arr);
                 return arr;
             });
         },

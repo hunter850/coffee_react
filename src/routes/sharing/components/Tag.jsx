@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tag({ tagName }) {
+function Tag({children}) {
     const styleObj = {
         marginRight: ".5rem",
         backgroundColor: "#C8D2DC",
@@ -11,7 +11,7 @@ function Tag({ tagName }) {
         marginBottom: "6px",
     };
 
-    return <span style={styleObj}>{tagName}</span>;
+    return <span style={styleObj} className="animate__animated">{children}</span>;
 }
 
 export default Tag;

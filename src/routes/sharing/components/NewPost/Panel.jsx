@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./css/Panel.module.scss";
+import styles from "./scss/Panel.module.scss";
 import normal from "../../../../images/sharing/Normal.jpg";
 import moon from "../../../../images/sharing/Moon.jpg";
 import yellowed from "../../../../images/sharing/Yellow.jpg";
