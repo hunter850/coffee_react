@@ -40,7 +40,10 @@ function FoodAsideSummary({
             ? "pay "
             : "pay disabled";
     const handleSubmission = (e) => {
-        if (!store_sid || !standardTime) return false, setRemind(true);
+        if (!store_sid || !standardTime) {
+            setRemind(true);
+            return false;
+        }
 
         try {
             if (Auth.sid)

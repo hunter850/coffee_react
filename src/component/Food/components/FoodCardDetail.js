@@ -158,8 +158,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         <button
                             className={orderclass}
                             onClick={() => {
-                                if (!sugar || !ice)
-                                    return false, setRemind(true);
+                                if (!sugar || !ice) {
+                                    setRemind(true);
+                                    return false;
+                                }
+
                                 setIsShow(false);
                                 setDataFromFoodDetail({
                                     menu_name,
