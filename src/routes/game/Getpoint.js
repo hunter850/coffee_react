@@ -33,7 +33,7 @@ function Getpoint() {
             .then((result) => {
                 let alreadyTaken = result.data.error;
                 if (alreadyTaken) {
-                    setIsOpen(false);
+                    setIsOpen(true);
                     return;
                 }
             });
