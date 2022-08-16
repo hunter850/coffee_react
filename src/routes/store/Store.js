@@ -22,17 +22,17 @@ import ActionProvider from "../../component/Bot/ActionProvider.js";
 import "../../component/Bot/Bot.css";
 import Footer from "../../component/Footer";
 import {
-    GameLoadingWrapLeft,
+    StoreLoadingWrapLeft,
     Box1,
     Box2,
     Box3,
-} from "../store/Components/GameLoadingWrapLeft";
+} from "../store/Components/StoreLoadingWrapLeft";
 import {
-    GameLoadingWrapRight,
+    StoreLoadingWrapRight,
     Box4,
     Box5,
     Box6,
-} from "../store/Components/GameLoadingWrapRight";
+} from "../store/Components/StoreLoadingWrapRight";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -133,8 +133,8 @@ function Store() {
             <>
                 <NavBar />
                 <div className="storeLoadingBox">
-                    <div className="GameLoading">
-                        <div className="GameLoadingWrap00">
+                    <div className="StoreLoading">
+                        <div className="StoreLoadingWrap00">
                             <img
                                 src={require("../../images/Coupon/0Bicon.png")}
                                 alt=""
@@ -162,15 +162,15 @@ function Store() {
             <ChatBot></ChatBot>
             <div className="StoreContainer">
                 <div className="storeLoadingBox">
-                    <div className="GameLoading">
-                        <div className="GameLoadingWrap00">
+                    <div className="StoreLoading">
+                        <div className="StoreLoadingWrap00">
                             <img
                                 src={require("../../images/Coupon/0+B(白).png")}
                                 alt=""
                             />
                         </div>
-                        <div className="GameLoadingWrap01">
-                            <GameLoadingWrapLeft {...settings}>
+                        <div className="StoreLoadingWrap01">
+                            <StoreLoadingWrapLeft {...settings}>
                                 <Box1>
                                     <div className="LeftIMG01"></div>
                                 </Box1>
@@ -180,10 +180,10 @@ function Store() {
                                 <Box3>
                                     <div className="LeftIMG03"></div>
                                 </Box3>
-                            </GameLoadingWrapLeft>
+                            </StoreLoadingWrapLeft>
                         </div>
-                        <div className="GameLoadingWrap02">
-                            <GameLoadingWrapRight {...settings}>
+                        <div className="StoreLoadingWrap02">
+                            <StoreLoadingWrapRight {...settings}>
                                 <Box4>
                                     <div className="LeftIMG04"></div>
                                 </Box4>
@@ -193,7 +193,7 @@ function Store() {
                                 <Box6>
                                     <div className="LeftIMG06"></div>
                                 </Box6>
-                            </GameLoadingWrapRight>
+                            </StoreLoadingWrapRight>
                         </div>
                     </div>
                 </div>
@@ -344,7 +344,7 @@ function Store() {
                                     </div>
                                     <div className="quality_main_01_b">
                                         <p>
-                                            遵循著用好的食材與簡單的元素，拼湊出令人回味的餐點。希望每一位客人都能感到幸福。
+                                            遵循著用好的食材與簡單的元素，拼湊出令人回味的餐點。希望每位客人都能感到幸福。
                                         </p>
                                     </div>
                                     <div className="quality_main_01_c">
@@ -405,7 +405,7 @@ function Store() {
                                     </div>
                                     <div className="quality_main_01_b">
                                         <p className="mt10">
-                                            我們關心、觀察每一位客人的需求，希望你比你來時更能帶著微笑回家。
+                                            我們關心、觀察每位客人的需求，希望你比你來時更能帶著微笑回家。
                                         </p>
                                     </div>
                                     <div className="quality_main_01_c">
