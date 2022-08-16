@@ -16,7 +16,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     // 控制transition關掉的時機,達成無限輪播
     const [transitionDelay, setTransitionDelay] = useState(true);
     // 判斷照片往哪個方向移動
-    const [direction, setDirection] = useState('start');
+    const [direction, setDirection] = useState('');
     // 連按限制器
     const [remoteControl, setRemoteControl] = useState(true);
     // 是否開啟自動輪播
@@ -44,17 +44,11 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
         console.log(direction);
         console.log(page);
 
-        setTimeout(() => {
-            if (direction === 'start') {
-                setDirection('');
-            }
-        }, 3000);
-
         if (myIsAuto === true) {
             if (direction === '') {
-                setNow(() => {
+                setTimeout(() => {
                     setDirection('auto');
-                });
+                }, 3000);
             }
 
             if (direction === 'auto') {
@@ -62,8 +56,12 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     if (page < imgsLength + 1 && page !== 0) {
                         setPage(page + 1);
                     }
-                    clearTimeout(autoNextPage);
                 }, 3000);
+
+                if (remoteControl === false) {
+                    clearTimeout(autoNextPage);
+                }
+
                 if (autoCarousel) {
                     // 滑鼠移出
                     autoCarousel.current.addEventListener('mouseleave', () => {
