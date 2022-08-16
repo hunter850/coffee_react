@@ -51,16 +51,21 @@ function Productinfo(props) {
 
     useEffect(() => {
         if (infoLoaded) {
-            if (
-                userLike.rows
-                    .map((v, i) => {
-                        return v.member_sid;
-                    })
-                    .indexOf(Auth.sid) >= 0
-            ) {
-                setCheckLike(true);
+            if (Auth.authorized) {
+                setModalCase(true);
+                if (
+                    userLike.rows
+                        .map((v, i) => {
+                            return v.member_sid;
+                        })
+                        .indexOf(Auth.sid) >= 0
+                ) {
+                    setCheckLike(true);
+                } else {
+                    setCheckLike(false);
+                }
             } else {
-                setCheckLike(false);
+                setModalCase(false);
             }
         }
     }, [infoLoaded]);
