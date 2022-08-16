@@ -37,6 +37,18 @@
             border-radius: 2.5px;
           }
     }    
+    &::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+    &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c5c0ba;
+        border-radius: 2.5px;
+      }
 }
 
 @media (max-width:1200px) {
@@ -50,7 +62,7 @@
 @media (max-width:768px) {
     .wrap{
         display: block;
-        height: auto;
+        
         overflow: auto;
         .carousel{
             height: auto;
