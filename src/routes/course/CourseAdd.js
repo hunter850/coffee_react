@@ -93,27 +93,12 @@ const CourseAdd = () => {
         setErrorTime("");
         if (!sid) {
             setFormData({
-                course_name: "咖啡生豆認識及風味鑑嘗",
-                course_price: "8700",
-                course_level: "3",
-                course_img_s: "2c0a2a3b5f7b841c9c2db4ad1b3f5e0d.jpg",
-                course_content: `‧認識不同咖啡產地及品種，加強自己品嚐咖啡思維
-<br />
-‧可以品嚐到不同產地咖啡豆
-<br />
-‧了解不同品種咖啡豆對風味影響
-<br />
-‧了解不同處理法對風味影響
-<br />
-‧如何區分咖啡生豆
-<br />
-‧咖啡生豆分類
-<br />
-‧了解咖啡瑕疵豆類型
-<br />
-‧教授cupping 方法去了解咖啡品種及產地
-<br />
-‧咖啡生豆生長過程`,
+                course_name: "愛心拉花",
+                course_price: "1200",
+                course_level: "1",
+                course_img_s: "2dac83ad-a5cc-4bc8-b203-3cee5f6a8a6e.png",
+                course_content: `牛奶藝術（Lae Art） 又稱為拉花。是一種在濃縮咖啡（Espresso）裡， 加入經由濃縮咖啡機（Espresso Machine）加熱後產生大量的氣體壓力蒸氣，將產生大量的氣體壓力蒸氣經由空氣與蛋白質跟牛奶脂肪摩擦後，產生凝結的固體泡沫，再經由氣體旋轉原理，將固體的泡沫，吸入牛奶內部接而混和了牛奶與泡沫，產生了滑順細緻的泡沫牛奶（Steam Milk），接著將溫熱的泡沫牛奶加入製作好的濃縮咖啡裡，在短短幾秒內，經由推擠、晃動、轉動等不同組合方式，完成一杯擁有美麗圖案或是有著像絲綢般口感的咖啡拿鐵。
+                `,
                 course_people: `‧適合年滿12歲以上對拉花有興趣的各位!如未滿18歲則需家長陪同參加。
 <br>
 ‧對咖啡有興趣者，無須任何品飲、沖煮經驗。
@@ -144,19 +129,19 @@ const CourseAdd = () => {
             setFormDataFk({
                 course_sid: "",
                 course_date: {
-                    date1: "2022-08-07",
-                    date2: "2022-08-22",
+                    date1: "2022-08-25",
+                    date2: "2022-08-29",
                 },
                 course_time: {
-                    time1: "AM 03:00",
-                    time2: "PM 06:00",
+                    time1: "AM 10:00",
+                    time2: "PM 03:00",
                 },
                 course_img_l: [
-                    "43f80f6e4c0675fd0dde0def963a0f3b.jpg",
-                    "38aecb3ddaaf82eb59cda7acde393780.jpg",
-                    "73c9ba4ec7f6c5af179f5fc994057424.jpg",
-                    "2421496a84b1b5134a89744e09a85c83.jpg",
-                    "f83c89cb0f3f09a323f1e3fae18f9d6d.jpg",
+                    "70a75ce3-d23b-4c8f-be2b-fc8ed5f20217.png",
+                    "aeb9267a-80c4-4784-8c07-d80033a2797f.png",
+                    "361bdb63-87b2-4931-a43c-db1c04e8e6c7.png",
+                    "dda94248-763b-43f4-858f-38814453a427.png",
+                    "8811f3c6-80e4-41bd-931e-aa455458d9be.png",
                 ],
             });
         }
