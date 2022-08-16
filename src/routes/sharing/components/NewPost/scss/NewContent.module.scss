@@ -54,6 +54,9 @@
         }
     }
 
+    .tag_wrap{
+        width: 100%;
+    }
 
     select,input{
         font-size: 16px;
@@ -73,6 +76,7 @@
     textarea{
         font-size: 16px;
         resize: none;
+        height: 300px;
         width: 100%;
         border: none;
         background: transparent;
@@ -99,7 +103,8 @@
           }
     }
 
-    input[name="tag"]{
+    input[name="preview"]{
+        margin-bottom: 1rem;
         width: 33.33%;
         min-width: 5rem;
     }
@@ -138,12 +143,15 @@
 @media (max-width:1080px) {
     .wrap{
         padding: 1rem;
+
+        textarea{
+            height: 200px;
+        }
     }
 }
 
-@media screen {
+@media (max-height:768px) {
     .wrap{
-        height: auto;
         padding-bottom: 1.5rem;
     }
     

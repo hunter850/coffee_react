@@ -1,15 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
+import axios from "axios";
+import { debounce } from "lodash";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
-import { avatarDIR } from "../../../../config/api-path";
+import { avatarDIR, previewAPI } from "../../../../config/api-path";
+import Tag from "../Tag";
 import styles from "./scss/NewContent.module.scss";
+import trans from "./scss/PreviewTransition.module.scss";
 
 function NewContent(props) {
     const { handleSubmit } = props;
     const myForm = useRef(null);
     const { sid, nickname: member_nickname, avatar } = useAuth();
-
-    const [content, setContent] = useState("");
+    const { tag_transition } = trans;
     const {
         wrap,
         author,
@@ -21,6 +25,36 @@ function NewContent(props) {
         tag_wrap,
         limit,
     } = styles;
+
+    const [content, setContent] = useState("");
+    const [preview, setPreview] = useState("");
+    const [previewData, setPreviewData] = useState([]);
+    const [tagsValue, setTagsValue] = useState([]);
+
+    const sendDataDebounce = useCallback(
+        debounce((val) => {
+            const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
+            const replaced = val.replace(pattern, "").trim();
+            console.log(val);
+            if (replaced.length === 0) {
+                setPreviewData([]);
+                return;
+            }
+
+            axios(previewAPI, {
+                params: { queryString: replaced, type: "tag" },
+            }).then((r) => {
+                const rows = r.data.rows;
+                const name = rows.map((v) => v.name);
+                setPreviewData(name);
+            });
+        }, 150),
+        [preview]
+    );
+    const handlePreview = (e) => {
+        setPreview(e.target.value);
+        sendDataDebounce(e.target.value);
+    };
 
     return (
         <div className={wrap}>
@@ -64,18 +98,44 @@ function NewContent(props) {
                             value={content}
                             aria-label="撰寫內容……"
                             placeholder="撰寫內容……"
-                            cols="30"
-                            rows="8"
+                            // cols="30"
+                            // rows="8"
                             onChange={(e) => setContent(e.target.value)}
                         />
                         <div className={limit}>
                             <span>{content.length} /500</span>
                         </div>
                     </div>
-                    <input type="text" name="tag" placeholder="標籤名稱" />
+                    <input
+                        type="text"
+                        name="preview"
+                        placeholder="標籤名稱"
+                        value={preview}
+                        onChange={(e) => handlePreview(e)}
+                        autoComplete="off"
+                    />
+                    <input
+                        type="text"
+                        hidden
+                        name="tagsValue"
+                        value={tagsValue}
+                        onChange={() => { }}
+                    />
                     <button>Submit</button>
+                    <TransitionGroup component="div" className={tag_wrap}>
+                        {previewData.map((v, i) => {
+                            return (
+                                <CSSTransition
+                                    timeout={500}
+                                    classNames={tag_transition}
+                                    key={i}
+                                >
+                                    <Tag>{v}</Tag>
+                                </CSSTransition>
+                            );
+                        })}
+                    </TransitionGroup>
                 </form>
-                <div className={tag_wrap}>TAGS</div>
             </div>
         </div>
     );

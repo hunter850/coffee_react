@@ -1,7 +1,8 @@
 .wrap{
-    width: 100%;
+    // width: 100%;
     display: flex;
     height: calc(100% - 40px);
+    flex-shrink: 0;
 
     .carousel{
         height: 100%;
@@ -11,6 +12,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
 
         canvas{
             width: 50%;
@@ -41,7 +43,7 @@
     .wrap{
         .carousel{
             height: auto;
-            width: 100%;
+         
         }
     }
 }
@@ -55,5 +57,23 @@
             width: 100%;
         }
 
+        .panel_wrap{
+            flex: 1 1 auto;
+            height: 50%;
+            overflow-y: auto;
+            
+            &::-webkit-scrollbar {
+                width: 6px;
+              }
+              
+            &::-webkit-scrollbar-track {
+                background: transparent;
+              }
+        
+            &::-webkit-scrollbar-thumb {
+                background: #c5c0ba;
+                border-radius: 2.5px;
+              }
+        }    
     }
 }
