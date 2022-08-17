@@ -6,7 +6,7 @@ import Magnifier from "./Magnifier";
 import styles from "./scss/Searchbar.module.scss";
 
 function ResultRow({ data }) {
-    const { name, type, save_at, member_sid, post_sid, author, src } = data;
+    const { name, type, save_at, member_sid, author, src } = data;
     const {
         magnifier_wrap,
         rect_wrap,

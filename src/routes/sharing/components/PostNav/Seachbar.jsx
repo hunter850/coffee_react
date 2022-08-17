@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
+import { useTabsHistory } from "../../../../Contexts/TabsHistoryProvider";
 import Magnifier from "./Magnifier";
 import styles from "./scss/Searchbar.module.scss";
 import ResultRow from "./ResultRow";
@@ -17,10 +18,7 @@ function Seachbar(props) {
         setKeyWord,
         setIsEnd,
         setGetDataTimes,
-        setTabs,
-        setTabHistory,
     } = props;
-    const { sid } = useAuth();
     const {
         container,
         magnifier_wrap,
@@ -31,6 +29,9 @@ function Seachbar(props) {
         result_wrap,
         result_content,
     } = styles;
+    const { sid } = useAuth();
+    const { pushTabs } = useTabsHistory();
+
     const containerRef = useRef(null);
     const mag_wrap = useRef(null);
     const [previewData, setPreviewData] = useState([]);
@@ -73,16 +74,13 @@ function Seachbar(props) {
         }
     };
 
-    const keyWordSubmit = (q, type) => {
+    const keyWordSubmit = () => {
         const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
         const replaced = keyWord.replace(pattern, "").trim();
 
         if (replaced) {
             setIsEnd(false);
-            setTabs(() => {
-                setTabHistory((pre) => [...pre, ""]);
-                return "";
-            });
+            pushTabs("search");
             setGetDataTimes(0);
             setSearchMode("submit");
             clearPreview();
@@ -190,6 +188,7 @@ function Seachbar(props) {
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                     chooseToSearch(v);
+                                    pushTabs("choose");
                                 }}
                             >
                                 <ResultRow data={v} />
