@@ -27,7 +27,14 @@ function ChatBot() {
                         config={config}
                         messageParser={MessageParser}
                         actionProvider={ActionProvider}
-                    />
+                    />{" "}
+                    <div className="Hiden001">我想要預購</div>
+                    <div className="Hiden002">關於課程，我想詢問進階班</div>
+                    <div className="Hiden003">咖啡系列有哪些飲品?</div>
+                    <div className="Hiden004">請問要如何退款?</div>
+                    <div className="Hiden005">請問要如何註冊?</div>
+                    <div className="Hiden006">請問優惠券使用?</div>
+                    <div className="Hiden007">隨機推薦</div>
                 </>
             );
         } else {

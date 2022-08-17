@@ -179,13 +179,6 @@ background:linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(240, 189, 1
 padding-bottom: 5px;
 
 }
-.personalityQuizImg{
-
-}
-.personalityQuizInner{
-
-}
-.question-text{}
 .personalityQuizStart{
     width: 100%;
     display: flex;
@@ -269,4 +262,106 @@ padding-bottom: 5px;
 .EesyM{
     width: 240px !important;
     margin-top: -162px !important;
+}
+.Hiden001{
+    position: fixed;
+    right: 80px;
+    width: 50px;
+    height: 50px;
+    bottom: 30px;
+    /* border: 1px solid #000; */
+    width: 220px;
+    font-size: 19px;
+    color: transparent;
+}
+.Hiden001::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden002{
+    position: fixed;
+    right: 305px;
+    height: 35px;
+    bottom: 450px;
+     /* border: 1px solid #000; */
+    width: 160px;
+    font-size: 9px;
+    color: transparent;
+}
+.Hiden002::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden003{
+    position: fixed;
+    right: 305px;
+    height: 80px;
+    bottom: 360px;
+     /* border: 1px solid #000; */
+    width: 140px;
+    font-size: 16px;
+    color: transparent;
+}
+.Hiden003::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden004{
+    position: fixed;
+   right: 305px;
+    height: 100px;
+    bottom: 270px;
+     /* border: 1px solid #000; */
+    width: 140px;
+    font-size: 19px;
+    color: transparent;
+}
+.Hiden004::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden005{
+    position: fixed;
+   right: 305px;
+   
+    height: 100px;
+    bottom: 160px;
+     /* border: 1px solid #000; */
+    width: 140px;
+    font-size: 19px;
+    color: transparent;
+}
+.Hiden005::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden006{
+    position: fixed;
+    right: 305px;
+    width: 50px;
+    height: 50px;
+    bottom: 100px;
+     /* border: 1px solid #000; */
+    width: 140px;
+    font-size: 19px;
+    color: transparent;
+}
+.Hiden006::selection {
+    background: transparent;
+    color: transparent;
+}
+.Hiden007{
+    position: fixed;
+    right: 305px;
+    width: 50px;
+    height: 50px;
+    bottom: 30px;
+     /* border: 1px solid #000; */
+    width: 140px;
+    font-size: 19px;
+    color: transparent;
+}
+.Hiden007::selection {
+    background: transparent;
+    color: transparent;
 }
