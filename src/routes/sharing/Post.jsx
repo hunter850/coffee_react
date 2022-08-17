@@ -83,6 +83,7 @@ function Post({ newPost }) {
         setChooseValue("");
         setSearchMode("");
         setIsEnd(false);
+        setModal_sid(0);
         pushTabs("home");
 
         (async () => {
@@ -279,6 +280,7 @@ function Post({ newPost }) {
                         modal_sid={modal_sid}
                         setModal_sid={setModal_sid}
                         windowScrollY={scrollY[1]}
+                        resetState={resetState}
                     />
                 )}
                 {nowTabs === "newPost" && <NewPost />}

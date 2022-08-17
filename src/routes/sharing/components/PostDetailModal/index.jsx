@@ -8,7 +8,12 @@ import CancelBtn from "../CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 import styles from "./scss/PostDetailModal.module.scss";
 
-function PostDetailModal({ modal_sid, setModal_sid, windowScrollY = 0 }) {
+function PostDetailModal({
+    modal_sid,
+    setModal_sid,
+    windowScrollY = 0,
+    resetState,
+}) {
     const {
         post_detail_wrap,
         post_detail,
@@ -63,6 +68,7 @@ function PostDetailModal({ modal_sid, setModal_sid, windowScrollY = 0 }) {
                         <PostDetailContent
                             data={data}
                             getPostDetailData={getPostDetailData}
+                            resetState={resetState}
                         />
                     )}
                 </div>

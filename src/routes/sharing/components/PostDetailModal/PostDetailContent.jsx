@@ -17,7 +17,7 @@ import Comment from "./Comment";
 import More from "./More";
 import Modal from "../../../../component/Modal/Modal";
 
-function PostDetailContent({ data, getPostDetailData }) {
+function PostDetailContent({ data, getPostDetailData, resetState }) {
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
@@ -67,7 +67,6 @@ function PostDetailContent({ data, getPostDetailData }) {
         msg_wrap,
         msg_bar,
         msg_submit,
-        edit,
     } = styles;
 
     const svgIcon = (
@@ -160,7 +159,13 @@ function PostDetailContent({ data, getPostDetailData }) {
                         <span className={grey_span}>#{member_sid}</span>
                     </div>
                     <div className="ms-auto">
-                        <More>{svgIcon}</More>
+                        <More
+                            post_sid={post_sid}
+                            member_sid={member_sid}
+                            resetState={resetState}
+                        >
+                            {svgIcon}
+                        </More>
                     </div>
                 </div>
                 <div className={post_content}>
@@ -202,7 +207,7 @@ function PostDetailContent({ data, getPostDetailData }) {
                                 setCommentWrapToggle(!commentWrapToggle)
                             }
                         >
-                            ．留言 {comments}
+                            ．{comments > 0 ? "留言" + comments : "尚未有留言"}
                         </span>
                     </div>
 

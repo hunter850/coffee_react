@@ -44,6 +44,7 @@ export const sendMail = `${SERVER}/food/send_mail`;
 // SHARING
 export const sharingIMGS = `${SERVER}/images/sharing`;
 export const getPosts = `${SERVER}/sharing/post`;
+export const putPostAPI = `${SERVER}/sharing/post/put`;
 export const newPostAPI = `${SERVER}/sharing/post/new`;
 export const replyAPI = `${SERVER}/sharing/reply`;
 export const commentAPI = `${SERVER}/sharing/comment`;
