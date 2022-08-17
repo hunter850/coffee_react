@@ -47,12 +47,17 @@ function CartDetail() {
                 },
             })
             .then((result) => {
-                console.log(result.data);
+                // console.log(result.data);
                 setDetail(() => ({
                     orderNumber: result.data.orderNumber,
                     price: result.data.price,
                 }));
                 setDetailList(result.data.rawData);
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Something went wrong !");
+                // navigate("/", { replace: true });
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
