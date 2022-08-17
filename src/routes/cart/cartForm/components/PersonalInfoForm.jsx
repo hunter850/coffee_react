@@ -1,5 +1,6 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 // import useData from "../../../../hooks/useData";
+import Creditcard from "../../../../component/Creditcard/Creditcard";
 import styles from "./css/personalInfoForm.module.scss";
 
 const fakeData = {
@@ -13,7 +14,7 @@ const fakeData = {
 };
 
 function PersonalInfoForm(props) {
-    const { formData, setFormData } = props;
+    const { formData, setFormData, cardNumber, setCardNumber } = props;
     const {
         cart_form,
         label_basic,
@@ -24,8 +25,11 @@ function PersonalInfoForm(props) {
         pay_way_id,
         deliver_way_id,
         address_id,
-        card_id,
     } = styles;
+    const [cardName, setCardName] = useState("");
+    const [cardMonth, setCardMonth] = useState("");
+    const [cardYear, setCardYear] = useState("");
+    const [cardCvv, setCardCvv] = useState("");
     // const [nowList] = useData("nowList");
     const changeHandler = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -43,7 +47,7 @@ function PersonalInfoForm(props) {
                     name="name"
                     type="text"
                     id={name_id}
-                // autoComplete="off"
+                    // autoComplete="off"
                 />
                 <label htmlFor={phone_id} className={label_basic}>
                     手機
@@ -55,7 +59,7 @@ function PersonalInfoForm(props) {
                     name="phone"
                     type="text"
                     id={phone_id}
-                // autoComplete="off"
+                    autoComplete="off"
                 />
                 <label htmlFor={email_id} className={label_basic}>
                     電子信箱
@@ -67,25 +71,8 @@ function PersonalInfoForm(props) {
                     name="email"
                     type="text"
                     id={email_id}
-                // autoComplete="off"
+                    autoComplete="off"
                 />
-                <label htmlFor={pay_way_id} className={label_basic}>
-                    付款方式
-                </label>
-                <select
-                    className={input_basic}
-                    name="payWay"
-                    id={pay_way_id}
-                    onChange={changeHandler}
-                    value={formData.payWay}
-                >
-                    <option value="" disabled>
-                        -- 選擇付款方式 --
-                    </option>
-                    <option value="ATM轉帳">ATM轉帳</option>
-                    <option value="信用卡">信用卡</option>
-                    <option value="門市付現">門市付現</option>
-                </select>
                 <label htmlFor={deliver_way_id} className={label_basic}>
                     收貨方式
                 </label>
@@ -112,9 +99,26 @@ function PersonalInfoForm(props) {
                     name="address"
                     type="text"
                     id={address_id}
-                // autoComplete="off"
+                    autoComplete="off"
                 />
-                <label htmlFor={card_id} className={label_basic}>
+                <label htmlFor={pay_way_id} className={label_basic}>
+                    付款方式
+                </label>
+                <select
+                    className={input_basic}
+                    name="payWay"
+                    id={pay_way_id}
+                    onChange={changeHandler}
+                    value={formData.payWay}
+                >
+                    <option value="" disabled>
+                        -- 選擇付款方式 --
+                    </option>
+                    <option value="ATM轉帳">ATM轉帳</option>
+                    <option value="信用卡">信用卡</option>
+                    <option value="門市付現">門市付現</option>
+                </select>
+                {/* <label htmlFor={card_id} className={label_basic}>
                     信用卡
                 </label>
                 <input
@@ -124,8 +128,24 @@ function PersonalInfoForm(props) {
                     name="card"
                     type="text"
                     id={card_id}
-                // autoComplete="off"
-                />
+                    autoComplete="off"
+                /> */}
+                {formData.payWay === "信用卡" && (
+                    <Creditcard
+                        cardNumber={cardNumber}
+                        setCardNumber={setCardNumber}
+                        cardName={cardName}
+                        setCardName={setCardName}
+                        cardMonth={cardMonth}
+                        setCardMonth={setCardMonth}
+                        cardYear={cardYear}
+                        setCardYear={setCardYear}
+                        cardCvv={cardCvv}
+                        setCardCvv={setCardCvv}
+                        confirmButton={false}
+                        // cardSubmitHandler={cardSubmitHandler}
+                    />
+                )}
             </form>
             <button onClick={() => setFormData(fakeData)}>fake</button>
         </Fragment>

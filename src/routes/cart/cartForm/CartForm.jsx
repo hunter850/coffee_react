@@ -25,6 +25,7 @@ function CartForm() {
     const { form_container, form_wrap, total_wrap } = styles;
     const { container, px_200 } = bs_flex;
     const c = useClass();
+    const [cardNumber, setCardNumber] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -32,7 +33,6 @@ function CartForm() {
         payWay: "",
         deliverWay: "",
         address: "",
-        card: "",
     });
     const [priceInfo, setPriceInfo] = useState({
         total: 0,
@@ -141,7 +141,7 @@ function CartForm() {
                 cartCheck,
                 {
                     ...formData,
-                    card: +formData.card,
+                    card: cardNumber,
                     finalPrice: priceInfo.total - priceInfo.discount,
                     discount: priceInfo.discount,
                     couponId: couponId,
@@ -154,7 +154,7 @@ function CartForm() {
                 }
             )
             .then((result) => {
-                console.log(result.data);
+                // console.log(result.data);
                 const { success, insertId } = result.data;
                 if (success && insertId !== -1) {
                     getCount();
@@ -170,6 +170,7 @@ function CartForm() {
             });
     }, [
         formData,
+        cardNumber,
         token,
         priceInfo.total,
         priceInfo.discount,
@@ -197,6 +198,8 @@ function CartForm() {
                         <PersonalInfoForm
                             formData={formData}
                             setFormData={setFormData}
+                            cardNumber={cardNumber}
+                            setCardNumber={setCardNumber}
                         />
                     </div>
                     <div className={total_wrap}>
