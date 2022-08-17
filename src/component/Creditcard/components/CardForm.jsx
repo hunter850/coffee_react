@@ -21,6 +21,7 @@ function CardForm(props) {
         cardNumberFocus,
         cardNameFocus,
         cardValidFocus,
+        confirmButton,
     } = props;
 
     const {
@@ -93,7 +94,7 @@ function CardForm(props) {
 
     return (
         <Fragment>
-            <form onSubmit={cardSubmitHandler} className={form_wrap}>
+            <div onSubmit={cardSubmitHandler} className={form_wrap}>
                 <div className={form_container}>
                     <label htmlFor={id_number} className={form_number_label}>
                         卡號
@@ -122,7 +123,14 @@ function CardForm(props) {
                         autoComplete="off"
                     />
                     <div className={form_bottom}>
-                        <div className={card_valid}>
+                        <div
+                            className={card_valid}
+                            style={
+                                confirmButton
+                                    ? {}
+                                    : { width: "100%", padding: "0px" }
+                            }
+                        >
                             <div className={card_date}>
                                 <div className={card_month}>
                                     <label
@@ -199,12 +207,14 @@ function CardForm(props) {
                                 />
                             </div>
                         </div>
-                        <button type="submit" className={card_submit}>
-                            確認送出
-                        </button>
+                        {confirmButton && (
+                            <button type="submit" className={card_submit}>
+                                確認送出
+                            </button>
+                        )}
                     </div>
                 </div>
-            </form>
+            </div>
         </Fragment>
     );
 }
