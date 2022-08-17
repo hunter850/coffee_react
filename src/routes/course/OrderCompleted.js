@@ -37,67 +37,6 @@ function OrderCompleted() {
         <>
             <NavBar />
             <div className="container">
-                {/* <div className="printer-top"></div>
-
-                <div className="paper-container">
-                    <div className="printer-bottom"></div>
-
-                    <div className="paper">
-                        <div className="main-contents">
-                            <div className="success-icon-wrap">
-                                <div className="success-icon">&#10004;</div>
-                            </div>
-                            <div className="success-title title-font">
-                                完成訂單
-                            </div>
-                            <div className="success-description">
-                                <div className="success-description-wrap">
-                                    <div className="course-order-title">
-                                        <h6>您購買的課程為</h6>
-                                        <br />
-                                        <h6 style={{ color: "#253945" }}>
-                                            {courseData.course_name}
-                                        </h6>
-                                        <br />
-                                        <h5>注意事項:</h5>
-                                    </div>
-                                    <br />
-                                    ‧為防範新型冠狀病毒及配合政府防疫，講師與工作人員已完成疫苗三劑施打，主辦單位課程措施如下，請學員務必配合：
-                                    <br />
-                                    <br />
-                                    ‧杯測教學時，主辦單位為每位學員備有獨立杯測桌、杯測勺、陶瓷濃縮杯等相關器材，不會與其他學員交叉杯測。
-                                    <br />
-                                    <br />
-                                    ‧課程人數（含講師與工作人員）不超過8位；課程地點寬敞，並開設多處窗戶以保持環境通風。
-                                    <br />
-                                    <br />
-                                    ‧入場前，請先進行額溫量測。若體溫超過37.5度，不予入場，並辦理全額退費。
-                                    <br />
-                                    <br />
-                                    ‧授課期間，請學員自備口罩，除飲食外需全程配戴。
-                                    <br />
-                                    <br />
-                                    ‧請使用主辦單位提供之酒精清潔手部。
-                                    <br />
-                                    <br />
-                                    ‧如遇颱風、自然天災等不可抗拒之因素，依台北市政府任一單位公告停課即延期，本單位將通知擇日補課。
-                                    <br />
-                                    <br />
-                                </div>
-                            </div>
-                            <div className="order-details">
-                                <div className="order-number-label">
-                                    訂單編號
-                                </div>
-                                <div className="order-number">
-                                    {orderNumber}
-                                </div>
-                            </div>
-                            <div className="order-footer">Thank you!</div>
-                        </div>
-                        <div className="jagged-edge"></div>
-                    </div>
-                </div> */}
                 <OrderDetails>
                     <OrderDetails.Wrap>
                         <OrderDetails.Header>
