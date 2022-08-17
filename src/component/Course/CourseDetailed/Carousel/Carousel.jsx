@@ -22,8 +22,6 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     // 是否開啟自動輪播
     const [myIsAuto, setMyIsAuto] = useState(isAuto);
 
-    const [start, setStart] = useState(false);
-
     const setNow = useSetNow();
 
     const rightPage = () => {
@@ -43,16 +41,11 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     };
     // 自動輪播
     useEffect(() => {
-        setTimeout(() => {
-            setStart(true);
-        }, 3000);
-    }, []);
-    useEffect(() => {
         // 除錯用
         console.log(direction);
         // console.log(page);
         if (myIsAuto === true) {
-            if (direction === '' && start === true) {
+            if (direction === '') {
                 setDirection('auto');
             }
 
@@ -99,7 +92,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                 });
             }
         }
-    }, [page, direction, myIsAuto, start]);
+    }, [page, direction, myIsAuto]);
 
     useEffect(() => {
         if (remoteControl === false) {
