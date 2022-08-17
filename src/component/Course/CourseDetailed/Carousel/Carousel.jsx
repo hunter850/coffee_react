@@ -43,7 +43,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     useEffect(() => {
         // 除錯用
         // console.log(direction);
-        console.log(page);
+        // console.log(page);
         if (myIsAuto === true) {
             if (direction === '') {
                 setDirection('auto');
