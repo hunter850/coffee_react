@@ -21,8 +21,8 @@ export const icechoice = [
     },
 ];
 export const sugarchoice = [
-    { id: "6", name: "無糖" },
-    { id: "7", name: "微糖" },
-    { id: "8", name: "半糖" },
-    { id: "9", name: "全糖" },
+    { id: "1", name: "無糖" },
+    { id: "2", name: "微糖" },
+    { id: "3", name: "半糖" },
+    { id: "4", name: "全糖" },
 ];

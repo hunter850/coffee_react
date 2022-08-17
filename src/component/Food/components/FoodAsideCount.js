@@ -21,7 +21,9 @@ function FoodAsideCount({ item, setDataFromCount, removeItem }) {
     const sugar1 = sugarchoice.find(({ id }) => {
         return id === sugar;
     });
-    const displaynone = sugar ? "display" : "display none";
+    const displayNone = sugar ? "display" : "display none";
+    console.log("ice1", ice1);
+    console.log("sugar", sugar);
     return (
         <>
             <div key={menu_sid} className="detail">
@@ -36,7 +38,7 @@ function FoodAsideCount({ item, setDataFromCount, removeItem }) {
                             <FaTrashAlt size={"1.15rem"} onClick={removeItem} />
                         </div>
                     </div>
-                    <p className={displaynone}>
+                    <p className={displayNone}>
                         {ice && ice1.name} / {sugar && sugar1.name}
                     </p>
                     <div className="calculate">
