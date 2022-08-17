@@ -69,8 +69,9 @@ export default function LatestnewsDetail() {
                         <div className="d-flex latestnewbtn-layout">
                             <div
                                 className="latestnewbtn"
-                                onClick={() =>
-                                    setpage(page > 0 ? page - 1 : page)
+                                onClick={() =>{
+                                    window.scrollTo(0,0);
+                                    setpage(page > 0 ? page - 1 : page)}
                                 }
                             >
                                 <img src={left_arrow} alt="" />
@@ -86,8 +87,9 @@ export default function LatestnewsDetail() {
 
                             <div
                                 className="latestnewbtn"
-                                onClick={() =>
-                                    setpage(page < 3 ? page + 1 : page)
+                                onClick={() =>{
+                                    window.scrollTo(0,0);
+                                    setpage(page < 3 ? page + 1 : page)}
                                 }
                             >
                                 <img src={right_arrow} alt="" />

@@ -24,7 +24,7 @@ function FrontPage() {
     }, [frontpagecoupon]);
     return (
         <Fragment>
-            <Spinnerwrap/>
+            {/* <Spinnerwrap /> */}
             <NavBar />
             <Carousel
                 imgs={[
