@@ -1,0 +1,17 @@
+.fake_body {
+    background-color: var(--CREAM);
+    padding-bottom: 24px;
+}
+
+.order_number_label {
+    margin-bottom: 8px;
+}
+
+.order_number {
+    line-height: 48px;
+    font-size: 48px;
+    padding: 8px 0px;
+    margin-bottom: 24px;
+    border-top: 1px solid var(--DARKGRAY);
+    border-bottom: 1px solid var(--DARKGRAY);
+}
