@@ -7,5 +7,6 @@ export const initData = {
     selectedProductCouponId: -1,
     selectedFoodCouponId: -1,
     total: 0,
+    lastInsertId: -1,
     foodCount: [],
 };
