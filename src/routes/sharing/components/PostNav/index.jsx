@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Seachbar from "./Seachbar";
 import { avatarDIR } from "../../../../config/api-path";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
-
+import { useTabsHistory } from "../../../../Contexts/TabsHistoryProvider";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
@@ -12,6 +12,8 @@ import styles from "./scss/PostNav.module.scss";
 
 function PostNav(props) {
     const navigate = useNavigate();
+    const { tabPush, tabNow } = useTabsHistory();
+    const { authorized, sid, account, token, avatar } = useAuth();
 
     const {
         scrollDir = "up",
@@ -22,11 +24,10 @@ function PostNav(props) {
         setIsEnd,
         setGetDataTimes,
         chooseToSearch,
-        tabs,
-        setTabs,
+        // tabs,
+        // setTabs,
         resetState,
     } = props;
-    const { authorized, sid, account, token, avatar } = useAuth();
     const {
         post_nav,
         container,
@@ -35,6 +36,7 @@ function PostNav(props) {
         search_wrap,
         icon_wrap,
         avatar_wrap,
+        avatar_selected,
     } = styles;
 
     return (
@@ -46,7 +48,7 @@ function PostNav(props) {
                         onClick={(e) => {
                             navigate(0);
                             e.preventDefault();
-                            setTabs("home");
+                            tabPush("home");
                         }}
                     >
                         <h4>分享牆</h4>
@@ -61,33 +63,33 @@ function PostNav(props) {
                         setIsEnd={setIsEnd}
                         setGetDataTimes={setGetDataTimes}
                         chooseToSearch={chooseToSearch}
-                        setTabs={setTabs}
                     />
                 </div>
                 <ul className={icon_wrap}>
                     <li
                         onClick={() => {
-                            setTabs("home");
+                            tabPush("home");
                             window.scrollTo(0, 0);
                             resetState();
                         }}
                     >
                         <Link to="/sharing">
                             <AiFillHome
-                                color={tabs === "home" ? "#b79973" : "324A59"}
+                                color={tabNow === "home" ? "#b79973" : "324A59"}
                                 fontSize="26"
                             />
                         </Link>
                     </li>
+                    {/* NEWPOST */}
                     <li
                         onClick={() => {
-                            setTabs("newPost");
+                            tabPush("newPost");
                         }}
                     >
                         <Link to="/sharing/newpost">
                             <BsFillPlusSquareFill
                                 color={
-                                    tabs === "newPost" ? "#b79973" : "324A59"
+                                    tabNow === "newPost" ? "#b79973" : "324A59"
                                 }
                                 fontSize="24"
                             />
@@ -97,20 +99,25 @@ function PostNav(props) {
                         onClick={() => {
                             chooseToSearch({ type: "member_like", sid });
                             window.scrollTo(0, 0);
-                            setTabs("heart");
+                            tabPush("heart");
                         }}
                     >
                         <Link to="/sharing">
                             <FaHeart
-                                color={tabs === "heart" ? "#b79973" : "324A59"}
+                                color={
+                                    tabNow === "heart" ? "#b79973" : "324A59"
+                                }
                                 fontSize="24"
                             />
                         </Link>
                     </li>
                     <li
-                        className={avatar_wrap}
+                        className={
+                            tabNow === "myPost" ? avatar_selected : avatar_wrap
+                        }
                         onClick={() => {
                             chooseToSearch({ type: "nickname", sid });
+                            tabPush("myPost");
                             window.scrollTo(0, 0);
                         }}
                     >

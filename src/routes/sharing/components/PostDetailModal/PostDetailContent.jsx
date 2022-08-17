@@ -1,5 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import useTimeAbout from "../../../../hooks/useTimeAbout";
@@ -13,11 +14,14 @@ import styles from "./scss/PostDetailContent.module.scss";
 import Tag from "../Tag";
 import Likes from "./Likes";
 import Comment from "./Comment";
+import More from "./More";
+import Modal from "../../../../component/Modal/Modal";
 
 function PostDetailContent({ data, getPostDetailData }) {
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const displayToggle = useMemo(() => {
         return { display: commentWrapToggle ? "block" : "none" };
@@ -98,13 +102,13 @@ function PostDetailContent({ data, getPostDetailData }) {
             commentInput.current.value = "";
             if (r.data.success) getPostDetailData();
         } else {
-            alert("請先登入");
+            setIsOpen(true);
         }
     };
 
     const memberLikePost = async () => {
         if (!authorized) {
-            alert("請先登入");
+            setIsOpen(true);
             return;
         }
 
@@ -131,15 +135,14 @@ function PostDetailContent({ data, getPostDetailData }) {
             axios(`${memberLikeAPI}/${post_sid}`, {
                 params: { member_sid: sid },
             }).then((r) => {
-                console.log(r.data);
                 setDidLiked(!!r.data.liked);
             });
         }
     }, []);
 
-    const keyUpHandler = (e) => {
-        console.log(e.target.selectionStart);
-    };
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+    }, [isOpen]);
 
     return (
         <>
@@ -156,7 +159,9 @@ function PostDetailContent({ data, getPostDetailData }) {
                         <span className={nickname}>{member_nickname}</span>
                         <span className={grey_span}>#{member_sid}</span>
                     </div>
-                    <div className={edit}>{svgIcon}</div>
+                    <div className="ms-auto">
+                        <More>{svgIcon}</More>
+                    </div>
                 </div>
                 <div className={post_content}>
                     <h5 className={`${content_title} mb-1`}>{title}</h5>
@@ -180,8 +185,8 @@ function PostDetailContent({ data, getPostDetailData }) {
                         style={{ marginLeft: "-4px" }}
                     >
                         {tags.map((v, i) => (
-                            <div style={{ padding: "0 4px" }}>
-                                <Tag key={i}>{v}</Tag>
+                            <div key={i} style={{ padding: "0 4px" }}>
+                                <Tag>{v}</Tag>
                             </div>
                         ))}
                     </div>
@@ -218,15 +223,24 @@ function PostDetailContent({ data, getPostDetailData }) {
             </div>
 
             <div className={msg_wrap}>
-                <input
-                    className={msg_bar}
-                    ref={commentInput}
-                    onKeyUp={(e) => keyUpHandler(e)}
-                />
+                <input className={msg_bar} ref={commentInput} />
                 <button className={msg_submit} onClick={commentPost}>
                     發佈
                 </button>
             </div>
+
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
         </>
     );
 }

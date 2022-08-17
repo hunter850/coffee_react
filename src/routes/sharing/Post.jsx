@@ -12,6 +12,7 @@ import Masonry from "react-masonry-css";
 import { throttle } from "lodash";
 
 import { useAuth } from "../../component/Member/AuthContextProvider";
+import { useTabsHistory } from "../../Contexts/TabsHistoryProvider";
 import { getPosts, searchPost } from "../../config/api-path";
 import NavBar from "../../component/NavBar/NavBar";
 
@@ -30,6 +31,8 @@ const breakpointColumnsObj = {
 
 function Post({ newPost }) {
     const { authorized, sid, account, token } = useAuth();
+    const { tabsHistory, tabNow, tabPush } = useTabsHistory();
+
     const { container, my_masonry_grid, my_masonry_grid_column, loader } =
         styles;
     const wrap = useRef(null);
@@ -38,8 +41,9 @@ function Post({ newPost }) {
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
-    const [tabs, setTabs] = useState(newPost ? "newPost" : "home");
-    const [post_sid, setPost_sid] = useState(param.post_sid || 0);
+    // const [tabs, setTabs] = useState(newPost ? "newPost" : "home");
+
+    const [modal_sid, setModal_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
     const [chooseValue, setChooseValue] = useState({});
@@ -80,7 +84,8 @@ function Post({ newPost }) {
         setChooseValue("");
         setSearchMode("");
         setIsEnd(false);
-        setTabs("home");
+        // setTabs("home");
+        tabPush("home");
 
         (async () => {
             const r = await getData();
@@ -146,19 +151,12 @@ function Post({ newPost }) {
     }, [keyWord]);
 
     useEffect(() => {
-        if (post_sid) {
-            document.querySelector("body").style.overflow = "hidden";
+        if (modal_sid || tabNow === "newPost") {
+            document.body.style.overflow = "hidden";
         } else {
-            document.querySelector("body").style.overflow = "visible";
+            document.body.style.overflow = "visible";
         }
-    }, [post_sid]);
-    useEffect(() => {
-        if (tabs === "newPost") {
-            document.querySelector("body").style.overflow = "hidden";
-        } else {
-            document.querySelector("body").style.overflow = "visible";
-        }
-    }, [tabs]);
+    }, [modal_sid, tabNow]);
 
     useEffect(() => {
         (async () => {
@@ -193,12 +191,14 @@ function Post({ newPost }) {
     const modalHandler = (e, v) => {
         window.history.pushState({}, v.title, `/sharing/${v.sid}`);
         e.preventDefault();
-        setPost_sid(v.sid);
+        setModal_sid(v.sid);
     };
 
     const chooseToSearch = (v, times = 0, rt = false) => {
         setChooseValue(v);
-        setTabs("");
+
+        tabPush("");
+
         const { name, sid, type, member_sid } = v;
         const params = { q: sid || member_sid, type, times };
 
@@ -226,6 +226,12 @@ function Post({ newPost }) {
     };
 
     useEffect(() => {
+        if (newPost) {
+            tabPush("newPost");
+        } else {
+            tabPush("home");
+        }
+
         if (window.history.scrollRestoration) {
             window.history.scrollRestoration = "manual";
         }
@@ -243,8 +249,8 @@ function Post({ newPost }) {
                 setIsEnd={setIsEnd}
                 setGetDataTimes={setGetDataTimes}
                 chooseToSearch={chooseToSearch}
-                tabs={tabs}
-                setTabs={setTabs}
+                // tabs={tabs}
+                // setTabs={setTabs}
                 resetState={resetState}
             />
 
@@ -258,7 +264,7 @@ function Post({ newPost }) {
                         {rows.map((v, i) => {
                             return (
                                 <a
-                                    key={i}
+                                    key={i + "sid" + v.sid}
                                     href={`/sharing/${v.sid}`}
                                     onClick={(e) => {
                                         modalHandler(e, v);
@@ -266,7 +272,7 @@ function Post({ newPost }) {
                                 >
                                     <PostCard
                                         cardData={v}
-                                        modalMode={post_sid}
+                                        modalMode={modal_sid}
                                         chooseToSearch={chooseToSearch}
                                     />
                                 </a>
@@ -274,14 +280,14 @@ function Post({ newPost }) {
                         })}
                     </Masonry>
                 )}
-                {post_sid !== 0 && (
+                {modal_sid !== 0 && (
                     <PostDetailModel
-                        post_sid={post_sid}
-                        setPost_sid={setPost_sid}
+                        modal_sid={modal_sid}
+                        setModal_sid={setModal_sid}
                         windowScrollY={scrollY[1]}
                     />
                 )}
-                {tabs === "newPost" && <NewPost setTabs={setTabs} />}
+                {tabNow === "newPost" && <NewPost />}
             </div>
 
             <Footer />

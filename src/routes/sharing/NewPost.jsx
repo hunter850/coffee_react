@@ -2,16 +2,19 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styles from "./scss/NewPost.module.scss";
 
+import { debounce } from "lodash";
 import { useAuth } from "../../component/Member/AuthContextProvider";
+import { useTabsHistory } from "../../Contexts/TabsHistoryProvider";
 import { newPostAPI } from "../../config/api-path";
 import EditPhoto from "./components/NewPost/EditPhoto";
 import CancelBtn from "./components/CancelBtn";
 import NewNav from "./components/NewPost/NewNav";
 import Upload from "./components/NewPost/Upload";
 
-function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
+function NewPost({ windowScrollY = 0 }) {
     const { token } = useAuth();
     const { wrap, new_post, nav, new_edit } = styles;
+    const { tabLast, tabPush } = useTabsHistory();
 
     const cvsRefArr = useRef([]);
     const cvsRef = useRef(null);
@@ -24,7 +27,8 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
     const [photoSize, setPhotoSize] = useState([]);
 
     const goPrev = () => {
-        setTabs("home");
+        // console.log(tabLast);
+        tabPush(tabLast);
         window.history.pushState({}, null, `/sharing/`);
     };
 
@@ -90,7 +94,8 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
         };
     }, []);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = debounce(async (e) => {
+        console.log("submit");
         const fd = new FormData(e.target);
 
         let url = [];
@@ -133,8 +138,10 @@ function NewPost({ post_sid, setTabs, windowScrollY = 0 }) {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(r);
-    };
+
+        console.log(r.status);
+        if (r.status === 200) goPrev();
+    }, 150);
 
     return (
         <div className={wrap} style={{ top: windowScrollY }}>

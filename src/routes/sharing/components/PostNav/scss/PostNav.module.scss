@@ -74,7 +74,7 @@
             vertical-align: bottom;
         }
 
-        .avatar_wrap{
+        .avatar_wrap,.avatar_selected{
             margin-left: .5rem;
             width: 36px;
             height: 36px;
@@ -85,6 +85,9 @@
             >img{
                 width: 36px;
             }
+        }
+        .avatar_selected{
+            outline: 2px solid #b79973;
         }
     }
 }

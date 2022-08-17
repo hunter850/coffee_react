@@ -1,4 +1,5 @@
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
@@ -6,6 +7,7 @@ import useTimeAbout from "../../../../hooks/useTimeAbout";
 import { avatarDIR, replyAPI, commentAPI } from "../../../../config/api-path";
 import styles from "./scss/Comment.module.scss";
 import Reply from "./Reply";
+import Modal from "../../../../component/Modal/Modal";
 
 const emptyObj = {
     cmt_sid: 0,
@@ -41,12 +43,13 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
         reply_button,
     } = styles;
 
+    const [isOpen, setIsOpen] = useState(false);
     const timeAbout = useTimeAbout();
     const replyInput = useRef(null);
 
     const replyHandler = (toWho) => {
         if (!sid) {
-            alert("請先登入");
+            setIsOpen(true);
             return;
         }
 
@@ -79,13 +82,13 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
                 comment_sid: replyTo.cmt_sid,
                 content: replyInput.current.value,
             };
-            const r = await axios.post(replyAPI, data);
-            alert("回覆成功");
+            await axios.post(replyAPI, data);
+
             getPostDetailData();
 
             setReplyTo(emptyObj);
         } else {
-            alert("請先登入");
+            setIsOpen(true);
         }
     };
 
@@ -176,6 +179,18 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
                     </span>
                 </div>
             )}
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
         </div>
     );
 }
