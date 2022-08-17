@@ -23,13 +23,22 @@
     padding-bottom: 21px;
 }
 
+.modal_header {
+    box-shadow: 0px -9px 10px 9px #0005;
+    position: relative;
+    z-index: 1;
+}
 .modal_footer {
     text-align: right;
+    box-shadow: 0px -8px 10px -9px #0005;
+    position: relative;
+    z-index: 1;
 }
 
 .confirm_btn {
     width: 100px;
     font-size: 16px;
+    margin-top: 21px;
 }
 
 .ticket_svg {

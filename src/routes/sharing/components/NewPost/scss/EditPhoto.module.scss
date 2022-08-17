@@ -7,6 +7,7 @@
     .carousel{
         height: 100%;
         // width: 576px;
+        flex-shrink: 0;
         background-color: #EFEBE5;
         aspect-ratio: 4/5;
         display: flex;
@@ -21,7 +22,7 @@
     }
     .panel_wrap{
         flex: 1 1 auto;
-        height: 100%;
+        
         overflow-y: auto;
         
         &::-webkit-scrollbar {
@@ -37,6 +38,18 @@
             border-radius: 2.5px;
           }
     }    
+    &::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+    &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c5c0ba;
+        border-radius: 2.5px;
+      }
 }
 
 @media (max-width:1200px) {
@@ -50,7 +63,7 @@
 @media (max-width:768px) {
     .wrap{
         display: block;
-        height: auto;
+        
         overflow: auto;
         .carousel{
             height: auto;
@@ -58,22 +71,9 @@
         }
 
         .panel_wrap{
-            flex: 1 1 auto;
-            height: 50%;
-            overflow-y: auto;
-            
-            &::-webkit-scrollbar {
-                width: 6px;
-              }
-              
-            &::-webkit-scrollbar-track {
-                background: transparent;
-              }
         
-            &::-webkit-scrollbar-thumb {
-                background: #c5c0ba;
-                border-radius: 2.5px;
-              }
+            height: unset;
+        
         }    
     }
 }

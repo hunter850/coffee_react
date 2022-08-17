@@ -2,6 +2,16 @@ import { Fragment } from "react";
 // import useData from "../../../../hooks/useData";
 import styles from "./css/personalInfoForm.module.scss";
 
+const fakeData = {
+    name: "王曉明",
+    phone: "0912345678",
+    email: "mfee26coffee@gmail.com",
+    payWay: "信用卡",
+    deliverWay: "郵寄",
+    address: "新竹縣湖口鄉達生九街13號",
+    card: "5242556789134567",
+};
+
 function PersonalInfoForm(props) {
     const { formData, setFormData } = props;
     const {
@@ -33,7 +43,7 @@ function PersonalInfoForm(props) {
                     name="name"
                     type="text"
                     id={name_id}
-                    autoComplete="off"
+                // autoComplete="off"
                 />
                 <label htmlFor={phone_id} className={label_basic}>
                     手機
@@ -45,7 +55,7 @@ function PersonalInfoForm(props) {
                     name="phone"
                     type="text"
                     id={phone_id}
-                    autoComplete="off"
+                // autoComplete="off"
                 />
                 <label htmlFor={email_id} className={label_basic}>
                     電子信箱
@@ -57,7 +67,7 @@ function PersonalInfoForm(props) {
                     name="email"
                     type="text"
                     id={email_id}
-                    autoComplete="off"
+                // autoComplete="off"
                 />
                 <label htmlFor={pay_way_id} className={label_basic}>
                     付款方式
@@ -102,7 +112,7 @@ function PersonalInfoForm(props) {
                     name="address"
                     type="text"
                     id={address_id}
-                    autoComplete="off"
+                // autoComplete="off"
                 />
                 <label htmlFor={card_id} className={label_basic}>
                     信用卡
@@ -114,9 +124,10 @@ function PersonalInfoForm(props) {
                     name="card"
                     type="text"
                     id={card_id}
-                    autoComplete="off"
+                // autoComplete="off"
                 />
             </form>
+            <button onClick={() => setFormData(fakeData)}>fake</button>
         </Fragment>
     );
 }

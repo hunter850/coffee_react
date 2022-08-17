@@ -67,7 +67,7 @@ body{
 }
 .odh-date-wrap{
     padding: 0 30px;
-    margin-right: 325px;
+    margin-right: 330px;
 }
 .odh-info-wrap{
     display: flex;
@@ -87,10 +87,16 @@ body{
     font-size: 0.8rem;
     color: var(--blue);
 }
-.odh-header>span{
-    margin-left: 10px;
+.odh-id-wrap{
+    display: flex;
+    align-items: center;
     font-size: 0.8rem;
     color: var(--blue);
+}
+.odh-id-s{
+    font-size: 0.75rem;
+    color: var(--blue);
+    margin-left: 10px;
 }
 .odh-date{
     color: var(--blue);
@@ -154,6 +160,9 @@ body{
     margin: 0 20px 50px 20px;
     cursor: pointer;
 }
+.odh-wrap-title{
+    display: none;
+}
 
 /* 手機 */
 @media (max-width: 375px){
@@ -166,7 +175,7 @@ body{
         width: 375px;
         display: flex;
         flex-direction: column;
-        top: 150px;
+        top: 100px;
     }
     .odh-wrap-right{
         width: 319px;
@@ -209,13 +218,50 @@ body{
     .odh-id-wrap{
         display: flex;
         align-items: center;
+        margin: 0px;
     }
-    .odh-id{
-        margin-right: 15px;
+    .odh-id-s{
+        margin-left: 15px;
     }
-    .odh-id-wrap>span{
-        font-size: 0.8rem;
+    .odh-content{
+        margin-left: 25px;
+        flex-grow: 0;
+    }
+    .odh-price{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .odh-state{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .odh-price>span, .odh-state>span{
+        margin-right: 0px;
+        font-weight: 500;
+        font-size: 0.75rem;
+    }
+    .odh-price>span:nth-child(2), .odh-state>span:nth-child(2){
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+    .odh-info-wrap{
+        flex-direction: column;
+        padding: 20px 0;
+    }
+    .odh-btn{
+        width: 265px;
+        height: 30px;
+        margin-left: 25px;
+    }
+    .odh-wrap-title{
+        display: block;
+        margin-bottom: 50px;
         color: var(--blue);
+        font-weight: 600;
+        font-size: 1.3rem;
     }
+
 
 }

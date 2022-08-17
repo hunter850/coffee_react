@@ -175,9 +175,14 @@ function PostDetailContent({ data, getPostDetailData }) {
                         dangerouslySetInnerHTML={{ __html: content }}
                     ></p>
 
-                    <div className="mb-2 d-flex f-w">
+                    <div
+                        className="mb-3 d-flex f-w"
+                        style={{ marginLeft: "-4px" }}
+                    >
                         {tags.map((v, i) => (
-                            <Tag key={i}>{v}</Tag>
+                            <div style={{ padding: "0 4px" }}>
+                                <Tag key={i}>{v}</Tag>
+                            </div>
                         ))}
                     </div>
                     <div className="mb-2 d-flex">

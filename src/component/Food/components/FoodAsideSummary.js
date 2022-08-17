@@ -2,7 +2,7 @@ import "./FoodAsideSummary.css";
 import "./FoodAsideCount";
 import FoodAsideCount from "./FoodAsideCount";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { foodData } from "../../../config/api-path";
 import AuthContext from "../../Member/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ function FoodAsideSummary({
     setIsOpen,
 }) {
     const asideClass = show ? "aside" : "aside hide";
+    const [remind, setRemind] = useState(false);
 
     const navigate = useNavigate();
     const totalPrice = dataFromFoodDetail.reduce(
@@ -30,10 +31,8 @@ function FoodAsideSummary({
         0
     );
     const { getCount } = useNav();
-
     const Auth = useContext(AuthContext);
     const { store_name, store_block, store_road, store_sid } = selectedAddress;
-
     const standardTime = dataFromDate + " " + dataFromDateTime + ":00";
     //
     const checkOut =
@@ -41,7 +40,10 @@ function FoodAsideSummary({
             ? "pay "
             : "pay disabled";
     const handleSubmission = (e) => {
-        if (!store_sid || !standardTime) return false;
+        if (!store_sid || !standardTime) {
+            setRemind(true);
+            return false;
+        }
 
         try {
             if (Auth.sid)
@@ -85,6 +87,9 @@ function FoodAsideSummary({
                     <div className="txt">
                         <div className="takeout">
                             <h6>自取門市</h6>
+                            {!store_sid && remind && (
+                                <p className="lg-field-err ">尚未填寫</p>
+                            )}
                             <div
                                 onClick={() => {
                                     setShowMap(true);
@@ -96,7 +101,7 @@ function FoodAsideSummary({
                         <div className="edit">
                             <p>{store_name}</p>
                             <p className="bottom">
-                                {store_road} {store_block}
+                                {store_block} {store_road}
                             </p>
                         </div>
                     </div>

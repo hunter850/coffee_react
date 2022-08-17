@@ -52,6 +52,7 @@ function OrderHistoryMain() {
                 <div className="odh-container">
                     <MemberMenu />
                     <div className="odh-wrap-right">
+                        <div className="odh-wrap-title">歷史訂單</div>
                         {cards.map((v, i) => {
                             return (
                                 <div key={v.order_sid}>

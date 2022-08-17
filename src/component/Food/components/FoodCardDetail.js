@@ -17,11 +17,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
     const [ice, setIce] = useState("");
     const [sugar, setSugar] = useState("");
     const [foodCount, setFoodCount] = useState(1);
+    const [remind, setRemind] = useState(false);
     const orderclass = ice && sugar ? "order" : "order disabled";
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-
     return (
         <>
             <div
@@ -78,20 +78,24 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                             </svg>
                         </div>
                     </div>
-                    <div className="choice">冰熱選擇</div>
+                    <div className="choice">
+                        <h6 className="choice-txt">冰熱選擇</h6>
+                        {!ice && remind && (
+                            <p className="lg-field-err">請選擇冰量</p>
+                        )}
+                    </div>
                     {icechoice.map(({ name, id }) => {
                         return (
-                            <div key={`icechoice${id}`} className="inputarea">
-                                <input
-                                    type="radio"
-                                    checked={ice === id}
-                                    value={id}
-                                    onChange={(e) => {
-                                        setIce(e.target.value);
-                                    }}
-                                    id={`icechoice${id}`}
-                                    className="inputdetail"
-                                />
+                            <div
+                                key={`icechoice${id}`}
+                                className="inputArea"
+                                onClick={() => setIce(id)}
+                            >
+                                <div
+                                    className={`inner ${ice === id ? "checked" : ""
+                                        }`}
+                                ></div>
+
                                 <label
                                     htmlFor={`icechoice${id}`}
                                     className="inputla"
@@ -102,20 +106,24 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         );
                     })}
 
-                    <div className="choice">甜度選擇</div>
+                    <div className="choice">
+                        <h6 className="choice-txt"> 甜度選擇</h6>
+                        {!sugar && remind && (
+                            <p className="lg-field-err">請選擇甜度</p>
+                        )}
+                    </div>
                     {sugarchoice.map(({ name, id }) => {
                         return (
-                            <div key={`sugarchoice${id}`} className="inputarea">
-                                <input
-                                    type="radio"
-                                    checked={sugar === id}
-                                    value={id}
-                                    onChange={(e) => {
-                                        setSugar(e.target.value);
-                                    }}
-                                    id={`sugarchoice${id}`}
-                                    className="inputdetail"
-                                />
+                            <div
+                                key={`sugarchoice${id}`}
+                                className="inputArea"
+                                onClick={() => setSugar(id)}
+                            >
+                                <div
+                                    className={`inner ${sugar === id ? "checked" : ""
+                                        }`}
+                                ></div>
+
                                 <label
                                     htmlFor={`sugarchoice${id}`}
                                     className="inputla"
@@ -148,7 +156,11 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                         <button
                             className={orderclass}
                             onClick={() => {
-                                if (!sugar || !ice) return false;
+                                if (!sugar || !ice) {
+                                    setRemind(true);
+                                    return false;
+                                }
+
                                 setIsShow(false);
                                 setDataFromFoodDetail({
                                     menu_name,

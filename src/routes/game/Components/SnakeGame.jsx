@@ -165,14 +165,13 @@ class SnakeGame extends React.Component {
         let snake = this.state.snake;
         let Beans = this.state.Beans;
         if (snake[0].Xpos === Beans.Xpos && snake[0].Ypos === Beans.Ypos) {
-
             let width = this.state.width;
             let height = this.state.height;
             let blockWidth = this.state.blockWidth;
             let blockHeight = this.state.blockHeight;
             let newTail = { Xpos: Beans.Xpos, Ypos: Beans.Ypos };
             let highScore = this.state.highScore;
-            let gameLoopTimeout = this.state.gameLoopTimeout;
+            let gameLoopTimeout = this.state.gameLoopTimeout - 2;
             snake.push(newTail);
             Beans.Xpos =
                 Math.floor(

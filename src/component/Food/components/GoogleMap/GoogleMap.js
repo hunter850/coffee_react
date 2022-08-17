@@ -14,7 +14,7 @@ function GoogleMap({
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true);
-        }, 4500);
+        }, 500);
         console.log("did update");
     }, [storeInfo]);
 

@@ -50,7 +50,7 @@ function AuthContextProvider({ children }) {
             localAuth = JSON.parse(localAuthStr);
             if (localAuth.account && localAuth.token) {
                 localAuth = { ...localAuth, authorized: true };
-                console.log(localAuth);
+                // console.log(localAuth);
             }
         } catch (ex) { }
     }

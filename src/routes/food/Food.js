@@ -11,6 +11,7 @@ import GoogleMap from "../../component/Food/components/GoogleMap/GoogleMap";
 import Carousel from "../../component/Course/CourseDetailed/Carousel/Carousel";
 import ca from "../../images/food/carousel001.png";
 import ca1 from "../../images/food/179c7a20c2aee387e56e4d8cbfee0b15.jpg";
+import ca2 from "../../images/food/carousel003.jpg";
 import Modal from "../../component/Modal/Modal";
 import { Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
@@ -224,7 +225,7 @@ function Food() {
             <NavBar />
             <div className="Food-container">
                 <Path pathObj={{ path: ["．點餐"] }} />
-                <Carousel imgs={[ca, ca1]} />
+                <Carousel imgs={[ca, ca1,ca2]} />
                 <div className="container">
                     <div>
                         {showMap && (
