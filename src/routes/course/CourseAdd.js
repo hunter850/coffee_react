@@ -18,8 +18,11 @@ import { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ConfirmDeleteBox from "../../component/Item/ConfirmDeleteBox/ConfirmDeleteBox";
 import Modal from "../../component/Modal/Modal";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import Course from "./Course";
 
 const CourseAdd = () => {
+    const user_sid = Number(useAuth().sid);
     // 防止連續送出表單
     const [banContinuous, setBanContinuous] = useState(false);
     // Modal控制器
@@ -519,8 +522,8 @@ const CourseAdd = () => {
             </div>
         </Fragment>
     );
-
-    return sid ? edit : add;
+    // 如果登入的是管理者 判斷要進修改或新增頁 不是的話則顯示課程主頁
+    return user_sid === 2 ? sid ? edit : add : <Course />;
 };
 
 export default CourseAdd;

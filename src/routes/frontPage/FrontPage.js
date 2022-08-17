@@ -46,13 +46,13 @@ function FrontPage() {
             {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
-                    <Link to="/getcoupon">
-                        <img
-                            style={{ width: "588px", height: "100%" }}
-                            src={frontpagecoupon}
-                            alt=""
-                        />
-                    </Link>
+                        <Link to="/getcoupon">
+                            <img
+                                style={{ width: "588px", height: "100%" }}
+                                src={frontpagecoupon}
+                                alt=""
+                            />
+                        </Link>
                     </div>
                 </Modal.Body>
             </Modal> */}
