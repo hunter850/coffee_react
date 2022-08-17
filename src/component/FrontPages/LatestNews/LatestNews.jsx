@@ -25,15 +25,6 @@ function LatestNews({ bagcolorblue, latesttitlecolor }) {
                             <Link to="/LatestnewsDetail">
                                 <LatestTitle />
                             </Link>
-                            <Link to="#/">
-                                <LatestTitle />
-                            </Link>
-                            <Link to="#/">
-                                <LatestTitle />
-                            </Link>
-                            <Link to="#/">
-                                <LatestTitle />
-                            </Link>
                         </ScrollWrap>
                     </div>
                 </div>

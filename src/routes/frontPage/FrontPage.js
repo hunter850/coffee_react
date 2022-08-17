@@ -7,19 +7,24 @@ import LatestNews from "../../component/FrontPages/LatestNews/LatestNews";
 import StarProducts from "../../component/FrontPages/StarProducts/StarProducts";
 import GoodCourse from "../../component/FrontPages/GoodCourse/GoodCourse";
 import Footer from "../../component/Footer";
-import Modal from "../../../src/component/Modal/Modal";
-import adimg from "../../images/frontpage/ad.png";
+// import Modal from "../../../src/component/Modal/Modal";
+import frontpagecoupon from "../../images/frontpage/frontpagecoupon.png";
 import "./FrontPage.css";
 import { Link } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
+import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 
 function FrontPage() {
+    console.log(frontpagecoupon);
     const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
-        setIsOpen(true);
-    }, []);
+        if (frontpagecoupon) {
+            setIsOpen(true);
+        }
+    }, [frontpagecoupon]);
     return (
         <Fragment>
+            <Spinnerwrap/>
             <NavBar />
             <Carousel
                 imgs={[
@@ -29,7 +34,8 @@ function FrontPage() {
                     "http://localhost:3500/images/frontpage/banner/banner-course1.png",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.png",
                 ]}
-                height={800}
+                height={650}
+                // isAuto={false}
             />
             <HotFoods />
             <LatestNews bagcolorblue={"#324A59"} latesttitlecolor={"#FFFFFF"} />
@@ -37,16 +43,19 @@ function FrontPage() {
             <GoodCourse />
             <ChatBot />
             <Footer />
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                <Modal.Header component={null} className="hello"></Modal.Header>
-                <Modal.Body component="div">
+            {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
-                        <div>
-                            <img src={adimg} alt="" />
-                        </div>
+                    <Link to="/getcoupon">
+                        <img
+                            style={{ width: "588px", height: "100%" }}
+                            src={frontpagecoupon}
+                            alt=""
+                        />
+                    </Link>
                     </div>
                 </Modal.Body>
-            </Modal>
+            </Modal> */}
         </Fragment>
     );
 }
