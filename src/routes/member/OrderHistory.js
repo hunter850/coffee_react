@@ -6,6 +6,7 @@ function OrderHistory() {
         <>
             <NavBar />
             <OrderHistoryMain />
+
         </>
     );
 }

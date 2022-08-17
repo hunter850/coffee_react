@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import LikesCard from "./LikesCard";
 import "./Likes.css";
+import ChatBot from "../../../Bot/ChatBot";
 
 import { getUserLikes } from "../../../../config/api-path";
 
@@ -120,6 +121,8 @@ function LikesMain() {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <ChatBot />
         </>
     );
 }
