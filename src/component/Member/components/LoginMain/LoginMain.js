@@ -38,6 +38,8 @@ function LoginMain() {
     const [welWidth, setWelWidth] = useState(0);
     const [fmWidth, setFmWidth] = useState(0);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const welcomeWidth = useRef(null);
     const formWidth = useRef(null);
 
@@ -60,7 +62,6 @@ function LoginMain() {
             setWelWidth(welcomeWidth.current.clientWidth);
             setFmWidth(formWidth.current.clientWidth);
     }, []);
-
 
     const change = () =>{
         setNotLog(!notLog);
@@ -113,7 +114,7 @@ function LoginMain() {
     // 自動填表
     const autoSignUp = (e)=>{
         e.preventDefault();
-        setMyform({...myform,member_name:"123",member_account:"123",member_password:"123",member_mail:"chia87616@gmail.com"})
+        setMyform({...myform,member_name:"KohiLing",member_account:"cafeNomad",member_password:"cafe0817",member_mail:"chia87616@gmail.com"})
     };
 
     // 錯誤訊息提示
@@ -173,13 +174,20 @@ function LoginMain() {
 
                 localStorage.setItem('auth', JSON.stringify({...result.data, authorized: true}));
                 setAuth({...result.data, authorized: true});
+                // 過場
+                setTimeout(() => {
+                    setIsLoading(true);
+                    console.log(1);
+                }, 0);
+
                 setTimeout(() => {
                     getCount();
                     navigate("/member", {replace: false})
-                }, 400);
+                    console.log(2);
+                }, 1000);
                 setLoginSuccess(true);
             }
-            setIsOpen(true);
+            // setIsOpen(true);
         });
         }
     };
@@ -270,6 +278,11 @@ function LoginMain() {
 
     }
 
+    const handleVerification = (e)=>{
+        e.preventDefault();
+        setIsVerify(true);
+    }
+
 // --------------------- 看不看得到密碼 ---------------------
     const eyeOpen = ()=>{
         setEyeIsOpen(!eyeIsOpen);
@@ -278,62 +291,68 @@ function LoginMain() {
 
     return (
         <>
-            <div className="lg-wrapper">
-                <div className="lg-welcome" style={{transform : notLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
-                    <h1 className="wel-title">{changeText ? "Welcome back !" : "還沒有帳號嗎？"}</h1>
-                    <button className="lg-switch" onClick={change}>{notLog ? "登入" : "註冊"}</button>
-                </div>
-                <form name="form1" action="" className={`lg-form ${notLog ? "fade":""}`} style={{transform : notLog ? `translate(-${welWidth}px)`:""}} ref={formWidth} onChange={changeFields}>
-                    <h1 className={`${notLog ? "sign-form-title":"lg-form-title"}`}>{notLog ? "註冊會員" : "登入會員"}</h1>
-                    <div className={`${notLog ? "sign-field-form":"lg-field-form"}`}>
-                        <div className="lg-field-wrap">
-                            <div className= {`${notLog ? "name-open":"name-close"}`}>
-                                <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className={`lg-field ${notLog ? "name-open":"name-close"}`} placeholder="姓名" autoComplete="off"/>
-                                <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
-                                    <FaUser/>
-                                </div>
-                            </div>
-                            <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{nameErrors.name}</p>
-                        </div>
-
-                        <div className="lg-field-wrap">
-                            <div className="account lg-field-cont">
-                                <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
-                                <div className="lg-icon">
-                                    <FaUserPlus size={'1.15rem'}/>
-                                </div>
-                            </div>
-                            <p className="lg-field-err">{accountErrors.account}</p>
-                        </div>
-
-                        <div className="lg-field-wrap">
-                            <div className="password lg-field-cont">
-                                <input type={eyeIsOpen ? "text" : "password"} name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
-                                <div className="lg-icon-eye" onClick={eyeOpen}>
-                                { eyeIsOpen ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
-                                </div>
-                                <div className="lg-icon">
-                                    <FaLock/>
-                                </div>
-                            </div>
-                            <p className="lg-field-err">{passwordErrors.password}</p>
-                        </div>
-
-                        <div className="lg-field-wrap">
-                            <div className= {`${notLog ? "mail-open":"mail-close"}`}>
-                                <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className={`lg-field ${notLog ? "mail-open":"mail-close"}`} placeholder="請輸入信箱" autoComplete="off"/>
-                                <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
-                                    <MdEmail size={"1.05rem"}/>
-                                </div>
-                            </div>
-                            <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{mailError.mail}</p>
-                        </div>
+            <div className="login-wrap">
+            <div className={isLoading ? "lg-mask": ""}></div>
+                <div className="lg-wrapper">
+                    <div className="lg-welcome" style={{transform : notLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
+                        <h1 className="wel-title">{changeText ? "Welcome back !" : "還沒有帳號嗎？"}</h1>
+                        <button className="lg-switch" onClick={change}>{notLog ? "登入" : "註冊"}</button>
                     </div>
-                    <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
-                    <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
-                    <button type="button" onClick={autoSignUp} style={{border:"none",padding:"15px",cursor:"pointer",backgroundColor:"transparent"}}></button>
-                </form>
-                <div className="particle"></div>
+                    <form name="form1" action="" className={`lg-form ${notLog ? "fade":""}`} style={{transform : notLog ? `translate(-${welWidth}px)`:""}} ref={formWidth} onChange={changeFields}>
+                        <h1 className={`${notLog ? "sign-form-title":"lg-form-title"}`}>{notLog ? "註冊會員" : "登入會員"}</h1>
+                        <div className={`${notLog ? "sign-field-form":"lg-field-form"}`}>
+                            <div className="lg-field-wrap">
+                                <div className= {`${notLog ? "name-open":"name-close"}`}>
+                                    <input type="text" name="name" id="member_name" value={myform.member_name} onChange={changeFields} className={`lg-field ${notLog ? "name-open":"name-close"}`} placeholder="姓名" autoComplete="off"/>
+                                    <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
+                                        <FaUser/>
+                                    </div>
+                                </div>
+                                <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{nameErrors.name}</p>
+                            </div>
+
+                            <div className="lg-field-wrap">
+                                <div className="account lg-field-cont">
+                                    <input type="text" name="account" id="member_account" value={myform.member_account} onChange={changeFields} className="lg-field" placeholder="請輸入帳號" autoComplete="off"/>
+                                    <div className="lg-icon">
+                                        <FaUserPlus size={'1.15rem'}/>
+                                    </div>
+                                </div>
+                                <p className="lg-field-err">{accountErrors.account}</p>
+                            </div>
+
+                            <div className="lg-field-wrap">
+                                <div className="password lg-field-cont">
+                                    <input type={eyeIsOpen ? "text" : "password"} name="password" id="member_password" value={myform.member_password} onChange={changeFields} className="lg-field" placeholder="請輸入密碼" autoComplete="off"/>
+                                    <div className="lg-icon-eye" onClick={eyeOpen}>
+                                    { eyeIsOpen ? <FaEye size={'0.95rem'}/> : <FaEyeSlash size={'0.95rem'}/>}
+                                    </div>
+                                    <div className="lg-icon">
+                                        <FaLock/>
+                                    </div>
+                                </div>
+                                <p className="lg-field-err">{passwordErrors.password}</p>
+                            </div>
+
+                            <div className="lg-field-wrap">
+                                <div className= {`${notLog ? "mail-open":"mail-close"}`}>
+                                    <input type="text" name="mail" id="member_mail" value={myform.member_mail} onChange={changeFields} className={`lg-field ${notLog ? "mail-open":"mail-close"}`} placeholder="請輸入信箱" autoComplete="off"/>
+                                    <div className={`lg-icon ${notLog ? "icon-open":"icon-close"}`}>
+                                        <MdEmail size={"1.05rem"}/>
+                                    </div>
+                                </div>
+                                <p className="lg-field-err" style={{display: notLog ? "flex" : "none"}}>{mailError.mail}</p>
+                            </div>
+                        </div>
+                        <div className="submit-btn-wrap">
+                            <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
+                            <button type="submit" onClick={handleVerification} className="login-verification" style={{display: notLog ? "block" : "none "}}>輸入驗證碼</button>
+                        </div>
+                        <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
+                        <button type="button" onClick={autoSignUp} style={{border:"none",padding:"15px",cursor:"pointer",backgroundColor:"transparent"}}></button>
+                    </form>
+                    <div className="particle"></div>
+            </div>
 
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Modal.Body className="lg-msg-wrap">

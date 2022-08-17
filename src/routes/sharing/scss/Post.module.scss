@@ -40,6 +40,9 @@
     /* gutter size */
     background-clip: padding-box;
 
+    a{
+        cursor: auto;
+    }
     // 卡片
     a>div {
         /* change div to reference your elements you put in <Masonry> */
@@ -48,7 +51,6 @@
         border-radius: 10px;
         overflow: hidden;
         position: relative;
-        cursor: pointer;
 
         &:hover:before{
            

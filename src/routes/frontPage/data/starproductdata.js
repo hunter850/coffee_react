@@ -2,7 +2,7 @@
 const starproductdata = [
     {
         products_sid: 3,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "征服者(十包一入)",
         products_price: 320,
         products_content:
@@ -11,7 +11,7 @@ const starproductdata = [
     },
     {
         products_sid: 4,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "木蘭花(十包一入)",
         products_price: 320,
         products_content:
@@ -20,7 +20,7 @@ const starproductdata = [
     },
     {
         products_sid: 17,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "黃金曼巴(五包一入)",
         products_price: 170,
         products_content:
@@ -29,7 +29,7 @@ const starproductdata = [
     },
     {
         products_sid: 15,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "瓜地馬拉花神(五包一入)",
         products_price: 170,
         products_content:
@@ -38,7 +38,7 @@ const starproductdata = [
     },
     {
         products_sid: 6,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "耶加雪菲(十包一入)",
         products_price: 320,
         products_content:
@@ -47,7 +47,7 @@ const starproductdata = [
     },
     {
         products_sid: 59,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "黃金曼特寧(一磅)",
         products_price: 940,
         products_content:
@@ -56,22 +56,22 @@ const starproductdata = [
     },
     {
         products_sid: 12,
-        products_tag:"純苦",
+        products_tag:"推薦",
         products_name: "模範生(五包一入)",
         products_price: 170,
         products_content:
             "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
         products_img: "bag2-1.jpg",
     },
-    {
-        products_sid: 55,
-        products_tag:"純苦",
-        products_name: "模範生(五包一入)",
-        products_price: 170,
-        products_content:
-            "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
-        products_img: "bag2-1.jpg",
-    },
+    // {
+    //     products_sid: 55,
+    //     products_tag:"純苦",
+    //     products_name: "模範生(十包一入)",
+    //     products_price: 170,
+    //     products_content:
+    //         "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
+    //     products_img: "bag2-1.jpg",
+    // },
 
 ];
 

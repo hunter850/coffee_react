@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import _ from "lodash";
+import { debounce } from "lodash";
 import axios from "axios";
 
 import { previewAPI, popTagAPI, searchPost } from "../../../../config/api-path";
@@ -8,16 +8,18 @@ import Magnifier from "./Magnifier";
 import styles from "./scss/Searchbar.module.scss";
 import ResultRow from "./ResultRow";
 
-function Seachbar({
-    setRows,
-    chooseToSearch,
-    setSearchMode,
-    keyWord,
-    setKeyWord,
-    setIsEnd,
-    setGetDataTimes,
-    setTabs,
-}) {
+function Seachbar(props) {
+    const {
+        setRows,
+        chooseToSearch,
+        setSearchMode,
+        keyWord,
+        setKeyWord,
+        setIsEnd,
+        setGetDataTimes,
+        setTabs,
+        setTabHistory,
+    } = props;
     const { sid } = useAuth();
     const {
         container,
@@ -77,7 +79,10 @@ function Seachbar({
 
         if (replaced) {
             setIsEnd(false);
-            setTabs("");
+            setTabs(() => {
+                setTabHistory((pre) => [...pre, ""]);
+                return "";
+            });
             setGetDataTimes(0);
             setSearchMode("submit");
             clearPreview();
@@ -94,7 +99,7 @@ function Seachbar({
     };
 
     const sendDataDebounce = useCallback(
-        _.debounce((val) => {
+        debounce((val) => {
             const pattern = /[\u3105-\u3129\u02CA\u02C7\u02CB\u02D9]+$/;
             const replaced = val.replace(pattern, "").trim();
 

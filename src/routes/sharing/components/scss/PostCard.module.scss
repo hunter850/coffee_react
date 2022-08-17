@@ -76,13 +76,14 @@
                 overflow : hidden;
                 text-overflow : ellipsis;
                 white-space : nowrap;
-
+                
             }
             
             .nickname_span{
                 max-width: 35%;
+                cursor: pointer;
                 &:hover{
-                    background-color: rgba(220, 220, 220);
+                    background-color: rgba(146, 149, 156, 0.95)
                 }
             }
             .title_span{

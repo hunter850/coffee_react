@@ -10,7 +10,6 @@ import styles from "./scss/PostDeatailCarousel.module.scss";
 import { Navigation, Pagination } from "swiper";
 
 function PostDeatailCarousel({ imgs }) {
-    console.log("imgs length", imgs.length);
     const { mySwiper, carousel_img, img_wrap } = styles;
 
     return (
