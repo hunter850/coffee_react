@@ -259,8 +259,6 @@ function Cart() {
                     </div>
                 </div>
             </div>
-            <Link to="/cart/creditcard">信用卡</Link>
-            <Link to="/cart/form">表單</Link>
             <ChatBot />
         </Fragment>
     );
