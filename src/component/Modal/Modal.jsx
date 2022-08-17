@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import useSetNow from "../../hooks/useSetNow";
 import useScrollbar from "../../hooks/useScrollbar";
 import useClass from "../../hooks/useClass";
@@ -15,14 +15,18 @@ function Modal(props) {
         setIsOpen,
         bordY = -30,
         time = 0.5,
+        onOpen = () => {},
+        onClose = () => {},
         closeButton = true,
         className = "",
         style,
     } = props;
+
     const setNow = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
     const c = useClass();
     const { close_button, modal_bg, modal_bord } = cssStyles;
+    const mountedRef = useRef(false);
     const styles = useMemo(() => {
         return {
             bgStyle: {
@@ -52,6 +56,9 @@ function Modal(props) {
     useEffect(() => {
         if (isOpen) {
             hideScrollbar();
+            if (mountedRef.current) {
+                onOpen();
+            }
             setModalBackground((pre) => ({ ...pre, display: "flex" }));
             setNow(() => {
                 setModalBackground((pre) => ({ ...pre, opacity: 1 }));
@@ -63,6 +70,9 @@ function Modal(props) {
             });
         } else {
             showScrollbar();
+            if (mountedRef.current) {
+                onClose();
+            }
             setModalBackground((pre) => ({
                 ...pre,
                 display: "none",
@@ -74,7 +84,11 @@ function Modal(props) {
                 opacity: 0,
             }));
         }
+        if (!mountedRef.current) {
+            mountedRef.current = true;
+        }
         return () => showScrollbar();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
     return (
         <div

@@ -22,6 +22,8 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     // 是否開啟自動輪播
     const [myIsAuto, setMyIsAuto] = useState(isAuto);
 
+    const [start, setStart] = useState(false);
+
     const setNow = useSetNow();
 
     const rightPage = () => {
@@ -41,36 +43,46 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
     };
     // 自動輪播
     useEffect(() => {
+        setTimeout(() => {
+            setStart(true);
+        }, 3000);
+    }, []);
+    useEffect(() => {
         // 除錯用
-        // console.log(direction);
+        console.log(direction);
         // console.log(page);
         if (myIsAuto === true) {
-            if (direction === '') {
-                setTimeout(() => {
-                    setDirection('auto');
-                }, 3000);
+            if (direction === '' && start === true) {
+                setDirection('auto');
             }
 
             if (direction === 'auto') {
                 const autoNextPage = setTimeout(() => {
                     if (page < imgsLength + 1 && page !== 0) {
                         setPage(page + 1);
+                        setNow(() => {
+                            clearTimeout(autoNextPage);
+                        });
                     }
                 }, 3000);
-
-                if (remoteControl === false) {
-                    clearTimeout(autoNextPage);
-                }
 
                 if (autoCarousel) {
                     // 滑鼠移出
                     autoCarousel.current.addEventListener('mouseleave', () => {
                         setDirection('');
-                        clearTimeout(autoNextPage);
+                        setNow(() => {
+                            clearTimeout(autoNextPage);
+                        });
                     });
                     // 滑鼠移入
                     autoCarousel.current.addEventListener('mouseenter', () => {
                         setDirection('stop');
+                        setNow(() => {
+                            clearTimeout(autoNextPage);
+                        });
+                    });
+                    // 點擊取消setTimeout
+                    autoCarousel.current.addEventListener('click', () => {
                         clearTimeout(autoNextPage);
                     });
                 }
@@ -87,7 +99,7 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                 });
             }
         }
-    }, [page, direction, myIsAuto]);
+    }, [page, direction, myIsAuto, start]);
 
     useEffect(() => {
         if (remoteControl === false) {
@@ -159,10 +171,10 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     );
                 })}
             </ul>
-            <div className="arror-left" onClick={leftPage}>
+            <div className="arror-left" onClick={() => leftPage()}>
                 <div></div>
             </div>
-            <div className="arror-right" onClick={rightPage}>
+            <div className="arror-right" onClick={() => rightPage()}>
                 <div></div>
             </div>
         </div>

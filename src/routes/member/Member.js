@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ChatBot from "../../component/Bot/ChatBot";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
-import { getUserData,getUserCoupons,getUserLikes,getUserTotalPoints } from "../../config/api-path";
+import { getUserData,getUserCoupons,getUserLikes,getUserTotalPoints,getUserCanUsePoints } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
@@ -45,7 +46,7 @@ function Member() {
     const [getCoupons, setGetCoupons] = useState(0);
     const [getLikes,setGetLikes] = useState(0);
     const [getTotalPoints,setGetTotalPoints] = useState(0);
-    const [getCanUse,setCanUse] = useState(0);
+    const [getCanUse,setCanUse] = useState(null);
 
     useEffect(() => {
 
@@ -115,10 +116,27 @@ function Member() {
             })
             .then((response) => {
                 console.log(response.data);
-                setCanUse(response.data[0].total_points);
-                setGetTotalPoints(response.data[1].member_level);
+                setGetTotalPoints(response.data[0].member_level);
             });
-    }, [token,getTotalPoints,getCanUse]);
+    }, [token,getTotalPoints]);
+
+    // --------------------- 可用點數 ---------------------
+    useEffect(() => {
+        axios
+            .get(getUserCanUsePoints, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                if(response.data.length==0){
+                    setCanUse(0);
+                    return;
+                }
+                setCanUse(response.data[0].total_points);
+            });
+    }, [token,getCanUse]);
 
 
 
@@ -255,6 +273,8 @@ function Member() {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <ChatBot />
 
         </Fragment>
     );
