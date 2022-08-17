@@ -50,6 +50,7 @@ function CartForm() {
     const [selectedFoodCouponId, , resetSelectedFoodCouponId] = useData(
         "selectedFoodCouponId"
     );
+    const [, setLastInsertId, resetLastInsertId] = useData("lastInsertId");
     const couponId =
         nowList === "productList"
             ? selectedProductCouponId
@@ -61,8 +62,10 @@ function CartForm() {
         resetFood();
         resetProductCoupon();
         resetFoodCoupon();
+        resetLastInsertId();
         if (!token) {
             alert("請先登入");
+            navigate("/member/login", { replace: true });
             return;
         }
         // 讀localStorage決定nowList
@@ -132,6 +135,7 @@ function CartForm() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const confirmHandler = useCallback(() => {
+        resetLastInsertId();
         axios
             .post(
                 cartCheck,
@@ -150,18 +154,18 @@ function CartForm() {
                 }
             )
             .then((result) => {
-                // console.log(result.data);
-                if (result.data.affectedRows >= 1) {
-                    console.log("success");
-                    return;
+                console.log(result.data);
+                const { success, insertId } = result.data;
+                if (success && insertId !== -1) {
                     getCount();
+                    setLastInsertId(insertId);
                     resetProduct();
                     resetFood();
                     resetProductCoupon();
                     resetFoodCoupon();
                     resetSelectedProductCouponId();
                     resetSelectedFoodCouponId();
-                    navigate("/products", { replace: false });
+                    navigate("/cart/detail", { replace: true });
                 }
             });
     }, [
@@ -178,6 +182,8 @@ function CartForm() {
         resetFoodCoupon,
         resetSelectedProductCouponId,
         resetSelectedFoodCouponId,
+        resetLastInsertId,
+        setLastInsertId,
         navigate,
     ]);
     return (

@@ -28,6 +28,7 @@
     background-color: #e3e7e7;
     min-width: 1440px;
     padding-bottom: 30px;
+    margin-bottom: -30px;
 }
 
 .course-page-btn {

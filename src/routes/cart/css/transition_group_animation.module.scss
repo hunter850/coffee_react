@@ -76,7 +76,6 @@
     display: inline-block;
 }
 
-
 /* ----------------分隔線-------------------- */
 
 :global(.fade-slide-enter) {
@@ -173,7 +172,7 @@
 
 :global(.left-slide-exit-active) {
     opacity: 0;
-    transform: translateX(-80px) translateY(10px)  scale(80%);
+    transform: translateX(-80px) translateY(10px) scale(80%);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
@@ -183,35 +182,36 @@
 }
 
 // -----------------------------------------
+.tab_fade {
+    &:global(-enter) {
+        opacity: 0;
+        transform: translateX(-80px) translateY(10px) scale(70%);
+    }
 
-:global(.tab-fade-enter) {
-    opacity: 0;
-    transform: translateX(-80px) translateY(10px) scale(70%);
-}
+    &:global(-enter-active) {
+        opacity: 1;
+        transform: translateX(0px) translateY(0px) scale(100%);
+        transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    }
 
-:global(.tab-fade-enter-active) {
-    opacity: 1;
-    transform: translateX(0px) translateY(0px) scale(100%);
-    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-}
+    &:global(-enter-done) {
+        opacity: 1;
+        transform: translateX(0px) translateY(0px) scale(100%);
+    }
 
-:global(.tab-fade-enter-done) {
-    opacity: 1;
-    transform: translateX(0px) translateY(0px) scale(100%);
-}
+    &:global(-exit) {
+        opacity: 1;
+        transform: translateX(0px) translateY(0px) scale(100%);
+    }
 
-:global(.tab-fade-exit) {
-    opacity: 1;
-    transform: translateX(0px) translateY(0px) scale(100%);
-}
+    &:global(-exit-active) {
+        opacity: 0;
+        transform: translateX(-80px) translateY(10px) scale(70%);
+        transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    }
 
-:global(.tab-fade-exit-active) {
-    opacity: 0;
-    transform: translateX(-80px) translateY(10px) scale(70%);
-    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
-}
-
-:global(.tab-fade-exit-done) {
-    transform: translateX(-80px) translateY(10px) scale(700%);
-    opacity: 0;
+    &:global(-exit-done) {
+        transform: translateX(-80px) translateY(10px) scale(700%);
+        opacity: 0;
+    }
 }

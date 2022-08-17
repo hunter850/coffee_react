@@ -1,10 +1,12 @@
 .printer-top {
-    z-index: 1;
+    // z-index: 1;
     border: 6px solid #6e7b83;
     height: 6px;
     border-bottom: 0;
     border-radius: 6px 6px 0 0;
     background: #333333;
+    position: relative;
+    z-index: 3;
 }
 
 .printer-bottom {
@@ -18,9 +20,11 @@
 
 .paper-container {
     position: relative;
-    overflow: hidden;
-    height: 100vh;
+    // overflow: hidden;
+    // height: 100vh;
     margin-bottom: 30px;
+    overflow: visible;
+    height: auto;
 }
 
 .paper {
@@ -31,6 +35,8 @@
     margin-top: -12px;
     animation: print 3000ms cubic-bezier(0.68, -0.55, 0.265, 0.9);
     -moz-animation: print 3000ms cubic-bezier(0.68, -0.55, 0.265, 0.9);
+    width: calc(100% - 24px);
+    position: relative;
 }
 
 .main-contents {
@@ -104,13 +110,16 @@
     color: #666;
     text-align: start;
     margin-bottom: 24px;
-    min-width: 944px;
-    min-height: 470px;
+    // min-width: 944px;
+    // min-height: 470px;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .success-description-wrap {
-    width: 600px;
+    // width: 600px;
     margin: auto;
+    width: 100%;
 }
 
 .course-order-title {

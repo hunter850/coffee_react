@@ -1,0 +1,22 @@
+.cart_detail_container .printer-top {
+    position: relative;
+    z-index: 3;
+}
+
+.cart_detail_container .paper {
+    width: calc(100% - 24px);
+    position: relative;
+}
+.cart_detail_container .paper-container {
+    overflow: visible;
+    height: auto;
+}
+
+.cart_detail_container .success-description {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.cart_detail_container .success-description-wrap {
+    width: 100%;
+}
