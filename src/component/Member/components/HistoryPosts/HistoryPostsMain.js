@@ -5,6 +5,7 @@ import MemberMenu from "../MemberMenu/MemberMenu";
 import HistoryPostsCard from "./HistoryPostsCard";
 import "./HistoryPosts.css";
 import useLog from "../../../../hooks/useLog";
+import ChatBot from "../../../Bot/ChatBot";
 
 import { getUserPosts } from "../../../../config/api-path";
 
@@ -86,7 +87,15 @@ function HistoryPostsMain() {
             });
             console.log(newMyPosts);
             setSortPosts(newMyPosts);
+        } else if (e.target.value === "sixMonths") {
+            const newMyPosts = myPosts.filter((v) => {
+                const now = new Date();                             
+                const dataDate = new Date(v.created_at).getTime();  
+                return now.getTime() - dataDate >= 15552000000;
+            });
+            setSortPosts(newMyPosts);
         }
+
     };
 
     // 跳轉到分享牆
@@ -153,16 +162,14 @@ function HistoryPostsMain() {
                                     onChange={(e) => sortPost(e)}
                                 >
                                     <option value="">查詢排序</option>
-                                    <option value="dateAsc">
+                                    {/* <option value="dateAsc">
                                         由遠&nbsp;&gt;&nbsp;到近
-                                    </option>
+                                    </option> */}
                                     <option value="dateDesc">
                                         由近&nbsp;&gt;&nbsp;到遠
                                     </option>
                                     <option value="threeMonths">過去三個月</option>
-                                    <option value="priceDesc">
-                                        價錢高&nbsp;&gt;&nbsp;低
-                                    </option>
+                                    <option value="sixMonths">半年以前的貼文</option>
                                 </select>
                             </div>
                         </div>
@@ -222,6 +229,8 @@ function HistoryPostsMain() {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <ChatBot/>
         </>
     );
 }
