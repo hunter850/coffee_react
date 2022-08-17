@@ -4,7 +4,6 @@ import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
 import useDebounce from "../../../hooks/useDebounce";
 import { useNav } from "../../../Contexts/NavProvider";
-import { Link } from "react-router-dom";
 import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
 import ChatBot from "../../../component/Bot/ChatBot";
