@@ -31,7 +31,7 @@ const breakpointColumnsObj = {
 
 function Post({ newPost }) {
     const { authorized, sid, account, token } = useAuth();
-    const { tabsHistory, tabNow, tabPush } = useTabsHistory();
+    const { nowTabs, pushTabs } = useTabsHistory();
 
     const { container, my_masonry_grid, my_masonry_grid_column, loader } =
         styles;
@@ -41,7 +41,6 @@ function Post({ newPost }) {
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
-    // const [tabs, setTabs] = useState(newPost ? "newPost" : "home");
 
     const [modal_sid, setModal_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
@@ -84,8 +83,7 @@ function Post({ newPost }) {
         setChooseValue("");
         setSearchMode("");
         setIsEnd(false);
-        // setTabs("home");
-        tabPush("home");
+        pushTabs("home");
 
         (async () => {
             const r = await getData();
@@ -151,12 +149,12 @@ function Post({ newPost }) {
     }, [keyWord]);
 
     useEffect(() => {
-        if (modal_sid || tabNow === "newPost") {
+        if (modal_sid || nowTabs === "newPost") {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "visible";
         }
-    }, [modal_sid, tabNow]);
+    }, [modal_sid, nowTabs]);
 
     useEffect(() => {
         (async () => {
@@ -197,8 +195,6 @@ function Post({ newPost }) {
     const chooseToSearch = (v, times = 0, rt = false) => {
         setChooseValue(v);
 
-        tabPush("");
-
         const { name, sid, type, member_sid } = v;
         const params = { q: sid || member_sid, type, times };
 
@@ -227,9 +223,9 @@ function Post({ newPost }) {
 
     useEffect(() => {
         if (newPost) {
-            tabPush("newPost");
+            pushTabs("newPost");
         } else {
-            tabPush("home");
+            pushTabs("home");
         }
 
         if (window.history.scrollRestoration) {
@@ -249,8 +245,6 @@ function Post({ newPost }) {
                 setIsEnd={setIsEnd}
                 setGetDataTimes={setGetDataTimes}
                 chooseToSearch={chooseToSearch}
-                // tabs={tabs}
-                // setTabs={setTabs}
                 resetState={resetState}
             />
 
@@ -287,7 +281,7 @@ function Post({ newPost }) {
                         windowScrollY={scrollY[1]}
                     />
                 )}
-                {tabNow === "newPost" && <NewPost />}
+                {nowTabs === "newPost" && <NewPost />}
             </div>
 
             <Footer />

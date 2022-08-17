@@ -14,7 +14,7 @@ import Upload from "./components/NewPost/Upload";
 function NewPost({ windowScrollY = 0 }) {
     const { token } = useAuth();
     const { wrap, new_post, nav, new_edit } = styles;
-    const { tabLast, tabPush } = useTabsHistory();
+    const { lastTabs, pushTabs } = useTabsHistory();
 
     const cvsRefArr = useRef([]);
     const cvsRef = useRef(null);
@@ -27,8 +27,7 @@ function NewPost({ windowScrollY = 0 }) {
     const [photoSize, setPhotoSize] = useState([]);
 
     const goPrev = () => {
-        // console.log(tabLast);
-        tabPush(tabLast);
+        pushTabs(lastTabs);
         window.history.pushState({}, null, `/sharing/`);
     };
 
