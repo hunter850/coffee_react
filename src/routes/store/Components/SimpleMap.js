@@ -109,6 +109,7 @@ export default function SimpleMap(props) {
             <GoogleMapReact
                 bootstrapURLKeys={{
                     key: "AIzaSyAQ313cuqnG1Q1MPRDhP-k-EQOANPo__PQ",
+                    // AIzaSyCBVfTVK3SMBOShZ8yflHk4hXwxiw2YkqM
                     // key: "AIzaSyC1zUkWfPtmhWMab1laufpZDktUDtQBv2E",
                     // AIzaSyC1zUkWfPtmhWMab1laufpZDktUDtQBv2E 
                 }}

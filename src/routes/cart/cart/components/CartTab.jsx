@@ -9,9 +9,11 @@ import GoodsList from "./GoodsList";
 import TotalHeader from "./TotalHeader";
 import TotalBord from "./TotalBord";
 import styles from "./css/cartTab.module.scss";
+import transitionStyles from "../../css/transition_group_animation.module.scss";
 
 function CartTab() {
     const { cart_container, list_wrap, total_wrap, modal_body } = styles;
+    const { tab_fade } = transitionStyles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [, setPriceInfo] = useState({
@@ -35,7 +37,7 @@ function CartTab() {
                         <CSSTransition
                             key={nowList}
                             timeout={250}
-                            classNames="tab-fade"
+                            classNames={tab_fade}
                             appear={false}
                         >
                             {nowList === "productList" ? (

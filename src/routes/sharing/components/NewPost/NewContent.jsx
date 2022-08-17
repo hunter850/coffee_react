@@ -180,7 +180,7 @@ function NewContent(props) {
                         hidden
                         name="myTag"
                         value={myTag}
-                        onChange={() => { }}
+                        onChange={() => {}}
                     />
                     <TransitionGroup component="div" className={tag_wrap}>
                         {previewData.map((v) => {

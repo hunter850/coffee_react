@@ -8,7 +8,7 @@ import CancelBtn from "../CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 import styles from "./scss/PostDetailModal.module.scss";
 
-function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
+function PostDetailModal({ modal_sid, setModal_sid, windowScrollY = 0 }) {
     const {
         post_detail_wrap,
         post_detail,
@@ -26,15 +26,14 @@ function PostDetailModal({ post_sid, setPost_sid, windowScrollY = 0 }) {
     };
 
     const goPrev = () => {
-        setPost_sid(0);
+        setModal_sid(0);
         window.history.pushState({}, null, `/sharing/`);
     };
 
     const getPostDetailData = () => {
-        axios(`${getPosts}/${post_sid}`).then((r) => {
-            console.log(r.data);
+        axios(`${getPosts}/${modal_sid}}`).then((r) => {
             if (r.data.code !== 200) {
-                setPost_sid(0);
+                setModal_sid(0);
                 navigate("/sharing");
             }
             setData(r.data);

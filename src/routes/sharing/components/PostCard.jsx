@@ -77,19 +77,20 @@ function PostCard({ cardData, modalMode, chooseToSearch }) {
                         <span className={like_str}>{likeQ}</span>
                     </li>
                     <li className={content_wrap}>
-                        <div
-                            className={title_nickname}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                chooseToSearch({
-                                    type: "nickname",
-                                    sid: member_sid,
-                                });
-                                window.scrollTo(0, 0);
-                            }}
-                        >
-                            <span className={nickname_span}>
+                        <div className={title_nickname}>
+                            <span
+                                className={nickname_span}
+                                onClick={(e) => {
+                                    console.log("名稱篩", member_sid);
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    chooseToSearch({
+                                        type: "nickname",
+                                        sid: member_sid,
+                                    });
+                                    window.scrollTo(0, 0);
+                                }}
+                            >
                                 {member_nickname}
                             </span>
                             <span className={title_span}>{title}</span>

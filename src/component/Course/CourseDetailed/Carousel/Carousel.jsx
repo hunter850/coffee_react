@@ -63,11 +63,19 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     // 滑鼠移出
                     autoCarousel.current.addEventListener('mouseleave', () => {
                         setDirection('');
-                        clearTimeout(autoNextPage);
+                        setNow(() => {
+                            clearTimeout(autoNextPage);
+                        });
                     });
                     // 滑鼠移入
                     autoCarousel.current.addEventListener('mouseenter', () => {
                         setDirection('stop');
+                        setNow(() => {
+                            clearTimeout(autoNextPage);
+                        });
+                    });
+                    // 點擊取消setTimeout
+                    autoCarousel.current.addEventListener('click', () => {
                         clearTimeout(autoNextPage);
                     });
                 }
@@ -156,10 +164,10 @@ function Carousel({ imgs, height = 500, width = '100%', router = '', isAuto = tr
                     );
                 })}
             </ul>
-            <div className="arror-left" onClick={leftPage}>
+            <div className="arror-left" onClick={() => leftPage()}>
                 <div></div>
             </div>
-            <div className="arror-right" onClick={rightPage}>
+            <div className="arror-right" onClick={() => rightPage()}>
                 <div></div>
             </div>
         </div>

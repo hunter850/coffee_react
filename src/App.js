@@ -9,6 +9,7 @@ import FrontPage from "./routes/frontPage/FrontPage";
 import Cart from "./routes/cart/cart/Cart";
 import CartCreditCard from "./routes/cart/creditcard/CartCreditCard";
 import CartForm from "./routes/cart/cartForm/CartForm";
+import CartDetail from "./routes/cart/cartDetail/CartDetail";
 import Products from "./routes/Products/Products";
 import Food from "./routes/food/Food";
 import Reserve from "./routes/reserve/Reserve";
@@ -59,6 +60,10 @@ const App = () => {
                                 element={<CartCreditCard />}
                             />
                             <Route path="/cart/form" element={<CartForm />} />
+                            <Route
+                                path="/cart/detail"
+                                element={<CartDetail />}
+                            />
                             <Route path="/products" element={<Products />} />
                             <Route
                                 path="/products/detail/:products_sid"
@@ -121,6 +126,10 @@ const App = () => {
                             <Route
                                 path="/PointsToCoupon"
                                 element={<PointsToCoupon />}
+                            />
+                            <Route
+                                path="*"
+                                element={<h1>404 Not Found !</h1>}
                             />
                         </Routes>
                     </AllProvider>
