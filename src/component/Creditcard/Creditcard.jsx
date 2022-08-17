@@ -22,6 +22,7 @@ function Creditcard(props) {
         cardCvv,
         setCardCvv,
         cardSubmitHandler,
+        confirmButton = true,
     } = props;
     const {
         creditcard_wrap,
@@ -124,6 +125,7 @@ function Creditcard(props) {
                     cardNumberFocus={cardNumberFocus}
                     cardNameFocus={cardNameFocus}
                     cardValidFocus={cardValidFocus}
+                    confirmButton={confirmButton}
                 />
             </div>
         </div>
