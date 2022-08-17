@@ -1,51 +1,38 @@
 import React, { useContext, useState, useMemo } from "react";
 import { useCallback } from "react";
-const TabsHistory = React.createContext([]);
+const TabsHistory = React.createContext();
 
 export function useTabsHistory() {
     return useContext(TabsHistory);
 }
 
 function TabsHistoryProvider({ children }) {
-    const [tabsHistory, setTabsHistory] = useState(["home"]);
+    const [tabs, setTabs] = useState(["home"]);
+    const nowTabs = useMemo(() => tabs.at(-1), [tabs]);
+    const lastTabs = useMemo(() => tabs.at(-2), [tabs]);
 
-    const tabLast = useMemo(() => {
-        const length = tabsHistory.length;
-        console.log("last", tabsHistory);
-        return tabsHistory[length - 2];
-    }, [tabsHistory]);
-
-    const tabNow = useMemo(() => {
-        const last = tabsHistory.pop();
-        return last;
-    }, [tabsHistory]);
-
-    // console.log("context", tabsHistory);
-    const tabPush = useCallback(
+    const pushTabs = useCallback(
         (v) => {
-            setTabsHistory((pre) => {
-                // 比對Array last value重複push
+            setTabs((pre) => {
                 if (pre.at(-1) === v) {
                     return pre;
                 } else {
-                    // pre.push(v);
-                    console.log(pre);
                     return [...pre, v];
                 }
             });
         },
-        [tabsHistory]
+        [tabs]
     );
 
     return (
         <>
             <TabsHistory.Provider
                 value={{
-                    tabsHistory,
-                    tabNow,
-                    tabLast,
-                    setTabsHistory,
-                    tabPush,
+                    tabs,
+                    setTabs,
+                    nowTabs,
+                    lastTabs,
+                    pushTabs,
                 }}
             >
                 {children}
