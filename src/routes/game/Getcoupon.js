@@ -198,7 +198,7 @@ function Getcoupon() {
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <Modal.Header></Modal.Header>
                     <Modal.Body style={{ padding: "24px 36px" }}>
-                        今天抽過囉~~ 大專加油
+                        今天已領取輪盤優惠券
                     </Modal.Body>
                     <Modal.Footer></Modal.Footer>
                 </Modal>
