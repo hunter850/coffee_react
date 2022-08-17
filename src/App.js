@@ -127,6 +127,10 @@ const App = () => {
                                 path="/PointsToCoupon"
                                 element={<PointsToCoupon />}
                             />
+                            <Route
+                                path="*"
+                                element={<h1>404 Not Found !</h1>}
+                            />
                         </Routes>
                     </AllProvider>
                 </AuthContextProvider>
