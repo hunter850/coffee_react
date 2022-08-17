@@ -20,8 +20,11 @@ import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import MessageBox from '../../component/Item/MessageBox/MessageBox';
 import Modal from "../../component/Modal/Modal";
 import Footer from "../../component/Footer";
+import { useAuth } from "../../component/Member/AuthContextProvider";
+import Course from './Course';
 
 const CourseManage = () => {
+    const user_sid = Number(useAuth().sid);
     // 取得點擊的sid
     const [sid, setSid] = useState(0);
     // Modal控制器
@@ -211,7 +214,7 @@ const CourseManage = () => {
         </Fragment>
     );
 
-    return el;
+    return (user_sid === 2 ? el : <Course />);
 };
 
 export default CourseManage;
