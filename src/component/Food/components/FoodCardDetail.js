@@ -81,7 +81,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     <div className="choice">
                         <h6 className="choice-txt">冰熱選擇</h6>
                         {!ice && remind && (
-                            <p className="lg-field-err">請選擇冰量</p>
+                            <p className="lg-field-err">請選擇</p>
                         )}
                     </div>
                     {icechoice.map(({ name, id }) => {
@@ -109,7 +109,7 @@ function FoodCardDetail({ showFoodDetail, setIsShow, setDataFromFoodDetail }) {
                     <div className="choice">
                         <h6 className="choice-txt"> 甜度選擇</h6>
                         {!sugar && remind && (
-                            <p className="lg-field-err">請選擇甜度</p>
+                            <p className="lg-field-err">請選擇</p>
                         )}
                     </div>
                     {sugarchoice.map(({ name, id }) => {

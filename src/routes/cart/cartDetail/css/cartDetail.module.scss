@@ -3,6 +3,43 @@
     padding-bottom: 24px;
 }
 
+.header_text {
+    margin-bottom: 21px;
+}
+
+%list_basic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 0px;
+    position: relative;
+}
+.list {
+    @extend %list_basic;
+    &::after {
+        content: "";
+        display: block;
+        width: 90%;
+        height: 1px;
+        background-color: var(--DARKGRAY);
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        transform: translateX(-50%);
+    }
+}
+
+.list_name {
+    width: 50%;
+    text-align: center;
+}
+
+.list_quantity {
+    width: 50%;
+    text-align: center;
+}
+
 .order_number_label {
     margin-bottom: 8px;
 }
