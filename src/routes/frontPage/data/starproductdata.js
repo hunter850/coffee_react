@@ -63,15 +63,33 @@ const starproductdata = [
             "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
         products_img: "bag2-1.jpg",
     },
-    // {
-    //     products_sid: 55,
-    //     products_tag:"純苦",
-    //     products_name: "模範生(十包一入)",
-    //     products_price: 170,
-    //     products_content:
-    //         "具有豐富的芳香水果酸氣迷人,且帶有柑橘的明亮甜感,巧克力的餘韻油脂感特佳",
-    //     products_img: "bag2-1.jpg",
-    // },
+    {
+        products_sid: 61,
+        products_tag:"推薦",
+        products_name: "曼特寧(一磅)",
+        products_price: 640,
+        products_content:
+            "為蘇門答臘最具代表的咖啡豆,其草本風味質感濃郁芳香度特強,口感厚實的甘甜味是它的獨到之處,對於不喜歡酸味的人的最佳選擇",
+        products_img: "coffeeBean-29-17.jpg",
+    },
+    {
+        products_sid: 52,
+        products_tag:"推薦",
+        products_name: "肯亞AA TOP(一磅)",
+        products_price: 940,
+        products_content:
+            "AA TOP最高等級的肯亞咖啡豆其濃郁的黑梅香氣,口感豐富且尾韻悠長,轉化為肯亞特有的甜,一入口紅酒般的餘韻在口中揮之不去",
+        products_img: "coffeeBean-11-1.jpg",
+    },
+    {
+        products_sid: 60,
+        products_tag:"推薦",
+        products_name: "曼巴(一磅)",
+        products_price: 320,
+        products_content:
+            "口感厚實甘醇的曼特寧搭配核果香氣絕佳的巴西咖啡豆,奶油的質感與明顯的可可味搭配後清雅的回甘口感一直會讓人回味無窮",
+        products_img: "coffeeBean-29-11.jpg",
+    },
 
 ];
 
