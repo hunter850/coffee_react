@@ -8,6 +8,7 @@ import { useNav } from "../../../../Contexts/NavProvider";
 import Modal from "../../../Modal/Modal";
 import { login,signUp,doVerification } from "../../../../config/api-path";
 import "./LoginMain.css";
+import loading from "../../../../images/member/coffee_loading.png";
 
 import { FaUser } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa";
@@ -177,14 +178,12 @@ function LoginMain() {
                 // 過場
                 setTimeout(() => {
                     setIsLoading(true);
-                    console.log(1);
                 }, 0);
 
                 setTimeout(() => {
                     getCount();
                     navigate("/member", {replace: false})
-                    console.log(2);
-                }, 1000);
+                }, 2300);
                 setLoginSuccess(true);
             }
             // setIsOpen(true);
@@ -288,11 +287,16 @@ function LoginMain() {
         setEyeIsOpen(!eyeIsOpen);
     }
 
-
+    
     return (
         <>
             <div className="login-wrap">
-            <div className={isLoading ? "lg-mask": ""}></div>
+                <div className={isLoading ? "lg-mask-white": ""}>
+                    <div className={isLoading ? "lg-mask": ""}></div>
+                        {
+                            isLoading ? <img src={loading} alt="" className="lg-coffee-cup"/> : ""
+                        }
+                </div>
                 <div className="lg-wrapper">
                     <div className="lg-welcome" style={{transform : notLog ? `translate(${fmWidth}px)`:""}} ref={welcomeWidth}>
                         <h1 className="wel-title">{changeText ? "Welcome back !" : "還沒有帳號嗎？"}</h1>
