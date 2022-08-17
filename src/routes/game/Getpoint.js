@@ -5,7 +5,6 @@ import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
 // import "./css/Getpoint.css";
 import "./css/Getpoint.scss";
-
 import SnakeGame from "./Components/SnakeGame";
 import AlertItem from "./AlertItem/AlertItem";
 import axios from "axios";

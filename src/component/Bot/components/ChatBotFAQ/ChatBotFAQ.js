@@ -93,7 +93,7 @@ const ChatBotFAQ = () => {
         <>
             <div className="ChatBotFAQBox">
                 <div className="ChatBotFAQBoxBtn" onClick={q1response}>
-                    快速菜單
+                    簡易菜單
                 </div>
                 <div className="ChatBotFAQBoxBtn" onClick={q2response}>
                     咖啡心理測驗

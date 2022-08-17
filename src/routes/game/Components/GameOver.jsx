@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
+// import { useNavigate } from "react-router-dom";
 // import GameBGM from "../../../images/Coupon/GameBGM.mp3";
 // import useSound from "use-sound";
 function GameOver(props) {
     const { token } = useAuth();
     const ScoreResult = props.score;
-
+    // let navigate = useNavigate();
     const SendPointResult = async () => {
         const headers = {
             "Content-Type": "application/json",
