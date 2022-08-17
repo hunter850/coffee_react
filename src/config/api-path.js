@@ -66,3 +66,4 @@ export const getFood = `${SERVER}/cart/read_food/api`;
 export const getProductCoupon = `${SERVER}/cart/product_coupon/api`;
 export const getFoodCoupon = `${SERVER}/cart/food_coupon/api`;
 export const cartCheck = `${SERVER}/cart/check/api`;
+export const cartDetail = `${SERVER}/cart/detail/api`;
