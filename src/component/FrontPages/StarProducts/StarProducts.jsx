@@ -45,7 +45,7 @@ function StarProducts() {
                         // EffectFlip,
                         // EffectCoverflow,
                         // EffectCards,
-                        Autoplay,
+                        // Autoplay,
                         Pagination,
                         Navigation,
                         Scrollbar,

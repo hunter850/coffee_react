@@ -1,4 +1,5 @@
 .detail-container {
+    padding-bottom: 50px;
     background-color: #EEE5DD;
     width: 100%;
     padding-left: 200px;
@@ -7,6 +8,7 @@
     text-align: center;
 }
 .leastnewtitle {
+    padding: 20px;
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
 }
 .latestnews-tag {
@@ -30,5 +32,16 @@
 }
 .leastnews_detail_content2 {
     margin-top: 50px;
-    justify-content: start;
+    text-align: start;
+    padding-bottom: 50px;
+}
+.latestnewbtn-layout {
+    color: brown;
+    justify-content: space-between;
+}
+.latestnewbtn img {
+    width: 50px;
+}
+.homebtn {
+    align-items: center;
 }

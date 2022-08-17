@@ -1,10 +1,11 @@
 .latestnew-day {
     color: #ffffff;
     font-size: 16px;
-    padding-right: 110px;
+    padding-right: 90px;
 }
 
 .latestnew-title {
+    display: flex;
     width: 100%;
     color: #ffffff;
     font-size: 24px;
@@ -15,7 +16,7 @@
     white-space: normal;
 }
 .titleitem-layout {
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;

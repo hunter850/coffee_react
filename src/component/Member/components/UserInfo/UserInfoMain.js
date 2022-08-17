@@ -5,6 +5,8 @@ import "./UserInfoMain.css";
 import MemberMenu from "../MemberMenu/MemberMenu";
 import UserList from "./UserList";
 import { getUserData,editUserData,editPasswordAPI,uploadAvatar } from "../../../../config/api-path";
+import ChatBot from "../../../Bot/ChatBot";
+import Footer from "../../../Footer"
 
 import Modal from "../../../Modal/Modal";
 
@@ -303,7 +305,7 @@ function UserInfo() {
     // 自動填表
     const autoSignUp = (e)=>{
         e.preventDefault();
-        setUserList({...userList,member_nickname:"嘎逼成癮的+B",member_mobile:"0911222333",member_address:"台北市信義區信義路五段55號"})
+        setUserList({...userList,member_nickname:"嘎逼Nomad",member_mobile:"0911222333",member_address:"台北市信義區信義路五段55號"})
     };
 
     return (
@@ -441,6 +443,8 @@ function UserInfo() {
                     </div>
                 </Modal.Body>
             </Modal>
+
+            <ChatBot />
         </>
     );
 }

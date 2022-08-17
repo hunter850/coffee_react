@@ -292,6 +292,25 @@ body {
     color: white;
     background-color: var(--gold);
 }
+.login-verification{
+    width: 120px;
+    height: 35px;
+    padding: 8px 20px;
+    background: var(--cream);
+    border-radius: 3rem;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    margin-left: 20px;
+    margin-top: 60px;
+    cursor: pointer;
+}
+/* .login-verification:hover{
+    background: var(--blue);
+    color: var(--cream);
+} */
+.submit-btn-wrap{
+    display: flex;
+}
 /* 錯誤訊息 */
 .verify-field-err{
     position: absolute;
@@ -303,4 +322,25 @@ body {
 }
 .verify-check{
     position: relative;
+}
+/* 滿版過場 */
+.login-wrap{
+    width: 100%;
+    height: auto;
+}
+.lg-mask{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--gold);
+    transition: 0.8s;
+    animation: 1s forwards move ease;
+    z-index: 999;
+}
+@keyframes move{
+    100%{
+        top: 0;
+    }
 }
