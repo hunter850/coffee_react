@@ -9,6 +9,7 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
+import { Link } from "react-router-dom";
 import { throttle } from "lodash";
 
 import { useAuth } from "../../component/Member/AuthContextProvider";
@@ -21,6 +22,7 @@ import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 import Footer from "../../component/Footer";
 import NewPost from "./NewPost";
+import Modal from "../../component/Modal/Modal";
 import styles from "./scss/Post.module.scss";
 
 const breakpointColumnsObj = {
@@ -41,16 +43,14 @@ function Post({ newPost }) {
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
-
     const [modal_sid, setModal_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
     const [chooseValue, setChooseValue] = useState({});
     const [isEnd, setIsEnd] = useState(false);
-
     const [rows, setRows] = useState([]);
-
     const [scrollY, setScrollY] = useState([0, 0]);
+    const [isOpen, setIsOpen] = useState(false);
 
     const getData = async (times = 0) => {
         if (isEnd) return { row: [] };
@@ -269,6 +269,7 @@ function Post({ newPost }) {
                                         cardData={v}
                                         modalMode={modal_sid}
                                         chooseToSearch={chooseToSearch}
+                                        setIsOpen={setIsOpen}
                                     />
                                 </a>
                             );
@@ -285,7 +286,18 @@ function Post({ newPost }) {
                 )}
                 {nowTabs === "newPost" && <NewPost />}
             </div>
-
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
             <Footer />
         </Fragment>
     );

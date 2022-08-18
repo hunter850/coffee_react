@@ -36,7 +36,7 @@ function PostDetailModal({
     };
 
     const getPostDetailData = () => {
-        axios(`${getPosts}/${modal_sid}}`).then((r) => {
+        axios(`${getPosts}/${modal_sid}`).then((r) => {
             if (r.data.code !== 200) {
                 setModal_sid(0);
                 navigate("/sharing");
@@ -48,6 +48,10 @@ function PostDetailModal({
     useEffect(() => {
         getPostDetailData();
     }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+    }, [data]);
 
     return (
         <div
