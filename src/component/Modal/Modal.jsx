@@ -15,8 +15,8 @@ function Modal(props) {
         setIsOpen,
         bordY = -30,
         time = 0.5,
-        onOpen = () => { },
-        onClose = () => { },
+        onOpen = () => {},
+        onClose = () => {},
         closeButton = true,
         closeAble = true,
         className = "",
@@ -39,7 +39,8 @@ function Modal(props) {
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `
-                    transform ${time === 0 ? time : time + 0.2
+                    transform ${
+                        time === 0 ? time : time + 0.2
                     }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
                 `,
             },
