@@ -102,8 +102,8 @@ function OrderHistoryMain() {
                     </div>
                 </Modal.Body>
             </Modal>
-
             <ChatBot />
+            <Footer />
         </>
     );
 }
