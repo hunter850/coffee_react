@@ -12,6 +12,7 @@ export function useNav() {
 function NavProvider(props) {
     const { children } = props;
     const [count, setCount] = useState(0);
+    const [shouldCover, setShouldCover] = useState(false);
     const { token } = useAuth();
     const getCount = useCallback(() => {
         axios
@@ -31,7 +32,15 @@ function NavProvider(props) {
         setCount(0);
     }, []);
     return (
-        <NavContext.Provider value={{ count, getCount, handleLogout }}>
+        <NavContext.Provider
+            value={{
+                count,
+                getCount,
+                handleLogout,
+                shouldCover,
+                setShouldCover,
+            }}
+        >
             {children}
         </NavContext.Provider>
     );
