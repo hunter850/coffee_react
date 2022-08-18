@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback, useReducer } from "react";
+import useClass from "../../hooks/useClass";
 import CardUpperImage from "./components/CardUpperImage";
 import CardNumberInput from "./components/CardNumberInput";
 import CardHolder from "./components/CardHolder";
@@ -37,6 +38,7 @@ function Creditcard(props) {
         fram_name_focus,
         fram_valid_focus,
     } = styles;
+    const c = useClass();
     const reducer = useCallback((state, action) => {
         switch (action.type) {
             case "blur":
@@ -83,7 +85,7 @@ function Creditcard(props) {
     }, []);
 
     return (
-        <div className={creditcard_wrap}>
+        <div className={c(creditcard_wrap, "animate__animated")}>
             <div className={flipClass}>
                 <div className={frameStyle}></div>
                 <div className={creditcard_containter}>
