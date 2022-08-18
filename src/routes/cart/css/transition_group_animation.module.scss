@@ -215,3 +215,73 @@
         opacity: 0;
     }
 }
+
+// --------------------------------------------------------------
+
+:global(.animate__animated) {
+    animation-fill-mode: both;
+}
+
+@keyframes jackInTheBox {
+    from {
+        opacity: 0;
+        transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+}
+
+@keyframes zoomOutDown {
+    40% {
+        opacity: 1;
+        transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+}
+
+.card_fade {
+    &:global(-enter) {
+        opacity: 0;
+        transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);
+        transform-origin: center bottom;
+    }
+
+    &:global(-enter-active) {
+        animation: jackInTheBox 3s;
+    }
+
+    &:global(-enter-done) {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &:global(-exit) {
+        opacity: 1;
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    }
+
+    &:global(-exit-active) {
+        animation: zoomOutDown 1s;
+    }
+
+    &:global(-exit-done) {
+        opacity: 0;
+        transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);
+    }
+}
