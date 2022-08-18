@@ -1,7 +1,8 @@
-import { Fragment, useState } from "react";
-// import useData from "../../../../hooks/useData";
+import { Fragment, useState, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import Creditcard from "../../../../component/Creditcard/Creditcard";
 import styles from "./css/personalInfoForm.module.scss";
+import transitionStyles from "../../css/transition_group_animation.module.scss";
 
 const fakeData = {
     name: "王曉明",
@@ -26,14 +27,19 @@ function PersonalInfoForm(props) {
         deliver_way_id,
         address_id,
     } = styles;
+    const { card_fade } = transitionStyles;
     const [cardName, setCardName] = useState("");
     const [cardMonth, setCardMonth] = useState("");
     const [cardYear, setCardYear] = useState("");
     const [cardCvv, setCardCvv] = useState("");
-    // const [nowList] = useData("nowList");
     const changeHandler = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
+    useEffect(() => {
+        if (formData.payWay === "信用卡") {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }, [formData.payWay]);
     return (
         <Fragment>
             <form className={cart_form}>
@@ -118,19 +124,12 @@ function PersonalInfoForm(props) {
                     <option value="信用卡">信用卡</option>
                     <option value="門市付現">門市付現</option>
                 </select>
-                {/* <label htmlFor={card_id} className={label_basic}>
-                    信用卡
-                </label>
-                <input
-                    value={formData.card}
-                    onChange={changeHandler}
-                    className={input_basic}
-                    name="card"
-                    type="text"
-                    id={card_id}
-                    autoComplete="off"
-                /> */}
-                {formData.payWay === "信用卡" && (
+                <CSSTransition
+                    in={formData.payWay === "信用卡"}
+                    timeout={1000}
+                    classNames={card_fade}
+                    unmountOnExit
+                >
                     <Creditcard
                         cardNumber={cardNumber}
                         setCardNumber={setCardNumber}
@@ -143,9 +142,8 @@ function PersonalInfoForm(props) {
                         cardCvv={cardCvv}
                         setCardCvv={setCardCvv}
                         confirmButton={false}
-                        // cardSubmitHandler={cardSubmitHandler}
                     />
-                )}
+                </CSSTransition>
             </form>
             <button onClick={() => setFormData(fakeData)}>fake</button>
         </Fragment>
