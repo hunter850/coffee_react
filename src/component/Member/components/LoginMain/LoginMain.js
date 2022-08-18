@@ -115,7 +115,7 @@ function LoginMain() {
     // 自動填表
     const autoSignUp = (e)=>{
         e.preventDefault();
-        setMyform({...myform,member_name:"KohiLing",member_account:"cafeNomad",member_password:"cafe0817",member_mail:"mfee26coffee@gmail.com"})
+        setMyform({...myform,member_name:"KohiLing",member_account:"cafe0824",member_password:"cafe123",member_mail:"mfee26coffee@gmail.com"})
     };
 
     // 錯誤訊息提示
