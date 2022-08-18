@@ -302,7 +302,7 @@
 .form_name_input {
     @extend %input_basic;
     &:focus {
-        border: 1px solid var(--GOLD);
+        border: 2px solid var(--GOLD);
     }
 }
 
@@ -351,7 +351,7 @@
 .month_select {
     @extend %select_basic;
     &:focus {
-        border: 1px solid var(--GOLD);
+        border: 2px solid var(--GOLD);
     }
 }
 
@@ -365,7 +365,7 @@
 .year_select {
     @extend %select_basic;
     &:focus {
-        border: 1px solid var(--GOLD);
+        border: 2px solid var(--GOLD);
     }
 }
 
@@ -388,7 +388,7 @@
     padding: 0px 9px;
     border: 1px solid var(--BLUE);
     &:focus {
-        border: 1px solid var(--GOLD);
+        border: 2px solid var(--GOLD);
     }
 }
 
