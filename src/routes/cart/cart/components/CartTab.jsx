@@ -1,4 +1,4 @@
-import { Fragment, useState, useCallback } from "react";
+import { Fragment, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useData from "../../../../hooks/useData";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
@@ -16,6 +16,7 @@ function CartTab() {
     const { tab_fade } = transitionStyles;
     const [deleteId, setDeleteId] = useState(-1);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [bordTop, setBordTop] = useState(0);
     const [, setPriceInfo] = useState({
         total: 0,
         discount: 0,
@@ -28,6 +29,17 @@ function CartTab() {
         localStorage.setItem("selectedCouponId", nowList);
         navigate("/cart/form", { replace: false });
     }, [navigate, nowList]);
+    useEffect(() => {
+        function scrollHandler() {
+            if (window.scrollY <= 60) {
+                setBordTop(0);
+            } else {
+                setBordTop(window.scrollY - 60);
+            }
+        }
+        window.addEventListener("scroll", scrollHandler);
+        return () => window.removeEventListener("scroll", scrollHandler);
+    }, []);
     return (
         <Fragment>
             <div className={cart_container}>
@@ -56,7 +68,7 @@ function CartTab() {
                         </CSSTransition>
                     </SwitchTransition>
                 </div>
-                <div className={total_wrap}>
+                <div className={total_wrap} style={{ top: `${bordTop}px` }}>
                     <TotalHeader />
                     <TotalBord
                         confirmHandler={confirmHandler}
