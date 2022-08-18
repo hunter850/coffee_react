@@ -20,7 +20,7 @@ import {
     getProductCoupon,
     getFoodCoupon,
 } from "../../../config/api-path";
-import useLog from "../../../hooks/useLog";
+// import useLog from "../../../hooks/useLog";
 
 function Cart() {
     const { container, px_200 } = bs_flex;
@@ -30,9 +30,14 @@ function Cart() {
         tab_button_group,
         tab_button_basic,
         tab_active,
+        modal_text,
+        modal_button_wrap,
+        modal_confirm,
     } = styles;
     const [inlineStyles, setInlineStyles] = useState({});
     const [show, setShow] = useState(false);
+    const [showProductButton, setShowProductButton] = useState(true);
+    const [showFoodButton, setShowFoodButton] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     const [alertText, setalertText] = useState("請先登入");
     const productRef = useRef([]);
@@ -61,9 +66,11 @@ function Cart() {
             if (Array.isArray(productList) && Array.isArray(foodList)) {
                 if (productList.length < 1 && foodList.length >= 1) {
                     foodClicked();
+                    setShowProductButton(false);
                 }
                 if (foodList.length < 1 && productList.length >= 1) {
                     productClicked();
+                    setShowFoodButton(false);
                 }
                 if (productList.length < 1 && foodList.length < 1) {
                     // alert("購物車無商品");
@@ -197,6 +204,12 @@ function Cart() {
             .then((result) => {
                 const [productResult, foodResult] = result;
                 shouldRelocate(productResult.data, foodResult.data);
+                if (productResult.data.length <= 0) {
+                    setShowProductButton(false);
+                }
+                if (foodResult.data.length <= 0) {
+                    setShowFoodButton(false);
+                }
                 if (
                     productResult.data.length <= 0 &&
                     foodResult.data.length <= 0
@@ -289,6 +302,11 @@ function Cart() {
                                 className={c(tab_button_basic, {
                                     [tab_active]: nowList === "productList",
                                 })}
+                                style={{
+                                    display: showProductButton
+                                        ? "block"
+                                        : "none",
+                                }}
                             >
                                 商品
                             </button>
@@ -297,6 +315,9 @@ function Cart() {
                                 className={c(tab_button_basic, {
                                     [tab_active]: nowList === "foodList",
                                 })}
+                                style={{
+                                    display: showFoodButton ? "block" : "none",
+                                }}
                             >
                                 餐點
                             </button>
@@ -311,25 +332,27 @@ function Cart() {
                 setIsOpen={setIsOpen}
                 closeAble={false}
                 closeButton={false}
-                onOpen={() => console.log("open")}
             >
                 <Modal.Header></Modal.Header>
                 <Modal.Body>
-                    <p>{alertText}</p>
-                    <Btn
-                        onClick={() =>
-                            navigate(
-                                `${
-                                    alertText === "請先登入"
-                                        ? "/member/login"
-                                        : "/"
-                                }`,
-                                { replace: true }
-                            )
-                        }
-                    >
-                        確認
-                    </Btn>
+                    <h4 className={modal_text}>{alertText}</h4>
+                    <div className={modal_button_wrap}>
+                        <Btn
+                            className={modal_confirm}
+                            onClick={() =>
+                                navigate(
+                                    `${
+                                        alertText === "請先登入"
+                                            ? "/member/login"
+                                            : "/"
+                                    }`,
+                                    { replace: true }
+                                )
+                            }
+                        >
+                            確認
+                        </Btn>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer></Modal.Footer>
             </Modal>

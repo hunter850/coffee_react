@@ -56,3 +56,19 @@
     border: none;
     outline: none;
 }
+
+.modal_text {
+    text-align: center;
+    color: var(--BLUE);
+    margin-bottom: 12px;
+}
+
+.modal_button_wrap {
+    width: 100%;
+    text-align: right;
+}
+
+.modal_confirm {
+    width: 75px;
+    font-size: 14px;
+}
