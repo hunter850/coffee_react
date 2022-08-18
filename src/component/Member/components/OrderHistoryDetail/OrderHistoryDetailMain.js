@@ -6,6 +6,8 @@ import OrderHistoryDetailList from "../OrderHistoryDetail/OrderHistoryDetailList
 import OrderHistoryDetailPrice from "../OrderHistoryDetail/OrderHistoryDetailPrice";
 import { useParams, Link } from "react-router-dom";
 import {v4} from "uuid";
+import ChatBot from "../../../Bot/ChatBot";
+import Footer from "../../../Footer";
 
 import { getOrderHistoryDetail } from "../../../../config/api-path";
 
@@ -98,6 +100,8 @@ function OrderHistoryDetailMain() {
                     </div>
                 </div>
             </div>
+            <ChatBot/>
+            <Footer/>
         </>
     );
 }
