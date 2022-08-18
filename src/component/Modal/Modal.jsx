@@ -93,6 +93,10 @@ function Modal(props) {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
+    useEffect(() => {
+        return () => setIsOpen(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <div
             style={modalBackground}
