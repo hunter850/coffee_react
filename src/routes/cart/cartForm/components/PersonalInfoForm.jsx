@@ -34,7 +34,6 @@ function PersonalInfoForm(props) {
     const [cardMonth, setCardMonth] = useState("");
     const [cardYear, setCardYear] = useState("");
     const [cardCvv, setCardCvv] = useState("");
-    const c = useClass();
     // const [nowList] = useData("nowList");
     const changeHandler = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
