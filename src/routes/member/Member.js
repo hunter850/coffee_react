@@ -2,6 +2,7 @@
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
+import Footer from "../../component/Footer";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
@@ -263,7 +264,7 @@ function Member() {
                             <p className="mc-level-title">{
                                 Number(getTotalPoints)>30000 ? "金卡會員":"銀卡會員"
                             }</p>
-                            <p className="mc-level-point">目前累積點數</p>
+                            <p className="mc-level-point">會員累積點數</p>
                             <p className="mc-level-ownPoint">{Number(getTotalPoints)}</p>
                             <p className="mc-level-canUse">可用的點數<span>{getCanUse}</span>點</p>
                             {
@@ -275,6 +276,7 @@ function Member() {
             </Modal>
 
             <ChatBot />
+            <Footer/>
 
         </Fragment>
     );

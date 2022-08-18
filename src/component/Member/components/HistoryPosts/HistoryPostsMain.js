@@ -6,6 +6,7 @@ import HistoryPostsCard from "./HistoryPostsCard";
 import "./HistoryPosts.css";
 import useLog from "../../../../hooks/useLog";
 import ChatBot from "../../../Bot/ChatBot";
+import Footer from "../../../Footer";
 
 import { getUserPosts } from "../../../../config/api-path";
 
@@ -231,6 +232,7 @@ function HistoryPostsMain() {
             </Modal>
 
             <ChatBot/>
+            <Footer/>
         </>
     );
 }

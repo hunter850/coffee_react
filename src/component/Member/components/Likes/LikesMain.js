@@ -4,6 +4,7 @@ import MemberMenu from "../MemberMenu/MemberMenu";
 import LikesCard from "./LikesCard";
 import "./Likes.css";
 import ChatBot from "../../../Bot/ChatBot";
+import Footer from "../../../Footer";
 
 import { getUserLikes } from "../../../../config/api-path";
 
@@ -123,6 +124,7 @@ function LikesMain() {
             </Modal>
 
             <ChatBot />
+            <Footer/>
         </>
     );
 }

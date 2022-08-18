@@ -76,5 +76,17 @@
 }
 
 @media (max-width: 768px) {
-    
+    .header_button {
+        background-color: #fff;
+        width: 25%;
+        flex: 1 0 auto;
+        padding: 0px;
+        justify-content: flex-start;
+        > span {
+            padding-left: 6px;
+            svg {
+                display: none;
+            }
+        }
+    }
 }

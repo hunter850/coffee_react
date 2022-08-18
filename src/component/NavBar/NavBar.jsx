@@ -4,7 +4,7 @@
 import "./NavBar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo/Logo";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
 import { useNav } from "../../Contexts/NavProvider";
 import axios from "axios";
@@ -14,7 +14,7 @@ import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 function NavBar({ navPosition = 'sticky' }) {
     const { sid, name, token, setAuth, auth } = useAuth();
-    const { count, getCount, handleLogout } = useNav();
+    const { count, getCount, handleLogout, shouldCover } = useNav();
     const navigate = useNavigate();
     // 下拉選單顯示的狀態
     const [navDropDown, setNavDropDown] = useState("");
@@ -78,6 +78,13 @@ function NavBar({ navPosition = 'sticky' }) {
         setGetUserName(auth.name);
 
     }, [token, getUserName, name, user.member_name]);
+    const coverStyle = useMemo(() => {
+        if(shouldCover) {
+            return {position: "absolute", top: "0px", left: "0px", width: "100%", height: "100%", backgroundColor: "#0009"};
+        } else {
+            return {};
+        }
+    }, [shouldCover]);
     // 未登錄顯示icon
     const memberIcon = (<div className="nav-media-display-none  member-icon">
         <Link to="/member/login">
@@ -146,6 +153,7 @@ function NavBar({ navPosition = 'sticky' }) {
         <>
 
             <header className="nav-header" style={{ position: navPosition }}>
+                <div style={coverStyle}></div>
                 {hamburgerMenuDisplay === true ? <HamburgerMenu /> : ''}
                 <nav className="container  nav-header-wrap" >
                     <div className="nav-menu" onClick={() => openHamburgerMenu()}>

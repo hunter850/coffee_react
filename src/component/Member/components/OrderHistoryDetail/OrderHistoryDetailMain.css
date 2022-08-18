@@ -9,10 +9,7 @@ body{
 .odd-wrap-main{
     /* 限制範圍 */
     width: 1440px;
-    position: absolute;
-    top: 150px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 90px auto 90px;
 }
 .odd-container{ 
     /* 扣掉左右200px */
