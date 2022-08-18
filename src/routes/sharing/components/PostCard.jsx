@@ -8,7 +8,7 @@ import styles from "./scss/PostCard.module.scss";
 import Modal from "../../../component/Modal/Modal";
 
 function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
-    const { authorized, sid: login_sid, account, token } = useAuth();
+    const { authorized, token } = useAuth();
     const {
         post_card,
         like_wrap,
@@ -18,8 +18,9 @@ function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
         nickname_span,
         title_span,
         tags_wrap,
+        like_heart,
+        liked_heart,
     } = styles;
-
     const {
         sid,
         title,
@@ -29,41 +30,41 @@ function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
         likes,
         tags,
         topic_sid,
+        liked,
     } = cardData;
 
-    const [didLike, setDidLike] = useState(false);
-    // const [likeQ, setLikeQ] = useState(0);
+    const [didLiked, setDidLiked] = useState(false);
+    const [likesNumber, setLikesNumber] = useState(0);
 
-    // useEffect(() => {
-    //     axios(`${memberLikeAPI}/${sid}`, {
-    //         params: { member_sid: login_sid },
-    //     }).then((r) => {
-    //         setDidLike(Boolean(r.data.liked));
-    //         setLikeQ(r.data.total);
-    //     });
-    // }, [modalMode]);
+    useEffect(() => {
+        setDidLiked(liked > 0);
+        setLikesNumber(likes);
+    }, [cardData]);
 
-    // const likeHandler = async (e) => {
-    //     e.preventDefault();
-    //     e.stopPropagation();
+    const likeHandler = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-    //     if (authorized) {
-    //         setDidLike(!didLike);
-    //         if (didLike) {
-    //             await axios.delete(memberLikeAPI + "/" + sid, {
-    //                 data: { member_sid: sid },
-    //             });
-    //             setLikeQ((pre) => pre - 1);
-    //         } else {
-    //             await axios.post(memberLikeAPI + "/" + sid, {
-    //                 member_sid: login_sid,
-    //             });
-    //             setLikeQ((pre) => pre + 1);
-    //         }
-    //     } else {
-    //         setIsOpen(true);
-    //     }
-    // };
+        if (authorized) {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            if (didLiked) {
+                await axios.delete(`${memberLikeAPI}/${sid}/unlike`, config);
+                setDidLiked(false);
+                setLikesNumber((pre) => pre - 1);
+            } else {
+                await axios.post(`${memberLikeAPI}/${sid}/like`, {}, config);
+                setDidLiked(true);
+                setLikesNumber((pre) => pre + 1);
+            }
+        } else {
+            setIsOpen(true);
+        }
+    };
 
     return (
         <>
@@ -73,18 +74,13 @@ function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
                     <li
                         className={like_wrap}
                         onClick={(e) => {
-                            // likeHandler(e);
-                            e.stopPropagation();
-                            e.preventDefault();
-
-                            setIsOpen(true);
+                            likeHandler(e);
                         }}
                     >
                         <FaHeart
-                            color={didLike ? "#faa" : "#fff"}
-                            fontSize="1.25rem"
+                            className={didLiked ? liked_heart : like_heart}
                         />
-                        <span className={like_str}>{likes}</span>
+                        <span className={like_str}>{likesNumber}</span>
                     </li>
                     <li className={content_wrap}>
                         <div className={title_nickname}>

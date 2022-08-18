@@ -283,6 +283,7 @@ function Post({ newPost }) {
                         setModal_sid={setModal_sid}
                         windowScrollY={scrollY[1]}
                         resetState={resetState}
+                        setRows={setRows}
                     />
                 )}
                 {nowTabs === "newPost" && <NewPost />}

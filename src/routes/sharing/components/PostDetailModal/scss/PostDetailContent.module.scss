@@ -1,8 +1,6 @@
 .grid_top{
     display: flex;
     flex-direction: column;
-
-    // padding-right: 1rem;
     height: calc(100% - 2.5rem);
 
     >div{
@@ -93,7 +91,6 @@
     .toggle_a{
         font-size: 15px;
         color: #787878 ;
-        cursor: pointer;
     }
 }
 

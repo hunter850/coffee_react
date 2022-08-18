@@ -13,6 +13,7 @@ function PostDetailModal({
     setModal_sid,
     windowScrollY = 0,
     resetState,
+    setRows,
 }) {
     const {
         post_detail_wrap,
@@ -66,13 +67,13 @@ function PostDetailModal({
                 <div className={post_detail_carousel}>
                     {data.rows && <PostDeatailCarousel imgs={data.rows.imgs} />}
                 </div>
-
                 <div className={post_detail_content}>
                     {data.rows && (
                         <PostDetailContent
                             data={data}
                             getPostDetailData={getPostDetailData}
                             resetState={resetState}
+                            setRows={setRows}
                         />
                     )}
                 </div>

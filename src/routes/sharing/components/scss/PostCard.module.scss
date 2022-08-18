@@ -15,6 +15,7 @@
         display: flex;
         align-items: center;
         opacity: 0;
+        cursor: pointer;
       
         top: 1rem;
         right: .75rem;
@@ -25,6 +26,41 @@
         padding: 0 .75rem;
         vertical-align: top;
         
+
+        .like_heart{
+            color: rgb(255, 255, 255);
+            font-size: 1.25rem;
+        }
+        .liked_heart{
+            color: #fff;
+            font-size: 1.25rem;
+            animation: pulse .7s 1 forwards;
+        }
+
+       
+        @keyframes pulse {
+            0%, 10% {
+              transform:  scale(1);
+                color: rgb(252, 252, 252);
+            }
+            20% {
+              transform:  scale(1.25);
+            }
+            40% {
+              transform:  scale(1);
+              color: rgb(250, 165, 165);
+            }
+            60% {
+              transform:  scale(1.15);
+              color: rgb(250, 165, 165);
+            }
+            70%, 100% {
+              transform:  scale(1.05);
+              color: rgb(250, 165, 165);              
+            }
+          }
+
+
         .like_str{
             font-family: 'Kosugi Maru',Arial, Helvetica, sans-serif;
     

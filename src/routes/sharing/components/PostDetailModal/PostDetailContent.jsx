@@ -10,12 +10,12 @@ import {
     memberLikeAPI,
 } from "../../../../config/api-path";
 import styles from "./scss/PostDetailContent.module.scss";
-
 import Tag from "../Tag";
 import Likes from "./Likes";
 import Comment from "./Comment";
 import More from "./More";
 import Modal from "../../../../component/Modal/Modal";
+import { cloneDeep } from "lodash";
 
 const svgIcon = (
     <svg
@@ -34,7 +34,8 @@ const svgIcon = (
     </svg>
 );
 
-function PostDetailContent({ data, getPostDetailData, resetState }) {
+function PostDetailContent(props) {
+    const { data, getPostDetailData, resetState, setRows } = props;
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
@@ -121,13 +122,10 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
             },
         };
 
-        const res = await axios(`${memberLikeAPI}/${post_sid}`, config);
-        console.log(res);
-
-        if (res.data.liked > 0) {
-            await axios.delete(`${memberLikeAPI}/${post_sid}`, config);
+        if (didLiked) {
+            await axios.delete(`${memberLikeAPI}/${post_sid}/unlike`, config);
         } else {
-            await axios.post(`${memberLikeAPI}/${post_sid}`, {}, config);
+            await axios.post(`${memberLikeAPI}/${post_sid}/like`, {}, config);
         }
 
         getPostDetailData();
@@ -143,13 +141,17 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
                 });
 
                 setDidLiked(!!r.data.liked);
+
+                setRows((pre) => {
+                    const obj = cloneDeep(pre);
+                    const ind = pre.findIndex((el) => el.sid === post_sid);
+                    obj[ind].liked = r.data.liked;
+                    obj[ind].likes = r.data.total;
+                    return obj;
+                });
             })();
         }
     }, [data]);
-
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
-    }, [isOpen]);
 
     return (
         <>
@@ -211,9 +213,11 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
                         />
                         <span
                             className={toggle_a}
-                            onClick={() =>
-                                setCommentWrapToggle(!commentWrapToggle)
-                            }
+                            onClick={() => {
+                                if (comments > 0) {
+                                    setCommentWrapToggle(!commentWrapToggle);
+                                }
+                            }}
                         >
                             ．{comments > 0 ? "留言" + comments : "尚未有留言"}
                         </span>
@@ -251,7 +255,12 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
                 </button>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+            <Modal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                time=".4"
+                onClose={() => (document.body.style.overflow = "hidden")}
+            >
                 <Link
                     to="/member/login"
                     style={{
