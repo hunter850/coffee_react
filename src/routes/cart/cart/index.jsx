@@ -272,11 +272,15 @@ function Cart() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
+        // 第一次進購物車時 陣列長度皆小於等於0且mountRef為false 模仿didMount 將mounRef.current改為true
         if (
             productList.length <= 0 &&
             foodList.length <= 0 &&
             mountRef.current === false
         ) {
+            mountRef.current = true;
+        } else if (mountRef.current === false) {
+            // 回上一頁因為不再fetch所以陣列長度不一定小於0 故要再判斷mountRef來決定didMount
             mountRef.current = true;
         } else {
             shouldRelocate(productList, foodList);

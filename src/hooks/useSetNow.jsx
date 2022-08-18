@@ -11,7 +11,7 @@ const useSetNow = () => {
                 return;
             }
             const progress = timestamp - start;
-            if (progress < 20) {
+            if (progress < 25) {
                 window.requestAnimationFrame(step);
                 return;
             }
