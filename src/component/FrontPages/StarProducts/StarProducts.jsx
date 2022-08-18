@@ -37,7 +37,7 @@ function StarProducts() {
                     // 每張圖之間的padding空白
                     spaceBetween={0}
                     // 一頁顯示幾張 可以改2 3 4 5試看看
-                    slidesPerView={styleChange === 1 ? 1 : 5}
+                    slidesPerView={styleChange === 1 ? 1 : 4}
                     // 額外的模組 除了寫在inline還需要在上方import才能用
                     modules={[
                         // EffectCube,

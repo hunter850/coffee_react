@@ -22,7 +22,7 @@ function GoodCourse() {
                         <ScrollWrap start="start" end="end">
                             <div>
                                 <Link to="./course">
-                                    <div className="">
+                                    <div>
                                         <img
                                             className="goodcourse_img"
                                             src={courseImg1}
@@ -35,7 +35,7 @@ function GoodCourse() {
                         <ScrollWrap start="start2" end="end2" offset={-300}>
                             <div>
                                 <Link to="./course">
-                                    <div className="text_basic goodcourse-paragraph right-brewedcoffee">
+                                    <div className="goodcourse-paragraph right-brewedcoffee">
                                         <h3 className="goodcourse-title">想學咖啡沖煮</h3>
                                         <p className="goodcourse-text">
                                             一杯簡單的咖啡，一種簡單的幸福。
@@ -54,7 +54,7 @@ function GoodCourse() {
                                 <Link to="./course">
                                     <div className="right-barista-width">
                                         <img
-                                            className="goodcourse_img laha-img"
+                                            className="goodcourse_img right-barista-img"
                                             src={courseImg2}
                                             alt=""
                                         />
@@ -63,12 +63,12 @@ function GoodCourse() {
                             </div>
                         </ScrollWrap>
 
-                        <div className="">
+                        <div>
                             <div className="goodcourse-box">
                                 <ScrollWrap start="start" end="end">
                                     <div>
                                         <Link to="./course">
-                                            <div className="text_basic goodcourse-paragraph left-barista">
+                                            <div className="goodcourse-paragraph left-barista">
                                                 <h3 className="goodcourse-title">想學義式拉花</h3>
                                                 <p className="goodcourse-text">
                                                     無需任何義式咖啡經驗也可上手。

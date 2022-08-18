@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
     return (
         <Fragment>
-            <div className="home-box">
+            <div>
                 <div className="home-container home-box-color">
                     <div className="d-flex partition">
                         <div className="footerlogo-wrap">

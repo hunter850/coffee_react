@@ -5,6 +5,9 @@
     margin: auto;
     text-align: center;
 }
+.leastnews-title-layout {
+    margin-bottom: 20px;
+}
 .home-title-white {
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     /* font-family: 'Rubik', sans-serif; */
@@ -19,6 +22,7 @@
     border-bottom: 1px solid #FFFFFF;
     padding-bottom: 20px;
     padding-top: 10px;
+    
 }
 
 .link_from {
