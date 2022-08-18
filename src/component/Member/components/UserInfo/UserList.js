@@ -2,6 +2,7 @@
 import { useEffect, useState} from "react";
 import "./UserInfoMain.css";
 
+import moment from "moment";
 import { MdError } from "react-icons/md";
 
 function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError,mailError,addressError}) {
@@ -55,7 +56,9 @@ function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError,mailEr
             </div> */}
             <div className="ui-info">
                 <div className="ui-info-title">生日</div>
-                <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday !== null ? userList.member_birthday.split("T")[0] : "" } onChange={changeFields} />
+                    {/* <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday !== null ? userList.member_birthday.split("T")[0] : "" } onChange={changeFields} /> */}
+                <input type="date" className="ui-field" name="member_birthday" value={userList.member_birthday !== null ? moment(userList.member_birthday).format("YYYY-MM-DD") : "" } onChange={changeFields} />
+                    
             </div>
             <div className="ui-info-check">
                 <div className="ui-info">
