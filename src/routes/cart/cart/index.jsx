@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
@@ -28,9 +29,11 @@ function Cart() {
         tab_active,
     } = styles;
     const [inlineStyles, setInlineStyles] = useState({});
+    const [show, setShow] = useState(false);
     const productRef = useRef([]);
     const foodRef = useRef([]);
     const buttonGroupRef = useRef(null);
+    const navigate = useNavigate();
     const c = useClass();
     const [nowList, setNowList] = useData("nowList");
     const [productList, setProductList, resetProduct] = useData("productList");
@@ -39,6 +42,25 @@ function Cart() {
     const [, setFoodCoupons, resetFoodCoupon] = useData("foodCoupons");
     const { token } = useAuth();
     const { getCount } = useNav();
+    const productClicked = () => {
+        localStorage.setItem("nowList", "productList");
+        setNowList("productList");
+    };
+    const foodClicked = () => {
+        localStorage.setItem("nowList", "foodList");
+        setNowList("foodList");
+    };
+    const shouldRelocate = (productList, foodList) => {
+        if (Array.isArray(productList) && Array.isArray(foodList)) {
+            if (productList.length < 1 && foodList.length >= 1) {
+                setNowList("foodList");
+            }
+            if (productList.length < 1 && foodList.length < 1) {
+                alert("購物車無商品");
+                navigate("/", { replace: false });
+            }
+        }
+    };
     useDebounce(
         () => {
             // mount時的[]不做任何fetch
@@ -146,32 +168,46 @@ function Cart() {
         // 設定localStorage
         localStorage.setItem("nowList", nowList);
         // fetch 商品
-        axios
-            .get(getProduct, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((result) => {
-                setProductList(result.data);
-            })
-            .catch((error) => {
-                console.log(error);
-                resetProduct();
-            });
+        const productFetch = axios.get(getProduct, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         // fetch 餐點
-        axios
-            .get(getFood, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+        const foodFetch = axios.get(getFood, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        Promise.all([productFetch, foodFetch])
             .then((result) => {
-                setFoodList(result.data);
+                const [productResult, foodResult] = result;
+                console.log(productResult.data);
+                console.log(foodResult.data);
+                shouldRelocate(productResult.data, foodResult.data);
+                // if (Array.isArray(productList) && Array.isArray(foodList)) {
+                //     if (
+                //         productResult.data.length < 1 &&
+                //         foodResult.data.length >= 1
+                //     ) {
+                //         setNowList("foodList");
+                //     }
+                //     if (
+                //         productResult.data.length < 1 &&
+                //         foodResult.data.length < 1
+                //     ) {
+                //         alert("購物車無商品");
+                //         navigate("/products", { replace: false });
+                //     }
+                // }
+                setShow(true);
+                setProductList(productResult.data);
+                setFoodList(foodResult.data);
             })
             .catch((error) => {
                 console.log(error);
                 resetFood();
+                resetProduct();
             });
         // fetch 商品優惠卷
         axios
@@ -203,14 +239,7 @@ function Cart() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const productClicked = () => {
-        localStorage.setItem("nowList", "productList");
-        setNowList("productList");
-    };
-    const foodClicked = () => {
-        localStorage.setItem("nowList", "foodList");
-        setNowList("foodList");
-    };
+
     useEffect(() => {
         function adjustButtonPosition() {
             const buttonHeight = getComputedStyle(
@@ -230,7 +259,10 @@ function Cart() {
         <Fragment>
             <div className={fake_body}>
                 <NavBar />
-                <div className={c(container, px_200)}>
+                <div
+                    className={c(container, px_200)}
+                    style={{ opacity: show ? 1 : 0 }}
+                >
                     <div className={cart_tab_wrap}>
                         <div
                             className={tab_button_group}

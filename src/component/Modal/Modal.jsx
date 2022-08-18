@@ -15,9 +15,10 @@ function Modal(props) {
         setIsOpen,
         bordY = -30,
         time = 0.5,
-        onOpen = () => {},
-        onClose = () => {},
+        onOpen = () => { },
+        onClose = () => { },
         closeButton = true,
+        closeAble = true,
         className = "",
         style,
     } = props;
@@ -38,8 +39,7 @@ function Modal(props) {
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
                 transition: `
-                    transform ${
-                        time === 0 ? time : time + 0.2
+                    transform ${time === 0 ? time : time + 0.2
                     }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
                 `,
             },
@@ -87,13 +87,15 @@ function Modal(props) {
         if (!mountedRef.current) {
             mountedRef.current = true;
         }
-        return () => showScrollbar();
+        return () => {
+            showScrollbar();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
     return (
         <div
             style={modalBackground}
-            onClick={closeHandler}
+            onClick={closeAble ? closeHandler : () => {}}
             className={c(modal_bg, bgClassName)}
         >
             <div
@@ -102,7 +104,10 @@ function Modal(props) {
                 className={c(modal_bord, className)}
             >
                 {closeButton && (
-                    <button className={close_button} onClick={closeHandler}>
+                    <button
+                        className={close_button}
+                        onClick={closeAble ? closeHandler : () => {}}
+                    >
                         <svg
                             width="12"
                             height="12"
