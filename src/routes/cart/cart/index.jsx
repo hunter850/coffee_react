@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
@@ -32,6 +33,7 @@ function Cart() {
     const productRef = useRef([]);
     const foodRef = useRef([]);
     const buttonGroupRef = useRef(null);
+    const navigate = useNavigate();
     const c = useClass();
     const [nowList, setNowList] = useData("nowList");
     const [productList, setProductList, resetProduct] = useData("productList");
@@ -47,6 +49,17 @@ function Cart() {
     const foodClicked = () => {
         localStorage.setItem("nowList", "foodList");
         setNowList("foodList");
+    };
+    const shouldRelocate = (productList, foodList) => {
+        if (Array.isArray(productList) && Array.isArray(foodList)) {
+            if (productList.length < 1 && foodList.length >= 1) {
+                setNowList("foodList");
+            }
+            if (productList.length < 1 && foodList.length < 1) {
+                alert("購物車無商品");
+                navigate("/", { replace: false });
+            }
+        }
     };
     useDebounce(
         () => {
@@ -154,40 +167,13 @@ function Cart() {
         }
         // 設定localStorage
         localStorage.setItem("nowList", nowList);
-        // // fetch 商品
-        // axios
-        //     .get(getProduct, {
-        //         headers: {
-        //             Authorization: `Bearer ${token}`,
-        //         },
-        //     })
-        //     .then((result) => {
-        //         setProductList(result.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         resetProduct();
-        //     });
-        // // fetch 餐點
-        // axios
-        //     .get(getFood, {
-        //         headers: {
-        //             Authorization: `Bearer ${token}`,
-        //         },
-        //     })
-        //     .then((result) => {
-        //         setFoodList(result.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //         resetFood();
-        //     });
         // fetch 商品
         const productFetch = axios.get(getProduct, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
+        // fetch 餐點
         const foodFetch = axios.get(getFood, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -198,6 +184,7 @@ function Cart() {
                 const [productResult, foodResult] = result;
                 console.log(productResult.data);
                 console.log(foodResult.data);
+                shouldRelocate(productResult.data, foodResult.data);
                 // if (Array.isArray(productList) && Array.isArray(foodList)) {
                 //     if (
                 //         productResult.data.length < 1 &&

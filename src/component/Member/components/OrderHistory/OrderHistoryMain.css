@@ -16,10 +16,11 @@ body{
 .odh-wrap-main{
     /* 限制範圍 */
     width: 1440px;
-    position: absolute;
+    margin: 90px auto 90px;
+    /* position: absolute;
     top: 150px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
 }
 .odh-container{ 
     /* 扣掉左右200px */
