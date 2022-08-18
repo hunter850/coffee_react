@@ -185,33 +185,41 @@
 .tab_fade {
     &:global(-enter) {
         opacity: 0;
-        transform: translateX(-80px) translateY(10px) scale(70%);
+        // transform: translateX(-80px) translateY(10px) scale(70%);
+        transform: scale(60%);
     }
 
     &:global(-enter-active) {
+        transform-origin: 0% 0%;
         opacity: 1;
-        transform: translateX(0px) translateY(0px) scale(100%);
+        // transform: translateX(0px) translateY(0px) scale(100%);
+        transform: scale(100%);
         transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
     }
 
     &:global(-enter-done) {
         opacity: 1;
-        transform: translateX(0px) translateY(0px) scale(100%);
+        // transform: translateX(0px) translateY(0px) scale(100%);
+        transform: scale(100%);
     }
 
     &:global(-exit) {
         opacity: 1;
-        transform: translateX(0px) translateY(0px) scale(100%);
+        // transform: translateX(0px) translateY(0px) scale(100%);
+        transform: scale(100%);
     }
 
     &:global(-exit-active) {
+        transform-origin: 0% 0%;
         opacity: 0;
-        transform: translateX(-80px) translateY(10px) scale(70%);
+        // transform: translateX(-80px) translateY(10px) scale(70%);
+        transform: scale(60%);
         transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
     }
 
     &:global(-exit-done) {
-        transform: translateX(-80px) translateY(10px) scale(700%);
+        // transform: translateX(-80px) translateY(10px) scale(700%);
+        transform: scale(60%);
         opacity: 0;
     }
 }
