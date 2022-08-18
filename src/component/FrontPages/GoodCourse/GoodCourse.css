@@ -20,12 +20,6 @@
 }
 
 
-
-/* .right-barista-width {
-    width: 10px;
-    height: 10px;
-} */
-
 .goodcourse-text {
     line-height: 2.5rem;
     padding-top: 10px;
@@ -68,9 +62,6 @@
     transform: translateX(-100px);
     opacity: 0;
 } */
-/* .text_basic {
-    background-color: #D9D9D9;
-} */
 /* .textto {
     transform: translateX(0px);
     opacity: 1;
@@ -84,15 +75,6 @@
     transform: translateX(0px);
     opacity: 1;
     transition: all 2s;
-} */
-
-/* .testbox {
-    width: 200px;
-    height: 200px;
-    background-color: aquamarine;
-    position: absolute;
-    top:50px;
-    left: 50px;
 } */
 
 
@@ -114,7 +96,7 @@
         height: 196px;
     }
     .goodcourse-paragraph {
-        width: 290px;
+        width: 280px;
         height: 250px;
         overflow: hidden;
         display: -webkit-box;
@@ -129,16 +111,12 @@
         flex-direction: column;
     }
     .right-brewedcoffee {
-        transform: translateX(60px) translateY(-30px);
-    }
-    .laha-img {
-        transform: translateY(-55px);
+        transform: translateX(40px) translateY(-30px);
     }
     .right-barista-img {
-        transform: translateY(-404px);
+        transform: translateX(20px) translateY(-55px);
     }
     .left-barista {
-        position: relative;
         z-index: 99999;
         transform: translateX(10px) translateY(-90px);
     }

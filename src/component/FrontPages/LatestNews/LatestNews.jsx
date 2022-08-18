@@ -22,7 +22,7 @@ function LatestNews({ bagcolorblue, latesttitlecolor }) {
                     </div>
                     <div className="leastnews-title-layout">
                         <ScrollWrap start="textfrom" end="textto">
-                            <Link to="/LatestnewsDetail">
+                            <Link  to="/LatestnewsDetail">
                                 <LatestTitle />
                             </Link>
                         </ScrollWrap>

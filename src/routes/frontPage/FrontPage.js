@@ -7,21 +7,23 @@ import LatestNews from "../../component/FrontPages/LatestNews/LatestNews";
 import StarProducts from "../../component/FrontPages/StarProducts/StarProducts";
 import GoodCourse from "../../component/FrontPages/GoodCourse/GoodCourse";
 import Footer from "../../component/Footer";
-// import Modal from "../../../src/component/Modal/Modal";
-import frontpagecoupon from "../../images/frontpage/frontpagecoupon.png";
+import Modal from "../../../src/component/Modal/Modal";
+import frontpagecouponimg from "../../images/frontpage/frontpagecoupon.png";
 import "./FrontPage.css";
 import { Link } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
 import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
+import useData from "../../hooks/useData";
 
 function FrontPage() {
-    console.log(frontpagecoupon);
-    const [isOpen, setIsOpen] = useState(false);
-    useEffect(() => {
-        if (frontpagecoupon) {
-            setIsOpen(true);
-        }
-    }, [frontpagecoupon]);
+    const [frontpagecoupon,setFrontpagecoupon] = useData("frontpagecoupon");
+    
+    // const [isOpen, setIsOpen] = useState(false);
+    // useEffect(() => {
+    //     if (frontpagecoupon) {
+    //         setIsOpen(true);
+    //     }
+    // }, [frontpagecoupon]);
     return (
         <Fragment>
             {/* <Spinnerwrap /> */}
@@ -29,10 +31,10 @@ function FrontPage() {
             <Carousel
                 imgs={[
                     "http://localhost:3500/images/frontpage/banner/banner-home.png",
-                    "http://localhost:3500/images/frontpage/banner/banner-product.png",
-                    "http://localhost:3500/images/frontpage/banner/banner-food.png",
-                    "http://localhost:3500/images/frontpage/banner/banner-course1.png",
-                    "http://localhost:3500/images/frontpage/banner/banner-course2.png",
+                    "http://localhost:3500/images/frontpage/banner/banner-product.jpg",
+                    "http://localhost:3500/images/frontpage/banner/banner-food.jpg",
+                    "http://localhost:3500/images/frontpage/banner/banner-course1.jpg",
+                    "http://localhost:3500/images/frontpage/banner/banner-course2.jpg",
                 ]}
                 height={650}
                 // isAuto={false}
@@ -43,19 +45,19 @@ function FrontPage() {
             <GoodCourse />
             <ChatBot />
             <Footer />
-            {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal isOpen={frontpagecoupon} setIsOpen={setFrontpagecoupon}>
                 <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
                         <Link to="/getcoupon">
                             <img
                                 style={{ width: "588px", height: "100%" }}
-                                src={frontpagecoupon}
+                                src={frontpagecouponimg}
                                 alt=""
                             />
                         </Link>
                     </div>
                 </Modal.Body>
-            </Modal> */}
+            </Modal>
         </Fragment>
     );
 }

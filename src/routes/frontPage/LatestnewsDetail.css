@@ -2,8 +2,8 @@
     padding-bottom: 50px;
     background-color: #EEE5DD;
     width: 100%;
-    padding-left: 400px;
-    padding-right: 400px;
+    padding-left: 300px;
+    padding-right: 300px;
     justify-content: center;
     text-align: center;
 }
@@ -18,7 +18,6 @@
 .leastnewdetailImg {
     width: 100%;
     height: 650px;
-    
 }
 .newslinedeco {
     width: 100%;

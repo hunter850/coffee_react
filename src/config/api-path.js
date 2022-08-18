@@ -60,6 +60,8 @@ export const productsDataGet = `${SERVER}/products/api`;
 export const sendCartPost = `${SERVER}/products/api/detail`;
 export const addUserLike = `${SERVER}/products/api/userLike`;
 export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
+export const getProductstag = `${SERVER}/products/api/getProductstag`;
+
 
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;

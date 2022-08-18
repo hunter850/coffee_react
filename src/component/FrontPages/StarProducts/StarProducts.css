@@ -18,6 +18,7 @@
     font-family: "Kosugi Maru", "Noto Sans TC", sans-serif;
     color:rgba(10, 10, 10, 0.73); 
     align-items: center;
+    padding-top: 30px;
     /* text-shadow: 1px 1px rgb(231, 231, 231), 1px 1px rgb(231, 231, 231), 1px 1px rgb(231, 231, 231); */
 
 }
