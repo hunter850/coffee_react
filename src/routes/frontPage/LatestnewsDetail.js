@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-// import leastnewdetailImg1 from "../../images/frontpage/latestnews/news-img1.png";
+import NavBar from "../../component/NavBar/NavBar";
+import Footer from "../../component/Footer";
+import ChatBot from "../../component/Bot/ChatBot";
 import "./LatestnewsDetail.css";
 import Tag from "../../component/Item/Tag/Tag";
 import { latestnewsdata } from "../frontPage/data/latestnewsdata";
 import left_arrow from "../../images/frontpage/material/left_arrow-removebg-preview.png";
 import right_arrow from "../../images/frontpage/material/right_arrow-removebg-preview.png";
-import homebtn from "../../images/frontpage/material/house-solid.svg";
+// import homebtn from "../../images/frontpage/material/house-solid.svg";
 
 export default function LatestnewsDetail() {
     const {
@@ -21,6 +23,7 @@ export default function LatestnewsDetail() {
     console.log(latestnewsdata);
     return (
         <Fragment>
+            <NavBar/>
             {latestnewsdata[page].map((v, i) => {
                 return (
                     <div key={v.news_sid} className="detail-container">
@@ -78,12 +81,12 @@ export default function LatestnewsDetail() {
                                 <p>Previous</p>
                             </div>
 
-                            <Link to="/">
+                            {/* <Link to="/">
                                 <div className="homebtn">
                                     <img style={{width:"40px",height:"40px"}} src={homebtn} alt="" />
                                     <p>home</p>
                                 </div>
-                            </Link>
+                            </Link> */}
 
                             <div
                                 className="latestnewbtn"
@@ -99,6 +102,8 @@ export default function LatestnewsDetail() {
                     </div>
                 );
             })}
+            <ChatBot />
+            <Footer/>
         </Fragment>
     );
 }

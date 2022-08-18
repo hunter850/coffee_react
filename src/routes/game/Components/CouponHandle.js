@@ -154,9 +154,8 @@ const CouponHandle = ({
             lastAngle = angle;
         }
 
-
         ctx.beginPath();
-        ctx.arc(centerX, centerY, 70, 0, PI2, false); 
+        ctx.arc(centerX, centerY, 74, 0, PI2, false); 
         ctx.closePath();
         ctx.fillStyle = darkColor;
         ctx.lineWidth = 15;

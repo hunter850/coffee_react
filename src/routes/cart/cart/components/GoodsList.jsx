@@ -2,7 +2,7 @@ import useData from "../../../../hooks/useData";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import CounterGroup from "./CounterGroup";
 import styles from "./css/goodsList.module.scss";
-import "../../css/transition_group_animation.module.scss";
+import transitionStyles from "../../css/transition_group_animation.module.scss";
 
 function GoodsList(props) {
     const { setDeleteId, setModalIsOpen, listName } = props;
@@ -15,6 +15,7 @@ function GoodsList(props) {
         p_price,
         p_multiply,
     } = styles;
+    const { tab_fade } = transitionStyles;
     const [list] = useData(listName);
     const deleteHandler = (itemId) => {
         setDeleteId(itemId);
@@ -25,7 +26,7 @@ function GoodsList(props) {
             {list.map((item) => (
                 <CSSTransition
                     timeout={500}
-                    classNames="tab-fade"
+                    classNames={tab_fade}
                     key={item.name + item.id}
                 >
                     <li className={list_style}>

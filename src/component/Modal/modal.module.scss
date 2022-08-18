@@ -70,7 +70,7 @@
 
 .modal_footer {
     width: 100%;
-    max-height: calc(90vh - 132px);
+    min-height: 24px;
     overflow: hidden;
     padding: 0px 36px;
     flex-shrink: 0;

@@ -1,4 +1,5 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import useData from "../../../hooks/useData";
 import useClass from "../../../hooks/useClass";
 import { useAuth } from "../../../component/Member/AuthContextProvider";
@@ -7,6 +8,7 @@ import { useNav } from "../../../Contexts/NavProvider";
 import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
 import ChatBot from "../../../component/Bot/ChatBot";
+import Modal from "../../../component/Modal/Modal";
 import bs_flex from "../css/bs_flex.module.scss";
 import styles from "./css/cart.module.scss";
 import axios from "axios";
@@ -17,6 +19,7 @@ import {
     getProductCoupon,
     getFoodCoupon,
 } from "../../../config/api-path";
+import Btn from "../../../component/Item/Btn/Btn";
 
 function Cart() {
     const { container, px_200 } = bs_flex;
@@ -28,9 +31,13 @@ function Cart() {
         tab_active,
     } = styles;
     const [inlineStyles, setInlineStyles] = useState({});
+    const [show, setShow] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const productRef = useRef([]);
     const foodRef = useRef([]);
+    const mountRef = useRef(false);
     const buttonGroupRef = useRef(null);
+    const navigate = useNavigate();
     const c = useClass();
     const [nowList, setNowList] = useData("nowList");
     const [productList, setProductList, resetProduct] = useData("productList");
@@ -39,6 +46,33 @@ function Cart() {
     const [, setFoodCoupons, resetFoodCoupon] = useData("foodCoupons");
     const { token } = useAuth();
     const { getCount } = useNav();
+    const productClicked = useCallback(() => {
+        localStorage.setItem("nowList", "productList");
+        setNowList("productList");
+    }, [setNowList]);
+    const foodClicked = useCallback(() => {
+        localStorage.setItem("nowList", "foodList");
+        setNowList("foodList");
+    }, [setNowList]);
+    const shouldRelocate = useCallback(
+        (productList, foodList) => {
+            if (Array.isArray(productList) && Array.isArray(foodList)) {
+                if (productList.length < 1 && foodList.length >= 1) {
+                    foodClicked();
+                }
+                if (foodList.length < 1 && productList.length >= 1) {
+                    productClicked();
+                }
+                if (productList.length < 1 && foodList.length < 1) {
+                    // alert("購物車無商品");
+                    // navigate("/", { replace: false });
+                    setShow(false);
+                    setIsOpen(true);
+                }
+            }
+        },
+        [foodClicked, productClicked]
+    );
     useDebounce(
         () => {
             // mount時的[]不做任何fetch
@@ -66,7 +100,6 @@ function Cart() {
                         }
                     )
                     .then(() => {
-                        // console.log(result.data);
                         getCount();
                     })
                     .catch((result) => {
@@ -146,32 +179,35 @@ function Cart() {
         // 設定localStorage
         localStorage.setItem("nowList", nowList);
         // fetch 商品
-        axios
-            .get(getProduct, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((result) => {
-                setProductList(result.data);
-            })
-            .catch((error) => {
-                console.log(error);
-                resetProduct();
-            });
+        const productFetch = axios.get(getProduct, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         // fetch 餐點
-        axios
-            .get(getFood, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+        const foodFetch = axios.get(getFood, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        Promise.all([productFetch, foodFetch])
             .then((result) => {
-                setFoodList(result.data);
+                const [productResult, foodResult] = result;
+                shouldRelocate(productResult.data, foodResult.data);
+                if (
+                    productResult.data.length <= 0 &&
+                    foodResult.data.length <= 0
+                ) {
+                    return;
+                }
+                setShow(true);
+                setProductList(productResult.data);
+                setFoodList(foodResult.data);
             })
             .catch((error) => {
                 console.log(error);
                 resetFood();
+                resetProduct();
             });
         // fetch 商品優惠卷
         axios
@@ -203,14 +239,7 @@ function Cart() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const productClicked = () => {
-        localStorage.setItem("nowList", "productList");
-        setNowList("productList");
-    };
-    const foodClicked = () => {
-        localStorage.setItem("nowList", "foodList");
-        setNowList("foodList");
-    };
+
     useEffect(() => {
         function adjustButtonPosition() {
             const buttonHeight = getComputedStyle(
@@ -226,11 +255,26 @@ function Cart() {
         return window.removeEventListener("resize", adjustButtonPosition);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    useEffect(() => {
+        if (
+            productList.length <= 0 &&
+            foodList.length <= 0 &&
+            mountRef.current === false
+        ) {
+            mountRef.current = true;
+        } else {
+            shouldRelocate(productList, foodList);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [productList, foodList]);
     return (
         <Fragment>
             <div className={fake_body}>
                 <NavBar />
-                <div className={c(container, px_200)}>
+                <div
+                    className={c(container, px_200)}
+                    style={{ opacity: show ? 1 : 0 }}
+                >
                     <div className={cart_tab_wrap}>
                         <div
                             className={tab_button_group}
@@ -259,6 +303,22 @@ function Cart() {
                 </div>
             </div>
             <ChatBot />
+            <Modal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                closeAble={false}
+                closeButton={false}
+                onOpen={() => console.log("open")}
+            >
+                <Modal.Header></Modal.Header>
+                <Modal.Body>
+                    <p>購物車無商品</p>
+                    <Btn onClick={() => navigate("/", { replace: true })}>
+                        確認
+                    </Btn>
+                </Modal.Body>
+                <Modal.Footer></Modal.Footer>
+            </Modal>
         </Fragment>
     );
 }
