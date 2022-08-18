@@ -9,6 +9,7 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Masonry from "react-masonry-css";
+import { Link } from "react-router-dom";
 import { throttle } from "lodash";
 
 import { useAuth } from "../../component/Member/AuthContextProvider";
@@ -21,6 +22,7 @@ import PostNav from "./components/PostNav/index";
 import PostDetailModel from "./components/PostDetailModal";
 import Footer from "../../component/Footer";
 import NewPost from "./NewPost";
+import Modal from "../../component/Modal/Modal";
 import styles from "./scss/Post.module.scss";
 
 const breakpointColumnsObj = {
@@ -30,7 +32,7 @@ const breakpointColumnsObj = {
 };
 
 function Post({ newPost }) {
-    const { authorized, sid, account, token } = useAuth();
+    const { sid: mySid, token } = useAuth();
     const { nowTabs, pushTabs } = useTabsHistory();
 
     const { container, my_masonry_grid, my_masonry_grid_column, loader } =
@@ -41,16 +43,14 @@ function Post({ newPost }) {
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
-
     const [modal_sid, setModal_sid] = useState(param.post_sid || 0);
     const [getDataTimes, setGetDataTimes] = useState(0);
     const [keyWord, setKeyWord] = useState("");
     const [chooseValue, setChooseValue] = useState({});
     const [isEnd, setIsEnd] = useState(false);
-
     const [rows, setRows] = useState([]);
-
     const [scrollY, setScrollY] = useState([0, 0]);
+    const [isOpen, setIsOpen] = useState(false);
 
     const getData = async (times = 0) => {
         if (isEnd) return { row: [] };
@@ -60,15 +60,16 @@ function Post({ newPost }) {
             const replaced = keyWord.replace(pattern, "").trim();
 
             const r = await axios(searchPost, {
-                params: { times, q: replaced, auth: sid },
+                params: { times, q: replaced, auth: mySid },
             });
             if (r.data.isEnd) setIsEnd(true);
             return r.data;
         } else if (searchMode === "choose") {
             return chooseToSearch(chooseValue, times, true);
         } else {
+            // default mode
             const r = await axios(getPosts, {
-                params: { times, auth: sid },
+                params: { times, auth: mySid },
             });
 
             return r.data;
@@ -197,7 +198,7 @@ function Post({ newPost }) {
         setChooseValue(v);
 
         const { name, sid, type, member_sid } = v;
-        const params = { q: sid || member_sid, type, times };
+        const params = { q: sid || member_sid, type, times, auth: mySid };
 
         if (name) {
             setKeyWord(name);
@@ -269,6 +270,7 @@ function Post({ newPost }) {
                                         cardData={v}
                                         modalMode={modal_sid}
                                         chooseToSearch={chooseToSearch}
+                                        setIsOpen={setIsOpen}
                                     />
                                 </a>
                             );
@@ -285,7 +287,18 @@ function Post({ newPost }) {
                 )}
                 {nowTabs === "newPost" && <NewPost />}
             </div>
-
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
             <Footer />
         </Fragment>
     );

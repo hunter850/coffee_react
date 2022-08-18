@@ -88,7 +88,6 @@ function Seachbar(props) {
                 (r) => {
                     if (r.data.success) {
                         setRows(r.data.rows);
-                        console.log(r.data);
                         if (r.data.isEnd) setIsEnd(true);
                     }
                 }

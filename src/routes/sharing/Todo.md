@@ -20,3 +20,9 @@ Table:tag 結構
 
 *Node 
 改寫token
+
+### spiner
+post 
+edit
+delete
+newpost

@@ -16,14 +16,13 @@ const emptyObj = {
 };
 
 function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
-    const { authorized, sid, account, token } = useAuth();
+    const { sid, token } = useAuth();
     const {
         member_sid,
         comment_sid,
         nickname,
         avatar,
         content,
-        replies,
         reply,
         created_at,
     } = data;
@@ -44,6 +43,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
     } = styles;
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isDelete, setIsDelete] = useState(false);
     const timeAbout = useTimeAbout();
     const replyInput = useRef(null);
 
@@ -71,21 +71,26 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
     }, [replyTo.who]);
 
     const replyPost = async () => {
-        if (authorized) {
+        if (token) {
             if (replyInput.current.value === "") {
                 replyInput.current.focus();
                 return;
             }
 
             const data = {
-                member_sid: replyTo.member_sid,
+                token,
                 comment_sid: replyTo.cmt_sid,
                 content: replyInput.current.value,
             };
-            await axios.post(replyAPI, data);
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            await axios.post(replyAPI, data, config);
 
             getPostDetailData();
-
             setReplyTo(emptyObj);
         } else {
             setIsOpen(true);
@@ -93,13 +98,21 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
     };
 
     const commentDelete = async () => {
-        const data = {
-            comment_sid,
-            post_sid,
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: {
+                post_sid,
+            },
         };
-        const r = await axios.delete(commentAPI, { data });
+        setIsDelete(true);
+        await axios.delete(`${commentAPI}/${comment_sid}`, config);
 
-        if (r.data.success) getPostDetailData();
+        setTimeout(() => {
+            setIsDelete(false);
+            getPostDetailData();
+        }, 800);
     };
 
     return (
@@ -175,11 +188,17 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
                         取消
                     </span>
                     <span className={reply_button} onClick={replyPost}>
-                        發送
+                        發佈
                     </span>
                 </div>
             )}
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
+
+            <Modal
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                time=".4"
+                onClose={() => (document.body.style.overflow = "hidden")}
+            >
                 <Link
                     to="/member/login"
                     style={{
@@ -190,6 +209,17 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
                 >
                     <h4>請先登入</h4>
                 </Link>
+            </Modal>
+            <Modal
+                closeButton={false}
+                isOpen={isDelete}
+                setIsOpen={setIsDelete}
+                time={0.25}
+                onClose={() => (document.body.style.overflow = "hidden")}
+            >
+                <span style={{ color: "var(--BLUE)", padding: ".5rem 5rem" }}>
+                    刪除成功
+                </span>
             </Modal>
         </div>
     );

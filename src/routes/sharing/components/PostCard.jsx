@@ -5,8 +5,9 @@ import { useAuth } from "../../../component/Member/AuthContextProvider";
 import { sharingIMGS } from "../../../config/api-path";
 import { FaHeart } from "react-icons/fa";
 import styles from "./scss/PostCard.module.scss";
+import Modal from "../../../component/Modal/Modal";
 
-function PostCard({ cardData, modalMode, chooseToSearch }) {
+function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
     const { authorized, sid: login_sid, account, token } = useAuth();
     const {
         post_card,
@@ -31,50 +32,59 @@ function PostCard({ cardData, modalMode, chooseToSearch }) {
     } = cardData;
 
     const [didLike, setDidLike] = useState(false);
-    const [likeQ, setLikeQ] = useState(0);
+    // const [likeQ, setLikeQ] = useState(0);
 
-    useEffect(() => {
-        axios(`${memberLikeAPI}/${sid}`, {
-            params: { member_sid: login_sid },
-        }).then((r) => {
-            setDidLike(Boolean(r.data.liked));
-            setLikeQ(r.data.total);
-        });
-    }, [modalMode]);
+    // useEffect(() => {
+    //     axios(`${memberLikeAPI}/${sid}`, {
+    //         params: { member_sid: login_sid },
+    //     }).then((r) => {
+    //         setDidLike(Boolean(r.data.liked));
+    //         setLikeQ(r.data.total);
+    //     });
+    // }, [modalMode]);
 
-    const likeHandler = async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    // const likeHandler = async (e) => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        if (authorized) {
-            setDidLike(!didLike);
-            if (didLike) {
-                await axios.delete(memberLikeAPI + "/" + sid, {
-                    data: { member_sid: sid },
-                });
-                setLikeQ((pre) => pre - 1);
-            } else {
-                await axios.post(memberLikeAPI + "/" + sid, {
-                    member_sid: login_sid,
-                });
-                setLikeQ((pre) => pre + 1);
-            }
-        } else {
-            alert("請登入");
-        }
-    };
+    //     if (authorized) {
+    //         setDidLike(!didLike);
+    //         if (didLike) {
+    //             await axios.delete(memberLikeAPI + "/" + sid, {
+    //                 data: { member_sid: sid },
+    //             });
+    //             setLikeQ((pre) => pre - 1);
+    //         } else {
+    //             await axios.post(memberLikeAPI + "/" + sid, {
+    //                 member_sid: login_sid,
+    //             });
+    //             setLikeQ((pre) => pre + 1);
+    //         }
+    //     } else {
+    //         setIsOpen(true);
+    //     }
+    // };
 
     return (
         <>
             <div className={post_card}>
                 <img src={`${sharingIMGS}/${img_name}`} alt={title} />
                 <ul>
-                    <li className={like_wrap} onClick={(e) => likeHandler(e)}>
+                    <li
+                        className={like_wrap}
+                        onClick={(e) => {
+                            // likeHandler(e);
+                            e.stopPropagation();
+                            e.preventDefault();
+
+                            setIsOpen(true);
+                        }}
+                    >
                         <FaHeart
                             color={didLike ? "#faa" : "#fff"}
                             fontSize="1.25rem"
                         />
-                        <span className={like_str}>{likeQ}</span>
+                        <span className={like_str}>{likes}</span>
                     </li>
                     <li className={content_wrap}>
                         <div className={title_nickname}>

@@ -17,6 +17,23 @@ import Comment from "./Comment";
 import More from "./More";
 import Modal from "../../../../component/Modal/Modal";
 
+const svgIcon = (
+    <svg
+        aria-label="更多選項"
+        className="_ab6-"
+        color="#262626"
+        fill="#262626"
+        height="28"
+        role="img"
+        viewBox="0 0 24 24"
+        width="24"
+    >
+        <circle cx="12" cy="12" r="1.5"></circle>
+        <circle cx="6" cy="12" r="1.5"></circle>
+        <circle cx="18" cy="12" r="1.5"></circle>
+    </svg>
+);
+
 function PostDetailContent({ data, getPostDetailData, resetState }) {
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
@@ -27,7 +44,7 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
         return { display: commentWrapToggle ? "block" : "none" };
     }, [commentWrapToggle]);
 
-    const { authorized, sid, account, token } = useAuth();
+    const { authorized, token } = useAuth();
 
     const {
         sid: post_sid,
@@ -69,23 +86,6 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
         msg_submit,
     } = styles;
 
-    const svgIcon = (
-        <svg
-            aria-label="更多選項"
-            className="_ab6-"
-            color="#262626"
-            fill="#262626"
-            height="28"
-            role="img"
-            viewBox="0 0 24 24"
-            width="24"
-        >
-            <circle cx="12" cy="12" r="1.5"></circle>
-            <circle cx="6" cy="12" r="1.5"></circle>
-            <circle cx="18" cy="12" r="1.5"></circle>
-        </svg>
-    );
-
     const commentPost = async () => {
         if (authorized) {
             if (commentInput.current.value === "") {
@@ -93,13 +93,17 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
                 return;
             }
             const data = {
-                member_sid: sid,
                 content: commentInput.current.value,
                 post_sid,
             };
-            const r = await axios.post(commentAPI, data);
+
+            await axios.post(commentAPI, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             commentInput.current.value = "";
-            if (r.data.success) getPostDetailData();
+            getPostDetailData();
         } else {
             setIsOpen(true);
         }
@@ -111,33 +115,37 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
             return;
         }
 
-        const res = await axios(`${memberLikeAPI}/${post_sid}`, {
-            params: { member_sid: sid },
-        });
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const res = await axios(`${memberLikeAPI}/${post_sid}`, config);
+        console.log(res);
 
         if (res.data.liked > 0) {
-            const res2 = await axios.delete(`${memberLikeAPI}/${post_sid}`, {
-                data: { member_sid: sid },
-            });
+            await axios.delete(`${memberLikeAPI}/${post_sid}`, config);
         } else {
-            const res2 = await axios.post(`${memberLikeAPI}/${post_sid}`, {
-                member_sid: sid,
-            });
+            await axios.post(`${memberLikeAPI}/${post_sid}`, {}, config);
         }
 
-        setDidLiked(!didLiked);
         getPostDetailData();
     };
 
     useEffect(() => {
         if (authorized) {
-            axios(`${memberLikeAPI}/${post_sid}`, {
-                params: { member_sid: sid },
-            }).then((r) => {
+            (async () => {
+                const r = await axios.get(`${memberLikeAPI}/${post_sid}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
                 setDidLiked(!!r.data.liked);
-            });
+            })();
         }
-    }, []);
+    }, [data]);
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -227,7 +235,16 @@ function PostDetailContent({ data, getPostDetailData, resetState }) {
                 </div>
             </div>
 
-            <div className={msg_wrap}>
+            <div
+                className={msg_wrap}
+                onClick={() => {
+                    setReplyTo({
+                        cmt_sid: 0,
+                        member_sid: 0,
+                        who: "",
+                    });
+                }}
+            >
                 <input className={msg_bar} ref={commentInput} />
                 <button className={msg_submit} onClick={commentPost}>
                     發佈
