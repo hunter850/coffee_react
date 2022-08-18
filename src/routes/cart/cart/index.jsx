@@ -9,6 +9,7 @@ import NavBar from "../../../component/NavBar/NavBar";
 import CartTab from "./components/CartTab";
 import ChatBot from "../../../component/Bot/ChatBot";
 import Modal from "../../../component/Modal/Modal";
+import Btn from "../../../component/Item/Btn/Btn";
 import bs_flex from "../css/bs_flex.module.scss";
 import styles from "./css/cart.module.scss";
 import axios from "axios";
@@ -19,7 +20,7 @@ import {
     getProductCoupon,
     getFoodCoupon,
 } from "../../../config/api-path";
-import Btn from "../../../component/Item/Btn/Btn";
+import useLog from "../../../hooks/useLog";
 
 function Cart() {
     const { container, px_200 } = bs_flex;
@@ -33,6 +34,7 @@ function Cart() {
     const [inlineStyles, setInlineStyles] = useState({});
     const [show, setShow] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [alertText, setalertText] = useState("請先登入");
     const productRef = useRef([]);
     const foodRef = useRef([]);
     const mountRef = useRef(false);
@@ -66,6 +68,7 @@ function Cart() {
                 if (productList.length < 1 && foodList.length < 1) {
                     // alert("購物車無商品");
                     // navigate("/", { replace: false });
+                    setalertText("購物車無商品");
                     setShow(false);
                     setIsOpen(true);
                 }
@@ -168,12 +171,12 @@ function Cart() {
 
     // didMount fetch 商品 餐點 的資料
     useEffect(() => {
-        resetProduct();
-        resetFood();
         resetProductCoupon();
         resetFoodCoupon();
         if (!token) {
-            alert("請先登入");
+            setalertText("請先登入");
+            setIsOpen(true);
+            // alert("請先登入");
             return;
         }
         // 設定localStorage
@@ -312,8 +315,19 @@ function Cart() {
             >
                 <Modal.Header></Modal.Header>
                 <Modal.Body>
-                    <p>購物車無商品</p>
-                    <Btn onClick={() => navigate("/", { replace: true })}>
+                    <p>{alertText}</p>
+                    <Btn
+                        onClick={() =>
+                            navigate(
+                                `${
+                                    alertText === "請先登入"
+                                        ? "/member/login"
+                                        : "/"
+                                }`,
+                                { replace: true }
+                            )
+                        }
+                    >
                         確認
                     </Btn>
                 </Modal.Body>
