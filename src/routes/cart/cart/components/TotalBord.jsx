@@ -14,6 +14,7 @@ function TotalBord(props) {
         button_wrap,
         confirm_button,
         count_title,
+        final_bord,
         text_mb,
         bottom_line,
     } = styles;
@@ -99,7 +100,7 @@ function TotalBord(props) {
                     <span className={count_title}>折價</span>
                     <span>{discount}</span>
                 </div>
-                <div>
+                <div className={final_bord}>
                     <p className={count_title}>結算金額</p>
                     {/* <p>{totalPrice - discount} 元</p> */}
                     <h3 className={c(final_price, text_mb)}>
