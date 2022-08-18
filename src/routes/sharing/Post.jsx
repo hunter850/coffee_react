@@ -32,7 +32,7 @@ const breakpointColumnsObj = {
 };
 
 function Post({ newPost }) {
-    const { authorized, sid, account, token } = useAuth();
+    const { sid: mySid, token } = useAuth();
     const { nowTabs, pushTabs } = useTabsHistory();
 
     const { container, my_masonry_grid, my_masonry_grid_column, loader } =
@@ -60,15 +60,16 @@ function Post({ newPost }) {
             const replaced = keyWord.replace(pattern, "").trim();
 
             const r = await axios(searchPost, {
-                params: { times, q: replaced, auth: sid },
+                params: { times, q: replaced, auth: mySid },
             });
             if (r.data.isEnd) setIsEnd(true);
             return r.data;
         } else if (searchMode === "choose") {
             return chooseToSearch(chooseValue, times, true);
         } else {
+            // default mode
             const r = await axios(getPosts, {
-                params: { times, auth: sid },
+                params: { times, auth: mySid },
             });
 
             return r.data;
@@ -197,7 +198,7 @@ function Post({ newPost }) {
         setChooseValue(v);
 
         const { name, sid, type, member_sid } = v;
-        const params = { q: sid || member_sid, type, times };
+        const params = { q: sid || member_sid, type, times, auth: mySid };
 
         if (name) {
             setKeyWord(name);
