@@ -6,7 +6,7 @@ import NavBar from "../../component/NavBar/NavBar";
 import BookMark from "../../component/Products/BookMark";
 import List from "../../component/Products/List";
 import axios from "axios";
-import { productsDataGet } from "../../config/api-path";
+import { productsDataGet, getProductstag } from "../../config/api-path";
 import { chunk } from "../../component/Course/helper/chunk";
 import "./Products.scss";
 import Footer from "../../component/Footer";
