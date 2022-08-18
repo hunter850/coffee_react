@@ -95,7 +95,7 @@ function Modal(props) {
     return (
         <div
             style={modalBackground}
-            onClick={closeAble && closeHandler}
+            onClick={closeAble ? closeHandler : () => {}}
             className={c(modal_bg, bgClassName)}
         >
             <div
@@ -106,7 +106,7 @@ function Modal(props) {
                 {closeButton && (
                     <button
                         className={close_button}
-                        onClick={closeAble && closeHandler}
+                        onClick={closeAble ? closeHandler : () => {}}
                     >
                         <svg
                             width="12"
