@@ -9,10 +9,7 @@ body {
 .hp-wrap-main {
     /* 限制範圍 */
     width: 1440px;
-    position: absolute;
-    top: 150px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 90px auto 90px;
 }
 .hp-container {
     /* 扣掉左右200px */
@@ -56,14 +53,14 @@ body {
 }
 .hp-arr{
     position: absolute;
-    top: 6px;
+    top: 156px;
     margin-left: 170px;
     z-index: 3;
     color: var(--blue);
 }
 .hp-search{
     position: absolute;
-    top: 6px;
+    top: 156px;
     margin-left: 260px;
     z-index: 3;
     color: var(--dark-gray);
