@@ -1,7 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
-import useClass from "../../../../hooks/useClass";
-// import useData from "../../../../hooks/useData";
 import Creditcard from "../../../../component/Creditcard/Creditcard";
 import styles from "./css/personalInfoForm.module.scss";
 import transitionStyles from "../../css/transition_group_animation.module.scss";
@@ -34,7 +32,6 @@ function PersonalInfoForm(props) {
     const [cardMonth, setCardMonth] = useState("");
     const [cardYear, setCardYear] = useState("");
     const [cardCvv, setCardCvv] = useState("");
-    // const [nowList] = useData("nowList");
     const changeHandler = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
@@ -145,7 +142,6 @@ function PersonalInfoForm(props) {
                         cardCvv={cardCvv}
                         setCardCvv={setCardCvv}
                         confirmButton={false}
-                        // cardSubmitHandler={cardSubmitHandler}
                     />
                 </CSSTransition>
             </form>
