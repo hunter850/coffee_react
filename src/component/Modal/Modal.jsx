@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import useSetNow from "../../hooks/useSetNow";
 import useScrollbar from "../../hooks/useScrollbar";
 import useClass from "../../hooks/useClass";
@@ -21,6 +22,7 @@ function Modal(props) {
         closeAble = true,
         className = "",
         style,
+        teleportTo = document.querySelector("body"),
     } = props;
 
     const setNow = useSetNow();
@@ -97,7 +99,7 @@ function Modal(props) {
         return () => setIsOpen(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return (
+    const el = (
         <div
             style={modalBackground}
             onClick={closeAble ? closeHandler : () => {}}
@@ -131,6 +133,11 @@ function Modal(props) {
             </div>
         </div>
     );
+    if (teleportTo === null) {
+        return el;
+    } else {
+        return createPortal(el, teleportTo);
+    }
 }
 
 export default Object.assign(Modal, {
