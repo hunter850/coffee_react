@@ -41,8 +41,8 @@ function NewContent(props) {
     const [topic, setTopic] = useState(0);
 
     useEffect(() => {
-        const { title, topic_sid, content, tags } = data;
         if (data) {
+            const { title, topic_sid, content, tags } = data;
             setTitle(title);
             setTopic(topic_sid);
             setContent(content);
