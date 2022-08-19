@@ -3,10 +3,12 @@ import axios from "axios";
 
 import PostDeatailCarousel from "./PostDetailCarousel";
 import { getPosts, searchPost } from "../../../../config/api-path";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CancelBtn from "../CancelBtn";
 import PostDetailContent from "./PostDetailContent";
 import styles from "./scss/PostDetailModal.module.scss";
+import Modal from "../../../../component/Modal/Modal";
+import EditContent from "./EditContent";
 
 function PostDetailModal({
     modal_sid,
@@ -22,7 +24,8 @@ function PostDetailModal({
         post_detail_content,
     } = styles;
     const [data, setData] = useState([]);
-
+    const [loginOpen, setLoginOpen] = useState(false);
+    const [editMode, setEditMode] = useState(false);
     const navigate = useNavigate();
 
     const clickHandler = (e) => {
@@ -42,45 +45,73 @@ function PostDetailModal({
                 setModal_sid(0);
                 navigate("/sharing");
             }
+            console.log(r.data);
             setData(r.data);
         });
     };
 
     useEffect(() => {
         getPostDetailData();
-    }, []);
+    }, [editMode]);
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
-    }, [data]);
+    }, [data, editMode]);
 
     return (
-        <div
-            className={post_detail_wrap}
-            id="detailCover"
-            onClick={(e) => {
-                clickHandler(e);
-            }}
-            style={{ top: windowScrollY }}
-        >
-            <div className={post_detail}>
-                <div className={post_detail_carousel}>
-                    {data.rows && <PostDeatailCarousel imgs={data.rows.imgs} />}
-                </div>
-                <div className={post_detail_content}>
-                    {data.rows && (
-                        <PostDetailContent
-                            data={data}
-                            getPostDetailData={getPostDetailData}
-                            resetState={resetState}
-                            setRows={setRows}
-                        />
+        <>
+            <div
+                className={post_detail_wrap}
+                id="detailCover"
+                onClick={(e) => {
+                    clickHandler(e);
+                }}
+                style={{ top: windowScrollY }}
+            >
+                <div className={post_detail}>
+                    <div className={post_detail_carousel}>
+                        {data.rows && (
+                            <PostDeatailCarousel imgs={data.rows.imgs} />
+                        )}
+                    </div>
+                    {!editMode ? (
+                        <div className={post_detail_content}>
+                            {data.rows && (
+                                <PostDetailContent
+                                    data={data}
+                                    getPostDetailData={getPostDetailData}
+                                    resetState={resetState}
+                                    setRows={setRows}
+                                    setLoginOpen={setLoginOpen}
+                                    setEditMode={setEditMode}
+                                />
+                            )}
+                        </div>
+                    ) : (
+                        <EditContent setEditMode={setEditMode} data={data} />
                     )}
-                </div>
 
-                <CancelBtn goPrev={goPrev} />
+                    <CancelBtn goPrev={goPrev} />
+                </div>
             </div>
-        </div>
+            <Modal
+                isOpen={loginOpen}
+                setIsOpen={setLoginOpen}
+                time=".4"
+                onClose={() => (document.body.style.overflow = "hidden")}
+            >
+                <Link
+                    to="/member/login"
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>請先登入</h4>
+                </Link>
+            </Modal>
+        </>
     );
 }
 
