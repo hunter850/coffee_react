@@ -25,8 +25,8 @@ function OrderHistoryDetailList({ list, orderList }) {
             <div className="odd-list">
                 <div className="odd-list-header">
                     <span className="odd-list-header-title">
-                        評論{" "}
-                        <FaPen size={"0.8rem"} style={{ marginLeft: "10px" }} />
+                        商品
+                        {/* <FaPen size={"0.8rem"} style={{ marginLeft: "10px" }} /> */}
                     </span>
                     <div className="odd-str-line"></div>
                     <span>價格</span>
