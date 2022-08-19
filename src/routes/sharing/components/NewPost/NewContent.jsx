@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import axios from "axios";
 import { debounce, difference } from "lodash";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -10,7 +10,8 @@ import styles from "./scss/NewContent.module.scss";
 import trans from "./scss/PreviewTransition.module.scss";
 
 function NewContent(props) {
-    const { handleSubmit } = props;
+    const { handleSubmit, data, setEditMode } = props;
+
     const { sid, nickname: member_nickname, avatar } = useAuth();
     const { tag_transition } = trans;
     const {
@@ -24,16 +25,30 @@ function NewContent(props) {
         tag_wrap,
         limit,
         form_wrap,
+        form_upper,
+        form_bottom,
+        cancel_btn,
         dis_btn,
         btn,
         plus,
     } = styles;
 
+    const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [preview, setPreview] = useState("");
     const [previewData, setPreviewData] = useState([]);
-    const [title, setTitle] = useState("");
     const [myTag, setMyTag] = useState([]);
+    const [topic, setTopic] = useState(0);
+
+    useEffect(() => {
+        const { title, topic_sid, content, tags } = data;
+        if (data) {
+            setTitle(title);
+            setTopic(topic_sid);
+            setContent(content);
+            setMyTag(tags);
+        }
+    }, []);
 
     const sendDataDebounce = useCallback(
         debounce((val) => {
@@ -114,9 +129,14 @@ function NewContent(props) {
                     return false;
                 }}
             >
-                <div>
+                <div className={form_upper}>
                     <div className={title_wrap}>
-                        <select name="topic_sid" id="">
+                        <select
+                            name="topic_sid"
+                            id=""
+                            value={topic}
+                            onChange={(e) => setTopic(e.target.value)}
+                        >
                             <option value="1">課程</option>
                             <option value="2">商品</option>
                             <option value="3">其它</option>
@@ -180,7 +200,7 @@ function NewContent(props) {
                         hidden
                         name="myTag"
                         value={myTag}
-                        onChange={() => {}}
+                        onChange={() => { }}
                     />
                     <TransitionGroup component="div" className={tag_wrap}>
                         {previewData.map((v) => {
@@ -201,12 +221,23 @@ function NewContent(props) {
                         })}
                     </TransitionGroup>
                 </div>
-                <button
-                    disabled={beDisable}
-                    className={beDisable ? dis_btn : btn}
-                >
-                    發布文章
-                </button>
+                <div className={form_bottom}>
+                    <button
+                        className={cancel_btn}
+                        onClick={() => {
+                            setEditMode(false);
+                        }}
+                    >
+                        取消
+                    </button>
+                    <button
+                        type="submit"
+                        disabled={beDisable}
+                        className={beDisable ? dis_btn : btn}
+                    >
+                        發布文章
+                    </button>
+                </div>
             </form>
         </div>
     );
