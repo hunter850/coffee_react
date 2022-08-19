@@ -3,7 +3,6 @@ import "./Banner.css";
 
 
 function Banner({ courseDetailedData, start, courseClickMove }) {
-    // console.log(courseDetailedData[0]);
     // 難度數字轉成中文
     // 確認取得資料才渲染頁面
     if (start === true) {

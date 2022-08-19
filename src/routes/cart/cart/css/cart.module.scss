@@ -73,3 +73,9 @@
     width: 75px;
     font-size: 14px;
 }
+
+@media (max-width: 768px) {
+    .cart_bot {
+        display: none;
+    }
+}

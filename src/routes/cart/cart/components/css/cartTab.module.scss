@@ -5,6 +5,16 @@
     max-width: 1440px;
     margin: 110px auto 0px;
     background-color: var(--CREAM);
+    @media (max-width: 1200px) {
+        p, span {
+            font-size: 14px;
+        }
+    }
+    @media (max-width: 576px) {
+        p, span {
+            font-size: 12px;
+        }
+    }
 }
 
 .list_wrap {
@@ -19,14 +29,6 @@
 
 .modal_body {
     padding: 24px 36px;
-}
-
-@media (max-width: 1200px) {
-    .cart_container {
-        p, span {
-            font-size: 14px;
-        }
-    }
 }
 
 @media (max-width: 768px) {
@@ -49,7 +51,12 @@
         left: 0px;
         height: fit-content;
         display: flex;
-        padding: 25px;
+        padding: 25px 50px;
         background-color: #fff;
+    }
+}
+@media (max-width: 576px) {
+    .total_wrap {
+        padding: 25px 16px;
     }
 }

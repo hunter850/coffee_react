@@ -54,10 +54,11 @@
     .bord_wrap {
         width: 75%;
         flex: 1 0 auto;
-        padding: 15px;
+        padding: 0px;
         border-radius: 0px 0px 3px 3px;
         border: none;
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
     .count_title {

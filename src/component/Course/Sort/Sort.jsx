@@ -9,7 +9,6 @@ function Sort({
 }) {
     const sortCourseData = (e) => {
         setSortData(e);
-        // console.log(e);
     };
     // 計算總共有幾筆資料
     const coursetotal = courseData.map((v, i) => {

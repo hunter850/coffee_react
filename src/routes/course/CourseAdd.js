@@ -300,7 +300,6 @@ const CourseAdd = () => {
                 },
                 "content-type": "application/x-www-form-urlencoded",
             }).then((response) => {
-                // console.log(response.config.data);
                 console.log(response);
                 setMonitor(false);
                 // 確定新增完成後跳轉頁面
