@@ -103,7 +103,7 @@ const SingleMapDetail = (props) => {
                 setInitial(true);
             },
             function (positionError) {
-                console.log("positionError ", positionError);
+                // console.log("positionError ", positionError);
                 setInitial(true);
             }
         );

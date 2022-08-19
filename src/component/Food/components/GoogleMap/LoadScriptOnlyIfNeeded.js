@@ -11,7 +11,7 @@ class LoadScriptOnlyIfNeeded extends LoadScript {
         if (!isAlreadyLoaded && isBrowser) {
             // @ts-ignore
             if (window.google && !cleaningUp) {
-                console.error("google api is already presented");
+                // console.error("google api is already presented");
                 return;
             }
 

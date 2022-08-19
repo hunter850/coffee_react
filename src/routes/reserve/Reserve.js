@@ -100,7 +100,6 @@ function Reserve() {
         () => places.find((item) => item.storeName === branch),
         [places, branch]
     );
-    console.log("selectItem", selectItem);
 
     const handleSubmission = (e) => {
         if (!branch || !checkedDate || !people) {
@@ -122,14 +121,14 @@ function Reserve() {
 
                     "content-type": "application/json",
                 }).then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     setIsOpen(true);
                 });
             else {
                 setIsOpen(true);
             }
         } catch (error) {
-            console.log("error");
+            // console.log("error");
         }
     };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
