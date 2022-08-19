@@ -37,7 +37,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
 
     const changeHandler = (e) => {
         const file = e.target.files[0];
-        // console.log(file);
         if (file) {
             setIsFilePicked(true);
             setSelectedFile(file);
@@ -58,7 +57,6 @@ function CourseAddList({ start, setFormData, formData, selectedFile, setSelected
             })
                 .then((response) => response.json())
                 .then((result) => {
-                    // console.log("Success:", result.filename);
                     // 發送到資料庫的照片檔名
                     setImgName(result.filename);
                     // 將檔名存在要發給資料庫的formData裡

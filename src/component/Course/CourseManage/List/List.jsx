@@ -11,14 +11,12 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
         courseData;
 
     const deleteCourse = () => {
-        // console.log(course_sid);
         setSid(course_sid);
         setIsOpen(true);
     };
 
     // 刪除資料的請求
     useEffect(() => {
-        // console.log(sid);
         setIsOpen(false);
         setTimeout(() => {
             if (myBoolean === 1) {

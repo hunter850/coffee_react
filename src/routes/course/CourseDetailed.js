@@ -79,7 +79,6 @@ const CourseDetailed = () => {
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
     const sendOrder = (membersid) => {
-        console.log(membersid);
         if (membersid !== '') {
             if (start === true) {
                 const { course_name, course_price } = courseDetailedData[0];
@@ -107,7 +106,6 @@ const CourseDetailed = () => {
                     url: `${linePayApi}/${JSON.stringify(orders)}`,
                 })
                     .then((res) => {
-                        // console.log(res.data);
                         setUrl(res.data);
                     });
             }
@@ -133,14 +131,12 @@ const CourseDetailed = () => {
                         return Number(v.split('-')[2]);
                     });
                     setDate(newDate);
-                    // console.log(date);
                 }
             });
     };
     const getCourseDetailedData = () => {
         axios.get(courseDataGet)
             .then((res) => {
-                // console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {
                     return Number(v.course_sid) === Number(sid);
                 });
