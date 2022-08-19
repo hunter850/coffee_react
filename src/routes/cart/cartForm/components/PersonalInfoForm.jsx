@@ -26,6 +26,7 @@ function PersonalInfoForm(props) {
         pay_way_id,
         deliver_way_id,
         address_id,
+        card_scale,
     } = styles;
     const { card_fade } = transitionStyles;
     const [cardName, setCardName] = useState("");
@@ -53,7 +54,7 @@ function PersonalInfoForm(props) {
                     name="name"
                     type="text"
                     id={name_id}
-                    // autoComplete="off"
+                // autoComplete="off"
                 />
                 <label htmlFor={phone_id} className={label_basic}>
                     手機
@@ -131,6 +132,7 @@ function PersonalInfoForm(props) {
                     unmountOnExit
                 >
                     <Creditcard
+                        className={card_scale}
                         cardNumber={cardNumber}
                         setCardNumber={setCardNumber}
                         cardName={cardName}

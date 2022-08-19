@@ -246,7 +246,6 @@
         transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
         animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
-
 }
 
 @keyframes zoomOutDown {
@@ -271,7 +270,7 @@
     }
 
     &:global(-enter-active) {
-        animation: jackInTheBox 3s;
+        animation: jackInTheBox 1s;
     }
 
     &:global(-enter-done) {
