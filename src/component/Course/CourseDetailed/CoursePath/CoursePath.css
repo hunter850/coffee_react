@@ -59,4 +59,7 @@
     .CoursePath {
         display: none;
     }
+    .CoursePath-wrap {
+        display: none;
+    }
 }
