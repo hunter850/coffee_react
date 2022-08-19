@@ -14,6 +14,7 @@ import axios from "axios";
 import { courseDataGet, linePayApi, courseDataFkGet } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
+import Btn from '../../component/Item/Btn/Btn';
 
 
 const CourseDetailed = () => {
@@ -78,7 +79,6 @@ const CourseDetailed = () => {
 
     // Line Pay 訂單請求發送 - click事件(報名課程)
     const sendOrder = (membersid) => {
-        console.log(membersid);
         if (membersid !== '') {
             if (start === true) {
                 const { course_name, course_price } = courseDetailedData[0];
@@ -106,7 +106,6 @@ const CourseDetailed = () => {
                     url: `${linePayApi}/${JSON.stringify(orders)}`,
                 })
                     .then((res) => {
-                        // console.log(res.data);
                         setUrl(res.data);
                     });
             }
@@ -132,14 +131,12 @@ const CourseDetailed = () => {
                         return Number(v.split('-')[2]);
                     });
                     setDate(newDate);
-                    // console.log(date);
                 }
             });
     };
     const getCourseDetailedData = () => {
         axios.get(courseDataGet)
             .then((res) => {
-                // console.log(res.data);
                 const newCourseGetData = res.data.filter((v, i) => {
                     return Number(v.course_sid) === Number(sid);
                 });
@@ -210,10 +207,12 @@ const CourseDetailed = () => {
                     style={{
                         textDecoration: "none",
                         color: "var(--BLUE)",
-                        padding: "40px",
+                        padding: "24px 36px",
+                        textAlign: 'center',
                     }}
                 >
                     <h4>請先登入</h4>
+                    <Btn style={{ width: 75, fontSize: '0.875rem', marginTop: 12 }}>確認</Btn>
                 </Link>
             </Modal>
             <Chatbot />

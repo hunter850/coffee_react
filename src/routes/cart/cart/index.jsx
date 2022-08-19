@@ -20,7 +20,6 @@ import {
     getProductCoupon,
     getFoodCoupon,
 } from "../../../config/api-path";
-// import useLog from "../../../hooks/useLog";
 
 function Cart() {
     const { container, px_200 } = bs_flex;
@@ -30,6 +29,7 @@ function Cart() {
         tab_button_group,
         tab_button_basic,
         tab_active,
+        cart_bot,
         modal_text,
         modal_button_wrap,
         modal_confirm,
@@ -330,7 +330,7 @@ function Cart() {
                     </div>
                 </div>
             </div>
-            <ChatBot />
+            <ChatBot className={cart_bot} />
             <Modal
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}

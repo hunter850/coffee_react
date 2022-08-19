@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useClass from "../../hooks/useClass";
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import config from "./config";
@@ -7,7 +8,8 @@ import ActionProvider from "./ActionProvider";
 import "./Bot.css";
 import botImage from "../../images/Coupon/ChatroomTitle.png";
 
-function ChatBot() {
+function ChatBot(props) {
+    const c = useClass();
     const [botOpen, setBotOpen] = useState(false);
     const [chatBot, setChatBot] = useState(null);
     useEffect(() => {
@@ -42,7 +44,7 @@ function ChatBot() {
         }
     }, [botOpen]);
     return (
-        <div className="BotContainer">
+        <div className={c("BotContainer", props.className)}>
             {chatBot}
             <button
                 className="BotBTN react-chatbot-kit-chat-btn-send"

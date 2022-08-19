@@ -3,7 +3,7 @@ import "./PicRender.scss";
 import Magnifier from "react-magnifier";
 
 function PicRender(props) {
-    const { renderData, dataLoaded } = props;
+    const { renderData, dataLoaded, tagData } = props;
     // console.log(renderData);
     // console.log(
     //     dataLoaded ? renderData[0].products_picMuti.split(",") : "還沒讀"
@@ -68,6 +68,20 @@ function PicRender(props) {
                           );
                       })
                     : ""}
+            </div>
+            <div className="tagWrap">
+                <p>標籤：</p>
+                {tagData
+                    .filter((v, i) => {
+                        return v.products_sid === renderData[0].products_sid;
+                    })
+                    .map((v, i) => {
+                        return (
+                            <div className="card_tag" key={i}>
+                                {v.products_style_filter_categories}
+                            </div>
+                        );
+                    })}
             </div>
         </div>
     );

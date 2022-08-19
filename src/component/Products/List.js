@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import "./List.scss";
@@ -6,9 +6,11 @@ import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 import { sendCartPost } from "../../config/api-path";
 import axios from "axios";
 import Modal from "../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 import AuthContext from "../Member/AuthContext";
 import { useNav } from "../../Contexts/NavProvider";
+import Btn from "../Item/Btn/Btn";
 
 function List(props) {
     const {
@@ -22,11 +24,15 @@ function List(props) {
         setIsOpen,
         listModal,
         setListModal,
+        tagData,
+        setModalMod,
+        modalMod,
     } = props;
     // const nowPageNum = renderData[`${pageNow}`];
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
+    const navigate = useNavigate();
 
     const sendCart = (sid, renderArray, renderNum) => {
         // console.log(sid);
@@ -56,11 +62,12 @@ function List(props) {
             //     "renderData[renderArray][renderNum]",
             //     renderData[renderArray][renderNum]
             // );
-
+            setModalMod(true);
             sendCart(sid, renderArray, renderNum);
             setListModal("已加入購物車");
             setIsOpen(true);
         } else {
+            setModalMod(false);
             setListModal("請先登入");
             setIsOpen(true);
         }
@@ -72,6 +79,7 @@ function List(props) {
         // console.log("renderData[+pageNow]", renderData[pageNum]);
         // console.log("pageNow", pageNow);
     }, [dataLoaded]);
+
     return (
         <>
             <div className="products_list">
@@ -118,6 +126,27 @@ function List(props) {
                         {dataLoaded
                             ? renderData.map((va, ia) => {
                                   return renderData[ia].map((v, i) => {
+                                      // ------------------------------------------- tag test -----------------------------
+                                      /* console.log(
+                                          tagData.filter((val, ind) => {
+                                              return (tagData.products_sid =
+                                                  v.products_sid);
+                                          })
+                                      ); */
+
+                                      /* console.log(
+                                          "tsid",
+                                          tagData.filter((val) => {
+                                              return (
+                                                  val.products_sid ===
+                                                  v.products_sid
+                                              );
+                                          })
+                                      ); */
+
+                                      /* console.log("v", v.products_sid); */
+
+                                      // ------------------------------------------- tag test -----------------------------
                                       return (
                                           <ScrollWrap
                                               start="cardaniwrapbf"
@@ -140,7 +169,7 @@ function List(props) {
                                                   <Card
                                                       className=""
                                                       cardData={{
-                                                          card_tag: "純苦",
+                                                          card_tag: "",
                                                           card_name:
                                                               v.products_name,
                                                           card_content:
@@ -153,9 +182,8 @@ function List(props) {
                                                               v.products_pic,
                                                           card_img_file:
                                                               v.products_with_products_categories_sid,
-                                                            // card_className:
-                                                            //     cardStyle,
                                                       }}
+                                                      tagData={tagData}
                                                   />
                                                   <div
                                                       className="card_sendCart"
@@ -190,12 +218,12 @@ function List(props) {
                     </ul>
                 </div>
             </div>
-            {Auth.authorized ? (
+            {modalMod ? (
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <h4
                         style={{
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
                         }}
                     >
                         {listModal}
@@ -208,10 +236,23 @@ function List(props) {
                         style={{
                             textDecoration: "none",
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
+                            textAlign: "center",
                         }}
                     >
                         <h4>{listModal}</h4>
+                        <Btn
+                            style={{
+                                width: "75px",
+                                fontSize: "14px",
+                                marginTop: "12px",
+                            }}
+                            onClick={() => {
+                                navigate("/member/login");
+                            }}
+                        >
+                            確認
+                        </Btn>
                     </Link>
                 </Modal>
             )}

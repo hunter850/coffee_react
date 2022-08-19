@@ -14,14 +14,14 @@
         .nav-menu {
             display: none;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .nav-menu {
                 display: block;
             }
         }
     }
     nav {
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .nav-logo {
                 width: 100%;
                 text-align: center;
@@ -83,7 +83,7 @@
                 }
             }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .nav-media-display-none {
                 display: none;
             }
@@ -126,7 +126,7 @@
             .member-icon {
                 line-height: 60px;
             }
-            @media (max-width: 768px) {
+            @media (max-width: 992px) {
                 .cart-icon {
                     margin: 0;
                 }
@@ -181,8 +181,20 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .nav-member-li {
         display: none;
+    }
+}
+
+.text_nowrap {
+    white-space: nowrap;
+    padding: 14px !important;
+}
+
+@media (max-width: 1200px) {
+    .text_nowrap {
+        white-space: nowrap;
+        padding: 12px !important;
     }
 }

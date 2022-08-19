@@ -30,10 +30,13 @@ function Products() {
     const [productsScroll, setProductsScroll] = useState(false);
     const [listModal, setListModal] = useState("");
     const [loading, setLoading] = useState(false);
+    const [tagData, setTagData] = useState([]);    
+    const [modalMod, setModalMod] = useState(false);
 
     let saveTotalData = [];
     let fetchingData = [];
     let pageData = [];
+    let rowTagData = [];
     // ---------- AXIOS ----------------------------
     const getProductsData = () => {
         return axios.get(productsDataGet).then((res) => {
@@ -41,6 +44,16 @@ function Products() {
             saveTotalData = productsData.totalData;
             fetchingData = productsData;
             pageData = productsData.rows;
+            rowTagData = productsData.ptag;
+            setDataRows(saveTotalData);
+            setFetchData(fetchingData);
+            const pagechunk = chunk(saveTotalData, 8);
+            // console.log("pagechunk", pagechunk);
+            setRenderData(pagechunk);
+            setPageTotal(pagechunk.length);
+            setTagData(rowTagData);
+            // console.log(rowTagData);
+            setDataLoaded(true);
         });
     };
 
@@ -53,7 +66,7 @@ function Products() {
     };
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         setProductsScroll(false);
     }, [productsScroll]);
 
@@ -62,13 +75,6 @@ function Products() {
     useEffect(() => {
         async function fetchFunc() {
             await getProductsData();
-            await setDataRows(saveTotalData);
-            await setFetchData(fetchingData);
-            const pagechunk = await chunk(saveTotalData, 8);
-            // await console.log("pagechunk", pagechunk);
-            await setRenderData(pagechunk);
-            await setPageTotal(pagechunk.length);
-            await setDataLoaded(true);
         }
         fetchFunc();
     }, [setDataLoaded]);
@@ -91,6 +97,8 @@ function Products() {
                         setIsOpen={setIsOpen}
                         listModal={listModal}
                         setListModal={setListModal}
+                        modalMod={modalMod}
+                        setModalMod={setModalMod}
                     />
                     <BookMark
                         DataRows={DataRows}
@@ -115,6 +123,9 @@ function Products() {
                                 setIsOpen={setIsOpen}
                                 listModal={listModal}
                                 setListModal={setListModal}
+                                tagData={tagData}
+                                modalMod={modalMod}
+                                setModalMod={setModalMod}
                             />
                         </div>
 

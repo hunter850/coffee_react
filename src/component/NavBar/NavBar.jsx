@@ -3,6 +3,7 @@
 /* eslint-disable prettier/prettier */
 import "./NavBar.scss";
 import { Link, useNavigate } from "react-router-dom";
+import useClass from "../../hooks/useClass";
 import Logo from "./Logo/Logo";
 import React, { useState, useEffect, useMemo } from "react";
 import { useAuth, authOrigin } from "../Member/AuthContextProvider";
@@ -10,9 +11,12 @@ import { useNav } from "../../Contexts/NavProvider";
 import axios from "axios";
 import { getUserData } from "../../config/api-path";
 import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
+import bs_flex from "../../routes/cart/css/bs_flex.module.scss";
 
 
 function NavBar({ navPosition = 'sticky' }) {
+    const c = useClass();
+    const { container, px_200 } = bs_flex;
     const { sid, name, token, setAuth, auth } = useAuth();
     const { count, getCount, handleLogout, shouldCover } = useNav();
     const navigate = useNavigate();
@@ -131,7 +135,7 @@ function NavBar({ navPosition = 'sticky' }) {
         className="nav-course-li"
         onClick={(e) => handleDropDown(e, "course")}
     >
-        <a href="/#" className="course-a">課程</a>
+        <a href="/#" className="course-a text_nowrap">課程</a>
         <ul
             className={`nav-course-ul ${navDropDown === "course" ? "" : "nav-display-none"
                 }`}
@@ -146,7 +150,7 @@ function NavBar({ navPosition = 'sticky' }) {
     </li>);
     // 不是管理者時顯示這個
     const course = (<li>
-        <Link to="/course">課程</Link>
+        <Link to="/course" className="text_nowrap">課程</Link>
     </li>);
 
     return (
@@ -155,7 +159,7 @@ function NavBar({ navPosition = 'sticky' }) {
             <header className="nav-header" style={{ position: navPosition }}>
                 <div style={coverStyle}></div>
                 {hamburgerMenuDisplay === true ? <HamburgerMenu /> : ''}
-                <nav className="container  nav-header-wrap" >
+                <nav className={c(container, px_200, "nav-header-wrap")} >
                     <div className="nav-menu" onClick={() => openHamburgerMenu()}>
                         <svg
                             width="20"
@@ -177,39 +181,39 @@ function NavBar({ navPosition = 'sticky' }) {
                     </div>
                     <ul className="nav-ul nav-media-display-none">
                         <li>
-                            <Link to="/">首頁</Link>
+                            <Link to="/" className="text_nowrap">首頁</Link>
                         </li>
                         <li>
-                            <Link to="/store">店家資訊</Link>
+                            <Link to="/store" className="text_nowrap">店家資訊</Link>
                         </li>
                         <li>
-                            <Link to="/products">商品</Link>
+                            <Link to="/products" className="text_nowrap">商品</Link>
                         </li>
                         <li>
-                            <Link to="/food">點餐</Link>
+                            <Link to="/food" className="text_nowrap">點餐</Link>
                         </li>
                         <li>
-                            <Link to="/reserve">訂位</Link>
+                            <Link to="/reserve" className="text_nowrap">訂位</Link>
                         </li>
                         {Number(sid) === 2 ? courseManage : course}
                         <li>
-                            <Link to="/sharing">分享牆</Link>
+                            <Link to="/sharing" className="text_nowrap">分享牆</Link>
                         </li>
                         <li
                             style={{ cursor: "pointer" }}
                             className="nav-game-li"
                             onClick={(e) => handleDropDown(e, "game")}
                         >
-                            <a href="/#" className="game-a">遊戲</a>
+                            <a href="/#" className="game-a text_nowrap">遊戲</a>
                             <ul
                                 className={`nav-game-ul ${navDropDown === "game" ? "" : "nav-display-none"
                                     }`}
                             >
                                 <li >
-                                    <Link to="/getpoint">獲得積分</Link>
+                                    <Link to="/getpoint" className="text_nowrap">獲得積分</Link>
                                 </li>
                                 <li >
-                                    <Link to="/getcoupon">獲得優惠券</Link>
+                                    <Link to="/getcoupon" className="text_nowrap">獲得優惠券</Link>
                                 </li>
                             </ul>
                         </li>
@@ -219,23 +223,20 @@ function NavBar({ navPosition = 'sticky' }) {
                             onClick={(e) => handleDropDown(e, "member")}
 
                         >
-                            <a href="/#" className="member-a">會員</a>
+                            <a href="/#" className="member-a text_nowrap">會員</a>
                             <ul
                                 className={`nav-member-ul  ${navDropDown === "member" ? "" : "nav-display-none"}`}
                             >
                                 <li>
-                                    <Link to="/member">會員中心</Link>
+                                    <Link to="/member" className="text_nowrap">會員中心</Link>
                                 </li>
                                 <li>
-                                    <Link to="/points">我的積分</Link>
+                                    <Link to="/points" className="text_nowrap">我的積分</Link>
                                 </li>
                                 <li>
-                                    <Link to="/coupon">我的優惠卷</Link>
+                                    <Link to="/coupon" className="text_nowrap">我的優惠卷</Link>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <Link to="/cart">購物車</Link>
                         </li>
                     </ul>
                     <div className="d-flex nav-icon-wrap">
@@ -258,4 +259,4 @@ function NavBar({ navPosition = 'sticky' }) {
     );
 }
 
-export default NavBar;;
+export default NavBar;
