@@ -31,11 +31,19 @@
 
 .count_title {
     font-size: 18px;
+    white-space: nowrap;
 }
 
 .final_price {
     white-space: nowrap;
     color: var(--GOLD);
+    @media (max-width: 992px) {
+        font-size: 28px;
+    }
+    @media (max-width: 768px) {
+        flex: 1 0 auto;
+        text-align: center;
+    }
 }
 
 .button_wrap {
@@ -44,7 +52,11 @@
 
 .confirm_button {
     width: 100px;
-    font-size: 16px;
+    font-size: 18px;
+    @media (max-width: 992px) {
+        width: 75px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -78,11 +90,29 @@
     }
     .final_bord {
         display: flex;
+        justify-content: space-between;
+        flex: 1 0 auto;
     }
     .button_wrap {
         text-align: center;
         display: flex;
         justify-content: center;
+        align-items: center;
+    }
+    .text_none {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .bord_wrap {
+        width: 90%;
+        flex: 1 0 auto;
+        padding: 0px;
+        border-radius: 0px 0px 3px 3px;
+        border: none;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 }
