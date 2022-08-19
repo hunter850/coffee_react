@@ -12,6 +12,7 @@ function GoodsHeader() {
         text_start,
         button_group,
         trashcan,
+        text_none,
     } = styles;
     const [nowList] = useData("nowList");
     const c = useClass();
@@ -29,7 +30,7 @@ function GoodsHeader() {
                 <li className={button_group}>
                     <p className={header_text}>數量</p>
                 </li>
-                <li>
+                <li className={text_none}>
                     <p className={header_text}>小記</p>
                 </li>
                 <li className={header_trash}>

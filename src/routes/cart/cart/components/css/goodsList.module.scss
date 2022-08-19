@@ -33,6 +33,12 @@
     border: 1px solid var(--DARKGRAY);
     padding: 9px 23px;
     background-color: #fff;
+    @media (max-width: 768px) {
+        padding: 9px 12px;
+    }
+    @media (max-width: 576px) {
+        padding: 6px;
+    }
 }
 
 .img_wrap {
@@ -45,6 +51,10 @@
         height: 100%;
         object-fit: cover;
         object-position: center center;
+    }
+    @media (max-width: 768px) {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -69,4 +79,7 @@
     width: 60px;
     text-align: center;
     flex: 1 0 0;
+    @media (max-width: 576px) {
+        display: none;
+    }
 }
