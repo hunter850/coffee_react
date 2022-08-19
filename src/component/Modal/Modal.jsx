@@ -135,6 +135,8 @@ function Modal(props) {
     );
     if (teleportTo === null) {
         return el;
+    } else if (typeof teleportTo === "string") {
+        return createPortal(el, document.querySelector(teleportTo));
     } else {
         return createPortal(el, teleportTo);
     }
