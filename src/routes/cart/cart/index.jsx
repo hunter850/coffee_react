@@ -21,6 +21,7 @@ import {
     getFoodCoupon,
 } from "../../../config/api-path";
 // import useLog from "../../../hooks/useLog";
+import SpinnerWrap from "../../../component/Item/SpinnerWrap/SpinnerWrap";
 
 function Cart() {
     const { container, px_200 } = bs_flex;
@@ -289,79 +290,83 @@ function Cart() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [productList, foodList]);
     return (
-        <Fragment>
-            <div className={fake_body}>
-                <NavBar />
-                <div
-                    className={c(container, px_200)}
-                    style={{ opacity: show ? 1 : 0 }}
-                >
-                    <div className={cart_tab_wrap}>
-                        <div
-                            className={tab_button_group}
-                            ref={buttonGroupRef}
-                            style={inlineStyles.tab}
-                        >
-                            <button
-                                onClick={productClicked}
-                                className={c(tab_button_basic, {
-                                    [tab_active]: nowList === "productList",
-                                })}
-                                style={{
-                                    display: showProductButton
-                                        ? "block"
-                                        : "none",
-                                }}
+        <SpinnerWrap>
+            <Fragment>
+                <div className={fake_body}>
+                    <NavBar />
+                    <div
+                        className={c(container, px_200)}
+                        style={{ opacity: show ? 1 : 0 }}
+                    >
+                        <div className={cart_tab_wrap}>
+                            <div
+                                className={tab_button_group}
+                                ref={buttonGroupRef}
+                                style={inlineStyles.tab}
                             >
-                                商品
-                            </button>
-                            <button
-                                onClick={foodClicked}
-                                className={c(tab_button_basic, {
-                                    [tab_active]: nowList === "foodList",
-                                })}
-                                style={{
-                                    display: showFoodButton ? "block" : "none",
-                                }}
-                            >
-                                餐點
-                            </button>
+                                <button
+                                    onClick={productClicked}
+                                    className={c(tab_button_basic, {
+                                        [tab_active]: nowList === "productList",
+                                    })}
+                                    style={{
+                                        display: showProductButton
+                                            ? "block"
+                                            : "none",
+                                    }}
+                                >
+                                    商品
+                                </button>
+                                <button
+                                    onClick={foodClicked}
+                                    className={c(tab_button_basic, {
+                                        [tab_active]: nowList === "foodList",
+                                    })}
+                                    style={{
+                                        display: showFoodButton
+                                            ? "block"
+                                            : "none",
+                                    }}
+                                >
+                                    餐點
+                                </button>
+                            </div>
+                            <CartTab />
                         </div>
-                        <CartTab />
                     </div>
                 </div>
-            </div>
-            <ChatBot className={cart_bot} />
-            <Modal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                closeAble={false}
-                closeButton={false}
-            >
-                <Modal.Header></Modal.Header>
-                <Modal.Body>
-                    <h4 className={modal_text}>{alertText}</h4>
-                    <div className={modal_button_wrap}>
-                        <Btn
-                            className={modal_confirm}
-                            onClick={() =>
-                                navigate(
-                                    `${
-                                        alertText === "請先登入"
-                                            ? "/member/login"
-                                            : "/"
-                                    }`,
-                                    { replace: true }
-                                )
-                            }
-                        >
-                            確認
-                        </Btn>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer></Modal.Footer>
-            </Modal>
-        </Fragment>
+                <ChatBot className={cart_bot} />
+                <Modal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    closeAble={false}
+                    closeButton={false}
+                >
+                    <Modal.Header></Modal.Header>
+                    <Modal.Body>
+                        <h4 className={modal_text}>{alertText}</h4>
+                        <div className={modal_button_wrap}>
+                            <Btn
+                                className={modal_confirm}
+                                onClick={() =>
+                                    navigate(
+                                        `${
+                                            alertText === "請先登入"
+                                                ? "/member/login"
+                                                : "/"
+                                        }`,
+                                        { replace: true }
+                                    )
+                                }
+                            >
+                                確認
+                            </Btn>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer></Modal.Footer>
+                </Modal>
+            </Fragment>
+        </SpinnerWrap>
     );
 }
 

@@ -90,3 +90,12 @@
         }
     }
 }
+
+@media (max-width: 576px) {
+    .header_button {
+        width: 10%;
+    }
+    .text_none {
+        display: none;
+    }
+}

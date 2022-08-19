@@ -1,9 +1,9 @@
 import { Fragment, useMemo, useState, useEffect } from "react";
+import Btn from "../../../../component/Item/Btn/Btn";
 import useData from "../../../../hooks/useData";
 import useGSAPCompute from "../../../../hooks/useGSAPCompute";
 import useClass from "../../../../hooks/useClass";
 import styles from "./css/totalBord.module.scss";
-import public_style from "../../css/public_style.module.scss";
 
 function TotalBord(props) {
     const { confirmHandler, setPriceInfo } = props;
@@ -16,9 +16,9 @@ function TotalBord(props) {
         count_title,
         final_bord,
         text_mb,
+        text_none,
         bottom_line,
     } = styles;
-    const { btn } = public_style;
     const c = useClass();
     // 現在是商品或餐點
     const [nowList] = useData("nowList");
@@ -101,7 +101,7 @@ function TotalBord(props) {
                     <span>{discount}</span>
                 </div>
                 <div className={final_bord}>
-                    <p className={count_title}>結算金額</p>
+                    <p className={c(count_title, text_none)}>結算金額</p>
                     {/* <p>{totalPrice - discount} 元</p> */}
                     <h3 className={c(final_price, text_mb)}>
                         {Number.isNaN(parseInt(tween.total))
@@ -110,12 +110,12 @@ function TotalBord(props) {
                         元
                     </h3>
                     <div className={button_wrap}>
-                        <button
-                            className={c(btn, confirm_button)}
+                        <Btn
+                            className={c(confirm_button)}
                             onClick={confirmHandler}
                         >
                             確認
-                        </button>
+                        </Btn>
                     </div>
                 </div>
             </div>

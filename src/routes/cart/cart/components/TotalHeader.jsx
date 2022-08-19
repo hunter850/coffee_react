@@ -15,6 +15,7 @@ function TotalHeader() {
         modal_bord,
         modal_footer,
         confirm_btn,
+        text_none,
     } = cssStyle;
     const [isOpen, setIsOpen] = useState(false);
     const { setShouldCover } = useNav();
@@ -93,7 +94,7 @@ function TotalHeader() {
                         fill="currentColor"
                     />
                 </svg>
-                <span>
+                <span className={text_none}>
                     {selectedCouponId === -1
                         ? "選擇優惠卷"
                         : selectedCouponName}
