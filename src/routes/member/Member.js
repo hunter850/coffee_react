@@ -259,6 +259,11 @@ function Member() {
                             <img src={cupStar} alt="" className="cup-star-f"/>
                             <img src={cupStar} alt="" className="cup-star-g"/>
                             <img src={cupStar} alt="" className="cup-star-h"/>
+                            <img src={cupStar} alt="" className="cup-star-i"/>
+                            <img src={cupStar} alt="" className="cup-star-j"/>
+                            <img src={cupStar} alt="" className="cup-star-k"/>
+                            <img src={cupStar} alt="" className="cup-star-l"/>
+                            <img src={cupStar} alt="" className="cup-star-m"/>
                         </div>
                         <div className="mc-level-wrap">
                             <p className="mc-level-title">{
