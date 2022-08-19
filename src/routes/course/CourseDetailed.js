@@ -14,6 +14,7 @@ import axios from "axios";
 import { courseDataGet, linePayApi, courseDataFkGet } from "../../config/api-path";
 import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
+import Btn from '../../component/Item/Btn/Btn';
 
 
 const CourseDetailed = () => {
@@ -211,9 +212,11 @@ const CourseDetailed = () => {
                         textDecoration: "none",
                         color: "var(--BLUE)",
                         padding: "40px",
+                        textAlign: 'center',
                     }}
                 >
                     <h4>請先登入</h4>
+                    <Btn style={{ width: 75, fontSize: '0.875rem', marginTop: 12 }}>確認</Btn>
                 </Link>
             </Modal>
             <Chatbot />
