@@ -30,7 +30,8 @@ function Products() {
     const [productsScroll, setProductsScroll] = useState(false);
     const [listModal, setListModal] = useState("");
     const [loading, setLoading] = useState(false);
-    const [tagData, setTagData] = useState([]);
+    const [tagData, setTagData] = useState([]);    
+    const [modalMod, setModalMod] = useState(false);
 
     let saveTotalData = [];
     let fetchingData = [];
@@ -51,7 +52,7 @@ function Products() {
             setRenderData(pagechunk);
             setPageTotal(pagechunk.length);
             setTagData(rowTagData);
-            console.log(rowTagData);
+            // console.log(rowTagData);
             setDataLoaded(true);
         });
     };
@@ -96,6 +97,8 @@ function Products() {
                         setIsOpen={setIsOpen}
                         listModal={listModal}
                         setListModal={setListModal}
+                        modalMod={modalMod}
+                        setModalMod={setModalMod}
                     />
                     <BookMark
                         DataRows={DataRows}
@@ -121,6 +124,8 @@ function Products() {
                                 listModal={listModal}
                                 setListModal={setListModal}
                                 tagData={tagData}
+                                modalMod={modalMod}
+                                setModalMod={setModalMod}
                             />
                         </div>
 

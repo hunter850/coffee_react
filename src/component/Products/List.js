@@ -25,14 +25,14 @@ function List(props) {
         listModal,
         setListModal,
         tagData,
+        setModalMod,
+        modalMod,
     } = props;
     // const nowPageNum = renderData[`${pageNow}`];
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
     const navigate = useNavigate();
-
-    const [tagToCard, setTagToCard] = useState([]);
 
     const sendCart = (sid, renderArray, renderNum) => {
         // console.log(sid);
@@ -62,11 +62,12 @@ function List(props) {
             //     "renderData[renderArray][renderNum]",
             //     renderData[renderArray][renderNum]
             // );
-
+            setModalMod(true);
             sendCart(sid, renderArray, renderNum);
             setListModal("已加入購物車");
             setIsOpen(true);
         } else {
+            setModalMod(false);
             setListModal("請先登入");
             setIsOpen(true);
         }
@@ -217,12 +218,12 @@ function List(props) {
                     </ul>
                 </div>
             </div>
-            {Auth.authorized ? (
+            {modalMod ? (
                 <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                     <h4
                         style={{
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
                         }}
                     >
                         {listModal}
@@ -235,7 +236,7 @@ function List(props) {
                         style={{
                             textDecoration: "none",
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
                             textAlign: "center",
                         }}
                     >

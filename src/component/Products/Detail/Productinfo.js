@@ -266,7 +266,7 @@ function Productinfo(props) {
                     <h4
                         style={{
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
                         }}
                     >
                         {modalContent}
@@ -279,7 +279,7 @@ function Productinfo(props) {
                         style={{
                             textDecoration: "none",
                             color: "var(--BLUE)",
-                            padding: "40px",
+                            padding: "24px 36px",
                             textAlign: "center",
                         }}
                     >

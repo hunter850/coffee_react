@@ -2,19 +2,21 @@ import "./Header.scss";
 import { chunk } from "../Course/helper/chunk";
 import { useEffect } from "react";
 
-function Header({
-    searchInp,
-    setSearchInp,
-    DataRows,
-    setDataRows,
-    setRenderData,
-    setPageNow,
-    setPageTotal,
-    setIsOpen,
-    isOpen,
-    setListModal,
-    listModal,
-}) {
+function Header(props) {
+    const {
+        searchInp,
+        setSearchInp,
+        DataRows,
+        setDataRows,
+        setRenderData,
+        setPageNow,
+        setPageTotal,
+        setIsOpen,
+        isOpen,
+        setListModal,
+        listModal,
+        setModalMod,
+    } = props;
     const headerSearch = () => {
         if (searchInp !== "") {
             // console.log("DataRows", DataRows);
@@ -35,6 +37,7 @@ function Header({
                 setRenderData(pagechunk2);
                 setPageNow(0);
                 setPageTotal(pagechunk2.length);
+                setModalMod(true);
                 setListModal(`
                 沒有名稱為${searchInp}的商品`);
                 setIsOpen(true);
