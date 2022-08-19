@@ -125,6 +125,15 @@ $card-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
                 border-radius: 10px 10px 0 0;
                 .tagWrap {
                     display: flex;
+                    position: absolute;
+                    left: 38%;
+                    bottom: 50px;
+                    @include productsMob{
+                        width: 70px;
+                        left: 38%;
+                        bottom: 32%;
+                        flex-wrap: wrap;                        
+                    }
                     .card_tag {
                         transform: translate(13px, 11px);
                         background-color: var(--GOLD);
@@ -135,9 +144,9 @@ $card-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
                         border-radius: 15px;
                         color: #fff;
                         font-size: 0.875rem;
-                        position: absolute;
-                        left: 38%;
-                        bottom: 50px;
+                        @include productsMob{
+                            margin-bottom: 5px;
+                        }
                     }
                 }
             }
