@@ -23,7 +23,7 @@ function List({ courseData, setConfirmDelete, setIsOpen, isOpen, myBoolean, setM
                 setMyBoolean(-1);
                 axios.delete(`${courseDelete}/${sid}`)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         // 確認刪除的狀態
                         setConfirmDelete(true);
                         setSid(0);
