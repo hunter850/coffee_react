@@ -110,7 +110,6 @@ function CourseAddListDetailed({
             })
                 .then((response) => response.json())
                 .then((result) => {
-                    // console.log("Success:", result.filename);
                     // 發送到資料庫的照片檔名
                     setImgNames(result.filename);
                     // 限制最多只收5張圖片

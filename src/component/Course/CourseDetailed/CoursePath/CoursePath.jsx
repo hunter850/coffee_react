@@ -48,7 +48,6 @@ function CoursePath({ object, material, signup, notice, item, topZeroSure, setIn
             // 確定網頁已經定位到top0的位子才執行
             // 減掉的30是margin
             if (topZeroSure === true) {
-                // console.log(window.scrollY);
                 if (item - 30 <= window.scrollY && material - 30 >= window.scrollY) {
                     setIndex(0);
                 } else {

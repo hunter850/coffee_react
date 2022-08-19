@@ -11,13 +11,11 @@ import OrderDetails from "./components/OrderDetails";
 function OrderCompleted() {
     // 存當筆訂單的資料
     const [courseData, setCourseData] = useState({});
-    console.log(courseData);
     // 取得網址裡的sid
     const getSid = window.location.href;
     const url = new URL(getSid);
     url.searchParams.get("orderId");
     const courseSid = url.searchParams.get("orderId");
-    console.log(courseSid);
     const orderNumber = parseInt(new Date() / 1000);
     // 取得當筆訂單的資訊
     const getCourseData = () => {
