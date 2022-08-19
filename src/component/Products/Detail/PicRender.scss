@@ -42,3 +42,22 @@
           
     }
 }
+.tagWrap {
+    margin-top: 24px;
+    display: flex;
+    align-items: baseline;
+    p{
+        font-size: 16px;
+    }
+    .card_tag {
+        background-color: var(--GOLD);
+        width: 54px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 0.875rem;
+        margin-right: 14px;
+    }
+}

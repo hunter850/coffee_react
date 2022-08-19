@@ -4,11 +4,16 @@ import "./DetailPage.scss";
 import DetailBtm from "./DetailBtm";
 
 function DetailPage(props) {
-    const { renderData, dataLoaded, productsCount, setProductsCount } = props;
+    const { renderData, dataLoaded, productsCount, setProductsCount, tagData } =
+        props;
     const el = (
         <div className="DetailPage">
             <div className="DetailTop">
-                <PicRender renderData={renderData} dataLoaded={dataLoaded} />
+                <PicRender
+                    renderData={renderData}
+                    dataLoaded={dataLoaded}
+                    tagData={tagData}
+                />
                 <Productinfo
                     renderData={renderData}
                     dataLoaded={dataLoaded}

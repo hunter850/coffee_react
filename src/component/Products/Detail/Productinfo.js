@@ -13,6 +13,7 @@ import Modal from "../../Modal/Modal";
 import { Link } from "react-router-dom";
 // import "./ModalCss.scss";
 import { useNav } from "../../../Contexts/NavProvider";
+import { useNavigate } from "react-router-dom";
 
 function Productinfo(props) {
     // identify zone
@@ -28,6 +29,7 @@ function Productinfo(props) {
 
     const Auth = useContext(AuthContext);
     const { getCount } = useNav();
+    const navigate = useNavigate();
 
     // axios get
 
@@ -127,7 +129,7 @@ function Productinfo(props) {
             }
             if (productsCount > renderData[0].products_stack) {
                 setProductsCount(renderData[0].products_stack);
-                // set
+                setModalContent("超過可購買上限");
                 setIsOpen(true);
             }
         }
@@ -278,9 +280,22 @@ function Productinfo(props) {
                             textDecoration: "none",
                             color: "var(--BLUE)",
                             padding: "40px",
+                            textAlign: "center",
                         }}
                     >
                         <h4>{modalContent}</h4>
+                        <Btn
+                            style={{
+                                width: "75px",
+                                fontSize: "14px",
+                                marginTop: "12px",
+                            }}
+                            onClick={() => {
+                                navigate("/member/login");
+                            }}
+                        >
+                            確認
+                        </Btn>
                     </Link>
                 </Modal>
             )}

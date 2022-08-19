@@ -1,7 +1,7 @@
 import { React } from "react";
 import "./Card.scss";
 
-function Card({ cardData }) {
+function Card(props) {
     const {
         card_tag,
         card_name,
@@ -10,8 +10,20 @@ function Card({ cardData }) {
         card_img_s,
         card_img_file,
         card_className,
-    } = cardData;
-
+        card_sid,
+    } = props.cardData;
+    const { tagData } = props;
+    // console.log(
+    //     tagData.filter((v, i) => {
+    //         return v.products_sid === card_sid;
+    //     })
+    // );
+    // console.log(card_tag);
+    // console.log(
+    //     tagData.filter((v, i) => {
+    //         return v.products_sid === products_sid;
+    //     })
+    // );
     return (
         <div className={card_className}>
             <div
@@ -21,7 +33,19 @@ function Card({ cardData }) {
                     backgroundSize: "cover",
                 }}
             >
-                <div className="card_tag">{card_tag}</div>
+                <div className="tagWrap">
+                    {tagData
+                        .filter((v, i) => {
+                            return v.products_sid === card_sid;
+                        })
+                        .map((v, i) => {
+                            return (
+                                <div className="card_tag">
+                                    {v.products_style_filter_categories}
+                                </div>
+                            );
+                        })}
+                </div>
             </div>
             <div className="card_card_down">
                 <div className="card_card_txt">
@@ -41,15 +65,10 @@ function Card({ cardData }) {
                         </p>
                     </div>
                     <div className="d-flex card_card_price">
-                        <p className="card_nt">
-                            NT$
-                        </p>
-                        <p className="card_ntNum">
-                            {card_price}
-                        </p>
+                        <p className="card_nt">NT$</p>
+                        <p className="card_ntNum">{card_price}</p>
                     </div>
                 </div>
-                
             </div>
         </div>
     );
