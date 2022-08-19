@@ -25,6 +25,7 @@ import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
 import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 import SpinnerWrap from '../../component/Item/SpinnerWrap/SpinnerWrap';
+import { useStyleChange } from '../../Contexts/SuperProvider';
 
 const Course = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,6 +45,8 @@ const Course = () => {
     const [perPage, setPerPage] = useState(8);
     // 總頁數,等伺服器抓完資料才知道多少(didMount時決定)
     const [pageTotal, setPageTotal] = useState(0);
+
+    const styleChange = useStyleChange();
 
     const getCourseData = () =>
         axios
@@ -134,6 +137,12 @@ const Course = () => {
             }
         }
     }, [searchInp]);
+
+    useEffect(() => {
+        if (styleChange === 0) {
+            window.scrollTo({ top: 0 });
+        }
+    }, [styleChange]);
 
     // 一般搜尋框搜尋的渲染
     const courseSearch = () => {
