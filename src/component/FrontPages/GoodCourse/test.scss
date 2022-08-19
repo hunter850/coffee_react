@@ -1,11 +1,3 @@
-.start {
-    transform: translateX(-25px);
-    opacity: 0;
-}
-.start2 {
-    opacity: 0;
-}
-
 .goodcourse-upper-wrap {
     margin-bottom: 50px;
 }
@@ -16,6 +8,16 @@
 
 .text_basic {
     width: 290px;
+}
+
+// 精選課程的淡入淡出
+
+.start {
+    transform: translateX(-25px);
+    opacity: 0;
+}
+.start2 {
+    opacity: 0;
 }
 
 .end {

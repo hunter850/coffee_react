@@ -11,7 +11,7 @@ export default function Footer() {
     return (
         <Fragment>
             <div>
-                <div className="home-container home-box-color">
+                <div className="home-container footer-bgcolor">
                     <div className="d-flex partition">
                         <div className="footerlogo-wrap">
                             <img src={coffeeLogo} alt="coffeeLogo" />

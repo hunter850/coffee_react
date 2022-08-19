@@ -50,32 +50,13 @@
     text-align: center;
 }
 .pagetop-text {
-    color: rgb(9, 23, 226);
+    color: #324A59;
     text-align: center;
 }
 .home-box {
     margin-top: 30px;
 }
 
-/* 淡出淡入效果 */
-/* .textfrom {
-    transform: translateX(-100px);
-    opacity: 0;
-} */
-/* .textto {
-    transform: translateX(0px);
-    opacity: 1;
-    transition: all 2s;
-}
-.photofrom {
-    transform: translateX(100px);
-    opacity: 0;
-}
-.phototo {
-    transform: translateX(0px);
-    opacity: 1;
-    transition: all 2s;
-} */
 
 
 @media screen and (max-width:400px) {

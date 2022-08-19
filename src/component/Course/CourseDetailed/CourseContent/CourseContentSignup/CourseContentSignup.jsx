@@ -38,14 +38,8 @@ function CourseContentSignup({ start, courseDataPrice, signup, setSignup, topZer
 
     // 輸入人數的數量
     const numberInput = (e) => {
-        setCount(Number(e.target.value));
+        setCount(Number(e.target.value) > 10 ? 10 : Number(e.target.value));
     };
-    // 人數超過限制強制校正
-    useEffect(() => {
-        if (count > 10) {
-            setCount(10);
-        }
-    }, [count]);
 
     return (
         <div >

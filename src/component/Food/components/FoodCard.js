@@ -12,8 +12,8 @@ function FoodCard({ setShowFoodDetail, setIsShow, allfood, handleCakeCount }) {
     } = allfood;
     return (
         <ScrollWrap
-            start="cardaniwrapbf"
-            end="cardaniwrapat"
+            start="coffee-cardaniwrapbf"
+            end="coffee-cardaniwrapat"
             offset={150}
             //   backAgain={true}
             //   backOffset={-5}

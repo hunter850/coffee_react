@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 // import StarCard from "./StarCard";
 // import Card from "../../../component/Products/Card";
 import StarCard from "../StarProducts/StarCard";
+import ViewmoreBtn from "../ViewmoreBtn";
 import { Link } from "react-router-dom";
 import starproductdata from "../../../routes/frontPage/data/starproductdata.js";
 import "./StarProducts.css";
@@ -90,6 +91,9 @@ function StarProducts() {
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                <Link to="/products" className="starproduct-viewbtn">
+                    <ViewmoreBtn Vbpaddingtop={50} />
+                </Link>
 
                 {/* <div className="d-flex starproduct-box">
                     {starproductdata.map((v, i) => {

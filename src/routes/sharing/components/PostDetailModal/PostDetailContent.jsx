@@ -1,21 +1,18 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
-import { Link } from "react-router-dom";
 import axios from "axios";
-
 import useTimeAbout from "../../../../hooks/useTimeAbout";
-import {
-    avatarDIR,
-    commentAPI,
-    memberLikeAPI,
-} from "../../../../config/api-path";
 import styles from "./scss/PostDetailContent.module.scss";
 import Tag from "../Tag";
 import Likes from "./Likes";
 import Comment from "./Comment";
 import More from "./More";
-import Modal from "../../../../component/Modal/Modal";
 import { cloneDeep } from "lodash";
+import {
+    avatarDIR,
+    commentAPI,
+    memberLikeAPI,
+} from "../../../../config/api-path";
 
 const svgIcon = (
     <svg
@@ -35,11 +32,17 @@ const svgIcon = (
 );
 
 function PostDetailContent(props) {
-    const { data, getPostDetailData, resetState, setRows } = props;
+    const {
+        data,
+        getPostDetailData,
+        resetState,
+        setRows,
+        setLoginOpen,
+        setEditMode,
+    } = props;
     const commentInput = useRef(null);
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
 
     const displayToggle = useMemo(() => {
         return { display: commentWrapToggle ? "block" : "none" };
@@ -106,13 +109,13 @@ function PostDetailContent(props) {
             commentInput.current.value = "";
             getPostDetailData();
         } else {
-            setIsOpen(true);
+            setLoginOpen(true);
         }
     };
 
     const memberLikePost = async () => {
         if (!authorized) {
-            setIsOpen(true);
+            setLoginOpen(true);
             return;
         }
 
@@ -173,6 +176,7 @@ function PostDetailContent(props) {
                             post_sid={post_sid}
                             member_sid={member_sid}
                             resetState={resetState}
+                            setEditMode={setEditMode}
                         >
                             {svgIcon}
                         </More>
@@ -191,7 +195,7 @@ function PostDetailContent(props) {
                     {/* 內文 */}
                     <p
                         className="mb-5"
-                        style={{ lineHeight: "1.5rem" }}
+                        style={{ lineHeight: "1.5rem", minHeight: "4rem" }}
                         dangerouslySetInnerHTML={{ __html: content }}
                     ></p>
 
@@ -254,24 +258,6 @@ function PostDetailContent(props) {
                     發佈
                 </button>
             </div>
-
-            <Modal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                time=".4"
-                onClose={() => (document.body.style.overflow = "hidden")}
-            >
-                <Link
-                    to="/member/login"
-                    style={{
-                        textDecoration: "none",
-                        color: "var(--BLUE)",
-                        padding: "40px",
-                    }}
-                >
-                    <h4>請先登入</h4>
-                </Link>
-            </Modal>
         </>
     );
 }
