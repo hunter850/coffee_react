@@ -93,6 +93,24 @@
     margin: 60px 0 30px;
 }
 
+.coffee-cardaniwrapbf {
+    position: relative;
+    left: -300px;
+    opacity: 0;
+}
+.coffee-cardaniwrapat {
+    position: relative;
+    left: 0px;
+    transition: 1s;
+    opacity: 1;
+}
+
+@media (max-width: 375px) {
+    .coffee-cardaniwrapbf {
+        left: -100px;
+    }
+}
+
 @media (max-width: 768px) {
     .Course-container {
         min-width: 768px;

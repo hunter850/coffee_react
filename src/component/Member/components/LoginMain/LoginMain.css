@@ -293,7 +293,7 @@ body {
     background-color: var(--gold);
 }
 .login-verification{
-    width: 120px;
+    width: 150px;
     height: 35px;
     padding: 8px 20px;
     background: var(--cream);

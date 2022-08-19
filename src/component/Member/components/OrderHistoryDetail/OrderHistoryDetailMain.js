@@ -8,6 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import {v4} from "uuid";
 import ChatBot from "../../../Bot/ChatBot";
 import Footer from "../../../Footer";
+import moment from "moment";
 
 import { getOrderHistoryDetail } from "../../../../config/api-path";
 
@@ -57,7 +58,7 @@ function OrderHistoryDetailMain() {
                         <div className="odd-title">訂單詳細</div>
                         <div className="odd-detail-wrap">
                             <div className="odd-date">
-                                下訂日期<span>2022年06月24日</span>
+                                下訂日期<span>{ dataIsLoad ? moment(myOrder[0].order_time).format("YYYY-MM-DD") : ""}</span>
                             </div>
                             <div className="odd-line"></div>
                             <div className="odd-state">

@@ -279,6 +279,7 @@ function LoginMain() {
 
     const handleVerification = (e)=>{
         e.preventDefault();
+        // todo：重新寄信
         setIsVerify(true);
     }
 
@@ -350,7 +351,7 @@ function LoginMain() {
                         </div>
                         <div className="submit-btn-wrap">
                             <button type="submit" onClick={handleSignUp} className="log-in" style={{display: notLog ? "block" : "none "}}>註冊</button>
-                            <button type="submit" onClick={handleVerification} className="login-verification" style={{display: notLog ? "block" : "none "}}>輸入驗證碼</button>
+                            <button type="submit" onClick={handleVerification} className="login-verification" style={{display: notLog ? "block" : "none "}}>重新寄送驗證碼</button>
                         </div>
                         <button type="submit" onClick={handleLoginIn} className="sign-up" style={{display: notLog ? "none" : "block "}}>登入</button>
                         <button type="button" onClick={autoSignUp} style={{border:"none",padding:"15px",cursor:"pointer",backgroundColor:"transparent"}}></button>
