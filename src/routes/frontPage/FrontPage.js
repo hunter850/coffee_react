@@ -50,7 +50,7 @@ function FrontPage() {
                     <div>
                         <Link to="/getcoupon">
                             <img
-                                style={{ width: "588px", height: "100%" }}
+                                style={{ width: "588px" }}
                                 src={frontpagecouponimg}
                                 alt=""
                             />
