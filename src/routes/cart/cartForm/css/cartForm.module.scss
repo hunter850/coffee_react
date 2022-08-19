@@ -13,5 +13,29 @@
 }
 
 .total_wrap {
+    position: relative;
     width: 25%;
+    height: fit-content;
+}
+
+@media (max-width: 768px) {
+    .form_wrap {
+        width: 100%;
+    }
+    .total_wrap {
+        position: fixed;
+        width: 100%;
+        top: auto !important;
+        bottom: 0px;
+        left: 0px;
+        height: fit-content;
+        display: flex;
+        padding: 25px 50px;
+        background-color: #fff;
+    }
+}
+@media (max-width: 576px) {
+    .total_wrap {
+        padding: 25px 16px;
+    }
 }
