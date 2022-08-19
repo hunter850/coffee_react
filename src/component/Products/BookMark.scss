@@ -20,12 +20,15 @@
         margin-right: 40px;
         @include productsMob{
             margin-right: 0px;
-            margin: 10px 16px 0px 16px;
+            margin: 5px 5px 0px 5px;
             button{
                 font-size: 16px;
                 padding: 5px;
                 padding-left: 5px;
                 padding-right: 5px;
+                @include productsMob{
+                    font-size: 14px;
+                }
             }
         }
     }

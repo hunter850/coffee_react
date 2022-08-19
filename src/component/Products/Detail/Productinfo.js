@@ -75,7 +75,7 @@ function Productinfo(props) {
     // axios post
 
     const sendCart = () => {
-        console.log("送資料~");
+        // console.log("送資料~");
         return axios
             .post(`${sendCartPost}/${renderData[0].products_sid}`, {
                 ...renderData[0],
@@ -84,7 +84,7 @@ function Productinfo(props) {
             })
             .then((res) => {
                 const fetchCartData = JSON.parse(JSON.stringify(res.data));
-                console.log(fetchCartData);
+                // console.log(fetchCartData);
                 // cartCount.setCartCountNum(cartCount.cartCountNum + 1);
                 getCount();
 
