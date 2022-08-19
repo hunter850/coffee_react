@@ -167,8 +167,8 @@ const Course = () => {
                 return courseData[index].map((v, i) => {
                     return (
                         <ScrollWrap
-                            start={sortData === '' ? `cardaniwrapbf` : ''}
-                            end={sortData === '' ? `cardaniwrapat` : ''}
+                            start={sortData === '' ? `coffee-cardaniwrapbf` : ''}
+                            end={sortData === '' ? `coffee-cardaniwrapat` : ''}
                             offset={150}
                             key={v.course_sid}
                         >
