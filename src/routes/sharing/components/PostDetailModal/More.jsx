@@ -6,14 +6,15 @@ import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import Modal from "../../../../component/Modal/Modal";
 import styles from "./scss/More.module.scss";
 import MySpinner from "../MySpinner";
+import { set } from "lodash";
 
 function More(props) {
-    const { children, post_sid, member_sid, resetState } = props;
+    const { children, post_sid, member_sid, resetState, setEditMode } = props;
     const modalRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isCopy, setIsCopy] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
-    const { token } = useAuth();
+    const { sid, token } = useAuth();
     const { option } = styles;
 
     const handleCopy = () => {
@@ -54,11 +55,15 @@ function More(props) {
         }, 1000);
     };
 
+    const handleEdit = () => {
+        setEditMode(true);
+    };
+
     return (
         <>
             <div
                 style={{
-                    padding: "0 .75rem",
+                    padding: "0 1.25rem 0 .75rem",
                     cursor: "pointer",
                 }}
                 onClick={() => setIsOpen(true)}
@@ -76,14 +81,23 @@ function More(props) {
                     {/* TODO:不是作者不顯示 */}
                     {isCopy !== true ? (
                         <>
-                            <span className={option}>編輯文章</span>
-                            <span
-                                className={option}
-                                style={{ color: "#F62929" }}
-                                onClick={() => handleDelete()}
-                            >
-                                刪除文章
-                            </span>
+                            {sid === member_sid && (
+                                <>
+                                    <span
+                                        className={option}
+                                        onClick={() => handleEdit()}
+                                    >
+                                        編輯文章
+                                    </span>
+                                    <span
+                                        className={option}
+                                        style={{ color: "#F62929" }}
+                                        onClick={() => handleDelete()}
+                                    >
+                                        刪除文章
+                                    </span>
+                                </>
+                            )}
                             <span
                                 className={option}
                                 onClick={() => handleShare()}

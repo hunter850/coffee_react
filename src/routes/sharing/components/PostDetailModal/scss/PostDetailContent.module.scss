@@ -4,13 +4,14 @@
     height: calc(100% - 2.5rem);
 
     >div{
-        padding-left: 1rem;
+        padding-left: 1.6rem;
  
     }
   
     .author{
         display: flex;
-        margin-bottom: .5rem;
+        margin-left: .1rem;
+        margin-bottom: 1.25rem;
 
         .avatar_wrap{
             margin-right: .75rem;
@@ -53,7 +54,7 @@
     overflow-y: auto;
     overflow-x: visible;
     // overflow-x: visible;
-    padding-right: 1rem;
+    padding-right: 1.5rem;
 
 
     &::-webkit-scrollbar {
