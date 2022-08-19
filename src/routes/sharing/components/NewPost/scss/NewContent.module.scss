@@ -1,5 +1,5 @@
 .wrap{
-    padding: 1.25rem 1.75rem;
+    padding: 1.5rem 1.75rem;
    
     flex: 1 1 auto;
     height: 100%;
@@ -22,7 +22,8 @@
 
     .author{
         display: flex;
-        margin-bottom: 1.25rem;
+        margin-left: .1rem;
+        margin-bottom: 1.15rem;
         flex-shrink: 0;
 
         .avatar_wrap{
@@ -61,27 +62,37 @@
         display: flex;
         flex-direction: column;
 
-        >div{
+        .form_upper{
             flex-grow: 1;
         }
-
-        .btn,.dis_btn{
+        .form_bottom{
+            display: flex;
             margin-left: auto;
+
+        }
+
+        
+
+        .btn, .dis_btn, .cancel_btn{
             border: none;
             cursor: pointer;
-            width: 50%;
+            padding: 0 2.5rem;
             border-radius: 3px;
             color: white;
             font-size: 16px;
             font-weight: 300;
             line-height: 2.25rem;
             background: #324A59;
-            margin-bottom: .25rem;
+        }
+
+        .cancel_btn{
+            background: #B79973;
+            padding: 0 1rem;
+            margin-right: 1rem;
         }
 
         .dis_btn{
             cursor:auto;
-
             background-color: #4d606cbe;
         }
     }

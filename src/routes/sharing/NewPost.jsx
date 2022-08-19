@@ -94,7 +94,6 @@ function NewPost({ windowScrollY = 0 }) {
     }, []);
 
     const handleSubmit = debounce(async (e) => {
-        console.log("submit");
         const fd = new FormData(e.target);
 
         let url = [];
@@ -138,7 +137,6 @@ function NewPost({ windowScrollY = 0 }) {
             },
         });
 
-        console.log(r.status);
         if (r.status === 200) goPrev();
     }, 150);
 
