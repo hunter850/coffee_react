@@ -345,9 +345,10 @@ function Cart() {
                             className={modal_confirm}
                             onClick={() =>
                                 navigate(
-                                    `${alertText === "請先登入"
-                                        ? "/member/login"
-                                        : "/"
+                                    `${
+                                        alertText === "請先登入"
+                                            ? "/member/login"
+                                            : "/"
                                     }`,
                                     { replace: true }
                                 )
