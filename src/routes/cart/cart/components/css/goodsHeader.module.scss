@@ -7,11 +7,20 @@
     padding: 0px 23px;
     background-color: var(--GRAY);
     border-radius: 3px 3px 0px 0px;
-     li {
+    @media (max-width: 768px) {
+        padding: 0px 12px;
+    }
+    @media (max-width: 576px) {
+        padding: 0px 6px;
+    }
+    li {
         flex: 1 0 0;
     }
     .header_name {
         flex: 2 0 100px;
+        @media (max-width: 768px) {
+            flex: 2 0 50px;
+        }
     }
     .header_trash {
         flex: none;
@@ -36,4 +45,11 @@
 
 .text_start {
     text-align: left;
+}
+
+@media (max-width: 576px) {
+    .text_none {
+        display: none;
+        flex: 0 1 0;
+    }
 }

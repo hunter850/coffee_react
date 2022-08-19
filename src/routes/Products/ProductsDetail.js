@@ -16,6 +16,7 @@ function ProductsDetail() {
     const [dataLoaded, setDataLoaded] = useState(false);
     const [productsCount, setProductsCount] = useState(1);
     const [infoLimit, setInfoLimit] = useState("");
+    const [tagData, setTagData] = useState([]);
 
     const getProductsData = () => {
         return axios.get(productsDataGet).then((res) => {
@@ -28,6 +29,8 @@ function ProductsDetail() {
                 return +v.products_sid === +products_sid;
             });
             setRenderData(nowData);
+
+            setTagData(productsData.ptag);
             setDataLoaded(true);
             // console.log("data_check", res.data);
             // console.log("renderData", nowData);
@@ -86,6 +89,7 @@ function ProductsDetail() {
                         dataLoaded={dataLoaded}
                         productsCount={productsCount}
                         setProductsCount={setProductsCount}
+                        tagData={tagData}
                     />
                 </div>
             </div>
