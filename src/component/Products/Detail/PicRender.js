@@ -77,7 +77,7 @@ function PicRender(props) {
                     })
                     .map((v, i) => {
                         return (
-                            <div className="card_tag">
+                            <div className="card_tag" key={i}>
                                 {v.products_style_filter_categories}
                             </div>
                         );

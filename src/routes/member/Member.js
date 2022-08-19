@@ -237,7 +237,7 @@ function Member() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} bgClassName="dark-bg">
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} bgClassName="dark-bg" closeAble={false}>
                     <Modal.Body className="mr-msg-wrap">
                         <div>
                             <div className="mr-msg" onClick={()=>{navigate("/member/login", {replace: false})}}>請先登入</div>
