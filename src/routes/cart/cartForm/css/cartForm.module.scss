@@ -5,7 +5,9 @@
     max-width: 1440px;
     margin: 48px auto 0px;
     background-color: var(--CREAM);
-    // outline: 1px solid red;
+    @media (max-width: 768px) {
+        margin: 48px auto 110px;
+    }
 }
 
 .form_wrap {
