@@ -36,7 +36,7 @@ function FrontPage() {
                     "http://localhost:3500/images/frontpage/banner/banner-course1.jpg",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.jpg",
                 ]}
-                height={650}
+                height={700}
                 // isAuto={false}
             />
             <HotFoods />
