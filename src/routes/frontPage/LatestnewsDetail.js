@@ -78,7 +78,7 @@ export default function LatestnewsDetail() {
                                 }
                             >
                                 <img src={left_arrow} alt="" />
-                                <p>Previous</p>
+                                <p>Previous Page</p>
                             </div>
 
                             {/* <Link to="/">
@@ -96,7 +96,7 @@ export default function LatestnewsDetail() {
                                 }
                             >
                                 <img src={right_arrow} alt="" />
-                                <p>Next</p>
+                                <p>Next Page</p>
                             </div>
                         </div>
                     </div>
