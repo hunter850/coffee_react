@@ -1,23 +1,20 @@
 import { useCallback } from "react";
 
 const useSetNow = () => {
-    return useCallback((cb) => {
-        let start;
-        let ani;
-        (function step(timestamp) {
-            if (!start) {
-                start = timestamp;
-                ani = window.requestAnimationFrame(step);
-                return;
-            }
-            const progress = timestamp - start;
-            if (progress < 25) {
-                window.requestAnimationFrame(step);
-                return;
-            }
-            cb();
-            cancelAnimationFrame(ani);
-        })();
+    return useCallback((fn) => {
+        return fn
+            ? new Promise((resolve) => {
+                  let start;
+                  (function step(timestamp) {
+                      if (!start) {
+                          start = timestamp;
+                          window.requestAnimationFrame(step);
+                          return;
+                      }
+                      resolve();
+                  })();
+              }).then(this ? fn.bind(this) : fn)
+            : Promise.resolve();
     }, []);
 };
 
