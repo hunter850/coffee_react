@@ -90,7 +90,6 @@ function Modal(props) {
             }
             setModalBackground((pre) => ({
                 ...pre,
-                display: "none",
                 opacity: 0,
                 transition: "none",
             }));
@@ -100,6 +99,12 @@ function Modal(props) {
                 opacity: 0,
                 transition: "none",
             }));
+            nextTick(() => {
+                setModalBackground((pre) => ({
+                    ...pre,
+                    display: "none",
+                }));
+            });
         }
         if (!mountedRef.current) {
             mountedRef.current = true;
