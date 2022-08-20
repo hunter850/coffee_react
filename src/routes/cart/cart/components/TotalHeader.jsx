@@ -1,6 +1,5 @@
-import { Fragment, useMemo, useState, useCallback, useEffect } from "react";
+import { Fragment, useMemo, useState, useCallback } from "react";
 import useData from "../../../../hooks/useData";
-import { useNav } from "../../../../Contexts/NavProvider";
 import Modal from "../../../../component/Modal/Modal";
 import CouponTicket from "./CouponTicket";
 import Btn from "../../../../component/Item/Btn/Btn";
@@ -18,7 +17,6 @@ function TotalHeader() {
         text_none,
     } = cssStyle;
     const [isOpen, setIsOpen] = useState(false);
-    const { setShouldCover } = useNav();
     const [nowList] = useData("nowList");
     const nowCouponList = useMemo(() => {
         return nowList === "productList" ? "productCoupons" : "foodCoupons";
@@ -67,17 +65,6 @@ function TotalHeader() {
             },
         };
     }, []);
-    useEffect(() => {
-        if (isOpen) {
-            setShouldCover(true);
-        } else {
-            setShouldCover(false);
-        }
-        return () => {
-            setShouldCover(false);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpen]);
     return (
         <Fragment>
             <button className={header_button} onClick={() => setIsOpen(true)}>
