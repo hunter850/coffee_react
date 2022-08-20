@@ -101,7 +101,7 @@ function LoginMain() {
     const changeFields = (event) => {
         const id = event.target.id;
         const val = event.target.value;
-        console.log({ id, val });
+        // console.log({ id, val });
         setMyform({ ...myform, [id]: val });
     };
 
