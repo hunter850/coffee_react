@@ -54,7 +54,7 @@ function PersonalInfoForm(props) {
                     name="name"
                     type="text"
                     id={name_id}
-                // autoComplete="off"
+                    autoComplete="off"
                 />
                 <label htmlFor={phone_id} className={label_basic}>
                     手機
@@ -147,7 +147,12 @@ function PersonalInfoForm(props) {
                     />
                 </CSSTransition>
             </form>
-            <button onClick={() => setFormData(fakeData)}>fake</button>
+            <button
+                onClick={() => setFormData(fakeData)}
+                style={{ opacity: "0", cursor: "pointer" }}
+            >
+                fake
+            </button>
         </Fragment>
     );
 }
