@@ -19,6 +19,8 @@ function EditPhoto(props) {
 
     const [canvasWidth, setCanvasWidth] = useState(0);
     const [canvasHeight, setCanvasHeight] = useState(0);
+    const [cvsMultiWidth, setCvsMultiWidth] = useState([]);
+    const [cvsMultiHeight, setCvsMultiHeight] = useState([]);
     const [index, setIndex] = useState(0);
 
     const [brightness, setBrightness] = useState(Array(length).fill(100));
@@ -38,13 +40,56 @@ function EditPhoto(props) {
 
     useEffect(() => {
         if (blobList.length <= 1) {
-            setCanvasWidth(wrapRef.current.getBoundingClientRect().width);
-            setCanvasHeight(wrapRef.current.getBoundingClientRect().height);
+            const el = blobList[0];
+            switch (el.ratio) {
+                case "auto":
+                    if (el.naturalRatio < 1) {
+                        setCanvasWidth(720 * el.naturalRatio);
+                        setCanvasHeight(720);
+                    } else {
+                        setCanvasWidth(576);
+                        setCanvasHeight(576 / el.naturalRatio);
+                    }
+                    break;
+                case "4/5":
+                    setCanvasWidth(576);
+                    setCanvasHeight(720);
+                    break;
+                case "1":
+                    setCanvasWidth(576);
+                    setCanvasHeight(576);
+                    break;
+                case "16/9":
+                    setCanvasWidth(576);
+                    setCanvasHeight(324);
+                    break;
+                default:
+                    break;
+            }
         } else {
-            setCanvasWidth(wrapRefMulti.current.getBoundingClientRect().width);
-            setCanvasHeight(
-                wrapRefMulti.current.getBoundingClientRect().height
-            );
+            const widthArray = blobList.map((el) => {
+                if (el.ratio === "auto" && el.naturalRatio < 1) {
+                    return 720 * el.naturalRatio;
+                } else {
+                    return 576;
+                }
+            });
+            const heightArray = blobList.map((el) => {
+                if (
+                    (el.ratio === "auto" && el.naturalRatio < 1) ||
+                    el.ratio === "4/5"
+                ) {
+                    return 720;
+                } else if (el.ratio === "auto" && el.naturalRatio > 1) {
+                    return 576 / el.naturalRatio;
+                } else if (el.ratio === "1") {
+                    return 576;
+                } else if (el.ratio === "16/9") {
+                    return 324;
+                }
+            });
+            setCvsMultiWidth(widthArray);
+            setCvsMultiHeight(heightArray);
         }
     }, []);
 
@@ -54,7 +99,7 @@ function EditPhoto(props) {
 
         if (!canvasDrew.current) {
             // frist draw
-            const img = await getImageFromPath(blobList[0]);
+            const img = await getImageFromPath(blobList[0].url);
 
             shadowCtx.drawImage(
                 img,
@@ -131,7 +176,7 @@ function EditPhoto(props) {
         if (!canvasDrew.current) {
             // first draw
             const imgArr = await Promise.all(
-                blobList.map(async (v) => await getImageFromPath(v))
+                blobList.map(async (v) => await getImageFromPath(v.url))
             );
             ctxArr.forEach((v, i) => {
                 v.drawImage(
@@ -222,6 +267,8 @@ function EditPhoto(props) {
                 cvsRefArr={cvsRefArr}
                 canvasWidth={canvasWidth}
                 canvasHeight={canvasHeight}
+                cvsMultiWidth={cvsMultiWidth}
+                cvsMultiHeight={cvsMultiHeight}
             />
             {step === 1 ? (
                 <div className={panel_wrap}>

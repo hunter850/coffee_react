@@ -13,9 +13,11 @@ function EditCarousel(props) {
         cvsRefArr,
         canvasWidth,
         canvasHeight,
+        cvsMultiWidth,
+        cvsMultiHeight,
         cvsRef,
     } = props;
-    const { carousel } = styles;
+    const { carousel, img_wrap } = styles;
     return (
         <>
             {blobList.length > 1 ? (
@@ -37,18 +39,25 @@ function EditCarousel(props) {
                         return (
                             <SwiperSlide key={i} className={carousel}>
                                 <img
-                                    src={v}
+                                    src={v.url}
                                     alt=""
                                     ref={(el) => (rawCvsArr.current[i] = el)}
-                                    width={canvasWidth}
-                                    height={canvasHeight}
+                                    width={cvsMultiWidth[i]}
+                                    height={cvsMultiHeight[i]}
                                     style={{ display: "none" }}
                                 />
-                                <canvas
-                                    ref={(el) => (cvsRefArr.current[i] = el)}
-                                    width={canvasWidth}
-                                    height={canvasHeight}
-                                ></canvas>
+                                <div
+                                    className={img_wrap}
+                                    style={{ width: "100%", height: "100%" }}
+                                >
+                                    <canvas
+                                        ref={(el) =>
+                                            (cvsRefArr.current[i] = el)
+                                        }
+                                        width={cvsMultiHeight[i]}
+                                        height={cvsMultiHeight[i]}
+                                    ></canvas>
+                                </div>
                             </SwiperSlide>
                         );
                     })}
@@ -56,7 +65,7 @@ function EditCarousel(props) {
             ) : (
                 <div className={carousel} ref={wrapRef}>
                     <img
-                        src={blobList[0]}
+                        src={blobList[0].url}
                         alt=""
                         ref={rawCvs}
                         width={canvasWidth}

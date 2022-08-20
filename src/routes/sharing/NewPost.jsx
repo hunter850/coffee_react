@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import styles from "./scss/NewPost.module.scss";
 
-import { debounce } from "lodash";
+import { debounce, cloneDeep } from "lodash";
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import { useTabsHistory } from "../../Contexts/TabsHistoryProvider";
 import { newPostAPI } from "../../config/api-path";
@@ -22,7 +22,6 @@ function NewPost({ windowScrollY = 0 }) {
 
     const [step, setStep] = useState(0);
     const [rawBlob, setRawBlob] = useState([]);
-    const [nameList, setNameList] = useState([]);
     const [blobList, setBlobList] = useState([]);
     const [photoSize, setPhotoSize] = useState([]);
 
@@ -44,6 +43,7 @@ function NewPost({ windowScrollY = 0 }) {
         e.currentTarget.style.backgroundColor = "#fff";
         e.preventDefault();
         const f = e.dataTransfer.files[0];
+        console.log("file", f);
 
         if (f.type !== "image/png" && f.type !== "image/jpeg") {
             alert("格式不符合");
@@ -51,17 +51,26 @@ function NewPost({ windowScrollY = 0 }) {
         }
 
         const blobURL = window.URL.createObjectURL(f);
-
         setRawBlob((pre) => {
             return [...pre, blobURL];
         });
 
-        setNameList((pre) => {
-            return [...pre, f.name];
-        });
-        setBlobList((pre) => {
-            return [...pre, blobURL];
-        });
+        const el = new Image();
+        el.src = blobURL;
+        el.onload = async () => {
+            setBlobList((pre) => {
+                return [
+                    ...cloneDeep(pre),
+                    {
+                        url: blobURL,
+                        width: el.width,
+                        height: el.height,
+                        naturalRatio: el.width / el.height,
+                        ratio: "auto",
+                    },
+                ];
+            });
+        };
     };
 
     const onChangeHandler = (e) => {
@@ -75,12 +84,22 @@ function NewPost({ windowScrollY = 0 }) {
                 setRawBlob((pre) => {
                     return [...pre, blobURL];
                 });
-                setNameList((pre) => {
-                    return [...pre, f.name];
-                });
-                setBlobList((pre) => {
-                    return [...pre, blobURL];
-                });
+                const el = new Image();
+                el.src = blobURL;
+                el.onload = async () => {
+                    setBlobList((pre) => {
+                        return [
+                            ...cloneDeep(pre),
+                            {
+                                url: blobURL,
+                                width: el.width,
+                                height: el.height,
+                                naturalRatio: el.width / el.height,
+                                ratio: "auto",
+                            },
+                        ];
+                    });
+                };
             }
         }
     };
@@ -155,7 +174,6 @@ function NewPost({ windowScrollY = 0 }) {
                         leaveHandler={leaveHandler}
                         dropHandler={dropHandler}
                         onChangeHandler={onChangeHandler}
-                        nameList={nameList}
                         blobList={blobList}
                         setBlobList={setBlobList}
                         setStep={setStep}
