@@ -33,12 +33,12 @@ function ShowArea(props) {
             arr[selected].ratio = ratioSelect;
             return arr;
         });
-    }, [ratioSelect]);
+    }, [ratioSelect, selected]);
 
     useEffect(() => {
         // 換照片把當下照片ratio丟改ratioSelect
         setRatioSelect(blobList[selected].ratio);
-    }, [selected]);
+    }, [blobList, selected]);
 
     const imgStyle = useMemo(() => {
         const asp_rto = blobList[selected].naturalRatio;
