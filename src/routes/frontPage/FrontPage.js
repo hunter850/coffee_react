@@ -16,8 +16,8 @@ import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 import useData from "../../hooks/useData";
 
 function FrontPage() {
-    const [frontpagecoupon,setFrontpagecoupon] = useData("frontpagecoupon");
-    
+    const [frontpagecoupon, setFrontpagecoupon] = useData("frontpagecoupon");
+
     // const [isOpen, setIsOpen] = useState(false);
     // useEffect(() => {
     //     if (frontpagecoupon) {
@@ -36,7 +36,7 @@ function FrontPage() {
                     "http://localhost:3500/images/frontpage/banner/banner-course1.jpg",
                     "http://localhost:3500/images/frontpage/banner/banner-course2.jpg",
                 ]}
-                height={650}
+                height={700}
                 // isAuto={false}
             />
             <HotFoods />
@@ -48,13 +48,13 @@ function FrontPage() {
             <Modal isOpen={frontpagecoupon} setIsOpen={setFrontpagecoupon}>
                 <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
-                        <Link to="/getcoupon">
-                            <img
-                                style={{ width: "588px" }}
-                                src={frontpagecouponimg}
-                                alt=""
-                            />
-                        </Link>
+                        {/* <Link to="/getcoupon"> */}
+                        <img
+                            style={{ width: "588px" }}
+                            src={frontpagecouponimg}
+                            alt=""
+                        />
+                        {/* </Link> */}
                     </div>
                 </Modal.Body>
             </Modal>
