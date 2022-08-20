@@ -116,7 +116,7 @@ function Member() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 setGetTotalPoints(response.data[0].member_level);
             });
     }, [token,getTotalPoints]);
@@ -130,7 +130,7 @@ function Member() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 if(response.data.length==0){
                     setCanUse(0);
                     return;
@@ -190,7 +190,6 @@ function Member() {
                             <div className="mc-like">
                                 <FaHeart size={'0.8rem'} style={{ "color": "rgb(183, 153, 115)" }} />
                                 <p>收藏<span style={{ marginLeft:"8px", marginRight:"8px", fontWeight:"700"}}>{getLikes}</span>項</p>
-                                {/* 差多少點升等，3000 10000 30000 */}
                                 <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                             </div>
                         </Link>
