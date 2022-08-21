@@ -6,12 +6,12 @@ import transitionStyles from "../../css/transition_group_animation.module.scss";
 
 const fakeData = {
     name: "王曉明",
-    phone: "0912345678",
-    email: "mfee26coffee@gmail.com",
+    phone: "0911222333",
+    email: "coffeereact26@gmail.com",
     payWay: "信用卡",
     deliverWay: "郵寄",
-    address: "新竹縣湖口鄉達生九街13號",
-    card: "5242556789134567",
+    address: "台北市大安區",
+    card: "",
 };
 
 function PersonalInfoForm(props) {
