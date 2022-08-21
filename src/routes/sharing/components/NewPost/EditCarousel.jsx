@@ -44,7 +44,11 @@ function EditCarousel(props) {
                                     ref={(el) => (rawCvsArr.current[i] = el)}
                                     width={cvsMultiWidth[i]}
                                     height={cvsMultiHeight[i]}
-                                    style={{ display: "none" }}
+                                    style={{
+                                        display: "none",
+                                        // objectFit: "cover",
+                                        // objectPosition: "center center",
+                                    }}
                                 />
                                 <div
                                     className={img_wrap}
@@ -54,7 +58,7 @@ function EditCarousel(props) {
                                         ref={(el) =>
                                             (cvsRefArr.current[i] = el)
                                         }
-                                        width={cvsMultiHeight[i]}
+                                        width={cvsMultiWidth[i]}
                                         height={cvsMultiHeight[i]}
                                     ></canvas>
                                 </div>
