@@ -34,7 +34,7 @@
         .liked_heart{
             color: #fff;
             font-size: 1.25rem;
-            animation: pulse .7s 1 forwards;
+            animation: pulse .75s 1 forwards;
         }
 
        
@@ -44,15 +44,15 @@
                 color: rgb(252, 252, 252);
             }
             20% {
-              transform:  scale(1.25);
+              transform:  scale(1.35);
             }
             40% {
               transform:  scale(1);
-              color: rgb(250, 165, 165);
+              color: rgb(241, 119, 119);
             }
             60% {
-              transform:  scale(1.15);
-              color: rgb(250, 165, 165);
+              transform:  scale(1.25);
+              color: rgb(245, 166, 166);
             }
             70%, 100% {
               transform:  scale(1.05);
