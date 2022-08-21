@@ -51,10 +51,10 @@ function ShowArea(props) {
     }, [selected]);
 
     const imgStyle = useMemo(() => {
-        const asp_rto = blobList[selected].naturalRatio;
+        const asp_rto = blobList[selected]?.naturalRatio;
         const style = {
             display: "block",
-            aspectRatio: blobList[selected].ratio,
+            aspectRatio: blobList[selected]?.ratio,
             objectPosition: "center center",
             objectFit: "cover",
         };
@@ -69,7 +69,7 @@ function ShowArea(props) {
     }, [ratioSelect, blobList, selected]);
 
     const mDivStyle = useMemo(() => {
-        const asp_rto = blobList[selected].naturalRatio;
+        const asp_rto = blobList[selected]?.naturalRatio;
 
         // 選擇是auto且圖片原始比例<1 || 選擇4/5用高來壓
         if ((ratioSelect === "auto" && asp_rto < 1) || ratioSelect === "4/5") {

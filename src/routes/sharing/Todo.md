@@ -1,6 +1,6 @@
 ### 0822
-fix heart
 swiper button
+table post `content` 結構varchar500
 ### 0819
 *NewPost
 

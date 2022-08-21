@@ -161,7 +161,6 @@ function Post({ newPost }) {
     useEffect(() => {
         (async () => {
             const r = await getData(getDataTimes);
-            console.log(r);
 
             if (r?.success) {
                 setRows((pre) => {
