@@ -11,8 +11,7 @@ const useSetTimeout = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return [
-        useCallback((callback, tick) => {
-            let start;
+        useCallback((callback, tick, start) => {
             (function step(timestamp) {
                 if (!start) {
                     start = timestamp;
