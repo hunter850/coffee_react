@@ -717,4 +717,77 @@ z-index: 999;
     .styles_faq-row-wrapper__3vA1D h2{
         font-size: 35px !important;
     }
+    
+    .video_session{
+        width: 100%;
+        height: 166px;
+        background:url(../../../images/Coupon/345747rZjOb48h.png) no-repeat center bottom;
+        background-size: 100%,10%,10%,auto;
+        overflow: hidden;
+        margin-top: -726px;
+        /* z-index: 999; */
+    }
+    .video_text p{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        margin-top: 0;
+        color: #FCFAF7;
+        font-size: 18px;
+        line-height: 36px;
+        font-weight: 100;
+    }
+    .videoContainer{
+        margin-top: 50px;
+        height: 780px;
+    }
+    .pt53{
+        padding-top: 0;
+    }
+    .quality_bg{
+        height: 887px;
+    }
+    .storeFAQInner{
+        padding: 30px 40px 45px 40px
+    }
+    .row-content-text{
+        width: 430px !important;
+        padding: 10px 70px 10px 25px !important;
+    }
+    .quality_main_01_a img{
+        width: 20px;
+    }
+    .quality_main_01_a p{
+        margin: 0 0 10px 5px;
+    }
+    .quality_main_01{
+        margin-top: 5px;
+    }
+    .StoreLoading{
+        flex-direction: column;
+    }
+    .StoreLoadingWrap01{
+        width: 100% !important;
+        height: 350px !important;
+    }
+    .StoreLoadingWrap02{
+        width: 100% !important;
+        height: 350px !important;
+    }
+    .bZdOme .slick-slide div{
+        height: 350px !important;
+    }
+    .StoreLoadingWrap00 img{
+        width: 125px;
+    }
+    .banner_session{
+        padding-left: 10px;
+    }
+    .quality{
+        padding: 10px;
+    }
+    .quality_main_01{
+        padding-right: 10px;
+    }
 }

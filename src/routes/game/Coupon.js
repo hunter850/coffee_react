@@ -163,7 +163,7 @@ function Coupon() {
     };
     useEffect(() => {
         Coupon_foruser();
-        console.log(location.search);
+        // console.log(location.search);
     }, [location]);
     return (
         <Fragment>

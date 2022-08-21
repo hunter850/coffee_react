@@ -1,17 +1,20 @@
 import NavBar from "../../component/NavBar/NavBar";
 // import "./css/GetCoupon.css";
 import "./css/GetCoupon.scss";
-
+import Modal from "../../component/Modal/Modal";
+import Btn from "../../component/Item/Btn/Btn";
+import { Link } from "react-router-dom";
 import React from "react";
 import CouponHandle from "./Components/CouponHandle";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../component/Modal/Modal";
 import ChatBot from "../../component/Bot/ChatBot";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 function Getcoupon() {
+    const [isOpen1, setIsOpen1] = useState(true);
+
     const { token } = useAuth();
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -42,7 +45,8 @@ function Getcoupon() {
                     "宇治奶茶8折",
                     "精選曼巴咖啡組8折",
                     "黃金曼特寧組9折",
-                    "購物優惠券9折",
+                    // "購物優惠券9折",
+                    // "購物優惠券9折",
                 ]}
                 segColors={segColors}
                 onFinished={(winner) => onFinished(winner)}
@@ -165,9 +169,35 @@ function Getcoupon() {
 
     useEffect(() => {
         if (!token) {
-            alert("請先登入");
-            navigate("/member/login");
-            return;
+            // alert("請先登入");
+            // navigate("/member/login");
+            // return;
+            setIsOpen1(
+                <>
+                    <Modal isOpen={isOpen1} setIsOpen={setIsOpen1}>
+                        <Link
+                            to="/member/login"
+                            style={{
+                                textDecoration: "none",
+                                color: "var(--BLUE)",
+                                padding: "24px 36px",
+                                textAlign: "center",
+                            }}
+                        >
+                            <h4>請先登入</h4>
+                            <Btn
+                                style={{
+                                    width: 75,
+                                    fontSize: "0.875rem",
+                                    marginTop: 12,
+                                }}
+                            >
+                                確認
+                            </Btn>
+                        </Link>
+                    </Modal>
+                </>
+            );
         }
         setLoading(true);
         setTimeout(() => {
@@ -202,6 +232,7 @@ function Getcoupon() {
                     </Modal.Body>
                     <Modal.Footer></Modal.Footer>
                 </Modal>
+                {isOpen1}
             </div>
         </>
     );
