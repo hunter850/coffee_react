@@ -101,6 +101,7 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
+        align-items: flex-end;
 
         >div{
             display: inline-block;
@@ -134,6 +135,7 @@
         background: transparent;
         padding: 2px 6px;
         margin-bottom: .25rem;
+        overflow-x: hidden;
 
         &::placeholder{
             font-size: 16px;

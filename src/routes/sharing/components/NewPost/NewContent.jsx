@@ -222,14 +222,17 @@ function NewContent(props) {
                     </TransitionGroup>
                 </div>
                 <div className={form_bottom}>
-                    <button
-                        className={cancel_btn}
-                        onClick={() => {
-                            setEditMode(false);
-                        }}
-                    >
-                        取消
-                    </button>
+                    {data && (
+                        <button
+                            className={cancel_btn}
+                            onClick={() => {
+                                setEditMode(false);
+                            }}
+                        >
+                            取消
+                        </button>
+                    )}
+
                     <button
                         type="submit"
                         disabled={beDisable}

@@ -45,7 +45,6 @@ function PostDetailModal({
                 setModal_sid(0);
                 navigate("/sharing");
             }
-            console.log(r.data);
             setData(r.data);
         });
     };

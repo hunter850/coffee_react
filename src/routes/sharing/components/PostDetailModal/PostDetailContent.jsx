@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../../../component/Member/AuthContextProvider";
 import axios from "axios";
 import useTimeAbout from "../../../../hooks/useTimeAbout";
@@ -41,14 +41,12 @@ function PostDetailContent(props) {
         setEditMode,
     } = props;
     const commentInput = useRef(null);
+    const { authorized, token } = useAuth();
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
-
-    const displayToggle = useMemo(() => {
-        return { display: commentWrapToggle ? "block" : "none" };
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
     }, [commentWrapToggle]);
-
-    const { authorized, token } = useAuth();
 
     const {
         sid: post_sid,

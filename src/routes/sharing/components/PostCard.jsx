@@ -87,7 +87,6 @@ function PostCard({ cardData, modalMode, chooseToSearch, setIsOpen }) {
                             <span
                                 className={nickname_span}
                                 onClick={(e) => {
-                                    console.log("名稱篩", member_sid);
                                     e.preventDefault();
                                     e.stopPropagation();
                                     chooseToSearch({

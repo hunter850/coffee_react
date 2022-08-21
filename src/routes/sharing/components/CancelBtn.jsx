@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "./scss/CancelBtn.module.scss";
 
 function CancelBtn({ goPrev }) {
     return (
@@ -6,14 +6,11 @@ function CancelBtn({ goPrev }) {
             onClick={goPrev}
             style={{
                 position: "absolute",
-                top: "1.5rem",
-                right: "2rem",
                 cursor: "pointer",
-                width: "40px",
-                height: "40px",
                 lineHeight: "48px",
                 textAlign: "center",
             }}
+            className={styles.btn}
         >
             <svg
                 aria-label="關閉"

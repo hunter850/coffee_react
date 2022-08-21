@@ -1,16 +1,26 @@
 import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import { cloneDeep } from "lodash";
-import { motion } from "framer-motion";
+import { motion, Reorder } from "framer-motion";
 import { MdCancel, MdOutlineAddCircle } from "react-icons/md";
+import { IoMdPhotos } from "react-icons/io";
 import styles from "./scss/ShowArea.module.scss";
 
 function ShowArea(props) {
     const { blobList, uploadInput, setBlobList } = props;
-    const { wrap, selector, img_wrap, cancel_btn, upload_btn, ratio_selector } =
-        styles;
+    const {
+        wrap,
+        selector,
+        img_wrap,
+        cancel_btn,
+        upload_btn,
+        ratio_selector,
+        selector_btn,
+        selector_btn_seleted,
+    } = styles;
     const constraintsRef = useRef(null);
     const [selected, setSelected] = useState(0);
     const [ratioSelect, setRatioSelect] = useState("auto");
+    const [onSelect, setOnSelect] = useState(true);
 
     const cancelPhoto = useCallback(
         (i) => {
@@ -80,41 +90,62 @@ function ShowArea(props) {
                     style={imgStyle}
                 />
             </motion.div>
-            <div className={selector}>
-                {blobList.map((v, i) => {
-                    return (
-                        <div
-                            key={i}
-                            className={img_wrap}
-                            onClick={() => setSelected(i)}
-                        >
-                            <img src={v.url} alt="pic" />
-                            <MdCancel
-                                fill="white"
-                                size="18px"
-                                className={cancel_btn}
+            {onSelect === true && (
+                <Reorder.Group
+                    values={blobList}
+                    onReorder={setBlobList}
+                    axis="x"
+                    className={selector}
+                >
+                    {blobList.map((v, i) => {
+                        return (
+                            <Reorder.Item
+                                key={i + v.width}
+                                value={v}
+                                className={img_wrap}
                                 onClick={(e) => {
-                                    e.stopPropagation();
-                                    cancelPhoto(i);
+                                    setSelected(i);
                                 }}
-                            />
-                        </div>
-                    );
-                })}
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                }}
+                                whileDrag={{ opacity: 0.5 }}
+                                style={{
+                                    background: `url('${v.url}') no-repeat center /cover`,
+                                }}
+                            >
+                                <MdCancel
+                                    fill="white"
+                                    size="18px"
+                                    className={cancel_btn}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        cancelPhoto(i);
+                                    }}
+                                />
+                            </Reorder.Item>
+                        );
+                    })}
 
-                <MdOutlineAddCircle
-                    onClick={(e) => uploadInput.current.click(e)}
-                    className={upload_btn}
-                    size="48px"
-                    fill="#fff"
-                />
+                    <MdOutlineAddCircle
+                        onClick={(e) => uploadInput.current.click(e)}
+                        className={upload_btn}
+                        size="48px"
+                        fill="#fff"
+                    />
+                </Reorder.Group>
+            )}
+
+            <div className={onSelect ? selector_btn_seleted : selector_btn}>
+                <IoMdPhotos onClick={() => setOnSelect(!onSelect)}>
+                    開關
+                </IoMdPhotos>
             </div>
             <div className={ratio_selector}>
-                {blobList.map((v, i) => (
-                    <pre key={i}>
-                        {v.ratio},w:{v.width},h:{v.height}
-                    </pre>
-                ))}
                 <select
                     name=""
                     id=""

@@ -1,0 +1,15 @@
+.btn{
+    width: 40px;
+    height: 40px;
+    top: 1.5rem;
+    right: 2rem;
+}
+
+@media (max-width:768px) {
+    .btn{
+        width: 32px;
+        height: 32px;
+        top: .5rem;
+        right: 1rem;
+    }
+}

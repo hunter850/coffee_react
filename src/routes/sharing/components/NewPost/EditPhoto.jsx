@@ -115,7 +115,7 @@ function EditPhoto(props) {
         } else if (asp_rto === "1" && ntrl_rto > 1) {
             newWidth = blobList[0].width * scaleByH;
             left = -(newWidth - 576) / 2;
-        } else if (asp_rto === "16/9" && ntrl_rto < 1) {
+        } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
             newHeight = blobList[0].height * scale;
             top = -(newHeight - 324) / 2;
         } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
@@ -194,41 +194,39 @@ function EditPhoto(props) {
         let newHeight = cvsRefArr.current.map((v) => v.height);
         let newWidth = cvsRefArr.current.map((v) => v.width);
 
+        blobList.forEach((v, i) => {
+            // Trans image to canvas fit Cover
+            const asp_rto = v.ratio;
+            const ntrl_rto = v.naturalRatio;
+
+            // 縮放比例
+            const scale = 576 / v.width;
+            const scaleByH = 720 / v.height;
+
+            if (asp_rto === "1" && ntrl_rto < 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 576) / 2;
+            } else if (asp_rto === "1" && ntrl_rto > 1) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 324) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 720) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            }
+        });
+
         if (!canvasDrew.current) {
             // first draw
-
             const imgArr = await Promise.all(
                 blobList.map(async (v) => await getImageFromPath(v.url))
             );
             ctxArr.forEach((v, i) => {
-                // Trans image to canvas fit Cover
-                const asp_rto = blobList[i].ratio;
-                const ntrl_rto = blobList[i].naturalRatio;
-                // 縮放比例
-                const scale = 576 / blobList[i].width;
-                const scaleByH = 720 / blobList[i].height;
-
-                // 縮放後高度
-
-                if (asp_rto === "1" && ntrl_rto < 1) {
-                    newHeight[i] = blobList[i].height * scale;
-                    top[i] = -(newHeight[i] - 576) / 2;
-                } else if (asp_rto === "1" && ntrl_rto > 1) {
-                    newWidth[i] = blobList[i].width * scaleByH;
-                    left[i] = -(newWidth[i] - 576) / 2;
-                } else if (asp_rto === "16/9" && ntrl_rto < 1) {
-                    newHeight[i] = blobList[i].height * scale;
-                    top[i] = -(newHeight[i] - 324) / 2;
-                } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
-                    newHeight[i] = blobList[i].height * scale;
-                    top[i] = -(newHeight[i] - 720) / 2;
-                } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
-                    newWidth[i] = blobList[i].width * scaleByH;
-                    left[i] = -(newWidth[i] - 576) / 2;
-                }
-                console.log("top", top);
-                console.log("h", newHeight);
-
                 v.drawImage(
                     imgArr[i],
                     left[i],
@@ -261,10 +259,10 @@ function EditPhoto(props) {
 
             ctx.drawImage(
                 rawImageArr[index],
-                0,
-                0,
-                cvsRefArr.current[index].width,
-                cvsRefArr.current[index].height
+                left[index],
+                top[index],
+                newWidth[index],
+                newHeight[index]
             );
 
             const imageData = ctx.getImageData(
