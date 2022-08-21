@@ -43,7 +43,6 @@ function NewPost({ windowScrollY = 0 }) {
         e.currentTarget.style.backgroundColor = "#fff";
         e.preventDefault();
         const f = e.dataTransfer.files[0];
-        console.log("file", f);
 
         if (f.type !== "image/png" && f.type !== "image/jpeg") {
             alert("格式不符合");
@@ -76,7 +75,6 @@ function NewPost({ windowScrollY = 0 }) {
     const onChangeHandler = (e) => {
         const length = e.target.files.length;
         if (length > 0) {
-            console.log(e.target.files);
             for (let i = 0; i < length; i++) {
                 const f = e.target.files[i];
 
@@ -147,7 +145,7 @@ function NewPost({ windowScrollY = 0 }) {
             fd.append("photos", dataURLtoFile(v, "photo" + i));
         });
 
-        const r = await axios({
+        await axios({
             method: "post",
             url: newPostAPI,
             data: fd,
@@ -156,11 +154,18 @@ function NewPost({ windowScrollY = 0 }) {
             },
         });
 
-        if (r.status === 200) goPrev();
+        goPrev();
     }, 150);
 
     return (
-        <div className={wrap} style={{ top: windowScrollY }}>
+        <div
+            className={wrap}
+            style={{ top: windowScrollY }}
+            id="wrap"
+            onMouseDown={(e) => {
+                if (e.target.id === "wrap") goPrev();
+            }}
+        >
             <div className={step >= 1 ? new_edit : new_post}>
                 <nav className={nav}>
                     <NewNav step={step} setStep={setStep} blobList={blobList} />

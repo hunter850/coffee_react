@@ -80,7 +80,7 @@ function EditPhoto(props) {
                     el.ratio === "4/5"
                 ) {
                     return 720;
-                } else if (el.ratio === "auto" && el.naturalRatio > 1) {
+                } else if (el.ratio === "auto" && el.naturalRatio >= 1) {
                     return 576 / el.naturalRatio;
                 } else if (el.ratio === "1") {
                     return 576;
@@ -91,24 +91,45 @@ function EditPhoto(props) {
             setCvsMultiWidth(widthArray);
             setCvsMultiHeight(heightArray);
         }
-    }, []);
+    }, [blobList]);
 
     const renderCanvas = async () => {
         const shadowCtx = cvsRef.current.getContext("2d");
         const rawImg = rawCvs.current;
 
+        // Trans image to canvas fit Cover
+        let top = 0;
+        let left = 0;
+        const asp_rto = blobList[0].ratio;
+        const ntrl_rto = blobList[0].naturalRatio;
+        // 縮放比例
+        const scale = 576 / blobList[0].width;
+        const scaleByH = 720 / blobList[0].height;
+        // 縮放後高度
+        let newHeight = cvsRef.current.height;
+        let newWidth = cvsRef.current.width;
+
+        if (asp_rto === "1" && ntrl_rto < 1) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 576) / 2;
+        } else if (asp_rto === "1" && ntrl_rto > 1) {
+            newWidth = blobList[0].width * scaleByH;
+            left = -(newWidth - 576) / 2;
+        } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 324) / 2;
+        } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 720) / 2;
+        } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
+            newWidth = blobList[0].width * scaleByH;
+            left = -(newWidth - 576) / 2;
+        }
+
         if (!canvasDrew.current) {
             // frist draw
             const img = await getImageFromPath(blobList[0].url);
-
-            shadowCtx.drawImage(
-                img,
-                0,
-                0,
-                cvsRef.current.width,
-                cvsRef.current.height
-            );
-
+            shadowCtx.drawImage(img, left, top, newWidth, newHeight);
             canvasDrew.current = true;
         } else {
             const f = filter[0];
@@ -130,13 +151,7 @@ function EditPhoto(props) {
             // shadowCtx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) ${ctxFilter}`;
             shadowCtx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) ${ctxFilter}`;
 
-            shadowCtx.drawImage(
-                rawImg,
-                0,
-                0,
-                cvsRef.current.width,
-                cvsRef.current.height
-            );
+            shadowCtx.drawImage(rawImg, left, top, newWidth, newHeight);
 
             const imageData = shadowCtx.getImageData(
                 0,
@@ -172,6 +187,39 @@ function EditPhoto(props) {
         const rawImageArr = rawCvsArr.current;
 
         const f = filter[index];
+        // let top = 0;
+        // let newHeight = cvsRef.current.height;
+        let top = new Array(ctxArr.length).fill(0);
+        let left = new Array(ctxArr.length).fill(0);
+        let newHeight = cvsRefArr.current.map((v) => v.height);
+        let newWidth = cvsRefArr.current.map((v) => v.width);
+
+        blobList.forEach((v, i) => {
+            // Trans image to canvas fit Cover
+            const asp_rto = v.ratio;
+            const ntrl_rto = v.naturalRatio;
+
+            // 縮放比例
+            const scale = 576 / v.width;
+            const scaleByH = 720 / v.height;
+
+            if (asp_rto === "1" && ntrl_rto < 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 576) / 2;
+            } else if (asp_rto === "1" && ntrl_rto > 1) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 324) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 720) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            }
+        });
 
         if (!canvasDrew.current) {
             // first draw
@@ -181,10 +229,10 @@ function EditPhoto(props) {
             ctxArr.forEach((v, i) => {
                 v.drawImage(
                     imgArr[i],
-                    0,
-                    0,
-                    cvsRefArr.current[i].width,
-                    cvsRefArr.current[i].height
+                    left[i],
+                    top[i],
+                    newWidth[i],
+                    newHeight[i]
                 );
             });
             canvasDrew.current = true;
@@ -211,10 +259,10 @@ function EditPhoto(props) {
 
             ctx.drawImage(
                 rawImageArr[index],
-                0,
-                0,
-                cvsRefArr.current[index].width,
-                cvsRefArr.current[index].height
+                left[index],
+                top[index],
+                newWidth[index],
+                newHeight[index]
             );
 
             const imageData = ctx.getImageData(
@@ -247,12 +295,16 @@ function EditPhoto(props) {
 
     useEffect(() => {
         if (blobList.length <= 1) {
-            renderCanvas();
+            setTimeout(() => {
+                renderCanvas();
+            }, 20);
         } else {
-            renderMulti();
+            setTimeout(() => {
+                renderMulti();
+            }, 20);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filter, brightness, contrast, saturate]);
+    }, [blobList, filter, brightness, contrast, saturate]);
 
     return (
         <div className={wrap}>

@@ -18,13 +18,13 @@ function Points() {
     const [CouponList, setCouponList] = useState(null);
 
     const [searchParams] = useSearchParams();
-    console.log(searchParams.get("type"));
+    // console.log(searchParams.get("type"));
     let type = parseInt(searchParams.get("type"));
     if (isNaN(type)) {
         type = 1;
     }
-    console.log(122345);
-    console.log(type);
+    // console.log(122345);
+    // console.log(type);
 
     const Points = async () => {
         await axios

@@ -1,8 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../../component/NavBar/NavBar";
 import React from "react";
+import Modal from "../../component/Modal/Modal";
+import Btn from "../../component/Item/Btn/Btn";
 // import "./css/Getpoint.css";
 import "./css/Getpoint.scss";
 import SnakeGame from "./Components/SnakeGame";
@@ -14,6 +16,7 @@ import GameBGM from "../../images/Coupon/GameBGM.mp3";
 import useSound from "use-sound";
 // import sounds from "../../images/Coupon/yisell_sound_201404102304403674_88366.mp3";
 function Getpoint() {
+    const [isOpen1, setIsOpen1] = useState(true);
     const [play, { stop }] = useSound(GameBGM, {
         volume: 0.5,
     });
@@ -41,8 +44,23 @@ function Getpoint() {
     };
     useEffect(() => {
         if (!token) {
-            alert("請先登入");
-            navigate("/member/login");
+            // alert("請先登入");
+            // navigate("/member/login");
+            // return;
+            setIsOpen1(
+                <>
+                    <AlertItem
+                        isOpen={isOpen1}
+                        setIsOpen={setIsOpen1}
+                        style={{ margintop: "60px" }}
+                    >
+                        <AlertItem.Body style={{ padding: "24px 36px" }}>
+                            請先登入
+                        </AlertItem.Body>
+                        <AlertItem.Footer></AlertItem.Footer>
+                    </AlertItem>
+                </>
+            );
             return;
         }
         setLoading(true);
@@ -93,6 +111,7 @@ function Getpoint() {
                 <AlertItem.Footer></AlertItem.Footer>
             </AlertItem>
             <ChatBot />
+            {isOpen1}
         </Fragment>
     );
 }

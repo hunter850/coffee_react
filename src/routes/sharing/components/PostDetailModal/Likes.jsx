@@ -5,7 +5,7 @@ function Likes({ likes, memberLikePost, didLiked }) {
 
     return (
         <div className={like_wrap} onClick={memberLikePost}>
-            <div className={`${heart} ${didLiked && liked}`}></div>
+            <div className={`${heart} ${didLiked ? liked : ""}`}></div>
             <span
                 style={{
                     fontSize: "15px",

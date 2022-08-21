@@ -1,15 +1,16 @@
-import { useState } from "react";
 import styles from "./scss/Panel.module.scss";
 import normal from "../../../../images/sharing/Normal.jpg";
 import moon from "../../../../images/sharing/Moon.jpg";
-import yellowed from "../../../../images/sharing/Yellow.jpg";
+import yellowed from "../../../../images/sharing/yellowed.png";
+import browned from "../../../../images/sharing/browned.png";
+import blur from "../../../../images/sharing/blur.png";
 
 const filterArr = [
     { name: "原始", src: normal, mode: "" },
     { name: "灰階", src: moon, mode: "greyed" },
     { name: "泛黃", src: yellowed, mode: "yellowed" },
-    { name: "棕色", src: yellowed, mode: "sepia" },
-    { name: "模糊", src: yellowed, mode: "blur" },
+    { name: "棕色", src: browned, mode: "sepia" },
+    { name: "模糊", src: blur, mode: "blur" },
 ];
 
 const silderArr = [
