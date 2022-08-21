@@ -46,8 +46,6 @@ function EditCarousel(props) {
                                     height={cvsMultiHeight[i]}
                                     style={{
                                         display: "none",
-                                        // objectFit: "cover",
-                                        // objectPosition: "center center",
                                     }}
                                 />
                                 <div

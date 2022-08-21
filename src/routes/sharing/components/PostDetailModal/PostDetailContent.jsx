@@ -202,7 +202,13 @@ function PostDetailContent(props) {
                         style={{ marginLeft: "-4px" }}
                     >
                         {tags.map((v, i) => (
-                            <div key={i} style={{ padding: "0 4px" }}>
+                            <div
+                                key={i}
+                                style={{
+                                    padding: "0 4px",
+                                    marginBottom: "4px",
+                                }}
+                            >
                                 <Tag>{v}</Tag>
                             </div>
                         ))}

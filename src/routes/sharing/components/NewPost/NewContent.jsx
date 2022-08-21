@@ -164,7 +164,7 @@ function NewContent(props) {
                                     setContent(e.target.value);
                             }}
                         />
-                        <div className={tag_wrap} style={{ minHeight: "60px" }}>
+                        <div className={tag_wrap} style={{ minHeight: "30px" }}>
                             {myTag.map((v, i) => {
                                 return (
                                     <div key={i} onClick={() => removeTag(v)}>

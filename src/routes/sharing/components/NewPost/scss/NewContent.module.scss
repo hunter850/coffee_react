@@ -101,7 +101,6 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        align-items: flex-end;
 
         >div{
             display: inline-block;
@@ -129,7 +128,7 @@
     textarea{
         font-size: 16px;
         resize: none;
-        height: 220px;
+        height: 280px;
         width: 100%;
         border: none;
         background: transparent;
@@ -221,7 +220,7 @@
         padding: 1rem;
         height: auto;
         textarea{
-            height: 120px;
+            height: 200px;
         }
     }
 }
@@ -229,7 +228,11 @@
 @media (max-height:768px) {
     .wrap{
         padding-bottom: 1.5rem;
-        height: 50%;
+        height: auto;
+
+        textarea{
+            height: 120px;
+        }
     }
     
 }

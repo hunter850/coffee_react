@@ -75,7 +75,6 @@ function NewPost({ windowScrollY = 0 }) {
     const onChangeHandler = (e) => {
         const length = e.target.files.length;
         if (length > 0) {
-            console.log(e.target.files);
             for (let i = 0; i < length; i++) {
                 const f = e.target.files[i];
 
