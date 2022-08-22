@@ -39,6 +39,7 @@ function CartForm() {
         total: 0,
         discount: 0,
     });
+    const [bordTop, setBordTop] = useState(0);
     const { getCount } = useNav();
     const [nowList, setnowList] = useData("nowList");
     const [, setProductList, resetProduct] = useData("productList");
@@ -155,6 +156,17 @@ function CartForm() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    useEffect(() => {
+        function scrollHandler() {
+            if (window.scrollY <= 0) {
+                setBordTop(0);
+            } else {
+                setBordTop(window.scrollY);
+            }
+        }
+        window.addEventListener("scroll", scrollHandler);
+        return () => window.removeEventListener("scroll", scrollHandler);
+    }, []);
     const confirmHandler = useCallback(() => {
         resetLastInsertId();
         axios
@@ -223,7 +235,7 @@ function CartForm() {
                             setCardNumber={setCardNumber}
                         />
                     </div>
-                    <div className={total_wrap}>
+                    <div className={total_wrap} style={{ top: `${bordTop}px` }}>
                         <TotalHeader />
                         <TotalBord
                             confirmHandler={confirmHandler}
