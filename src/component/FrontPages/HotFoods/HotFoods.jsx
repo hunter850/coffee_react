@@ -8,8 +8,8 @@ import "./HotFoods.css";
 import useLog from "../../../hooks/useLog";
 
 function HotFoods() {
-    useLog(hotfooddata);
-    console.log(hotfooddata);
+    // useLog(hotfooddata);
+    // console.log(hotfooddata);
     return (
         <Fragment>
             <div className="home-container">

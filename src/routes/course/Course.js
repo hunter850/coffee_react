@@ -24,7 +24,6 @@ import { sortDataFun } from "../../component/Course/helper/sortDataFun";
 import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
 import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
-import SpinnerWrap from '../../component/Item/SpinnerWrap/SpinnerWrap';
 import { useStyleChange } from '../../Contexts/SuperProvider';
 
 const Course = () => {
@@ -195,42 +194,40 @@ const Course = () => {
 
     const el = (
         <Fragment>
-            <SpinnerWrap>
-                <div className="Course-container">
-                    <NavBar />
-                    <Path pathObj={{ path: ["．課程資訊"] }} />
-                    <Header
-                        searchInp={searchInp}
-                        setSearchInp={setSearchInp}
-                        dataDisplay={dataDisplay}
-                        setDataDisplay={setDataDisplay}
-                        courseData={courseData}
-                        setCourseData={setCourseData}
-                        courseSearch={courseSearch}
-                    />
-                    <Sort
-                        courseData={courseData}
-                        sortData={sortData}
-                        setSortData={setSortData}
-                    />
-                    <div className="container">
-                        {courseData.length > 0 ? CourseData : ''}
-                    </div>
+            <div className="Course-container">
+                <NavBar />
+                <Path pathObj={{ path: ["．課程資訊"] }} />
+                <Header
+                    searchInp={searchInp}
+                    setSearchInp={setSearchInp}
+                    dataDisplay={dataDisplay}
+                    setDataDisplay={setDataDisplay}
+                    courseData={courseData}
+                    setCourseData={setCourseData}
+                    courseSearch={courseSearch}
+                />
+                <Sort
+                    courseData={courseData}
+                    sortData={sortData}
+                    setSortData={setSortData}
+                />
+                <div className="container">
+                    {courseData.length > 0 ? CourseData : ''}
                 </div>
-                <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-                    <Modal.Body
-                        style={{
-                            textDecoration: "none",
-                            color: "var(--BLUE)",
-                            padding: "40px",
-                        }}
-                    >
-                        <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
-                    </Modal.Body>
-                </Modal>
-                <Chatbot />
-                <Footer />
-            </SpinnerWrap>
+            </div>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <Modal.Body
+                    style={{
+                        textDecoration: "none",
+                        color: "var(--BLUE)",
+                        padding: "40px",
+                    }}
+                >
+                    <h4>很抱歉，我們找不到"{searchInp}"相關的課程。</h4>
+                </Modal.Body>
+            </Modal>
+            <Chatbot />
+            <Footer />
         </Fragment>
     );
     return el;

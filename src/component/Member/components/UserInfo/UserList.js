@@ -25,7 +25,7 @@ function UserList({list,isOpen,setIsOpen,userList,setUserList,mobileError,mailEr
 
     const changeFields = (event) => {
         setUserList({ ...userList, [event.target.name]: event.target.value });
-        console.log(event.target.name,event.target.value);
+        // console.log(event.target.name,event.target.value);
     };
 
     // --------------------- 處理變更密碼 ---------------------

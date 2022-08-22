@@ -110,7 +110,7 @@ function UserInfo() {
         })
         .then((r) => r.json())
         .then((result) => {
-            console.log(result.data);
+            // console.log(result.data);
             if (result.success) {
                 setUserList(result.data);
                 setEditSuccess(true);
@@ -144,7 +144,7 @@ function UserInfo() {
     });
     const editPassword = (e) => {
         setEditPass({ ...editPass, [e.target.name]: e.target.value });
-        console.log(e.target.name, e.target.value);
+        // console.log(e.target.name, e.target.value);
     };
 
     // --------------------- 送出修改密碼 ---------------------
@@ -190,7 +190,7 @@ function UserInfo() {
             })
                 .then((r) => r.json())
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
                     if (result.success) {
 
                         setIsOpen(false);
