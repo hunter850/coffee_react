@@ -41,6 +41,7 @@ function PostDetailContent(props) {
         setEditMode,
     } = props;
     const commentInput = useRef(null);
+    const mounted = useRef(false);
     const { authorized, token } = useAuth();
     const [commentWrapToggle, setCommentWrapToggle] = useState(true);
     const [didLiked, setDidLiked] = useState(false);
@@ -133,24 +134,30 @@ function PostDetailContent(props) {
     };
 
     useEffect(() => {
-        if (authorized) {
+        if (authorized && mounted) {
             (async () => {
                 const r = await axios.get(`${memberLikeAPI}/${post_sid}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
+                console.log(r);
                 setDidLiked(!!r.data.liked);
 
                 setRows((pre) => {
                     const obj = cloneDeep(pre);
                     const ind = pre.findIndex((el) => el.sid === post_sid);
-                    obj[ind].liked = r.data.liked;
-                    obj[ind].likes = r.data.total;
-                    return obj;
+                    if (ind >= 0) {
+                        obj[ind].liked = r.data?.liked || 0;
+                        obj[ind].likes = r.data.total;
+                        return obj;
+                    } else {
+                        return pre;
+                    }
                 });
             })();
+        } else {
+            mounted = true;
         }
     }, [data]);
 

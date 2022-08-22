@@ -286,7 +286,7 @@ function Post({ newPost }) {
                         setRows={setRows}
                     />
                 )}
-                {nowTabs === "newPost" && <NewPost />}
+                {nowTabs === "newPost" && <NewPost resetState={resetState} />}
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} time=".4">
                 <Link

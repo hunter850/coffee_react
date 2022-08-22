@@ -10,11 +10,13 @@ import EditPhoto from "./components/NewPost/EditPhoto";
 import CancelBtn from "./components/CancelBtn";
 import NewNav from "./components/NewPost/NewNav";
 import Upload from "./components/NewPost/Upload";
+import { useNavigate } from "react-router-dom";
 
-function NewPost({ windowScrollY = 0 }) {
+function NewPost({ windowScrollY = 0, resetState }) {
     const { token } = useAuth();
     const { wrap, new_post, nav, new_edit } = styles;
     const { lastTabs, pushTabs } = useTabsHistory();
+    const navigate = useNavigate();
 
     const cvsRefArr = useRef([]);
     const cvsRef = useRef(null);
@@ -158,6 +160,7 @@ function NewPost({ windowScrollY = 0 }) {
         setTimeout(() => {
             setIsSubmit(false);
             goPrev();
+            resetState();
         }, 1000);
     }, 150);
 
