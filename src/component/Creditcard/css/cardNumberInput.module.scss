@@ -1,6 +1,9 @@
 .creditcard_wrap {
     width: 520px;
     height: 550.76px;
+    // @media (max-width: 992px) {
+    //     width: 270px;
+    // }
 }
 
 .creditcard_flip {
@@ -257,6 +260,9 @@
     border: 1px solid black;
     border-radius: 10px;
     background-color: #fff;
+    @media (max-width: 1200px) {
+        width: 480px;
+    }
 }
 
 %label_basic {

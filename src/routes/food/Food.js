@@ -44,7 +44,7 @@ const getFoodStorageByKey = (key) => {
             return foodData[key];
         }
     } catch (e) {
-        console.log("error");
+        // console.log("error");
     }
 
     return defaultState[key];

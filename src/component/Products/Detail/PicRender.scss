@@ -39,13 +39,15 @@
         border: 1px solid var(--BLUE);
         border-radius: 3px;
         cursor: pointer;
-          
     }
 }
 .tagWrap {
     margin-top: 24px;
     display: flex;
     align-items: baseline;
+    @include productsMob{
+        margin: 16px 0px 37px;
+    }
     p{
         font-size: 16px;
     }

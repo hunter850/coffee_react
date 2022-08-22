@@ -17,7 +17,7 @@ import bs_flex from "../../routes/cart/css/bs_flex.module.scss";
 function NavBar({ navPosition = 'sticky' }) {
     const c = useClass();
     const { container, px_200 } = bs_flex;
-    const { sid, name, token, setAuth, auth } = useAuth();
+    const { sid, name, token, setAuth, auth, memberJump } = useAuth();
     const { count, getCount, handleLogout, shouldCover } = useNav();
     const navigate = useNavigate();
     // 下拉選單顯示的狀態
@@ -43,6 +43,12 @@ function NavBar({ navPosition = 'sticky' }) {
             setNavDropDown(nav);
         }
     };
+
+    useEffect(() => {
+        if (window.location.pathname !== '/member/login') {
+            clearTimeout(memberJump);
+        }
+    }, [window.location.pathname]);
 
     // 取消下拉選單顯示
     useEffect(() => {
@@ -83,8 +89,8 @@ function NavBar({ navPosition = 'sticky' }) {
 
     }, [token, getUserName, name, user.member_name]);
     const coverStyle = useMemo(() => {
-        if(shouldCover) {
-            return {position: "absolute", top: "0px", left: "0px", width: "100%", height: "100%", backgroundColor: "#0009"};
+        if (shouldCover) {
+            return { position: "absolute", top: "0px", left: "0px", width: "100%", height: "100%", backgroundColor: "#0009" };
         } else {
             return {};
         }

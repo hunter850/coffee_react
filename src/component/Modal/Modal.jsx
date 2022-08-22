@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import useSetNow from "../../hooks/useSetNow";
 import useScrollbar from "../../hooks/useScrollbar";
 import useClass from "../../hooks/useClass";
@@ -21,9 +22,10 @@ function Modal(props) {
         closeAble = true,
         className = "",
         style,
+        teleportTo = document.querySelector("body"),
     } = props;
 
-    const setNow = useSetNow();
+    const nextTick = useSetNow();
     const [hideScrollbar, showScrollbar] = useScrollbar();
     const c = useClass();
     const { close_button, modal_bg, modal_bord } = cssStyles;
@@ -60,8 +62,20 @@ function Modal(props) {
             if (mountedRef.current) {
                 onOpen();
             }
-            setModalBackground((pre) => ({ ...pre, display: "flex" }));
-            setNow(() => {
+            setModalBackground((pre) => ({
+                ...pre,
+                display: "flex",
+                transition: `opacity ${time}s ease`,
+            }));
+            setModalBord((pre) => ({
+                ...pre,
+                transition: `
+            transform ${time === 0 ? time : time + 0.2}s ease, opacity ${
+                    time === 0 ? time : time + 0.2
+                }s ease
+        `,
+            }));
+            nextTick(() => {
                 setModalBackground((pre) => ({ ...pre, opacity: 1 }));
                 setModalBord((pre) => ({
                     ...pre,
@@ -76,14 +90,21 @@ function Modal(props) {
             }
             setModalBackground((pre) => ({
                 ...pre,
-                display: "none",
                 opacity: 0,
+                transition: "none",
             }));
             setModalBord((pre) => ({
                 ...pre,
                 transform: `translateY(${bordY}px)`,
                 opacity: 0,
+                transition: "none",
             }));
+            nextTick(() => {
+                setModalBackground((pre) => ({
+                    ...pre,
+                    display: "none",
+                }));
+            });
         }
         if (!mountedRef.current) {
             mountedRef.current = true;
@@ -92,12 +113,12 @@ function Modal(props) {
             showScrollbar();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpen, bordY, setNow, hideScrollbar, showScrollbar]);
+    }, [isOpen, bordY, time]);
     useEffect(() => {
         return () => setIsOpen(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return (
+    const el = (
         <div
             style={modalBackground}
             onClick={closeAble ? closeHandler : () => {}}
@@ -131,6 +152,13 @@ function Modal(props) {
             </div>
         </div>
     );
+    if (teleportTo === null) {
+        return el;
+    } else if (typeof teleportTo === "string") {
+        return createPortal(el, document.querySelector(teleportTo));
+    } else {
+        return createPortal(el, teleportTo);
+    }
 }
 
 export default Object.assign(Modal, {

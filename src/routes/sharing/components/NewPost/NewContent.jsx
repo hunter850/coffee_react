@@ -41,8 +41,8 @@ function NewContent(props) {
     const [topic, setTopic] = useState(0);
 
     useEffect(() => {
-        const { title, topic_sid, content, tags } = data;
         if (data) {
+            const { title, topic_sid, content, tags } = data;
             setTitle(title);
             setTopic(topic_sid);
             setContent(content);
@@ -164,7 +164,7 @@ function NewContent(props) {
                                     setContent(e.target.value);
                             }}
                         />
-                        <div className={tag_wrap} style={{ minHeight: "60px" }}>
+                        <div className={tag_wrap} style={{ minHeight: "30px" }}>
                             {myTag.map((v, i) => {
                                 return (
                                     <div key={i} onClick={() => removeTag(v)}>
@@ -222,14 +222,17 @@ function NewContent(props) {
                     </TransitionGroup>
                 </div>
                 <div className={form_bottom}>
-                    <button
-                        className={cancel_btn}
-                        onClick={() => {
-                            setEditMode(false);
-                        }}
-                    >
-                        取消
-                    </button>
+                    {data && (
+                        <button
+                            className={cancel_btn}
+                            onClick={() => {
+                                setEditMode(false);
+                            }}
+                        >
+                            取消
+                        </button>
+                    )}
+
                     <button
                         type="submit"
                         disabled={beDisable}

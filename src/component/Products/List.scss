@@ -70,8 +70,11 @@
             }
             .cardaniwrapbf {
                 position: relative;
-                left: -300px;
+                left: -200px;
                 opacity: 0;
+                @include productsMob{
+                    left: -100px;
+                }
             }
             .cardaniwrapat {
                 position: relative;

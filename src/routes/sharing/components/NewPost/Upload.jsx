@@ -12,7 +12,6 @@ function Upload(props) {
         leaveHandler,
         dropHandler,
         onChangeHandler,
-        nameList,
         blobList,
         setBlobList,
         setStep,

@@ -24,6 +24,7 @@ function Creditcard(props) {
         setCardCvv,
         cardSubmitHandler,
         confirmButton = true,
+        className = "",
     } = props;
     const {
         creditcard_wrap,
@@ -85,7 +86,7 @@ function Creditcard(props) {
     }, []);
 
     return (
-        <div className={c(creditcard_wrap, "animate__animated")}>
+        <div className={c(creditcard_wrap, "animate__animated", className)}>
             <div className={flipClass}>
                 <div className={frameStyle}></div>
                 <div className={creditcard_containter}>

@@ -19,6 +19,8 @@ function EditPhoto(props) {
 
     const [canvasWidth, setCanvasWidth] = useState(0);
     const [canvasHeight, setCanvasHeight] = useState(0);
+    const [cvsMultiWidth, setCvsMultiWidth] = useState([]);
+    const [cvsMultiHeight, setCvsMultiHeight] = useState([]);
     const [index, setIndex] = useState(0);
 
     const [brightness, setBrightness] = useState(Array(length).fill(100));
@@ -38,32 +40,96 @@ function EditPhoto(props) {
 
     useEffect(() => {
         if (blobList.length <= 1) {
-            setCanvasWidth(wrapRef.current.getBoundingClientRect().width);
-            setCanvasHeight(wrapRef.current.getBoundingClientRect().height);
+            const el = blobList[0];
+            switch (el.ratio) {
+                case "auto":
+                    if (el.naturalRatio < 1) {
+                        setCanvasWidth(720 * el.naturalRatio);
+                        setCanvasHeight(720);
+                    } else {
+                        setCanvasWidth(576);
+                        setCanvasHeight(576 / el.naturalRatio);
+                    }
+                    break;
+                case "4/5":
+                    setCanvasWidth(576);
+                    setCanvasHeight(720);
+                    break;
+                case "1":
+                    setCanvasWidth(576);
+                    setCanvasHeight(576);
+                    break;
+                case "16/9":
+                    setCanvasWidth(576);
+                    setCanvasHeight(324);
+                    break;
+                default:
+                    break;
+            }
         } else {
-            setCanvasWidth(wrapRefMulti.current.getBoundingClientRect().width);
-            setCanvasHeight(
-                wrapRefMulti.current.getBoundingClientRect().height
-            );
+            const widthArray = blobList.map((el) => {
+                if (el.ratio === "auto" && el.naturalRatio < 1) {
+                    return 720 * el.naturalRatio;
+                } else {
+                    return 576;
+                }
+            });
+            const heightArray = blobList.map((el) => {
+                if (
+                    (el.ratio === "auto" && el.naturalRatio < 1) ||
+                    el.ratio === "4/5"
+                ) {
+                    return 720;
+                } else if (el.ratio === "auto" && el.naturalRatio >= 1) {
+                    return 576 / el.naturalRatio;
+                } else if (el.ratio === "1") {
+                    return 576;
+                } else if (el.ratio === "16/9") {
+                    return 324;
+                }
+            });
+            setCvsMultiWidth(widthArray);
+            setCvsMultiHeight(heightArray);
         }
-    }, []);
+    }, [blobList]);
 
     const renderCanvas = async () => {
         const shadowCtx = cvsRef.current.getContext("2d");
         const rawImg = rawCvs.current;
 
+        // Trans image to canvas fit Cover
+        let top = 0;
+        let left = 0;
+        const asp_rto = blobList[0].ratio;
+        const ntrl_rto = blobList[0].naturalRatio;
+        // 縮放比例
+        const scale = 576 / blobList[0].width;
+        const scaleByH = 720 / blobList[0].height;
+        // 縮放後高度
+        let newHeight = cvsRef.current.height;
+        let newWidth = cvsRef.current.width;
+
+        if (asp_rto === "1" && ntrl_rto < 1) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 576) / 2;
+        } else if (asp_rto === "1" && ntrl_rto > 1) {
+            newWidth = blobList[0].width * scaleByH;
+            left = -(newWidth - 576) / 2;
+        } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 324) / 2;
+        } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
+            newHeight = blobList[0].height * scale;
+            top = -(newHeight - 720) / 2;
+        } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
+            newWidth = blobList[0].width * scaleByH;
+            left = -(newWidth - 576) / 2;
+        }
+
         if (!canvasDrew.current) {
             // frist draw
-            const img = await getImageFromPath(blobList[0]);
-
-            shadowCtx.drawImage(
-                img,
-                0,
-                0,
-                cvsRef.current.width,
-                cvsRef.current.height
-            );
-
+            const img = await getImageFromPath(blobList[0].url);
+            shadowCtx.drawImage(img, left, top, newWidth, newHeight);
             canvasDrew.current = true;
         } else {
             const f = filter[0];
@@ -85,13 +151,7 @@ function EditPhoto(props) {
             // shadowCtx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) ${ctxFilter}`;
             shadowCtx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) ${ctxFilter}`;
 
-            shadowCtx.drawImage(
-                rawImg,
-                0,
-                0,
-                cvsRef.current.width,
-                cvsRef.current.height
-            );
+            shadowCtx.drawImage(rawImg, left, top, newWidth, newHeight);
 
             const imageData = shadowCtx.getImageData(
                 0,
@@ -127,19 +187,52 @@ function EditPhoto(props) {
         const rawImageArr = rawCvsArr.current;
 
         const f = filter[index];
+        // let top = 0;
+        // let newHeight = cvsRef.current.height;
+        let top = new Array(ctxArr.length).fill(0);
+        let left = new Array(ctxArr.length).fill(0);
+        let newHeight = cvsRefArr.current.map((v) => v.height);
+        let newWidth = cvsRefArr.current.map((v) => v.width);
+
+        blobList.forEach((v, i) => {
+            // Trans image to canvas fit Cover
+            const asp_rto = v.ratio;
+            const ntrl_rto = v.naturalRatio;
+
+            // 縮放比例
+            const scale = 576 / v.width;
+            const scaleByH = 720 / v.height;
+
+            if (asp_rto === "1" && ntrl_rto < 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 576) / 2;
+            } else if (asp_rto === "1" && ntrl_rto > 1) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 324) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
+                newHeight[i] = v.height * scale;
+                top[i] = -(newHeight[i] - 720) / 2;
+            } else if (asp_rto === "4/5" && ntrl_rto > 0.8) {
+                newWidth[i] = v.width * scaleByH;
+                left[i] = -(newWidth[i] - 576) / 2;
+            }
+        });
 
         if (!canvasDrew.current) {
             // first draw
             const imgArr = await Promise.all(
-                blobList.map(async (v) => await getImageFromPath(v))
+                blobList.map(async (v) => await getImageFromPath(v.url))
             );
             ctxArr.forEach((v, i) => {
                 v.drawImage(
                     imgArr[i],
-                    0,
-                    0,
-                    cvsRefArr.current[i].width,
-                    cvsRefArr.current[i].height
+                    left[i],
+                    top[i],
+                    newWidth[i],
+                    newHeight[i]
                 );
             });
             canvasDrew.current = true;
@@ -166,10 +259,10 @@ function EditPhoto(props) {
 
             ctx.drawImage(
                 rawImageArr[index],
-                0,
-                0,
-                cvsRefArr.current[index].width,
-                cvsRefArr.current[index].height
+                left[index],
+                top[index],
+                newWidth[index],
+                newHeight[index]
             );
 
             const imageData = ctx.getImageData(
@@ -202,12 +295,16 @@ function EditPhoto(props) {
 
     useEffect(() => {
         if (blobList.length <= 1) {
-            renderCanvas();
+            setTimeout(() => {
+                renderCanvas();
+            }, 20);
         } else {
-            renderMulti();
+            setTimeout(() => {
+                renderMulti();
+            }, 20);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filter, brightness, contrast, saturate]);
+    }, [blobList, filter, brightness, contrast, saturate]);
 
     return (
         <div className={wrap}>
@@ -222,6 +319,8 @@ function EditPhoto(props) {
                 cvsRefArr={cvsRefArr}
                 canvasWidth={canvasWidth}
                 canvasHeight={canvasHeight}
+                cvsMultiWidth={cvsMultiWidth}
+                cvsMultiHeight={cvsMultiHeight}
             />
             {step === 1 ? (
                 <div className={panel_wrap}>

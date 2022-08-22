@@ -6,6 +6,7 @@ import axios from "axios";
 import { productsDataGet } from "../../config/api-path";
 import { useParams } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
+import Footer from "../../component/Footer";
 
 function ProductsDetail() {
     const { products_sid } = useParams();
@@ -93,6 +94,7 @@ function ProductsDetail() {
                     />
                 </div>
             </div>
+            <Footer />
             <ChatBot />
         </Fragment>
     );

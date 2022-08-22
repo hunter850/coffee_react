@@ -22,8 +22,7 @@ function FoodAsideCount({ item, setDataFromCount, removeItem }) {
         return id === sugar;
     });
     const displayNone = sugar ? "display" : "display none";
-    console.log("ice1", ice1);
-    console.log("sugar", sugar);
+
     return (
         <>
             <div key={menu_sid} className="detail">

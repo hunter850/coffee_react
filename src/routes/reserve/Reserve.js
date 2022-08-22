@@ -100,7 +100,6 @@ function Reserve() {
         () => places.find((item) => item.storeName === branch),
         [places, branch]
     );
-    console.log("selectItem", selectItem);
 
     const handleSubmission = (e) => {
         if (!branch || !checkedDate || !people) {
@@ -122,14 +121,14 @@ function Reserve() {
 
                     "content-type": "application/json",
                 }).then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     setIsOpen(true);
                 });
             else {
                 setIsOpen(true);
             }
         } catch (error) {
-            console.log("error");
+            // console.log("error");
         }
     };
     const reserveBtn = branch && people && hour ? "submit" : "submit disabled";
@@ -215,8 +214,8 @@ function Reserve() {
                             <h6>送出</h6>
                         </div>
                         <div className="price">
-                            <p className="infor">價目表</p>
-                            <div className="infor">分店資訊</div>
+                            {/* <p className="infor">價目表</p>
+                            <div className="infor">分店資訊</div> */}
                         </div>
                         <p className="reserve-txt">
                             【線上訂位說明】

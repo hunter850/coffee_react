@@ -1,6 +1,6 @@
 .aside {
     display: flex;
-    width: 383px;
+    width: 290px;
     height: 100vh;
     transition: 0.3s transform;
     top: 60px;
@@ -36,7 +36,7 @@
     padding: 10px 20px;
     background-color: #eee5dd;
     /* position: fixed; */
-    width: 383px;
+    width: 290px;
     /* height: 70px; */
 
 }
@@ -50,7 +50,7 @@
     background-color: #fff;
     padding: 0px 10px 10px 10px;
     overflow-y: scroll;
-    width: 383px;
+    width: 290px;
 
     flex-direction: column;
     flex: 6;
@@ -66,8 +66,10 @@
     display: flex;
 }
 .takeout .lg-field-err {
-    margin: 5px 0;
+    margin: 1px 0 0 0;
     padding-left: 10px;
+    font-size: 16px;
+    font-weight: 500;
 }
 .aside .takeout :nth-child(1) {
     flex-grow: 1;
@@ -138,13 +140,13 @@
     /* position: fixed; */
     display: flex;
     /* bottom: 0; */
-    width: 383px;
+    width: 290px;
     background-color: #eee5dd;
     box-shadow: 0 -2px 3px #ccc;
     padding: 10px 10px 0 10px;
     flex: 1;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .aside .payarea .payarea1 {
     display: flex;

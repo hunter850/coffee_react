@@ -15,13 +15,13 @@ function GoogleMap({
         setTimeout(() => {
             setIsLoading(true);
         }, 500);
-        console.log("did update");
+        // console.log("did update");
     }, [storeInfo]);
 
     const handleChildClick = (e) => {
         e.stopPropagation();
     };
-    console.log("isLoading", isLoading);
+    // console.log("isLoading", isLoading);
     // 以下是時間------------------
     const store_time = [
         { store_time_sid: "1", time: "08:00" },

@@ -5,14 +5,14 @@ import NavBar from "../../component/NavBar/NavBar";
 import "./css/Coupon.scss";
 
 import axios from "axios";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams,useNavigate } from "react-router-dom";
 import moment from "moment";
 import ChatBot from "../../component/Bot/ChatBot";
 import Infinite from "react-infinite";
 
 function Coupon() {
     const { token } = useAuth();
-
+    let navigate = useNavigate();
     let location = useLocation();
     const [CouponList, setCouponList] = useState(null);
     const [searchParams] = useSearchParams();
@@ -162,8 +162,13 @@ function Coupon() {
             });
     };
     useEffect(() => {
+        if (!token) { 
+            alert("請先登入");
+            navigate("/member/login");
+            return;
+        }
         Coupon_foruser();
-        console.log(location.search);
+        // console.log(location.search);
     }, [location]);
     return (
         <Fragment>

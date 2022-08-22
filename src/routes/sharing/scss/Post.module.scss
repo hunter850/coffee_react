@@ -42,16 +42,19 @@
 
     a{
         cursor: auto;
-    }
-    // 卡片
-    a>div {
-        /* change div to reference your elements you put in <Masonry> */
         background: grey;
         margin-bottom: 12px;
         border-radius: 10px;
         overflow: hidden;
         position: relative;
 
+        box-shadow: 1px 0 10px 1px rgba(50, 50, 50, 0.3);
+        display: block;
+    }
+    // 卡片
+    a>div {
+        /* change div to reference your elements you put in <Masonry> */
+        
         &:hover:before{
            
             opacity: .5;
