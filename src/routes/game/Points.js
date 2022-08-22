@@ -1,18 +1,17 @@
 import { Fragment, useState, useEffect } from "react";
 import { useAuth } from "../../component/Member/AuthContextProvider";
-
 import NavBar from "../../component/NavBar/NavBar";
 // import "./css/Points.css";
 import "./css/Points.scss";
 
 import axios from "axios";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams,useNavigate } from "react-router-dom";
 import moment from "moment";
 import ChatBot from "../../component/Bot/ChatBot";
 
 function Points() {
     const { token } = useAuth();
-
+    let navigate = useNavigate();
     let location = useLocation();
     const [TheTotalPoints, setTheTotalPoints] = useState(null);
     const [CouponList, setCouponList] = useState(null);
@@ -67,7 +66,13 @@ function Points() {
             });
     };
     useEffect(() => {
+        if (!token) { 
+            alert("請先登入");
+            navigate("/member/login");
+            return;
+        }
         Points();
+
     }, [location]);
     return (
         <Fragment>
