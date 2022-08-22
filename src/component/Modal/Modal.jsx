@@ -57,54 +57,54 @@ function Modal(props) {
         setIsOpen(false);
     }, [setIsOpen]);
     useEffect(() => {
-        if (isOpen) {
-            hideScrollbar();
-            if (mountedRef.current) {
+        if (mountedRef.current) {
+            if (isOpen) {
+                hideScrollbar();
                 onOpen();
-            }
-            setModalBackground((pre) => ({
-                ...pre,
-                display: "flex",
-                transition: `opacity ${time}s ease`,
-            }));
-            setModalBord((pre) => ({
-                ...pre,
-                transition: `
-            transform ${time === 0 ? time : time + 0.2}s ease, opacity ${
-                    time === 0 ? time : time + 0.2
-                }s ease
-        `,
-            }));
-            nextTick(() => {
-                setModalBackground((pre) => ({ ...pre, opacity: 1 }));
-                setModalBord((pre) => ({
-                    ...pre,
-                    transform: "translateY(0px)",
-                    opacity: 1,
-                }));
-            });
-        } else {
-            showScrollbar();
-            if (mountedRef.current) {
-                onClose();
-            }
-            setModalBackground((pre) => ({
-                ...pre,
-                opacity: 0,
-                transition: "none",
-            }));
-            setModalBord((pre) => ({
-                ...pre,
-                transform: `translateY(${bordY}px)`,
-                opacity: 0,
-                transition: "none",
-            }));
-            nextTick(() => {
                 setModalBackground((pre) => ({
                     ...pre,
-                    display: "none",
+                    display: "flex",
+                    transition: `opacity ${time}s ease`,
                 }));
-            });
+                setModalBord((pre) => ({
+                    ...pre,
+                    transition: `
+                    transform ${
+                        time === 0 ? time : time + 0.2
+                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
+                    `,
+                }));
+                nextTick(() => {
+                    setModalBackground((pre) => ({ ...pre, opacity: 1 }));
+                    setModalBord((pre) => ({
+                        ...pre,
+                        transform: "translateY(0px)",
+                        opacity: 1,
+                    }));
+                });
+            } else {
+                showScrollbar();
+                if (mountedRef.current) {
+                    onClose();
+                }
+                setModalBackground((pre) => ({
+                    ...pre,
+                    opacity: 0,
+                    transition: "none",
+                }));
+                setModalBord((pre) => ({
+                    ...pre,
+                    transform: `translateY(${bordY}px)`,
+                    opacity: 0,
+                    transition: "none",
+                }));
+                nextTick(() => {
+                    setModalBackground((pre) => ({
+                        ...pre,
+                        display: "none",
+                    }));
+                });
+            }
         }
         if (!mountedRef.current) {
             mountedRef.current = true;
@@ -113,7 +113,7 @@ function Modal(props) {
             showScrollbar();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOpen, bordY, time]);
+    }, [isOpen]);
     useEffect(() => {
         return () => setIsOpen(false);
         // eslint-disable-next-line react-hooks/exhaustive-deps
