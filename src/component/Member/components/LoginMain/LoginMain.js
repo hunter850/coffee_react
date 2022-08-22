@@ -173,19 +173,19 @@ function LoginMain() {
 
                     if (result.success) {
 
-                        const memberJump = setTimeout(() => {
-                            getCount();
-                            navigate("/member", { replace: false });
-                        }, 2300);
+                        localStorage.setItem('auth', JSON.stringify({ ...result.data, authorized: true}));
+                        setAuth({ ...result.data, authorized: true});
 
-                        localStorage.setItem('auth', JSON.stringify({ ...result.data, authorized: true, memberJump: memberJump }));
-                        setAuth({ ...result.data, authorized: true, memberJump: memberJump });
-                        // 過場
                         setTimeout(() => {
                             setIsLoading(true);
+                            console.log(1);
                         }, 0);
-
-
+        
+                        setTimeout(() => {
+                            getCount();
+                            navigate("/member", {replace: false})
+                            console.log(2);
+                        }, 2300);
                         setLoginSuccess(true);
                     }
                     // setIsOpen(true);
