@@ -210,10 +210,10 @@ function NavBar({ navPosition = 'sticky' }) {
                                     }`}
                             >
                                 <li >
-                                    <Link to="/getpoint" className="text_nowrap">獲得積分</Link>
+                                    <Link to="/getpoint" className="text_nowrap text_py">獲得積分</Link>
                                 </li>
                                 <li >
-                                    <Link to="/getcoupon" className="text_nowrap">獲得優惠券</Link>
+                                    <Link to="/getcoupon" className="text_nowrap text_py">獲得優惠券</Link>
                                 </li>
                             </ul>
                         </li>
@@ -228,13 +228,13 @@ function NavBar({ navPosition = 'sticky' }) {
                                 className={`nav-member-ul  ${navDropDown === "member" ? "" : "nav-display-none"}`}
                             >
                                 <li>
-                                    <Link to="/member" className="text_nowrap">會員中心</Link>
+                                    <Link to="/member" className="text_nowrap text_py">會員中心</Link>
                                 </li>
                                 <li>
-                                    <Link to="/points" className="text_nowrap">我的積分</Link>
+                                    <Link to="/points" className="text_nowrap text_py">我的積分</Link>
                                 </li>
                                 <li>
-                                    <Link to="/coupon" className="text_nowrap">我的優惠卷</Link>
+                                    <Link to="/coupon" className="text_nowrap text_py">我的優惠卷</Link>
                                 </li>
                             </ul>
                         </li>

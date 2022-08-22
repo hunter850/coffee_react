@@ -189,12 +189,16 @@
 
 .text_nowrap {
     white-space: nowrap;
-    padding: 14px !important;
+    padding: 0px 14px !important;
+    @media (max-width: 1200px) {
+        padding: 0px 12px !important;
+    }
 }
 
-@media (max-width: 1200px) {
-    .text_nowrap {
-        white-space: nowrap;
-        padding: 12px !important;
+.text_py {
+    white-space: nowrap;
+    padding: 9px 14px !important;
+    @media (max-width: 1200px) {
+        padding: 9px 12px !important;
     }
 }

@@ -28,6 +28,7 @@ function Creditcard(props) {
     } = props;
     const {
         creditcard_wrap,
+        transform_wrap,
         creditcard_containter,
         creditcard_containter_back,
         card_bottom,
@@ -87,49 +88,51 @@ function Creditcard(props) {
 
     return (
         <div className={c(creditcard_wrap, "animate__animated", className)}>
-            <div className={flipClass}>
-                <div className={frameStyle}></div>
-                <div className={creditcard_containter}>
-                    <CardUpperImage cardNumber={cardNumber} />
-                    <CardNumberInput cardNumber={cardNumber} />
-                    <div className={card_bottom}>
-                        <CardHolder cardName={cardName} />
-                        <CardValidDate
-                            cardMonth={cardMonth}
-                            cardYear={cardYear}
-                        />
+            <div className={transform_wrap}>
+                <div className={flipClass}>
+                    <div className={frameStyle}></div>
+                    <div className={creditcard_containter}>
+                        <CardUpperImage cardNumber={cardNumber} />
+                        <CardNumberInput cardNumber={cardNumber} />
+                        <div className={card_bottom}>
+                            <CardHolder cardName={cardName} />
+                            <CardValidDate
+                                cardMonth={cardMonth}
+                                cardYear={cardYear}
+                            />
+                        </div>
+                    </div>
+                    <div className={creditcard_containter_back}>
+                        <CardBlackBar />
+                        <div className={cvv_wrap}>
+                            <p>CVV</p>
+                            <CardWhiteBar cardCvv={cardCvv} />
+                            <CardType cardNumber={cardNumber} />
+                        </div>
                     </div>
                 </div>
-                <div className={creditcard_containter_back}>
-                    <CardBlackBar />
-                    <div className={cvv_wrap}>
-                        <p>CVV</p>
-                        <CardWhiteBar cardCvv={cardCvv} />
-                        <CardType cardNumber={cardNumber} />
-                    </div>
+                <div className="form_containter">
+                    <CardForm
+                        cardNumber={cardNumber}
+                        setCardNumber={setCardNumber}
+                        cardName={cardName}
+                        setCardName={setCardName}
+                        cardMonth={cardMonth}
+                        setCardMonth={setCardMonth}
+                        cardYear={cardYear}
+                        setCardYear={setCardYear}
+                        cardCvv={cardCvv}
+                        setCardCvv={setCardCvv}
+                        cardSubmitHandler={cardSubmitHandler}
+                        focusHandler={focusHandler}
+                        blurHandler={blurHandler}
+                        cardFrameBlur={cardFrameBlur}
+                        cardNumberFocus={cardNumberFocus}
+                        cardNameFocus={cardNameFocus}
+                        cardValidFocus={cardValidFocus}
+                        confirmButton={confirmButton}
+                    />
                 </div>
-            </div>
-            <div className="form_containter">
-                <CardForm
-                    cardNumber={cardNumber}
-                    setCardNumber={setCardNumber}
-                    cardName={cardName}
-                    setCardName={setCardName}
-                    cardMonth={cardMonth}
-                    setCardMonth={setCardMonth}
-                    cardYear={cardYear}
-                    setCardYear={setCardYear}
-                    cardCvv={cardCvv}
-                    setCardCvv={setCardCvv}
-                    cardSubmitHandler={cardSubmitHandler}
-                    focusHandler={focusHandler}
-                    blurHandler={blurHandler}
-                    cardFrameBlur={cardFrameBlur}
-                    cardNumberFocus={cardNumberFocus}
-                    cardNameFocus={cardNameFocus}
-                    cardValidFocus={cardValidFocus}
-                    confirmButton={confirmButton}
-                />
             </div>
         </div>
     );
