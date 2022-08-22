@@ -40,7 +40,7 @@ function LikesMain() {
                     setIsOpen(true);
                     return;
                 }
-                console.log(response.data);
+                // console.log(response.data);
                 setMyLikes(response.data);
             });
     }, [token]);

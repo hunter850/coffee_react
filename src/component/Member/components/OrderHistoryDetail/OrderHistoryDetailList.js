@@ -18,7 +18,7 @@ function OrderHistoryDetailList({ list, orderList }) {
         products_with_products_categories_sid,
     } = list;
 
-    console.log(orderList);
+    // console.log(orderList);
 
     return (
         <>
