@@ -188,7 +188,7 @@ function Comment({ data, getPostDetailData, replyTo, setReplyTo, post_sid }) {
                         取消
                     </span>
                     <span className={reply_button} onClick={replyPost}>
-                        發佈
+                        回覆
                     </span>
                 </div>
             )}
