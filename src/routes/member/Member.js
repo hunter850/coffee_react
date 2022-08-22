@@ -300,6 +300,20 @@ function Member() {
                             <img src={cupStar} alt="" className="cup-star-k" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
                             <img src={cupStar} alt="" className="cup-star-l" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
                             <img src={cupStar} alt="" className="cup-star-m" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-n" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-o" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-p" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-q" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-r" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-s" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-t" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-u" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-v" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-w" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-x" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-y" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-z" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-aa" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
                         </div>
                         <div className="mc-level-wrap">
                             <p className="mc-level-title">{
