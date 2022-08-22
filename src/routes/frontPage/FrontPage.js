@@ -48,8 +48,8 @@ function FrontPage() {
                 <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
                         {/* <Link to="/getcoupon"> */}
-                        <img
-                            style={{ width: "588px" }}
+                        <img className="frontpagecouponad"
+                            // style={{ width: "588px" }}
                             src={frontpagecouponimg}
                             alt=""
                         />

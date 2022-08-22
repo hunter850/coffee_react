@@ -20,7 +20,7 @@ export default function LatestnewsDetail() {
         news_content,
     } = latestnewsdata;
     const [page, setpage] = useState(0);
-    console.log(latestnewsdata);
+    // console.log(latestnewsdata);
     return (
         <Fragment>
             <NavBar/>
