@@ -100,7 +100,7 @@ function ShowArea(props) {
                     {blobList.map((v, i) => {
                         return (
                             <Reorder.Item
-                                key={i + v.width}
+                                key={i + v.url}
                                 value={v}
                                 className={img_wrap}
                                 onClick={(e) => {
