@@ -105,9 +105,32 @@ function Modal(props) {
                     }));
                 });
             }
-        }
-        if (!mountedRef.current) {
+        } else {
             mountedRef.current = true;
+            // didMount時初始值是true 要直接進場
+            if (isOpen) {
+                setModalBackground((pre) => ({
+                    ...pre,
+                    display: "flex",
+                    transition: `opacity ${time}s ease`,
+                }));
+                setModalBord((pre) => ({
+                    ...pre,
+                    transition: `
+                    transform ${
+                        time === 0 ? time : time + 0.2
+                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
+                    `,
+                }));
+                nextTick(() => {
+                    setModalBackground((pre) => ({ ...pre, opacity: 1 }));
+                    setModalBord((pre) => ({
+                        ...pre,
+                        transform: "translateY(0px)",
+                        opacity: 1,
+                    }));
+                });
+            }
         }
         return () => {
             showScrollbar();

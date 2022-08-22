@@ -14,21 +14,21 @@ import { Link } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
 // import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 import useData from "../../hooks/useData";
-import { useMount } from "../../Contexts/MountProvider";
-import useSetNow from "../../hooks/useSetNow";
+// import { useMount } from "../../Contexts/MountProvider";
+// import useSetNow from "../../hooks/useSetNow";
 
 function FrontPage() {
     const [frontpagecoupon, setFrontpagecoupon] = useData("frontpagecoupon");
-    const mountRef = useMount();
-    const nextTick = useSetNow();
+    // const mountRef = useMount();
+    // const nextTick = useSetNow();
     // const [isOpen, setIsOpen] = useState(false);
-    useEffect(() => {
-        if (mountRef.current === false) {
-            mountRef.current = true;
-            setFrontpagecoupon(true);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     if (mountRef.current === false) {
+    //         mountRef.current = true;
+    //         setFrontpagecoupon(true);
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
     return (
         <Fragment>
             {/* <Spinnerwrap /> */}
