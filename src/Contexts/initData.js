@@ -9,5 +9,5 @@ export const initData = {
     total: 0,
     lastInsertId: -1,
     foodCount: [],
-    frontpagecoupon: true,
+    frontpagecoupon: false,
 };

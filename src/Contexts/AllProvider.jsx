@@ -3,6 +3,7 @@ import StateProvider from "./StateProvider";
 import ScrollTop from "./ScrollTop";
 import NavProvider from "./NavProvider";
 import TabsHistoryProvider from "./TabsHistoryProvider";
+import MountProvider from "./MountProvider";
 
 function AllProvider(props) {
     const { children } = props;
@@ -11,7 +12,9 @@ function AllProvider(props) {
             <StateProvider>
                 <TabsHistoryProvider>
                     <SuperProvider>
-                        <ScrollTop>{children}</ScrollTop>
+                        <MountProvider>
+                            <ScrollTop>{children}</ScrollTop>
+                        </MountProvider>
                     </SuperProvider>
                 </TabsHistoryProvider>
             </StateProvider>
