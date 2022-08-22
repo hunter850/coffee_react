@@ -6,7 +6,7 @@ import Footer from "../../component/Footer";
 
 import { useContext, useRef, useEffect } from "react";
 import AuthContext from "../../component/Member/AuthContext";
-import { getUserData,getUserCoupons,getUserLikes,getUserTotalPoints,getUserCanUsePoints } from "../../config/api-path";
+import { getUserData, getUserCoupons, getUserLikes, getUserTotalPoints, getUserCanUsePoints } from "../../config/api-path";
 import axios from "axios";
 
 import Modal from "../../component/Modal/Modal";
@@ -20,7 +20,6 @@ import { FaCoffee } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { FaAngleRight } from "react-icons/fa";
-import { get } from "lodash";
 
 import cupLid from "../../images/member/cup-lid.png";
 import cupMain from "../../images/member/cup-main.png";
@@ -45,123 +44,134 @@ function Member() {
 
     const [getData, setGetData] = useState([]);
     const [getCoupons, setGetCoupons] = useState(0);
-    const [getLikes,setGetLikes] = useState(0);
-    const [getTotalPoints,setGetTotalPoints] = useState(0);
-    const [getCanUse,setCanUse] = useState(null);
+    const [getLikes, setGetLikes] = useState(0);
+    const [getTotalPoints, setGetTotalPoints] = useState(0);
+    const [getCanUse, setCanUse] = useState(null);
 
     useEffect(() => {
-        console.log(!token);
         if (!token) {
             setIsOpen(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    useEffect(() => {
+        if (!token) {
             return;
+        } else {
+            axios
+                .get(getUserData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    setGetData(response.data);
+                });
+
         }
 
-        axios
-            .get(getUserData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                setGetData(response.data);
-            });
     }, [token]);
 
-// --------------------- 擁有幾張優惠券 ---------------------
+    // --------------------- 擁有幾張優惠券 ---------------------
     useEffect(() => {
 
         if (!token) {
-            setIsOpen(true);
             return;
+        } else {
+            axios
+                .get(getUserCoupons, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    const couponLength = response.data.length;
+                    if (couponLength > 0) {
+                        setGetCoupons(couponLength);
+                    } else {
+                        setGetCoupons(0);
+                    }
+                });
+
         }
 
-        axios
-            .get(getUserCoupons, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                const couponLength = response.data.length;
-                if(couponLength>0){
-                    setGetCoupons(couponLength);
-                }else{
-                    setGetCoupons(0);
-                }
-            });
-    }, [token,getCoupons]);
+    }, [token, getCoupons]);
 
     const showAnimate = () => {
         setShowCoupon(true);
     }
 
-// --------------------- 擁有多少收藏 ---------------------
+    // --------------------- 擁有多少收藏 ---------------------
     useEffect(() => {
 
         if (!token) {
-            setIsOpen(true);
             return;
+        } else {
+            axios
+                .get(getUserLikes, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    const LikesLength = response.data.length;
+                    if (LikesLength > 0) {
+                        setGetLikes(LikesLength);
+                    } else {
+                        setGetLikes(0);
+                    }
+                });
+
         }
 
-        axios
-            .get(getUserLikes, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                const LikesLength = response.data.length;
-                if(LikesLength>0){
-                    setGetLikes(LikesLength);
-                }else{
-                    setGetLikes(0);
-                }
-            });
-    }, [token,getLikes]);
+    }, [token, getLikes]);
 
-// --------------------- 擁有多少點數 ---------------------
+    // --------------------- 擁有多少點數 ---------------------
     useEffect(() => {
 
         if (!token) {
-            setIsOpen(true);
             return;
+        } else {
+            axios
+                .get(getUserTotalPoints, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    // console.log(response.data);
+                    setGetTotalPoints(response.data[0].member_level);
+                });
+
         }
 
-        axios
-            .get(getUserTotalPoints, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                // console.log(response.data);
-                setGetTotalPoints(response.data[0].member_level);
-            });
-    }, [token,getTotalPoints]);
+    }, [token, getTotalPoints]);
 
     // --------------------- 可用點數 ---------------------
     useEffect(() => {
 
         if (!token) {
-            setIsOpen(true);
             return;
+        } else {
+
+            axios
+                .get(getUserCanUsePoints, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((response) => {
+                    // console.log(response.data);
+                    if (response.data.length == 0) {
+                        setCanUse(0);
+                        return;
+                    }
+                    setCanUse(response.data[0].total_points);
+                });
         }
 
-        axios
-            .get(getUserCanUsePoints, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                // console.log(response.data);
-                if(response.data.length==0){
-                    setCanUse(0);
-                    return;
-                }
-                setCanUse(response.data[0].total_points);
-            });
-    }, [token,getCanUse]);
+    }, [token, getCanUse]);
 
 
 
@@ -177,7 +187,7 @@ function Member() {
                 <div className="mc-container">
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
-                            <div className="cardF" style={{ background: Number(getTotalPoints)>30000 ? `url(${goldF})` :`url(${silverF})`}}>
+                            <div className="cardF" style={{ background: Number(getTotalPoints) > 30000 ? `url(${goldF})` : `url(${silverF})` }}>
                                 <p className="cardB-desc">{nickname}</p>
                                 <div className="cardF-wrap">
                                     <svg
@@ -205,7 +215,7 @@ function Member() {
                                 </div>
 
                             </div>
-                            <div className="cardB" style={{background: Number(getTotalPoints)>30000 ? `url(${goldB})` :`url(${silverB})`}}>
+                            <div className="cardB" style={{ background: Number(getTotalPoints) > 30000 ? `url(${goldB})` : `url(${silverB})` }}>
                                 <p className="cardB-level">{getTotalPoints}<span>points</span></p>
                                 {/* <div className="cardB-wrap"></div> */}
                             </div>
@@ -213,14 +223,14 @@ function Member() {
                         <Link to={authorized ? "/member/likes" : "/member/login"}>
                             <div className="mc-like">
                                 <FaHeart size={'0.8rem'} style={{ "color": "rgb(183, 153, 115)" }} />
-                                <p>收藏<span style={{ marginLeft:"8px", marginRight:"8px", fontWeight:"700"}}>{getLikes}</span>項</p>
+                                <p>收藏<span style={{ marginLeft: "8px", marginRight: "8px", fontWeight: "700" }}>{getLikes}</span>項</p>
                                 <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                             </div>
                         </Link>
                         <Link to={authorized ? "" : "/member/login"}>
                             <div className="mc-coupon" onClick={showAnimate}>
                                 <RiCoupon2Fill size={'0.95rem'} style={{ "color": "rgb(183, 153, 115)" }} />
-                                <p>優惠券<span style={{ marginLeft:"8px", marginRight:"8px", fontWeight:"700"}}>{getCoupons}</span>張</p>
+                                <p>優惠券<span style={{ marginLeft: "8px", marginRight: "8px", fontWeight: "700" }}>{getCoupons}</span>張</p>
                                 <FaAngleRight size={'1.1rem'} style={{ "color": "rgb(37, 57, 69)", "position": "absolute", "right": "0", "top": "4" + "px" }} />
                             </div>
                         </Link>
@@ -261,11 +271,11 @@ function Member() {
             </div>
 
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} bgClassName="dark-bg" closeAble={false}>
-                    <Modal.Body className="mr-msg-wrap">
-                        <div>
-                            <div className="mr-msg" onClick={()=>{navigate("/member/login", {replace: false})}}>請先登入</div>
-                        </div>
-                    </Modal.Body>
+                <Modal.Body className="mr-msg-wrap">
+                    <div>
+                        <div className="mr-msg" onClick={() => { navigate("/member/login", { replace: false }) }}>請先登入</div>
+                    </div>
+                </Modal.Body>
             </Modal>
 
             <Modal isOpen={showCoupon} setIsOpen={setShowCoupon}>
@@ -273,30 +283,30 @@ function Member() {
                     <div className="box-wrap">
                         <div className="cup">
                             <img src={cupLid} alt="" className="cup-lid" />
-                            <img src={cupMain} alt="" className="cup-main"/>
-                            <img src={cupStar} alt="" className="cup-star-a"/>
-                            <img src={cupStar} alt="" className="cup-star-b"/>
-                            <img src={cupStar} alt="" className="cup-star-c"/>
-                            <img src={cupStar} alt="" className="cup-star-d"/>
-                            <img src={cupStar} alt="" className="cup-star-e"/>
-                            <img src={cupStar} alt="" className="cup-star-f"/>
-                            <img src={cupStar} alt="" className="cup-star-g"/>
-                            <img src={cupStar} alt="" className="cup-star-h"/>
-                            <img src={cupStar} alt="" className="cup-star-i" style={{ display:Number(getTotalPoints)>30000 ? "block" : "none"}}/>
-                            <img src={cupStar} alt="" className="cup-star-j" style={{ display:Number(getTotalPoints)>30000 ? "block" : "none"}}/>
-                            <img src={cupStar} alt="" className="cup-star-k" style={{ display:Number(getTotalPoints)>30000 ? "block" : "none"}}/>
-                            <img src={cupStar} alt="" className="cup-star-l" style={{ display:Number(getTotalPoints)>30000 ? "block" : "none"}}/>
-                            <img src={cupStar} alt="" className="cup-star-m" style={{ display:Number(getTotalPoints)>30000 ? "block" : "none"}}/>
+                            <img src={cupMain} alt="" className="cup-main" />
+                            <img src={cupStar} alt="" className="cup-star-a" />
+                            <img src={cupStar} alt="" className="cup-star-b" />
+                            <img src={cupStar} alt="" className="cup-star-c" />
+                            <img src={cupStar} alt="" className="cup-star-d" />
+                            <img src={cupStar} alt="" className="cup-star-e" />
+                            <img src={cupStar} alt="" className="cup-star-f" />
+                            <img src={cupStar} alt="" className="cup-star-g" />
+                            <img src={cupStar} alt="" className="cup-star-h" />
+                            <img src={cupStar} alt="" className="cup-star-i" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-j" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-k" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-l" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
+                            <img src={cupStar} alt="" className="cup-star-m" style={{ display: Number(getTotalPoints) > 30000 ? "block" : "none" }} />
                         </div>
                         <div className="mc-level-wrap">
                             <p className="mc-level-title">{
-                                Number(getTotalPoints)>30000 ? "金卡會員":"銀卡會員"
+                                Number(getTotalPoints) > 30000 ? "金卡會員" : "銀卡會員"
                             }</p>
                             <p className="mc-level-point">會員累積點數</p>
                             <p className="mc-level-ownPoint">{Number(getTotalPoints)}</p>
                             <p className="mc-level-canUse">可用的點數<span>{getCanUse}</span>點</p>
                             {
-                                (30000-Number(getTotalPoints))<=0 ? <p className="mc-level-next">已為最高等級</p> : <p className="mc-level-next">距離下一等級尚差<span>{30000-Number(getTotalPoints)}</span>點</p>
+                                (30000 - Number(getTotalPoints)) <= 0 ? <p className="mc-level-next">已為最高等級</p> : <p className="mc-level-next">距離下一等級尚差<span>{30000 - Number(getTotalPoints)}</span>點</p>
                             }
                         </div>
                     </div>
@@ -304,7 +314,7 @@ function Member() {
             </Modal>
 
             <ChatBot />
-            <Footer/>
+            <Footer />
 
         </Fragment>
     );

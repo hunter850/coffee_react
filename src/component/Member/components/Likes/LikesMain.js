@@ -94,7 +94,7 @@ function LikesMain() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} closeAble={false}>
                 <Modal.Body style={{ padding: "0" }}>
                     <div className="li-wrap">
                         <div className="li-msg-wrap">
