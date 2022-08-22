@@ -12,12 +12,11 @@ import frontpagecouponimg from "../../images/frontpage/frontpagecoupon.png";
 import "./FrontPage.css";
 import { Link } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
-import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
+// import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 import useData from "../../hooks/useData";
 
 function FrontPage() {
     const [frontpagecoupon, setFrontpagecoupon] = useData("frontpagecoupon");
-
     // const [isOpen, setIsOpen] = useState(false);
     // useEffect(() => {
     //     if (frontpagecoupon) {

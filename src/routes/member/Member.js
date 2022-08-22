@@ -50,7 +50,7 @@ function Member() {
     const [getCanUse,setCanUse] = useState(null);
 
     useEffect(() => {
-
+        console.log(!token);
         if (!token) {
             setIsOpen(true);
             return;
@@ -69,6 +69,12 @@ function Member() {
 
 // --------------------- 擁有幾張優惠券 ---------------------
     useEffect(() => {
+
+        if (!token) {
+            setIsOpen(true);
+            return;
+        }
+
         axios
             .get(getUserCoupons, {
                 headers: {
@@ -91,6 +97,12 @@ function Member() {
 
 // --------------------- 擁有多少收藏 ---------------------
     useEffect(() => {
+
+        if (!token) {
+            setIsOpen(true);
+            return;
+        }
+
         axios
             .get(getUserLikes, {
                 headers: {
@@ -109,6 +121,12 @@ function Member() {
 
 // --------------------- 擁有多少點數 ---------------------
     useEffect(() => {
+
+        if (!token) {
+            setIsOpen(true);
+            return;
+        }
+
         axios
             .get(getUserTotalPoints, {
                 headers: {
@@ -123,6 +141,12 @@ function Member() {
 
     // --------------------- 可用點數 ---------------------
     useEffect(() => {
+
+        if (!token) {
+            setIsOpen(true);
+            return;
+        }
+
         axios
             .get(getUserCanUsePoints, {
                 headers: {

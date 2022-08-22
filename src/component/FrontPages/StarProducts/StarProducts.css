@@ -5,6 +5,7 @@
     padding-left: 200px;
     letter-spacing: 0.5rem;
     margin: auto;
+    padding-top: 47px;
 }
 
 .bottom-line {
@@ -38,7 +39,7 @@
     margin-top: -40px;
 }
 .starproduct-viewbtn {
-    
+
 }
 
 @media screen and (max-width:400px){
