@@ -6,7 +6,7 @@ import Panel from "./Panel";
 import styles from "./scss/EditPhoto.module.scss";
 
 function EditPhoto(props) {
-    const { blobList, step, handleSubmit, cvsRef, cvsRefArr } = props;
+    const { blobList, step, handleSubmit, cvsRef, cvsRefArr, isSubmit } = props;
     const { wrap, panel_wrap } = styles;
     const length = blobList.length;
 
@@ -337,7 +337,7 @@ function EditPhoto(props) {
                     />
                 </div>
             ) : (
-                <NewContent handleSubmit={handleSubmit} />
+                <NewContent handleSubmit={handleSubmit} isSubmit={isSubmit} />
             )}
         </div>
     );
