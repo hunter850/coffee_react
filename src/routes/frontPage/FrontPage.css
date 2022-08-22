@@ -1,0 +1,9 @@
+.frontpagecouponad {
+    width: 588px;
+}
+
+@media (max-width: 375px) {
+    .frontpagecouponad {
+        width: 350px;
+    }
+}
