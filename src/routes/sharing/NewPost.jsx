@@ -24,6 +24,7 @@ function NewPost({ windowScrollY = 0 }) {
     const [rawBlob, setRawBlob] = useState([]);
     const [blobList, setBlobList] = useState([]);
     const [photoSize, setPhotoSize] = useState([]);
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const goPrev = () => {
         pushTabs(lastTabs);
@@ -112,6 +113,7 @@ function NewPost({ windowScrollY = 0 }) {
 
     const handleSubmit = debounce(async (e) => {
         const fd = new FormData(e.target);
+        setIsSubmit(true);
 
         let url = [];
         if (blobList.length === 1) {
@@ -153,8 +155,10 @@ function NewPost({ windowScrollY = 0 }) {
                 Authorization: `Bearer ${token}`,
             },
         });
-
-        goPrev();
+        setTimeout(() => {
+            setIsSubmit(false);
+            goPrev();
+        }, 1000);
     }, 150);
 
     return (
@@ -193,10 +197,10 @@ function NewPost({ windowScrollY = 0 }) {
                         handleSubmit={handleSubmit}
                         cvsRef={cvsRef}
                         cvsRefArr={cvsRefArr}
+                        isSubmit={isSubmit}
                     />
                 )}
             </div>
-
             <CancelBtn goPrev={goPrev} />
         </div>
     );

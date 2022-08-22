@@ -8,9 +8,10 @@ import { avatarDIR, previewAPI } from "../../../../config/api-path";
 import Tag from "../Tag";
 import styles from "./scss/NewContent.module.scss";
 import trans from "./scss/PreviewTransition.module.scss";
+import MySpinner from "../MySpinner";
 
 function NewContent(props) {
-    const { handleSubmit, data, setEditMode } = props;
+    const { handleSubmit, data, setEditMode, isSubmit } = props;
 
     const { sid, nickname: member_nickname, avatar } = useAuth();
     const { tag_transition } = trans;
@@ -241,6 +242,7 @@ function NewContent(props) {
                         發布文章
                     </button>
                 </div>
+                {isSubmit && <MySpinner />}
             </form>
         </div>
     );
