@@ -10,13 +10,11 @@ import EditPhoto from "./components/NewPost/EditPhoto";
 import CancelBtn from "./components/CancelBtn";
 import NewNav from "./components/NewPost/NewNav";
 import Upload from "./components/NewPost/Upload";
-import { useNavigate } from "react-router-dom";
 
 function NewPost({ windowScrollY = 0, resetState }) {
     const { token } = useAuth();
     const { wrap, new_post, nav, new_edit } = styles;
     const { lastTabs, pushTabs } = useTabsHistory();
-    const navigate = useNavigate();
 
     const cvsRefArr = useRef([]);
     const cvsRef = useRef(null);
@@ -77,7 +75,8 @@ function NewPost({ windowScrollY = 0, resetState }) {
 
     const onChangeHandler = (e) => {
         const length = e.target.files.length;
-        if (length > 0) {
+        const b_length = blobList.length || 0;
+        if (length > 0 && length + b_length <= 5) {
             for (let i = 0; i < length; i++) {
                 const f = e.target.files[i];
 
@@ -102,6 +101,10 @@ function NewPost({ windowScrollY = 0, resetState }) {
                     });
                 };
             }
+        } else if (length + b_length > 5) {
+            // TODO:取代前面的照片
+            alert("圖片超出數量");
+            return;
         }
     };
 

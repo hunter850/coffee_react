@@ -9,9 +9,10 @@ import Tag from "../Tag";
 import styles from "./scss/NewContent.module.scss";
 import trans from "./scss/PreviewTransition.module.scss";
 import MySpinner from "../MySpinner";
+import { set } from "lodash";
 
 function NewContent(props) {
-    const { handleSubmit, data, setEditMode, isSubmit } = props;
+    const { handleSubmit, data, setEditMode, isSubmit, escapeContent } = props;
 
     const { sid, nickname: member_nickname, avatar } = useAuth();
     const { tag_transition } = trans;
@@ -43,10 +44,10 @@ function NewContent(props) {
 
     useEffect(() => {
         if (data) {
-            const { title, topic_sid, content, tags } = data;
+            const { title, topic_sid, tags } = data;
             setTitle(title);
             setTopic(topic_sid);
-            setContent(content);
+            setContent(escapeContent);
             setMyTag(tags);
         }
     }, []);
@@ -106,6 +107,16 @@ function NewContent(props) {
         }
     }, [content]);
 
+    const handleFakeData = () => {
+        setTitle(`大安店初訪就成愛店 讚死!`);
+        setContent(`第一次去就非常滿足,店員非常親切,百忙之中還會抽空關心。
+        原本不餓只點了沙拉跟拿鐵,但吃完沙拉就吃下去發現有夠開胃啦，又加點:三明治食材的味道也很棒,旁邊的酸奶搭配很ㄅㄧㄤˋ，最後加點冷麵也有夠驚艷，我這餐吃完要肥死了!
+
+        環境☕| 店面小而美,免服務費大推。
+        餐點🍝 |《推》松露鄉村雞冷麵，有義式香料的香氣、鹹度適中、味道清爽。`);
+        setMyTag(["咖啡"]);
+    };
+
     return (
         <div className={wrap}>
             <div className={author}>
@@ -119,6 +130,15 @@ function NewContent(props) {
                     <span className={nickname}>{member_nickname}</span>
                     <span className={grey_span}>#{sid}</span>
                 </div>
+                {!data && (
+                    <button
+                        className="ms-auto"
+                        style={{ cursor: "pointer", width: "4rem", opacity: 0 }}
+                        onClick={() => handleFakeData()}
+                    >
+                        btn
+                    </button>
+                )}
             </div>
 
             <form

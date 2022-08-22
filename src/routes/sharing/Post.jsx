@@ -40,6 +40,7 @@ function Post({ newPost }) {
     const wrap = useRef(null);
     const mounted = useRef(false);
     const mounted_K = useRef(false);
+    const mounted_times = useRef(false);
     const param = useParams();
 
     const [searchMode, setSearchMode] = useState("");
@@ -79,6 +80,7 @@ function Post({ newPost }) {
     const resetState = useCallback(() => {
         mounted.current = false;
         mounted_K.current = false;
+        mounted_times.current = false;
         setGetDataTimes(0);
         setScrollY([0, 0]);
         setChooseValue("");
@@ -110,7 +112,7 @@ function Post({ newPost }) {
         ];
 
         const closest = gridArr.sort((a, b) => a - b)[0];
-        if (closest < 800) {
+        if (closest < 980) {
             setGetDataTimes((pre) => pre + 1);
         }
 
@@ -159,18 +161,29 @@ function Post({ newPost }) {
     }, [modal_sid, nowTabs]);
 
     useEffect(() => {
+        if (mounted_times.current) {
+            (async () => {
+                const r = await getData(getDataTimes);
+
+                if (r?.success) {
+                    setRows((pre) => {
+                        if (pre === undefined) {
+                            return [...r.rows];
+                        }
+
+                        return [...pre, ...r.rows];
+                    });
+                }
+            })();
+        } else {
+            mounted_times.current = true;
+        }
+    }, [getDataTimes]);
+
+    useEffect(() => {
         (async () => {
             const r = await getData(getDataTimes);
-
-            if (r?.success) {
-                setRows((pre) => {
-                    if (pre === undefined) {
-                        return [...r.rows];
-                    }
-
-                    return [...pre, ...r.rows];
-                });
-            }
+            if (r.success) setRows(r.rows);
 
             window.addEventListener("scroll", scrollHandler);
         })();
@@ -178,7 +191,7 @@ function Post({ newPost }) {
         return () => {
             window.removeEventListener("scroll", scrollHandler);
         };
-    }, [getDataTimes]);
+    }, []);
 
     const scrollDir = useMemo(() => {
         if (scrollY[0] >= scrollY[1]) {

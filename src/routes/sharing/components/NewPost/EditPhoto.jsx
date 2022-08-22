@@ -115,7 +115,7 @@ function EditPhoto(props) {
         } else if (asp_rto === "1" && ntrl_rto > 1) {
             newWidth = blobList[0].width * scaleByH;
             left = -(newWidth - 576) / 2;
-        } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+        } else if (asp_rto === "16/9" && ntrl_rto < 16 / 9) {
             newHeight = blobList[0].height * scale;
             top = -(newHeight - 324) / 2;
         } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
@@ -209,9 +209,10 @@ function EditPhoto(props) {
             } else if (asp_rto === "1" && ntrl_rto > 1) {
                 newWidth[i] = v.width * scaleByH;
                 left[i] = -(newWidth[i] - 576) / 2;
-            } else if (asp_rto === "16/9" && ntrl_rto <= 1) {
+            } else if (asp_rto === "16/9" && ntrl_rto < 16 / 9) {
                 newHeight[i] = v.height * scale;
                 top[i] = -(newHeight[i] - 324) / 2;
+                // TODO:rto>1
             } else if (asp_rto === "4/5" && ntrl_rto < 0.8) {
                 newHeight[i] = v.height * scale;
                 top[i] = -(newHeight[i] - 720) / 2;

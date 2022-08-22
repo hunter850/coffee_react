@@ -1,4 +1,4 @@
-import React from "react";
+import { useMemo } from "react";
 import NewContent from "../NewPost/NewContent";
 import axios from "axios";
 import { debounce } from "lodash";
@@ -7,8 +7,14 @@ import { getPosts } from "../../../../config/api-path";
 
 function EditContent(props) {
     const { setEditMode, data } = props;
+
     const { token } = useAuth();
     const sid = data.rows.sid;
+    const pattern = /<br>/g;
+    const escapeContent = useMemo(
+        () => data.rows.content.replace(pattern, "\r\n"),
+        [data]
+    );
 
     const handleSubmit = debounce(async (e) => {
         const fd = new FormData(e.target);
@@ -31,6 +37,7 @@ function EditContent(props) {
                 handleSubmit={handleSubmit}
                 data={data.rows}
                 setEditMode={setEditMode}
+                escapeContent={escapeContent}
             />
         </div>
     );
