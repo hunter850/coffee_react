@@ -61,48 +61,26 @@ function Modal(props) {
             if (isOpen) {
                 hideScrollbar();
                 onOpen();
-                setModalBackground((pre) => {
-                    console.log(1, pre);
-                    return {
-                        ...pre,
-                        display: "flex",
-                        transition: `opacity ${time}s ease`,
-                    };
-                });
-                setModalBord((pre) => {
-                    console.log(2, pre);
-                    return {
-                        ...pre,
-                        transition: `
-                        transform ${
-                            time === 0 ? time : time + 0.2
-                        }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
-                        `,
-                    };
-                });
+                setModalBackground((pre) => ({
+                    ...pre,
+                    display: "flex",
+                    transition: `opacity ${time}s ease`,
+                }));
+                setModalBord((pre) => ({
+                    ...pre,
+                    transition: `
+                    transform ${
+                        time === 0 ? time : time + 0.2
+                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
+                    `,
+                }));
                 nextTick(() => {
-                    setModalBackground((pre) => {
-                        console.log(3, pre);
-                        return { ...pre, opacity: 1 };
-                    });
-                    setModalBord((pre) => {
-                        console.log(4, pre);
-                        return {
-                            ...pre,
-                            transform: "translateY(0px)",
-                            opacity: 1,
-                        };
-                    });
-                    nextTick(() => {
-                        setModalBackground((pre) => {
-                            console.log(5, pre);
-                            return { ...pre };
-                        });
-                        setModalBord((pre) => {
-                            console.log(6, pre);
-                            return { ...pre };
-                        });
-                    });
+                    setModalBackground((pre) => ({ ...pre, opacity: 1 }));
+                    setModalBord((pre) => ({
+                        ...pre,
+                        transform: "translateY(0px)",
+                        opacity: 1,
+                    }));
                 });
             } else {
                 showScrollbar();
@@ -121,7 +99,6 @@ function Modal(props) {
                     transition: "none",
                 }));
                 nextTick(() => {
-                    console.log("in");
                     setModalBackground((pre) => ({
                         ...pre,
                         display: "none",
