@@ -141,7 +141,6 @@ function PostDetailContent(props) {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(r);
                 setDidLiked(!!r.data.liked);
 
                 setRows((pre) => {
