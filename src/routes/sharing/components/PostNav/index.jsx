@@ -99,7 +99,11 @@ function PostNav(props) {
                         </li>
                         <li
                             onClick={() => {
-                                pushTabs("newPost");
+                                if (authorized) {
+                                    pushTabs("newPost");
+                                } else {
+                                    setIsOpen(true);
+                                }
                             }}
                         >
                             <Link to="/sharing/newpost">
