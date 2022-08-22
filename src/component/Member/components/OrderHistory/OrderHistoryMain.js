@@ -21,20 +21,23 @@ function OrderHistoryMain() {
 
     const [cards, setCards] = useState([]);
 
-    const getData = async () => {
-        const response = await axios.get(getOrderHistory, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (!response.data.length) {
-            setIsOpen(true);
-        }
-        setCards(response.data);
-    };
+    
 
     useEffect(() => {
+        const getData = async () => {
+            const response = await axios.get(getOrderHistory, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+    
+            if (!response.data.length) {
+                // console.count(123);
+                console.log("歷史訂單");
+                setIsOpen(true);
+            }
+            setCards(response.data);
+        };
         getData();
     }, []);
 
@@ -73,7 +76,7 @@ function OrderHistoryMain() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
                 <Modal.Body style={{ padding: "0" }}>
                     <div className="or-wrap">
                         <div className="or-msg-wrap">
