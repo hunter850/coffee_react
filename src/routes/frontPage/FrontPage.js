@@ -12,12 +12,11 @@ import frontpagecouponimg from "../../images/frontpage/frontpagecoupon.png";
 import "./FrontPage.css";
 import { Link } from "react-router-dom";
 import ChatBot from "../../component/Bot/ChatBot";
-import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
+// import Spinnerwrap from "../../component/Item/SpinnerWrap/SpinnerWrap";
 import useData from "../../hooks/useData";
 
 function FrontPage() {
     const [frontpagecoupon, setFrontpagecoupon] = useData("frontpagecoupon");
-
     // const [isOpen, setIsOpen] = useState(false);
     // useEffect(() => {
     //     if (frontpagecoupon) {
@@ -49,8 +48,8 @@ function FrontPage() {
                 <Modal.Body component="div" style={{ padding: "0px" }}>
                     <div>
                         {/* <Link to="/getcoupon"> */}
-                        <img
-                            style={{ width: "588px" }}
+                        <img className="frontpagecouponad"
+                            // style={{ width: "588px" }}
                             src={frontpagecouponimg}
                             alt=""
                         />

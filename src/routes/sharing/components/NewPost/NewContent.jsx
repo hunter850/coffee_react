@@ -8,9 +8,10 @@ import { avatarDIR, previewAPI } from "../../../../config/api-path";
 import Tag from "../Tag";
 import styles from "./scss/NewContent.module.scss";
 import trans from "./scss/PreviewTransition.module.scss";
+import MySpinner from "../MySpinner";
 
 function NewContent(props) {
-    const { handleSubmit, data, setEditMode } = props;
+    const { handleSubmit, data, setEditMode, isSubmit } = props;
 
     const { sid, nickname: member_nickname, avatar } = useAuth();
     const { tag_transition } = trans;
@@ -164,7 +165,7 @@ function NewContent(props) {
                                     setContent(e.target.value);
                             }}
                         />
-                        <div className={tag_wrap} style={{ minHeight: "60px" }}>
+                        <div className={tag_wrap} style={{ minHeight: "30px" }}>
                             {myTag.map((v, i) => {
                                 return (
                                     <div key={i} onClick={() => removeTag(v)}>
@@ -222,14 +223,17 @@ function NewContent(props) {
                     </TransitionGroup>
                 </div>
                 <div className={form_bottom}>
-                    <button
-                        className={cancel_btn}
-                        onClick={() => {
-                            setEditMode(false);
-                        }}
-                    >
-                        取消
-                    </button>
+                    {data && (
+                        <button
+                            className={cancel_btn}
+                            onClick={() => {
+                                setEditMode(false);
+                            }}
+                        >
+                            取消
+                        </button>
+                    )}
+
                     <button
                         type="submit"
                         disabled={beDisable}
@@ -238,6 +242,7 @@ function NewContent(props) {
                         發布文章
                     </button>
                 </div>
+                {isSubmit && <MySpinner />}
             </form>
         </div>
     );

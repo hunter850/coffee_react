@@ -19,6 +19,7 @@ import {
     getProductCoupon,
     getFoodCoupon,
     cartCheck,
+    cartForm,
 } from "../../../config/api-path";
 
 function CartForm() {
@@ -127,6 +128,26 @@ function CartForm() {
             })
             .then((result) => {
                 setFoodCoupons(result.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                resetFoodCoupon();
+            });
+        axios
+            .get(cartForm, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then((result) => {
+                setFormData((pre) => ({
+                    ...pre,
+                    name: result.data.name || pre.name,
+                    phone: result.data.phone || pre.phone,
+                    email: result.data.email || pre.email,
+                    address: result.data.address || pre.address,
+                    deliverWay: "郵寄",
+                }));
             })
             .catch((error) => {
                 console.log(error);

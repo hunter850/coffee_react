@@ -15,18 +15,20 @@ function NavProvider(props) {
     const [shouldCover, setShouldCover] = useState(false);
     const { token } = useAuth();
     const getCount = useCallback(() => {
-        axios
-            .get(getCartCount, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
-            .then((res) => {
-                setCount(res.data.cartTotalCount);
-                // console.log(res.data.cartTotalCount);
-            })
-            .catch((error) => {
-                setCount(0);
-                console.log(error);
-            });
+        if (token) {
+            axios
+                .get(getCartCount, {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then((res) => {
+                    setCount(res.data.cartTotalCount);
+                    // console.log(res.data.cartTotalCount);
+                })
+                .catch((error) => {
+                    setCount(0);
+                    // console.log(error);
+                });
+        }
     }, [token]);
     const handleLogout = useCallback(() => {
         setCount(0);

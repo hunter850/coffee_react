@@ -10,11 +10,11 @@ import styles from "./scss/PostDeatailCarousel.module.scss";
 import { Navigation, Pagination } from "swiper";
 
 function PostDeatailCarousel({ imgs }) {
-    const { mySwiper, carousel_img, img_wrap } = styles;
+    const { myWrap, mySwiper, carousel_img, img_wrap } = styles;
 
     return (
         <>
-            <div style={{ height: "100%", width: "100%" }}>
+            <div style={{ height: "100%", width: "100%" }} className={myWrap}>
                 {imgs.length > 1 ? (
                     <Swiper
                         loop={true}

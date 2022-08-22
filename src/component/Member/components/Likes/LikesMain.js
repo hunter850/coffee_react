@@ -37,13 +37,14 @@ function LikesMain() {
             })
             .then((response) => {
                 if (!response.data) {
+                    console.log("收藏");
                     setIsOpen(true);
                     return;
                 }
-                console.log(response.data);
+                // console.log(response.data);
                 setMyLikes(response.data);
             });
-    }, [token]);
+    }, []);
 
     // 跳轉到商品頁
     const toProduct = () => {
@@ -93,7 +94,7 @@ function LikesMain() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false} closeAble={false}>
                 <Modal.Body style={{ padding: "0" }}>
                     <div className="li-wrap">
                         <div className="li-msg-wrap">

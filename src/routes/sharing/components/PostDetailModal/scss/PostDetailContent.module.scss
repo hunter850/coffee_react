@@ -1,7 +1,7 @@
 .grid_top{
     display: flex;
     flex-direction: column;
-    height: calc(100% - 2.5rem);
+    height: calc(100% - 1.75rem);
 
     >div{
         padding-left: 1.6rem;
@@ -11,7 +11,7 @@
     .author{
         display: flex;
         margin-left: .1rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1rem;
 
         .avatar_wrap{
             margin-right: .75rem;
@@ -128,5 +128,17 @@
         text-align: center;
         line-height: 2rem;
         margin-left: .25rem;
+    }
+}
+
+@media (max-width:768px) {
+    .grid_top{
+        .author{
+        margin-bottom: 0.5rem;
+
+        }
+    }
+    .msg_wrap{
+        padding: .25rem 1rem;
     }
 }

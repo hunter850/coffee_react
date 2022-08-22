@@ -32,7 +32,7 @@ function OrderHistoryDetailMain() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 // 回來資料的 order_sid = 路由的 order_sid
                 const getOrderSid = response.data.filter((v) => {
                     return Number(v.order_sid) === Number(order_sid);
@@ -44,7 +44,7 @@ function OrderHistoryDetailMain() {
     }, [token, order_sid]);
 
     const orderList = Object.values(myOrder).map((v, i) => v.order_list);
-    console.log(orderList[0]);
+    // console.log(orderList[0]);
 
 
     return (

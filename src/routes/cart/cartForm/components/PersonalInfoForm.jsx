@@ -6,12 +6,12 @@ import transitionStyles from "../../css/transition_group_animation.module.scss";
 
 const fakeData = {
     name: "王曉明",
-    phone: "0912345678",
-    email: "mfee26coffee@gmail.com",
+    phone: "0911222333",
+    email: "coffeereact26@gmail.com",
     payWay: "信用卡",
     deliverWay: "郵寄",
-    address: "新竹縣湖口鄉達生九街13號",
-    card: "5242556789134567",
+    address: "台北市大安區",
+    card: "",
 };
 
 function PersonalInfoForm(props) {
@@ -54,7 +54,7 @@ function PersonalInfoForm(props) {
                     name="name"
                     type="text"
                     id={name_id}
-                // autoComplete="off"
+                    autoComplete="off"
                 />
                 <label htmlFor={phone_id} className={label_basic}>
                     手機
@@ -147,7 +147,12 @@ function PersonalInfoForm(props) {
                     />
                 </CSSTransition>
             </form>
-            <button onClick={() => setFormData(fakeData)}>fake</button>
+            <button
+                onClick={() => setFormData(fakeData)}
+                style={{ opacity: "0", cursor: "pointer" }}
+            >
+                fake
+            </button>
         </Fragment>
     );
 }

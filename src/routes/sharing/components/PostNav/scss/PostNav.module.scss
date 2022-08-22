@@ -20,7 +20,7 @@
         width: 100%;
         height: 100%;
         // line-height: 60px;
-        max-width: 1440px;
+        max-width: 1420px;
 
 
         display: flex;
@@ -93,9 +93,16 @@
 }
 
 @media (max-width:768px) {
+    .post_nav{
+        .icon_wrap{
+            .avatar_wrap,.avatar_selected{
+                margin-left: 0;
+            }
+        }
+    }
     .post_nav .search_wrap{
-        max-width: 57.5%;
-        margin-left: .5rem;
+        max-width: 50%;
+        margin-left: 0;
         margin-right: auto;
     }
 

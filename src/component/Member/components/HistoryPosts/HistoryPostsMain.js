@@ -42,6 +42,7 @@ function HistoryPostsMain() {
             })
             .then((response) => {
                 if (response.data.length<=0) {
+                    console.log("分享");
                     setIsOpen(true);
                     return;
                 }
@@ -49,7 +50,7 @@ function HistoryPostsMain() {
                 setMyPosts(response.data);
                 setSortPosts(response.data);
             });
-    }, [token]);
+    }, []);
 
     // 拿到下拉選單的值
     const sortPost = (e) => {
@@ -201,7 +202,7 @@ function HistoryPostsMain() {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}  closeButton={false} closeAble={false}>
                 <Modal.Body style={{ padding: "0" }}>
                     <div className="li-wrap">
                         <div className="li-msg-wrap">

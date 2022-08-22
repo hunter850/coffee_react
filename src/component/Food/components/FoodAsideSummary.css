@@ -1,6 +1,6 @@
 .aside {
     display: flex;
-    width: 290px;
+    width: 310px;
     height: 100vh;
     transition: 0.3s transform;
     top: 60px;
@@ -36,7 +36,7 @@
     padding: 10px 20px;
     background-color: #eee5dd;
     /* position: fixed; */
-    width: 290px;
+    width: 310px;
     /* height: 70px; */
 
 }
@@ -50,7 +50,7 @@
     background-color: #fff;
     padding: 0px 10px 10px 10px;
     overflow-y: scroll;
-    width: 290px;
+    width: 310px;
 
     flex-direction: column;
     flex: 6;
@@ -144,7 +144,7 @@
     /* position: fixed; */
     display: flex;
     /* bottom: 0; */
-    width: 290px;
+    width: 310px;
     background-color: #eee5dd;
     box-shadow: 0 -2px 3px #ccc;
     padding: 10px 10px 0 10px;

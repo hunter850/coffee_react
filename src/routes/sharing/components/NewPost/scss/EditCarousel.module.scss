@@ -1,26 +1,10 @@
-.mySwiper{
-    height: 100%;
-}
-
-.carousel_img{  
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center center;
-}
-.img_wrap{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .myWrap{
+    height: 100%;
+    aspect-ratio: 4/5;
     :global(.swiper-button-next)::after{
         content: 'n' !important;
         display: block !important;
-        background: url('../../../../../images/sharing/compass_arrow.svg') center center / cover !important;;
+        background: url('../../../../../images/sharing/compass_arrow.svg') center center / cover !important;
         width: 24px  !important;
         height: 24px !important;
     }

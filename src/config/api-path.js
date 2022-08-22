@@ -62,7 +62,6 @@ export const addUserLike = `${SERVER}/products/api/userLike`;
 export const UserLikeDel = `${SERVER}/products/api/delUserLike`;
 export const getProductstag = `${SERVER}/products/api/getProductstag`;
 
-
 // CART
 export const getProduct = `${SERVER}/cart/read_product/api`;
 export const getFood = `${SERVER}/cart/read_food/api`;
@@ -70,3 +69,4 @@ export const getProductCoupon = `${SERVER}/cart/product_coupon/api`;
 export const getFoodCoupon = `${SERVER}/cart/food_coupon/api`;
 export const cartCheck = `${SERVER}/cart/check/api`;
 export const cartDetail = `${SERVER}/cart/detail/api`;
+export const cartForm = `${SERVER}/cart/form/api`;
