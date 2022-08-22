@@ -108,7 +108,7 @@ function LoginMain() {
     const getVerify = (event) => {
         const name = event.target.name;
         const val = event.target.value;
-        console.log({ name, val });
+        // console.log({ name, val });
         setMyVerify({ ...myVerify, [name]: val });
     };
 
@@ -178,13 +178,13 @@ function LoginMain() {
 
                         setTimeout(() => {
                             setIsLoading(true);
-                            console.log(1);
+                            // console.log(1);
                         }, 0);
         
                         setTimeout(() => {
                             getCount();
                             navigate("/member", {replace: false})
-                            console.log(2);
+                            // console.log(2);
                         }, 2300);
                         setLoginSuccess(true);
                     }
@@ -202,7 +202,6 @@ function LoginMain() {
         let isPass = true;
 
         if (!myform.member_name) {
-            console.log(5165465);
             setNameErrors({ ...nameErrors, name: "請輸入正確姓名" });
             isPass = false;
         } else {
@@ -237,7 +236,7 @@ function LoginMain() {
             })
                 .then((r) => r.json())
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
                     if (result.success) {
                         setSignSuccess(true);
                         setTimeout(() => {
@@ -264,7 +263,7 @@ function LoginMain() {
         })
             .then((r) => r.json())
             .then((result) => {
-                console.log(result);
+                // console.log(result);
                 if (!result.success) {
                     setVerifyError("錯誤！請重新再試！");
                 } else {
