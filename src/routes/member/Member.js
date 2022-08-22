@@ -35,6 +35,7 @@ function Member() {
     const { authorized, token } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const [showCoupon, setShowCoupon] = useState(false);
+    const [show, setShow] = useState(false);
 
     const myCard = useRef();
 
@@ -51,6 +52,8 @@ function Member() {
     useEffect(() => {
         if (!token) {
             setIsOpen(true);
+        } else {
+            setShow(true)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -183,7 +186,7 @@ function Member() {
     return (
         <Fragment>
             <NavBar />
-            <div className="mc-wrap-main">
+            <div className="mc-wrap-main" style={{ opacity: show ? 1 : 0 }}>
                 <div className="mc-container">
                     <div className="wrap-right">
                         <div className="mc-card" ref={myCard} onClick={flipCard}>
