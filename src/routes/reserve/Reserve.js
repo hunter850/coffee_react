@@ -214,8 +214,8 @@ function Reserve() {
                             <h6>送出</h6>
                         </div>
                         <div className="price">
-                            <p className="infor">價目表</p>
-                            <div className="infor">分店資訊</div>
+                            {/* <p className="infor">價目表</p>
+                            <div className="infor">分店資訊</div> */}
                         </div>
                         <p className="reserve-txt">
                             【線上訂位說明】
