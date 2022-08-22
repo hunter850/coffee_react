@@ -44,12 +44,6 @@ function NavBar({ navPosition = 'sticky' }) {
         }
     };
 
-    useEffect(() => {
-        if (window.location.pathname !== '/member/login') {
-            clearTimeout(memberJump);
-        }
-    }, [window.location.pathname]);
-
     // 取消下拉選單顯示
     useEffect(() => {
         window.addEventListener('click', () => {
