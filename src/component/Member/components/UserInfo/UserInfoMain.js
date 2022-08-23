@@ -282,6 +282,16 @@ function UserInfo() {
                     // console.log(result);
                     if(!result.success){
                         setAvatarFaild(true);
+                    }else{
+                        axios
+                        .get(getUserData, {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                        })
+                        .then((response) => {
+                            setAvatarField(response.data[0].avatar);
+                        });
                     }
                     // 頭貼重複上傳的話就不會觸發onChange，也就不會setSelectedFile
                     // 在下次選取照片時先清掉之前的值，才能觸發onChange事件
