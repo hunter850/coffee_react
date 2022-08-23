@@ -11,7 +11,7 @@ function AllProvider(props) {
             <StateProvider>
                 <TabsHistoryProvider>
                     <SuperProvider>
-                            <ScrollTop>{children}</ScrollTop>
+                        <ScrollTop>{children}</ScrollTop>
                     </SuperProvider>
                 </TabsHistoryProvider>
             </StateProvider>
