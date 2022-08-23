@@ -15,7 +15,7 @@ function Calendar({ setHour, hour }) {
             timeIntervals={60}
             timeCaption="時段"
             dateFormat="yyyy MMMM d, h:mm aa"
-            minTime={setHours(setMinutes(new Date(), 0), 7)}
+            minTime={setHours(setMinutes(new Date(), 0), 13)}
             maxTime={setHours(setMinutes(new Date(), 30), 18)}
             disabledKeyboardNavigation
             placeholderText="請選擇日期"

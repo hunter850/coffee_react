@@ -14,7 +14,7 @@ function GoogleMap({
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(true);
-        },4500);
+        }, 4500);
         // console.log("did update");
     }, [storeInfo]);
 
@@ -45,9 +45,8 @@ function GoogleMap({
     const dayName = ["日", "一", "二", "三", "四", "五", "六"];
 
     const dateGet = [
-        { id: 1, timeperiod: [`${month}月`, `${date}日`, `週${dayName[day]}`] },
         {
-            id: 2,
+            id: 1,
             timeperiod: [
                 `${month}月`,
                 `${date + 1}日`,
@@ -55,11 +54,19 @@ function GoogleMap({
             ],
         },
         {
-            id: 3,
+            id: 2,
             timeperiod: [
                 `${month}月`,
                 `${date + 2}日`,
                 `週${dayName[day + 2]}`,
+            ],
+        },
+        {
+            id: 3,
+            timeperiod: [
+                `${month}月`,
+                `${date + 3}日`,
+                `週${dayName[day + 3]}`,
             ],
         },
     ];
