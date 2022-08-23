@@ -134,7 +134,7 @@ function PostDetailContent(props) {
     };
 
     useEffect(() => {
-        if (authorized && mounted) {
+        if (authorized && mounted.current) {
             (async () => {
                 const r = await axios.get(`${memberLikeAPI}/${post_sid}`, {
                     headers: {
@@ -156,7 +156,7 @@ function PostDetailContent(props) {
                 });
             })();
         } else {
-            mounted = true;
+            mounted.current = true;
         }
     }, [data]);
 
