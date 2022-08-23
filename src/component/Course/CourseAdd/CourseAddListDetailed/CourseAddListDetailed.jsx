@@ -218,7 +218,7 @@ function CourseAddListDetailed({
                     <textarea
                         type="text"
                         className={`CourseAddListDetailed-object-inp  ${errorPeople !== '' ? 'course-add-error-txt' : ''}`}
-                        value={errorPeople === '' ? course_people : errorPeople}
+                        value={errorPeople === '' ? course_people.replace(/<br>/g, "\r\n") : errorPeople}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
@@ -233,7 +233,7 @@ function CourseAddListDetailed({
                     <textarea
                         type="text"
                         className={`CourseAddListDetailed-material-inp  ${errorMaterial !== '' ? 'course-add-error-txt' : ''}`}
-                        value={errorMaterial === '' ? course_material : errorMaterial}
+                        value={errorMaterial === '' ? course_material.replace(/<br>/g, "\r\n") : errorMaterial}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
