@@ -18,7 +18,7 @@ import useSound from "use-sound";
 function Getpoint() {
     const [isOpen1, setIsOpen1] = useState(true);
     const [play, { stop }] = useSound(GameBGM, {
-        volume: 0.5,
+        volume: 0.4,
     });
     const [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#B79973");

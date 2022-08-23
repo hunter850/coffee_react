@@ -171,7 +171,7 @@ class SnakeGame extends React.Component {
             let blockHeight = this.state.blockHeight;
             let newTail = { Xpos: Beans.Xpos, Ypos: Beans.Ypos };
             let highScore = this.state.highScore;
-            let gameLoopTimeout = this.state.gameLoopTimeout - 2;
+            let gameLoopTimeout = this.state.gameLoopTimeout - 1;
             snake.push(newTail);
             Beans.Xpos =
                 Math.floor(

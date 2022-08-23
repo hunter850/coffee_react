@@ -31,7 +31,7 @@ function GoodsHeader() {
                     <p className={header_text}>數量</p>
                 </li>
                 <li className={text_none}>
-                    <p className={header_text}>小記</p>
+                    <p className={header_text}>小計</p>
                 </li>
                 <li className={header_trash}>
                     <svg
