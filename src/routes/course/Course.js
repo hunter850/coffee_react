@@ -25,8 +25,10 @@ import Modal from "../../component/Modal/Modal";
 import Footer from '../../component/Footer';
 import ScrollWrap from "../../component/Item/ScrollWrap/ScrollWrap";
 import { useStyleChange } from '../../Contexts/SuperProvider';
+import { useNavigate } from "react-router-dom";
 
 const Course = () => {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     // 排序下拉選單的狀態 - 狀態提升放這邊
     const [sortData, setSortData] = useState("");
@@ -117,7 +119,12 @@ const Course = () => {
                 console.log(err.response);
             });
 
+    useEffect(() => {
+        if (window.location.pathname === '/course/add') {
+            navigate("/course", { replace: false });
+        }
 
+    }, [window.location.pathname]);
 
     // 向資料庫發請求,獲取資料
     useEffect(() => {
