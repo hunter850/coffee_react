@@ -1,6 +1,6 @@
-import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import useSetNow from "../../hooks/useSetNow";
+import useSetTimeout from "../../hooks/useSetTimeout";
 import useScrollbar from "../../hooks/useScrollbar";
 import useClass from "../../hooks/useClass";
 import ModalBody from "./components/ModalBody";
@@ -14,8 +14,6 @@ function Modal(props) {
         children,
         isOpen,
         setIsOpen,
-        bordY = -30,
-        time = 0.5,
         onOpen = () => {},
         onClose = () => {},
         closeButton = true,
@@ -24,35 +22,25 @@ function Modal(props) {
         style,
         teleportTo = document.querySelector("body"),
     } = props;
+    const {
+        close_button,
+        modal_bg,
+        modal_bord,
+        bg_hidden,
+        bg_show_init,
+        bg_show_active,
+        bord_hidden,
+        bord_show_init,
+        bord_show_active,
+    } = cssStyles;
 
-    const nextTick = useSetNow();
+    const [backgroundAnimation, setBackgroundAnimation] = useState(bg_hidden);
+    const [bordAnimation, setBordAnimation] = useState(bord_hidden);
+    const [openTimer, stopOpenTimer] = useSetTimeout();
+    const [initialTimer, stopInitialTimer] = useSetTimeout();
     const [hideScrollbar, showScrollbar] = useScrollbar();
     const c = useClass();
-    const { close_button, modal_bg, modal_bord } = cssStyles;
     const mountedRef = useRef(false);
-    const styles = useMemo(() => {
-        return {
-            bgStyle: {
-                display: "none",
-                opacity: 0,
-                transition: `opacity ${time}s ease`,
-            },
-            bordStyle: {
-                transform: `translateY(${bordY}px)`,
-                opacity: 0,
-                transition: `
-                    transform ${
-                        time === 0 ? time : time + 0.2
-                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
-                `,
-            },
-        };
-    }, [bordY, time]);
-    const [modalBackground, setModalBackground] = useState(styles.bgStyle);
-    const [modalBord, setModalBord] = useState({
-        ...styles.bordStyle,
-        ...style,
-    });
     const closeHandler = useCallback(() => {
         setIsOpen(false);
     }, [setIsOpen]);
@@ -61,96 +49,56 @@ function Modal(props) {
             if (isOpen) {
                 hideScrollbar();
                 onOpen();
-                setModalBackground((pre) => ({
-                    ...pre,
-                    display: "flex",
-                    transition: `opacity ${time}s ease`,
-                }));
-                setModalBord((pre) => ({
-                    ...pre,
-                    transition: `
-                    transform ${
-                        time === 0 ? time : time + 0.2
-                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
-                    `,
-                }));
-                nextTick(() => {
-                    setModalBackground((pre) => ({ ...pre, opacity: 1 }));
-                    setModalBord((pre) => ({
-                        ...pre,
-                        transform: "translateY(0px)",
-                        opacity: 1,
-                    }));
-                });
+                setBackgroundAnimation(bg_show_init);
+                setBordAnimation(bord_show_init);
+                openTimer(() => {
+                    setBackgroundAnimation(bg_show_active);
+                    setBordAnimation(bord_show_active);
+                }, 1);
             } else {
                 showScrollbar();
-                if (mountedRef.current) {
-                    onClose();
-                }
-                setModalBackground((pre) => ({
-                    ...pre,
-                    opacity: 0,
-                    transition: "none",
-                }));
-                setModalBord((pre) => ({
-                    ...pre,
-                    transform: `translateY(${bordY}px)`,
-                    opacity: 0,
-                    transition: "none",
-                }));
-                nextTick(() => {
-                    setModalBackground((pre) => ({
-                        ...pre,
-                        display: "none",
-                    }));
-                });
+                onClose();
+                setBackgroundAnimation(bg_hidden);
+                setBordAnimation(bord_hidden);
             }
         } else {
             mountedRef.current = true;
             // didMount時初始值是true 要直接進場
             if (isOpen) {
-                setModalBackground((pre) => ({
-                    ...pre,
-                    display: "flex",
-                    transition: `opacity ${time}s ease`,
-                }));
-                setModalBord((pre) => ({
-                    ...pre,
-                    transition: `
-                    transform ${
-                        time === 0 ? time : time + 0.2
-                    }s ease, opacity ${time === 0 ? time : time + 0.2}s ease
-                    `,
-                }));
-                nextTick(() => {
-                    setModalBackground((pre) => ({ ...pre, opacity: 1 }));
-                    setModalBord((pre) => ({
-                        ...pre,
-                        transform: "translateY(0px)",
-                        opacity: 1,
-                    }));
-                });
+                hideScrollbar();
+                onOpen();
+                setBackgroundAnimation(bg_show_init);
+                setBordAnimation(bord_show_init);
+                initialTimer(() => {
+                    setBackgroundAnimation(bg_show_active);
+                    setBordAnimation(bord_show_active);
+                }, 1);
             }
         }
         return () => {
             showScrollbar();
+            stopOpenTimer();
+            stopInitialTimer();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOpen]);
     useEffect(() => {
-        return () => setIsOpen(false);
+        return () => {
+            setIsOpen(false);
+            stopOpenTimer();
+            stopInitialTimer();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const el = (
         <div
-            style={modalBackground}
             onClick={closeAble ? closeHandler : () => {}}
-            className={c(modal_bg, bgClassName)}
+            className={c(modal_bg, bgClassName, backgroundAnimation)}
         >
             <div
-                style={modalBord}
+                style={style}
                 onClick={(e) => e.stopPropagation()}
-                className={c(modal_bord, className)}
+                className={c(modal_bord, className, bordAnimation)}
             >
                 {closeButton && (
                     <button

@@ -57,7 +57,7 @@
     position: absolute;
     right: 0px;
     top: 0px;
-    z-index: 10001;
+    z-index: 1001;
 }
 
 .modal_header {
@@ -76,82 +76,54 @@
     flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    .modal_text {
-        width: 100%;
-        max-height: calc(90vh - 132px);
-        overflow: auto;
-        padding: 0px 36px;
-        &::-webkit-scrollbar {
-            background-color: #fff0;
-            width: 6px;
-            height: 6px;
-        }
-        &::-webkit-scrollbar-track {
-            /* background-color: #b46868; */
-            display: none;
-        }
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
-        &::-webkit-scrollbar-button {
-            /* background-color: #7c2929; */
-            display: none;
-        }
-        &::-webkit-scrollbar-corner {
-            background-color: #fff0;
-        }
-    }
+// -----------------animation--------------------
 
-    .modal_bg {
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        background-color: #0009;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000000 !important;
-    }
+.bg_hidden {
+    display: none;
+    opacity: 0;
+}
 
-    .modal_bord {
-        max-width: 95%;
-        max-height: calc(90vh - 60px);
-        overflow: hidden;
-        background-color: #fff;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-    }
+.bg_show_init {
+    display: flex;
+    opacity: 0;
+    transform: translateY(-30px);
+}
 
-    .close_button {
-        border: none;
-        outline: none;
-        background-color: transparent;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        z-index: 10001;
-    }
+.bg_show_active {
+    display: flex;
+    animation: bg_fade_in 0.5s ease;
+}
 
-    .modal_header {
-        width: 100%;
-        overflow: hidden;
-        text-align: center;
-        min-height: 24px;
-        flex-shrink: 0;
-    }
+.bord_hidden {
+    opacity: 0;
+}
 
-    .modal_footer {
-        width: 100%;
-        min-height: 24px;
-        overflow: hidden;
-        padding: 0px 36px;
-        flex-shrink: 0;
+.bord_show_init {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.bord_show_active {
+    opacity: 1;
+    animation: bord_slide_in 0.7s ease;
+}
+
+@keyframes bg_fade_in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bord_slide_in {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
     }
 }
